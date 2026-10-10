@@ -22,7 +22,7 @@ open StructuralRamsey
 
 inductive Symbol where
   | lt | equiv | mate
-  deriving DecidableEq, Fintype
+  deriving DecidableEq
 
 abbrev Lang : RelLanguage where
   Symbol := Symbol
@@ -58,6 +58,17 @@ abbrev B : RelStructure Lang (Fin 6) where
     | .equiv, t => ((t 0).val / 2 = 1 ↔ (t 1).val / 2 = 1)
     | .mate, t => (t 0).val / 2 = (t 1).val / 2 ∧ t 0 ≠ t 1
 
+/-- Matching is decidable on every finite index, without classical choice. -/
+private theorem A_mate_total :
+    ∀ x : Fin 4, ∃! y : Fin 4,
+      x.val / 2 = y.val / 2 ∧ x ≠ y := by
+  decide
+
+private theorem B_mate_total :
+    ∀ x : Fin 6, ∃! y : Fin 6,
+      x.val / 2 = y.val / 2 ∧ x ≠ y := by
+  decide
+
 theorem A_mem : pairedClass A := by
   constructor
   · decide
@@ -66,8 +77,7 @@ theorem A_mem : pairedClass A := by
   · exact ⟨by decide, by decide, by decide⟩
   · decide
   · decide
-  · intro x
-    fin_cases x <;> decide
+  · exact A_mate_total
   · decide
 
 theorem B_mem : pairedClass B := by
@@ -78,39 +88,70 @@ theorem B_mem : pairedClass B := by
   · exact ⟨by decide, by decide, by decide⟩
   · decide
   · decide
-  · intro x
-    fin_cases x <;> decide
+  · exact B_mate_total
   · decide
+
+private def firstMap (x : Fin 4) : Fin 6 := ⟨x.val, by omega⟩
+
+private def lastMap (x : Fin 4) : Fin 6 := ⟨x.val + 2, by omega⟩
+
+/-- A finite algebraic check for the two prescribed embeddings. -/
+private theorem first_edge_iff (R : Symbol) (i j : Fin 4) :
+    edge B R (firstMap i) (firstMap j) ↔ edge A R i j := by
+  cases R <;> fin_cases i <;> fin_cases j <;> decide
+
+private theorem last_edge_iff (R : Symbol) (i j : Fin 4) :
+    edge B R (lastMap i) (lastMap j) ↔ edge A R i j := by
+  cases R <;> fin_cases i <;> fin_cases j <;> decide
 
 /-- The first two matched pairs form A. -/
 def first : Embedding A B where
-  toFun x := ⟨x.val, by omega⟩
+  toFun := firstMap
   injective := by
     intro x y h
+    have hval := congrArg (fun z : Fin 6 => z.val) h
     apply Fin.ext
-    exact congrArg (fun z : Fin 6 => z.val) h
+    exact hval
   map_rel_iff := by
     intro R x
-    cases R <;>
-      generalize hx : x (0 : Fin 2) = i <;>
-      generalize hy : x (1 : Fin 2) = j <;>
-      fin_cases i <;> fin_cases j <;> decide
+    cases R with
+    | lt =>
+      change edge B .lt (firstMap (x 0)) (firstMap (x 1)) ↔
+        edge A .lt (x 0) (x 1)
+      exact first_edge_iff .lt _ _
+    | equiv =>
+      change edge B .equiv (firstMap (x 0)) (firstMap (x 1)) ↔
+        edge A .equiv (x 0) (x 1)
+      exact first_edge_iff .equiv _ _
+    | mate =>
+      change edge B .mate (firstMap (x 0)) (firstMap (x 1)) ↔
+        edge A .mate (x 0) (x 1)
+      exact first_edge_iff .mate _ _
 
 /-- The last two matched pairs form A, in the reversed E-class order. -/
 def last : Embedding A B where
-  toFun x := ⟨x.val + 2, by omega⟩
+  toFun := lastMap
   injective := by
     intro x y h
-    have hh := congrArg (fun z : Fin 6 => z.val) h
+    have hval := congrArg (fun z : Fin 6 => z.val) h
     apply Fin.ext
-    change x.val + 2 = y.val + 2 at hh
+    change x.val + 2 = y.val + 2 at hval
     omega
   map_rel_iff := by
     intro R x
-    cases R <;>
-      generalize hx : x (0 : Fin 2) = i <;>
-      generalize hy : x (1 : Fin 2) = j <;>
-      fin_cases i <;> fin_cases j <;> decide
+    cases R with
+    | lt =>
+      change edge B .lt (lastMap (x 0)) (lastMap (x 1)) ↔
+        edge A .lt (x 0) (x 1)
+      exact last_edge_iff .lt _ _
+    | equiv =>
+      change edge B .equiv (lastMap (x 0)) (lastMap (x 1)) ↔
+        edge A .equiv (x 0) (x 1)
+      exact last_edge_iff .equiv _ _
+    | mate =>
+      change edge B .mate (lastMap (x 0)) (lastMap (x 1)) ↔
+        edge A .mate (x 0) (x 1)
+      exact last_edge_iff .mate _ _
 
 /-- Finite equivalence relations admit natural-number class labels.
 No order or matching hypothesis is needed for this fact. -/
@@ -126,10 +167,11 @@ theorem exists_class_labels {V : Type} [Finite V]
   intro x y
   constructor
   · intro h
+    have hq : Quotient.mk s x = Quotient.mk s y := by
+      apply (Fintype.equivFin (Quotient s)).injective
+      exact Fin.ext h
     change s.r x y
-    apply Quotient.exact
-    apply (Fintype.equivFin (Quotient s)).injective
-    exact Fin.ext h
+    exact Quotient.exact hq
   · intro h
     have he : Quotient.mk s x = Quotient.mk s y := Quotient.sound h
     exact congrArg (fun z : Quotient s =>
