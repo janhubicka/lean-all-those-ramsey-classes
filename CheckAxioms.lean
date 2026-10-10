@@ -1,0 +1,18 @@
+import AllThoseRamseyClasses
+
+-- The same permitted-axiom standard as partite-construction/the survey.
+-- These results are NOT a proof of the full (R,U)-multiamalgamation theorem.
+#print axioms AllThoseRamseyClasses.Published.ordinarily_irreducible_is_UIrreducible
+#print axioms AllThoseRamseyClasses.Published.lemma_2_23_one
+#print axioms AllThoseRamseyClasses.Published.definition_2_15_embedding_on_intrinsic_test
+#print axioms AllThoseRamseyClasses.Published.singleton_isUIrreducible
+#print axioms AllThoseRamseyClasses.Published.isEmpty_of_intrinsic_tests_mem_of_no_singletons
+#print axioms AllThoseRamseyClasses.Published.copywiseCompletion_of_intrinsic_tests_mem_of_no_singletons
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.A_mem
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.B_mem
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.exists_class_labels
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.not_arrow_of_class_labels
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.no_finite_ramsey_witness
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.no_singleton_member
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.literal_test_membership_forces_empty
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.literal_copywise_completion_is_automatic
