@@ -18,6 +18,7 @@ No strong-amalgamation claim is made in this module.
 
 namespace AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
 
+open StructuralRamsey
 open StructuralRamsey.RelStructure
 
 universe v
