@@ -59,3 +59,6 @@ import AllThoseRamseyClasses
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.nameEmbedding_comp
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.arrow_nameExternal
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.name_ordered_auxiliaryReduct_eq
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.orderedAmbient_isRamsey
