@@ -57,9 +57,9 @@ theorem finitePairedClass_literal_local_one
         (D : RelStructure Lang X), ¬ finitePairedClass D := by
     intro X _ _ D hD
     exact no_singleton_member D hD.2
-  exact literalULocalCompletionAt_one_of_noSingletons
-    (K := finitePairedClass) (W := Fin 6) (P := P)
-    mateRules B C0 finiteB_mem hNo
+  intro X hX C _ _ hTests _
+  exact copywiseCompletion_of_intrinsic_tests_mem_of_no_singletons
+    (K := finitePairedClass) B finiteB_mem C hNo hTests
 
 /-- The finite class fails the Ramsey arrow for explicit A and B.
 This does not assume that the desired witness is nonempty. -/
