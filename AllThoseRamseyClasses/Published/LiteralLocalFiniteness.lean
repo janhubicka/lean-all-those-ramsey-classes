@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Published.SingletonObstruction
+import AllThoseRamseyClasses.Published.PairedEquivalences
 
 /-!
 # Literal Definition 2.17(4) (2019), with its exact weak tests
@@ -96,5 +96,22 @@ theorem literalULocalCompletionAt_one_of_noSingletons
         (D : RelStructure L X), ¬ K D) :
     LiteralULocalCompletionAt K rules B C0 1 :=
   literalULocalCompletionAt_of_noSingletons rules B C0 hB hNoSingleton 1
+
+
+
+namespace PairedEquivalenceObstruction
+
+/-- The printed (4a)--(4c) local completion implication for the
+specific paired-equivalence class holds with n = 1, regardless
+of C0 or of the closure description, because K has no singletons.
+The actual intended matching-closure rule is studied separately. -/
+theorem pairedClass_literal_local_finiteness_one
+    {Q : Type}
+    (rules : ClosureDescription Lang) (C0 : RelStructure Lang Q) :
+    LiteralULocalCompletionAt pairedClass rules B C0 1 :=
+  literalULocalCompletionAt_one_of_noSingletons
+    rules B C0 B_mem no_singleton_member
+
+end PairedEquivalenceObstruction
 
 end AllThoseRamseyClasses.Published
