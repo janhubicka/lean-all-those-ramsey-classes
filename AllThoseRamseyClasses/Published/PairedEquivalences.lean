@@ -62,12 +62,44 @@ abbrev B : RelStructure Lang (Fin 6) where
 private theorem A_mate_total :
     ∀ x : Fin 4, ∃! y : Fin 4,
       x.val / 2 = y.val / 2 ∧ x ≠ y := by
-  decide
+  intro x
+  fin_cases x
+  · refine ⟨1, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨0, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨3, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨2, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
 
 private theorem B_mate_total :
     ∀ x : Fin 6, ∃! y : Fin 6,
       x.val / 2 = y.val / 2 ∧ x ≠ y := by
-  decide
+  intro x
+  fin_cases x
+  · refine ⟨1, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨0, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨3, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨2, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨5, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
+  · refine ⟨4, by decide, ?_⟩
+    intro y hy
+    fin_cases y <;> simp_all
 
 theorem A_mem : pairedClass A := by
   constructor
