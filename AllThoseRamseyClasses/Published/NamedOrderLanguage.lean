@@ -112,15 +112,9 @@ theorem arrow_nameExternal
     χ ((nameEmbedding b).comp e₁) =
         χ (nameEmbedding (b.comp (unnameEmbedding e₁))) := by
           congr 1
-          apply Embedding.ext
-          intro x
-          rfl
     _ = χ (nameEmbedding (b.comp (unnameEmbedding e₂))) :=
           hMono (unnameEmbedding e₁) (unnameEmbedding e₂)
     _ = χ ((nameEmbedding b).comp e₂) := by
           congr 1
-          apply Embedding.ext
-          intro x
-          rfl
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
