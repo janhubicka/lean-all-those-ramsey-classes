@@ -65,7 +65,8 @@ theorem finitePairedClass_corrected_local_cutoff
       exact congrArg Subtype.val hxy
     map_rel_iff := fun _ _ => Iff.rfl
   }
-  exact (hCompletion.toCopywise hIrred).precomp_embedding eUniv
+  exact HasCopywiseCompletion.precomp_embedding
+    (hCompletion.toCopywise hIrred) eUniv
 
 /-- Unlike the original vacuity proof, we now prove corrected
 local finiteness for EVERY pair (B,C0), not only one B. -/
