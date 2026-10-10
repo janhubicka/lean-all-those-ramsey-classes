@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.OrderedRankStrictness
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderRank_strictMono
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_strict_after_root
