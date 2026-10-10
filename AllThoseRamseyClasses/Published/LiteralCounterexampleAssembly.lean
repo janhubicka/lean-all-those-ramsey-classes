@@ -125,14 +125,16 @@ then the paired-equivalence class COULD NOT have strong AP.
 The preceding finite computations suggest precisely the opposite.
 The missing strong AP theorem is NOT silently asserted here. -/
 theorem literalTheorem218_implies_not_pairedStrong
-    (hPublished : LiteralTheorem218Target (L := Lang)) :
+    (hPublished : LiteralTheorem218Target.{0, 0} (L := Lang)) :
     ¬ HasFiniteStrongAmalgamation finitePairedClass := by
   intro hStrong
+  have hPackage : LiteralMultiamalgamationClass
+      orderedAmbientClass finitePairedClass mateRules :=
+    finitePaired_literal_multiamalgamation_of_strong hStrong
   have hK : FiniteRamseyClass finitePairedClass :=
     hPublished orderedAmbientClass finitePairedClass mateRules
       orderedAmbient_isRamsey
-      (fun C hC => orderedAmbient_irreducible C hC)
-      (finitePaired_literal_multiamalgamation_of_strong hStrong)
+      (fun C hC => orderedAmbient_irreducible C hC) hPackage
   exact finitePairedClass_notRamsey hK
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
