@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.OrderedPushoutFromKeys
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.IsFreeAmalgam.exists_order_from_compatible_keys
