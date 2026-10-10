@@ -33,7 +33,7 @@ private theorem mateRoot_irreducible : mateRoot.Irreducible := by
 
 /-- The closure-rule relation symbol is the matching M. The root
 has exactly one vertex and is strictly smaller than its arity two. -/
-def mateRule : ClosureRule Lang where
+abbrev mateRule : ClosureRule Lang where
   symbol := .mate
   rootSize := 1
   rootPositive := by decide
@@ -42,7 +42,7 @@ def mateRule : ClosureRule Lang where
   rootIrreducible := mateRoot_irreducible
 
 /-- Singleton closure description of the published test class. -/
-def mateRules : ClosureDescription Lang := {mateRule}
+abbrev mateRules : ClosureDescription Lang := {mateRule}
 
 /-- Every structure in K is U-closed for the actual matching rule.
 This is the first nonvacuous class hypothesis of Definition 2.17. -/
@@ -62,19 +62,27 @@ theorem pairedClass_isUClosed {V : Type}
         exact Subsingleton.elim a b
       map_rel_iff := by
         intro R v
+        have htuple :
+            ((fun _ : Fin 1 => t (0 : Fin 2)) ∘ v) =
+              ![t (0 : Fin 2), t (0 : Fin 2)] := by
+          funext i
+          fin_cases i <;> rfl
         cases R with
         | lt =>
-          change edge C .lt (t 0) (t 0) ↔ False
+          change C.rel .lt ((fun _ : Fin 1 => t 0) ∘ v) ↔ False
+          rw [htuple]
           constructor
           · exact hC.lt_irrefl (t 0)
           · exact False.elim
         | equiv =>
-          change edge C .equiv (t 0) (t 0) ↔ True
+          change C.rel .equiv ((fun _ : Fin 1 => t 0) ∘ v) ↔ True
+          rw [htuple]
           constructor
           · intro _; trivial
           · intro _; exact hC.equiv.1 (t 0)
         | mate =>
-          change edge C .mate (t 0) (t 0) ↔ False
+          change C.rel .mate ((fun _ : Fin 1 => t 0) ∘ v) ↔ False
+          rw [htuple]
           constructor
           · exact hC.mate_irrefl (t 0)
           · exact False.elim
