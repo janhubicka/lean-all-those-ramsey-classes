@@ -59,3 +59,6 @@ import AllThoseRamseyClasses
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.nameEmbedding_comp
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.arrow_nameExternal
+
+#print axioms AllThoseRamseyClasses.Published.literalMap_embeds_deleted_output
+#print axioms AllThoseRamseyClasses.Published.literalMap_deleted_output_card_bound
