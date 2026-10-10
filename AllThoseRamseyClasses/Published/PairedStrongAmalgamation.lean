@@ -196,6 +196,7 @@ theorem finitePairedClass_strong_amalgamation :
   obtain ⟨o, hOrdL, hOrdR⟩ :=
     hFree.exists_order_from_compatible_keys
       keyL keyR hCompat hOrdKeyL hOrdKeyR
+  letI : LinearOrder P := o
   let Target : RelStructure Lang P := {
     rel := fun
       | .lt, t => @LT.lt P o.toLT (t 0) (t 1)
