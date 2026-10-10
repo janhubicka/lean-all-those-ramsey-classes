@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.EquivalencePushoutLabels
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.IsFreeAmalgam.exists_compatible_label
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.exists_amalgam_E_labels
