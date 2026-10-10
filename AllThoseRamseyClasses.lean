@@ -9,3 +9,5 @@ import AllThoseRamseyClasses.Published.MatchingClosure
 import AllThoseRamseyClasses.Published.MatchingHereditary
 
 import AllThoseRamseyClasses.Published.FinitePairedClass
+
+import AllThoseRamseyClasses.Published.MatchingFreeAmalgam
