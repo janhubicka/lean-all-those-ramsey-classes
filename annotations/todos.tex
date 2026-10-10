@@ -66,3 +66,40 @@ for the final C, (ii) closed U-irreducible test membership, and
 at most n(B,C0). The higher-rank induction must control the common
 closed boundary without assuming it has lower U-size; this step is
 currently NOT proved in the formalization.}
+
+
+% TODO-2019-008: Lemma 2.23(2), an undefined additional assumption.
+\todo[inline]{Lemma 2.23(2): The sentence "Further assume that
+completions in both cases are strong completions" does not identify
+which completions are meant. It is unnecessary for the claimed free
+amalgamation of two already U-closed structures over a common
+U-closed substructure. PROPOSED REPLACEMENT:
+"Let B_1 and B_2 be U-closed L-structures, and let A be a
+U-closed substructure of both. Then the free amalgamation of
+B_1 and B_2 over A is a U-closed structure."
+The upstream Lean proof supports this exact cleaner statement.}
+
+% TODO-2019-009: Lemma 2.31 versus Definition 2.17(4c).
+\todo[inline]{Lemma 2.31: The printed conclusion addresses only
+"every U-substructure of C with at most n vertices", whereas
+Definition 2.17(4c) requires every substructure of C on at
+most n vertices, even if it is not a U-substructure or U-closed.
+PROPOSED REPLACEMENT, subject to proof under the corrected map:
+"Moreover, every (not necessarily U-closed) substructure of C
+with at most n vertices has a (K,U)-completion."
+For each exact weak tested set S, complete its U-closure in C,
+whose U-size is at most |S|, and then restrict the corrected
+completion map to the original S. Preserve its cardinality bound.}
+
+% TODO-2019-010: Theorem 2.19 proof cannot silently rely on a
+% theorem with incorrect literal hypotheses.
+\todo[inline]{Proof of Theorem 2.19: The printed deduction
+uses Theorem 2.18. Until the stronger corrected
+multiamalgamation theorem is proved, replace that dependency
+with the independent class-preserving Ramsey proof for
+finite ordered *partial single-valued functions* via full free
+amalgamation (the all-arity EHN construction). State explicitly
+that functions may be undefined on input tuples and that the
+Ramsey witness remains single-valued. The exact claim is
+already checked in the upstream Lean declaration
+allThoseRamseyClasses_theorem_2_19_partialFunctions.}
