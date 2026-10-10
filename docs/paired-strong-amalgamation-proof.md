@@ -28,8 +28,9 @@ vertex. Their union is therefore again a symmetric irreflexive
 perfect matching \(M_P\) on \(P_0\).
 Lean has proved that the initial free amalgam is
 \(\mathcal U\)-closed for the actual unary matching closure
-(`freeAmalgam_matching_isUClosed`). The more explicit
-`freeAmalgam_mate_total` proof is in the follow-up PR.
+(`freeAmalgam_matching_isUClosed`). The explicit `freeAmalgam_mate_total` theorem is now
+Lean-verified in main. The free relational amalgam's M relation
+remains unchanged by the later E and order completions.
 
 ## Step 2: equivalence classes without unwanted identifications
 
@@ -128,3 +129,51 @@ The exact Lean work outstanding is:
 **Do not change the manuscript while this Lean formalization remains
 incomplete.** This note is a source for review and a proof guide,
 not a completed machine-verification certificate.
+
+## Lean implementation checkpoint — 10 October 2026
+
+CI-verified and merged:
+
+- `FreeAmalgam.isFreeAmalgam` (upstream) supplies the exact strong vertex
+  pushout and induced side embeddings.
+- `freeAmalgam_matching_isUClosed` and `freeAmalgam_mate_total`
+  establish the original M-closure and the unique mate of every vertex.
+- `equivalence_embedding_iff`, `root_class_unique_of_two_contacts`,
+  and `equivalence_agrees_on_overlap` prove E-class compatibility.
+- `sideClassTag_eq_iff` and `amalgamTag_agree_on_root` identify the exact
+  quotient classes over the root. `leftAmalgamTag_eq_iff` and
+  `rightAmalgamTag_eq_iff` protect full E-reflection on both sides.
+- `rootCut_mono` and `rootCut_agree_on_root` support the root-interval
+  linear-order construction.
+
+Open, CI-PENDING proof stages (do NOT treat these as verified until
+their own completed workflow and axiom audit are checked):
+
+- [PR #39](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/39):
+  glues compatible class labels over the actual free vertex pushout.
+- [PR #40](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/40):
+  stacked on #39; defines E by global label equality, checks full
+  E-reflection and M-contained-in-E.
+- [PR #41](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/41):
+  strict rank of side vertices and root-cut separation.
+- [PR #43](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/43):
+  stacked on #41; root-compatible strict lexicographic keys for the sides.
+- [PR #44](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/44):
+  stacked on #39; generic finite order extension from compatible
+  monotone keys using an injective lexicographic tie-breaker.
+
+After these modules have passed CI, combine the side keys from #43
+with the generic order-lifting theorem from #44 to obtain the common
+linear order. Define the target ternary structure on the concrete
+free carrier using this order, global E-label equality and the original
+free M relation. Prove its pairedClass membership and the full induced
+left/right embeddings, then conclude
+`HasFiniteStrongAmalgamation finitePairedClass`.
+
+**Important mathematical update:** the published 2019 theorem and the
+proposed (4b)-only repair both have paired-class counterexamples.
+The (4b)-only corrected local completion condition was proved in Lean
+in PR #38 (CI 38083046493), with cutoff `Nat.card C0 + 1` for every
+B in K. The only remaining machine-checking obligation for these
+class-level contradictions is the finite strong amalgamation theorem
+above. This does not validate any alternative repair of Theorem 2.18.
