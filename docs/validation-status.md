@@ -13,9 +13,10 @@ Evidence goes here, never into the published LaTeX text.
 | Definition 2.13 | `ClosureDescription2019.lean` `IsUClosed` | BLUE: representation |
 | Definition 2.15 | `ClosureUIrreducible2019.lean` | BLUE: exact *literal* interface |
 | Definition 2.17(4) | `LiteralLocalFiniteness.lean` | GREEN (local PR #1): exact printed local implication at n=1 for all classes without singletons; paired-class instance |
-| Theorem 2.18 | `MinimalRepair4b.lean`, `LiteralWeakRankBridge.lean`, `CorrectedMainTheoremContract.lean` | **NOT VERIFIED**: exact one-clause (4b) target and conditional endgame, but full higher-rank witness still open; published literal theorem refuted |
+| Theorem 2.18 | `MinimalRepair4b.lean`, `Corrected4bLocalCounterexample.lean`, `LiteralCounterexampleAssembly.lean` | **REFUTED MATHEMATICALLY** both as literally printed and with only (4b) amended; complete Lean theorem-level contradiction remains conditional on proving paired K strong amalgamation |
 | Theorem 2.19 | `AllThosePartialFiniteModels.lean` | GREEN upstream: original partial single-valued functions, all arities |
 | Definition 2.22 / Lemma 2.23(1) | `ClosureDescription2019.lean` | GREEN upstream |
+| Minimal (4b)-only local condition | `CorrectedSingletonEscapeBound.lean`, `Corrected4bLocalCounterexample.lean` | GREEN PR #38: n(B,C0)=|C0|+1 works for all B∈K; corrected class theorem would contradict non-Ramsey K if strong AP is proved |
 | Lemma 2.23(2) | `ClosureFreeAmalgamCompletion.lean` | GREEN upstream for U-closed sides/overlap; editorial TODO removes undefined strong-completion clause |
 | Definition 2.24 | `ClosureSemiClosed2019.lean` | BLUE: representation with checked partial lemmas |
 | Definition 2.25 | `ClosureUSize2019.lean` | BLUE/PARTIAL; possible printed ambiguity recorded in TODO |
@@ -23,7 +24,7 @@ Evidence goes here, never into the published LaTeX text.
 | Lemma 2.29 | `Lemma229Counterexample.lean` | **REFUTED LITERALLY (GREEN negative proof)**: explicit A,B,C0 satisfy hypotheses but no C has all intrinsically U-irreducibles covered; closed-test repair pending |
 | Lemma 2.31 / Definition 2.17(4c) | `LiteralWeakRankBridge.lean` | GREEN conditional: closed rank control by fully protected original-style maps yields ALL exact weak n-vertex completions; supplying those maps remains open |
 | Lemmas 2.30–2.31 | Closure rank/relative boundary modules | OPEN for the general corrected higher-rank iteration |
-| Explicit non-Ramsey counterexample | `PairedEquivalences.lean`, `MatchingClosure.lean`, `MatchingHereditary.lean`, `FinitePairedClass.lean`, `MatchingFreeAmalgam.lean` | GREEN finite K, closure, closed hereditariness, literal local n=1, persistent colouring and matching core of free amalgams; general strong amalgamation and ambient ordered Ramsey class remain OPEN |
+| Paired-equivalence counterexample | `PairedEquivalences.lean`, `FinitePairedClass.lean`, `OrderedAmbientRamsey.lean`, `CorrectedSingletonEscapeBound.lean`, `Corrected4bLocalCounterexample.lean` | GREEN: finite K, ambient R Ramsey/irreducible, closed hereditariness, literal and minimally corrected local conditions, persistent non-Ramsey colouring; **strong amalgamation still to be proved in Lean** |
 
 ## Meaning of markers
 
@@ -55,4 +56,6 @@ Further immutable proof commits and successful full CI runs:
 - PR #9 `11180c7e8fcf5981b9cbc480a6b300cf63952d93` (CI `38075158171`): bounded strong amalgamation regression on 72,839 spans; NOT a Lean proof
 - PR #10 `f1ce1f5be6777c8ee02b4c831c53801741397e85` (CI `38075422312`): direct Lean witness refuting printed Lemma 2.29
 
-The current `main` audit lists 39 declarations, all with permitted logical axioms. The general class-theorem contradiction and corrected theorem are BOTH still unproved end to end in Lean. PR #11 gives a precise corrected class contract and conditional Ramsey extraction; it does not assert that its missing sparse witness exists.
+Latest checkpoint: merged PR #38, commit `3e535634d662f7a984fd687c352a64a8606a639a`, CI run `38083046493`: **3,340 successful build jobs, 75 declarations with only permitted standard axioms**, and all 72,839 bounded strong-amalgamation spans passing. The exact (4b)-only corrected local-completion axiom is proved AUTOMATIC for the non-Ramsey paired class at cutoff `Nat.card P + 1`; this is not merely an unproved heuristic. The **only missing class hypothesis** for an unconditional Lean contradiction is `HasFiniteStrongAmalgamation finitePairedClass`.
+
+The complete general higher-rank multiamalgamation theorem under any alternative repair remains unverified. Do not promote partial closed-test Picture machinery or a different completion-map convention to a green theorem-level marker; keep the published prose frozen pending formal proof and editorial review.
