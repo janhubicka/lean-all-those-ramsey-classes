@@ -56,3 +56,5 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.orderedAmbient_irreducible
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.ambientLinearOrder_lt_iff
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.freeAmalgam_mate_total
