@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.MatchingFreeAmalgamTotal
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.freeAmalgam_mate_total
