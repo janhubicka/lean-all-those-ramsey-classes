@@ -13,3 +13,5 @@ import AllThoseRamseyClasses.Published.FinitePairedClass
 import AllThoseRamseyClasses.Published.MatchingFreeAmalgam
 
 import AllThoseRamseyClasses.Published.MinimalRepair4b
+
+import AllThoseRamseyClasses.Published.LiteralWeakRankBridge
