@@ -38,12 +38,16 @@ jobs:
       - name: Build all project modules
         run: |
           set -euo pipefail
-          lake build AllThoseRamseyClasses
+          mapfile -t modules < <(find AllThoseRamseyClasses -name '*.lean' -type f | sort | sed -e 's#/#.#g' -e 's#\.lean$##')
+          lake build AllThoseRamseyClasses "${modules[@]}"
       - name: Check theorem axioms
         run: |
           set -euo pipefail
-          lake env lean CheckAxioms.lean > axioms.log 2>&1 || { tail -100 axioms.log; exit 1; }
-          python3 scripts/check_axioms.py axioms.log CheckAxioms.lean
+          : > axioms.log
+          for audit in CheckAxioms*.lean; do
+            lake env lean "$audit" >> axioms.log 2>&1 || { tail -100 axioms.log; exit 1; }
+          done
+          python3 scripts/check_axioms.py axioms.log CheckAxioms*.lean
       - name: Finite paired-equivalence counterexample regression
         run: python3 scripts/check_paired_equivalences.py
       - name: Bounded strong-amalgamation regression (72839 spans)
