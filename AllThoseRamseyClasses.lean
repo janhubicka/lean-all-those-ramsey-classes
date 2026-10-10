@@ -25,3 +25,5 @@ import AllThoseRamseyClasses.Published.OrderedAmbient
 import AllThoseRamseyClasses.Published.OrderedAmbientOrder
 
 import AllThoseRamseyClasses.Published.NamedOrderLanguage
+
+import AllThoseRamseyClasses.Published.LiteralDeletedOutputBound
