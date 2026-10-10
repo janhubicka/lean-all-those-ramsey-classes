@@ -22,3 +22,6 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_literal_local_finiteness_one
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_isUClosed
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_of_closed_embedding
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_closedUHereditary
