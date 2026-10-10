@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleBlocks
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleBlockLabel_lt_five
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleControlVertex_pair_distinct
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleBackboneCount_odd
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleBackboneCount_ge_five
