@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.LiteralDeletedOutputBound
+
+#print axioms AllThoseRamseyClasses.Published.literalMap_embeds_deleted_output
+#print axioms AllThoseRamseyClasses.Published.literalMap_deleted_output_card_bound
