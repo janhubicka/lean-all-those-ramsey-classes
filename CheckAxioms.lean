@@ -32,3 +32,7 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_closedUHereditary
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_literal_local_one
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_has_no_B_Ramsey_witness
+
+#print axioms AllThoseRamseyClasses.Published.CorrectedULocalCompletionAt.toLiteral
+#print axioms AllThoseRamseyClasses.Published.CorrectedULocalCompletionAt.mono
+#print axioms AllThoseRamseyClasses.Published.CorrectedUIrreduciblesIn.of_mem
