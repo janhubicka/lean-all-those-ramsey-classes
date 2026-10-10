@@ -22,3 +22,5 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_literal_local_finiteness_one
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_isUClosed
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.freeAmalgam_matching_isUClosed
