@@ -115,12 +115,28 @@ theorem exists_equivalence_amalgam_with_matching
     have hy : y = FreeAmalgam.leftEmbedding Root Left Right sL sR (t 1) := by
       simpa using congrFun hImage 1
     rw [hx, hy]
-    exact (hELeft (t 0) (t 1)).mpr (hLeft.mate_equiv (t 0) (t 1) hM)
+    have hOld : edge Left .mate (t 0) (t 1) := by
+      change Left.rel .mate ![t 0, t 1]
+      have htup : t = ![t 0, t 1] := by
+        funext k
+        fin_cases k <;> rfl
+      rw [← htup]
+      exact hM
+    exact (hELeft (t 0) (t 1)).mpr
+      (hLeft.mate_equiv (t 0) (t 1) hOld)
   · have hx : x = FreeAmalgam.rightEmbedding Root Left Right sL sR (t 0) := by
       simpa using congrFun hImage 0
     have hy : y = FreeAmalgam.rightEmbedding Root Left Right sL sR (t 1) := by
       simpa using congrFun hImage 1
     rw [hx, hy]
-    exact (hERight (t 0) (t 1)).mpr (hRight.mate_equiv (t 0) (t 1) hM)
+    have hOld : edge Right .mate (t 0) (t 1) := by
+      change Right.rel .mate ![t 0, t 1]
+      have htup : t = ![t 0, t 1] := by
+        funext k
+        fin_cases k <;> rfl
+      rw [← htup]
+      exact hM
+    exact (hERight (t 0) (t 1)).mpr
+      (hRight.mate_equiv (t 0) (t 1) hOld)
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
