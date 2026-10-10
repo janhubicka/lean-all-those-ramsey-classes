@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.EquivalenceSideTags
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideClassTag_root
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideClassTag_eq_iff
