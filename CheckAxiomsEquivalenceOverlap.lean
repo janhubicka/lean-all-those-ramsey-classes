@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.EquivalenceOverlapClasses
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.equivalence_embedding_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.root_class_unique_of_two_contacts
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.equivalence_agrees_on_overlap
