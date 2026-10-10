@@ -23,3 +23,5 @@ import AllThoseRamseyClasses.Published.CorrectedMainTheoremContract
 import AllThoseRamseyClasses.Published.OrderedAmbient
 
 import AllThoseRamseyClasses.Published.OrderedAmbientOrder
+
+import AllThoseRamseyClasses.Published.MatchingFreeAmalgamTotal
