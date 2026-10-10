@@ -21,8 +21,7 @@ namespace AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
 open StructuralRamsey
 open StructuralRamsey.RelStructure
 
-universe v
-variable {H E F : Type v}
+variable {H E F : Type}
 
 /-- A concrete FREE relational amalgam of members of our class
 remains U-closed for the original M closure description.
