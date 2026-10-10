@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.CoordinatedRepair2019
+
+#print axioms AllThoseRamseyClasses.Published.fullyProtected_implies_proposedMap
