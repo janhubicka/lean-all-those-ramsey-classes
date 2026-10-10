@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.NamedOrderLanguage
+import PartiteConstruction.Ramsey.EmptyClosureMultiamalgamation
 
 /-!
 # Ramsey property for the original finite ordered (<,E,M) class
