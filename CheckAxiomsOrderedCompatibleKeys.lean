@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.OrderedCompatibleKeys
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderKey_root_agree
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderKey_strictMono
