@@ -63,11 +63,7 @@ theorem finitePairedClass_corrected_local_cutoff
     injective := by
       intro x y hxy
       exact congrArg Subtype.val hxy
-    map_rel_iff := fun R t => by
-      change C.rel R (Subtype.val ∘
-        (fun x : X => (⟨x, Finset.mem_univ x⟩ :
-          ↑(Finset.univ : Finset X))) ∘ t) ↔ C.rel R t
-      rfl
+    map_rel_iff := fun _ _ => Iff.rfl
   }
   exact (hCompletion.toCopywise hIrred).precomp_embedding eUniv
 
