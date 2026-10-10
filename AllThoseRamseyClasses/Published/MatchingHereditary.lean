@@ -67,14 +67,14 @@ theorem pairedClass_of_closed_embedding
     · right; exact (edge_embedding_iff e .lt y x).mp hr
   · refine ⟨?_, ?_, ?_⟩
     · intro x
-      exact (edge_embedding_iff e .equiv x x).mp (hB.equiv.1 (e x))
+      exact (edge_embedding_iff e .equiv x x).mp (hB.equiv.refl (e x))
     · intro x y hxy
       apply (edge_embedding_iff e .equiv y x).mp
-      exact hB.equiv.2.1 (e x) (e y)
+      exact hB.equiv.symm (e x) (e y)
         ((edge_embedding_iff e .equiv x y).mpr hxy)
     · intro x y z hxy hyz
       apply (edge_embedding_iff e .equiv x z).mp
-      exact hB.equiv.2.2 (e x) (e y) (e z)
+      exact hB.equiv.trans (e x) (e y) (e z)
         ((edge_embedding_iff e .equiv x y).mpr hxy)
         ((edge_embedding_iff e .equiv y z).mpr hyz)
   · intro x hxx
