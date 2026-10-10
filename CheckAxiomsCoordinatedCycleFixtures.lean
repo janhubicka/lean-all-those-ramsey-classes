@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleFixtures
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.CycleBaseB0_mem
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.CycleControlC0_mem_ambient
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.CycleControlC0_E_nontransitive
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.CycleControlC0_not_K
