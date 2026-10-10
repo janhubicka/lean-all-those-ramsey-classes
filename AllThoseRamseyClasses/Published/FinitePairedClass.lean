@@ -58,6 +58,7 @@ theorem finitePairedClass_literal_local_one
     intro X _ _ D hD
     exact no_singleton_member D hD.2
   exact literalULocalCompletionAt_one_of_noSingletons
+    (K := finitePairedClass) (W := Fin 6) (P := P)
     mateRules B C0 finiteB_mem hNo
 
 /-- The finite class fails the Ramsey arrow for explicit A and B.
