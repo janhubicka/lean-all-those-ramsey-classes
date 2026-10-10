@@ -46,3 +46,6 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.HasFullyProtectedUKCompletion.of_closed_USize
 #print axioms AllThoseRamseyClasses.Published.CorrectedULocalCompletionAt.of_rank_and_coverage
 #print axioms AllThoseRamseyClasses.Published.ramsey_of_correctedLocalCompletion_rank_and_coverage
+
+#print axioms AllThoseRamseyClasses.Published.lemma229_explicit_assumptions
+#print axioms AllThoseRamseyClasses.Published.lemma229_explicit_conclusion_false
