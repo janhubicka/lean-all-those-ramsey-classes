@@ -1,0 +1,11 @@
+name = "lean-all-those-ramsey-classes"
+version = "0.1.0"
+defaultTargets = ["AllThoseRamseyClasses"]
+
+[[require]]
+name = "partite-construction"
+git = "https://github.com/janhubicka/partite-construction.git"
+rev = "23c09415f7bae6b0099c9d986719ae1eb2678b0d"
+
+[[lean_lib]]
+name = "AllThoseRamseyClasses"

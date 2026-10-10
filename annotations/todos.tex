@@ -1,0 +1,105 @@
+% Internal TODO annotations for All those Ramsey classes (2019).
+% NOT input by the published paper. Suggested wording is provisional and
+% MUST be verified against a repaired theorem before editorial acceptance.
+
+% TODO-2019-001: Definition 2.15, intrinsic versus closed tests.
+\todo[inline]{Definition 2.15: The literal phrase "any U-irreducible
+substructure" includes non-U-closed singleton and weak induced tests.
+PROPOSED REPLACEMENT, contingent on proof of the repaired theorem:
+"A homomorphism f:A -> B is a U-homomorphism-embedding if f is a
+homomorphism and its restriction to every U-closed U-irreducible
+substructure of A is an embedding." Keep intrinsic U-irreducibility
+itself unchanged.}
+
+% TODO-2019-002: Definition 2.17(4b), the theorem-level singleton failure.
+\todo[inline]{Definition 2.17(4b): Replace exactly
+"every U-irreducible substructure of C is in K"
+by
+"every U-closed U-irreducible substructure of C is in K".
+The printed version is vacuous for nonempty C whenever K has no
+one-vertex structures. The ordered paired-equivalence/matching class
+then satisfies (4) for n=1 but is not Ramsey. This replacement is
+NOT a consequence of the printed hypothesis and strengthens the
+required local-completion property.}
+
+% TODO-2019-003: Definition 2.17(4a,c), coordinate the repair.
+\todo[inline]{Definition 2.17(4a),(4c): Clarify that (4a) uses the
+U-completion notion consistently amended in Definition 2.15, with no
+extra U-closedness requirement on the original C0. Retain in (4c)
+"every (not necessarily U-closed) substructure of C with at most n
+vertices": the exact tested vertex set and the weak tests must not
+be replaced by their generated closed hulls or by only closed tests.}
+
+% TODO-2019-004: Lemmas 2.28--2.31, coverage invariant.
+\todo[inline]{Lemmas 2.28--2.31: Proposed precise weakening in each
+claim that "every U-irreducible substructure" has the stated B-copy
+or projection property: replace that quantifier with "every U-closed
+U-irreducible substructure". Nonclosed intrinsically irreducible
+tests do not satisfy the claimed coverage in general. The complete
+semiclosed recursive proof and its higher-rank step still require
+verification; this is only a proposed corrected statement.}
+
+% TODO-2019-005: Definition 2.25.
+\todo[inline]{Definition 2.25: The term U-closure was previously
+defined in an U-closed ambient structure. State explicitly whether
+"U-size of a structure B" is intended only for U-closed B,
+and specify how U-size is used for an induced weak substructure
+that is not U-closed. A possible precise wording is:
+"For a U-closed structure B, its U-size is the least cardinality of
+a subset X of B whose U-closure in B is B."
+Do not extend this convention to nonclosed structures without
+a separate definition.}
+
+% TODO-2019-006: Lemma 2.30, proof consistency.
+\todo[inline]{Proof of Lemma 2.30, recursive stage: the sentence
+"it follows that P_k is U-closed" should read
+"it follows that P_{k+1} is U-closed" if P_{k+1} is the structure
+just assembled. Check the preceding statement that the selected
+attachment support is an U-substructure before relying on closure
+preservation under free amalgamation.}
+
+% TODO-2019-007: Main theorem proof contract.
+\todo[inline]{Proof of Theorem 2.18: Under the proposed repaired
+Definition 2.17, explicitly establish (i) the original C0-projection
+for the final C, (ii) closed U-irreducible test membership, and
+(iii) U-completions for EVERY exact weak induced vertex set of size
+at most n(B,C0). The higher-rank induction must control the common
+closed boundary without assuming it has lower U-size; this step is
+currently NOT proved in the formalization.}
+
+
+% TODO-2019-008: Lemma 2.23(2), an undefined additional assumption.
+\todo[inline]{Lemma 2.23(2): The sentence "Further assume that
+completions in both cases are strong completions" does not identify
+which completions are meant. It is unnecessary for the claimed free
+amalgamation of two already U-closed structures over a common
+U-closed substructure. PROPOSED REPLACEMENT:
+"Let B_1 and B_2 be U-closed L-structures, and let A be a
+U-closed substructure of both. Then the free amalgamation of
+B_1 and B_2 over A is a U-closed structure."
+The upstream Lean proof supports this exact cleaner statement.}
+
+% TODO-2019-009: Lemma 2.31 versus Definition 2.17(4c).
+\todo[inline]{Lemma 2.31: The printed conclusion addresses only
+"every U-substructure of C with at most n vertices", whereas
+Definition 2.17(4c) requires every substructure of C on at
+most n vertices, even if it is not a U-substructure or U-closed.
+PROPOSED REPLACEMENT, subject to proof under the corrected map:
+"Moreover, every (not necessarily U-closed) substructure of C
+with at most n vertices has a (K,U)-completion."
+For each exact weak tested set S, complete its U-closure in C,
+whose U-size is at most |S|, and then restrict the corrected
+completion map to the original S. Preserve its cardinality bound.}
+
+% TODO-2019-010: Theorem 2.19 proof cannot silently rely on a
+% theorem with incorrect literal hypotheses.
+\todo[inline]{Proof of Theorem 2.19: The printed deduction
+uses Theorem 2.18. Until the stronger corrected
+multiamalgamation theorem is proved, replace that dependency
+with the independent class-preserving Ramsey proof for
+finite ordered *partial single-valued functions* via full free
+amalgamation (the all-arity EHN construction). State explicitly
+that functions may be undefined on input tuples and that the
+Ramsey witness remains single-valued. The exact claim is
+already checked in the upstream Lean declaration
+allThoseRamseyClasses_theorem_2_19_partialFunctions.}

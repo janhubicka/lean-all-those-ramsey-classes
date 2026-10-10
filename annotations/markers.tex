@@ -1,0 +1,21 @@
+% FROZEN 2019 paper: add these notes only to a separate internal review.
+% Uses EXACT survey validation commands (\leanverified/\leanpartial/\leaninterface).
+% Marker target below is pinned to the imported dependency; do not mark the
+% new paired-equivalence proof green before this repository's CI succeeds.
+
+% Definition 2.12, closure description:
+\leaninterface{PartiteConstruction/Ramsey/ClosureDescription2019.lean}{StructuralRamsey.RelStructure.ClosureRule}
+% Definition 2.13, U-closed:
+\leaninterface{PartiteConstruction/Ramsey/ClosureDescription2019.lean}{StructuralRamsey.RelStructure.IsUClosed}
+% Definition 2.15, U-irreducibility and U-homomorphism-embedding:
+\leaninterface{PartiteConstruction/Ramsey/ClosureUIrreducible2019.lean}{StructuralRamsey.RelStructure.IsUIrreducible}
+\leaninterface{PartiteConstruction/Ramsey/ClosureUIrreducible2019.lean}{StructuralRamsey.RelStructure.IsUHomomorphismEmbedding}
+% Definition 2.22 / Lemma 2.23(1) fully proof-checked upstream:
+\leanverified{PartiteConstruction/Ramsey/ClosureDescription2019.lean}{StructuralRamsey.RelStructure.IsUClosed.induce_iff_USubstructure}
+% Definition 2.24:
+\leaninterface{PartiteConstruction/Ramsey/ClosureSemiClosed2019.lean}{StructuralRamsey.RelStructure.IsUSemiClosed}
+% Theorem 2.19: exact partial single-valued function-language theorem:
+\leanverified{PartiteConstruction/Ramsey/AllThosePartialFiniteModels.lean}{StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions}
+% Theorem 2.18: only repaired closed-test intermediary available, full theorem
+% remains open (literal printed version is challenged by counterexample).
+\leanpartial{PartiteConstruction/Ramsey/ClosureClosedLocalFiniteness.lean}{StructuralRamsey.RelStructure.ramsey_of_closedLocalCompletionAt_rank_and_coverage}

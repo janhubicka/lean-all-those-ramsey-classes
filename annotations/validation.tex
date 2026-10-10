@@ -1,0 +1,37 @@
+% Optional internal markers for machine-checked statements.
+% Keep disabled in the circulation/submission copy.
+\newif\ifshowvalidation
+%\showvalidationfalse             % normal paper
+%\showvalidationtrue
+\showvalidationfalse            % internal review copy
+
+\newcommand{\leanrepo}{https://github.com/janhubicka/partite-construction}
+\newcommand{\leancommit}{23c09415f7bae6b0099c9d986719ae1eb2678b0d}
+
+% Green: the indicated manuscript statement is covered by the linked Lean theorem.
+% Orange: a substantial mathematical core is checked, but the manuscript
+% statement has broader scope or a remaining surrounding obligation.
+% Blue: the Lean development uses an equivalent formal representation at this point.
+\newcommand{\leanverified}[2]{%
+  \ifshowvalidation
+    \marginpar{\scriptsize\raggedright
+      \textcolor{green!50!black}{$\checkmark$ Lean}\\[-2pt]
+      \href{\leanrepo/blob/\leancommit/#1}{\nolinkurl{#2}}}%
+  \fi
+}
+
+\newcommand{\leanpartial}[2]{%
+  \ifshowvalidation
+    \marginpar{\scriptsize\raggedright
+      \textcolor{orange!80!black}{$\sim$ Lean}\\[-2pt]
+      \href{\leanrepo/blob/\leancommit/#1}{\nolinkurl{#2}}}%
+  \fi
+}
+
+\newcommand{\leaninterface}[2]{%
+  \ifshowvalidation
+    \marginpar{\scriptsize\raggedright
+      \textcolor{blue!60!black}{$\diamond$ interface}\\[-2pt]
+      \href{\leanrepo/blob/\leancommit/#1}{\nolinkurl{#2}}}%
+  \fi
+}
