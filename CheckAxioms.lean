@@ -34,3 +34,7 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_has_no_B_Ramsey_witness
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.freeAmalgam_matching_isUClosed
+
+#print axioms AllThoseRamseyClasses.Published.CorrectedULocalCompletionAt.toLiteral
+#print axioms AllThoseRamseyClasses.Published.CorrectedULocalCompletionAt.mono
+#print axioms AllThoseRamseyClasses.Published.CorrectedUIrreduciblesIn.of_mem
