@@ -10,7 +10,7 @@ published LaTeX text.
 | Definition 2.12 | `ClosureDescription2019.lean` `ClosureRule` | BLUE: representation |
 | Definition 2.13 | `ClosureDescription2019.lean` `IsUClosed` | BLUE: representation |
 | Definition 2.15 | `ClosureUIrreducible2019.lean` | BLUE: exact *literal* interface |
-| Definition 2.17(4b) | `SingletonObstruction.lean` | ORANGE until CI; literal axiom is implicated in counterexample |
+| Definition 2.17(4) | `LiteralLocalFiniteness.lean` | PENDING CI: full literal local implication holds at n=1 for no-singleton classes; paired-class instance included |
 | Theorem 2.18 | `ClosureClosedLocalFiniteness.lean`, `ClosureProtectedPass.lean` | **NOT VERIFIED**; literal wording has a counterexample; repaired higher-rank proof remains open |
 | Theorem 2.19 | `AllThosePartialFiniteModels.lean` | GREEN upstream: original partial single-valued functions, all arities |
 | Definition 2.22 / Lemma 2.23(1) | `ClosureDescription2019.lean` | GREEN upstream |
