@@ -19,3 +19,5 @@ import AllThoseRamseyClasses.Published.LiteralWeakRankBridge
 import AllThoseRamseyClasses.Published.Lemma229Counterexample
 
 import AllThoseRamseyClasses.Published.CorrectedMainTheoremContract
+
+import AllThoseRamseyClasses.Published.OrderedAmbient
