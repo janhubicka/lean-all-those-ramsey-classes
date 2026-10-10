@@ -5,3 +5,5 @@ import AllThoseRamseyClasses.Published.PairedEquivalences
 import AllThoseRamseyClasses.Published.LiteralLocalFiniteness
 
 import AllThoseRamseyClasses.Published.MatchingClosure
+
+import AllThoseRamseyClasses.Published.MatchingHereditary
