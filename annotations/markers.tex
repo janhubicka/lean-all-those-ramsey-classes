@@ -1,7 +1,7 @@
 % FROZEN 2019 paper: add these notes only to a separate internal review.
 % Uses EXACT survey validation commands (\leanverified/\leanpartial/\leaninterface).
-% Marker target below is pinned to the imported dependency; do not mark the
-% new paired-equivalence proof green before this repository's CI succeeds.
+% Imported markers below are pinned to the upstream proof commit.
+% Local marker targets are switched only AFTER those references.
 
 % Definition 2.12, closure description:
 \leaninterface{PartiteConstruction/Ramsey/ClosureDescription2019.lean}{StructuralRamsey.RelStructure.ClosureRule}
@@ -19,3 +19,20 @@
 % Theorem 2.18: only repaired closed-test intermediary available, full theorem
 % remains open (literal printed version is challenged by counterexample).
 \leanpartial{PartiteConstruction/Ramsey/ClosureClosedLocalFiniteness.lean}{StructuralRamsey.RelStructure.ramsey_of_closedLocalCompletionAt_rank_and_coverage}
+
+
+% Local Lean-checked statements from merged PR #1 (CI run 38060912578).
+% The validation marker macros and colours remain exactly those of the survey.
+\renewcommand{\leanrepo}{https://github.com/janhubicka/lean-all-those-ramsey-classes}
+\renewcommand{\leancommit}{0645ccbdd1e77e40efe1e082913240b75c437a71}
+
+% Literal Def. 2.15 singleton obstruction (not a proof of Theorem 2.18):
+\leanverified{AllThoseRamseyClasses/Published/SingletonObstruction.lean}{AllThoseRamseyClasses.Published.isEmpty_of_intrinsic_tests_mem_of_no_singletons}
+% Original Definition 2.17(4): the local axiom is automatic at n = 1
+% for the explicit non-Ramsey paired-equivalence class.
+\leanverified{AllThoseRamseyClasses/Published/LiteralLocalFiniteness.lean}{AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClass_literal_local_finiteness_one}
+% Persistent colouring for all finite targets in the proposed class:
+\leanverified{AllThoseRamseyClasses/Published/PairedEquivalences.lean}{AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.no_finite_ramsey_witness}
+
+% NOT green: closed hereditariness and strong amalgamation of the
+% concrete class; nonempty-U corrected Theorem 2.18; higher-rank lemma.
