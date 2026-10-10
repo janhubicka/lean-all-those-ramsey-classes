@@ -15,3 +15,5 @@ import AllThoseRamseyClasses.Published.MatchingFreeAmalgam
 import AllThoseRamseyClasses.Published.MinimalRepair4b
 
 import AllThoseRamseyClasses.Published.LiteralWeakRankBridge
+
+import AllThoseRamseyClasses.Published.Lemma229Counterexample
