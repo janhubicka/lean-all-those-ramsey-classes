@@ -96,7 +96,8 @@ theorem exists_amalgam_E_labels
       (∀ b : F, q (FreeAmalgam.rightEmbedding Root Left Right sL sR b) =
         rightAmalgamTag Root Left Right hRoot hLeft hRight sR b) := by
   classical
-  exact (FreeAmalgam.isFreeAmalgam Root Left Right sL sR).exists_compatible_label
+  exact IsFreeAmalgam.exists_compatible_label
+    (FreeAmalgam.isFreeAmalgam Root Left Right sL sR)
     (leftAmalgamTag Root Left Right hRoot hLeft hRight sL)
     (rightAmalgamTag Root Left Right hRoot hLeft hRight sR)
     (amalgamTag_agree_on_root Root Left Right hRoot hLeft hRight sL sR)
