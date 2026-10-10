@@ -63,7 +63,7 @@ theorem HasLiteralUKCompletion.toCopywise
     HasCopywiseCompletion K B C := by
   obtain ⟨W, hW, Target, hK, _, f, hf⟩ := h
   exact ⟨W, hW, Target, hK, f,
-    fun e => hf.after_ordinary_irreducible hB e⟩
+    fun e => IsUHomomorphismEmbedding.after_ordinary_irreducible hf hB e⟩
 
 /-- A B-copywise map restricts along a full source embedding.
 The source can be any weak induced substructure, including an
@@ -90,6 +90,6 @@ theorem HasCopywiseCompletion.precomp_embedding
     HasCopywiseCompletion K B A := by
   obtain ⟨W, hW, Target, hK, f, hf⟩ := h
   exact ⟨W, hW, Target, hK, f ∘ e,
-    hf.precomp_embedding e⟩
+    CopywiseCompletion.precomp_embedding hf e⟩
 
 end AllThoseRamseyClasses.Published
