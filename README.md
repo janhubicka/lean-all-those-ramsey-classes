@@ -56,3 +56,16 @@ checks the published-statement wrappers for permitted axioms.
 
 Until a new CI run succeeds, all new declarations are **unverified**; existing
 upstream proofs retain only their own upstream CI status.
+
+## Adding verification modules without conflicting imports
+
+CI discovers every Lean file in `AllThoseRamseyClasses/` and builds each
+module. It also discovers every `CheckAxioms*.lean` and checks all listed
+declarations against the same three permitted logical axioms.
+
+A PR proving a new fact can therefore add a single namespaced source
+file and a uniquely named `CheckAxiomsSubject.lean` without editing
+`AllThoseRamseyClasses.lean` or the shared `CheckAxioms.lean` every time.
+The umbrella module remains a convenient stable import for reusable
+verified theorems; update it when consolidating a feature, rather than
+causing avoidable conflicts in every parallel audit PR.
