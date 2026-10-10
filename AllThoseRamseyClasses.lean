@@ -11,3 +11,5 @@ import AllThoseRamseyClasses.Published.MatchingHereditary
 import AllThoseRamseyClasses.Published.FinitePairedClass
 
 import AllThoseRamseyClasses.Published.MatchingFreeAmalgam
+
+import AllThoseRamseyClasses.Published.MinimalRepair4b
