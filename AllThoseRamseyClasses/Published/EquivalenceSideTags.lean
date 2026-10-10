@@ -43,11 +43,34 @@ noncomputable def sideClassTag
     (hRoot : pairedClass Root) (hSide : pairedClass Side)
     (s : Embedding Root Side) (x : X) :
     Quotient (equivSetoid Root hRoot) ⊕
-      Quotient (equivSetoid Side hSide) :=
-  if h : MeetsRoot s x then
+      Quotient (equivSetoid Side hSide) := by
+  classical
+  exact if h : MeetsRoot s x then
     Sum.inl (Quotient.mk (equivSetoid Root hRoot) (Classical.choose h))
   else
     Sum.inr (Quotient.mk (equivSetoid Side hSide) x)
+
+/-- Expand a side label whose E-class meets the common root. -/
+private theorem sideClassTag_on_root
+    {D X : Type}
+    (Root : RelStructure Lang D) (Side : RelStructure Lang X)
+    (hRoot : pairedClass Root) (hSide : pairedClass Side)
+    (s : Embedding Root Side) (x : X) (hx : MeetsRoot s x) :
+    sideClassTag Root Side hRoot hSide s x =
+      Sum.inl (Quotient.mk (equivSetoid Root hRoot) (Classical.choose hx)) := by
+  classical
+  simp only [sideClassTag, dif_pos hx]
+
+/-- Expand a side label whose E-class is disjoint from the root. -/
+private theorem sideClassTag_away_root
+    {D X : Type}
+    (Root : RelStructure Lang D) (Side : RelStructure Lang X)
+    (hRoot : pairedClass Root) (hSide : pairedClass Side)
+    (s : Embedding Root Side) (x : X) (hx : ¬ MeetsRoot s x) :
+    sideClassTag Root Side hRoot hSide s x =
+      Sum.inr (Quotient.mk (equivSetoid Side hSide) x) := by
+  classical
+  simp only [sideClassTag, dif_neg hx]
 
 /-- The E-class of an embedded root vertex is labelled by
 its OWN root E-class, independently of how a witness is chosen. -/
@@ -64,8 +87,10 @@ theorem sideClassTag_root
   have hChoose : edge Root .equiv (Classical.choose hx) d := by
     apply (equivalence_embedding_iff s _ _).mp
     exact hSide.equiv.symm (Classical.choose_spec hx)
-  simp only [sideClassTag, dif_pos hx]
-  exact congrArg Sum.inl (Quotient.sound hChoose)
+  rw [sideClassTag_on_root Root Side hRoot hSide s (s d) hx]
+  apply congrArg Sum.inl
+  letI : Setoid D := equivSetoid Root hRoot
+  exact Quotient.sound hChoose
 
 /-- Two vertices on the SAME side have the same tag exactly when
 they are E-equivalent. In particular, the root-class labelling
@@ -81,13 +106,12 @@ theorem sideClassTag_eq_iff
   classical
   by_cases hx : MeetsRoot s x
   · by_cases hy : MeetsRoot s y
-    · constructor
+    · have htx := sideClassTag_on_root Root Side hRoot hSide s x hx
+      have hty := sideClassTag_on_root Root Side hRoot hSide s y hy
+      constructor
       · intro he
-        have hq :
-            (Quotient.mk (equivSetoid Root hRoot) (Classical.choose hx)) =
-              Quotient.mk (equivSetoid Root hRoot) (Classical.choose hy) := by
-          simpa only [sideClassTag, dif_pos hx, dif_pos hy,
-            Sum.inl.injEq] using he
+        rw [htx, hty] at he
+        have hq := Sum.inl.inj he
         have hr : edge Root .equiv
             (Classical.choose hx) (Classical.choose hy) :=
           Quotient.exact hq
@@ -102,45 +126,47 @@ theorem sideClassTag_eq_iff
           exact hSide.equiv.trans
             (hSide.equiv.symm (Classical.choose_spec hx))
             (hSide.equiv.trans hxy (Classical.choose_spec hy))
-        have heq := Quotient.sound hr
-        simpa only [sideClassTag, dif_pos hx, dif_pos hy,
-          Sum.inl.injEq] using heq
-    · constructor
+        have hq : Quotient.mk (equivSetoid Root hRoot) (Classical.choose hx) =
+            Quotient.mk (equivSetoid Root hRoot) (Classical.choose hy) := by
+          letI : Setoid D := equivSetoid Root hRoot
+          exact Quotient.sound hr
+        rw [htx, hty]
+        exact congrArg Sum.inl hq
+    · have htx := sideClassTag_on_root Root Side hRoot hSide s x hx
+      have hty := sideClassTag_away_root Root Side hRoot hSide s y hy
+      constructor
       · intro he
-        have : False := by
-          simpa only [sideClassTag, dif_pos hx, dif_neg hy,
-            Sum.inl_ne_inr] using he
-        exact this.elim
+        rw [htx, hty] at he
+        cases he
       · intro hxy
-        apply False.elim
+        exfalso
         apply hy
         obtain ⟨d, hd⟩ := hx
         exact ⟨d, hSide.equiv.trans (hSide.equiv.symm hxy) hd⟩
   · by_cases hy : MeetsRoot s y
-    · constructor
+    · have htx := sideClassTag_away_root Root Side hRoot hSide s x hx
+      have hty := sideClassTag_on_root Root Side hRoot hSide s y hy
+      constructor
       · intro he
-        have : False := by
-          simpa only [sideClassTag, dif_neg hx, dif_pos hy,
-            Sum.inr_ne_inl] using he
-        exact this.elim
+        rw [htx, hty] at he
+        cases he
       · intro hxy
-        apply False.elim
+        exfalso
         apply hx
         obtain ⟨d, hd⟩ := hy
         exact ⟨d, hSide.equiv.trans hxy hd⟩
-    · constructor
+    · have htx := sideClassTag_away_root Root Side hRoot hSide s x hx
+      have hty := sideClassTag_away_root Root Side hRoot hSide s y hy
+      constructor
       · intro he
-        have hq :
-            Quotient.mk (equivSetoid Side hSide) x =
-              Quotient.mk (equivSetoid Side hSide) y := by
-          simpa only [sideClassTag, dif_neg hx, dif_neg hy,
-            Sum.inr.injEq] using he
-        exact Quotient.exact hq
+        rw [htx, hty] at he
+        exact Quotient.exact (Sum.inr.inj he)
       · intro hxy
-        have heq : Quotient.mk (equivSetoid Side hSide) x =
-            Quotient.mk (equivSetoid Side hSide) y :=
-          Quotient.sound hxy
-        simpa only [sideClassTag, dif_neg hx, dif_neg hy,
-          Sum.inr.injEq] using heq
+        have hq : Quotient.mk (equivSetoid Side hSide) x =
+            Quotient.mk (equivSetoid Side hSide) y := by
+          letI : Setoid X := equivSetoid Side hSide
+          exact Quotient.sound hxy
+        rw [htx, hty]
+        exact congrArg Sum.inr hq
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
