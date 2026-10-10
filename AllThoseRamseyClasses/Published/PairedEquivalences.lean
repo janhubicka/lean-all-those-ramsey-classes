@@ -185,7 +185,7 @@ def last : Embedding A B where
         edge A .mate (x 0) (x 1)
       exact last_edge_iff .mate _ _
 
-/-- Finite equivalence relations admit natural-number class labels.
+/-- Finite equivalence relations have natural-number class labels.
 No order or matching hypothesis is needed for this fact. -/
 theorem exists_class_labels {V : Type} [Finite V]
     (C : RelStructure Lang V) (hE : Equivalence (edge C .equiv)) :
