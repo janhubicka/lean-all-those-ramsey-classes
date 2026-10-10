@@ -92,13 +92,10 @@ theorem literalMap_deleted_output_card_bound
     (hGenuine : ∀ k : Fin rule.rootSize, t j ≠ e k)
     (f : U → W)
     (hf : IsUHomomorphismEmbedding rules C Control f) :
-    Fintype.card (deletedOutputSet (t j)) ≤ Fintype.card W := by
-  classical
-  letI : Fintype W := Fintype.ofFinite W
-  letI : Fintype (deletedOutputSet (t j)) := Fintype.ofFinite _
+    Nat.card (deletedOutputSet (t j)) ≤ Nat.card W := by
   obtain ⟨g, _⟩ :=
     literalMap_embeds_deleted_output
       hC rule hrule e t ht j hGenuine f hf
-  exact Fintype.card_le_of_injective g g.injective
+  exact Nat.card_le_card_of_injective g g.injective
 
 end AllThoseRamseyClasses.Published
