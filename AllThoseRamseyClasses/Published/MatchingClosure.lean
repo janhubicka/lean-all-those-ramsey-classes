@@ -108,7 +108,13 @@ theorem pairedClass_isUClosed {V : Type}
         exact hz.2 0
       · change z 1 = y
         have hz0 : z 0 = e 0 := hz.2 0
-        have hzMate : edge C .mate (z 0) (z 1) := hz.1
+        have hzMate : edge C .mate (z 0) (z 1) := by
+          have hzTuple : z = ![z 0, z 1] := by
+            funext i
+            fin_cases i <;> rfl
+          change C.rel .mate ![z 0, z 1]
+          rw [← hzTuple]
+          exact hz.1
         rw [hz0] at hzMate
         exact hyUnique (z 1) hzMate
 
