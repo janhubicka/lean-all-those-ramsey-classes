@@ -49,3 +49,5 @@ import AllThoseRamseyClasses
 
 #print axioms AllThoseRamseyClasses.Published.lemma229_explicit_assumptions
 #print axioms AllThoseRamseyClasses.Published.lemma229_explicit_conclusion_false
+
+#print axioms AllThoseRamseyClasses.Published.corrected_multiamalgamation_of_sparse_witnesses
