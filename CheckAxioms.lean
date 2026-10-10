@@ -56,3 +56,6 @@ import AllThoseRamseyClasses
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.orderedAmbient_irreducible
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.ambientLinearOrder_lt_iff
+
+#print axioms AllThoseRamseyClasses.Published.literalMap_embeds_deleted_output
+#print axioms AllThoseRamseyClasses.Published.literalMap_deleted_output_card_bound
