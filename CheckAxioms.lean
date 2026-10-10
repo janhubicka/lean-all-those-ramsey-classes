@@ -54,3 +54,5 @@ import AllThoseRamseyClasses
 
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_subset_orderedAmbient
 #print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.orderedAmbient_irreducible
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.ambientLinearOrder_lt_iff
