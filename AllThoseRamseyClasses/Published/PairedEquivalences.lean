@@ -66,7 +66,8 @@ theorem A_mem : pairedClass A := by
   · exact ⟨by decide, by decide, by decide⟩
   · decide
   · decide
-  · decide
+  · intro x
+    fin_cases x <;> decide
   · decide
 
 theorem B_mem : pairedClass B := by
@@ -77,7 +78,8 @@ theorem B_mem : pairedClass B := by
   · exact ⟨by decide, by decide, by decide⟩
   · decide
   · decide
-  · decide
+  · intro x
+    fin_cases x <;> decide
   · decide
 
 /-- The first two matched pairs form A. -/
@@ -86,19 +88,29 @@ def first : Embedding A B where
   injective := by
     intro x y h
     apply Fin.ext
-    exact congrArg Fin.val h
-  map_rel_iff := by decide
+    exact congrArg (fun z : Fin 6 => z.val) h
+  map_rel_iff := by
+    intro R x
+    cases R <;>
+      generalize hx : x (0 : Fin 2) = i <;>
+      generalize hy : x (1 : Fin 2) = j <;>
+      fin_cases i <;> fin_cases j <;> decide
 
 /-- The last two matched pairs form A, in the reversed E-class order. -/
 def last : Embedding A B where
   toFun x := ⟨x.val + 2, by omega⟩
   injective := by
     intro x y h
-    have hh := congrArg Fin.val h
+    have hh := congrArg (fun z : Fin 6 => z.val) h
     apply Fin.ext
     change x.val + 2 = y.val + 2 at hh
     omega
-  map_rel_iff := by decide
+  map_rel_iff := by
+    intro R x
+    cases R <;>
+      generalize hx : x (0 : Fin 2) = i <;>
+      generalize hy : x (1 : Fin 2) = j <;>
+      fin_cases i <;> fin_cases j <;> decide
 
 /-- Finite equivalence relations admit natural-number class labels.
 No order or matching hypothesis is needed for this fact. -/
@@ -114,6 +126,7 @@ theorem exists_class_labels {V : Type} [Finite V]
   intro x y
   constructor
   · intro h
+    change s.r x y
     apply Quotient.exact
     apply (Fintype.equivFin (Quotient s)).injective
     exact Fin.ext h
@@ -131,15 +144,23 @@ theorem not_arrow_of_class_labels {V : Type}
   let colour : Embedding A C → Bool := fun a => decide (q (a 0) < q (a 2))
   intro hArrow
   obtain ⟨b, hMono⟩ := hArrow colour
+  have hmap (i j : Fin 6) :
+      edge C .equiv (b i) (b j) ↔ edge B .equiv i j := by
+    change C.rel .equiv ![b i, b j] ↔ B.rel .equiv ![i, j]
+    have ht : b ∘ ![i, j] = ![b i, b j] := by
+      funext k
+      fin_cases k <;> rfl
+    rw [← ht]
+    exact b.map_rel_iff .equiv ![i, j]
   have h04 : q (b 0) = q (b 4) := by
     apply (hq _ _).mpr
-    exact (b.map_rel_iff .equiv ![0, 4]).mpr (by decide)
+    exact (hmap 0 4).mpr (by decide)
   have h02 : q (b 0) ≠ q (b 2) := by
     intro h
     have he : edge C .equiv (b 0) (b 2) := (hq _ _).mp h
-    have hf : B.rel .equiv ![0, 2] :=
-      (b.map_rel_iff .equiv ![0, 2]).mp he
-    exact (by decide : ¬ B.rel .equiv ![0, 2]) hf
+    have hf : edge B .equiv (0 : Fin 6) (2 : Fin 6) :=
+      (hmap 0 2).mp he
+    exact (by decide : ¬ edge B .equiv (0 : Fin 6) (2 : Fin 6)) hf
   have hm := hMono first last
   change decide (q (b 0) < q (b 2)) = decide (q (b 2) < q (b 4)) at hm
   rw [← h04] at hm
