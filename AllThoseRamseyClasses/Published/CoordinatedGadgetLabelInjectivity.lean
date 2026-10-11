@@ -109,18 +109,22 @@ theorem cycleGadget_blockLabel_injective (k : ℕ)
         rcases cyclePath_gadget_block_cases k i b hb with j | j | j
       all_goals
         rw [h, j] at hLabel ⊢
-        first | rfl | skip
-        have h01 := cyclePath_start_finish_label_ne k i
-        have h04 := cyclePath_start_private_label_ne k i
-        have h14 := cyclePath_finish_private_label_ne k i
-        simp_all
+        first
+        | rfl
+        | 
+          have h01 := cyclePath_start_finish_label_ne k i
+          have h04 := cyclePath_start_private_label_ne k i
+          have h14 := cyclePath_finish_private_label_ne k i
+          simp_all
   | inr _ =>
       rcases cycleClosing_gadget_block_cases k a ha with h | h | h <;>
         rcases cycleClosing_gadget_block_cases k b hb with j | j | j
       all_goals
         rw [h, j] at hLabel ⊢
-        first | rfl | skip
-        have hThree := cycleClosing_label_distinct k
-        simp_all
+        first
+        | rfl
+        |
+          have hThree := cycleClosing_label_distinct k
+          simp_all
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
