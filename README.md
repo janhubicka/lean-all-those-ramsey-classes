@@ -73,6 +73,9 @@ The individually CI-green and axiom-audited components now include:
   zero/one generator-active line completions, and exact factorization
   of rank-r tests through subattachments with at most r private
   copy indices (PRs #113, #115, #116).
+- Essential minimum generators and sufficient conditions ensuring that
+  closure saturation of a proposed cut remains proper (PR #118).
+  The native history must still justify the proposed seed containment.
 - Corrected mixed-cut strong-amalgamation completion **provided**
   the source free split, common K-boundary and both absolute
   projected rank-j support bounds are supplied (PR #114).
