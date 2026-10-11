@@ -234,10 +234,18 @@ theorem finitePairedClass_strong_amalgamation :
       intro Rel t
       cases Rel with
       | lt =>
+        have htup : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [htup]
         change (@LT.lt P o.toLT (iL (t 0)) (iL (t 1))) ↔
           edge Left .lt (t 0) (t 1)
         exact order_reflect_of_strict_mono hLeft.2 o iL hOrdL (t 0) (t 1)
       | equiv =>
+        have htup : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [htup]
         change Enew (iL (t 0)) (iL (t 1)) ↔
           edge Left .equiv (t 0) (t 1)
         exact hELeft (t 0) (t 1)
@@ -252,10 +260,18 @@ theorem finitePairedClass_strong_amalgamation :
       intro Rel t
       cases Rel with
       | lt =>
+        have htup : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [htup]
         change (@LT.lt P o.toLT (iR (t 0)) (iR (t 1))) ↔
           edge Right .lt (t 0) (t 1)
         exact order_reflect_of_strict_mono hRight.2 o iR hOrdR (t 0) (t 1)
       | equiv =>
+        have htup : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [htup]
         change Enew (iR (t 0)) (iR (t 1)) ↔
           edge Right .equiv (t 0) (t 1)
         exact hERight (t 0) (t 1)
