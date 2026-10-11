@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Published.InducedClosedLogicalDirection
+
+#print axioms AllThoseRamseyClasses.Published.IsUHomomorphismEmbedding.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.IsClosedUHomomorphismEmbedding.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.ClosedUIrreduciblesIn.toCorrectedInduced
+#print axioms AllThoseRamseyClasses.Published.HasLiteralUKCompletion.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.HasClosedUKCompletion.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toCorrected4bOnly
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toLiteral
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toAbstractClosed
