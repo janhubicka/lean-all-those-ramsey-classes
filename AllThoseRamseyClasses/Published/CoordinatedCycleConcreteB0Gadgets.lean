@@ -71,14 +71,14 @@ theorem cyclePath_gadget_label_profile (k : ℕ)
   · have hiOdd : i.val % 2 = 1 := by
       simp only [cycleBackboneCount] at hLast
       omega
-    simp [hLast, hiOdd, eq_comm]
+    simp [hLast, hiOdd, eq_comm] <;> tauto
   · have hParity : i.val % 2 = 0 ∨ i.val % 2 = 1 := by
       omega
     rcases hParity with heven | hodd
     · have hNext : (i.val + 1) % 2 = 1 := by omega
-      simp [hLast, heven, hNext, eq_comm, or_comm]
+      simp [hLast, heven, hNext, eq_comm, or_comm] <;> tauto
     · have hNext : (i.val + 1) % 2 = 0 := by omega
-      simp [hLast, hodd, hNext, eq_comm, or_comm]
+      simp [hLast, hodd, hNext, eq_comm, or_comm] <;> tauto
 
 private theorem cycleClosing_supported_label_iff (k : ℕ) (q : ℕ) :
     (∃ b : CycleBlock k,
@@ -133,18 +133,21 @@ theorem cycle_gadgetControlRange_matches_B0 (k : ℕ) :
         intro z
         rw [cycle_gadget_controlRange_iff,
           cyclePath_gadget_label_profile k i (z.val / 2)]
-        simpa [hLast, eq_comm] using (controlBCD_range_iff z).symm
+        simpa [hLast, eq_comm, controlBCDEmbedding] using
+          (controlBCD_range_iff z).symm
       · refine ⟨controlABDEmbedding, ?_⟩
         intro z
         rw [cycle_gadget_controlRange_iff,
           cyclePath_gadget_label_profile k i (z.val / 2)]
-        simpa [hLast, eq_comm] using (controlABD_range_iff z).symm
+        simpa [hLast, eq_comm, controlABDEmbedding] using
+          (controlABD_range_iff z).symm
   | inr _ =>
       refine ⟨controlATCEmbedding, ?_⟩
       intro z
       rw [cycle_gadget_controlRange_iff,
         cycleClosing_gadget_label_profile k (z.val / 2)]
-      simpa [eq_comm] using (controlATC_range_iff z).symm
+      simpa [eq_comm, controlATCEmbedding] using
+        (controlATC_range_iff z).symm
 
 /-- Construct the actual six-vertex control fibres by choosing
 a preimage in a gadget for every template vertex. Exact control
