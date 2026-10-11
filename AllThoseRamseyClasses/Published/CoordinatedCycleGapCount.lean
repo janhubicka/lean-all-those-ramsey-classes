@@ -35,7 +35,7 @@ theorem cycleGapCount_succ_of_mem
     (present : Finset ℕ) (i : ℕ) (hi : i ∈ present) :
     cycleGapCount present (i + 1) = cycleGapCount present i := by
   classical
-  simp [cycleGapCount, Finset.range_succ, hi]
+  simp [cycleGapCount, Finset.range_add_one, hi]
 
 /-- If block i is MISSING, crossing its position increases the
 component label by precisely one. -/
@@ -43,7 +43,7 @@ theorem cycleGapCount_succ_of_not_mem
     (present : Finset ℕ) (i : ℕ) (hi : i ∉ present) :
     cycleGapCount present (i + 1) = cycleGapCount present i + 1 := by
   classical
-  simp [cycleGapCount, Finset.range_succ, hi]
+  simp [cycleGapCount, Finset.range_add_one, hi]
 
 /-- Labels cannot decrease as one travels along the backbone. -/
 theorem cycleGapCount_mono (present : Finset ℕ)
@@ -64,14 +64,16 @@ theorem cycleGapCount_lt_of_missing
     cycleGapCount present a < cycleGapCount present b := by
   have hBefore := cycleGapCount_mono present hai
   have hStep := cycleGapCount_succ_of_not_mem present i hMiss
-  have hAfter := cycleGapCount_mono present (Nat.succ_le_iff.mpr hib)
+  have hAfter : cycleGapCount present (i + 1) ≤
+      cycleGapCount present b :=
+    cycleGapCount_mono present (by omega : i + 1 ≤ b)
   omega
 
 /-- A missing INTERNAL backbone block separates the first and last
 backbone blocks (the closing E-negative pair). -/
 theorem cycleGapCount_endpoints_separate
     (present : Finset ℕ) (m i : ℕ)
-    (hm : 2 ≤ m) (hi : 0 < i ∧ i < m - 1)
+    (_hm : 2 ≤ m) (hi : 0 < i ∧ i < m - 1)
     (hMiss : i ∉ present) :
     cycleGapCount present 0 <
       cycleGapCount present (m - 1) := by
