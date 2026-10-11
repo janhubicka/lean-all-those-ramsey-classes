@@ -109,8 +109,9 @@ theorem inducedClosed2019_ramsey_of_sparse_witnesses
     hR A B hRA hRB κ
   letI : Finite P := hP
   obtain ⟨n, hLocal⟩ := hK.localCompletion B C0 hB hRC0
-  obtain ⟨Z, hZ, C, hClosed, f, hf, hCover, hSmall, hArrow⟩ :=
+  obtain ⟨Z, hZ, C, hClosed, hControl, hCover, hSmall, hArrow⟩ :=
     hBuild A B C0 n κ hA hB hRC0 hArrow0
+  obtain ⟨f, hf⟩ := hControl
   letI : Finite Z := hZ
   exact arrow_of_BCopywiseCompletion_inClass hArrow
     (hLocal C hClosed ⟨hRirr C0 hRC0, f, hf⟩ hCover hSmall)
