@@ -7,7 +7,7 @@ import PartiteConstruction.Ramsey.ClosurePictureCoordinate
 
 The pinned partite-construction library proves a genuine finite
 Hales--Jewett history fact: when all exterior lines visited by the
-generators of an exact tested structure admit one common parameter
+generators of an exact tested structure share one common parameter
 coordinate k, evaluate the core at k and the selected old copies
 identically. The resulting retraction transfers the old rank-n
 completion invariant to the ORIGINAL tested source.
