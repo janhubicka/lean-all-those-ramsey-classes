@@ -194,8 +194,8 @@ theorem finitePairedClass_strong_amalgamation :
     exact sideOrderKey_strictMono Right hRight.2 sR 1
       (by omega) hab
   obtain ⟨o, hOrdL, hOrdR⟩ :=
-    hFree.exists_order_from_compatible_keys
-      keyL keyR hCompat hOrdKeyL hOrdKeyR
+    IsFreeAmalgam.exists_order_from_compatible_keys
+      hFree keyL keyR hCompat hOrdKeyL hOrdKeyR
   letI : LinearOrder P := o
   let Target : RelStructure Lang P := {
     rel := fun
