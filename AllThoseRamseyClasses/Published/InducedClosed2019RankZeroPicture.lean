@@ -93,6 +93,7 @@ theorem lemma_2_30_coordinated_rank_zero
       ⟨D.part, IsClosedUHomomorphismEmbedding.toInducedClosed hDPart⟩,
       hDRamsey, hMember, ?_⟩
     intro S hFiniteS hClosedS hRankS
+    letI : Fintype S := hFiniteS
     exact HasClosedUKCompletion.toInducedClosed
       (closed_rank_one_completions_of_protected_coverage
         hKB hBIrred hCoverage S hClosedS hRankS)
@@ -111,6 +112,7 @@ theorem lemma_2_30_coordinated_rank_zero
         (beta.isClosedUHomomorphismEmbedding rules)⟩,
       hTrivial, hMember, ?_⟩
     intro S hFiniteS _ _
+    letI : Fintype S := hFiniteS
     have hComplete : HasClosedUKCompletion K rules (B.induce S) :=
       ⟨VB, inferInstance, B, hKB, hBIrred, inclusion B S,
         (inclusion B S).isClosedUHomomorphismEmbedding rules⟩
