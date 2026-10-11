@@ -128,4 +128,31 @@ theorem native2019_factor_through_bounded_exterior_subhistory
       hS Test e (↑G : Set X) hGen (↑J : Set I) hSelected
   exact ⟨J, hJ, d, hd⟩
 
+
+/-- A finite source test of intrinsic U-size r meets at most r different
+private exterior copy indices in an actual native attachment.
+
+The finite subattachment has a full embedded copy of the ENTIRE
+original test, not merely of its generating set. This is the
+rank-bounded form needed when tracing j+1 generators through an
+actual Picture history. It does not provide completions by itself. -/
+theorem native2019_rank_bounded_exterior_subhistory
+    {rules : ClosureDescription L}
+    [Fintype X]
+    (hS : IsUSubstructure rules Old S)
+    (e : Embedding Test (attach Old S Core maps)) :
+    ∃ J : Finset I, J.card ≤ USize rules Test ∧
+      ∃ d : Embedding Test
+          (attach Old S Core (fun i : (↑J : Set I) => maps i.1)),
+        ∀ x, subfamilyEmbedding Old S Core maps
+          (↑J : Set I) (d x) = e x := by
+  classical
+  obtain ⟨G, hCard, hGen⟩ := USize_spec rules Test
+  obtain ⟨J, hJ, d, hd⟩ :=
+    native2019_factor_through_bounded_exterior_subhistory hS e G hGen
+  refine ⟨J, ?_, d, hd⟩
+  calc
+    J.card ≤ G.card := hJ
+    _ = USize rules Test := hCard
+
 end AllThoseRamseyClasses.Published
