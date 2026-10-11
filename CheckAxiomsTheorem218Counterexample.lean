@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.Theorem218Counterexample
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.literalTheorem218_counterexample
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.corrected4bOnlyTheorem218_counterexample
