@@ -57,6 +57,28 @@ theorem cycleRelatedBlocks_symm (k : ℕ) (b c : CycleBlock k) :
   · exact Or.inl h.symm
   · exact Or.inr ⟨g, hc, hb⟩
 
+/-- The finite gadget incidence predicate has an effective decision
+procedure. This also supports explicit finite regressions. -/
+instance cycleGadgetContains_decidable (k : ℕ)
+    (g : CycleGadget k) (b : CycleBlock k) :
+    Decidable (cycleGadgetContains k g b) := by
+  cases g with
+  | inl i =>
+      change Decidable (b.val = i.val ∨ b.val = i.val + 1 ∨
+        b = cycleEdgePrivateBlock k i)
+      infer_instance
+  | inr _ =>
+      change Decidable (b.val = 0 ∨
+        b.val = cycleBackboneCount k - 1 ∨
+        b = cycleClosingPrivateBlock k)
+      infer_instance
+
+instance cycleRelatedBlocks_decidable (k : ℕ)
+    (b c : CycleBlock k) :
+    Decidable (cycleRelatedBlocks k b c) := by
+  unfold cycleRelatedBlocks
+  infer_instance
+
 /-- The finite partial relational E-cycle source: every relation
 tuple is taken from the ten-vertex control C0, but only within
 one block or a single B0 gadget support. Matching M is internal
