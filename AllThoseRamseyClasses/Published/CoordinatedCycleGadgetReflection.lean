@@ -169,11 +169,22 @@ def cycleGadgetEmbedding_of_controlTemplate
       cycleGadgetWitness_rel_iff_control_of_common_gadget
         k g hLabels R (f (t 0)) (f (t 1))
         (hIn (t 0)) (hIn (t 1))
-    have hControl := v.map_rel_iff R t
     have htup : t = ![t 0, t 1] := by
       funext i
       fin_cases i <;> rfl
-    rw [htup] at hControl ⊢
+    have hF : (f ∘ t) = ![f (t 0), f (t 1)] := by
+      funext i
+      fin_cases i <;> rfl
+    have hV : (v ∘ t) = ![v (t 0), v (t 1)] := by
+      funext i
+      fin_cases i <;> rfl
+    have hControl : edge CycleControlC0 R (v (t 0)) (v (t 1)) ↔
+        edge CycleBaseB0 R (t 0) (t 1) := by
+      have hh := v.map_rel_iff R t
+      rw [hV, htup] at hh
+      exact hh
+    change (cycleGadgetWitness k).rel R (f ∘ t) ↔ CycleBaseB0.rel R t
+    rw [hF, htup]
     change edge (cycleGadgetWitness k) R (f (t 0)) (f (t 1)) ↔
       edge CycleBaseB0 R (t 0) (t 1)
     rw [hSupported]
