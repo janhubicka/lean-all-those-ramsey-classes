@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleAllWeakCompletions
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleWeak_relatedAgreement
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_all_weak_K_completions
