@@ -142,9 +142,9 @@ For E, all possibilities come from the three-block gadgets:
   E-inequivalent to both b0 and t_*.
 
 The gap-count recurrence and internal-gap theorem are Green
-(#75/#76); the closing-endpoint and path-private E comparisons
-are Green (#84/#85), with full all-pairs composition in #89/#91
-still awaiting Lean validation. Thus **all binary tuples,
+(#75/#76), the closing-endpoint and path-private E comparisons
+are Green (#84/#85/#89), and the FULL all-pairs reflection
+is verified by PR #91 (CI `38160915371`). Thus **all binary tuples,
 positive and negative, agree on every gadget-supported pair
 of vertices of the exact S**. Unrelated pairs have no positive
 source tuples, so the canonical inclusion $C_k|S\to D(k,S)$
@@ -157,9 +157,10 @@ closed-cover argument (#66), and these blocks lie in one common
 gadget by #73. Consequently its image into D is a **full induced
 embedding**: precisely the amended U-homomorphism-embedding
 requirement. Because S was never enlarged or assumed closed,
-this proves (4c) for the *original exact weak test* once the
-final related-pair reflection and its formal Lean packaging
-(#86/#91/#92) are certified.
+this proves (4c) for the *original exact weak test*,
+unconditionally for every k. The completed Lean proof is
+`cycleGadgetWitness_all_weak_K_completions` in merged PR #92
+(CI `38160918759`).
 
 ## The actual global obstruction and all-cutoff package
 
@@ -174,39 +175,53 @@ Any single K-target map respecting all those B0-copies must
 preserve every backbone-positive E edge, and therefore must
 identify its first and last blocks in the target's transitive E.
 The closing induced B0 copy requires them E-inequivalent.
-This contradiction is the previously verified abstract path
-lemma; its application to the concrete Ck is being checked
-in PR #90.
+This contradiction is verified for the **actual finite relational
+structures Ck**, using all genuine induced B0 copies, in
+`cycleGadgetWitness_no_K_copywise_completion` (PR #90,
+CI `38153034558`).
 
-Once the universally quantified (4c) and actual copywise
-obstruction are Lean-green, PR #93 will produce, for the
-SAME fixed B0 and C0, a bad witness at **every cutoff k**.
-It then follows that finite paired equivalences are *not*
-locally finite under the COORDINATED revised Definition 2.17.
-This is NOT a proof of the repaired positive Theorem 2.18.
+Combining all three local antecedents and this obstruction
+is now a **GREEN theorem for every k** in merged PR #93
+(CI `38160922281`). Its named theorem
+`cycleGadgetWitness_bad_at_every_cutoff` supplies a
+finite Ck for each n with the SAME fixed B0 and C0.
+The Lean theorem `finitePairedClass_no_coordinated_local_cutoff`
+states that no n satisfies the coordinated local-completion
+implication for that fixed pair, and
+`finitePairedClass_not_coordinated_multiamalgamation`
+excludes the finite paired-equivalence class from the revised
+multiamalgamation hypotheses.
+
+This validates the *counterexample exclusion*, not the proposed
+positive Ramsey theorem for all coordinated multiamalgamation
+classes. The higher-rank Picture and final positive transfer
+proof remain open, and no change to the published mathematical
+text or erratum has been approved.
 
 ## Lean validation boundary (11 October 2026)
 
-**GREEN / theorem-level:** literal printed and (4b)-only
-Theorem 2.18 refutations (#56); finite K strong amalgamation
-(#49); actual closed relational Ck and positive projection
-(#59/#60); finite matching-block interaction graph (#73);
-all induced B0 gadget embeddings and uniform coordinated
-(4a),(4b) for actual Ck (#82); a finite K target D(k,S)
-for every exact weak S (#81); the internal missing-block
-and component arithmetic (#75/#76/#83/#84/#85).
-The latter are genuine Lean proofs, not finite searches.
+**GREEN, theorem-level:** literal printed and (4b)-only
+Theorem 2.18 refutations (#56); strong amalgamation of
+the paired-equivalence class (#49); actual U-closed Ck
+and positive projection (#59/#60); all genuine induced
+B0 gadgets and closed-test (4a)/(4b) (#82); finite target
+D(k,S) for exact weak S (#81); order and matching
+reflection, component tags, and internal gaps (#75/#76/#83/#84/#85);
+uniform exact weak E reflection (#91); all (4c)
+exact weak test completions (#92); actual no-copywise
+B0 completion (#90); complete all-cutoff local
+nonfiniteness and class exclusion (#93).
 
-**PENDING:** the full E reflection on all supported pairs in
-an arbitrary exact weak S (#87–#91), the implication to
-HasClosedUKCompletion for every S.card<=k (#86/#92), the
-actual positive-path / negative-closing B0 obstruction (#90),
-and the final all-cutoff nonlocal-finiteness theorem (#93).
-An independent exhaustive regression for k=0,…,4 with
-309,136 exact weak sets is in #94. It does not replace
-the universal formal proof.
+The full #93 head `e84971ec2a61fef4096559e2c797f5cc316e508f`
+passed GitHub Actions run `38160922281`, including
+all Lean modules, theorem axiom audit, finite regressions
+and the no-admissions check. This head was merged into
+main as `2abf00bbc41847a714db529b490d712fcf2ce89a`.
 
-**Open beyond the counterexample:** a repaired general
-multiamalgamation Ramsey theorem and higher-rank picture
-construction. Keep the literal 2019 mathematical prose
-frozen pending theorem-level validation and author review.
+**OPEN:** validation of the general positive Ramsey theorem
+under the coordinated closed-test definition, including
+the higher-rank Picture construction and exact theorem
+transfer. The literal printed theorem and the
+(4b)-only attempted repair remain refuted. Keep the
+published manuscript prose frozen until author review
+and proof-level validation.
