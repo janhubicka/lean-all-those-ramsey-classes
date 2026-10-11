@@ -96,7 +96,8 @@ theorem cycle_backbone_clique_in_gadget (k : ℕ)
             (hClique a ha b hb)
             (hClique a ha c hc)
             (hClique b hb c hc)
-            ⟨hba.symm, hca.symm, hcb.symm⟩)
+            ⟨hba.symm, (fun hac => hca hac.symm),
+              (fun hbc => hcb hbc.symm)⟩)
     · obtain ⟨g, hga⟩ :=
         cycleBackboneBlock_in_some_gadget k a (hBackbone a ha)
       refine ⟨g, ?_⟩
