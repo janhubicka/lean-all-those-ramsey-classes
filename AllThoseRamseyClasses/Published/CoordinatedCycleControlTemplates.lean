@@ -83,6 +83,10 @@ def controlABDEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlABD_injective
   map_rel_iff := by
     intro R t
+    have htup : t = ![t 0, t 1] := by
+      funext i
+      fin_cases i <;> rfl
+    rw [htup]
     change edge CycleControlC0 R (controlABDFun (t 0)) (controlABDFun (t 1)) ↔
       edge CycleBaseB0 R (t 0) (t 1)
     exact controlABD_rel_iff R (t 0) (t 1)
@@ -93,6 +97,10 @@ def controlBCDEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlBCD_injective
   map_rel_iff := by
     intro R t
+    have htup : t = ![t 0, t 1] := by
+      funext i
+      fin_cases i <;> rfl
+    rw [htup]
     change edge CycleControlC0 R (controlBCDFun (t 0)) (controlBCDFun (t 1)) ↔
       edge CycleBaseB0 R (t 0) (t 1)
     exact controlBCD_rel_iff R (t 0) (t 1)
@@ -103,6 +111,10 @@ def controlATCEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlATC_injective
   map_rel_iff := by
     intro R t
+    have htup : t = ![t 0, t 1] := by
+      funext i
+      fin_cases i <;> rfl
+    rw [htup]
     change edge CycleControlC0 R (controlATCFun (t 0)) (controlATCFun (t 1)) ↔
       edge CycleBaseB0 R (t 0) (t 1)
     exact controlATC_rel_iff R (t 0) (t 1)
