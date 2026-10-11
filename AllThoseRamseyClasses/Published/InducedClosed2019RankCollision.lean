@@ -46,7 +46,7 @@ theorem inducedClosed2019_completion_of_projected_generators
     {rules : ClosureDescription L}
     {Source : RelStructure L U} {D : RelStructure L V}
     {f : U → V}
-    [Finite U] [Finite V]
+    [Finite U] [Finite V] [DecidableEq V]
     (hD : IsUClosed rules D)
     (hf : IsInducedClosedUHomomorphismEmbedding rules Source D f)
     (G : Finset U) (hGen : IsUGenerating rules Source (↑G : Set U))
