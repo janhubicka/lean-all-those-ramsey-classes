@@ -32,6 +32,17 @@ open StructuralRamsey.RelStructure
 universe u v
 variable {L : RelLanguage.{u}}
 
+/-- Definition 2.17(2) as stated on the actual closed induced
+substructures of a K-member. The construction library also uses an
+abstract embedded-test hereditary condition; equivalence for arbitrary
+StructureClass predicates requires isomorphism invariance. -/
+def InducedClosed2019Hereditary
+    (K : StructureClass.{u,v} (L := L))
+    (rules : ClosureDescription L) : Prop :=
+  ∀ {X : Type v} (A : RelStructure L X), K A →
+    ∀ S : Set X, IsUClosed rules (A.induce S) →
+      K (A.induce S)
+
 /-- Definition 2.17 with the proposed COORDINATED repair, using the
 paper's actual induced-substructure quantifiers rather than silently
 identifying them with an abstract embedded-test convention. -/
@@ -42,7 +53,7 @@ structure InducedClosed2019MultiamalgamationClass
   finite : ∀ {X : Type v} (A : RelStructure L X), K A → Finite X
   closed : ∀ {X : Type v} (A : RelStructure L X),
     K A → IsUClosed rules A
-  hereditary : ClosedUHereditary K rules
+  hereditary : InducedClosed2019Hereditary K rules
   strong : HasFiniteStrongAmalgamation K
   localCompletion :
     ∀ {X Y : Type v} [Finite X] [Finite Y]
