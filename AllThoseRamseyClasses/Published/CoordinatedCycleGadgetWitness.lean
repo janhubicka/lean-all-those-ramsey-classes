@@ -98,6 +98,15 @@ abbrev cycleGadgetWitness (k : ℕ) :
           (cycleControlVertex k (t 1))
     | .mate, t => cycleMatching k (t 0) (t 1)
 
+/-- All three relations of the finite witness are decidable using
+its concrete support and control, without classical choice. -/
+instance cycleGadgetWitness_decidable (k : ℕ) (R : Symbol)
+    (x y : CycleVertex k) :
+    Decidable (edge (cycleGadgetWitness k) R x y) := by
+  cases R <;>
+    (dsimp [edge, cycleGadgetWitness, CycleControlC0, cycleMatching]
+     infer_instance)
+
 /-- Unlike K's members, the witness needs only diagonal E and a
 perfect matching for its closure rule. Both hold uniformly in k. -/
 theorem cycleGadgetWitness_isUClosed (k : ℕ) :
