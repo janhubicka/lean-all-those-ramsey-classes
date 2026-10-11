@@ -83,8 +83,8 @@ theorem cycleWeakCandidate_E_iff_of_common_gadget (k : ℕ)
         rcases cyclePath_gadget_block_cases k i b hyg with hb | hb | hb
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cyclePathStart k i u v)
-          (controlSame cyclePathStart k i)
+        exact iff_of_two_true (sameBlock (cyclePathStart k i) u v)
+          (controlSame (cyclePathStart k i))
       · subst a
         subst b
         exact iff_of_two_true
@@ -106,8 +106,8 @@ theorem cycleWeakCandidate_E_iff_of_common_gadget (k : ℕ)
           (cycleControlELabels_pathStartFinish k i))
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cyclePathFinish k i u v)
-          (controlSame cyclePathFinish k i)
+        exact iff_of_two_true (sameBlock (cyclePathFinish k i) u v)
+          (controlSame (cyclePathFinish k i))
       · subst a
         subst b
         exact iff_of_two_false
@@ -129,15 +129,15 @@ theorem cycleWeakCandidate_E_iff_of_common_gadget (k : ℕ)
           (cycleControlELabels_symm _ _ he))
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cycleEdgePrivateBlock k i u v)
-          (controlSame cycleEdgePrivateBlock k i)
+        exact iff_of_two_true (sameBlock (cycleEdgePrivateBlock k i) u v)
+          (controlSame (cycleEdgePrivateBlock k i))
   | inr _ =>
       rcases cycleClosing_gadget_block_cases k a hxg with ha | ha | ha <;>
         rcases cycleClosing_gadget_block_cases k b hyg with hb | hb | hb
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cycleClosingFirst k u v)
-          (controlSame cycleClosingFirst k)
+        exact iff_of_two_true (sameBlock (cycleClosingFirst k) u v)
+          (controlSame (cycleClosingFirst k))
       · subst a
         subst b
         exact iff_of_two_false
@@ -157,8 +157,8 @@ theorem cycleWeakCandidate_E_iff_of_common_gadget (k : ℕ)
           (cycleControlELabels_symm _ _ he))
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cycleClosingLast k u v)
-          (controlSame cycleClosingLast k)
+        exact iff_of_two_true (sameBlock (cycleClosingLast k) u v)
+          (controlSame (cycleClosingLast k))
       · subst a
         subst b
         exact iff_of_two_false
@@ -180,8 +180,8 @@ theorem cycleWeakCandidate_E_iff_of_common_gadget (k : ℕ)
           (cycleControlELabels_symm _ _ he))
       · subst a
         subst b
-        exact iff_of_two_true (sameBlock cycleClosingPrivateBlock k u v)
-          (controlSame cycleClosingPrivateBlock k)
+        exact iff_of_two_true (sameBlock (cycleClosingPrivateBlock k) u v)
+          (controlSame (cycleClosingPrivateBlock k))
 
 /-- On every gadget-related pair IN the exact weak test, the
 completed equivalence relation agrees with the original partial E. -/
