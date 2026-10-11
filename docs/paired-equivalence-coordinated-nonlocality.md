@@ -86,14 +86,78 @@ completion of `C_m`. Hence the corrected local implication
 fails for the same fixed `B0, C0` at **every possible
 cutoff n**.
 
+
+## Exact direct completion construction for a weak test (proof target)
+
+For the Lean witness with parameter `k = n`, put
+`m = 2n + 5` and let `S` be **any** vertex set
+with `|S| ≤ n`; this includes nonclosed subsets.
+Let `T` be the set of matching-block indices met by S.
+Then `|T| ≤ n < m`, so T misses a backbone block;
+this is already proved in Lean (PR #55).
+
+Use the actual closed pair carrier `T × Fin 2` as a
+completion target and embed S by `v ↦ (v.block,v.bit)`.
+Retain its perfect matching. Make its E relation the
+**equivalence closure** of the positive E tuples of
+`cycleGadgetWitness n` restricted to these full blocks.
+Give the target the strict linear order obtained by sorting
+the triple `(control-label, block-index, bit)`. All tuples
+of the original source are preserved.
+
+The only substantive compatibility check for E is reflection
+on pairs of blocks supported by a common gadget. Positive
+cross-block E occurs precisely on consecutive backbone
+pairs, together with the pair `(b_0,t_*)`.
+Each path-private D block is E-isolated from its backbone
+pair, while `b_{m-1}` is E-inequivalent to both
+`b_0` and `t_*` in the closing gadget.
+A missing backbone block cuts the sole positive-E
+path from `b_0` to `b_{m-1}`. Therefore equivalence
+closure cannot identify any gadget-supported pair that
+was originally E-negative. The chosen order likewise
+reflects the source order on all gadget-supported pairs:
+different blocks within a gadget always carry distinct
+control labels.
+
+For (4a) and (4b), the separate key combinatorial lemma
+is that every **closed U-irreducible** induced test
+uses a set of matching blocks that is a clique of the
+block-interaction graph. If two blocks a,b in such a
+test are not related by a gadget, deleting block a
+and deleting block b yields a free amalgamation into two
+proper **U-closed** sides, a contradiction. The
+three-block cliques of the interaction graph are
+exactly the gadget triples, and there are no four-block
+cliques. Thus every closed irreducible test is contained
+in an installed induced B0 copy, where both the
+projection and the small-test completion are embeddings.
+
+**Remaining Lean obligations:** prove the clique
+containment lemma and full gadget embeddings, define
+the actual finite equivalence-closure target on `T`,
+prove E/order reflection there, and package the resulting
+`HasClosedUKCompletion` of the exact weak source `S`.
+Only then apply `CoordinatedEPathBadWitnessAt.refutes_cutoff`.
+
 ## Lean validation boundary and tasks
 
-The printed/local (4b)-only obstruction is already Green
-from PR #38. This coordinated all-n witness is **not**
-Green: the uniform `C_m` family and the proof that every
-weak `n`-vertex test has a K-completion still need Lean.
-Finite combinatorial regressions in the upstream audit are
-supporting evidence only.
+The literal and (4b)-only theorem refutations are Green (PR #56).
+For the **different coordinated convention**, the uniform
+finite relational family `cycleGadgetWitness k` and its
+`IsUClosed mateRules` proof are now Green (PR #59).
+The complete positive `C_k → C0` homomorphism is Green
+(PR #60). The `cycle_cutoff_tests_miss_backbone` theorem
+is Green (PR #55). The fixed B0/C0 fixtures and the
+abstract copywise E-path contradiction are also Green.
+
+This is still **not** an all-cutoff local-completion
+counterexample in Lean. The induced B0 embeddings for
+every gadget, closed-test U-irreducible containment, and
+completions of all exact small weak tests remain open.
+The independent bounded finite regression in PR #61 is
+supporting evidence only and is not a logical substitute
+for these universally quantified lemmas.
 
 Formalize these independent obligations:
 
