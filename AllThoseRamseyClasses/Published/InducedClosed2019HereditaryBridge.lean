@@ -127,7 +127,7 @@ theorem IsUClosed.inducedRange
     {A : RelStructure L V} {B : RelStructure L W}
     (hA : IsUClosed rules A) (e : Embedding A B) :
     IsUClosed rules (B.induce (Set.range e)) :=
-  isUClosed_of_surjective_embedding e.inducedRangeEmbedding
+  isUClosed_of_surjective_embedding (inducedRangeEmbedding e)
     (inducedRangeEmbedding_surjective e) hA
 
 /-- Isomorphism invariance is an explicit class property, not
@@ -169,7 +169,7 @@ theorem embeddedClosedHereditary_of_induced
   intro X Y A B hB hClosed e
   have hRangeClosed : IsUClosed rules
       (B.induce (Set.range e)) :=
-    hClosed.inducedRange e
+    IsUClosed.inducedRange hClosed e
   have hKRange : K (B.induce (Set.range e)) :=
     h B hB (Set.range e) hRangeClosed
   exact hIso A (B.induce (Set.range e))
