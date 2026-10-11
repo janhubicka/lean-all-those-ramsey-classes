@@ -54,12 +54,14 @@ the refuted printed 2019 theorem to a positive green result.
 | Native zero/one exterior line | inducedClosed2019_native_single_active_line_completion; inducedClosed2019_native_no_active_line_completion | PR #116, CI 38181386246; no global common coordinate |
 | Native finite exterior history | native2019_rank_bounded_exterior_subhistory | PR #115, CI 38181293388; at most U-size many private attached-copy indices |
 | Mixed cut gluing | inducedClosed2019_completion_of_projected_mixed_cut | PR #114, CI 38180945276; **requires** free split, common K boundary, and two absolute projected rank-j budgets |
+| Essential minimum generators and proper saturated cuts | minimal2019_generator_not_in_erase_hull; minimal2019_generator_excluded_from_saturated_cut | PR #118, CI 38181734891; properness requires source-side seed containment in the hull of surviving generators |
 | Lemma 2.31 finite iteration | lemma_2_31_exact_weak_tests_of_rank_increment | PR #108, CI 38174711608; higher-rank constructor explicit |
 | Corrected Theorem 2.18 transfer | coordinated2019_ramsey_of_two_picture_constructors | PR #110, CI 38175652074; initial and higher-rank constructors explicit, both open |
 | Weak hull U-size correction | USize_ambientHull_le_weak_2019 | PR #105, CI 38173666528; printed equality is false |
 
-An additional proper-saturation proof is under review in PR #118; it is
-not GREEN until its own complete CI passes. The **general j-to-j+1
+The minimum-generator proper-cut criterion is verified in PR #118
+(CI 38181734891); it does not establish the missing native
+copy/rest seed-containment hypothesis. The **general j-to-j+1
 Picture construction remains OPEN** in the maximal projected-rank
 multi-line case. Pairwise line intersections or a generic free cut do
 not supply the missing absolute projected support budgets.
