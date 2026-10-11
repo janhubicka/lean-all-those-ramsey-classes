@@ -38,6 +38,7 @@ theorem cycleGadgetWitness_zero_path :
       (witnessBlockVertex 3) (witnessBlockVertex 4) ∧
     ¬ edge (cycleGadgetWitness 0) .equiv
       (witnessBlockVertex 0) (witnessBlockVertex 4) := by
+  dsimp [edge, cycleGadgetWitness, CycleControlC0]
   decide
 
 /-- E in the witness already violates transitivity on the first
@@ -54,7 +55,8 @@ theorem cycleGadgetWitness_zero_not_pairedClass :
     cycleGadgetWitness_zero_path.2.1
   have h02 : ¬ edge (cycleGadgetWitness 0) .equiv
       (witnessBlockVertex 0) (witnessBlockVertex 2) := by
-    decide
+    dsimp [edge, cycleGadgetWitness, CycleControlC0]
+  decide
   exact h02 (hK.equiv.trans h01 h12)
 
 theorem cycleGadgetWitness_zero_not_K :
