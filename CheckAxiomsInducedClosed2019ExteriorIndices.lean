@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Published.InducedClosed2019ExteriorIndices
+
+-- Genuine finite native attachment history; no higher-rank
+-- completion oracle or unproved Picture construction.
+#print axioms AllThoseRamseyClasses.Published.exteriorIndices_card_le_generators
+#print axioms AllThoseRamseyClasses.Published.exteriorIndex_mem_of_generator
+#print axioms AllThoseRamseyClasses.Published.native2019_factor_through_bounded_exterior_subhistory
+
+#print axioms AllThoseRamseyClasses.Published.native2019_rank_bounded_exterior_subhistory
