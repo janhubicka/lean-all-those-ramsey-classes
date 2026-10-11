@@ -32,6 +32,7 @@ theorem cycleGadgetWitness_M_projects
   change cycleMatching k (b, i) (c, j) at h
   obtain ⟨hb, hij⟩ := h
   change b = c at hb
+  change i ≠ j at hij
   subst c
   change ((2 * cycleBlockLabel k b + i.val) / 2 =
       (2 * cycleBlockLabel k b + j.val) / 2) ∧
@@ -44,9 +45,9 @@ theorem cycleGadgetWitness_M_projects
     have hvals := congrArg (fun z : Fin 10 => z.val) he
     change 2 * cycleBlockLabel k b + i.val =
       2 * cycleBlockLabel k b + j.val at hvals
-    apply hij
-    apply Fin.ext
-    omega
+    have hbits : i.val = j.val :=
+      Nat.add_left_cancel hvals
+    exact hij (Fin.ext hbits)
 
 /-- The control-label map is a genuine positive relational
 homomorphism from C_k to C0, in the EXACT 2019 language.
