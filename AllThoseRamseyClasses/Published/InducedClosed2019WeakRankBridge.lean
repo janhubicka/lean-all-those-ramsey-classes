@@ -66,7 +66,7 @@ theorem lemma_2_31_exact_weak_tests_of_closed_rank
         (C.induce (↑S : Set V)) :=
     HasClosedUKCompletion.of_closed_USize
       rules C hC n hRank S hS
-  exact hAbstract.toInducedClosed
+  exact HasClosedUKCompletion.toInducedClosed hAbstract
 
 /-- The output of a rank-controlled picture indeed discharges the
 ORIGINAL 2019 induced-test (4c), including the empty test and
