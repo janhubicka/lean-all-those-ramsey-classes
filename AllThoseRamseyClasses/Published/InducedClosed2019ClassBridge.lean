@@ -65,7 +65,7 @@ theorem coordinated2019_to_abstract_closed_class
     strong := h.strong
     localCompletion := ?_
   }
-  intro X Y B C0 hB hC0
+  intro X Y hFiniteX hFiniteY B C0 hB hC0
   obtain ⟨n, hn⟩ := h.localCompletion B C0 hB hC0
   exact ⟨n, InducedClosedULocalCompletionAt.toAbstractClosed hn⟩
 
@@ -106,8 +106,8 @@ closed-test theorem to the corrected 2019 theorem. No missing
 constructor is hidden: the ENTIRE abstract theorem is an explicit
 hypothesis. The positive Ramsey theorem remains open. -/
 theorem coordinated2019_target_of_abstract_target
-    (hAbstract : AbstractClosed2019Theorem218Target (L := L)) :
-    Coordinated2019Theorem218Target (L := L) := by
+    (hAbstract : AbstractClosed2019Theorem218Target.{u,v} (L := L)) :
+    Coordinated2019Theorem218Target.{u,v} (L := L) := by
   intro R K rules hRamsey hIrred hK
   exact hAbstract R K rules hRamsey hIrred hK.toAbstract
 
