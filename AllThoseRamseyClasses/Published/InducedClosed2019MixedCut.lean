@@ -23,7 +23,7 @@ must provide:
 * the projected separator inside one embedded closed A∈K;
 * separate finite source-side generating sets whose projected
   image cardinalities are each <= j;
-* all closed U-size<=j induced substructures of D admit corrected
+* all closed U-size<=j induced substructures of D have corrected
   K-completions.
 
 The same closed K-boundary is constructed by the pinned
