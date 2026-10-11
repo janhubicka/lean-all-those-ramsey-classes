@@ -43,7 +43,7 @@ theorem inducedClosed2019_completion_of_bounded_rank_projection
     {rules : ClosureDescription L}
     {A : RelStructure L U} {B : RelStructure L V}
     {f : U → V}
-    [Finite U] [Finite V]
+    [Fintype U] [Finite V]
     (hB : IsUClosed rules B)
     (hf : IsInducedClosedUHomomorphismEmbedding rules A B f)
     (j : ℕ)
@@ -55,7 +55,6 @@ theorem inducedClosed2019_completion_of_bounded_rank_projection
     (hASize : USize rules A ≤ j) :
     HasInducedClosedUKCompletion K rules A := by
   classical
-  letI : Fintype U := Fintype.ofFinite U
   obtain ⟨G, hCard, hGen⟩ := USize_spec rules A
   have hBudget : (G.image f).card ≤ j := by
     calc
