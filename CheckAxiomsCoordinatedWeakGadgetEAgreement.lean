@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.CoordinatedWeakGadgetEAgreement
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleWeakCandidate_E_iff_of_common_gadget
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleWeakCandidate_E_iff_of_related
