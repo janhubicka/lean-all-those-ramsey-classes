@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.CoordinatedWeakClosingEPrivate
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleWeakCandidate_closing_first_private_E_positive
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleWeakCandidate_closing_last_private_E_negative
