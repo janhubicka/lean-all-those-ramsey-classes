@@ -118,6 +118,7 @@ theorem cycleBackboneBlock_injective (k : ℕ) :
     Function.Injective (cycleBackboneBlock k) := by
   intro i j hij
   apply Fin.ext
-  exact congrArg Fin.val hij
+  have h := congrArg (fun b : CycleBlock k => b.val) hij
+  simpa only [cycleBackboneBlock] using h
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
