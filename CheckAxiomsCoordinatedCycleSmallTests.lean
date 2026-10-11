@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleSmallTests
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_exists_unhit_backbone
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_cutoff_tests_miss_backbone
