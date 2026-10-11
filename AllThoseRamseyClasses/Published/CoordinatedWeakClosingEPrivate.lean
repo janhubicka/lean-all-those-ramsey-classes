@@ -32,8 +32,7 @@ theorem cycleWeakCandidate_closing_first_private_E_positive
     rfl
   rw [hFirst, cycleWeakEClass_backbone,
     cycleWeakEClass_closingPrivate]
-  change cycleGapCount (cycleWeakPresentBlocks k S) 0 = 0
-  exact cycleGapCount_zero _
+  simp [firstI, cycleGapCount_zero]
 
 /-- Closing T remains E-inequivalent to the last backbone block
 when S meets at most k vertices. -/
