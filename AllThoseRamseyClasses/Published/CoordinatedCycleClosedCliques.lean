@@ -134,7 +134,7 @@ theorem cycle_closedUIrreducible_blocks_pairwise_related
       simpa only [not_not] using hi
     have hbj : (e (z j)).1 = (e b).1 := by
       change ¬ ((e (z j)).1 ≠ (e b).1) at hj
-      exact not_ne.mp hj
+      simpa only [not_not] using hj
     have hTarget : (cycleGadgetWitness k).rel R (e ∘ z) :=
       (e.map_rel_iff R z).mpr hz
     have hRelated : cycleRelatedBlocks k
