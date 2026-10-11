@@ -23,7 +23,7 @@ theorem cyclePathStart_label (k : ℕ)
   have hi := i.isLt
   have hfirst : i.val < cycleBackboneCount k := by omega
   have hlast : i.val ≠ cycleBackboneCount k - 1 := by omega
-  simp [cycleBlockLabel, cyclePathStart, hfirst, hlast]
+  simp [cycleBlockLabel, cyclePathStart, hfirst, hlast] <;> rfl
 
 theorem cyclePathFinish_label (k : ℕ)
     (i : Fin (cycleBackboneCount k - 1)) :
@@ -34,7 +34,7 @@ theorem cyclePathFinish_label (k : ℕ)
   have hfirst : i.val + 1 < cycleBackboneCount k := by
     simp only [cycleBackboneCount] at *
     omega
-  simp [cycleBlockLabel, cyclePathFinish, hfirst]
+  simp [cycleBlockLabel, cyclePathFinish, hfirst] <;> rfl
 
 theorem cyclePathPrivate_label (k : ℕ)
     (i : Fin (cycleBackboneCount k - 1)) :
@@ -64,11 +64,10 @@ theorem cycleClosingLast_label (k : ℕ) :
 
 theorem cycleClosingPrivate_label (k : ℕ) :
     cycleBlockLabel k (cycleClosingPrivateBlock k) = 2 := by
-  have hfirst :
-      ¬ (cycleClosingPrivateBlock k).val < cycleBackboneCount k := by
-    change ¬ cycleBlockCount k - 1 < cycleBackboneCount k
+  have hbad :
+      ¬ (cycleBlockCount k - 1 < cycleBackboneCount k) := by
     simp only [cycleBackboneCount, cycleBlockCount]
     omega
-  simp [cycleBlockLabel, cycleClosingPrivateBlock, hfirst]
+  simp [cycleBlockLabel, cycleClosingPrivateBlock, hbad]
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
