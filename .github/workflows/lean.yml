@@ -52,6 +52,8 @@ jobs:
         run: python3 scripts/check_paired_equivalences.py
       - name: Bounded strong-amalgamation regression (72839 spans)
         run: python3 scripts/check_paired_strong_amalgamation.py
+      - name: Bounded coordinated E-cycle weak-test regression
+        run: python3 scripts/check_coordinated_cycle_gadgets.py
       - name: Verify literal source is free of admissions
         run: |
           if grep -R -n -E '(^|[^[:alnum:]_])(sorry|admit)[[:space:]]*($|[^[:alnum:]_])' AllThoseRamseyClasses CheckAxioms.lean; then
