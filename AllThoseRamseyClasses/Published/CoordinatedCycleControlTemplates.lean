@@ -83,12 +83,15 @@ def controlABDEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlABD_injective
   map_rel_iff := by
     intro R t
+    have hPair : (controlABDFun ∘ t) =
+        ![controlABDFun (t 0), controlABDFun (t 1)] := by
+      funext i
+      fin_cases i <;> rfl
     have htup : t = ![t 0, t 1] := by
       funext i
       fin_cases i <;> rfl
-    rw [htup]
-    change edge CycleControlC0 R (controlABDFun (t 0)) (controlABDFun (t 1)) ↔
-      edge CycleBaseB0 R (t 0) (t 1)
+    change CycleControlC0.rel R (controlABDFun ∘ t) ↔ CycleBaseB0.rel R t
+    rw [hPair, htup]
     exact controlABD_rel_iff R (t 0) (t 1)
 
 /-- B,C,D forms an induced six-vertex B0 inside C0. -/
@@ -97,12 +100,15 @@ def controlBCDEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlBCD_injective
   map_rel_iff := by
     intro R t
+    have hPair : (controlBCDFun ∘ t) =
+        ![controlBCDFun (t 0), controlBCDFun (t 1)] := by
+      funext i
+      fin_cases i <;> rfl
     have htup : t = ![t 0, t 1] := by
       funext i
       fin_cases i <;> rfl
-    rw [htup]
-    change edge CycleControlC0 R (controlBCDFun (t 0)) (controlBCDFun (t 1)) ↔
-      edge CycleBaseB0 R (t 0) (t 1)
+    change CycleControlC0.rel R (controlBCDFun ∘ t) ↔ CycleBaseB0.rel R t
+    rw [hPair, htup]
     exact controlBCD_rel_iff R (t 0) (t 1)
 
 /-- A,T,C is the induced closing B0 gadget inside C0. -/
@@ -111,12 +117,15 @@ def controlATCEmbedding : Embedding CycleBaseB0 CycleControlC0 where
   injective := controlATC_injective
   map_rel_iff := by
     intro R t
+    have hPair : (controlATCFun ∘ t) =
+        ![controlATCFun (t 0), controlATCFun (t 1)] := by
+      funext i
+      fin_cases i <;> rfl
     have htup : t = ![t 0, t 1] := by
       funext i
       fin_cases i <;> rfl
-    rw [htup]
-    change edge CycleControlC0 R (controlATCFun (t 0)) (controlATCFun (t 1)) ↔
-      edge CycleBaseB0 R (t 0) (t 1)
+    change CycleControlC0.rel R (controlATCFun ∘ t) ↔ CycleBaseB0.rel R t
+    rw [hPair, htup]
     exact controlATC_rel_iff R (t 0) (t 1)
 
 end AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
