@@ -116,11 +116,13 @@ theorem cycleMatching_total (k : ℕ) :
   · refine ⟨(b, 1), ?_, ?_⟩
     · simp [cycleMatching]
     · rintro ⟨b', j⟩ ⟨hb, hj⟩
+      change b = b' at hb
       subst b'
       fin_cases j <;> simp_all
   · refine ⟨(b, 0), ?_, ?_⟩
     · simp [cycleMatching]
     · rintro ⟨b', j⟩ ⟨hb, hj⟩
+      change b = b' at hb
       subst b'
       fin_cases j <;> simp_all
 
