@@ -52,14 +52,8 @@ theorem cycleControlVertex_E_iff_labels
 theorem cycleControlELabels_symm
     (a b : ℕ) (h : cycleControlELabels a b) :
     cycleControlELabels b a := by
-  rcases h with h | h | h | h | h | h | h
-  · exact Or.inl h.symm
-  · exact Or.inr (Or.inr (Or.inl ⟨h.2,h.1⟩))
-  · exact Or.inr (Or.inl ⟨h.2,h.1⟩)
-  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨h.2,h.1⟩))))
-  · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨h.2,h.1⟩)))
-  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨h.2,h.1⟩)))))
-  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨h.2,h.1⟩))))
+  unfold cycleControlELabels at *
+  omega
 
 /-- D control label never has positive E edges to the four other
 control labels A/B/T/C, in either order. -/
