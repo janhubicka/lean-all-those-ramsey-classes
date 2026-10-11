@@ -21,11 +21,18 @@ Evidence goes here, never into the published LaTeX text.
 | Definition 2.24 | `ClosureSemiClosed2019.lean` | BLUE: representation with checked partial lemmas |
 | Definition 2.25 | `ClosureUSize2019.lean` | BLUE/PARTIAL; possible printed ambiguity recorded in TODO |
 | Lemmas 2.27–2.28 | Native closed/semi-closed partite modules | PARTIAL: published weak intrinsic test statements not fully checked |
-| Lemma 2.29 | `Lemma229Counterexample.lean` | **REFUTED LITERALLY (GREEN negative proof)**: explicit A,B,C0 satisfy hypotheses but no C has all intrinsically U-irreducibles covered; closed-test repair pending |
+| Lemma 2.29 (printed) | `Lemma229Counterexample.lean` | **GREEN REFUTATION** of the literal all-intrinsic-test assertion, which must not receive a positive green marker |
+| Lemma 2.29 (coordinated closed-test correction) | `InducedClosed2019Lemma229.lean` | **GREEN POSITIVE**: full corrected lemma, exactly the paper's relative-A-copy hypothesis, and the A-not-in-B trivial branch; CI `38166475950` / PR #98, axiom audited; **not** a proof of printed text |
+| Restricted closed-test Ramsey theorem (cutoff n≤1) | `InducedClosed2019RankOne.lean` | **GREEN POSITIVE** with explicit relatively closed A-copies, closed inputs, and rank-one cutoff; PR #98, CI `38166475950` |
+| Coordinated Theorem 2.18 proof contract | `InducedClosed2019MainContract.lean` | **GREEN CONDITIONAL TRANSFER** with an unproved higher-rank sparse-witness hypothesis explicitly exposed; general positive theorem still OPEN |
 | Lemma 2.31 / Definition 2.17(4c) | `LiteralWeakRankBridge.lean` | GREEN conditional: closed rank control by fully protected original-style maps yields ALL exact weak n-vertex completions; supplying those maps remains open |
 | Lemmas 2.30–2.31 | Closure rank/relative boundary modules | OPEN for the general corrected higher-rank iteration |
 | Paired-equivalence counterexample | `PairedEquivalences.lean`, `FinitePairedClass.lean`, `PairedStrongAmalgamation.lean`, `Theorem218Counterexample.lean` | **GREEN:** all class premises, exact finite strong amalgamation on the vertex pushout (#49), both final negative theorems (#56); persistent non-Ramsey colouring |
 | Coordinated repair: excluding paired K by all-cutoff cycles | `CoordinatedCycleConcreteB0Gadgets.lean`, `CoordinatedWeakPairedCompletionTarget.lean`, `CoordinatedWeakGadgetEAgreement.lean`, `CoordinatedCycleAllWeakCompletions.lean`, `CoordinatedCycleActualCopywiseObstruction.lean`, `CoordinatedCycleAllCutoffs.lean` | **GREEN negative theorem:** actual C_n is finite and U-closed; (4a) and (4b) hold unconditionally (#82); (4c) holds for EVERY exact weak S with S.card≤n (#92); genuine positive B0 path and negative closing B0 forbid ANY copywise K-completion (#90). Thus `finitePairedClass_no_coordinated_local_cutoff` and `finitePairedClass_not_coordinated_multiamalgamation` (#93) are Lean-proved for all n, same fixed B0/C0; green full CI and axiom audit run `38160922281`. **Different question OPEN:** positive Ramsey theorem under coordinated repair |
+
+## Constructive checkpoint (11 October 2026)
+
+PR #98 proof head `a417215c47ceb8257a9644d49aeddeb4cf8b5e88` passed **all** Lean modules, every permitted-axiom audit, and the finite regressions in GitHub Actions run `38166475950`. It was merged as `43cbfa2fde912709d4921564606b7409922c3fa6`. The validated conditional theorem exposes, rather than postulates, the remaining high-rank Picture witness constructor. The corrected Lemma 2.29 and restricted cutoff-one case are genuine constructed positive results. The **original** printed Lemma 2.29 remains refuted. The unrestricted Lemma 2.28, rank-increment Lemma 2.30, Lemma 2.31 construction and general repaired Theorem 2.18 remain open.
 
 ## Meaning of markers
 
