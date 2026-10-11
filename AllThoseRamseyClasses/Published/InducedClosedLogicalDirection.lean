@@ -181,9 +181,10 @@ theorem InducedClosedULocalCompletionAt.toAbstractClosed
     ClosedULocalCompletionAt K rules B C0 n := by
   intro X hX C hClosed hControl hCovered hSmall
   obtain ⟨hC0, f, hf⟩ := hControl
-  apply h C hClosed ⟨hC0, f, IsClosedUHomomorphismEmbedding.toInducedClosed hf⟩
-    ClosedUIrreduciblesIn.toCorrectedInduced hCovered
-  intro S hS
-  exact HasClosedUKCompletion.toInducedClosed (hSmall S hS)
+  exact h C hClosed
+    ⟨hC0, f, IsClosedUHomomorphismEmbedding.toInducedClosed hf⟩
+    (ClosedUIrreduciblesIn.toCorrectedInduced hCovered)
+    (fun S hS =>
+      HasClosedUKCompletion.toInducedClosed (hSmall S hS))
 
 end AllThoseRamseyClasses.Published
