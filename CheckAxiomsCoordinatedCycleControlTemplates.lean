@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleControlTemplates
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlABDEmbedding
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlBCDEmbedding
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlATCEmbedding
