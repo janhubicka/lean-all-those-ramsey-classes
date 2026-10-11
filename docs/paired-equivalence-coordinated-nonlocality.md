@@ -89,30 +89,30 @@ cutoff n**.
 
 ## Explicit gap-count completion for every weak test (mathematical proof)
 
-For arbitrary cutoff (k=n), let (m=2k+5) and take the *original*
-weak vertex set (S\subseteq V(C_k)), with (|S|\leq k). No assumption
+For arbitrary cutoff $k=n$, let $m=2k+5$ and take the *original*
+weak vertex set $S\subseteq V(C_k)$, with $|S|\leq k$. No assumption
 that S is U-closed is made. A touched matching block counts as present
 even if S contains only one of its two vertices. Let
-(T = \{b: \exists v\in S,\ v.\mathrm{block}=b\}\); in particular
-(|T|\leq k).
+$T=\{b:\exists v\in S,\ v.\mathrm{block}=b\}$; in particular
+$|T|\leq k$.
 
 The already Lean-certified internal-gap lemma (#76) gives an
-**internal** index (1\leq h<m-1) whose matching block has no
+**internal** index $1\leq h<m-1$ whose matching block has no
 vertex in S: adding one root at each endpoint creates a set of at
-most (k+2<m) vertices, so a missing block cannot be an endpoint.
+most $k+2<m$ vertices, so a missing block cannot be an endpoint.
 
-Define the gap count (g_T(i)=|\{j<i: j\notin T\}|) for the
+Define the gap count $g_T(i)=|\{j<i:j\notin T\}|$ for the
 backbone indices. On the **entire original matching-pair carrier**
-(V(C_k)\) (not merely on the tested vertices) assign each block
+$V(C_k)$ (not merely on the tested vertices) assign each block
 an equivalence-class tag:
 
-* backbone (b_i\mapsto (0,g_T(i))\);
-* closing private block (t_*\mapsto (0,0)\);
-* path-private block (t_i\mapsto (1,m+i)\).
+* backbone $b_i\mapsto(0,g_T(i))$;
+* closing private block $t_*\mapsto(0,0)$;
+* path-private block $t_i\mapsto(1,m+i)$.
 
-Put (E_D(x,y)\) iff these tags agree. Retain the original perfect
+Put $E_D(x,y)$ iff these tags agree. Retain the original perfect
 matching M. Order the vertices lexicographically by
-((\mathrm{controlVertex}(x),\mathrm{blockIndex}(x))\): the first
+$(\mathrm{controlVertex}(x),\mathrm{blockIndex}(x))$: the first
 coordinate records the 10-vertex C0 label *and* matching bit,
 and the second breaks ties when different blocks have the same
 control image. Together these define the explicit structure
@@ -132,13 +132,13 @@ For E, all possibilities come from the three-block gadgets:
 * Each block is internally E-complete.
 * The two backbone blocks of any path gadget are positively
   E-related. If both appear in S, its *first* backbone index i
-  belongs to T, whence (g_T(i+1)=g_T(i)\); they retain equal tags.
+  belongs to T, whence $g_T(i+1)=g_T(i)$; they retain equal tags.
 * Its path-private D block has a tag with first coordinate 1,
   hence is E-inequivalent to either backbone block.
 * In the closing gadget, b0 and t_* both carry tag (0,0),
   whereas the final backbone block carries
-  ((0,g_T(m-1))\). Since the internal gap h is absent,
-  (g_T(m-1)>g_T(0)=0\); hence this last block is
+  $(0,g_T(m-1))$. Since the internal gap h is absent,
+  $g_T(m-1)>g_T(0)=0$; hence this last block is
   E-inequivalent to both b0 and t_*.
 
 The gap-count recurrence and internal-gap theorem are Green
@@ -147,11 +147,11 @@ are Green (#84/#85), with full all-pairs composition in #89/#91
 still awaiting Lean validation. Thus **all binary tuples,
 positive and negative, agree on every gadget-supported pair
 of vertices of the exact S**. Unrelated pairs have no positive
-source tuples, so the canonical inclusion (C_k|S\to D(k,S)\)
+source tuples, so the canonical inclusion $C_k|S\to D(k,S)$
 is a positive homomorphism even though D may add relations on
 unrelated pairs.
 
-Every embedded *U-closed U-irreducible* test inside (C_k|S\)
+Every embedded *U-closed U-irreducible* test inside $C_k|S$
 has pairwise gadget-related matching blocks by the checked
 closed-cover argument (#66), and these blocks lie in one common
 gadget by #73. Consequently its image into D is a **full induced
