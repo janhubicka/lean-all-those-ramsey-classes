@@ -78,14 +78,14 @@ theorem coordinated2019_ramsey_of_two_picture_constructors
       ∀ {X Y Z : Type v} [Finite X] [Finite Y] [Finite Z]
         (A : RelStructure L X) (B : RelStructure L Y)
         (C0 : RelStructure L Z)
-        (κ : Type*) [Fintype κ] [Nonempty κ],
+        (κ : Type) [Fintype κ] [Nonempty κ],
         K A → K B → R C0 →
         StructuralRamsey.Arrow A B C0 κ →
         Has2019UnrestrictedInitialPicture K rules A B C0 κ)
     (hHigher :
       ∀ {X Y : Type v} [Finite X] [Finite Y]
         (A : RelStructure L X) (B : RelStructure L Y)
-        (κ : Type*) [Fintype κ] [Nonempty κ]
+        (κ : Type) [Fintype κ] [Nonempty κ]
         (j : ℕ), 1 ≤ j → K A → K B →
         Proposed2019RankIncrementStep K rules A B κ j) :
     FiniteRamseyClass K := by
