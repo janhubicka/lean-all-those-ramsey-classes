@@ -1,0 +1,13 @@
+import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
+
+-- Faithful 2019 semantics, including exact induced tested vertex sets.
+-- No higher-rank Picture constructor or general Ramsey result is asserted.
+#print axioms AllThoseRamseyClasses.Published.uIrreducible_of_closed_cover_2019
+#print axioms AllThoseRamseyClasses.Published.uIrreducible_of_surjective_embedding_2019
+#print axioms AllThoseRamseyClasses.Published.closedIrreducible_exact_induced_range_2019
+#print axioms AllThoseRamseyClasses.Published.IsInducedClosedUHomomorphismEmbedding.toAbstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedMap_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.correctedInducedCoverage_toAbstract_2019
+#print axioms AllThoseRamseyClasses.Published.correctedInducedCoverage_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedKCompletion_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedLocalCompletion_iff_abstract_2019
