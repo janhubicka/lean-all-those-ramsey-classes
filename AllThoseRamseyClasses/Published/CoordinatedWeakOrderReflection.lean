@@ -41,6 +41,7 @@ theorem cycleControlVertex_injective_of_related (k : ℕ)
       have hval := congrArg (fun z : Fin 10 => z.val) hc
       change 2 * cycleBlockLabel k a + i.val =
         2 * cycleBlockLabel k b + j.val at hval
+      change cycleBlockLabel k a = cycleBlockLabel k b
       have hi := i.isLt
       have hj := j.isLt
       omega
