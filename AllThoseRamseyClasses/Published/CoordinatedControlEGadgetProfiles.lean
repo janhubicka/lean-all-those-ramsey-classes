@@ -40,7 +40,8 @@ theorem cycleControlELabels_pathStartPrivate_neg (k : ℕ)
       (cycleBlockLabel k (cyclePathStart k i))
       (cycleBlockLabel k (cycleEdgePrivateBlock k i)) := by
   rw [cyclePathPrivate_label, cycleControlELabels_private_iff]
-  exact cyclePath_start_private_label_ne k i
+  simpa only [cyclePathPrivate_label] using
+    cyclePath_start_private_label_ne k i
 
 theorem cycleControlELabels_pathFinishPrivate_neg (k : ℕ)
     (i : Fin (cycleBackboneCount k - 1)) :
@@ -48,7 +49,8 @@ theorem cycleControlELabels_pathFinishPrivate_neg (k : ℕ)
       (cycleBlockLabel k (cyclePathFinish k i))
       (cycleBlockLabel k (cycleEdgePrivateBlock k i)) := by
   rw [cyclePathPrivate_label, cycleControlELabels_private_iff]
-  exact cyclePath_finish_private_label_ne k i
+  simpa only [cyclePathPrivate_label] using
+    cyclePath_finish_private_label_ne k i
 
 theorem cycleControlELabels_closingFirstPrivate (k : ℕ) :
     cycleControlELabels
