@@ -34,6 +34,36 @@ Evidence goes here, never into the published LaTeX text.
 
 PR #98 proof head `a417215c47ceb8257a9644d49aeddeb4cf8b5e88` passed **all** Lean modules, every permitted-axiom audit, and the finite regressions in GitHub Actions run `38166475950`. It was merged as `43cbfa2fde912709d4921564606b7409922c3fa6`. The validated conditional theorem exposes, rather than postulates, the remaining high-rank Picture witness constructor. The corrected Lemma 2.29 and restricted cutoff-one case are genuine constructed positive results. The **original** printed Lemma 2.29 remains refuted. The unrestricted Lemma 2.28, rank-increment Lemma 2.30, Lemma 2.31 construction and general repaired Theorem 2.18 remain open.
 
+## Native higher-rank construction checkpoint (12 October 2026)
+
+These declarations are GREEN only at their **exact corrected/restricted scope**.
+All PRs below passed the complete Lean build, permitted-axiom audits,
+finite regressions and source admission scan. No claim here promotes
+the refuted printed 2019 theorem to a positive green result.
+
+| 2019 target | Lean declaration | Verification and boundary |
+|---|---|---|
+| Closed-test semantics | inducedClosedMap_iff_abstract_2019, inducedClosedLocalCompletion_iff_abstract_2019 | PR #104, CI 38173473197; explicit K isomorphism invariance where needed |
+| Corrected class equivalence | coordinated2019_class_iff_abstract | PR #107, CI 38174369453; does not imply Ramsey |
+| Corrected Lemma 2.29 | lemma_2_29_coordinated_induced_full | PR #98, CI 38166475950; printed all-weak-test lemma remains refuted |
+| Lemma 2.30, rank-zero Picture | lemma_2_30_coordinated_rank_zero | PR #106, CI 38174147653; fully constructed |
+| Native rank-j preservation | native_picture_preserves_closed_rank_2019 | PR #111, CI 38175660282; not rank promotion |
+| Generator collision | inducedClosed2019_completion_of_generator_collision | PR #112, CI 38175923946; projected support at most j |
+| Full-rank generator alternative | inducedClosed2019_completion_or_minimal_generator_saturation | PR #117, CI 38181447299; unresolved case has injective maximal projected generators |
+| Native common-coordinate case | inducedClosed2019_native_common_coordinate_completion | PR #113, CI 38180942998; local common coordinate required |
+| Native zero/one exterior line | inducedClosed2019_native_single_active_line_completion; inducedClosed2019_native_no_active_line_completion | PR #116, CI 38181386246; no global common coordinate |
+| Native finite exterior history | native2019_rank_bounded_exterior_subhistory | PR #115, CI 38181293388; at most U-size many private attached-copy indices |
+| Mixed cut gluing | inducedClosed2019_completion_of_projected_mixed_cut | PR #114, CI 38180945276; **requires** free split, common K boundary, and two absolute projected rank-j budgets |
+| Lemma 2.31 finite iteration | lemma_2_31_exact_weak_tests_of_rank_increment | PR #108, CI 38174711608; higher-rank constructor explicit |
+| Corrected Theorem 2.18 transfer | coordinated2019_ramsey_of_two_picture_constructors | PR #110, CI 38175652074; initial and higher-rank constructors explicit, both open |
+| Weak hull U-size correction | USize_ambientHull_le_weak_2019 | PR #105, CI 38173666528; printed equality is false |
+
+An additional proper-saturation proof is under review in PR #118; it is
+not GREEN until its own complete CI passes. The **general j-to-j+1
+Picture construction remains OPEN** in the maximal projected-rank
+multi-line case. Pairwise line intersections or a generic free cut do
+not supply the missing absolute projected support budgets.
+
 ## Meaning of markers
 
 Exactly as `validation.tex` in the survey:
