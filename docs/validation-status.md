@@ -25,6 +25,7 @@ Evidence goes here, never into the published LaTeX text.
 | Lemma 2.31 / Definition 2.17(4c) | `LiteralWeakRankBridge.lean` | GREEN conditional: closed rank control by fully protected original-style maps yields ALL exact weak n-vertex completions; supplying those maps remains open |
 | Lemmas 2.30–2.31 | Closure rank/relative boundary modules | OPEN for the general corrected higher-rank iteration |
 | Paired-equivalence counterexample | `PairedEquivalences.lean`, `FinitePairedClass.lean`, `PairedStrongAmalgamation.lean`, `Theorem218Counterexample.lean` | **GREEN:** all class premises, exact finite strong amalgamation on the vertex pushout (#49), both final negative theorems (#56); persistent non-Ramsey colouring |
+| Coordinated repair: excluding paired K by all-cutoff cycles | `CoordinatedCycleBlocks.lean`, `CoordinatedCycleSmallTests.lean`, `CoordinatedCycleGadgetWitness.lean`, `CoordinatedCycleControlHom.lean`, `CoordinatedCycleZeroRegression.lean`, `CoordinatedCycleGadgetPositions.lean` | **ORANGE:** Green uniform finite C_k, U-closure (#59), complete *positive* C_k→C0 homomorphism (#60), exact weak missing-block bound (#55), uniform three-block incidence (#62), finite k=0 Lean regression and independent 309,136 weak-subset regression (#61). Induced B0 gadget copies, all protected closed tests, exact weak-test K completions, and general coordinated Ramsey theorem remain open |
 
 ## Meaning of markers
 
@@ -63,7 +64,12 @@ Latest checkpoint (11 October 2026):
 - PR #49 merge `738293798cb0eb384cadcf9e6cee3b06c7ec290d`, successful CI `38111771221`: **general Lean strong amalgamation theorem** for finite ordered paired equivalences, with permitted-axiom audit; finite regression still independent.
 - PR #56 merge `514fac46606dab914b4cfa2425a5af155130b451`, successful CI `38111968393`: both unconditional theorem-level negative results and their permitted-axiom audits.
 - PRs #54 and #55, green CI `38111850367`, `38111852226`: unbounded long-cycle matching-block carriers, fixed-control projections and the cardinal lemma showing every exact weak `n`-vertex test misses at least one backbone block. These are **components only**, not an all-cutoff witness satisfying (4a)-(4c).
+- PR #58, CI `38136414700`: matching-closure criterion without E transitivity or total order, merged.
+- PR #59, CI `38136868482`: genuine uniform U-closed partial relational E-cycle C_k, merged.
+- PR #60, CI `38136871704`: full positive control homomorphism C_k→C0 (all three symbols), merged.
+- PR #61, CI `38137484538`: Lean finite five-block nontransitivity/path check plus separate exhaustive bounded regression of 309,136 exact weak vertex subsets, merged. This is not a proof for arbitrary k.
+- PR #62, CI `38136962007`: uniform path/closing gadget block incidence and distinctness, merged.
 
-No green theorem asserting that the coordinated Definition 2.15-map/Definition 2.17(4b) repair is correct exists. The all-cutoff relational gadgets, their closed-test projection, and their exact small-test completions remain open.
+No green theorem asserting that the coordinated Definition 2.15-map/Definition 2.17(4b) repair is correct exists. Actual uniform C_k relational witnesses and their positive projection are now Green, but the **closed-test** embedding condition (4a), membership coverage (4b), and exact small-test K-completions (4c) remain unproved. PRs #64–#67 develop separable label/profile, induced-template and closed-test reduction stages; do not mark their statements verified before CI and axiom audits succeed.
 
 The complete general higher-rank multiamalgamation theorem under any alternative repair remains unverified. Do not promote partial closed-test Picture machinery or a different completion-map convention to a green theorem-level marker; keep the published prose frozen pending formal proof and editorial review.
