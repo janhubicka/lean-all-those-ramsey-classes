@@ -31,6 +31,7 @@ namespace AllThoseRamseyClasses.Published
 
 open StructuralRamsey
 open StructuralRamsey.RelStructure
+open StructuralRamsey.Partite
 open StructuralRamsey.Partite.Induced
 open StructuralRamsey.HalesJewett
 
