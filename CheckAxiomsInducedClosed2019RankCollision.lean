@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.InducedClosed2019RankCollision
+
+-- The rank-collision branch, not the universal rank promotion.
+#print axioms AllThoseRamseyClasses.Published.inducedClosed2019_completion_of_projected_generators
+#print axioms AllThoseRamseyClasses.Published.inducedClosed2019_completion_of_generator_collision
