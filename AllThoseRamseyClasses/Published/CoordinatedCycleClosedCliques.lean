@@ -131,7 +131,7 @@ theorem cycle_closedUIrreducible_blocks_pairwise_related
     obtain ⟨j, hj⟩ := ht
     have hai : (e (z i)).1 = (e a).1 := by
       change ¬ ((e (z i)).1 ≠ (e a).1) at hi
-      exact not_ne.mp hi
+      simpa only [not_not] using hi
     have hbj : (e (z j)).1 = (e b).1 := by
       change ¬ ((e (z j)).1 ≠ (e b).1) at hj
       exact not_ne.mp hj
