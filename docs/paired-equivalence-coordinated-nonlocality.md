@@ -87,91 +87,126 @@ fails for the same fixed `B0, C0` at **every possible
 cutoff n**.
 
 
-## Exact direct completion construction for a weak test (proof target)
+## Explicit gap-count completion for every weak test (mathematical proof)
 
-For the Lean witness with parameter `k = n`, put
-`m = 2n + 5` and let `S` be **any** vertex set
-with `|S| ≤ n`; this includes nonclosed subsets.
-Let `T` be the set of matching-block indices met by S.
-Then `|T| ≤ n < m`, so T misses a backbone block;
-this is already proved in Lean (PR #55).
+For arbitrary cutoff $k=n$, let $m=2k+5$ and take the *original*
+weak vertex set $S\subseteq V(C_k)$, with $|S|\leq k$. No assumption
+that S is U-closed is made. A touched matching block counts as present
+even if S contains only one of its two vertices. Let
+$T=\{b:\exists v\in S,\ v.\mathrm{block}=b\}$; in particular
+$|T|\leq k$.
 
-Use the actual closed pair carrier `T × Fin 2` as a
-completion target and embed S by `v ↦ (v.block,v.bit)`.
-Retain its perfect matching. Make its E relation the
-**equivalence closure** of the positive E tuples of
-`cycleGadgetWitness n` restricted to these full blocks.
-Give the target the strict linear order obtained by sorting
-the triple `(control-label, block-index, bit)`. All tuples
-of the original source are preserved.
+The already Lean-certified internal-gap lemma (#76) gives an
+**internal** index $1\leq h<m-1$ whose matching block has no
+vertex in S: adding one root at each endpoint creates a set of at
+most $k+2<m$ vertices, so a missing block cannot be an endpoint.
 
-The only substantive compatibility check for E is reflection
-on pairs of blocks supported by a common gadget. Positive
-cross-block E occurs precisely on consecutive backbone
-pairs, together with the pair `(b_0,t_*)`.
-Each path-private D block is E-isolated from its backbone
-pair, while `b_{m-1}` is E-inequivalent to both
-`b_0` and `t_*` in the closing gadget.
-A missing backbone block cuts the sole positive-E
-path from `b_0` to `b_{m-1}`. Therefore equivalence
-closure cannot identify any gadget-supported pair that
-was originally E-negative. The chosen order likewise
-reflects the source order on all gadget-supported pairs:
-different blocks within a gadget always carry distinct
-control labels.
+Define the gap count $g_T(i)=|\{j<i:j\notin T\}|$ for the
+backbone indices. On the **entire original matching-pair carrier**
+$V(C_k)$ (not merely on the tested vertices) assign each block
+an equivalence-class tag:
 
-For (4a) and (4b), the separate key combinatorial lemma
-is that every **closed U-irreducible** induced test
-uses a set of matching blocks that is a clique of the
-block-interaction graph. If two blocks a,b in such a
-test are not related by a gadget, deleting block a
-and deleting block b yields a free amalgamation into two
-proper **U-closed** sides, a contradiction. The
-three-block cliques of the interaction graph are
-exactly the gadget triples, and there are no four-block
-cliques. Thus every closed irreducible test is contained
-in an installed induced B0 copy, where both the
-projection and the small-test completion are embeddings.
+* backbone $b_i\mapsto(0,g_T(i))$;
+* closing private block $t_*\mapsto(0,0)$;
+* path-private block $t_i\mapsto(1,m+i)$.
 
-**Remaining Lean obligations:** prove the clique
-containment lemma and full gadget embeddings, define
-the actual finite equivalence-closure target on `T`,
-prove E/order reflection there, and package the resulting
-`HasClosedUKCompletion` of the exact weak source `S`.
-Only then apply `CoordinatedEPathBadWitnessAt.refutes_cutoff`.
+Put $E_D(x,y)$ iff these tags agree. Retain the original perfect
+matching M. Order the vertices lexicographically by
+$(\mathrm{controlVertex}(x),\mathrm{blockIndex}(x))$: the first
+coordinate records the 10-vertex C0 label *and* matching bit,
+and the second breaks ties when different blocks have the same
+control image. Together these define the explicit structure
+`cycleWeakCandidate k S`, a **finite member of K** for every S.
+This membership is Lean-checked in merged PR #81.
 
-## Lean validation boundary and tasks
+For any pair x,y *in S* whose blocks occur in a common installed
+gadget, compare the old and new binary relations. The matching
+tuples agree everywhere. The named order agrees since different
+blocks of the same gadget have distinct C0 labels and within a
+block the control value already distinguishes the two bits; the
+block-index tie breaker is never used on an unequal pair in
+one gadget. These facts are Lean-checked in PRs #74 and #83.
 
-The literal and (4b)-only theorem refutations are Green (PR #56).
-For the **different coordinated convention**, the uniform
-finite relational family `cycleGadgetWitness k` and its
-`IsUClosed mateRules` proof are now Green (PR #59).
-The complete positive `C_k → C0` homomorphism is Green
-(PR #60). The `cycle_cutoff_tests_miss_backbone` theorem
-is Green (PR #55). The fixed B0/C0 fixtures and the
-abstract copywise E-path contradiction are also Green.
+For E, all possibilities come from the three-block gadgets:
 
-This is still **not** an all-cutoff local-completion
-counterexample in Lean. The induced B0 embeddings for
-every gadget, closed-test U-irreducible containment, and
-completions of all exact small weak tests remain open.
-The independent bounded finite regression in PR #61 is
-supporting evidence only and is not a logical substitute
-for these universally quantified lemmas.
+* Each block is internally E-complete.
+* The two backbone blocks of any path gadget are positively
+  E-related. If both appear in S, its *first* backbone index i
+  belongs to T, whence $g_T(i+1)=g_T(i)$; they retain equal tags.
+* Its path-private D block has a tag with first coordinate 1,
+  hence is E-inequivalent to either backbone block.
+* In the closing gadget, b0 and t_* both carry tag (0,0),
+  whereas the final backbone block carries
+  $(0,g_T(m-1))$. Since the internal gap h is absent,
+  $g_T(m-1)>g_T(0)=0$; hence this last block is
+  E-inequivalent to both b0 and t_*.
 
-Formalize these independent obligations:
+The gap-count recurrence and internal-gap theorem are Green
+(#75/#76); the closing-endpoint and path-private E comparisons
+are Green (#84/#85), with full all-pairs composition in #89/#91
+still awaiting Lean validation. Thus **all binary tuples,
+positive and negative, agree on every gadget-supported pair
+of vertices of the exact S**. Unrelated pairs have no positive
+source tuples, so the canonical inclusion $C_k|S\to D(k,S)$
+is a positive homomorphism even though D may add relations on
+unrelated pairs.
 
-1. The arbitrary-length finite gadget structures and
-   embeddings of each B0 copy into C_m.
-2. The maximal-clique containment lemma for every
-   closed U-irreducible test, establishing (4b).
-3. The gadget-label map and its fully induced behavior
-   on each protected closed test, establishing (4a).
-4. The exact weak `n`-vertex closure-block count and
-   K-completion preserving all protected closed tests.
-5. The path-transitivity contradiction for *every*
-   B0-copywise completion.
+Every embedded *U-closed U-irreducible* test inside $C_k|S$
+has pairwise gadget-related matching blocks by the checked
+closed-cover argument (#66), and these blocks lie in one common
+gadget by #73. Consequently its image into D is a **full induced
+embedding**: precisely the amended U-homomorphism-embedding
+requirement. Because S was never enlarged or assumed closed,
+this proves (4c) for the *original exact weak test* once the
+final related-pair reflection and its formal Lean packaging
+(#86/#91/#92) are certified.
 
-Only after this test and the general higher-rank proof are
-formalized should changes to arXiv or possible errata be
-settled.
+## The actual global obstruction and all-cutoff package
+
+In each consecutive path gadget, two backbone matching blocks
+form the positive E pair inside an **induced B0 copy**. The closing
+gadget has another induced B0 copy with the first and last
+backbone blocks E-inequivalent. Induced B0 gadget existence
+and the two closed-test antecedents (4a) and (4b) are now
+Lean-checked for **every k** in #82.
+
+Any single K-target map respecting all those B0-copies must
+preserve every backbone-positive E edge, and therefore must
+identify its first and last blocks in the target's transitive E.
+The closing induced B0 copy requires them E-inequivalent.
+This contradiction is the previously verified abstract path
+lemma; its application to the concrete Ck is being checked
+in PR #90.
+
+Once the universally quantified (4c) and actual copywise
+obstruction are Lean-green, PR #93 will produce, for the
+SAME fixed B0 and C0, a bad witness at **every cutoff k**.
+It then follows that finite paired equivalences are *not*
+locally finite under the COORDINATED revised Definition 2.17.
+This is NOT a proof of the repaired positive Theorem 2.18.
+
+## Lean validation boundary (11 October 2026)
+
+**GREEN / theorem-level:** literal printed and (4b)-only
+Theorem 2.18 refutations (#56); finite K strong amalgamation
+(#49); actual closed relational Ck and positive projection
+(#59/#60); finite matching-block interaction graph (#73);
+all induced B0 gadget embeddings and uniform coordinated
+(4a),(4b) for actual Ck (#82); a finite K target D(k,S)
+for every exact weak S (#81); the internal missing-block
+and component arithmetic (#75/#76/#83/#84/#85).
+The latter are genuine Lean proofs, not finite searches.
+
+**PENDING:** the full E reflection on all supported pairs in
+an arbitrary exact weak S (#87–#91), the implication to
+HasClosedUKCompletion for every S.card<=k (#86/#92), the
+actual positive-path / negative-closing B0 obstruction (#90),
+and the final all-cutoff nonlocal-finiteness theorem (#93).
+An independent exhaustive regression for k=0,…,4 with
+309,136 exact weak sets is in #94. It does not replace
+the universal formal proof.
+
+**Open beyond the counterexample:** a repaired general
+multiamalgamation Ramsey theorem and higher-rank picture
+construction. Keep the literal 2019 mathematical prose
+frozen pending theorem-level validation and author review.
