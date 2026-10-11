@@ -35,7 +35,8 @@ theorem cycleGapCount_succ_of_mem
     (present : Finset ℕ) (i : ℕ) (hi : i ∈ present) :
     cycleGapCount present (i + 1) = cycleGapCount present i := by
   classical
-  simp [cycleGapCount, Finset.range_add_one, hi]
+  simp [cycleGapCount, Finset.range_add_one, Finset.filter_insert,
+    Finset.notMem_range_self, hi]
 
 /-- If block i is MISSING, crossing its position increases the
 component label by precisely one. -/
@@ -43,7 +44,8 @@ theorem cycleGapCount_succ_of_not_mem
     (present : Finset ℕ) (i : ℕ) (hi : i ∉ present) :
     cycleGapCount present (i + 1) = cycleGapCount present i + 1 := by
   classical
-  simp [cycleGapCount, Finset.range_add_one, hi]
+  simp [cycleGapCount, Finset.range_add_one, Finset.filter_insert,
+    Finset.notMem_range_self, hi]
 
 /-- Labels cannot decrease as one travels along the backbone. -/
 theorem cycleGapCount_mono (present : Finset ℕ)
