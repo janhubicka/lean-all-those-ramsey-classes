@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.CoordinatedCycleControlRanges
+
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_pair_fibre_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_gadget_controlRange_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlABD_range_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlBCD_range_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.controlATC_range_iff
