@@ -45,7 +45,7 @@ it cannot be generated from the remaining members of G.
 
 No U-closedness of the ambient or seed structure is assumed. -/
 theorem minimal2019_generator_not_in_erase_hull
-    [Fintype V]
+    [Fintype V] [DecidableEq V]
     (rules : ClosureDescription L) (A : RelStructure L V)
     (G : Finset V)
     (hGen : IsUGenerating rules A (↑G : Set V))
@@ -78,8 +78,9 @@ theorem minimal2019_generator_not_in_erase_hull
       hGsubset hGenHull
   have hBound : USize rules A ≤ (G.erase x).card :=
     USize_le_of_generating rules A (G.erase x) hEGen
-  have hCard : (G.erase x).card + 1 = G.card := by
-    simpa using Finset.card_erase_of_mem hx
+  have hPos : 0 < G.card := Finset.card_pos.mpr ⟨x, hx⟩
+  have hErase : (G.erase x).card = G.card - 1 :=
+    Finset.card_erase_of_mem hx
   omega
 
 /-- If a proposed side seed is contained in the U-closure of all
@@ -89,7 +90,7 @@ The omitted essential generator cannot reappear.
 This is only a sufficient criterion, not a theorem that arbitrary
 core/rest pieces of an actual Hales--Jewett Picture satisfy it. -/
 theorem minimal2019_generator_excluded_from_saturated_cut
-    [Fintype V]
+    [Fintype V] [DecidableEq V]
     (rules : ClosureDescription L) (A : RelStructure L V)
     (G : Finset V)
     (hGen : IsUGenerating rules A (↑G : Set V))
