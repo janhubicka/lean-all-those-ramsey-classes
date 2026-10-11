@@ -57,11 +57,11 @@ def Has2019UnrestrictedInitialPicture
     CorrectedUIrreduciblesIn K rules D
 
 /-- The proposed corrected 2019 Theorem 2.18 follows, via the
-EXACT sequence of Lemmas 2.28, 2.30 and 2.31, if and ONLY IF the two
+EXACT sequence of Lemmas 2.28, 2.30 and 2.31, IF the two
 missing positive constructors are supplied as explicit premises:
 the unrestricted initial Picture and rank increments for j>=1.
 
-More precisely, the implication from these constructors is proved;
+Only the implication from these constructors is proved;
 the converse (or existence of either constructor) is NOT asserted.
 
 All available Lean-certified work, including the true rank-zero
