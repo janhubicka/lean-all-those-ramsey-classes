@@ -47,6 +47,54 @@ from the literal printed definitions; no claim of equivalence is made.
 Use Lean's standard logical axioms only (`propext`, `Classical.choice`,
 `Quot.sound`); no `sorry` or additional axioms are accepted in green results.
 
+## Corrected 2019 proof coverage (12 October 2026)
+
+The *literal* published Theorem 2.18 and the one-clause (4b)-only
+replacement have formal counterexamples. The preferred **coordinated
+repair** changes the protected map tests in Definition 2.15 and the
+membership tests in Definition 2.17(4b) to precisely those induced
+substructures which are both intrinsically U-closed and U-irreducible.
+All exact nonclosed small tests in Definition 2.17(4c) remain. We do
+**not** claim the unrestricted corrected Theorem 2.18 has been proved.
+
+The individually CI-green and axiom-audited components now include:
+
+- The corrected **Lemma 2.29** with the printed relative-A-copy
+  hypothesis, and the actual **Lemma 2.30 j=0** Hales–Jewett Picture
+  constructor, rather than an assumed Ramsey witness (PRs #98, #106).
+- Exact induced/embedded closed-test map, K-completion and
+  multiamalgamation-class equivalences under explicit class
+  isomorphism invariance (PRs #101, #103, #104, #107).
+- Native finite Picture **rank-j preservation**, plus completion
+  whenever projected generating support has size <=j, including
+  the generator-collision branch and the sharp maximal-rank
+  alternative (PRs #109, #111, #112, #117).
+- Genuine native Hales–Jewett local common-coordinate and
+  zero/one generator-active line completions, and exact factorization
+  of rank-r tests through subattachments with at most r private
+  copy indices (PRs #113, #115, #116).
+- Corrected mixed-cut strong-amalgamation completion **provided**
+  the source free split, common K-boundary and both absolute
+  projected rank-j support bounds are supplied (PR #114).
+- Finite heterogeneous iteration from a constructed rank-one
+  base to all exact weak n-vertex completions, and the final
+  Theorem 2.18 implication from two explicitly named constructor
+  hypotheses (PRs #99, #108, #110).
+- The generally valid weak ambient-hull rank inequality
+  USize(cl_B(B0)) <= USize(B0), correcting a false equality
+  printed after Definition 2.25 (PR #105).
+
+**Remaining main construction obligations:** the unrestricted
+initial closed Picture over a possibly nonclosed Ramsey control
+(published Lemma 2.28) and the **j>=1 to j+1** native Picture
+rank increment (Lemma 2.30), especially maximal projected-rank
+sources meeting multiple transverse Hales–Jewett lines. A free cut
+does not automatically give small absolute projected side ranks,
+nor does completing a weak generating set complete its prescribed
+closed hull. The original article stays frozen; the exact
+correction proposals and validation markers are in its separate
+TeX repository.
+
 ## Build
 
 The initial setup uses the same Lean toolchain and GitHub Actions approach as
