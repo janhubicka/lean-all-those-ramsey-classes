@@ -92,7 +92,7 @@ theorem lemma_2_30_coordinated_rank_zero
     refine ⟨Y, hY, D.toRelStructure, hDClosed,
       ⟨D.part, IsClosedUHomomorphismEmbedding.toInducedClosed hDPart⟩,
       hDRamsey, hMember, ?_⟩
-    intro S hClosedS hRankS
+    intro S hFiniteS hClosedS hRankS
     exact HasClosedUKCompletion.toInducedClosed
       (closed_rank_one_completions_of_protected_coverage
         hKB hBIrred hCoverage S hClosedS hRankS)
@@ -110,7 +110,7 @@ theorem lemma_2_30_coordinated_rank_zero
       ⟨beta, IsClosedUHomomorphismEmbedding.toInducedClosed
         (beta.isClosedUHomomorphismEmbedding rules)⟩,
       hTrivial, hMember, ?_⟩
-    intro S _ _
+    intro S hFiniteS _ _
     have hComplete : HasClosedUKCompletion K rules (B.induce S) :=
       ⟨VB, inferInstance, B, hKB, hBIrred, inclusion B S,
         (inclusion B S).isClosedUHomomorphismEmbedding rules⟩
