@@ -68,7 +68,7 @@ theorem exteriorIndices_card_le_generators
   induction G using Finset.induction_on with
   | empty => simp
   | @insert g H hg ih =>
-      rw [Finset.biUnion_insert, Finset.card_insert_of_not_mem hg]
+      rw [Finset.biUnion_insert, Finset.card_insert_of_notMem hg]
       have hUnion :
           (F g ∪ H.biUnion F).card ≤
             (F g).card + (H.biUnion F).card :=
