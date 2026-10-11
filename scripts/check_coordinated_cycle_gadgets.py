@@ -67,7 +67,7 @@ def check(k):
                 if E(a, b):
                     union(a, b)
 
-            # The K-completion candidate takes matching-pair closure,
+            # The original oracle K-completion comparison takes matching-pair closure,
             # transitive E closure and a linear order sorted by C0
             # label, block index and bit. Test full E/order reflection
             # for related blocks (stronger than closed tests alone).
@@ -75,6 +75,42 @@ def check(k):
                 if (a, b) in pairs:
                     assert (root(a) == root(b)) == E(a, b), (k, vertex_tuple, a, b)
                     assert labels[a] != labels[b]
+            # Independently audit the EXPLICIT K-target D(k,S) currently
+            # being formalized in Lean (CoordinatedWeakPairedCompletionTarget).
+            # The equivalence-class tags count missing backbone positions;
+            # closing T shares the first component, private D is isolated.
+            # This is stronger than the earlier union-find comparison:
+            # we check every ordered pair of vertices in the exact weak S,
+            # on all three original binary symbols, including negative tuples.
+            assert any(0 < i < m - 1 and i not in touched for i in range(m))
+            gaps = [0] * (m + 1)
+            for i in range(m):
+                gaps[i + 1] = gaps[i] + (i not in touched)
+
+            def e_tag(block):
+                if block < m:
+                    return (0, gaps[block])
+                if block == 2 * m - 1:
+                    return (0, 0)
+                return (1, block)
+
+            assert e_tag(0) != e_tag(m - 1)
+            for x in vertex_tuple:
+                a, xb = divmod(x, 2)
+                for y in vertex_tuple:
+                    b, yb = divmod(y, 2)
+                    if (a, b) not in pairs:
+                        continue
+                    control_x, control_y = 2 * labels[a] + xb, 2 * labels[b] + yb
+                    source_e = E(a, b)
+                    target_e = e_tag(a) == e_tag(b)
+                    assert source_e == target_e, ("tag E", k, vertex_tuple, x, y)
+                    source_lt = control_x < control_y
+                    target_lt = (control_x, a) < (control_y, b)
+                    assert source_lt == target_lt, ("tag <", k, vertex_tuple, x, y)
+                    source_m = a == b and xb != yb
+                    target_m = a == b and xb != yb
+                    assert source_m == target_m, ("tag M", k, vertex_tuple, x, y)
             closed_blocks = {
                 b for b in touched if 2 * b in vertices and 2 * b + 1 in vertices
             }
