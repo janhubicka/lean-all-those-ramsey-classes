@@ -65,4 +65,47 @@ theorem lemma_2_29_coordinated_induced
   exact hCoverage (C.toRelStructure.induce S) hTestClosed
     hTestIrred (inclusion C.toRelStructure S)
 
+
+/-- Full corrected statement of the 2019 Lemma 2.29, WITHOUT assuming
+that A embeds into B. If A does not embed into B, choose C=B,
+using the B-copy forced by the original Ramsey arrow as projection.
+Otherwise use the actual protected partite construction above.
+
+The only change to the printed lemma is that its projected map and
+coverage quantify over U-CLOSED U-irreducible induced tests. -/
+theorem lemma_2_29_coordinated_induced_full
+    {rules : ClosureDescription L}
+    (A : RelStructure L U) (B : RelStructure L V)
+    (C0 : RelStructure L P)
+    [Finite U] [Finite V] [Finite P]
+    (hA : IsUClosed rules A) (hB : IsUClosed rules B)
+    (hCopies : ∀ alpha : Embedding A C0,
+      IsUSubstructure rules C0 (Set.range alpha))
+    (κ : Type*) [Fintype κ] [Nonempty κ]
+    (hArrow : StructuralRamsey.Arrow A B C0 κ) :
+    ∃ (Y : Type v) (_ : Finite Y) (C : RelStructure L Y),
+      StructuralRamsey.Arrow A B C κ ∧
+      IsUClosed rules C ∧
+      (∃ f : Y → P,
+        IsInducedClosedUHomomorphismEmbedding rules C C0 f) ∧
+      (∀ S : Set Y,
+        IsUClosed rules (C.induce S) →
+        IsUIrreducible rules (C.induce S) →
+        Nonempty (Embedding (C.induce S) B)) := by
+  classical
+  by_cases hAB : Nonempty (Embedding A B)
+  · obtain ⟨Y, hY, C, hRamsey, hClosed, hMap, hCover⟩ :=
+      lemma_2_29_coordinated_induced
+        A B C0 hA hB (Classical.choice hAB) hCopies κ hArrow
+    exact ⟨Y, hY, C.toRelStructure, hRamsey, hClosed,
+      ⟨C.part, hMap⟩, hCover⟩
+  · obtain ⟨f⟩ :=
+      StructuralRamsey.Partite.Induced.nonempty_embedding_of_arrow
+        A B C0 κ hArrow
+    letI : IsEmpty (Embedding A B) := ⟨fun e => hAB ⟨e⟩⟩
+    refine ⟨V, inferInstance, B, StructuralRamsey.arrow_of_isEmpty,
+      hB, ⟨f, (f.isClosedUHomomorphismEmbedding rules).toInducedClosed⟩, ?_⟩
+    intro S _ _
+    exact ⟨inclusion B S⟩
+
 end AllThoseRamseyClasses.Published
