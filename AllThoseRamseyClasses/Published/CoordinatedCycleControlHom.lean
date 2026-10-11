@@ -31,6 +31,7 @@ theorem cycleGadgetWitness_M_projects
   rcases y with ⟨c, j⟩
   change cycleMatching k (b, i) (c, j) at h
   obtain ⟨hb, hij⟩ := h
+  change b = c at hb
   subst c
   change ((2 * cycleBlockLabel k b + i.val) / 2 =
       (2 * cycleBlockLabel k b + j.val) / 2) ∧
