@@ -109,7 +109,7 @@ theorem HasLiteralUKCompletion.toInducedClosed
     (h : HasLiteralUKCompletion K rules A) :
     HasInducedClosedUKCompletion K rules A := by
   obtain ⟨Y, hY, Target, hK, hIrred, f, hf⟩ := h
-  exact ⟨Y, hY, Target, hK, hIrred, f, hf.toInducedClosed⟩
+  exact ⟨Y, hY, Target, hK, hIrred, f, IsUHomomorphismEmbedding.toInducedClosed hf⟩
 
 /-- Every abstract embedded-test K,U-completion also satisfies
 the weaker induced-test completion condition on the same weak source. -/
@@ -120,7 +120,7 @@ theorem HasClosedUKCompletion.toInducedClosed
     (h : HasClosedUKCompletion K rules A) :
     HasInducedClosedUKCompletion K rules A := by
   obtain ⟨Y, hY, Target, hK, hIrred, f, hf⟩ := h
-  exact ⟨Y, hY, Target, hK, hIrred, f, hf.toInducedClosed⟩
+  exact ⟨Y, hY, Target, hK, hIrred, f, IsClosedUHomomorphismEmbedding.toInducedClosed hf⟩
 
 /-- Coordinated local completion phrased literally with the paper's
 induced tests. The cutoff n and quantification over ALL exact weak
@@ -152,9 +152,9 @@ theorem InducedClosedULocalCompletionAt.toCorrected4bOnly
     CorrectedULocalCompletionAt K rules B C0 n := by
   intro X hX C hClosed hCompletion hCovered hSmall
   obtain ⟨hC0, f, hf⟩ := hCompletion
-  apply h C hClosed ⟨hC0, f, hf.toInducedClosed⟩ hCovered
+  apply h C hClosed ⟨hC0, f, IsUHomomorphismEmbedding.toInducedClosed hf⟩ hCovered
   intro S hS
-  exact (hSmall S hS).toInducedClosed
+  exact HasLiteralUKCompletion.toInducedClosed (hSmall S hS)
 
 /-- Therefore the coordinated local axiom implies the literal 2019
 local axiom as well, again at the exact same cutoff. -/
@@ -165,7 +165,8 @@ theorem InducedClosedULocalCompletionAt.toLiteral
     {n : ℕ}
     (h : InducedClosedULocalCompletionAt K rules B C0 n) :
     LiteralULocalCompletionAt K rules B C0 n :=
-  h.toCorrected4bOnly.toLiteral
+  CorrectedULocalCompletionAt.toLiteral
+    (InducedClosedULocalCompletionAt.toCorrected4bOnly h)
 
 /-- The exact induced-test local implication implies the currently
 used abstract embedded-test version: all three abstract hypotheses
@@ -180,9 +181,9 @@ theorem InducedClosedULocalCompletionAt.toAbstractClosed
     ClosedULocalCompletionAt K rules B C0 n := by
   intro X hX C hClosed hControl hCovered hSmall
   obtain ⟨hC0, f, hf⟩ := hControl
-  apply h C hClosed ⟨hC0, f, hf.toInducedClosed⟩
-    hCovered.toCorrectedInduced
+  apply h C hClosed ⟨hC0, f, IsClosedUHomomorphismEmbedding.toInducedClosed hf⟩
+    ClosedUIrreduciblesIn.toCorrectedInduced hCovered
   intro S hS
-  exact (hSmall S hS).toInducedClosed
+  exact HasClosedUKCompletion.toInducedClosed (hSmall S hS)
 
 end AllThoseRamseyClasses.Published
