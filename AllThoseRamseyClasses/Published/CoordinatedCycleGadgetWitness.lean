@@ -104,8 +104,7 @@ instance cycleGadgetWitness_decidable (k : ℕ) (R : Symbol)
     (x y : CycleVertex k) :
     Decidable (edge (cycleGadgetWitness k) R x y) := by
   cases R <;>
-    (dsimp [edge, cycleGadgetWitness, CycleControlC0, cycleMatching]
-     infer_instance)
+    (dsimp [edge, cycleGadgetWitness, CycleControlC0, cycleMatching]; infer_instance)
 
 /-- Unlike K's members, the witness needs only diagonal E and a
 perfect matching for its closure rule. Both hold uniformly in k. -/
