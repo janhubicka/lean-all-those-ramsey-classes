@@ -170,6 +170,10 @@ def cycleGadgetEmbedding_of_controlTemplate
         k g hLabels R (f (t 0)) (f (t 1))
         (hIn (t 0)) (hIn (t 1))
     have hControl := v.map_rel_iff R t
+    have htup : t = ![t 0, t 1] := by
+      funext i
+      fin_cases i <;> rfl
+    rw [htup] at hControl ⊢
     change edge (cycleGadgetWitness k) R (f (t 0)) (f (t 1)) ↔
       edge CycleBaseB0 R (t 0) (t 1)
     rw [hSupported]
