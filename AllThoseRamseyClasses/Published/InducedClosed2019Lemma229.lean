@@ -60,7 +60,7 @@ theorem lemma_2_29_coordinated_induced
   obtain ⟨Y, hY, C, hArrowC, hClosed, hProjection, hCoverage⟩ :=
     StructuralRamsey.Partite.Induced.closed_ramsey_of_relative_A_copies
       A B C0 hA hB eAB hCopies κ hArrow
-  refine ⟨Y, hY, C, hArrowC, hClosed, hProjection.toInducedClosed, ?_⟩
+  refine ⟨Y, hY, C, hArrowC, hClosed, IsClosedUHomomorphismEmbedding.toInducedClosed hProjection, ?_⟩
   intro S hTestClosed hTestIrred
   exact hCoverage (C.toRelStructure.induce S) hTestClosed
     hTestIrred (inclusion C.toRelStructure S)
@@ -104,7 +104,8 @@ theorem lemma_2_29_coordinated_induced_full
         A B C0 κ hArrow
     letI : IsEmpty (Embedding A B) := ⟨fun e => hAB ⟨e⟩⟩
     refine ⟨V, inferInstance, B, StructuralRamsey.arrow_of_isEmpty,
-      hB, ⟨f, (f.isClosedUHomomorphismEmbedding rules).toInducedClosed⟩, ?_⟩
+      hB, ⟨f, IsClosedUHomomorphismEmbedding.toInducedClosed
+        (f.isClosedUHomomorphismEmbedding rules)⟩, ?_⟩
     intro S _ _
     exact ⟨inclusion B S⟩
 
