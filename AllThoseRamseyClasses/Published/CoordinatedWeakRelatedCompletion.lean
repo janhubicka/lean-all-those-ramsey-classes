@@ -108,7 +108,13 @@ theorem cycleWeak_closedTest_embedding_of_related
       have hC : edge (cycleGadgetWitness k) R
           (e (t 0)).1 (e (t 1)).1 ↔ Test.rel R t := by
         have he := e.map_rel_iff R t
-        rw [hSourceTuple,hTuple] at he
+        have hInduceTuple : (Subtype.val ∘ (e ∘ t)) =
+            ![(e (t 0)).1,(e (t 1)).1] := by
+          funext q
+          fin_cases q <;> rfl
+        change (cycleGadgetWitness k).rel R
+            (Subtype.val ∘ (e ∘ t)) ↔ Test.rel R t at he
+        rw [hInduceTuple] at he
         exact he
       have hD : edge (cycleWeakCandidate k S) R
           (e (t 0)).1 (e (t 1)).1 ↔
