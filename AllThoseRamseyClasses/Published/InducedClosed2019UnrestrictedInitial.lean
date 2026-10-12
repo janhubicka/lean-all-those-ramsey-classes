@@ -114,7 +114,7 @@ theorem coordinated2019_ramsey_of_higher_rank_constructor
       embeddedClosedHereditary_of_induced
         hK.induced.hereditary hK.iso
     exact lemma_2_28_coordinated_unrestricted_induced
-      (K := K) (rules := rules)
+      (UA := X) (VB := Y) (P := Z) (K := K) (rules := rules)
       A B C0 hA hB hKB hHer κ hArrow
   exact coordinated2019_ramsey_of_two_picture_constructors.{u,v}
     R K rules hR hRIrred hK hInitial hHigher
