@@ -122,7 +122,7 @@ theorem native2019_maximal_weak_zero_active_has_A_completion
         p x = Sum.inl w := by
     cases hx : p x with
     | inl w =>
-        exact ⟨w, hx⟩
+        exact ⟨w, rfl⟩
     | inr pair =>
         have hout : OutsideAt
             (W := NonInduced.Vertex (Old.restrict alpha) N)
