@@ -73,4 +73,44 @@ theorem has2019_rooted_weaksize_mono
   intro T a hSize
   exact h T a (hSize.trans hkj)
 
+
+/-- If the old picture contains at least one full A-copy, the ROOTED
+weak-size invariant W_j^A entails the ordinary W_j completion
+property for every exact weak j-vertex test, by restricting the
+rooted completion of T U range(a) back to T.
+
+This supplies the formal interface needed for the eventual class
+local-completion axiom. It does not construct or iterate W_j^A. -/
+theorem has2019_rooted_weaksize_implies_weaksize
+    {K : StructureClass.{u,v} (L := L)}
+    {rules : ClosureDescription L}
+    {VD VA : Type v}
+    (D : RelStructure L VD) (A : RelStructure L VA)
+    (j : ℕ)
+    (a : Embedding A D)
+    (hRooted : Has2019RootedWeakSizeCompletions K rules D A j)
+    (T : Finset VD) (hT : T.card ≤ j) :
+    HasInducedClosedUKCompletion K rules
+      (D.induce (↑T : Set VD)) := by
+  let S : Set VD := (↑T : Set VD)
+  let U : Set VD := S ∪ Set.range a
+  let e : Embedding (D.induce S) (D.induce U) := {
+    toFun := fun x => ⟨x.1, Or.inl x.2⟩
+    injective := by
+      intro x y hxy
+      apply Subtype.ext
+      exact congrArg Subtype.val hxy
+    map_rel_iff := fun _ _ => Iff.rfl
+  }
+  have hAug :
+      HasClosedUKCompletion K rules (D.induce U) :=
+    (inducedClosedKCompletion_iff_abstract_2019).mp
+      (hRooted T a hT)
+  have hSmall :
+      HasClosedUKCompletion K rules (D.induce S) :=
+    hAug.precomp_closedMap
+      (e.isClosedUHomomorphismEmbedding rules)
+  exact (inducedClosedKCompletion_iff_abstract_2019).mpr hSmall
+
+
 end AllThoseRamseyClasses.Published
