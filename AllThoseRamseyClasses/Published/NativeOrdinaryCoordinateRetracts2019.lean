@@ -169,7 +169,8 @@ theorem native2019_selected_coordinate_isOrdinaryHE
       Old.toRelStructure
       (RelStructure.Attachment.fold r (fun i => pCopy i)) :=
     RelStructure.Attachment.fold_isHomomorphismEmbedding
-      Old.toRelStructure (Old.support alpha) Core mapsRest
+      (Base := Old.toRelStructure) (S := Old.support alpha)
+      (Core := Core) (f := mapsRest) (Q := Old.toRelStructure)
       r pCopy hInverse hCore
   change
     (RelStructure.Attachment.attach Old.toRelStructure
