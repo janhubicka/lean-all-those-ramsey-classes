@@ -103,12 +103,18 @@ theorem coordinated2019_ramsey_of_higher_rank_constructor
         StructuralRamsey.Arrow A B C0 κ →
         Has2019UnrestrictedInitialPicture K rules A B C0 κ := by
     intro X Y Z hFiniteX hFiniteY hFiniteZ A B C0 κ hFinκ hκ hKA hKB _ hArrow
+    letI : Finite X := hFiniteX
+    letI : Finite Y := hFiniteY
+    letI : Finite Z := hFiniteZ
+    letI : Fintype κ := hFinκ
+    letI : Nonempty κ := hκ
     have hA : IsUClosed rules A := hK.induced.closed A hKA
     have hB : IsUClosed rules B := hK.induced.closed B hKB
     have hHer : ClosedUHereditary K rules :=
       embeddedClosedHereditary_of_induced
         hK.induced.hereditary hK.iso
     exact lemma_2_28_coordinated_unrestricted_induced
+      (K := K) (rules := rules)
       A B C0 hA hB hKB hHer κ hArrow
   exact coordinated2019_ramsey_of_two_picture_constructors
     R K rules hR hRIrred hK hInitial hHigher
