@@ -76,8 +76,9 @@ theorem has2019_rooted_weaksize_of_protected_projection
     · exact Or.inl (Finset.mem_image.mpr ⟨x.1, hx, rfl⟩)
     · right
       refine ⟨y, ?_⟩
-      rw [hy]
-      exact (haD y).symm
+      calc
+        aD y = p (a y) := haD y
+        _ = p x.1 := congrArg p hy
   have hpTC : IsClosedUHomomorphismEmbedding rules
       (C.induce TC) D (p ∘ Subtype.val) :=
     hpAbs.precomp_embedding (inclusion C TC)
