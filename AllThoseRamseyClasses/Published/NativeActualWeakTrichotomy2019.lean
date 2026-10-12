@@ -99,8 +99,7 @@ theorem native2019_actual_active_weaksize_trichotomy
       have hi : i ∈ T :=
         (native2019_mem_exact_active_index_iff Support p i).mpr
           ⟨x, hout⟩
-      rw [hEmpty] at hi
-      exact Finset.not_mem_empty i hi
+      simp [hEmpty] at hi
     exact native2019_maximal_weak_zero_active_has_A_completion
       Source hMax Old alpha A hAK hAIrred
       hPower hRestricted lines p hp hNoPrivate
