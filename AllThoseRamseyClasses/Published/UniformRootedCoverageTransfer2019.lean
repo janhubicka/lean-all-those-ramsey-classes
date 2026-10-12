@@ -119,12 +119,13 @@ theorem inducedClosed2019_exact_weak_test_of_uniform_rooted_old
   letI : Nonempty (↑S : Set VC) := by
     obtain ⟨x, hx⟩ := hS
     exact ⟨⟨x, hx⟩⟩
+  have hpAbstract : IsClosedUHomomorphismEmbedding rules C D p :=
+    IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp
   have hRestricted : IsInducedClosedUHomomorphismEmbedding rules
       (C.induce (↑S : Set VC)) D
       (fun x : (↑S : Set VC) => p x.1) :=
     IsClosedUHomomorphismEmbedding.toInducedClosed
-      ((IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp)
-        .precomp_embedding (inclusion C (↑S : Set VC)))
+      (hpAbstract.precomp_embedding (inclusion C (↑S : Set VC)))
   have hCard' : Fintype.card (↑S : Set VC) ≤ j+1 := by
     simpa using hCard
   exact inducedClosed2019_weak_jplus1_of_uniform_rooted_and_coverage
