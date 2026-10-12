@@ -76,14 +76,22 @@ theorem native2019_protected_exact_weak_empty_active_has_A_completion
   let pS : W → Vertex (Old.support alpha)
       (W := NonInduced.Vertex (Old.restrict alpha) N) (I := I) :=
     fun x => p x.1
+  have hpAbstract : IsClosedUHomomorphismEmbedding rules Source
+      (attach Old.toRelStructure (Old.support alpha)
+        (power (Old.restrict alpha) N).toRelStructure
+        (closureLineMaps Old alpha A hRestricted lines)) p :=
+    IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp
   have hpS : IsInducedClosedUHomomorphismEmbedding rules
       (Source.induce W)
       (attach Old.toRelStructure (Old.support alpha)
         (power (Old.restrict alpha) N).toRelStructure
         (closureLineMaps Old alpha A hRestricted lines)) pS :=
     IsClosedUHomomorphismEmbedding.toInducedClosed
-      ((IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp)
-        .precomp_embedding (inclusion Source W))
+      (hpAbstract.precomp_embedding (inclusion Source W))
+  have hNoActiveP :
+      native2019_exact_active_index_finset
+        (Old.support alpha) pS = ∅ :=
+    hNoActive
   have hNoPrivate : ∀ x : W, ∀ i : I,
       ¬ OutsideAt
         (W := NonInduced.Vertex (Old.restrict alpha) N)
@@ -94,7 +102,7 @@ theorem native2019_protected_exact_weak_empty_active_has_A_completion
           (Old.support alpha) pS :=
       (native2019_mem_exact_active_index_iff
         (Old.support alpha) pS i).mpr ⟨x, hOut⟩
-    simpa [pS, W, hNoActive] using hi
+    simp [hNoActiveP] at hi
   exact native2019_protected_zero_active_has_A_completion
     (Source.induce W) Old alpha A hAK hAIrred
     hRestricted hPower lines pS hpS hNoPrivate
