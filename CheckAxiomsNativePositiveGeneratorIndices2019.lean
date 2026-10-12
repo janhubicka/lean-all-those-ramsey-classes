@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Published.NativePositiveGeneratorIndices2019
+
+-- Exact native active-index generator witnesses for POSITIVE maps,
+-- unique private exterior label, and |active| <= |generators|.
+#print axioms AllThoseRamseyClasses.Published.native2019_positive_exterior_index_from_generator
+#print axioms AllThoseRamseyClasses.Published.native2019_private_exterior_index_unique
+#print axioms AllThoseRamseyClasses.Published.native2019_positive_finite_active_index_from_generator
+#print axioms AllThoseRamseyClasses.Published.native2019_positive_active_index_card_le_generators
+#print axioms AllThoseRamseyClasses.Published.native2019_positive_active_index_card_le_USize
