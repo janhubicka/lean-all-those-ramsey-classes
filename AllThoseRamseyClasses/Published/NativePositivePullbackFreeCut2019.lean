@@ -227,4 +227,121 @@ theorem native2019_corrected_source_copy_rest_free
   native2019_positive_source_copy_rest_free
     Source Old Support Core maps p hp.1 i
 
+
+/-- If the original exact source has a vertex projecting to the
+PRIVATE exterior of the chosen copy i, and another vertex projecting
+OUTSIDE the entire chosen old-copy range, then the actual pulled-back
+copy/rest free source cut is PROPER on both sides.
+
+Neither the source map nor its restriction is required injective.
+No relative U-closedness of the temporary native core or rest is
+assumed, which would be false for nonclosed attaching supports. -/
+theorem native2019_positive_source_copy_rest_proper
+    {U V W I : Type v}
+    (Source : RelStructure L U)
+    (Old : RelStructure L V)
+    (Support : Set V)
+    (Core : RelStructure L W)
+    (maps : I → Embedding (Old.induce Support) Core)
+    (p : U → Vertex Support (W := W) (I := I))
+    (hp : Source.IsHomomorphism
+      (attach Old Support Core maps) p)
+    (i : I)
+    (hChosenPrivate : ∃ x : U,
+      OutsideAt (W := W) (I := I) Support i (p x))
+    (hBeyondChosenCopy : ∃ y : U,
+      ¬ InCopy Old Support Core maps i (p y)) :
+    Nonempty (ProperFreeDecomposition Source) := by
+  classical
+  let Copy : Set (Vertex Support (W := W) (I := I)) :=
+    {z | InCopy Old Support Core maps i z}
+  let Rest : Set (Vertex Support (W := W) (I := I)) :=
+    {z | ¬ OutsideAt (W := W) (I := I) Support i z}
+  let Left : Set U := p ⁻¹' Copy
+  let Right : Set U := p ⁻¹' Rest
+  have hFree :
+      IsFreeAmalgam
+        (exactFreeCoverRootToLeft Source Left Right)
+        (exactFreeCoverRootToRight Source Left Right)
+        (inclusion Source Left) (inclusion Source Right) :=
+    native2019_positive_source_copy_rest_free
+      Source Old Support Core maps p hp i
+  let d : ProperFreeDecomposition Source := {
+    Common := Left ∩ Right
+    Left := Left
+    Right := Right
+    common := Source.induce (Left ∩ Right)
+    left := Source.induce Left
+    right := Source.induce Right
+    toLeft := exactFreeCoverRootToLeft Source Left Right
+    toRight := exactFreeCoverRootToRight Source Left Right
+    leftIn := inclusion Source Left
+    rightIn := inclusion Source Right
+    free := hFree
+    leftProper := by
+      intro hSurj
+      obtain ⟨y, hy⟩ := hBeyondChosenCopy
+      obtain ⟨x, hx⟩ := hSurj y
+      change x.1 = y at hx
+      exact hy (hx ▸ x.2)
+    rightProper := by
+      intro hSurj
+      obtain ⟨y, hy⟩ := hChosenPrivate
+      obtain ⟨x, hx⟩ := hSurj y
+      change x.1 = y at hx
+      exact (hx ▸ x.2) hy
+  }
+  exact ⟨d⟩
+
+/-- If an exact weak source has at most j+1 vertices and its
+POSITIVE projection meets both the chosen copy's private exterior
+and the complement of that copy range, the TRUE native
+copy/rest decomposition has TWO PROPER sides of at most j vertices.
+
+This is an ABSOLUTE source vertex bound, not a claim about the
+size of the closure of either projected side in the old picture.
+The two ordinary side maps and their common A-boundary are
+independent remaining obligations. -/
+theorem native2019_positive_source_proper_cut_small_sides
+    {U V W I : Type v}
+    [Fintype U]
+    (Source : RelStructure L U)
+    (Old : RelStructure L V)
+    (Support : Set V)
+    (Core : RelStructure L W)
+    (maps : I → Embedding (Old.induce Support) Core)
+    (p : U → Vertex Support (W := W) (I := I))
+    (hp : Source.IsHomomorphism
+      (attach Old Support Core maps) p)
+    (i : I) (j : ℕ)
+    (hCard : Fintype.card U ≤ j + 1)
+    (hChosenPrivate : ∃ x : U,
+      OutsideAt (W := W) (I := I) Support i (p x))
+    (hBeyondChosenCopy : ∃ y : U,
+      ¬ InCopy Old Support Core maps i (p y)) :
+    ∃ d : ProperFreeDecomposition Source,
+      Nat.card d.Left ≤ j ∧ Nat.card d.Right ≤ j := by
+  classical
+  obtain ⟨d⟩ :=
+    native2019_positive_source_copy_rest_proper
+      Source Old Support Core maps p hp i
+      hChosenPrivate hBeyondChosenCopy
+  letI : Finite d.Left :=
+    Finite.of_injective d.leftIn d.leftIn.injective
+  letI : Finite d.Right :=
+    Finite.of_injective d.rightIn d.rightIn.injective
+  letI : Fintype d.Left := Fintype.ofFinite d.Left
+  letI : Fintype d.Right := Fintype.ofFinite d.Right
+  have hLessL : Fintype.card d.Left < Fintype.card U :=
+    Fintype.card_lt_of_injective_not_surjective
+      d.leftIn d.leftIn.injective d.leftProper
+  have hLessR : Fintype.card d.Right < Fintype.card U :=
+    Fintype.card_lt_of_injective_not_surjective
+      d.rightIn d.rightIn.injective d.rightProper
+  refine ⟨d, ?_, ?_⟩
+  · rw [Nat.card_eq_fintype_card]
+    omega
+  · rw [Nat.card_eq_fintype_card]
+    omega
+
 end AllThoseRamseyClasses.Published
