@@ -58,8 +58,8 @@ theorem tripleOverlappingHJLines_pairwise_common :
   intro i j hij
   fin_cases i <;> fin_cases j
   all_goals
+    simp at hij
     first
-    | exact (hij rfl).elim
     | exact ⟨0, by simp [tripleOverlappingHJLines]⟩
     | exact ⟨1, by simp [tripleOverlappingHJLines]⟩
     | exact ⟨2, by simp [tripleOverlappingHJLines]⟩
