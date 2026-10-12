@@ -69,8 +69,9 @@ theorem native2019_protected_picture_exact_weak_active_le_USize
       (attach Old.toRelStructure (Old.support alpha)
         (power (Old.restrict alpha) N).toRelStructure
         (closureLineMaps Old alpha A hRestricted lines))
-      (fun x : (↑T : Set U) => p x.1) :=
-    hp.1.comp (inclusion C (↑T : Set U)).isHomomorphismEmbedding.1
+      (fun x : (↑T : Set U) => p x.1) := by
+    intro R xs hxs
+    exact hp.1 R (fun i => (xs i).1) hxs
   exact native2019_positive_active_index_card_le_USize
     (C.induce (↑T : Set U))
     Old.toRelStructure (Old.support alpha)
