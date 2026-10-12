@@ -76,7 +76,7 @@ theorem inducedClosed2019_selected_coordinate_collision_completion
       IsUClosed rules (Old.toRelStructure.induce T) →
       USize rules (Old.toRelStructure.induce T) ≤ j →
         HasInducedClosedUKCompletion K rules (Old.toRelStructure.induce T))
-    (Test : RelStructure L X)
+    (Test : RelStructure L X) [Finite X]
     (e : RelStructure.Embedding Test
       (RelStructure.Attachment.attach Old.toRelStructure (Old.support alpha)
         (power (Old.restrict alpha) N).toRelStructure
