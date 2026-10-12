@@ -45,6 +45,7 @@ the rest share a coordinate which is constant on the removed line.
 This is the correct replacement for the false pairwise-disjoint
 conclusion sometimes inferred from failure of a global coordinate. -/
 theorem exists_minimal_noncommon_subfamily
+    [DecidableEq I]
     (variableAt : I → Fin N → Prop)
     (S : Finset I)
     (hBad : ¬ HasCommonSelectedCoordinate variableAt S) :
@@ -94,6 +95,7 @@ theorem exists_minimal_noncommon_subfamily
 /-- The reduction instantiated with the ACTUAL parameter
 coordinates of genuine native Hales--Jewett line objects. -/
 theorem exists_minimal_noncommon_HJ_lines
+    [DecidableEq I]
     {Alphabet : Type u}
     (lines : I → Line Alphabet N)
     (S : Finset I)
