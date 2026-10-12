@@ -180,4 +180,33 @@ theorem native2019_positive_active_index_card_le_generators
     Fintype.card_le_of_injective pick hInjective
   simpa [T] using hCard
 
+
+/-- The actual quantitative statement used by rank-induction arguments:
+for a finite original weak source with minimum generating support,
+the true number of private-active native Hales--Jewett copy indices
+is <= its INTRINSIC U-generating rank, even for a NONINJECTIVE
+positive protected projection. This makes no global-coordinate claim. -/
+theorem native2019_positive_active_index_card_le_USize
+    {rules : ClosureDescription L}
+    {U V W I : Type v}
+    [Fintype U]
+    (Source : RelStructure L U)
+    (Old : RelStructure L V)
+    (Support : Set V)
+    (Core : RelStructure L W)
+    (maps : I → Embedding (Old.induce Support) Core)
+    (hSupport : IsUSubstructure rules Old Support)
+    (p : U → Vertex Support (W := W) (I := I))
+    (hp : Source.IsHomomorphism
+      (attach Old Support Core maps) p) :
+    (native2019_exact_active_index_finset Support p).card ≤
+      USize rules Source := by
+  classical
+  obtain ⟨G, hCard, hGen⟩ := USize_spec rules Source
+  have hActive :=
+    native2019_positive_active_index_card_le_generators
+      Source Old Support Core maps hSupport p hp G hGen
+  simpa [hCard] using hActive
+
+
 end AllThoseRamseyClasses.Published
