@@ -92,4 +92,28 @@ theorem has2019_rooted_weaksize_of_protected_projection
     hOldExact.precomp_closedMap hpID
   exact (inducedClosedKCompletion_iff_abstract_2019).mpr hThisExact
 
+
+/-- Paper-faithful convenience version: ordinary irreducibility of A,
+as already required for all members of the ambient Ramsey class,
+automatically implies its intrinsic U-irreducibility. Thus the
+rooted-invariant projection transfer asks for no new irreducibility
+hypothesis beyond the existing original proof data. -/
+theorem has2019_rooted_weaksize_of_protected_projection_irreducible_A
+    {K : StructureClass.{u,v} (L := L)}
+    {rules : ClosureDescription L}
+    {VC VD VA : Type v}
+    (C : RelStructure L VC)
+    (D : RelStructure L VD)
+    (A : RelStructure L VA)
+    (hAClosed : IsUClosed rules A)
+    (hAIrred : A.Irreducible)
+    (p : VC → VD)
+    (hp : IsInducedClosedUHomomorphismEmbedding rules C D p)
+    (j : ℕ)
+    (hOld : Has2019RootedWeakSizeCompletions K rules D A j) :
+    Has2019RootedWeakSizeCompletions K rules C A j :=
+  has2019_rooted_weaksize_of_protected_projection
+    C D A hAClosed (hAIrred.isUIrreducible rules) p hp j hOld
+
+
 end AllThoseRamseyClasses.Published
