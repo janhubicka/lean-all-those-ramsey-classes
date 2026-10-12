@@ -257,26 +257,26 @@ theorem native2019_positive_source_copy_rest_proper
     {z | InCopy Old Support Core maps i z}
   let Rest : Set (Vertex Support (W := W) (I := I)) :=
     {z | ¬ OutsideAt (W := W) (I := I) Support i z}
-  let Left : Set U := p ⁻¹' Copy
-  let Right : Set U := p ⁻¹' Rest
+  let LeftSet : Set U := p ⁻¹' Copy
+  let RightSet : Set U := p ⁻¹' Rest
   have hFree :
       IsFreeAmalgam
-        (exactFreeCoverRootToLeft Source Left Right)
-        (exactFreeCoverRootToRight Source Left Right)
-        (inclusion Source Left) (inclusion Source Right) :=
+        (exactFreeCoverRootToLeftSet Source LeftSet RightSet)
+        (exactFreeCoverRootToRightSet Source LeftSet RightSet)
+        (inclusion Source LeftSet) (inclusion Source RightSet) :=
     native2019_positive_source_copy_rest_free
       Source Old Support Core maps p hp i
   let d : ProperFreeDecomposition Source := {
-    Common := Left ∩ Right
-    Left := Left
-    Right := Right
-    common := Source.induce (Left ∩ Right)
-    left := Source.induce Left
-    right := Source.induce Right
-    toLeft := exactFreeCoverRootToLeft Source Left Right
-    toRight := exactFreeCoverRootToRight Source Left Right
-    leftIn := inclusion Source Left
-    rightIn := inclusion Source Right
+    Common := LeftSet ∩ RightSet
+    Left := LeftSet
+    Right := RightSet
+    common := Source.induce (LeftSet ∩ RightSet)
+    left := Source.induce LeftSet
+    right := Source.induce RightSet
+    toLeftSet := exactFreeCoverRootToLeftSet Source LeftSet RightSet
+    toRightSet := exactFreeCoverRootToRightSet Source LeftSet RightSet
+    leftIn := inclusion Source LeftSet
+    rightIn := inclusion Source RightSet
     free := hFree
     leftProper := by
       intro hSurj
