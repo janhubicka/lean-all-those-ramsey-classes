@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.NativeFiniteActiveHistory2019
+
+-- Finite family of exactly the source's active native private copy labels.
+#print axioms AllThoseRamseyClasses.Published.native2019_mem_exact_active_index_iff
+#print axioms AllThoseRamseyClasses.Published.native2019_finite_exact_source_factors_active_subhistory
