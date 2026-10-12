@@ -87,7 +87,6 @@ theorem native2019_closed_picture_exact_weak_trichotomy
         Nat.card d.Left ≤ j ∧ Nat.card d.Right ≤ j) := by
   classical
   letI : Fintype U := Fintype.ofFinite U
-  letI : Fintype (↑S : Set U) := Fintype.ofFinite (↑S : Set U)
   have hpAbstract : IsClosedUHomomorphismEmbedding rules C
       (attach Old.toRelStructure (Old.support alpha)
         (power (Old.restrict alpha) N).toRelStructure
