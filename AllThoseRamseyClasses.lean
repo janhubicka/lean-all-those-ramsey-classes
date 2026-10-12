@@ -27,3 +27,15 @@ import AllThoseRamseyClasses.Published.OrderedAmbientOrder
 import AllThoseRamseyClasses.Published.NamedOrderLanguage
 
 import AllThoseRamseyClasses.Published.OrderedAmbientRamsey
+
+-- Coordinated corrected 2019 definitions and constructively checked lemmas.
+-- These imports do NOT prove the unrestricted repaired Theorem 2.18.
+import AllThoseRamseyClasses.Published.InducedClosed2019MainTwoConstructors
+import AllThoseRamseyClasses.Published.InducedClosed2019NativeRankPreservation
+import AllThoseRamseyClasses.Published.InducedClosed2019RankSaturation
+import AllThoseRamseyClasses.Published.InducedClosed2019NativeCommonCoordinate
+import AllThoseRamseyClasses.Published.InducedClosed2019SingleActiveLine
+import AllThoseRamseyClasses.Published.InducedClosed2019MixedCut
+import AllThoseRamseyClasses.Published.InducedClosed2019ExteriorIndices
+import AllThoseRamseyClasses.Published.InducedClosed2019EssentialGenerators
+import AllThoseRamseyClasses.Published.WeakAmbientHullUSize2019
