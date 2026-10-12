@@ -85,7 +85,7 @@ theorem native2019_rest_piece_factors_complement_subfamily
         have hj : pair.1 ∈ J := by
           intro hji
           have hpair : pair = (i, pair.2) := Prod.ext hji rfl
-          exact x.2 ⟨pair.2, by simpa [hx, hpair]⟩
+          exact x.2 ⟨pair.2, by rw [hx, hpair]⟩
         exact ⟨Sum.inr (⟨pair.1, hj⟩, pair.2), rfl⟩
   have hpRest :
       (Source.induce Rest).IsHomomorphismEmbedding
