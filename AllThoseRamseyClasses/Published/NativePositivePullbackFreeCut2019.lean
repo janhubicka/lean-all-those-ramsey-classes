@@ -267,7 +267,7 @@ theorem native2019_positive_source_copy_rest_proper
     native2019_positive_source_copy_rest_free
       Source Old Support Core maps p hp i
   let d : ProperFreeDecomposition Source := {
-    Common := LeftSet ∩ RightSet
+    Common := {x : U // x ∈ LeftSet ∩ RightSet}
     Left := LeftSet
     Right := RightSet
     common := Source.induce (LeftSet ∩ RightSet)
