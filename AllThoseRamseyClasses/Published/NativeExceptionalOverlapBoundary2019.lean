@@ -121,7 +121,7 @@ theorem native2019_exceptional_overlap_constant_A_boundary
       Old alpha A lines i k hConstant
   have hPreimage (r : Root) :
       ∃ x : Old.support alpha, r.1.1 = Sum.inl (maps i x) :=
-    fun r => native2019_overlap_has_exceptional_line_preimage
+    native2019_overlap_has_exceptional_line_preimage
       Old alpha A hRestricted lines T i r
   let x : Root → Old.support alpha :=
     fun r => Classical.choose (hPreimage r)
