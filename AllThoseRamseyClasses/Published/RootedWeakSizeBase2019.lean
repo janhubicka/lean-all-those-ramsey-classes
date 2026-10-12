@@ -58,7 +58,14 @@ theorem has2019_rooted_weaksize_base_zero
       HasInducedClosedUKCompletion K rules
         (D.induce (Set.range a)) :=
     ⟨VA, inferInstance, A, hAK, hAIrred, g, hProtected⟩
-  simpa only [Finset.coe_empty, Set.empty_union] using hCompletion
+  have hSet :
+      ((↑(∅ : Finset VD) : Set VD) ∪ Set.range a) = Set.range a := by
+    ext x
+    simp
+  change HasInducedClosedUKCompletion K rules
+    (D.induce ((↑(∅ : Finset VD) : Set VD) ∪ Set.range a))
+  rw [hSet]
+  exact hCompletion
 
 /-- Rooted weak-size completion is monotone in the allowed number
 of extra weak vertices. This does not produce an increment. -/
