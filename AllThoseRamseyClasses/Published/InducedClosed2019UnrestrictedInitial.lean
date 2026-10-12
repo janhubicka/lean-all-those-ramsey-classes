@@ -94,16 +94,24 @@ theorem coordinated2019_ramsey_of_higher_rank_constructor
         (j : ℕ), 1 ≤ j → K A → K B →
         Proposed2019RankIncrementStep K rules A B κ j) :
     FiniteRamseyClass K := by
-  apply coordinated2019_ramsey_of_two_picture_constructors
-    R K rules hR hRIrred hK ?_ hHigher
-  intro X Y Z hFiniteX hFiniteY hFiniteZ A B C0 κ hFinκ hκ hKA hKB _ hArrow
-  have hA : IsUClosed rules A := hK.induced.closed A hKA
-  have hB : IsUClosed rules B := hK.induced.closed B hKB
-  have hHer : ClosedUHereditary K rules :=
-    embeddedClosedHereditary_of_induced
-      hK.induced.hereditary hK.iso
-  exact lemma_2_28_coordinated_unrestricted_induced
-    A B C0 hA hB hKB hHer κ hArrow
+  have hInitial :
+      ∀ {X Y Z : Type v} [Finite X] [Finite Y] [Finite Z]
+        (A : RelStructure L X) (B : RelStructure L Y)
+        (C0 : RelStructure L Z)
+        (κ : Type) [Fintype κ] [Nonempty κ],
+        K A → K B → R C0 →
+        StructuralRamsey.Arrow A B C0 κ →
+        Has2019UnrestrictedInitialPicture K rules A B C0 κ := by
+    intro X Y Z hFiniteX hFiniteY hFiniteZ A B C0 κ hFinκ hκ hKA hKB _ hArrow
+    have hA : IsUClosed rules A := hK.induced.closed A hKA
+    have hB : IsUClosed rules B := hK.induced.closed B hKB
+    have hHer : ClosedUHereditary K rules :=
+      embeddedClosedHereditary_of_induced
+        hK.induced.hereditary hK.iso
+    exact lemma_2_28_coordinated_unrestricted_induced
+      A B C0 hA hB hKB hHer κ hArrow
+  exact coordinated2019_ramsey_of_two_picture_constructors
+    R K rules hR hRIrred hK hInitial hHigher
 
 /-- A fully CONSTRUCTED corrected K-Ramsey witness at local-finiteness
 cutoff n <= 1. The original Ramsey control D can be NON-U-CLOSED.
