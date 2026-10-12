@@ -50,7 +50,7 @@ def Has2019UniformKRootedWeakSize
     (D : RelStructure L VD) (j : ℕ) : Prop :=
   ∀ {VQ : Type v} [Finite VQ] (Q : RelStructure L VQ),
     K Q → IsUClosed rules Q → IsUIrreducible rules Q →
-    (T : Finset VD) (a : Embedding Q D), T.card ≤ j →
+    ∀ (T : Finset VD) (a : Embedding Q D), T.card ≤ j →
       HasInducedClosedUKCompletion K rules
         (D.induce ((↑T : Set VD) ∪ Set.range a))
 
