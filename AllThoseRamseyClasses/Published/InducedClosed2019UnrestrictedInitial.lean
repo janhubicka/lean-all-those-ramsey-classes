@@ -116,7 +116,7 @@ theorem coordinated2019_ramsey_of_higher_rank_constructor
     exact lemma_2_28_coordinated_unrestricted_induced
       (K := K) (rules := rules)
       A B C0 hA hB hKB hHer κ hArrow
-  exact coordinated2019_ramsey_of_two_picture_constructors
+  exact coordinated2019_ramsey_of_two_picture_constructors.{u,v}
     R K rules hR hRIrred hK hInitial hHigher
 
 /-- A fully CONSTRUCTED corrected K-Ramsey witness at local-finiteness
