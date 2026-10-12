@@ -48,6 +48,18 @@ def reindexSharedClosureTuple
     Fin (L.arity second.symbol) → V :=
   fun i => t (Fin.cast (congrArg L.arity hSymbol).symm i)
 
+/-- Transport the actual relation tuple along equality of designated
+relation symbols. This independent helper avoids dependent elimination
+on the surrounding ClosureRule records. -/
+theorem relationTuple_transport_symbol_eq
+    (A : RelStructure L V)
+    (x y : L.Symbol) (h : x = y)
+    (t : Fin (L.arity x) → V)
+    (ht : A.rel x t) :
+    A.rel y (fun i => t (Fin.cast (congrArg L.arity h).symm i)) := by
+  cases h
+  exact ht
+
 /-- Two closure rules sharing a symbol cannot BOTH hold if the
 first root occurs and no relation tuple extending that root can
 match the second root type. This is the exact quantifier order
@@ -75,8 +87,8 @@ theorem not_UClosed_of_shared_symbol_incompatible_roots
   have hTransferred :
       A.rel second.symbol
         (reindexSharedClosureTuple first second hSymbol t) := by
-    cases hSymbol
-    exact ht
+    exact relationTuple_transport_symbol_eq A
+      first.symbol second.symbol hSymbol t ht
   exact hIncompatible t hFirstMatches
     ((hClosed second hSecond).1 _ hTransferred)
 
