@@ -84,7 +84,8 @@ theorem native2019_rest_piece_factors_complement_subfamily
     | inr pair =>
         have hj : pair.1 ∈ J := by
           intro hji
-          exact x.2 ⟨pair.2, by simpa [hx, hji]⟩
+          have hpair : pair = (i, pair.2) := Prod.ext hji rfl
+          exact x.2 ⟨pair.2, by simpa [hx, hpair]⟩
         exact ⟨Sum.inr (⟨pair.1, hj⟩, pair.2), rfl⟩
   have hpRest :
       (Source.induce Rest).IsHomomorphismEmbedding
@@ -113,8 +114,8 @@ theorem native2019_selected_set_coordinate_isOrdinaryHE
     (attach Old.toRelStructure (Old.support alpha)
       (power (Old.restrict alpha) N).toRelStructure
       (fun i : J =>
-        (closureLineMaps Old alpha A hRestricted lines) i.1))
-      .IsHomomorphismEmbedding Old.toRelStructure
+        (closureLineMaps Old alpha A hRestricted lines) i.1)).IsHomomorphismEmbedding
+        Old.toRelStructure
         (fold
           (fun z : NonInduced.Vertex (Old.restrict alpha) N =>
             (z.coord k).1)
@@ -155,8 +156,8 @@ theorem native2019_selected_set_coordinate_isOrdinaryHE
       (Core := Core) (f := restMaps) (Q := Old.toRelStructure)
       r pCopy hInverse hCore
   change
-    (attach Old.toRelStructure (Old.support alpha) Core restMaps)
-      .IsHomomorphismEmbedding Old.toRelStructure
+    (attach Old.toRelStructure (Old.support alpha) Core restMaps).IsHomomorphismEmbedding
+      Old.toRelStructure
       (fold r (fun (_ : J) (x : V) => x))
   exact hFold
 
