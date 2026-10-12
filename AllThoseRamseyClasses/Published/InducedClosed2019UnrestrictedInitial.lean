@@ -94,30 +94,46 @@ theorem coordinated2019_ramsey_of_higher_rank_constructor
         (j : ℕ), 1 ≤ j → K A → K B →
         Proposed2019RankIncrementStep K rules A B κ j) :
     FiniteRamseyClass K := by
-  have hInitial :
-      ∀ {X Y Z : Type v} [Finite X] [Finite Y] [Finite Z]
-        (A : RelStructure L X) (B : RelStructure L Y)
-        (C0 : RelStructure L Z)
-        (κ : Type) [Fintype κ] [Nonempty κ],
-        K A → K B → R C0 →
-        StructuralRamsey.Arrow A B C0 κ →
-        Has2019UnrestrictedInitialPicture K rules A B C0 κ := by
-    intro X Y Z hFiniteX hFiniteY hFiniteZ A B C0 κ hFinκ hκ hKA hKB _ hArrow
-    letI : Finite X := hFiniteX
-    letI : Finite Y := hFiniteY
-    letI : Finite Z := hFiniteZ
-    letI : Fintype κ := hFinκ
-    letI : Nonempty κ := hκ
-    have hA : IsUClosed rules A := hK.induced.closed A hKA
-    have hB : IsUClosed rules B := hK.induced.closed B hKB
-    have hHer : ClosedUHereditary K rules :=
-      embeddedClosedHereditary_of_induced
-        hK.induced.hereditary hK.iso
-    exact lemma_2_28_coordinated_unrestricted_induced
-      (UA := X) (VB := Y) (P := Z) (K := K) (rules := rules)
-      A B C0 hA hB hKB hHer κ hArrow
-  exact coordinated2019_ramsey_of_two_picture_constructors.{u,v}
-    R K rules hR hRIrred hK hInitial hHigher
+  intro X Y hFiniteX hFiniteY A B hKA hKB κ hκ hκNonempty
+  have hRA : R A := hK.induced.subset A hKA
+  have hRB : R B := hK.induced.subset B hKB
+  have hAClosed : IsUClosed rules A := hK.induced.closed A hKA
+  have hBClosed : IsUClosed rules B := hK.induced.closed B hKB
+  have hBIrred : B.Irreducible := hRIrred B hRB
+  have hHer : ClosedUHereditary K rules :=
+    embeddedClosedHereditary_of_induced
+      hK.induced.hereditary hK.iso
+  obtain ⟨Z, hZ, C0, hRC0, hArrow0⟩ :=
+    hR A B hRA hRB κ
+  letI : Finite Z := hZ
+  obtain ⟨n, hLocal⟩ :=
+    hK.induced.localCompletion B C0 hKB hRC0
+  obtain ⟨W, hW, D, hDClosed, hInitialMap, hArrowD, hCoveredD⟩ :=
+    lemma_2_28_coordinated_unrestricted_induced
+      (K := K) (rules := rules)
+      A B C0 hAClosed hBClosed hKB hHer κ hArrow0
+  letI : Finite W := hW
+  obtain ⟨p0, hp0⟩ := hInitialMap
+  have hRankStep : ∀ j : ℕ, 1 ≤ j →
+      Proposed2019RankIncrementStep K rules A B κ j := by
+    intro j hj
+    exact hHigher A B κ j hj hKA hKB
+  obtain ⟨T, hT, C, hCClosed, hSecondMap,
+      hArrowC, hCoveredC, hWeakTests⟩ :=
+    lemma_2_31_exact_weak_tests_of_rank_increment A B D
+      hAClosed hBClosed hKB hBIrred hHer
+      hDClosed κ hArrowD hRankStep (n+1) (by omega)
+  letI : Finite T := hT
+  obtain ⟨p1, hp1⟩ := hSecondMap
+  have hTotalMap :
+      IsInducedClosedUHomomorphismEmbedding rules C C0 (p0 ∘ p1) :=
+    inducedClosedMap_comp_2019 hp0 hp1
+  have hCopywise : HasCopywiseCompletion K B C :=
+    hLocal C hCClosed
+      ⟨hRIrred C0 hRC0, p0 ∘ p1, hTotalMap⟩
+      hCoveredC
+      (fun S hS => hWeakTests S (by omega))
+  exact arrow_of_BCopywiseCompletion_inClass hArrowC hCopywise
 
 /-- A fully CONSTRUCTED corrected K-Ramsey witness at local-finiteness
 cutoff n <= 1. The original Ramsey control D can be NON-U-CLOSED.
