@@ -57,12 +57,15 @@ theorem tripleOverlappingHJLines_pairwise_common :
         (tripleOverlappingHJLines j).symbol k = .parameter := by
   intro i j hij
   fin_cases i <;> fin_cases j
-  all_goals
-    simp at hij
-    first
-    | exact ⟨0, by simp [tripleOverlappingHJLines]⟩
-    | exact ⟨1, by simp [tripleOverlappingHJLines]⟩
-    | exact ⟨2, by simp [tripleOverlappingHJLines]⟩
+  · exact (hij rfl).elim
+  · exact ⟨2, by simp [tripleOverlappingHJLines]⟩
+  · exact ⟨1, by simp [tripleOverlappingHJLines]⟩
+  · exact ⟨2, by simp [tripleOverlappingHJLines]⟩
+  · exact (hij rfl).elim
+  · exact ⟨0, by simp [tripleOverlappingHJLines]⟩
+  · exact ⟨1, by simp [tripleOverlappingHJLines]⟩
+  · exact ⟨0, by simp [tripleOverlappingHJLines]⟩
+  · exact (hij rfl).elim
 
 /-- Nonetheless, the family of all THREE genuine lines has no
 single coordinate variable on every one of them. -/
