@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.InducedClosed2019UnrestrictedInitial
+
+-- Genuine unrestricted repaired initial Picture over possibly nonclosed C0:
+-- the higher-rank constructor remains an EXPLICIT theorem premise.
+#print axioms AllThoseRamseyClasses.Published.lemma_2_28_coordinated_unrestricted_induced
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_ramsey_of_higher_rank_constructor
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_cutoff_one_unrestricted_induced
