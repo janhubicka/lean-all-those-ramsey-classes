@@ -4,3 +4,4 @@ import AllThoseRamseyClasses.Published.RootedWeakSizeBase2019
 -- embedded A-copy; it is not a global increment assumption.
 #print axioms AllThoseRamseyClasses.Published.has2019_rooted_weaksize_base_zero
 #print axioms AllThoseRamseyClasses.Published.has2019_rooted_weaksize_mono
+#print axioms AllThoseRamseyClasses.Published.has2019_rooted_weaksize_implies_weaksize
