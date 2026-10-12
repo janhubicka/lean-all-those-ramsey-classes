@@ -133,8 +133,9 @@ theorem native2019_closed_source_piece_factors_old_copy
   have hOrd :
       Source.IsHomomorphismEmbedding
         (attach Old Support Core maps) p :=
-    (IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp)
-      .toHomomorphismEmbedding_of_closed hClosed
+    IsClosedUHomomorphismEmbedding.toHomomorphismEmbedding_of_closed
+      (IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hp)
+      hClosed
   exact native2019_ordinary_weak_piece_factors_old_copy
     Source Old Support Core maps p hOrd S i hInCopy
 
