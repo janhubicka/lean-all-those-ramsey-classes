@@ -43,8 +43,8 @@ def tripleOverlappingHJLines : Fin 3 → Line PUnit 3 :=
       if k = i then .const PUnit.unit else .parameter
     hasParameter := by
       by_cases hi : i = 0
-      · subst i
-        exact ⟨1, by decide⟩
+      · refine ⟨1, ?_⟩
+        simp [hi]
       · have h0 : (0 : Fin 3) ≠ i := Ne.symm hi
         exact ⟨0, by simp [h0]⟩
   }
@@ -55,7 +55,14 @@ theorem tripleOverlappingHJLines_pairwise_common :
       ∃ k : Fin 3,
         (tripleOverlappingHJLines i).symbol k = .parameter ∧
         (tripleOverlappingHJLines j).symbol k = .parameter := by
-  decide
+  intro i j hij
+  fin_cases i <;> fin_cases j
+  all_goals
+    first
+    | exact (hij rfl).elim
+    | exact ⟨0, by simp [tripleOverlappingHJLines]⟩
+    | exact ⟨1, by simp [tripleOverlappingHJLines]⟩
+    | exact ⟨2, by simp [tripleOverlappingHJLines]⟩
 
 /-- Nonetheless, the family of all THREE genuine lines has no
 single coordinate variable on every one of them. -/
@@ -63,7 +70,9 @@ theorem tripleOverlappingHJLines_no_global_common :
     ¬ ∃ k : Fin 3,
         ∀ i : Fin 3,
           (tripleOverlappingHJLines i).symbol k = .parameter := by
-  decide
+  rintro ⟨k, hk⟩
+  have hBad := hk k
+  simp [tripleOverlappingHJLines] at hBad
 
 /-- Therefore the implication from no global variable to the
 existence of a parameter-disjoint pair is FALSE even for genuine
