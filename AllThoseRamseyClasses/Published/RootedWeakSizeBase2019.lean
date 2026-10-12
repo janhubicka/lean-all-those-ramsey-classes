@@ -44,7 +44,9 @@ theorem has2019_rooted_weaksize_base_zero
     Finset.card_eq_zero.mp (Nat.eq_zero_of_le_zero hSize)
   subst T
   have hRange (x : Set.range a) :
-      ∃ y : VA, (inclusion D (Set.range a)) x = a y := x.2
+      ∃ y : VA, (inclusion D (Set.range a)) x = a y := by
+    obtain ⟨y, hy⟩ := x.2
+    exact ⟨y, hy.symm⟩
   let g : Embedding (D.induce (Set.range a)) A :=
     (inclusion D (Set.range a)).factorThroughRange a hRange
   have hProtected :
