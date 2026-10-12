@@ -75,9 +75,12 @@ theorem native2019_positive_exterior_index_from_generator
   by_contra hNo
   let Rest : Set U := {y | ¬ OutsideAt
     (W := W) (I := I) Support i (p y)}
+  have hTargetRest : IsUSubstructure rules
+      (attach Old Support Core maps)
+      {z | ¬ OutsideAt (W := W) (I := I) Support i z} :=
+    rest_isUSubstructure Old Support Core maps hSupport i
   have hRest : IsUSubstructure rules Source Rest :=
-    (rest_isUSubstructure Old Support Core maps hSupport i)
-      .preimage_homomorphism hp
+    hTargetRest.preimage_homomorphism hp
   have hG : G ⊆ Rest := by
     intro g hg hout
     exact hNo ⟨g, hg, hout⟩
