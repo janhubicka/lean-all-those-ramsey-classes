@@ -261,8 +261,8 @@ theorem native2019_positive_source_copy_rest_proper
   let RightSet : Set U := p ⁻¹' Rest
   have hFree :
       IsFreeAmalgam
-        (exactFreeCoverRootToLeftSet Source LeftSet RightSet)
-        (exactFreeCoverRootToRightSet Source LeftSet RightSet)
+        (exactFreeCoverRootToLeft Source LeftSet RightSet)
+        (exactFreeCoverRootToRight Source LeftSet RightSet)
         (inclusion Source LeftSet) (inclusion Source RightSet) :=
     native2019_positive_source_copy_rest_free
       Source Old Support Core maps p hp i
@@ -273,8 +273,8 @@ theorem native2019_positive_source_copy_rest_proper
     common := Source.induce (LeftSet ∩ RightSet)
     left := Source.induce LeftSet
     right := Source.induce RightSet
-    toLeftSet := exactFreeCoverRootToLeftSet Source LeftSet RightSet
-    toRightSet := exactFreeCoverRootToRightSet Source LeftSet RightSet
+    toLeft := exactFreeCoverRootToLeft Source LeftSet RightSet
+    toRight := exactFreeCoverRootToRight Source LeftSet RightSet
     leftIn := inclusion Source LeftSet
     rightIn := inclusion Source RightSet
     free := hFree
