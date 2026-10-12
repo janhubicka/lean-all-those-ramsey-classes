@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.NativeTwoActivePrivate2019
+
+-- Native distinct-index private-exterior separation and genuine exact
+-- weak proper source split, without injectivity or semiclosedness.
+#print axioms AllThoseRamseyClasses.Published.native2019_other_private_not_in_chosen_copy
+#print axioms AllThoseRamseyClasses.Published.native2019_two_active_private_copies_proper
+#print axioms AllThoseRamseyClasses.Published.native2019_two_active_private_copies_small_sides
