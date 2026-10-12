@@ -31,6 +31,7 @@ namespace AllThoseRamseyClasses.Published
 
 open StructuralRamsey
 open StructuralRamsey.Partite
+open StructuralRamsey.Partite.Induced
 
 universe u v
 variable {L : RelLanguage.{u}} {P Q V X : Type v}
