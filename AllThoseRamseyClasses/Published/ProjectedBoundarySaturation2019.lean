@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Published.ExactFreeCoverTupleLocalization2019
-import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
+import AllThoseRamseyClasses.Published.InducedClosed2019MixedCut
 import PartiteConstruction.Ramsey.ClosureRelativeMapGlue
 
 /-!
