@@ -60,20 +60,20 @@ theorem exact2019_free_cover_iff_source_tuple_local
     · intro u
       rcases h.covers u with ⟨x, hx⟩ | ⟨y, hy⟩
       · have heq : u = x.1 := hx
-        exact Or.inl (heq ▸ x.2)
+        exact Or.inl (heq.symm ▸ x.2)
       · have heq : u = y.1 := hy
-        exact Or.inr (heq ▸ y.2)
+        exact Or.inr (heq.symm ▸ y.2)
     · intro R z hz
       rcases (h.rel_iff R z).mp hz with
           ⟨x, _, hx⟩ | ⟨y, _, hy⟩
       · left
         intro k
         have hVal : z k = (x k).1 := congrFun hx k
-        exact hVal ▸ (x k).2
+        exact hVal.symm ▸ (x k).2
       · right
         intro k
         have hVal : z k = (y k).1 := congrFun hy k
-        exact hVal ▸ (y k).2
+        exact hVal.symm ▸ (y k).2
   · rintro ⟨hCover, hTuples⟩
     have hId : A.IsHomomorphism A (fun x : U => x) := by
       intro R z hz
