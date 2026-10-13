@@ -55,14 +55,20 @@ PR #188 proof head: `f0395a205022a145f2f84efbc7bea6740039d03b`.
 Successful complete GitHub Actions run: `38461482875`, job `115517483846`.
 The full module build, permitted-axiom audit, finite regressions, and admission scan all passed. Both new declarations depend only on `propext`, `Classical.choice`, and `Quot.sound`. The logs report no unsupported axioms and no admissions.
 
-PR #188 was squash-merged as `daec134f9400f8816e4d89b07f7327074cd24d52`. These exact restricted declarations are verified; the unrestricted main theorem is not. Verification was performed by GitHub Actions, not by a local Lean installation.
+PR #188 was squash-merged as `e8684e297974b0bfc0f63920892ccaf8c6a93f2d`, confirmed from its live PR metadata. This corrects the previous erroneous merge identifier; the proof head and CI certificate are unchanged. These exact restricted declarations are verified; the unrestricted main theorem is not. Verification was performed by GitHub Actions, not by a local Lean installation.
+
+## General projected-boundary saturation — PR #190
+
+See `docs/projected-boundary-saturation-20261013.md` for the complete English proof and precise Lean declarations. For a genuine free source cover S,T and a common corrected protected projection p to a closed D, assume the projected original separator lies inside one specified closed K-copy. Let H be its closure in D. Enlarging S and T by p^-1(H) makes both source sides relatively closed without changing either ORIGINAL projected closure hull. Independent completions of those hulls then glue over the actual closed target K-member D|H.
+
+The source, original sides and original separator need not be intrinsically closed or semiclosed; maximum source rank and injectivity of p are not required. The rank-j corollary still needs BOTH original projected side-hull ranks <=j. The initial CI failure was a missing-import failure, not a counterexample; full verification of the corrected proof head is tracked on PR #190. No new green status is inferred from this note.
 
 ## Exact unresolved implication
 
 For every j>=1, the actual `Proposed2019RankIncrementStep` must turn a finite closed control D with its Ramsey arrow, corrected closed-irreducible coverage, and completions of all CLOSED induced tests of GENERATING rank <=j into a new finite closed Ramsey Picture over D with the same properties at rank j+1.
 
-The missing native argument must jointly construct a true free source split, a common closed K-boundary with compatible FULL embeddings into both completion targets, and BOTH absolute projected rank-j bounds. A separator contributes to these bounds and cannot simply be discarded.
+The missing native argument must construct a true free source split, an appropriate protected projection or compatible side maps, a common closed target K-boundary, and BOTH absolute projected rank-j bounds. A separator contributes to these bounds and cannot simply be discarded. Under the common-projection hypotheses of PR #190, intrinsic closedness of the ORIGINAL source separator is no longer a necessary gluing hypothesis; source-side saturation does not increase either original projected hull.
 
-The Boolean core-crossing counterexample rules out the claim that two transverse Hales--Jewett COPY ranges automatically form a free relational cover. Complementary RESTS give a real cover in the checked cases, but an arbitrary core root need not be closed or in K. A possibly noninjective protected completion of that root in A is not a pair of compatible full embedded boundaries.
+The Boolean core-crossing counterexample rules out the claim that two transverse Hales--Jewett COPY ranges automatically form a free relational cover. Complementary RESTS give a real cover in the checked cases, but a possibly noninjective protected completion of a core root in A is still not a pair of compatible full embedded boundaries. PR #190 instead fixes an actual closed target boundary, under its explicit common-projection and separator-containment hypotheses.
 
-**Cardinality cutoff two is not generating rank two.** A rank-two closed hull can have more than two vertices. The new theorem therefore does not supply even the general closed rank-one-to-rank-two constructor. No full Lemma 2.30 or unrestricted Theorem 2.18 marker may be promoted on this basis.
+**Cardinality cutoff two is not generating rank two.** A rank-two closed hull can have more than two vertices. The cutoff-two theorem therefore does not supply even the general closed rank-one-to-rank-two constructor. No full Lemma 2.30 or unrestricted Theorem 2.18 marker may be promoted on this basis.
