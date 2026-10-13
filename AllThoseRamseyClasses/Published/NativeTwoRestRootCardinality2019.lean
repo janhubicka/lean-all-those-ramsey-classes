@@ -94,6 +94,7 @@ theorem native2019_two_rest_root_card_add_two_le_source
   have hLeftSmall : Fintype.card Left < Fintype.card U :=
     Fintype.card_lt_of_injective_not_surjective inc hInc hIncNotSurj
   have hBound : Fintype.card Root + 2 ≤ Fintype.card U := by omega
+  change Nat.card Root + 2 ≤ Fintype.card U
   simpa only [Nat.card_eq_fintype_card] using hBound
 
 /-- If the original exact source has at most THREE vertices and
@@ -147,6 +148,7 @@ theorem native2019_two_rest_small_root_irreducible
       Support p i j hij hActiveI hActiveJ hCard
   have hRootCard : Fintype.card Root ≤ 1 := by
     simpa only [Nat.card_eq_fintype_card] using hRootCardNat
+  change (Source.induce Root).Irreducible
   intro x y hxy
   have hFin : (Finset.univ : Finset Root).card ≤ 1 := by
     simpa using hRootCard
