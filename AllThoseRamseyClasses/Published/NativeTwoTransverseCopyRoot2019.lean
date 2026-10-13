@@ -83,23 +83,23 @@ theorem native2019_two_transverse_copies_actual_A_root
     have hout : OutsideAt (W := NonInduced.Vertex
         (Old.restrict alpha) N) (I := I) S i
         (copyMap Old.toRelStructure S Core maps i (x r)) :=
-      ⟨⟨x r, hn⟩, (copyMap_not_mem i (x r) hn).symm⟩
+      ⟨⟨x r, hn⟩, copyMap_not_mem i (x r) hn⟩
     rw [hSame r] at hout
     exact (copyMap_not_outside_of_ne
       (B := Old.toRelStructure) (S := S)
       (D := Core) (f := maps) (i := i)
-      j hij (y r)) hout
+      j hij.symm (y r)) hout
   have hyS (r : H) : y r ∈ S := by
     by_contra hn
     have hout : OutsideAt (W := NonInduced.Vertex
         (Old.restrict alpha) N) (I := I) S j
         (copyMap Old.toRelStructure S Core maps j (y r)) :=
-      ⟨⟨y r, hn⟩, (copyMap_not_mem j (y r) hn).symm⟩
+      ⟨⟨y r, hn⟩, copyMap_not_mem j (y r) hn⟩
     rw [← hSame r] at hout
     exact (copyMap_not_outside_of_ne
       (B := Old.toRelStructure) (S := S)
       (D := Core) (f := maps) (i := j)
-      i hij.symm (x r)) hout
+      i hij (x r)) hout
   let xs : H → S := fun r => ⟨x r, hxS r⟩
   let ys : H → S := fun r => ⟨y r, hyS r⟩
   have hLine (r : H) :
