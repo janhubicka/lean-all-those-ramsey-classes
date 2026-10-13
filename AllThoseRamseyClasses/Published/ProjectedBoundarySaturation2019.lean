@@ -199,20 +199,46 @@ theorem inducedClosed2019_completion_of_saturated_projected_cover
       exact Subtype.ext (congrArg Subtype.val h)
     map_rel_iff := fun _ _ => Iff.rfl
   }
+  obtain ⟨XL, hXL, TL, hTL, _, fL, hfL⟩ :=
+    (inducedClosedKCompletion_iff_abstract_2019).mp hLC
+  obtain ⟨YR, hYR, TR, hTR, _, fR, hfR⟩ :=
+    (inducedClosedKCompletion_iff_abstract_2019).mp hRC
+  letI : Finite XL := hXL
+  letI : Finite YR := hYR
+  obtain ⟨eL, eR, heL, heR⟩ :=
+    IsClosedUHomomorphismEmbedding.common_boundary_embeddings
+      hHClosed (hKIrr (D.induce H) hHK) aL aR hfL hfR
+  obtain ⟨Z, hZ, Target, hTarget, jL, jR, hGlue, _⟩ :=
+    hStrong (D.induce H) TL TR hHK hTL hTR eL eR
+  let gL : SL → Z := jL ∘ (fL ∘ pL)
+  let gR : SR → Z := jR ∘ (fR ∘ pR)
+  have hgL : IsClosedUHomomorphismEmbedding rules (Source.induce SL) Target gL :=
+    (jL.isClosedUHomomorphismEmbedding rules).comp (hfL.comp hpL)
+  have hgR : IsClosedUHomomorphismEmbedding rules (Source.induce SR) Target gR :=
+    (jR.isClosedUHomomorphismEmbedding rules).comp (hfR.comp hpR)
+  have hRootL : ∀ r : SL ∩ SR,
+      pL (exactFreeCoverRootToLeft Source SL SR r) = aL (q r) :=
+    fun _ => Subtype.ext rfl
+  have hRootR : ∀ r : SL ∩ SR,
+      pR (exactFreeCoverRootToRight Source SL SR r) = aR (q r) :=
+    fun _ => Subtype.ext rfl
+  have hCompat : ∀ r : SL ∩ SR,
+      gL (exactFreeCoverRootToLeft Source SL SR r) =
+        gR (exactFreeCoverRootToRight Source SL SR r) := by
+    intro r
+    calc
+      gL (exactFreeCoverRootToLeft Source SL SR r) = jL (fL (aL (q r))) :=
+        congrArg (fun x => jL (fL x)) (hRootL r)
+      _ = jL (eL (q r)) := congrArg jL (heL (q r)).symm
+      _ = jR (eR (q r)) := hGlue (q r)
+      _ = jR (fR (aR (q r))) := congrArg jR (heR (q r))
+      _ = gR (exactFreeCoverRootToRight Source SL SR r) :=
+        congrArg (fun x => jR (fR x)) (hRootR r).symm
   have hAbs : HasClosedUKCompletion K rules Source :=
-    HasClosedUKCompletion.of_independent_projected_completions_relative
-      (Root := Source.induce (SL ∩ SR))
-      (Left := Source.induce SL) (Right := Source.induce SR)
-      (Whole := Source)
-      (sL := exactFreeCoverRootToLeft Source SL SR)
-      (sR := exactFreeCoverRootToRight Source SL SR)
-      (iL := inclusion Source SL) (iR := inclusion Source SR)
-      rules hStrong hKIrr hFree hSLRange hSRRange
-      (D.induce H) hHK hHClosed
-      (D.induce L0) (D.induce R0) pL pR hpL hpR q aL aR
-      (fun _ => Subtype.ext rfl) (fun _ => Subtype.ext rfl)
-      ((inducedClosedKCompletion_iff_abstract_2019).mp hLC)
-      ((inducedClosedKCompletion_iff_abstract_2019).mp hRC)
+    ⟨Z, hZ, Target, hTarget, hKIrr Target hTarget,
+      hFree.compatibleFold gL gR hCompat,
+      IsClosedUHomomorphismEmbedding.fold_free_of_relative_ranges
+        hFree hSLRange hSRRange gL gR hgL hgR hCompat⟩
   exact (inducedClosedKCompletion_iff_abstract_2019).mpr hAbs
 
 end AllThoseRamseyClasses.Published
