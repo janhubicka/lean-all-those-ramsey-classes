@@ -126,7 +126,18 @@ theorem native2019_two_active_rest_unified_geometry
       native2019_two_only_active_rest_root_has_A_completion
         Source Old alpha A hAK hAIrred hRestricted hPower
         lines p hp i j hij hOnly
-    simpa only [Left, Right, Set.inter_def, Set.mem_setOf_eq] using h
+    have hSet :
+        Left ∩ Right =
+          {x : U | ¬ OutsideAt
+            (W := NonInduced.Vertex (Old.restrict alpha) N)
+            (I := I) (Old.support alpha) j (p x) ∧
+              ¬ OutsideAt
+            (W := NonInduced.Vertex (Old.restrict alpha) N)
+            (I := I) (Old.support alpha) i (p x)} := by
+      ext x
+      rfl
+    rw [hSet]
+    exact h
   have hProper : Nonempty (ProperFreeDecomposition Source) :=
     native2019_two_private_active_rest_cut_proper
       Source Old.toRelStructure (Old.support alpha)
