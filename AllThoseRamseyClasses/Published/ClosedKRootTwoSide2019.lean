@@ -62,8 +62,8 @@ theorem native2019_ordinaryHE_irreducible_root_is_full
     let zz : Fin (L.arity R) → (Set.univ : Set H) :=
       fun k => ⟨z k, Set.mem_univ (z k)⟩
     refine ⟨R, zz, i, j, ?_, ?_, ?_⟩
-    · change Root.rel R (Subtype.val ∘ zz)
-      simpa [zz] using hz
+    · change Root.rel R z
+      exact hz
     · apply Subtype.ext
       simpa [zz] using hzi
     · apply Subtype.ext
