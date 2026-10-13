@@ -168,12 +168,13 @@ theorem native2019_two_only_active_rest_root_in_core
   | inl w =>
       exact ⟨w, rfl⟩
   | inr z =>
-      have hz : OutsideAt (W := W) (I := I) Support z.1 (p x) :=
-        ⟨z.2, hx⟩
-      rcases hOnly z.1 ⟨x, hz⟩ with hi | hj
-      · subst z.1
+      rcases z with ⟨k, y⟩
+      have hz : OutsideAt (W := W) (I := I) Support k (p x) :=
+        ⟨y, hx⟩
+      rcases hOnly k ⟨x, hz⟩ with hi | hj
+      · subst k
         exact False.elim (hRestI hz)
-      · subst z.1
+      · subst k
         exact False.elim (hRestJ hz)
 
 end AllThoseRamseyClasses.Published
