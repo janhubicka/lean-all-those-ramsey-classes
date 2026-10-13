@@ -56,7 +56,7 @@ theorem native2019_two_rest_root_card_add_two_le_source
     let Root : Set U :=
       {x | ¬ OutsideAt (W := W) (I := I) Support j (p x) ∧
             ¬ OutsideAt (W := W) (I := I) Support i (p x)}
-    Fintype.card Root + 2 ≤ Fintype.card U := by
+    Nat.card Root + 2 ≤ Fintype.card U := by
   classical
   let Left : Set U := {x | ¬ OutsideAt
     (W := W) (I := I) Support j (p x)}
@@ -93,7 +93,8 @@ theorem native2019_two_rest_root_card_add_two_le_source
     exact (hzVal ▸ z.2) hy
   have hLeftSmall : Fintype.card Left < Fintype.card U :=
     Fintype.card_lt_of_injective_not_surjective inc hInc hIncNotSurj
-  omega
+  have hBound : Fintype.card Root + 2 ≤ Fintype.card U := by omega
+  simpa only [Nat.card_eq_fintype_card] using hBound
 
 /-- If the original exact source has at most THREE vertices and
 visits private exteriors of two DIFFERENT attachment indices,
@@ -113,7 +114,7 @@ theorem native2019_two_rest_root_card_le_one_of_source_le_three
     let Root : Set U :=
       {x | ¬ OutsideAt (W := W) (I := I) Support j (p x) ∧
             ¬ OutsideAt (W := W) (I := I) Support i (p x)}
-    Fintype.card Root ≤ 1 := by
+    Nat.card Root ≤ 1 := by
   have h := native2019_two_rest_root_card_add_two_le_source
     Support p i j hij hActiveI hActiveJ
   omega
@@ -141,16 +142,17 @@ theorem native2019_two_rest_small_root_irreducible
     {x | ¬ OutsideAt (W := W) (I := I) Support j (p x) ∧
           ¬ OutsideAt (W := W) (I := I) Support i (p x)}
   letI : Fintype Root := Fintype.ofFinite Root
-  have hRootCard : Fintype.card Root ≤ 1 :=
+  have hRootCardNat : Nat.card Root ≤ 1 :=
     native2019_two_rest_root_card_le_one_of_source_le_three
       Support p i j hij hActiveI hActiveJ hCard
+  have hRootCard : Fintype.card Root ≤ 1 := by
+    simpa only [Nat.card_eq_fintype_card] using hRootCardNat
   intro x y hxy
-  exfalso
-  apply hxy
-  apply Subtype.ext
   have hFin : (Finset.univ : Finset Root).card ≤ 1 := by
     simpa using hRootCard
-  exact Finset.card_le_one.mp hFin x (Finset.mem_univ x)
-    y (Finset.mem_univ y)
+  have heq : x = y :=
+    Finset.card_le_one.mp hFin x (Finset.mem_univ x)
+      y (Finset.mem_univ y)
+  exact (hxy heq).elim
 
 end AllThoseRamseyClasses.Published
