@@ -120,7 +120,7 @@ theorem native2019_two_rest_complete_of_literal_closed_K_root
     Finite.of_injective Subtype.val Subtype.val_injective
   letI : Finite RightSet :=
     Finite.of_injective Subtype.val Subtype.val_injective
-  letI : Finite (LeftSet ∩ RightSet) :=
+  letI : Finite {x : U // x ∈ LeftSet ∩ RightSet} :=
     Finite.of_injective Subtype.val Subtype.val_injective
   letI : Fintype LeftSet := Fintype.ofFinite LeftSet
   letI : Fintype RightSet := Fintype.ofFinite RightSet
