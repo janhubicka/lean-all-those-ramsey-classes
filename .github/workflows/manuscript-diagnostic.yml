@@ -1,0 +1,44 @@
+name: Independent manuscript TeX diagnostic
+on:
+  push:
+    paths:
+      - '.github/workflows/manuscript-diagnostic.yml'
+  workflow_dispatch:
+jobs:
+  manuscript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: janhubicka/All-those-Ramsey-classes
+          ref: fix/tex-build-and-application-validation-20261014
+          path: manuscript
+      - name: Install required LaTeX tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq latexmk texlive-latex-extra texlive-publishers texlive-fonts-recommended
+      - name: Compile manuscript and annotate first TeX failure
+        working-directory: manuscript
+        shell: bash
+        run: |
+          set +e
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error ramsey.tex > /tmp/manuscript-output.log 2>&1
+          rc=$?
+          tail -n 65 /tmp/manuscript-output.log
+          if [ "$rc" -ne 0 ]; then
+            first=$(grep -m 1 -E '(^!|^.*:[0-9]+:.*Error|^Latexmk:.*error|^.*Fatal error)' /tmp/manuscript-output.log || true)
+            [ -n "$first" ] || first=$(grep -m 1 -E '^!' ramsey.log || true)
+            echo "::error file=ramsey.tex::TeX build failed: ${first:-inspect job log}"
+            exit "$rc"
+          fi
+          echo 'PDF compiled successfully'
+      - name: Attach TeX result for manuscript review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-diagnostic
+          path: |
+            /tmp/manuscript-output.log
+            manuscript/ramsey.log
+            manuscript/ramsey.pdf
+          if-no-files-found: ignore
