@@ -1,7 +1,7 @@
 import AllThoseRamseyClasses.Published.NativeActiveCommonWeakCollision2019
 
 /-!
-# Two source-active native HJ copies admit ordinary old-Picture maps on BOTH rests
+# Ordinary old-Picture maps on BOTH RESTs of two source-active native HJ copies
 
 The true simultaneous native attachment has a valid copy/rest free cover.
 For two different active private copy indices i,j, another valid free
