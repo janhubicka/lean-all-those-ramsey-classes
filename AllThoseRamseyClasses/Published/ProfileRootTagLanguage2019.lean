@@ -3,16 +3,14 @@ import AllThoseRamseyClasses.Published.GeneratedClosureProfiles2019
 /-!
 # Fresh relational closure symbols for complete profile root patterns
 
-An original closure relation cannot be reused for incompatible expanded
-root descriptions. Here each original rule and compatible FULL profile
-root pattern gets its OWN symbol. The canonical tag is exactly the old
-closure tuple together with a full embedding of its displayed prefix
-pattern. This is local to the original tuple and preserves/reflects full
-embeddings without any source closedness assumption.
+Each original rule and compatible FULL expanded root pattern gets its
+OWN closure symbol. Its canonical tag means an old closure tuple whose
+prefix fully embeds that exact pattern. This is local to the displayed
+tuple and preserves/reflects full embeddings of weak structures.
 
-The root pattern carrier is Fin k; ambient carriers have independent
-universes. No assertion of original closedness follows from bare tagged
-closedness: normality and original root validity are separate laws.
+Root carriers are Fin k while ambient carriers have independent
+universes. Bare tagged closedness is not asserted to imply original
+closedness: tag normality and original root validity are separate laws.
 -/
 
 namespace AllThoseRamseyClasses.Published
@@ -23,14 +21,14 @@ open StructuralRamsey.RelStructure
 universe u v w z
 variable {L : RelLanguage.{u}}
 
-/-- Forget profile relations from any, not necessarily canonical, expansion. -/
+/-- Forget profiles from any, not necessarily canonical, expansion. -/
 def profileReduct2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (closureProfileLanguage2019 rules Base) X) :
     RelStructure L X where
   rel R xs := E.rel (.inl R) xs
 
-/-- Full embeddings remain full after forgetting the profile symbols. -/
+/-- Full embeddings remain full after forgetting profile symbols. -/
 def profileReductEmbedding2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} {Y : Type z}
@@ -42,9 +40,8 @@ def profileReductEmbedding2019
   injective := f.injective
   map_rel_iff := fun R xs => f.map_rel_iff (.inl R) xs
 
-/-- One original rule together with a FULL expanded root pattern whose
-old reduct is exactly the prescribed original root. All such patterns
-are allowed; no unproved finite list of realized patterns is used. -/
+/-- An original rule and a full profile root pattern with exactly its
+prescribed original reduct. All compatible patterns are allowed. -/
 structure ProfileRootPattern2019
     (rules : ClosureDescription L) {UB : Type v} (Base : RelStructure L UB) where
   originalRule : ClosureRule L
@@ -52,7 +49,7 @@ structure ProfileRootPattern2019
   pattern : RelStructure (closureProfileLanguage2019 rules Base) (Fin originalRule.rootSize)
   reductCorrect : ∀ R xs, pattern.rel (.inl R) xs ↔ originalRule.root.rel R xs
 
-/-- Each compatible expanded root pattern has a distinct new symbol. -/
+/-- Each expanded root pattern has its own fresh relation symbol. -/
 def profileRootTagLanguage2019
     (rules : ClosureDescription L) {UB : Type v} (Base : RelStructure L UB) :
     RelLanguage.{max u v} where
@@ -61,8 +58,7 @@ def profileRootTagLanguage2019
     | .inl R => (closureProfileLanguage2019 rules Base).arity R
     | .inr p => L.arity p.originalRule.symbol
 
-/-- The displayed prefix is the image of a full embedding of the exact
-profile root pattern, with the original ordered root coordinates. -/
+/-- Full matching of the displayed prefix with the expanded root. -/
 def profileRootPatternMatches2019
     {rules : ClosureDescription L} {UB : Type v} {Base : RelStructure L UB}
     (p : ProfileRootPattern2019 rules Base)
@@ -71,7 +67,7 @@ def profileRootPatternMatches2019
   ∃ e : Embedding p.pattern E,
     ∀ i : Fin p.originalRule.rootSize, t (i.castLE p.originalRule.rootLE) = e i
 
-/-- Canonical fresh-tag expansion of an arbitrary profile structure. -/
+/-- Canonical fresh tagging of an arbitrary profile structure. -/
 def profileRootTagExpansion2019
     (rules : ClosureDescription L) {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (closureProfileLanguage2019 rules Base) X) :
@@ -81,14 +77,14 @@ def profileRootTagExpansion2019
     | .inr p, xs =>
         E.rel (.inl p.originalRule.symbol) xs ∧ profileRootPatternMatches2019 p E xs
 
-/-- Forget only the fresh closure tags, retaining the profile language. -/
+/-- Forget fresh tags but retain profile relations. -/
 def profileRootTagReduct2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (profileRootTagLanguage2019 rules Base) X) :
     RelStructure (closureProfileLanguage2019 rules Base) X where
   rel R xs := E.rel (.inl R) xs
 
-/-- The original-language reduct after forgetting both auxiliary layers. -/
+/-- Forget both auxiliary relational layers. -/
 def profileRootTagOriginal2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (profileRootTagLanguage2019 rules Base) X) :
@@ -116,8 +112,9 @@ def profileRootTagOriginalEmbedding2019
     Embedding (profileRootTagOriginal2019 Base E) (profileRootTagOriginal2019 Base F) :=
   profileReductEmbedding2019 Base (profileRootTagReductEmbedding2019 Base f)
 
-/-- Fresh tagging preserves and reflects FULL relational embeddings,
-including those between weak/nonclosed profile structures. -/
+/-- Full embeddings preserve and reflect tags. The inverse root map is
+explicitly the original displayed prefix; no same-universe factorization
+or closedness of either ambient structure is needed. -/
 def profileRootTagEmbedding2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} {Y : Type z}
@@ -129,29 +126,36 @@ def profileRootTagEmbedding2019
   toFun := f
   injective := f.injective
   map_rel_iff := by
-    classical
     intro R xs
     cases R with
     | inl R => exact f.map_rel_iff R xs
     | inr p =>
       constructor
       · rintro ⟨hOld, e, he⟩
-        have hFactor : ∀ i : Fin p.originalRule.rootSize,
-            ∃ x : X, e i = f x := by
-          intro i
-          exact ⟨xs (i.castLE p.originalRule.rootLE), (he i).symm⟩
-        let q : Embedding p.pattern E := e.factorThroughRange f hFactor
-        have hq : ∀ i, e i = f (q i) :=
-          fun i => Classical.choose_spec (hFactor i)
-        refine ⟨(f.map_rel_iff (.inl p.originalRule.symbol) xs).mp hOld, q, ?_⟩
-        intro i
-        exact f.injective ((he i).trans (hq i))
+        let q : Fin p.originalRule.rootSize → X := fun i => xs (i.castLE p.originalRule.rootLE)
+        have hq : ∀ i, f (q i) = e i := he
+        let a : Embedding p.pattern E := {
+          toFun := q
+          injective := by
+            intro i j hij
+            apply e.injective
+            exact (hq i).symm.trans ((congrArg f hij).trans (hq j))
+          map_rel_iff := by
+            intro R zs
+            have hFun : f ∘ (q ∘ zs) = e ∘ zs := by
+              funext i
+              exact hq (zs i)
+            calc
+              E.rel R (q ∘ zs) ↔ F.rel R (f ∘ (q ∘ zs)) := (f.map_rel_iff R (q ∘ zs)).symm
+              _ ↔ F.rel R (e ∘ zs) := by rw [hFun]
+              _ ↔ p.pattern.rel R zs := e.map_rel_iff R zs
+        }
+        exact ⟨(f.map_rel_iff (.inl p.originalRule.symbol) xs).mp hOld, a, fun _ => rfl⟩
       · rintro ⟨hOld, e, he⟩
         exact ⟨(f.map_rel_iff (.inl p.originalRule.symbol) xs).mpr hOld,
           f.comp e, fun i => congrArg f (he i)⟩
 
-/-- A profile-pattern embedding is a full original root embedding after
-forgetting profiles and using the specified exact root reduct. -/
+/-- Forget an expanded root embedding to the prescribed original root. -/
 def profileRootPatternOriginalEmbedding2019
     {rules : ClosureDescription L} {UB : Type v} {Base : RelStructure L UB}
     (p : ProfileRootPattern2019 rules Base)
@@ -162,8 +166,7 @@ def profileRootPatternOriginalEmbedding2019
   injective := e.injective
   map_rel_iff := fun R xs => (e.map_rel_iff (.inl R) xs).trans (p.reductCorrect R xs)
 
-/-- The lifted closure rule has the complete tagged root pattern and
-its own fresh relation symbol. Root positivity/properness are unchanged. -/
+/-- Lifted closure rule with fresh symbol and complete tagged root. -/
 def profileRootTagRule2019
     {rules : ClosureDescription L} {UB : Type v} {Base : RelStructure L UB}
     (p : ProfileRootPattern2019 rules Base) :
@@ -178,13 +181,13 @@ def profileRootTagRule2019
     obtain ⟨R, zs, i, j, hz, hi, hj⟩ := p.originalRule.rootIrreducible hxy
     exact ⟨.inl (.inl R), zs, i, j, (p.reductCorrect R zs).mpr hz, hi, hj⟩
 
-/-- The lifted closure description contains exactly the fresh rules. -/
+/-- Exactly the fresh rules for all compatible root patterns. -/
 def profileRootTagRules2019
     (rules : ClosureDescription L) {UB : Type v} (Base : RelStructure L UB) :
     ClosureDescription (profileRootTagLanguage2019 rules Base) :=
   Set.range (fun p : ProfileRootPattern2019 rules Base => profileRootTagRule2019 p)
 
-/-- Normality of all tags on an arbitrary tagged structure. -/
+/-- Normality of fresh tags on an arbitrary tagged structure. -/
 def ProfileTagNormal2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (profileRootTagLanguage2019 rules Base) X) : Prop :=
@@ -192,8 +195,8 @@ def ProfileTagNormal2019
     E.rel (.inr p) xs ↔
       (profileRootTagExpansion2019 rules Base (profileRootTagReduct2019 Base E)).rel (.inr p) xs
 
-/-- Old closure tuples also need valid ORIGINAL roots. Bare tag
-closedness or normality does not supply this condition. -/
+/-- Old closure tuples must have valid ORIGINAL roots. This does not
+follow merely from the new tag relations or their closedness. -/
 def ProfileTagOldRootValid2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (profileRootTagLanguage2019 rules Base) X) : Prop :=
@@ -201,8 +204,7 @@ def ProfileTagOldRootValid2019
     (profileRootTagOriginal2019 Base E).rel r.symbol t →
       r.RootMatches (profileRootTagOriginal2019 Base E) t
 
-/-- A normal tagged structure is fully isomorphic, by identity, to the
-canonical tagging of its profile reduct. -/
+/-- Normality gives the full identity from canonical tagging. -/
 def profileTagNormalIdentity2019
     {rules : ClosureDescription L} {UB : Type v} (Base : RelStructure L UB)
     {X : Type w} (E : RelStructure (profileRootTagLanguage2019 rules Base) X)
