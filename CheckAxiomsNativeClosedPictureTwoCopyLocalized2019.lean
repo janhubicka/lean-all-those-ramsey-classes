@@ -4,3 +4,8 @@ import AllThoseRamseyClasses.Published.NativeClosedPictureTwoCopyLocalized2019
 -- exact weak tests are not required closed. Actual tuple-localizing
 -- source hypotheses replace fictional global native freeness.
 #print axioms AllThoseRamseyClasses.Published.native2019_closed_picture_two_copy_tuple_localized_completion
+
+-- See the detailed English proof and the converse source tuple-localization
+-- criterion in independent PR #174. This protected CLOSED full-Picture
+-- interface never postulates closure of the original weak tested subset.
+-- No native HJ transversality alone implies its tuple-localizing premise.
