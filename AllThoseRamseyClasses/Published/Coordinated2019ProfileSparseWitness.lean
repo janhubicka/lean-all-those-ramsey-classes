@@ -44,7 +44,7 @@ theorem coordinated2019_profile_sparse_witness
     (hClosed : ∀ {X : Type v} (E : RelStructure L X), K E → IsUClosed rules E)
     (hHer : ClosedUHereditary K rules) (hStrong : HasFiniteStrongAmalgamation K)
     (hKIrr : ∀ {X : Type v} (E : RelStructure L X), K E → E.Irreducible)
-    (n : ℕ) (κ : Type*) [Fintype κ] [Nonempty κ]
+    (n : ℕ) (κ : Type) [Fintype κ] [Nonempty κ]
     (hArrow0 : StructuralRamsey.Arrow A B C0 κ) :
     HasInducedClosed2019SparseWitness K rules A B C0 n κ := by
   classical
