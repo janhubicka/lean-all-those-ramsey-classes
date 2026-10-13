@@ -177,26 +177,28 @@ theorem inducedClosed2019_completion_of_saturated_projected_cover
       (Source.induce SR) (D.induce R0) pR :=
     IsClosedUHomomorphismEmbedding.of_comp_homomorphisms hpRHom hRInc
       (hpAbs.comp ((inclusion Source SR).isClosedUHomomorphismEmbedding rules))
-  have hRootMap : ∀ x : SL ∩ SR, p x.1 ∈ H := by
+  have hRootMap : ∀ x : (SL ∩ SR : Set X), p x.1 ∈ H := by
     intro x
     rcases x.2.1 with hxS | hxH
     · rcases x.2.2 with hxT | hxH
       · exact hOverlap x.1 hxS hxT
       · exact hxH
     · exact hxH
-  let q : (SL ∩ SR) → H := fun x => ⟨p x.1, hRootMap x⟩
+  let q : (SL ∩ SR : Set X) → H := fun x => ⟨p x.1, hRootMap x⟩
   let aL : Embedding (D.induce H) (D.induce L0) := {
     toFun := fun x => ⟨x.1, hHL x.2⟩
     injective := by
       intro x y h
-      exact Subtype.ext (congrArg Subtype.val h)
+      apply Subtype.ext
+      exact congrArg (fun z : L0 => z.1) h
     map_rel_iff := fun _ _ => Iff.rfl
   }
   let aR : Embedding (D.induce H) (D.induce R0) := {
     toFun := fun x => ⟨x.1, hHR x.2⟩
     injective := by
       intro x y h
-      exact Subtype.ext (congrArg Subtype.val h)
+      apply Subtype.ext
+      exact congrArg (fun z : R0 => z.1) h
     map_rel_iff := fun _ _ => Iff.rfl
   }
   obtain ⟨XL, hXL, TL, hTL, _, fL, hfL⟩ :=
@@ -216,13 +218,13 @@ theorem inducedClosed2019_completion_of_saturated_projected_cover
     (jL.isClosedUHomomorphismEmbedding rules).comp (hfL.comp hpL)
   have hgR : IsClosedUHomomorphismEmbedding rules (Source.induce SR) Target gR :=
     (jR.isClosedUHomomorphismEmbedding rules).comp (hfR.comp hpR)
-  have hRootL : ∀ r : SL ∩ SR,
+  have hRootL : ∀ r : (SL ∩ SR : Set X),
       pL (exactFreeCoverRootToLeft Source SL SR r) = aL (q r) :=
     fun _ => Subtype.ext rfl
-  have hRootR : ∀ r : SL ∩ SR,
+  have hRootR : ∀ r : (SL ∩ SR : Set X),
       pR (exactFreeCoverRootToRight Source SL SR r) = aR (q r) :=
     fun _ => Subtype.ext rfl
-  have hCompat : ∀ r : SL ∩ SR,
+  have hCompat : ∀ r : (SL ∩ SR : Set X),
       gL (exactFreeCoverRootToLeft Source SL SR r) =
         gR (exactFreeCoverRootToRight Source SL SR r) := by
     intro r
