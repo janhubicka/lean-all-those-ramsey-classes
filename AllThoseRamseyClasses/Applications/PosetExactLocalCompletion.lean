@@ -38,7 +38,7 @@ def FiniteEdgeWalk {V : Type v} (p : V → V → Prop)
 finite directed walk, then it contains the endpoint comparison. -/
 theorem finiteEdgeWalk_transitive_endpoints
     {V : Type v} {p q : V → V → Prop}
-    (hqRefl : Reflexive q) (hqTrans : Transitive q)
+    (hqRefl : (∀ a : V, q a a)) (hqTrans : (∀ a b c : V, q a b → q b c → q a c))
     (n : ℕ) (w : Fin (n + 1) → V)
     (hw : FiniteEdgeWalk p n w)
     (hpq : ∀ i : Fin n, q (w i.castSucc) (w i.succ)) :
@@ -55,7 +55,7 @@ theorem finiteEdgeWalk_transitive_endpoints
         intro i
         exact hpq i.castSucc
       have hfirst : q (w 0) (w (Fin.castSucc (Fin.last n))) := by
-        simpa only [w'] using ih w' hw' hpq'
+        simpa [w'] using ih w' hw' hpq'
       have hlast : q (w (Fin.castSucc (Fin.last n)))
           (w (Fin.last (n + 1))) := by
         exact hpq (Fin.last n)
@@ -77,7 +77,7 @@ theorem poset_no_quasiCycle_from_exact_weak_local_tests
     (hLocal :
       ∀ S : Finset V, S.card ≤ Fintype.card D →
         ∃ q : V → V → Prop,
-          Reflexive q ∧ Transitive q ∧
+          (∀ a : V, q a a) ∧ (∀ a b c : V, q a b → q b c → q a c) ∧
           (∀ x y, x ∈ S → y ∈ S → p x y → q x y) ∧
           (∀ x y, x ∈ S → y ∈ S →
             ord x y → q x y → p x y))
@@ -96,7 +96,7 @@ theorem poset_no_quasiCycle_from_exact_weak_local_tests
   have hS : S.card ≤ Fintype.card D := by
     calc
       S.card ≤ Fintype.card (Fin (n + 1)) := by
-        simpa [S] using Finset.card_image_le Finset.univ w
+        simpa [S] using (Finset.card_image_le (s := Finset.univ) (f := w))
       _ = n + 1 := Fintype.card_fin _
       _ ≤ Fintype.card D := hbound
   obtain ⟨q, hqRefl, hqTrans, hpq, hReflect⟩ := hLocal S hS
