@@ -20,12 +20,12 @@ The working manuscript has already applied the coordinated Definition 2.15 / Def
 
 Each run completed the full module build, permitted-axiom audit, regressions, and admission scan. No general higher-rank claim follows from these source-cardinality special cases.
 
-## Direct two-vertex theorem and cutoff-two endgame (PR #188)
+## Direct two-vertex theorem and cutoff-two endgame — verified and merged PR #188
 
-New declarations:
+New declarations, both in namespace `AllThoseRamseyClasses.Published`:
 
-* `ExactWeakTwoVertex2019.inducedClosed2019_exact_weak_card_le_two_completion` (file stem followed by declaration name; namespace is `AllThoseRamseyClasses.Published`).
-* `InducedClosed2019CutoffTwo.coordinated2019_cutoff_two_unrestricted_induced` (same namespace convention).
+* `inducedClosed2019_exact_weak_card_le_two_completion` in `AllThoseRamseyClasses/Published/ExactWeakTwoVertex2019.lean`.
+* `coordinated2019_cutoff_two_unrestricted_induced` in `AllThoseRamseyClasses/Published/InducedClosed2019CutoffTwo.lean`.
 
 The first theorem removes the native active-line and external old-rank assumptions from the two-vertex completion problem entirely. The second constructs the actual K-Ramsey witness whenever the exact local-completion cutoff is <=2. It allows the original Ramsey control to be nonclosed and does not take a rank-increment constructor as a premise.
 
@@ -52,7 +52,10 @@ Use the already constructed unrestricted Lemma 2.28 to obtain a closed Ramsey Pi
 ### Validation record
 
 PR #188 proof head: `f0395a205022a145f2f84efbc7bea6740039d03b`.
-Full module build succeeded in run `38461482875`; the complete axiom/regression result is pending at the time of this entry. Do not promote the new declarations to green until that result is recorded.
+Successful complete GitHub Actions run: `38461482875`, job `115517483846`.
+The full module build, permitted-axiom audit, finite regressions, and admission scan all passed. Both new declarations depend only on `propext`, `Classical.choice`, and `Quot.sound`. The logs report no unsupported axioms and no admissions.
+
+PR #188 was squash-merged as `daec134f9400f8816e4d89b07f7327074cd24d52`. These exact restricted declarations are verified; the unrestricted main theorem is not. Verification was performed by GitHub Actions, not by a local Lean installation.
 
 ## Exact unresolved implication
 
