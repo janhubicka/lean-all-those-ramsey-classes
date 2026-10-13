@@ -1,68 +1,66 @@
 # Current main-theorem status — 13 October 2026
 
-This file is the current summary. `validation-status.md` and the dated native-history notes retain the detailed development history; older statements that Lemma 2.28 is still missing are superseded here.
+This is the current summary. The dated validation ledger and older native-history notes remain the historical record. The unrestricted initial Picture is no longer missing.
 
-## Verdict and corrected statement
+## Verdict and exact semantics
 
-**The unrestricted coordinated 2019 Theorem 2.18 remains open. There is ONE remaining constructor, not two.**
+**The unrestricted coordinated 2019 Theorem 2.18 is not yet fully formalized.** The original construction route has one missing general constructor: `Proposed2019RankIncrementStep` for every j>=1. A new profile / relational-sparsening route is developed in `docs/profile-sparsening-route-20261013.md`; its formalization is incomplete and is not an implicit replacement theorem.
 
-`InducedClosed2019UnrestrictedInitial.lean` already constructs corrected Lemma 2.28 over an arbitrary, possibly nonclosed Ramsey control (PR #121). Its theorem `coordinated2019_ramsey_of_higher_rank_constructor` reduces the main theorem to `Proposed2019RankIncrementStep` for every j >= 1. Finite iteration and the exact weak-test final transfer are proved conditionally on that constructor. The earlier two-constructor interface is historical, not the current list of obligations.
+Corrected Lemma 2.28 is constructed in `InducedClosed2019UnrestrictedInitial.lean`, including a possibly nonclosed original Ramsey control. The theorem `coordinated2019_ramsey_of_higher_rank_constructor` proves the final implication from the remaining rank increment. Finite iteration and exact weak-test transfer are checked at that conditional scope.
 
-The working manuscript has already applied the coordinated Definition 2.15 / Definition 2.17(4b) change: protected map tests and K-membership tests are the induced structures that are both intrinsically U-closed and U-irreducible. Intrinsic U-irreducibility itself is unchanged. Clause (4c) still quantifies over ALL original weak induced vertex sets of size at most n(B,C0). Do not replace those tests with generating sets or hulls. The 31 authorized working-edition edits are reversible; the separate TeX repository retains the published-source reconstruction audit.
+The coordinated repair of Definitions 2.15 and 2.17(4b) is applied to the working manuscript: protected maps and K-membership test precisely the induced structures that are both intrinsically U-closed and U-irreducible. Intrinsic irreducibility itself is unchanged. Clause (4c) still quantifies over EVERY original weak induced vertex set of size at most n(B,C0). The original control and cutoff must be fixed before constructing the candidate. The 31 authorized mathematical/mechanical working-edition changes remain reversible in the TeX repository.
 
-## Inherited PRs now reviewed, verified, and merged
+## Verified additions in this continuation
 
-| PR | Exact proved scope | Successful complete CI run | Merge |
+### PR #190: boundary saturation, with no added projected rank
+
+For a genuine free source cover S,T and a positive map p into D, let H be a relatively closed target boundary containing p(S intersect T). The saturated source pieces
+
+    S' = S union p^-1(H),      T' = T union p^-1(H)
+
+are relatively closed and form a free cover of the SAME original source. When H is contained in each original projected side hull, saturation leaves BOTH projected hulls exactly unchanged.
+
+The completion theorem glues the independently completed target pieces over the actual closed K-member D|H. It no longer requires intrinsic closedness or semiclosedness of the source, original sides, or original separator. It does not require source maximum rank or injectivity of p. The rank corollary still explicitly requires the two ORIGINAL absolute projected rank bounds; it does not claim these bounds follow from arbitrary properness.
+
+The unbounded corollary `inducedClosed2019_weak_two_irreducible_cover_completion` completes any weak source fully embedded in a closed B-covered ambient when it is a genuine free union of two ordinary irreducible pieces. There is no cardinal or generating-rank bound, and their intersection can be nonclosed and reducible.
+
+Seven audited declarations; proof head `3644bf01a1719f76be2feb808fef4808b428a880`; successful complete Lean CI `38470928703`, job `115549529914`; merged as `e1c4f95d9ffd6e52253289ac5bc7b22083da9f07`.
+
+### PR #191: ALL exact weak three-vertex tests and the actual cutoff-three endpoint
+
+`inducedClosed2019_exact_weak_card_le_three_completion` completes every original weak induced set of at most THREE vertices in a finite U-closed B-covered Picture. Assumptions are finite strong K-amalgamation, closed heredity, B in K, and ordinary irreducibility of K-members. No native-line, source-closedness, maximal-rank, or additional old-rank hypothesis occurs.
+
+Complete proof: ordinary irreducible sources complete through their actual closed hull and B-coverage. A reducible source on at most three vertices either has an isolated vertex or is a three-vertex path in its tuple adjacency. In the first case, a genuine disjoint free cover has sides of at most two vertices; the verified two-vertex theorem completes them, and the exact empty root is closed and in K by actual B-coverage, including nullary data. In the second case, the two edge pieces are ordinary irreducible and freely cover the original source, so PR190's unbounded two-piece theorem completes it. The formal geometric dichotomy is proved directly on ALL relation tuples and allows arbitrary relational arities, repeated tuple entries, and nullary symbols.
+
+`coordinated2019_cutoff_three_unrestricted_induced` constructs the actual finite K-Ramsey target whenever the genuine fixed local cutoff n(B,C0)<=3. It uses the unrestricted initial Picture, ALL required exact weak completions, the original local axiom, and B-copywise Ramsey transfer. It does not assume any missing rank constructor, and C0 may be nonclosed.
+
+Eight audited declarations; proof head `1d89a1a42775e81a6b9c8ca94b828b9d0fa4f6d5`; successful complete Lean CI `38472155600`, job `115554084651`; merged as `2a63fb9c89805614fafe83f08103861761b90cf2`. The consolidated main commit adds only the four new three-vertex files (444 lines), not duplicate saturation files.
+
+**Cardinality cutoff three is NOT generating rank three.** A closed hull generated by two or three vertices can be much larger. These results do not prove the general closed rank-one-to-rank-two increment.
+
+## Closure records for the alternative route — PR #192
+
+The new expansion records an actual closed induced H of fixed Base and a tuple generating H. A record is true precisely when a FULL embedding of H extends the displayed tuple. Full embeddings between closed structures preserve and reflect records: the realized H is forced into the relatively closed source image by its generators, then factors fully through that image.
+
+The implementation also constructs an actual common closed K-boundary from ANY finite weak overlap embedded fully into two matching canonical profile expansions, and proves that the profiled finite closed Base is hereditarily ordinarily irreducible. These are statements about the NEW expansion, not claims that all unexpanded native overlaps have compatible boundaries.
+
+Nine declarations have axiom checks in PR #192. The final source head is `356def3e6e840b857b01e805e651825c169d66f3`; its CI is pending at the time of this entry. The remaining alternate-route bridges are: strict-tree completion into canonical K-expansions; generic fresh-symbol closure tagging; transfer of BOTH tag normality and original root validity; final closed sparse witness and exact weak-test/control-map transfer. The detailed English construction records every step and the pitfalls.
+
+## Earlier verified checkpoints
+
+| PR | Exact scope | Successful CI | Merge |
 | --- | --- | --- | --- |
-| #185 | Two actual private-active labels imply literal REST root size + 2 <= source size. | 38457824272 | c08a2829934de690fed87d620b74a231aa8d698b |
-| #186 | Closed maximal-rank source with <=3 vertices and precisely two active labels, given old closed rank two, completes over its literal K-root. | 38458189850 | be7b579ce81e89d922a19c1a86ede598b4379247 |
-| #187 | Maximal weak source with <=2 vertices and precisely two active labels has an empty closed K-root; old closed rank one suffices. | 38459562397 | d1c376370f27148a6acc3db1a74a65ba4fcaa4c9 |
+| #185 | Literal two-REST root cardinality +2 <= source cardinality. | 38457824272 | c08a2829934de690fed87d620b74a231aa8d698b |
+| #186 | Closed maximal source <=3 vertices, exactly two active labels, old closed rank two. | 38458189850 | be7b579ce81e89d922a19c1a86ede598b4379247 |
+| #187 | Maximal weak source <=2 vertices, exactly two active labels, empty root, old rank one. | 38459562397 | d1c376370f27148a6acc3db1a74a65ba4fcaa4c9 |
+| #188 | ALL exact weak <=2 tests and actual Ramsey endpoint for n<=2. | 38461482875 | e8684e297974b0bfc0f63920892ccaf8c6a93f2d |
 
-Each run completed the full module build, permitted-axiom audit, regressions, and admission scan. No general higher-rank claim follows from these source-cardinality special cases.
+**Provenance correction:** an earlier version of this note and the TeX addendum incorrectly recorded `daec134f9400f8816e4d89b07f7327074cd24d52` for PR188. The live merged PR metadata confirms the correct squash commit is `e8684e297974b0bfc0f63920892ccaf8c6a93f2d`. The previously pinned proof head `f0395a205022a145f2f84efbc7bea6740039d03b` and successful CI run `38461482875` were already correct; the proof content and certificate scope are unchanged.
 
-## Direct two-vertex theorem and cutoff-two endgame — verified and merged PR #188
+## Remaining original-construction obligation
 
-New declarations, both in namespace `AllThoseRamseyClasses.Published`:
+The native j->j+1 argument must construct a new finite closed Ramsey Picture over the previous control, with the SAME protected-map and closed-irreducible coverage requirements, and completions of all CLOSED tests of GENERATING rank <=j+1.
 
-* `inducedClosed2019_exact_weak_card_le_two_completion` in `AllThoseRamseyClasses/Published/ExactWeakTwoVertex2019.lean`.
-* `coordinated2019_cutoff_two_unrestricted_induced` in `AllThoseRamseyClasses/Published/InducedClosed2019CutoffTwo.lean`.
+Boundary saturation removes source-side closedness assumptions when one common protected projection and a suitable closed K-boundary are available. It does not construct that common projection for arbitrary native histories or prove either absolute projected side-rank budget. The core-crossing counterexample still rules out inferring a free cover from two transverse Hales--Jewett copy ranges. The general theorem and native Lemma 2.30 remain partial.
 
-The first theorem removes the native active-line and external old-rank assumptions from the two-vertex completion problem entirely. The second constructs the actual K-Ramsey witness whenever the exact local-completion cutoff is <=2. It allows the original Ramsey control to be nonclosed and does not take a rank-increment constructor as a premise.
-
-### Complete English proof of the direct theorem
-
-Let C be a finite U-closed Picture with original closed U-irreducible B-copy coverage, B in K. Assume finite strong amalgamation, closed heredity of K, and ordinary irreducibility of K-members. Fix the ORIGINAL weak induced source F=C|S with |S|<=2.
-
-Closed rank-one completion in C is automatic: a closed rank-one induced structure is U-irreducible, hence embeds into B by coverage.
-
-If USize(F)<=1, its actual ambient closed hull H satisfies USize(H)<=USize(F)<=1. Thus H is closed and U-irreducible, embeds into B, and its embedding restricts to F. This is restriction of an embedding first obtained on the whole hull, NOT an arbitrary extension of a weak generating-set completion.
-
-If F is ordinarily irreducible, its ambient hull is again closed U-irreducible and embeds into B. Restrict that embedding to F.
-
-In the remaining case USize(F)>1 and F is ordinarily reducible. Since USize(F)<=|F|<=2, its intrinsic rank equals its vertex cardinality. Take any genuine proper free decomposition F=L amalgam_H R. Both sides have at most one vertex. The common carrier H is empty: if h were in H, every right vertex would equal its image; overlap and vertex coverage would make the left embedding surjective, contradicting properness.
-
-Every closure rule has a nonempty root, so the exact empty H is U-closed. It is ordinarily irreducible. Its ACTUAL embedding into C gives, by B-coverage, a full embedding into B; closed heredity yields H in K. This explicitly respects nullary relational data. An arbitrary empty function is not being falsely declared a full embedding.
-
-Both source sides have their actual full embeddings into C. They each have at most one vertex, so the old closed rank-one invariant applies after the checked image/hull construction. The common boundary is the same literal closed K-member H. Apply the audited `inducedClosed2019_maximal_weak_two_old_maps_glue_of_closed_K_root`, with Old=C and rank=1. It completes the original F. This exhausts all cases.
-
-### Complete endgame at n <= 2
-
-Use the already constructed unrestricted Lemma 2.28 to obtain a closed Ramsey Picture C over the original control C0, with protected projection and closed-irreducible B-copy coverage. The direct theorem completes every original weak test on at most n<=2 vertices. Closed heredity supplies the exact K-membership clause. Invoke the fixed-cutoff local completion hypothesis on C, then the checked B-copywise Ramsey transfer. The target is a finite member of K with the required Ramsey arrow.
-
-### Validation record
-
-PR #188 proof head: `f0395a205022a145f2f84efbc7bea6740039d03b`.
-Successful complete GitHub Actions run: `38461482875`, job `115517483846`.
-The full module build, permitted-axiom audit, finite regressions, and admission scan all passed. Both new declarations depend only on `propext`, `Classical.choice`, and `Quot.sound`. The logs report no unsupported axioms and no admissions.
-
-PR #188 was squash-merged as `daec134f9400f8816e4d89b07f7327074cd24d52`. These exact restricted declarations are verified; the unrestricted main theorem is not. Verification was performed by GitHub Actions, not by a local Lean installation.
-
-## Exact unresolved implication
-
-For every j>=1, the actual `Proposed2019RankIncrementStep` must turn a finite closed control D with its Ramsey arrow, corrected closed-irreducible coverage, and completions of all CLOSED induced tests of GENERATING rank <=j into a new finite closed Ramsey Picture over D with the same properties at rank j+1.
-
-The missing native argument must jointly construct a true free source split, a common closed K-boundary with compatible FULL embeddings into both completion targets, and BOTH absolute projected rank-j bounds. A separator contributes to these bounds and cannot simply be discarded.
-
-The Boolean core-crossing counterexample rules out the claim that two transverse Hales--Jewett COPY ranges automatically form a free relational cover. Complementary RESTS give a real cover in the checked cases, but an arbitrary core root need not be closed or in K. A possibly noninjective protected completion of that root in A is not a pair of compatible full embedded boundaries.
-
-**Cardinality cutoff two is not generating rank two.** A rank-two closed hull can have more than two vertices. The new theorem therefore does not supply even the general closed rank-one-to-rank-two constructor. No full Lemma 2.30 or unrestricted Theorem 2.18 marker may be promoted on this basis.
+All claimed verification in this ledger was performed by GitHub Actions. No local Lean build is claimed. Only the standard logical axioms `propext`, `Classical.choice`, and `Quot.sound` are permitted; the original theorem must never be marked green merely because a conditional implication has a green audit.
