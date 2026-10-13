@@ -80,7 +80,7 @@ theorem exact2019_free_cover_iff_source_tuple_local
       exact hz
     simpa only [Set.preimage_id] using
       (positive2019_pullback_exact_free_cover
-        (f := fun x : U => x) hId S T hCover hTuples)
+        (f := (id : U → U)) hId S T hCover hTuples)
 
 /-- One original positive relation tuple not wholly in EITHER
 selected source side proves that these two exact induced sides
@@ -91,7 +91,7 @@ by CI-green two-copy native completion PR #172. -/
 theorem exact2019_not_free_of_crossing_source_tuple
     {U : Type v}
     (A : RelStructure L U) (S T : Set U)
-    (hCross : ∃ R (z : Fin (L.arity R) → U),
+    (hCross : ∃ R, ∃ z : Fin (L.arity R) → U,
       A.rel R z ∧
       ¬ (∀ k, z k ∈ S) ∧
       ¬ (∀ k, z k ∈ T)) :
