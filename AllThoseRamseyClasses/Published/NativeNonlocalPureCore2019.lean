@@ -136,4 +136,62 @@ theorem native2019_nonlocal_positive_source_tuple_is_pure_core
     Old Support Core maps i j R (p ∘ xs)
     (hp R xs hxs) hCovered hNonI hNonJ
 
+
+/-- To verify the original exact two-copy SOURCE tuple-localization,
+it suffices to check tuples whose ENTIRE native image is in the
+power core. Every other native relation tuple is automatically
+local to one of the two attached copy images, provided ALL source
+vertices are covered by those two images.
+
+This is a useful strictly more TARGETED premise for the existing
+true two-copy K-completion theorem. It does not presume core
+tuples localize automatically. -/
+theorem native2019_two_copy_source_tuples_local_of_core_tuples_local
+    {U V W I : Type v}
+    (Source : RelStructure L U)
+    (Old : RelStructure L V)
+    (Support : Set V)
+    (Core : RelStructure L W)
+    (maps : I → Embedding (Old.induce Support) Core)
+    (p : U → Vertex Support (W := W) (I := I))
+    (hp : Source.IsHomomorphism (attach Old Support Core maps) p)
+    (i j : I)
+    (hVertices : ∀ x : U,
+      InCopy Old Support Core maps i (p x) ∨
+      InCopy Old Support Core maps j (p x))
+    (hCoreTuples : ∀ R (xs : Fin (L.arity R) → U),
+      Source.rel R xs →
+      (∀ k, ∃ w : W, p (xs k) = Sum.inl w) →
+      (∀ k, InCopy Old Support Core maps i (p (xs k))) ∨
+      (∀ k, InCopy Old Support Core maps j (p (xs k)))) :
+    ∀ R (xs : Fin (L.arity R) → U),
+      Source.rel R xs →
+      (∀ k, InCopy Old Support Core maps i (p (xs k))) ∨
+      (∀ k, InCopy Old Support Core maps j (p (xs k))) := by
+  classical
+  intro R xs hxs
+  by_cases hLocal :
+      (∀ k, InCopy Old Support Core maps i (p (xs k))) ∨
+      (∀ k, InCopy Old Support Core maps j (p (xs k)))
+  · exact hLocal
+  · have hNotI :
+        ¬ ∀ k, InCopy Old Support Core maps i (p (xs k)) := by
+      intro h
+      exact hLocal (.inl h)
+    have hNotJ :
+        ¬ ∀ k, InCopy Old Support Core maps j (p (xs k)) := by
+      intro h
+      exact hLocal (.inr h)
+    have hCovered :
+        ∀ k, InCopy Old Support Core maps i (p (xs k)) ∨
+          InCopy Old Support Core maps j (p (xs k)) :=
+      fun k => hVertices (xs k)
+    have hCore :
+        ∀ k, ∃ w : W, p (xs k) = Sum.inl w :=
+      native2019_nonlocal_positive_source_tuple_is_pure_core
+        Source Old Support Core maps p hp
+        i j R xs hxs hCovered hNotI hNotJ
+    exact hCoreTuples R xs hxs hCore
+
+
 end AllThoseRamseyClasses.Published
