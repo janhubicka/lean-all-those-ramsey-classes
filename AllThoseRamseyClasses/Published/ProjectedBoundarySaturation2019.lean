@@ -8,9 +8,9 @@ import PartiteConstruction.Ramsey.ClosureRelativeMapGlue
 For a genuine free source cover S,T and a positive map p into D, let H
 be a relatively U-closed TARGET set containing p(S intersect T).
 The enlarged source sides S union p^-1(H) and T union p^-1(H) are
-relatively U-closed, freely cover the SAME original source, and have
-intersection exactly p^-1(H). Neither the source nor its original cut
-is assumed intrinsically closed; p need not be injective.
+relatively U-closed and freely cover the SAME original source.
+Their intersection is exactly p^-1(H). Neither the source nor its
+original cut is assumed intrinsically closed; p need not be injective.
 
 If H is already contained in the projected closed hull of a source
 side, saturation does not enlarge that projected hull. Thus it costs
@@ -201,6 +201,12 @@ theorem inducedClosed2019_completion_of_saturated_projected_cover
   }
   have hAbs : HasClosedUKCompletion K rules Source :=
     HasClosedUKCompletion.of_independent_projected_completions_relative
+      (Root := Source.induce (SL ∩ SR))
+      (Left := Source.induce SL) (Right := Source.induce SR)
+      (Whole := Source)
+      (sL := exactFreeCoverRootToLeft Source SL SR)
+      (sR := exactFreeCoverRootToRight Source SL SR)
+      (iL := inclusion Source SL) (iR := inclusion Source SR)
       rules hStrong hKIrr hFree hSLRange hSRRange
       (D.induce H) hHK hHClosed
       (D.induce L0) (D.induce R0) pL pR hpL hpR q aL aR
