@@ -121,7 +121,9 @@ theorem native2019_positive_two_rest_source_free
             (i := i) j hij.symm (ys t)
         have hEq : z t = copyMap Old Support Core maps j (ys t) :=
           congrFun heq t
-        simpa only [hEq] using hNot
+        change ¬ OutsideAt (W := W) (I := I) Support i (z t)
+        rw [hEq]
+        exact hNot
       · left
         intro t
         have hNot :
@@ -133,7 +135,9 @@ theorem native2019_positive_two_rest_source_free
             (i := j) k hkj (ys t)
         have hEq : z t = copyMap Old Support Core maps k (ys t) :=
           congrFun heq t
-        simpa only [hEq] using hNot
+        change ¬ OutsideAt (W := W) (I := I) Support j (z t)
+        rw [hEq]
+        exact hNot
   exact positive2019_pullback_exact_free_cover
     hp LeftTarget RightTarget hCover hTuples
 
