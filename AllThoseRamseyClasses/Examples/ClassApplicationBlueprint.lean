@@ -63,7 +63,7 @@ theorem ramsey_of_checked_class_fields
     exact hLocal B C0 hB hC0
   have hClass : IsCoordinated2019MultiamalgamationClass R K rules :=
     ⟨hInduced, hIso⟩
-  exact coordinated2019_ramsey_by_profile_sparsening (L := L)
+  exact coordinated2019_ramsey_by_profile_sparsening.{u,v} (L := L)
     R K rules hAmbient hAmbientIrred hClass
 
 /-- A second convenient form: the coordinated hypothesis is
@@ -77,7 +77,7 @@ theorem ramsey_of_coordinated_hypothesis
       R C → C.Irreducible)
     (hClass : IsCoordinated2019MultiamalgamationClass R K rules) :
     FiniteRamseyClass K :=
-  coordinated2019_ramsey_by_profile_sparsening (L := L)
+  coordinated2019_ramsey_by_profile_sparsening.{u,v} (L := L)
     R K rules hAmbient hAmbientIrred hClass
 
 end AllThoseRamseyClasses.Examples
