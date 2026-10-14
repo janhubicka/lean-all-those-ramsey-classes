@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Applications.PosetReflexiveExactLocal
+import AllThoseRamseyClasses.Applications.PosetReflexiveCompletion
 import AllThoseRamseyClasses.Applications.PosetTransitiveClosure
 import Mathlib.Data.List.Chain
 import Mathlib.Data.Fintype.Card
@@ -34,14 +35,14 @@ vertices as control values, and in particular its exact vertex
 support passes the original local cutoff. -/
 theorem poset_isChain_support_card_bound
     {V : Type v} {D : Type w}
-    [LinearOrder D] [Fintype D]
+    [LinearOrder D] [Fintype D] [DecidableEq V]
     (p : V → V → Prop) (f : V → D)
     (hStrict : ∀ x y : V, p x y → f x < f y)
     (l : List V) (hl : List.IsChain p l) :
     l.toFinset.card ≤ Fintype.card D := by
   classical
   have hStrictChain : List.IsChain (· < ·) (l.map f) :=
-    List.IsChain.isChain_map_of_isChain f
+    List.isChain_map_of_isChain f
       (fun a b hab => hStrict a b hab) hl
   have hPairwise : List.Pairwise (· < ·) (l.map f) :=
     List.isChain_iff_pairwise.mp hStrictChain
