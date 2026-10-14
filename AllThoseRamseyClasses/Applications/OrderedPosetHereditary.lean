@@ -30,8 +30,12 @@ theorem edge_embedding_iff
     (e : Embedding A B)
     (R : Symbol) (x y : U) :
     edge B R (e x) (e y) ↔ edge A R x y := by
-  simpa [edge, Function.comp_def] using
-    (e.map_rel_iff R (![x, y] : Fin 2 → U))
+  have ht : e ∘ ![x, y] = ![e x, e y] := by
+    funext i
+    fin_cases i <;> rfl
+  change B.rel R ![e x, e y] ↔ A.rel R ![x, y]
+  rw [← ht]
+  exact e.map_rel_iff R ![x, y]
 
 /-- Every full embedded substructure of an ordered poset is a member.
 In particular, the ambient finite-order/strictness and all negative
