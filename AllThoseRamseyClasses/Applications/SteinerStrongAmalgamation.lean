@@ -45,8 +45,8 @@ private theorem covered_pair_from_one_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
   · right
     refine ⟨t 0, t 1, ?_, ?_, ?_⟩
     · change Right.rel .covered ![t 0, t 1]
@@ -55,8 +55,8 @@ private theorem covered_pair_from_one_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
 
 /-- The same side localization works for each complete block tuple. -/
 private theorem block_from_one_side
@@ -84,9 +84,9 @@ private theorem block_from_one_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
-    · simpa only [Function.comp_apply] using congrFun hEq 2
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 2
   · right
     refine ⟨t 0, t 1, t 2, ?_, ?_, ?_, ?_⟩
     · change Right.rel .block ![t 0, t 1, t 2]
@@ -95,9 +95,9 @@ private theorem block_from_one_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
-    · simpa only [Function.comp_apply] using congrFun hEq 2
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 2
 
 /-- Unique completion of a covered pair follows from intrinsic
 closedness; we use the exact original root, not a newly generated hull. -/
