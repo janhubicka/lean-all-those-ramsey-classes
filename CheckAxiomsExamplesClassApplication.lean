@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Examples.ClassApplicationBlueprint
-
-#print axioms AllThoseRamseyClasses.Examples.coordinated_class_of_checked_fields
-#print axioms AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis

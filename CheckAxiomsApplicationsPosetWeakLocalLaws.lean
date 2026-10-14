@@ -1,8 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetWeakLocalLaws
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_singleton_in_K
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_binary_seed_in_K
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_equiv_refl
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_equiv_implies_lt
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_no_mate
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_lt_irrefl

@@ -10,18 +10,18 @@ partial-order and empty auxiliary symbols as the 2019 manuscript.
 The ordinary order symbol `.lt` represents STRICT order, while
 `.equiv` represents the REFLEXIVE partial order.
 
-Everything required by the coordinated repaired 2019 class interface
-has now been constructed EXCEPT the exact local-completion axiom,
-which is formulated here using its original weak-test cardinal bound
-`n(B,C0) = Nat.card Y` on the ORIGINAL control C0.
+This interface packages the exact local-completion axiom as the one
+remaining *input to this module*, using its original weak-test cardinal
+bound `n(B,C0) = Nat.card Y` on the ORIGINAL control C0.
+The later PosetRamseyTheorem module proves that input unconditionally.
 
 The theorems in this file discharge ALL OTHER fields explicitly,
 and conclude the Ramsey theorem conditionally on exactly this
 remaining local-completion statement. They do NOT assume an arbitrary
 Ramsey theorem or a general sparse witness as a hidden hypothesis.
 
-This file is a verified interface/blueprint, not a proof of
-`orderedPosetClass` Ramsey until its local condition is established.
+This file alone is a conditional interface/blueprint; the completed
+Ramsey-class application is in PosetRamseyTheorem.
 -/
 
 namespace AllThoseRamseyClasses.Applications.OrderedPosets

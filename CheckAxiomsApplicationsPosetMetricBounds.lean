@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetMetricBounds
-
-#print axioms AllThoseRamseyClasses.Applications.quasiCycle_control_card_bound
-#print axioms AllThoseRamseyClasses.Applications.nonmetric_cycle_card_bound

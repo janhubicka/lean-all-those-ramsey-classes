@@ -17,9 +17,11 @@ This file retains the PAPER'S quantifiers on exact induced substructures:
 * (4c) covers EVERY weak induced subset S with S.card <= n;
 * final completion respects copies of B, not all of C.
 
-The first theorem below isolates the missing sparse-Picture constructor.
-Its constructor premise is an EXPLICIT proposition, not a theorem, axiom,
-class instance, or proof of Theorem 2.18. The second theorem transfers
+The first theorem below isolates a sparse-Picture constructor as an explicit
+premise; the actual constructor is proved separately in
+Coordinated2019ProfileSparseWitness. This conditional interface predates
+that proof and is not itself the final Theorem 2.18 endpoint.
+The second theorem transfers
 an independently obtained ABSTRACT protected rank invariant through the
 precise induced local axiom; no higher-rank increment is asserted.
 -/
@@ -72,9 +74,9 @@ def InducedClosed2019Theorem218Target : Prop :=
     InducedClosed2019MultiamalgamationClass R K rules →
     FiniteRamseyClass K
 
-/-- The exact finite output of the still-missing repaired 2019
-partite/Picture construction. Every small test is the ORIGINAL
-induced vertex set and is allowed to be nonclosed. -/
+/-- The exact finite output required of the repaired 2019
+partite/Picture construction, now supplied by the profile proof.
+Every small test is the ORIGINAL induced vertex set and is allowed to be nonclosed. -/
 def HasInducedClosed2019SparseWitness
     (K : StructureClass.{u,v} (L := L))
     (rules : ClosureDescription L)
@@ -96,7 +98,8 @@ def HasInducedClosed2019SparseWitness
 as a hypothesis. The proof applies Definition 2.17(4) at the fixed
 n(B,C0), then the original B-copywise Ramsey transfer.
 
-No assertion about the existence of the construction is made. -/
+Existence is not asserted *by this conditional interface*; the separate
+profile-sparsening module constructs its witness unconditionally. -/
 theorem inducedClosed2019_ramsey_of_sparse_witnesses
     (R K : StructureClass.{u,v} (L := L))
     (rules : ClosureDescription L)

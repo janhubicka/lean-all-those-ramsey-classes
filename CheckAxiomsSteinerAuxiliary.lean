@@ -1,0 +1,65 @@
+import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
+import AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure
+import AllThoseRamseyClasses.Applications.SteinerOrderPushout
+import AllThoseRamseyClasses.Applications.SteinerStrongEmbedding
+import AllThoseRamseyClasses.Applications.SteinerTripleClass
+import AllThoseRamseyClasses.Applications.SteinerTripleHereditary
+import AllThoseRamseyClasses.Applications.SteinerTripleIsomorphism
+import AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit
+import AllThoseRamseyClasses.Examples.ClassApplicationBlueprint
+
+/-!
+# Kernel-axiom certificates: Steiner triples and auxiliary examples
+
+These 28 `#print axioms` and 0 `#check` commands are retained
+verbatim from the individually compiled certificates listed below.
+No class-level Steiner Ramsey theorem is asserted by these checks.
+-/
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerAmbientRamsey.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_subset_ambient
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steinerAmbient_irreducible
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.arrow_nameExternal
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.name_ordered_auxiliaryReduct_eq
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerAmbient_isRamsey
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerFreeAmalgamClosure.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_blockRules_closed
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_unique_block_extension
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerHereditary.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.covered_root_of_embedding
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_of_closed_embedding
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_closedUHereditary
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerIso.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isomorphismClosed
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerOrderPushout.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderShadowEmbedding
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderShadow_ambient
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_compatible_label
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_order_extension
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerStrong.lean
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.edge_embedding_iff
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.triple_embedding_iff
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.embedding_no_exterior_block_of_uncovered
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.embedding_block_third_vertex_in_range
+
+-- Preserved certificate from CheckAxiomsApplicationsSteinerTriple.lean
+/-! Axiom audit: faithful root, irreducibility, and genuine U-closedness. -/
+
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.pairRoot_irreducible
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_irreducible
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isUClosed
+
+-- Preserved certificate from CheckAxiomsApplicationsUnaryRootedClosure.lean
+#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.generatedClosure_full
+#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.unrooted_two_cycle_closures_equal
+#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.naive_unrooted_closure_not_injective
+#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.rootedClosure_injective
+
+-- Preserved certificate from CheckAxiomsExamplesClassApplication.lean
+#print axioms AllThoseRamseyClasses.Examples.coordinated_class_of_checked_fields
+#print axioms AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis

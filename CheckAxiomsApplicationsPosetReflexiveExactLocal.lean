@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetReflexiveExactLocal
-
-#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_no_quasiCycle_from_exact_weak_local_tests

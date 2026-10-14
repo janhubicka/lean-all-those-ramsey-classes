@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetTransitiveClosure
-
-#print axioms AllThoseRamseyClasses.Applications.poset_transGen_strict_control
-#print axioms AllThoseRamseyClasses.Applications.posetReachClosure_is_partial_order
-#print axioms AllThoseRamseyClasses.Applications.posetReachClosure_control_of_ne

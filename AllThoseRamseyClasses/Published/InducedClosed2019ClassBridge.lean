@@ -24,9 +24,9 @@ The core ingredients are:
   (independently audited in InducedClosedLogicalDirection);
 * every remaining class axiom is literally identical.
 
-No sparse/Picture witness is constructed by this file, and neither
-the library's unrestricted abstract theorem nor the proposed
-corrected Theorem 2.18 is asserted to hold.
+This interface file constructs no Picture witness. The unrestricted
+revised relational theorem is proved separately, by the explicit
+profile-sparsening witness in Coordinated2019ProfileSparseWitness.
 -/
 
 namespace AllThoseRamseyClasses.Published
@@ -104,7 +104,8 @@ def Coordinated2019Theorem218Target : Prop :=
 /-- Conditional reduction from the hypothetical complete abstract
 closed-test theorem to the corrected 2019 theorem. No missing
 constructor is hidden: the ENTIRE abstract theorem is an explicit
-hypothesis. The positive Ramsey theorem remains open. -/
+hypothesis. The direct positive Ramsey theorem is now established separately in
+Coordinated2019ProfileSparseWitness, so users should import that endpoint. -/
 theorem coordinated2019_target_of_abstract_target
     (hAbstract : AbstractClosed2019Theorem218Target.{u,v} (L := L)) :
     Coordinated2019Theorem218Target.{u,v} (L := L) := by

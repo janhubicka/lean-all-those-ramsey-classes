@@ -1,8 +1,0 @@
-import AllThoseRamseyClasses.Published.GeneratedClosureProfiles2019
-
-#print axioms AllThoseRamseyClasses.Published.generated2019_realization_in_closed_range
-#print axioms AllThoseRamseyClasses.Published.closureProfileEmbedding2019
-#print axioms AllThoseRamseyClasses.Published.closureProfileForgetEmbedding2019
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_irreducible
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_arrow
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_transport_boundary_record

@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Applications.OrderedPosetClass
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_subset_ambient
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_irreducible
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_order_extension
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetAmbient_isRamsey

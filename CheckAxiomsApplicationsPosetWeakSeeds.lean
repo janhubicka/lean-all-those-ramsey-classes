@@ -1,7 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetWeakIrreducibleSeeds
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.weak_pair_irreducible_of_positive_edge
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.weak_pair_K_of_positive_edge
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.weak_singleton_irreducible
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.weak_poset_reflexivity_from_tests
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.weak_poset_edge_implies_original_order

@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetLocalTestTransport
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_exact_weak_completions_supply_local_relations
