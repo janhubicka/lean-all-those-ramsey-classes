@@ -40,6 +40,8 @@ jobs:
           set -euo pipefail
           mapfile -t modules < <(find AllThoseRamseyClasses -name '*.lean' -type f | sort | sed -e 's#/#.#g' -e 's#\.lean$##')
           lake build AllThoseRamseyClasses "${modules[@]}"
+      - name: Audit import graph and source integrity
+        run: python3 scripts/audit_library.py
       - name: Check theorem axioms
         run: |
           set -euo pipefail

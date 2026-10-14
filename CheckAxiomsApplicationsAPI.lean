@@ -1,0 +1,13 @@
+import AllThoseRamseyClasses.ApplicationsAPI
+
+-- Machine-checked named researcher endpoints.
+#check AllThoseRamseyClasses.Published.coordinated2019_theorem218
+#check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass
+#check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_exactLocalAtControlCard
+#check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isCoordinated2019Multiamalgamation
+#check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey
+
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_theorem218
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_exactLocalAtControlCard
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isCoordinated2019Multiamalgamation
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey
