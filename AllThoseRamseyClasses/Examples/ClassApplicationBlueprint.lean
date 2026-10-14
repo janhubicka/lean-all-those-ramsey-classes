@@ -27,15 +27,12 @@ open AllThoseRamseyClasses.Published
 universe u v
 variable {L : RelLanguage.{u}}
 
-/-- Assemble an application from the separate fields and apply the
-proved theorem. All fields are explicit, including the often
-overlooked isomorphism-invariance and exact local-completion axiom. -/
-theorem ramsey_of_checked_class_fields
+/-- Build the *entire corrected paper-style class record* from its
+separately checked field hypotheses. No Ramsey assumption on K
+is introduced here; local completion remains an explicit obligation. -/
+theorem coordinated_class_of_checked_fields
     (R K : StructureClass.{u,v} (L := L))
     (rules : ClosureDescription L)
-    (hAmbient : FiniteRamseyClass R)
-    (hAmbientIrred : ∀ {X : Type v} (C : RelStructure L X),
-      R C → C.Irreducible)
     (hSubset : ∀ {X : Type v} (C : RelStructure L X),
       K C → R C)
     (hFinite : ∀ {X : Type v} (C : RelStructure L X),
@@ -49,22 +46,18 @@ theorem ramsey_of_checked_class_fields
       K B → R C0 →
       ∃ n : ℕ, InducedClosedULocalCompletionAt K rules B C0 n)
     (hIso : IsomorphismClosed2019 K) :
-    FiniteRamseyClass K := by
-  have hInduced : InducedClosed2019MultiamalgamationClass R K rules := by
-    refine {
-      subset := hSubset
-      finite := hFinite
-      closed := hClosed
-      hereditary := hHereditary
-      strong := hStrong
-      localCompletion := ?_
-    }
-    intro X Y hFiniteX hFiniteY B C0 hB hC0
-    exact hLocal B C0 hB hC0
-  have hClass : IsCoordinated2019MultiamalgamationClass R K rules :=
-    ⟨hInduced, hIso⟩
-  exact coordinated2019_ramsey_by_profile_sparsening.{u,v} (L := L)
-    R K rules hAmbient hAmbientIrred hClass
+    IsCoordinated2019MultiamalgamationClass R K rules := by
+  refine ⟨?_, hIso⟩
+  refine {
+    subset := hSubset
+    finite := hFinite
+    closed := hClosed
+    hereditary := hHereditary
+    strong := hStrong
+    localCompletion := ?_
+  }
+  intro X Y hFiniteX hFiniteY B C0 hB hC0
+  exact hLocal B C0 hB hC0
 
 /-- A second convenient form: the coordinated hypothesis is
 exactly the complete paper-style record (plus explicit isomorphism
