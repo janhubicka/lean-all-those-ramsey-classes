@@ -9,13 +9,13 @@ floating main if reproducibility matters.
 [[require]]
 name = "lean-all-those-ramsey-classes"
 git = "https://github.com/janhubicka/lean-all-those-ramsey-classes.git"
-rev = "aabd0c639ad10ef21892057df65e78d1442d99c1"
+rev = "e185d6105ac80643bf81b1cc3c4cbd8d11eee6c0"
 ```
 
-The indicated working-branch revision includes the curated public imports
-and verified poset application. For long-term use, replace it with the
-latest **merged, full-CI-verified** main-branch SHA; see the
-[Lean workflow](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/workflows/lean.yml).
+The pinned revision is the merged curated-API and wiki commit, whose
+complete PR build and permitted-axiom audit passed in
+[run 38639438183](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38639438183).
+For future updates use a later SHA only after its full workflow passes.
 
 ```lean
 import AllThoseRamseyClasses.PublicAPI
