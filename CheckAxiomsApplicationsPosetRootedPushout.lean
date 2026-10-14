@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.PosetRootedPushoutRelation
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_refl
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_trans
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_left_iff
