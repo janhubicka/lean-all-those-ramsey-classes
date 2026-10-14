@@ -48,7 +48,7 @@ abbrev pairRoot : RelStructure Lang (Fin 2) where
     | .covered, t => t 0 = 0 ∧ t 1 = 1
     | .block, _ => False
 
-private theorem pairRoot_irreducible : pairRoot.Irreducible := by
+theorem pairRoot_irreducible : pairRoot.Irreducible := by
   intro a b hab
   fin_cases a <;> fin_cases b
   · exact False.elim (hab rfl)
