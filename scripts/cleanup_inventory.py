@@ -37,6 +37,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure",
     "AllThoseRamseyClasses.Applications.SteinerOrderPushout",
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
+    "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
 }
 missing = sorted(ACTIVE - sources.keys())
