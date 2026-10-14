@@ -228,7 +228,7 @@ relevant application module:
 
 | Application | Verified entry points | What is **not yet certified** |
 | --- | --- | --- |
-| **Ordered posets with a linear extension** | `Applications/OrderedPosetClass.lean`, `PosetAmalgamationOrder.lean`, `PosetGlobalQuasiCycle.lean`, `PosetExactWeakCompletion.lean` | Precise assembled corrected multiamalgamation-class instance and final Ramsey declaration. The relation `.lt` is strict even when the manuscript uses reflexive \(\le\). |
+| **Ordered posets with a linear extension** | `Applications/OrderedPosetClass.lean`, `PosetAmalgamationOrder.lean`, `PosetGlobalQuasiCycle.lean`, `PosetExactWeakCompletion.lean`, `PosetStrongAmalgamation.lean` | **Strong amalgamation is proved** (`orderedPosetClass_strongAmalgamation`, CI-green PR #218). Still missing: assembled exact corrected local-completion class instance and final Ramsey declaration. The relation `.lt` is strict even when the manuscript uses reflexive \(\le\). |
 | **Freely ordered partial Steiner triples, strong embeddings** | `SteinerTripleClass.lean`, `SteinerStrongEmbedding.lean`, `SteinerTripleIsomorphism.lean`, `SteinerAmbientRamsey.lean` | Actual strong-amalgamation, local-completion and final class theorem. The binary *covered-pair* marker makes embeddings strong; arbitrary orders are allowed. |
 | **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact \(\oplus_S\) specialization and full convexly ordered \(S\)-metric Ramsey theorem. |
 | **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | The rooted-quotient Ramsey construction, especially for countable targets. |
