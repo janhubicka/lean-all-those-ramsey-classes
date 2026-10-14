@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalStrictSparsening2019
+
+#print axioms AllThoseRamseyClasses.Published.ordinary_to_closed2019_of_hereditarily_irreducible_base
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_strict_functional_sparse_witness
