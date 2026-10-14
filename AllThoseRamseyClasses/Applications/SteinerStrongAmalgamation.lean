@@ -38,13 +38,25 @@ private theorem covered_pair_from_one_side
   rcases (hFree.rel_iff .covered ![x,y]).mp ht with
       ⟨t, hRel, hEq⟩ | ⟨t, hRel, hEq⟩
   · left
-    refine ⟨t 0, t 1, hRel, ?_, ?_⟩
-    · exact (congrFun hEq 0).symm
-    · exact (congrFun hEq 1).symm
+    refine ⟨t 0, t 1, ?_, ?_, ?_⟩
+    · change Left.rel .covered ![t 0, t 1]
+      have ht : (![t 0, t 1] : Fin 2 → E) = t := by
+        funext i
+        fin_cases i <;> rfl
+      rw [ht]
+      exact hRel
+    · simpa only [Function.comp_apply] using congrFun hEq 0
+    · simpa only [Function.comp_apply] using congrFun hEq 1
   · right
-    refine ⟨t 0, t 1, hRel, ?_, ?_⟩
-    · exact (congrFun hEq 0).symm
-    · exact (congrFun hEq 1).symm
+    refine ⟨t 0, t 1, ?_, ?_, ?_⟩
+    · change Right.rel .covered ![t 0, t 1]
+      have ht : (![t 0, t 1] : Fin 2 → F) = t := by
+        funext i
+        fin_cases i <;> rfl
+      rw [ht]
+      exact hRel
+    · simpa only [Function.comp_apply] using congrFun hEq 0
+    · simpa only [Function.comp_apply] using congrFun hEq 1
 
 /-- The same side localization works for each complete block tuple. -/
 private theorem block_from_one_side
@@ -65,15 +77,27 @@ private theorem block_from_one_side
   rcases (hFree.rel_iff .block ![x,y,z]).mp ht with
       ⟨t, hRel, hEq⟩ | ⟨t, hRel, hEq⟩
   · left
-    refine ⟨t 0, t 1, t 2, hRel, ?_, ?_, ?_⟩
-    · exact (congrFun hEq 0).symm
-    · exact (congrFun hEq 1).symm
-    · exact (congrFun hEq 2).symm
+    refine ⟨t 0, t 1, t 2, ?_, ?_, ?_, ?_⟩
+    · change Left.rel .block ![t 0, t 1, t 2]
+      have ht : (![t 0, t 1, t 2] : Fin 3 → E) = t := by
+        funext i
+        fin_cases i <;> rfl
+      rw [ht]
+      exact hRel
+    · simpa only [Function.comp_apply] using congrFun hEq 0
+    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa only [Function.comp_apply] using congrFun hEq 2
   · right
-    refine ⟨t 0, t 1, t 2, hRel, ?_, ?_, ?_⟩
-    · exact (congrFun hEq 0).symm
-    · exact (congrFun hEq 1).symm
-    · exact (congrFun hEq 2).symm
+    refine ⟨t 0, t 1, t 2, ?_, ?_, ?_, ?_⟩
+    · change Right.rel .block ![t 0, t 1, t 2]
+      have ht : (![t 0, t 1, t 2] : Fin 3 → F) = t := by
+        funext i
+        fin_cases i <;> rfl
+      rw [ht]
+      exact hRel
+    · simpa only [Function.comp_apply] using congrFun hEq 0
+    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa only [Function.comp_apply] using congrFun hEq 2
 
 /-- Unique completion of a covered pair follows from intrinsic
 closedness; we use the exact original root, not a newly generated hull. -/
@@ -162,6 +186,10 @@ theorem orderedSteinerClass_strongAmalgamation :
       intro R t
       cases R with
       | order =>
+        have ht : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [ht]
         change (@LT.lt P o.toLT (iL (t 0)) (iL (t 1))) ↔
           edge Left .order (t 0) (t 1)
         exact hOrderL _ _
@@ -177,6 +205,10 @@ theorem orderedSteinerClass_strongAmalgamation :
       intro R t
       cases R with
       | order =>
+        have ht : t = ![t 0, t 1] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [ht]
         change (@LT.lt P o.toLT (iR (t 0)) (iR (t 1))) ↔
           edge Right .order (t 0) (t 1)
         exact hOrderR _ _
@@ -217,9 +249,9 @@ theorem orderedSteinerClass_strongAmalgamation :
       rcases covered_pair_from_one_side hFree hxy with
         ⟨a,b,hab,rfl,rfl⟩ | ⟨a,b,hab,rfl,rfl⟩
       · obtain ⟨e, he0, he1⟩ := hLeft.covered_root a b hab
-        exact ⟨jL.comp e, he0, he1⟩
+        exact ⟨jL.comp e, congrArg jL he0, congrArg jL he1⟩
       · obtain ⟨e, he0, he1⟩ := hRight.covered_root a b hab
-        exact ⟨jR.comp e, he0, he1⟩
+        exact ⟨jR.comp e, congrArg jR he0, congrArg jR he1⟩
     · intro x y z hxyz
       rcases block_from_one_side hFree hxyz with
         ⟨a,b,c,habc,rfl,rfl,rfl⟩ |
