@@ -9,12 +9,13 @@ floating main if reproducibility matters.
 [[require]]
 name = "lean-all-those-ramsey-classes"
 git = "https://github.com/janhubicka/lean-all-those-ramsey-classes.git"
-rev = "013e6af860b3b3abda61881ed52038e6333ee74e"
+rev = "aabd0c639ad10ef21892057df65e78d1442d99c1"
 ```
 
-The indicated revision has the fully green ordered-poset application
-and the two Steiner components merged; follow later validated commits
-for the curated import and wiki additions.
+The indicated working-branch revision includes the curated public imports
+and verified poset application. For long-term use, replace it with the
+latest **merged, full-CI-verified** main-branch SHA; see the
+[Lean workflow](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/workflows/lean.yml).
 
 ```lean
 import AllThoseRamseyClasses.PublicAPI
