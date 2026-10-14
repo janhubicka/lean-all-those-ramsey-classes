@@ -36,6 +36,27 @@ and [`docs/coordinated-profile-proof-20261013.md`](docs/coordinated-profile-proo
 For detailed theorem signatures, semantic subtleties and a migration guide,
 see [**Public API reference**](docs/public-api-reference.md).
 
+## Find the theorem or definition you need
+
+| You want to… | Start here |
+| --- | --- |
+| State the **proved** corrected 2019 Theorem 2.18 | [Main theorem](#main-proved-theorems) and `coordinated2019_theorem218` |
+| Define roots, closure, weak substructures and generators | [Core mathematical objects](#core-mathematical-objects) |
+| Decide which completion map is legal | [Literal versus corrected interfaces](#which-completion-and-class-predicates-should-i-use) |
+| Apply the theorem to a **new class** | [Compiled class-field tutorial](#applying-the-validated-theorem-to-a-new-class) |
+| Look up an exact name, namespace, import or field | [Public API reference](docs/public-api-reference.md) and [machine-checked symbol inventory](CheckAxiomsPublicAPI.lean) |
+| Use the finite ordered partial-function theorem | [Theorem 2.19](#main-proved-theorems) |
+| Study the proof construction | [Proof ingredients](#reusable-construction-lemmas) and [English proof](docs/coordinated-profile-proof-20261013.md) |
+| Check what is verified in the examples | [Application status](#applications-verified-components-vs-open-class-corollaries) |
+
+The single stable research import is
+`AllThoseRamseyClasses.PublicAPI`. It re-exports the proved
+corrected theorem and the foundational definitions in the pinned
+`partite-construction` dependency. **Do not confuse “this declaration
+has type `P → Q`” with a proof of `Q`**: conditional lemmas and
+unproved class-instance hypotheses are kept explicit. Historical
+refutations and uncompleted old proof routes live in separate modules.
+
 ## Getting started
 
 The curated, researcher-facing import is:
@@ -174,6 +195,57 @@ The exact bridge
 `IsCoordinated2019MultiamalgamationClass.toAbstract`
 is checked separately. For induced versus embedded hereditary
 conditions, see `closedHereditary2019_iff_embedded`.
+
+## Applying the validated theorem to a new class
+
+For a new application, define finite relational classes
+`R` (ambient) and `K` (the desired Ramsey class), with a
+`ClosureDescription L`. You need to supply **all** of these
+mathematical obligations; they correspond exactly to the exported
+`IsCoordinated2019MultiamalgamationClass` record.
+
+| Proof obligation | What you must establish |
+| --- | --- |
+| `FiniteRamseyClass R` and `R C → C.Irreducible` | The ambient relational class is Ramsey and all its members are ordinarily irreducible. |
+| `subset` / `finite` | Every `K`-member belongs to `R` and has a finite carrier. |
+| `closed` | Every `K`-member is intrinsically `U`-closed. |
+| `hereditary` | **Exact induced** `U`-closed substructures of `K`-members remain in `K`. |
+| `strong` | Real finite strong amalgamation over full `K`-members: only the prescribed common vertices overlap. |
+| `localCompletion` | For **each** `B ∈ K` and **original** `C0 ∈ R`, select a fixed `n(B,C0)`. Whenever a candidate `C` has the corrected control map, closed-irreducible `K`-tests, and completions of **all original weak induced** `S` with `|S| ≤ n`, provide a `K`-completion preserving every `B`-copy. |
+| `iso` | `K` is invariant under surjective full embeddings (isomorphisms). A raw Lean `StructureClass` does not guarantee this. |
+
+Once these are proved, the theorem produces the Ramsey property
+**without** an additional partite-construction hypothesis:
+
+```lean
+import AllThoseRamseyClasses.Examples.ClassApplicationBlueprint
+
+#check AllThoseRamseyClasses.Examples.ramsey_of_checked_class_fields
+#check AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis
+```
+
+The full [class-field blueprint](AllThoseRamseyClasses/Examples/ClassApplicationBlueprint.lean)
+is **Lean code checked by CI**, with an axiom audit. It constructs
+`InducedClosed2019MultiamalgamationClass`, packages it with
+`IsomorphismClosed2019` and applies
+`coordinated2019_ramsey_by_profile_sparsening`. It is a
+*conditional application template*, not a claim that any particular
+class satisfies the listed fields.
+
+As a concrete encoding example, [Steiner triples](AllThoseRamseyClasses/Applications/SteinerTripleClass.lean)
+use a `covered` **binary root marker** and a ternary `block`
+closure relation. The root is an **increasing covered pair**, not
+every pair, and a full relational embedding is the intended
+*strong subsystem* embedding. Its closure description is
+`SteinerTriples.blockRules`; see the verified
+`orderedSteiner_isUClosed`, `orderedSteiner_closedUHereditary`,
+and `orderedSteinerAmbient_isRamsey` components.
+The **Steiner class Ramsey corollary is not yet Lean-verified**.
+
+For ordered posets, the full strong-amalgamation class hypothesis
+**is verified** in `PosetStrongAmalgamation.lean`. The remaining
+application issue is the *exact weak-subset local-completion axiom*,
+not the already proved general corrected Theorem 2.18.
 
 ## Main proved theorems
 
