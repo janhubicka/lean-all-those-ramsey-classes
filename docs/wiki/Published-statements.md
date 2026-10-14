@@ -52,7 +52,7 @@ by `IsCoordinated2019MultiamalgamationClass`.
 | Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` | Closure of a free amalgam over a closed common root |
 | Lemma 2.28, revised closed-test Picture | `lemma_2_28_coordinated_unrestricted_induced` | Proved |
 | Lemma 2.29, revised closed-test coverage | `lemma_2_29_coordinated_induced_full` | Proved |
-| Lemma 2.30, original rank-increment proof | Manuscript proof | Not certified by the alternative Lean proof |
+| Lemma 2.30, original rank-increment proof | Manuscript proof | Separate proof audit; not established by the alternative construction |
 | Posets with chosen linear extension | `orderedPoset_isRamsey` | Full class-level Ramsey theorem proved |
 | Ordered Steiner triples | `Steiner*` application components | Only identified components proved; class conclusion pending |
 

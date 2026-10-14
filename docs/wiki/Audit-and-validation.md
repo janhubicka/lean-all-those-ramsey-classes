@@ -32,7 +32,7 @@ to the public status table.
 ## Proof integrity
 
 GitHub Actions builds the curated library and individual retained
-modules, then compiles the named `CheckAxioms*.lean` endpoints.
+modules, checks their protected-root reachability, then compiles the named `CheckAxioms*.lean` endpoints.
 The permitted axioms are `propext`, `Classical.choice` and
 `Quot.sound`. The import and source audit rejects missing
 imports, cycles, `sorry`, `admit` and additional local axioms.

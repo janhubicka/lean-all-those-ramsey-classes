@@ -10,7 +10,7 @@ in [Published statements](Published-statements.md). This documents
 the scope of the certificate without taking a position on the
 original published wording; a revised manuscript and possible
 future errata are separate author decisions.
-A genuine **finite ordered-poset Ramsey-class theorem** is now proved
+The **finite ordered-poset Ramsey-class theorem** is proved
 in Lean as a completed application. The independent ordered
 partial-function theorem 2.19 is in the pinned dependency.
 

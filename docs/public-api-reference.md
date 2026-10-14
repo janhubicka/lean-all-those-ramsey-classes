@@ -305,10 +305,6 @@ reverse this logical direction.
 * `lemma_2_28_coordinated_unrestricted_induced`
   constructs a closed initial Ramsey Picture over the
   originally selected (possibly nonclosed) control.
-* `coordinated2019_cutoff_three_unrestricted_induced`
-  provides a separately constructed theorem for fixed
-  local cutoffs at most three; it is a historical partial
-  milestone, not an extra hypothesis for the general one.
 
 **Construction and transport theorems:**
 
@@ -369,11 +365,12 @@ completion and **reflects comparisons on originally ordered pairs**.
 The second produces a linear order on a strong vertex pushout
 extending both side orders. The third, verified separately in PR #218,
 constructs the **actual finite strong amalgam of ordered posets**,
-including the induced partial-order relations. These components
-still need the precise paper-style 2019 local-completion bridge
-and final corrected class-level Ramsey theorem.
+including the induced partial-order relations. The full class-level conclusion is now separately proved by
+`AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey`;
+the exact weak local-completion bridge was discharged in PR #227.
 The original paper writes reflexive $\le$, whereas the
-named Lean order symbol `.lt` is **strict**. Do not confuse them.
+named Lean order symbol `.lt` is **strict**. The completed class
+theorem uses the equivalent strict-order representation.
 
 For freely ordered partial Steiner triples:
 ```lean
@@ -410,9 +407,10 @@ The project CI builds all files in
 `AllThoseRamseyClasses/`, runs every axiom checker, and
 rejects `sorry`/`admit`. Green declarations permit only
 `propext`, `Classical.choice` and `Quot.sound`.
-The historical literal 2019 theorem and the (4b)-only
-repair have separately recorded audit results; alternative unfinished
-native rank proofs remain audit modules.
+This library proves the revised relational formulation with both
+Definition 2.15 and Definition 2.17(4b) updated together.
+Historical proof explorations have been removed from the maintained
+source tree and remain available in Git history.
 
 When citing this library, distinguish:
 

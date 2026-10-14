@@ -325,10 +325,11 @@ Each repository change is built by
    `AllThoseRamseyClasses/`, even if not in the umbrella import;
 2. runs every `CheckAxioms*.lean` and
    [`scripts/check_axioms.py`](scripts/check_axioms.py);
-3. runs only retained, theorem-relevant regressions;
+3. verifies the reachable proof/active-application module graph;
 4. runs the entire-source import, axiom-declaration and admission audit
    `python3 scripts/audit_library.py`, preserving optional research modules;
-5. rejects source admissions such as `sorry` and `admit`.
+5. independently runs the deletion/reachability invariant
+   `scripts/cleanup_inventory.py --verify`, and rejects any admissions.
 
 Only Lean's standard `propext`, `Classical.choice`, and
 `Quot.sound` are permitted for green theorems. A checked theorem
