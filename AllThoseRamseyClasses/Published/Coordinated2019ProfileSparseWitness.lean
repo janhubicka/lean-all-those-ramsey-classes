@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Published.ProfileStrictTreeCompletion2019
 import AllThoseRamseyClasses.Published.ProfileRootTagTransfer2019
 import AllThoseRamseyClasses.Published.InducedClosed2019UnrestrictedInitial
+import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
 import PartiteConstruction.Iterated.SparseningStrictBaseIrreducible
 
 /-!
