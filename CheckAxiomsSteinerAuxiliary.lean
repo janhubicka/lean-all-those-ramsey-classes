@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.SteinerLocalCompletion
 import AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation
 import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
 import AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure
@@ -66,3 +67,8 @@ No class-level Steiner Ramsey theorem is asserted by these checks.
 #print axioms AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis
 
 #print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerClass_strongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_block_unique_of_UClosed
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_exactLocal_zero
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isCoordinated2019Multiamalgamation
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isRamsey
