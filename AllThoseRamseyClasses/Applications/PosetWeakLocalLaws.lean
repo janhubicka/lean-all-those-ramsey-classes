@@ -36,7 +36,7 @@ private theorem empty_rules_closed {V : Type}
     (A : RelStructure Lang V) :
     IsUClosed (∅ : ClosureDescription Lang) A := by
   intro rule hrule
-  exact (Set.not_mem_empty rule hrule).elim
+  simp at hrule
 
 /-- The original exact one-vertex induced test is in K.
 No relation on the vertex is needed for the singleton
