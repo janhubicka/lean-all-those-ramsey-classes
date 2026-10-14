@@ -13,6 +13,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Review retired-module plan
+        run: python3 scripts/cleanup_inventory.py --plan
   build:
     runs-on: ubuntu-latest
     steps:
