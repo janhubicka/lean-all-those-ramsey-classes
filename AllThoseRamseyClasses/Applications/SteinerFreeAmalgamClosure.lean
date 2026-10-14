@@ -71,8 +71,7 @@ theorem steiner_freeAmalgam_unique_block_extension
     steiner_freeAmalgam_blockRules_closed
       Root Left Right hRoot hLeft hRight sL sR
   have hRule : blockRule ∈ blockRules := by
-    simp only [blockRules, Set.mem_singleton_iff]
-    rfl
+    simp [blockRules]
   exact (hClosed blockRule hRule).2 e
 
 end AllThoseRamseyClasses.Applications.SteinerTriples
