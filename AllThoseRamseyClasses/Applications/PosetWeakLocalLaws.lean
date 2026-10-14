@@ -50,8 +50,8 @@ theorem poset_weak_singleton_in_K
   let S : Set V := {x}
   have hIrr : (C.induce S).Irreducible := by
     intro a b hab
-    have hA : a.1 = x := by simpa [S] using a.2
-    have hB : b.1 = x := by simpa [S] using b.2
+    have hA : a.1 = x := Set.mem_singleton_iff.mp a.2
+    have hB : b.1 = x := Set.mem_singleton_iff.mp b.2
     exact (hab (Subtype.ext (hA.trans hB.symm))).elim
   exact hTests S (empty_rules_closed (C.induce S))
     (hIrr.isUIrreducible (∅ : ClosureDescription Lang))
@@ -73,7 +73,9 @@ theorem poset_weak_binary_seed_in_K
     (edge_embedding_iff (inclusion C S) R sx sy).mp hRel
   have hPoint : ∀ t : S, t = sx ∨ t = sy := by
     intro t
-    have ht : t.1 = x ∨ t.1 = y := by simpa [S] using t.2
+    have ht : t.1 = x ∨ t.1 = y := by
+      have h : t.1 ∈ ({x,y} : Set V) := t.2
+      simpa only [Set.mem_insert_iff, Set.mem_singleton_iff] using h
     rcases ht with ht | ht
     · exact Or.inl (Subtype.ext ht)
     · exact Or.inr (Subtype.ext ht)
