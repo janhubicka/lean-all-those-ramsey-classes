@@ -29,6 +29,21 @@ open StructuralRamsey.RelStructure
 open AllThoseRamseyClasses.Published
 open AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
 
+/-- An induced relation tuple on two old vertices retains
+EXACTLY the original positive and negative relation information. -/
+theorem weak_edge_induce_iff
+    {V : Type} (C : RelStructure Lang V) (S : Set V)
+    (R : Symbol) (a b : S) :
+    edge (C.induce S) R a b ↔ edge C R a.1 b.1 := by
+  have ht :
+      (Subtype.val ∘ ![a, b] : Fin 2 → V) =
+        ![a.1, b.1] := by
+    funext i
+    fin_cases i <;> rfl
+  change C.rel R (Subtype.val ∘ ![a, b]) ↔
+    C.rel R ![a.1, b.1]
+  rw [ht]
+
 /-- A binary relation between distinct old vertices witnesses
 irreducibility on the EXACT two-vertex induced source, without
 replacing this source by a closure or a target image. -/
@@ -47,9 +62,8 @@ theorem weak_pair_irreducible_of_positive_edge
     rcases ha with ha | ha
     · left; exact Subtype.ext ha
     · right; exact Subtype.ext ha
-  have hRelation : (C.induce S).rel R ![sx, sy] := by
-    change C.rel R ![x, y]
-    exact hEdge
+  have hRelation : (C.induce S).rel R ![sx, sy] :=
+    (weak_edge_induce_iff C S R sx sy).mpr hEdge
   intro a b hab
   rcases hElem a with ha | ha <;> rcases hElem b with hb | hb
   · exact False.elim (hab (ha.trans hb.symm))
@@ -67,7 +81,7 @@ theorem isUClosed_empty_description
     {V : Type} (C : RelStructure Lang V) :
     IsUClosed (∅ : ClosureDescription Lang) C := by
   intro rule h
-  exact (Set.not_mem_empty rule h).elim
+  simp at h
 
 /-- Membership tests for the corrected class force every original
 binary edge's exact two-vertex support to be an ordered poset. -/
@@ -78,10 +92,11 @@ theorem weak_pair_K_of_positive_edge
     (R : Symbol) (x y : V) (hne : x ≠ y)
     (hEdge : edge C R x y) :
     orderedPosetClass (C.induce ({x, y} : Set V)) := by
+  have hIrred : (C.induce ({x, y} : Set V)).Irreducible :=
+    weak_pair_irreducible_of_positive_edge C R x y hne hEdge
   exact hTests ({x, y} : Set V)
     (isUClosed_empty_description _)
-    ((weak_pair_irreducible_of_positive_edge C R x y hne hEdge).
-      isUIrreducible (∅ : ClosureDescription Lang))
+    (hIrred.isUIrreducible (∅ : ClosureDescription Lang))
 
 /-- A singleton induced source is always ordinarily irreducible. -/
 theorem weak_singleton_irreducible
@@ -105,12 +120,13 @@ theorem weak_poset_reflexivity_from_tests
     ∀ x : V, edge C .equiv x x := by
   intro x
   let S : Set V := {x}
+  have hIrred : (C.induce S).Irreducible :=
+    weak_singleton_irreducible C x
   have hK : orderedPosetClass (C.induce S) :=
     hTests S (isUClosed_empty_description _)
-      ((weak_singleton_irreducible C x).
-        isUIrreducible (∅ : ClosureDescription Lang))
+      (hIrred.isUIrreducible (∅ : ClosureDescription Lang))
   have hLoop := hK.2.1 (⟨x, by simp [S]⟩ : S)
-  exact hLoop
+  exact (weak_edge_induce_iff C S .equiv _ _).mp hLoop
 
 /-- On distinct vertices an original positive E-edge forces a
 positive original strict order edge. This is NOT assumed globally
@@ -132,10 +148,9 @@ theorem weak_poset_edge_implies_original_order
   have hNe : sx ≠ sy := by
     intro h
     exact hne (congrArg Subtype.val h)
-  have hPositive : edge (C.induce S) .equiv sx sy := by
-    change C.rel .equiv ![x, y]
-    exact hEdge
+  have hPositive : edge (C.induce S) .equiv sx sy :=
+    (weak_edge_induce_iff C S .equiv sx sy).mpr hEdge
   have hOrder := hK.2.2.2.2.1 sx sy hNe hPositive
-  exact hOrder
+  exact (weak_edge_induce_iff C S .lt sx sy).mp hOrder
 
 end AllThoseRamseyClasses.Applications.OrderedPosets
