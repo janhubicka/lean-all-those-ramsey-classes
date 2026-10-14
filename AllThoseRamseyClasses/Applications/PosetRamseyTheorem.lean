@@ -1,6 +1,6 @@
 import AllThoseRamseyClasses.Applications.PosetFinalInterface
 import AllThoseRamseyClasses.Applications.PosetWeakLocalLaws
-import AllThoseRamseyClasses.Applications.PosetWeakSmallCompletionTransport
+import AllThoseRamseyClasses.Applications.PosetLocalTestTransport
 import AllThoseRamseyClasses.Applications.PosetExactWeakCompletion
 
 /-!
