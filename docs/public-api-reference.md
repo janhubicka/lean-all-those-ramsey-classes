@@ -226,7 +226,7 @@ has fields:
 | `closed` | All `K`-members are intrinsically `U`-closed |
 | `hereditary` | Every **induced U-closed** substructure of a `K`-member is in `K` |
 | `strong` | Two `K`-members have a finite strong amalgam over a common **K-member**, with no extra vertex identification |
-| `localCompletion` | For every finite `B ∈ K`, finite `C0 ∈ R`, choose a fixed \(n(B,C_0)\) satisfying the corrected exact weak-test implication |
+| `localCompletion` | For every finite `B ∈ K`, finite `C0 ∈ R`, choose a fixed $n(B,C_0)$ satisfying the corrected exact weak-test implication |
 
 `IsCoordinated2019MultiamalgamationClass` packages
 these six properties with an additional `iso` field:
@@ -362,7 +362,7 @@ constructs the **actual finite strong amalgam of ordered posets**,
 including the induced partial-order relations. These components
 still need the precise paper-style 2019 local-completion bridge
 and final corrected class-level Ramsey theorem.
-The original paper writes reflexive \(\le\), whereas the
+The original paper writes reflexive $\le$, whereas the
 named Lean order symbol `.lt` is **strict**. Do not confuse them.
 
 For freely ordered partial Steiner triples:
@@ -388,7 +388,7 @@ For the metric and unary audits, import
 `Applications.MetricJumpSandwich` and
 `Applications.UnaryRootedClosureAudit`. The first proves
 an algebraic idempotent sandwich lemma, not the full
-\(S\)-metric theorem; the latter refutes an unrooted
+$S$-metric theorem; the latter refutes an unrooted
 closure-quotient shortcut, not the countable unary Ramsey
 theorem.
 
