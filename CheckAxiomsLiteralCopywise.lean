@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Published.LiteralCompletionCopywise
-
-#print axioms AllThoseRamseyClasses.Published.IsUHomomorphismEmbedding.after_ordinary_irreducible
-#print axioms AllThoseRamseyClasses.Published.HasLiteralUKCompletion.toCopywise
-#print axioms AllThoseRamseyClasses.Published.CopywiseCompletion.precomp_embedding
-#print axioms AllThoseRamseyClasses.Published.HasCopywiseCompletion.precomp_embedding

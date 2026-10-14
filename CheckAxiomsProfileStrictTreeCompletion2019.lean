@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Published.ProfileStrictTreeCompletion2019
-
-#print axioms AllThoseRamseyClasses.Published.strict2019_root_factor_through_base
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_copywise_completion
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_completion
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_tree_completion_to_K

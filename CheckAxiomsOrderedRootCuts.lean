@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Published.OrderedRootCuts
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.strictOrder_embedding_iff
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_mono
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_agree_on_root

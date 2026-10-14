@@ -1,0 +1,120 @@
+import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
+import AllThoseRamseyClasses.Published.InducedClosed2019UnrestrictedInitial
+import AllThoseRamseyClasses.Published.InducedClosedLogicalDirection
+import AllThoseRamseyClasses.Published.LiteralCompletionCopywise
+import AllThoseRamseyClasses.Published.LiteralCounterexampleAssembly
+import AllThoseRamseyClasses.Published.LiteralDeletedOutputBound
+import AllThoseRamseyClasses.Published.OrderedCompatibleKeys
+import AllThoseRamseyClasses.Published.OrderedPushoutFromKeys
+import AllThoseRamseyClasses.Published.OrderedRankStrictness
+import AllThoseRamseyClasses.Published.OrderedRootCuts
+import AllThoseRamseyClasses.Published.ProfileRootTagLocalLaws2019
+import AllThoseRamseyClasses.Published.ProfileRootTagTransfer2019
+import AllThoseRamseyClasses.Published.ProfileStrictTreeCompletion2019
+
+/-!
+# Kernel-axiom certificates: map normalization, tags, sparsening and tests
+
+These 68 `#print axioms` and 0 `#check` commands are retained from the
+original individual certificate files, without weakening statements.
+-/
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019TestNormalization.lean
+-- Faithful 2019 semantics, including exact induced tested vertex sets.
+-- No higher-rank Picture constructor or general Ramsey result is asserted.
+#print axioms AllThoseRamseyClasses.Published.uIrreducible_of_closed_cover_2019
+#print axioms AllThoseRamseyClasses.Published.uIrreducible_of_surjective_embedding_2019
+#print axioms AllThoseRamseyClasses.Published.closedIrreducible_exact_induced_range_2019
+#print axioms AllThoseRamseyClasses.Published.IsInducedClosedUHomomorphismEmbedding.toAbstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedMap_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.correctedInducedCoverage_toAbstract_2019
+#print axioms AllThoseRamseyClasses.Published.correctedInducedCoverage_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedKCompletion_iff_abstract_2019
+#print axioms AllThoseRamseyClasses.Published.inducedClosedLocalCompletion_iff_abstract_2019
+
+-- Reusable exact protected-map composition, independent of native rank.
+#print axioms AllThoseRamseyClasses.Published.inducedClosedMap_comp_2019
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019UnrestrictedInitial.lean
+-- Actual constructed unrestricted Picture over the original, possibly
+-- nonclosed control. The retired native-rank conditionals are not APIs.
+#print axioms AllThoseRamseyClasses.Published.lemma_2_28_coordinated_unrestricted_induced
+
+-- Preserved certificate from CheckAxiomsInducedClosedLogicalDirection.lean
+#print axioms AllThoseRamseyClasses.Published.IsUHomomorphismEmbedding.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.IsClosedUHomomorphismEmbedding.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.ClosedUIrreduciblesIn.toCorrectedInduced
+#print axioms AllThoseRamseyClasses.Published.HasLiteralUKCompletion.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.HasClosedUKCompletion.toInducedClosed
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toCorrected4bOnly
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toLiteral
+#print axioms AllThoseRamseyClasses.Published.InducedClosedULocalCompletionAt.toAbstractClosed
+
+-- Preserved certificate from CheckAxiomsLiteralCopywise.lean
+#print axioms AllThoseRamseyClasses.Published.IsUHomomorphismEmbedding.after_ordinary_irreducible
+#print axioms AllThoseRamseyClasses.Published.HasLiteralUKCompletion.toCopywise
+#print axioms AllThoseRamseyClasses.Published.CopywiseCompletion.precomp_embedding
+#print axioms AllThoseRamseyClasses.Published.HasCopywiseCompletion.precomp_embedding
+
+-- Preserved certificate from CheckAxiomsLiteralCounterexample.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_literal_local_all
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_notRamsey
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePaired_literal_multiamalgamation_of_strong
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.literalTheorem218_implies_not_pairedStrong
+
+-- Preserved certificate from CheckAxiomsLiteralDeletion.lean
+#print axioms AllThoseRamseyClasses.Published.literalMap_embeds_deleted_output
+#print axioms AllThoseRamseyClasses.Published.literalMap_deleted_output_card_bound
+
+-- Preserved certificate from CheckAxiomsOrderedCompatibleKeys.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderKey_root_agree
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderKey_strictMono
+
+-- Preserved certificate from CheckAxiomsOrderedPushoutFromKeys.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.IsFreeAmalgam.exists_order_from_compatible_keys
+
+-- Preserved certificate from CheckAxiomsOrderedRankStrictness.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideOrderRank_strictMono
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_strict_after_root
+
+-- Preserved certificate from CheckAxiomsOrderedRootCuts.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.strictOrder_embedding_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_mono
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rootCut_agree_on_root
+
+-- Preserved certificate from CheckAxiomsProfileRootTag2019.lean
+#print axioms AllThoseRamseyClasses.Published.profileReductEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileRootTagReductEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileRootTagOriginalEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileRootTagEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileRootPatternOriginalEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileRootTagRule2019
+#print axioms AllThoseRamseyClasses.Published.profileTagNormalIdentity2019
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_closed_canonical
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_canonical_normal
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_canonical_old_valid
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_closed_of_original
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_original_closed_of_tagged
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_closed_iff_original
+#print axioms AllThoseRamseyClasses.Published.rootMatches2019_map_embedding
+#print axioms AllThoseRamseyClasses.Published.rootMatches2019_reflect_embedding
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_normal_of_embedding
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_old_valid_of_embedding
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_original_free
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_uIrreducible_of_original
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_local_laws_of_closed_coverage
+
+-- Preserved certificate from CheckAxiomsProfileRootTagTransfer2019.lean
+#print axioms AllThoseRamseyClasses.Published.profileTaggedCanonicalEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.profileReduct2019_ordinary
+#print axioms AllThoseRamseyClasses.Published.profileRootTagReduct2019_ordinary
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_arrow
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_forget_arrow
+#print axioms AllThoseRamseyClasses.Published.profileTag2019_original_closed_and_coverage
+#print axioms AllThoseRamseyClasses.Published.ordinary2019_corrected_of_closed_coverage
+
+-- Preserved certificate from CheckAxiomsProfileStrictTreeCompletion2019.lean
+#print axioms AllThoseRamseyClasses.Published.strict2019_root_factor_through_base
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_copywise_completion
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_completion
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_tree_completion_to_K

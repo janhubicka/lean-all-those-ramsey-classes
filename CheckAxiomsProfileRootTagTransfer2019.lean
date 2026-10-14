@@ -1,9 +1,0 @@
-import AllThoseRamseyClasses.Published.ProfileRootTagTransfer2019
-
-#print axioms AllThoseRamseyClasses.Published.profileTaggedCanonicalEmbedding2019
-#print axioms AllThoseRamseyClasses.Published.profileReduct2019_ordinary
-#print axioms AllThoseRamseyClasses.Published.profileRootTagReduct2019_ordinary
-#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_arrow
-#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_forget_arrow
-#print axioms AllThoseRamseyClasses.Published.profileTag2019_original_closed_and_coverage
-#print axioms AllThoseRamseyClasses.Published.ordinary2019_corrected_of_closed_coverage
