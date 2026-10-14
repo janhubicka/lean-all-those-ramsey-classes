@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.FunctionalStrictSparsening2019
+import PartiteConstruction.Functional.TupleEqualityPattern2019
 import PartiteConstruction.Functional.RankedEHNReduct
 import PartiteConstruction.Functional.RankedTreeReduct
 import PartiteConstruction.Functional.SingletonReduction
@@ -29,5 +30,6 @@ example : True := by trivial
 #check StructuralRamsey.Structure.Embedding.rankReduct
 #check StructuralRamsey.Structure.TreeAmalgam.rankExpand_treeReduct
 #check StructuralRamsey.Structure.arrow_of_singletonExpansion
+#check StructuralRamsey.Structure.exists_tuple_equality_pattern_exact
 
 end AllThoseRamseyClasses.Published
