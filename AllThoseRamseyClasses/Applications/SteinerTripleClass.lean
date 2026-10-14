@@ -124,8 +124,15 @@ theorem orderedSteiner_isUClosed {V : Type}
   subst rule
   constructor
   · intro t ht
+    have htBlock : triple C (t 0) (t 1) (t 2) := by
+      change C.rel .block ![t 0, t 1, t 2]
+      have htuple : (![t 0, t 1, t 2] : Fin 3 → V) = t := by
+        funext i
+        fin_cases i <;> rfl
+      rw [htuple]
+      exact ht
     obtain ⟨e, he0, he1⟩ :=
-      hC.covered_root (t 0) (t 1) (hC.block_valid _ _ _ ht)
+      hC.covered_root (t 0) (t 1) (hC.block_valid _ _ _ htBlock)
     refine ⟨e, ?_⟩
     intro i
     fin_cases i
@@ -134,7 +141,12 @@ theorem orderedSteiner_isUClosed {V : Type}
   · intro e
     have hRootCovered : edge pairRoot .covered 0 1 := by decide
     have hCovered : edge C .covered (e 0) (e 1) := by
-      change C.rel .covered (e ∘ ![(0 : Fin 2), 1])
+      change C.rel .covered ![e 0, e 1]
+      have htuple : (![e 0, e 1] : Fin 2 → V) =
+          e ∘ ![(0 : Fin 2), 1] := by
+        funext i
+        fin_cases i <;> rfl
+      rw [htuple]
       exact (e.map_rel_iff .covered ![(0 : Fin 2), 1]).mpr hRootCovered
     obtain ⟨z, hz⟩ := hC.covered_has_block (e 0) (e 1) hCovered
     refine ⟨![e 0, e 1, z], ⟨hz, ?_⟩, ?_⟩
