@@ -347,17 +347,21 @@ the separate countable-target unary-function construction.
 For ordered posets:
 ```lean
 import AllThoseRamseyClasses.Applications.PosetExactWeakCompletion
-import AllThoseRamseyClasses.Applications.PosetAmalgamationOrder
+import AllThoseRamseyClasses.Applications.PosetStrongAmalgamation
 
 #check AllThoseRamseyClasses.Applications.poset_reflexive_completion_of_exact_weak_local_tests
 #check AllThoseRamseyClasses.Applications.OrderedPosets.ambient_ordered_pushout_exists
+#check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_strongAmalgamation
 ```
 
 The first theorem produces a genuine finite-control weak local
 completion and **reflects comparisons on originally ordered pairs**.
 The second produces a linear order on a strong vertex pushout
-extending both side orders. Neither alone packages the
-2019 class-level local axiom or strong partial-order amalgamation.
+extending both side orders. The third, verified separately in PR #218,
+constructs the **actual finite strong amalgam of ordered posets**,
+including the induced partial-order relations. These components
+still need the precise paper-style 2019 local-completion bridge
+and final corrected class-level Ramsey theorem.
 The original paper writes reflexive \(\le\), whereas the
 named Lean order symbol `.lt` is **strict**. Do not confuse them.
 
