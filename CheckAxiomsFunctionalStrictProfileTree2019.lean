@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalStrictProfileTree2019
+
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_Uclosed_tree_completion
