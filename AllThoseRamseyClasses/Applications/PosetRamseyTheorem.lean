@@ -88,7 +88,7 @@ theorem orderedPoset_exactLocalAtControlCard :
         (∀ x y, x ∈ S → y ∈ S →
           (x = y ∨ edge C .lt x y) → q x y →
           edge C .equiv x y) :=
-    poset_weak_completion_produces_local_relation C hRefl hSmall'
+    poset_exact_weak_completions_supply_local_relations C hRefl hSmall'
   obtain ⟨o, q, hqRefl, hqTrans, hqAnti, hqPreserve, hqOrder,
       hOrderPreserve, hqReflect⟩ :=
     poset_reflexive_completion_of_exact_weak_local_tests
