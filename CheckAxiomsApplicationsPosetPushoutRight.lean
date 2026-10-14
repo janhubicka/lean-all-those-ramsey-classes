@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.PosetPushoutRightReflection
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_right_iff
