@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.PosetStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_strongAmalgamation
