@@ -1,3 +1,5 @@
+import AllThoseRamseyClasses.PublicAPI
+
 import AllThoseRamseyClasses.Published.Definitions
 import AllThoseRamseyClasses.Published.SingletonObstruction
 import AllThoseRamseyClasses.Published.PairedEquivalences
@@ -28,8 +30,10 @@ import AllThoseRamseyClasses.Published.NamedOrderLanguage
 
 import AllThoseRamseyClasses.Published.OrderedAmbientRamsey
 
--- Coordinated corrected 2019 definitions and constructively checked lemmas.
--- These imports do NOT prove the unrestricted repaired Theorem 2.18.
+-- Historical literal counterexamples and native-induction audit modules.
+-- The verified unrestricted corrected relational main theorem is exported
+-- above through PublicAPI; the original native rank-increment proof remains
+-- a separate, unresolved validation task.
 import AllThoseRamseyClasses.Published.InducedClosed2019MainTwoConstructors
 import AllThoseRamseyClasses.Published.InducedClosed2019NativeRankPreservation
 import AllThoseRamseyClasses.Published.InducedClosed2019RankSaturation
