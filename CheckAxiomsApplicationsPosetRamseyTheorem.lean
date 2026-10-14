@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_exactLocalAtControlCard
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isCoordinated2019Multiamalgamation
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey
