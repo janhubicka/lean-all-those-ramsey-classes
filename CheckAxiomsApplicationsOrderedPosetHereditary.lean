@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Applications.OrderedPosetHereditary
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_hereditary
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_isomorphismClosed
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_induced_hereditary

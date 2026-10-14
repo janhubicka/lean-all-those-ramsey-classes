@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetExactLocalCompletion
-
-#print axioms AllThoseRamseyClasses.Applications.finiteEdgeWalk_transitive_endpoints
-#print axioms AllThoseRamseyClasses.Applications.poset_no_quasiCycle_from_exact_weak_local_tests

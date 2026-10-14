@@ -1,0 +1,66 @@
+import AllThoseRamseyClasses.Applications.MetricJumpSandwich
+import AllThoseRamseyClasses.Applications.OrderedPosetClass
+import AllThoseRamseyClasses.Applications.OrderedPosetHereditary
+import AllThoseRamseyClasses.Applications.PosetAmalgamationOrder
+import AllThoseRamseyClasses.Applications.PosetExactLocalCompletion
+import AllThoseRamseyClasses.Applications.PosetExactWeakCompletion
+import AllThoseRamseyClasses.Applications.PosetFinalInterface
+import AllThoseRamseyClasses.Applications.PosetGlobalQuasiCycle
+import AllThoseRamseyClasses.Applications.PosetLocalTestTransport
+import AllThoseRamseyClasses.Applications.PosetMetricBounds
+
+/-!
+# Kernel-axiom certificates: completed ordered-poset application
+
+All original `#print axioms` commands are preserved with source labels;
+they cover the unconditional Ramsey theorem and its supporting lemmas.
+-/
+
+-- Preserved certificate from CheckAxiomsApplicationsMetricJumpSandwich.lean
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_absorb
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_le
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_eq
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_constant_on_parts
+
+-- Preserved certificate from CheckAxiomsApplicationsOrderedPosetClass.lean
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_subset_ambient
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_irreducible
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_order_extension
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetAmbient_isRamsey
+
+-- Preserved certificate from CheckAxiomsApplicationsOrderedPosetHereditary.lean
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_hereditary
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_isomorphismClosed
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPosetClass_induced_hereditary
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetAmalgamationOrder.lean
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_sideOrderRank_strictMono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_rootCut_mono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_rootCut_strict_after_root
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_sideOrderKey_strictMono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_ordered_pushout_exists
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetExactWeakCompletion.lean
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_completion_of_exact_weak_local_tests
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetFinalInterface.lean
+#check AllThoseRamseyClasses.Applications.OrderedPosets.OrderedPosetExactLocalAtControlCard
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_coordinatedClass_of_exactLocal
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_ramsey_of_exactLocal
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetGlobalQuasiCycle.lean
+#print axioms AllThoseRamseyClasses.Applications.poset_isChain_support_card_bound
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_no_quasiCycle_of_transGen
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_weak_local_reflects_reach
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetLocal.lean
+#print axioms AllThoseRamseyClasses.Applications.finiteEdgeWalk_transitive_endpoints
+#print axioms AllThoseRamseyClasses.Applications.poset_no_quasiCycle_from_exact_weak_local_tests
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetLocalTransport.lean
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_exact_weak_completions_supply_local_relations
+
+-- Preserved certificate from CheckAxiomsApplicationsPosetMetricBounds.lean
+#print axioms AllThoseRamseyClasses.Applications.quasiCycle_control_card_bound
+#print axioms AllThoseRamseyClasses.Applications.nonmetric_cycle_card_bound

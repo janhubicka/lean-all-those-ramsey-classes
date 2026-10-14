@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetFinalInterface
-
-#check AllThoseRamseyClasses.Applications.OrderedPosets.OrderedPosetExactLocalAtControlCard
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_coordinatedClass_of_exactLocal
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_ramsey_of_exactLocal
