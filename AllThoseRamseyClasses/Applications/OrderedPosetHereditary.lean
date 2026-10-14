@@ -22,12 +22,10 @@ open StructuralRamsey.RelStructure
 open AllThoseRamseyClasses.Published
 open AllThoseRamseyClasses.Published.PairedEquivalenceObstruction
 
-universe v
-
 /-- An ordinary full relational embedding exactly preserves and
 reflects each two-vertex relation, including the named order. -/
 theorem edge_embedding_iff
-    {U V : Type v}
+    {U V : Type}
     {A : RelStructure Lang U} {B : RelStructure Lang V}
     (e : Embedding A B)
     (R : Symbol) (x y : U) :
@@ -39,7 +37,7 @@ theorem edge_embedding_iff
 In particular, the ambient finite-order/strictness and all negative
 E- and M-information are preserved and reflected. -/
 theorem orderedPosetClass_hereditary
-    {U V : Type v}
+    {U V : Type}
     {A : RelStructure Lang U} {B : RelStructure Lang V}
     (hB : orderedPosetClass B) (e : Embedding A B) :
     orderedPosetClass A := by
@@ -91,7 +89,7 @@ theorem orderedPosetClass_isomorphismClosed :
 
 /-- Original induced-substructure clause, with no closure needed. -/
 theorem orderedPosetClass_induced_hereditary
-    {V : Type v} (B : RelStructure Lang V)
+    {V : Type} (B : RelStructure Lang V)
     (hB : orderedPosetClass B) (S : Set V) :
     orderedPosetClass (B.induce S) :=
   orderedPosetClass_hereditary hB (RelStructure.inclusion B S)
