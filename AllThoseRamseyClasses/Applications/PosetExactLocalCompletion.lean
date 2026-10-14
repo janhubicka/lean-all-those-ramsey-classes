@@ -59,7 +59,7 @@ theorem finiteEdgeWalk_transitive_endpoints
       have hlast : q (w (Fin.castSucc (Fin.last n)))
           (w (Fin.last (n + 1))) := by
         exact hpq (Fin.last n)
-      exact hqTrans hfirst hlast
+      exact hqTrans _ _ _ hfirst hlast
 
 /-- The finite-control bound on exact weak local completions detects
 ALL finite quasi-cycle walks, not merely the first n steps of a walk.
