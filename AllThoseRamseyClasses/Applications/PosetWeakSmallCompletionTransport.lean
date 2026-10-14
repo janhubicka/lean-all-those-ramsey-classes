@@ -41,7 +41,9 @@ private theorem binary_support_irreducible
     (edge_embedding_iff (inclusion A T) R sx sy).mp hRel
   have hPoint : ∀ t : T, t = sx ∨ t = sy := by
     intro t
-    have ht : t.1 = x ∨ t.1 = y := by simpa [T] using t.2
+    have ht : t.1 = x ∨ t.1 = y := by
+      have h : t.1 ∈ ({x,y} : Set X) := t.2
+      simpa only [Set.mem_insert_iff, Set.mem_singleton_iff] using h
     rcases ht with ht | ht
     · exact Or.inl (Subtype.ext ht)
     · exact Or.inr (Subtype.ext ht)
