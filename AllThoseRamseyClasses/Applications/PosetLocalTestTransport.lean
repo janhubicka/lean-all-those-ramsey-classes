@@ -79,12 +79,19 @@ theorem poset_exact_weak_completions_supply_local_relations
       exact hTarget.2.2.1 _ _ _ hxy hyz'
   · intro x y hx hy hp
     refine Or.inr ⟨hx, hy, ?_⟩
-    have hA : A.rel .equiv ![(⟨x, hx⟩ : I), ⟨y, hy⟩] := by
-      change C.rel .equiv ![x, y]
-      exact hp
+    have hA : A.rel .equiv ![(⟨x, hx⟩ : I), ⟨y, hy⟩] :=
+      (weak_edge_induce_iff C I .equiv
+        (⟨x, hx⟩ : I) (⟨y, hy⟩ : I)).mpr hp
     have hMapped := hg.1 .equiv
       ![(⟨x, hx⟩ : I), ⟨y, hy⟩] hA
-    simpa only [Function.comp_def] using hMapped
+    have htup :
+        (g ∘ ![(⟨x, hx⟩ : I), ⟨y, hy⟩]) =
+          ![g ⟨x, hx⟩, g ⟨y, hy⟩] := by
+      funext i
+      fin_cases i <;> rfl
+    change Target.rel .equiv ![g ⟨x, hx⟩, g ⟨y, hy⟩]
+    rw [← htup]
+    exact hMapped
   · intro x y hx hy hord hq
     rcases hq with hEq | ⟨hx', hy', hMapped⟩
     · subst y
@@ -94,9 +101,8 @@ theorem poset_exact_weak_completions_supply_local_relations
       exact hReflexive x
     · let sx : I := ⟨x, hx⟩
       let sy : I := ⟨y, hy⟩
-      have hOld : edge A .lt sx sy := by
-        change C.rel .lt ![x, y]
-        exact hOrder
+      have hOld : edge A .lt sx sy :=
+        (weak_edge_induce_iff C I .lt sx sy).mpr hOrder
       have hNe : sx ≠ sy := by
         intro h
         have hxy : x = y := congrArg Subtype.val h
@@ -108,7 +114,14 @@ theorem poset_exact_weak_completions_supply_local_relations
         have hTargetSelf : edge Target .lt (g sx) (g sx) := by
           have hEqSy : sy = sx := Subtype.ext hxy.symm
           have hMapped : edge Target .lt (g sx) (g sy) := by
-            simpa only [Function.comp_def] using hMappedOrder
+            have htup :
+                (g ∘ ![(⟨x, hx⟩ : I), ⟨y, hy⟩]) =
+                  ![g sx, g sy] := by
+              funext i
+              fin_cases i <;> rfl
+            change Target.rel .lt ![g sx, g sy]
+            rw [← htup]
+            exact hMappedOrder
           simpa only [hEqSy] using hMapped
         exact hTarget.1.2.1 (g sx) hTargetSelf
       have hPair : (A.induce ({sx, sy} : Set I)).Irreducible :=
@@ -126,11 +139,15 @@ theorem poset_exact_weak_completions_supply_local_relations
         have hyEq : (⟨y, hy'⟩ : I) = sy := Subtype.ext rfl
         simpa only [hxEq, hyEq] using hMapped
       have hImage : Target.rel .equiv (e ∘ ![px, py]) := by
-        change edge Target .equiv (e px) (e py)
-        rw [hEqX, hEqY]
+        have htup : (e ∘ ![px, py]) = ![e px, e py] := by
+          funext i
+          fin_cases i <;> rfl
+        rw [htup, hEqX, hEqY]
         exact hMapped'
       have hSrc : (A.induce pair).rel .equiv ![px, py] :=
         (e.map_rel_iff .equiv ![px, py]).mp hImage
-      exact hSrc
+      have hInA : edge A .equiv sx sy :=
+        (weak_edge_induce_iff A pair .equiv px py).mp hSrc
+      exact (weak_edge_induce_iff C I .equiv sx sy).mp hInA
 
 end AllThoseRamseyClasses.Applications.OrderedPosets
