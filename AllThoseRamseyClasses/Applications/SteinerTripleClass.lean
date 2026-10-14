@@ -32,9 +32,17 @@ abbrev Lang : RelLanguage where
     | .covered => 2
     | .block => 3
 
-def edge {V : Type} (C : RelStructure Lang V) (R : Symbol)
+/-- Only the two binary symbols are legal arguments of `edge`;
+the block symbol has arity three and is handled by `triple`. -/
+inductive BinarySymbol
+  | order | covered
+  deriving DecidableEq
+
+def edge {V : Type} (C : RelStructure Lang V) (R : BinarySymbol)
     (x y : V) : Prop :=
-  C.rel R ![x, y]
+  match R with
+  | .order => C.rel .order ![x, y]
+  | .covered => C.rel .covered ![x, y]
 
 def triple {V : Type} (C : RelStructure Lang V)
     (x y z : V) : Prop :=
@@ -139,7 +147,9 @@ theorem orderedSteiner_isUClosed {V : Type}
     · exact he0.symm
     · exact he1.symm
   · intro e
-    have hRootCovered : edge pairRoot .covered 0 1 := by decide
+    have hRootCovered : edge pairRoot .covered 0 1 := by
+      change (0 : Fin 2) = 0 ∧ (1 : Fin 2) = 1
+      exact ⟨rfl, rfl⟩
     have hCovered : edge C .covered (e 0) (e 1) := by
       change C.rel .covered ![e 0, e 1]
       have htuple : (![e 0, e 1] : Fin 2 → V) =
