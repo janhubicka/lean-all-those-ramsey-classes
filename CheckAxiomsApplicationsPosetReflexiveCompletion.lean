@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.PosetReflexiveCompletion
+
+#print axioms AllThoseRamseyClasses.Applications.exists_linearOrder_strictOn_controlIncrease
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_completion_of_strict_control
