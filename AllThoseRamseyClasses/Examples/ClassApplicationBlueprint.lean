@@ -50,18 +50,19 @@ theorem ramsey_of_checked_class_fields
       ∃ n : ℕ, InducedClosedULocalCompletionAt K rules B C0 n)
     (hIso : IsomorphismClosed2019 K) :
     FiniteRamseyClass K := by
-  let hInduced : InducedClosed2019MultiamalgamationClass R K rules := {
-    subset := hSubset
-    finite := hFinite
-    closed := hClosed
-    hereditary := hHereditary
-    strong := hStrong
-    localCompletion := hLocal
-  }
-  let hClass : IsCoordinated2019MultiamalgamationClass R K rules := {
-    induced := hInduced
-    iso := hIso
-  }
+  have hInduced : InducedClosed2019MultiamalgamationClass R K rules := by
+    refine {
+      subset := hSubset
+      finite := hFinite
+      closed := hClosed
+      hereditary := hHereditary
+      strong := hStrong
+      localCompletion := ?_
+    }
+    intro X Y hFiniteX hFiniteY B C0 hB hC0
+    exact hLocal B C0 hB hC0
+  have hClass : IsCoordinated2019MultiamalgamationClass R K rules :=
+    ⟨hInduced, hIso⟩
   exact coordinated2019_ramsey_by_profile_sparsening (L := L)
     R K rules hAmbient hAmbientIrred hClass
 
