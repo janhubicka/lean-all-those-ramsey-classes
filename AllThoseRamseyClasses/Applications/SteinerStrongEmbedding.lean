@@ -19,14 +19,20 @@ open StructuralRamsey.RelStructure
 
 theorem edge_embedding_iff {U V : Type}
     {A : RelStructure Lang U} {B : RelStructure Lang V}
-    (e : Embedding A B) (R : Symbol) (x y : U) :
+    (e : Embedding A B) (R : BinarySymbol) (x y : U) :
     edge B R (e x) (e y) ↔ edge A R x y := by
   have ht : e ∘ ![x, y] = ![e x, e y] := by
     funext i
     fin_cases i <;> rfl
-  change B.rel R ![e x, e y] ↔ A.rel R ![x, y]
-  rw [← ht]
-  exact e.map_rel_iff R ![x, y]
+  cases R with
+  | order =>
+      change B.rel .order ![e x, e y] ↔ A.rel .order ![x, y]
+      rw [← ht]
+      exact e.map_rel_iff .order ![x, y]
+  | covered =>
+      change B.rel .covered ![e x, e y] ↔ A.rel .covered ![x, y]
+      rw [← ht]
+      exact e.map_rel_iff .covered ![x, y]
 
 theorem triple_embedding_iff {U V : Type}
     {A : RelStructure Lang U} {B : RelStructure Lang V}
