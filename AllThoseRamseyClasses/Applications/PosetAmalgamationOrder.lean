@@ -180,7 +180,7 @@ theorem ambient_ordered_pushout_exists
     intro a b hab
     exact ambient_sideOrderKey_strictMono Right hRight sR 1
       (by omega) hab
-  exact hFree.exists_order_from_compatible_keys
-    keyL keyR hCompat hLtL hLtR
+  exact AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.IsFreeAmalgam.exists_order_from_compatible_keys
+    hFree keyL keyR hCompat hLtL hLtR
 
 end AllThoseRamseyClasses.Applications.OrderedPosets
