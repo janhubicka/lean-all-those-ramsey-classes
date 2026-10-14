@@ -11,3 +11,6 @@ import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
 #print axioms AllThoseRamseyClasses.Published.correctedInducedCoverage_iff_abstract_2019
 #print axioms AllThoseRamseyClasses.Published.inducedClosedKCompletion_iff_abstract_2019
 #print axioms AllThoseRamseyClasses.Published.inducedClosedLocalCompletion_iff_abstract_2019
+
+-- Reusable exact protected-map composition, independent of native rank.
+#print axioms AllThoseRamseyClasses.Published.inducedClosedMap_comp_2019

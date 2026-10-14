@@ -67,20 +67,3 @@ The old conditional interfaces `coordinated2019_ramsey_of_two_picture_constructo
 For that original rank argument, the outstanding proof obligations concerning free covers of transverse copy ranges and separator costs still require justification. A possibly noninjective protected root completion is not a pair of compatible full boundary embeddings. These objections must not be erased or promoted to green simply because the alternative proof now succeeds.
 
 A primitive-function version of the manuscript theorem needs its relationalization hypotheses and transfer to be explicitly connected to the corrected relational statement. The final declaration above does not itself perform that transfer. Other numbered results retain their individual validation status. Replacing the original printed proof by the profile proof is an editorial decision; the new proof is supplied separately in the review TeX, without modifying the numbered mathematical prose.
-
-## Historical cutoff-two checkpoint and corrected provenance
-
-The earlier verified restricted results remain valid:
-
-| PR | Exact scope | Successful complete CI | Merge |
-| --- | --- | --- | --- |
-| #185 | Two private-active labels imply literal REST root size + 2 <= source size | 38457824272 | c08a2829934de690fed87d620b74a231aa8d698b |
-| #186 | Closed maximal source on <=3 vertices, exactly two active labels, old closed rank two | 38458189850 | be7b579ce81e89d922a19c1a86ede598b4379247 |
-| #187 | Maximal weak source on <=2 vertices, exactly two active labels, empty closed root | 38459562397 | d1c376370f27148a6acc3db1a74a65ba4fcaa4c9 |
-| #188 | ALL exact weak tests on <=2 vertices, and the actual local-cutoff-two Ramsey endpoint | 38461482875 | e8684e297974b0bfc0f63920892ccaf8c6a93f2d |
-
-PR #188's proof head remains `f0395a205022a145f2f84efbc7bea6740039d03b`. An earlier status note mistakenly gave its merge as `daec134f9400f8816e4d89b07f7327074cd24d52`; GitHub records the corrected merge in the table above. This was a provenance error, not a change to the checked proof or successful run.
-
-Cardinality cutoff two is still not generating rank two: a two-generated closed hull may be much larger. The new unrestricted theorem is established by the profile route, not by misusing the cutoff-two result.
-
-The longer `validation-status.md` and dated native-history notes retain the historical development. Statements there that the relational main theorem is still open are superseded by this certificate; claims about the unresolved old native proof are not.

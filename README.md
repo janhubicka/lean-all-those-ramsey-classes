@@ -261,7 +261,6 @@ statement is **now proved** at `Nat.card C0`. The complete theorem
 | The same theorem as one reusable universal proposition | `coordinated2019_theorem218` | Direct proved wrapper of `Coordinated2019Theorem218Target`, exported by `PublicAPI`. |
 | Construct the unrestricted closed/sparse witness | `coordinated2019_profile_sparse_witness` | **Constructed**, not a constructor premise. |
 | Corrected unrestricted initial Picture (Lemma 2.28) | `lemma_2_28_coordinated_unrestricted_induced` | **Proved** even with a nonclosed original control. |
-| Direct restricted fixed-cutoff Ramsey result | `coordinated2019_cutoff_three_unrestricted_induced` | **Proved** for $n\le3$; superseded in generality by the unrestricted theorem. |
 | Induced-test to working embedded-test class transport | `coordinated2019_to_abstract_closed_class`, `IsCoordinated2019MultiamalgamationClass.toAbstract` | **Proved** with explicit isomorphism invariance. |
 | Original Lemma 2.23(1) | `lemma_2_23_one` | **Proved** exact induced-set closedness iff relative $\mathcal U$-substructure. |
 | Original Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` (in `StructuralRamsey.RelStructure`) | **Proved**; the free-amalgam root and both sides must be $\mathcal U$-closed. |
