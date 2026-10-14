@@ -146,7 +146,7 @@ theorem orderedPosetClass_strongAmalgamation :
               (t 0) (t 1)
       | mate =>
           change False ↔ edge Left .mate (t 0) (t 1)
-          exact iff_false_intro (hLeft.2.2.2.2.2 (t 0) (t 1))
+          exact (iff_false_intro (hLeft.2.2.2.2.2 (t 0) (t 1))).symm
   }
   let jR : Embedding Right Target := {
     toFun := iR
@@ -172,7 +172,7 @@ theorem orderedPosetClass_strongAmalgamation :
               (t 0) (t 1)
       | mate =>
           change False ↔ edge Right .mate (t 0) (t 1)
-          exact iff_false_intro (hRight.2.2.2.2.2 (t 0) (t 1))
+          exact (iff_false_intro (hRight.2.2.2.2.2 (t 0) (t 1))).symm
   }
   refine ⟨P, hP, Target, hTarget, jL, jR, ?_, ?_⟩
   · exact FreeAmalgam.left_right_overlap Root Left Right sL sR
