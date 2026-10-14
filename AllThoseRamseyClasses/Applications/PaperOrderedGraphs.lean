@@ -73,6 +73,7 @@ theorem simpleGraphClass_hereditary
     {U V : Type} {A : RelStructure Lang U} {B : RelStructure Lang V}
     (hB : simpleGraphClass B) (e : Embedding A B) :
     simpleGraphClass A := by
+  letI : Finite V := hB.1
   refine ⟨Finite.of_injective e e.injective, ?_, ?_⟩
   · intro x hx
     exact hB.2.1 (e x) ((edge_embedding_iff e x x).mpr hx)
