@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.PosetGlobalQuasiCycle
+
+#print axioms AllThoseRamseyClasses.Applications.poset_isChain_support_card_bound
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_no_quasiCycle_of_transGen
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_weak_local_reflects_reach
