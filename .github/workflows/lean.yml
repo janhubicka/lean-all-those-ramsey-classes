@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Review retired-module plan
-        run: python3 scripts/cleanup_inventory.py --plan
+        run: python3 scripts/cleanup_inventory.py --verify
   build:
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +40,7 @@ jobs:
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Plan retired proof cleanup
-        run: python3 scripts/cleanup_inventory.py --plan
+        run: python3 scripts/cleanup_inventory.py --verify
       - name: Download Mathlib cache
         run: lake exe cache get Mathlib.Tactic Mathlib.Data.Fintype.Pi Mathlib.Data.Fintype.Basic Mathlib.Data.Finset.Dedup
       - name: Build all project modules
