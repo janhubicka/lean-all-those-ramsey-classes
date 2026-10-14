@@ -71,6 +71,8 @@ theorem poset_reflexive_completion_of_strict_control
       (∀ x y : V, q x y → q y x → x = y) ∧
       (∀ x y : V, p x y → q x y) ∧
       (∀ x y : V, x ≠ y → q x y →
+        @LT.lt V o.toLT x y) ∧
+      (∀ x y : V, f x < f y →
         @LT.lt V o.toLT x y) := by
   classical
   let ps := posetStrictPart p
@@ -82,7 +84,7 @@ theorem poset_reflexive_completion_of_strict_control
   obtain ⟨hRefl, hTrans, hAnti⟩ :=
     posetReachClosure_is_partial_order ps f hps
   refine ⟨o, posetReachClosure ps,
-    hRefl, hTrans, hAnti, ?_, ?_⟩
+    hRefl, hTrans, hAnti, ?_, ?_, hOrder⟩
   · intro x y hxy
     by_cases hEq : x = y
     · exact Or.inl hEq
@@ -90,5 +92,37 @@ theorem poset_reflexive_completion_of_strict_control
   · intro x y hNe hReach
     exact hOrder x y
       (posetReachClosure_control_of_ne ps f hps hReach hNe)
+
+/-- The actual manuscript uses TWO reflexive binary relations:
+the weak vertex order ord and the weak partial order p, with
+p contained in ord. Both may be incomplete, and the control map
+need only be strict on NONTRIVIAL original order comparisons.
+
+The constructed total vertex order contains all original ord
+comparisons, while q is an order-compatible partial-order
+completion containing every original p comparison. -/
+theorem poset_reflexive_completion_preserves_original_order
+    {V : Type v} {D : Type w} [Finite V] [LinearOrder D]
+    (ord p : V → V → Prop) (f : V → D)
+    (hOrd : ∀ x y : V,
+      x ≠ y → ord x y → f x < f y)
+    (hP : ∀ x y : V, p x y → ord x y) :
+    ∃ (o : LinearOrder V) (q : V → V → Prop),
+      (∀ x : V, q x x) ∧
+      (∀ x y z : V, q x y → q y z → q x z) ∧
+      (∀ x y : V, q x y → q y x → x = y) ∧
+      (∀ x y : V, p x y → q x y) ∧
+      (∀ x y : V, x ≠ y → q x y →
+        @LT.lt V o.toLT x y) ∧
+      (∀ x y : V, x ≠ y → ord x y →
+        @LT.lt V o.toLT x y) := by
+  have hStrict : ∀ x y : V, x ≠ y →
+      p x y → f x < f y := by
+    intro x y hne hp
+    exact hOrd x y hne (hP x y hp)
+  obtain ⟨o, q, hRefl, hTrans, hAnti, hPreserve, hIncl, hControl⟩ :=
+    poset_reflexive_completion_of_strict_control p f hStrict
+  exact ⟨o, q, hRefl, hTrans, hAnti, hPreserve, hIncl,
+    fun x y hne hxy => hControl x y (hOrd x y hne hxy)⟩
 
 end AllThoseRamseyClasses.Applications
