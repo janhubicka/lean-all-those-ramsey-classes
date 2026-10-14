@@ -220,7 +220,7 @@ Once these are proved, the theorem produces the Ramsey property
 ```lean
 import AllThoseRamseyClasses.Examples.ClassApplicationBlueprint
 
-#check AllThoseRamseyClasses.Examples.ramsey_of_checked_class_fields
+#check AllThoseRamseyClasses.Examples.coordinated_class_of_checked_fields
 #check AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis
 ```
 
