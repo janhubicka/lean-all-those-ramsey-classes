@@ -105,8 +105,11 @@ theorem poset_exact_weak_completions_supply_local_relations
         have hMappedOrder := hg.1 .lt
           ![(⟨x, hx⟩ : I), ⟨y, hy⟩]
           (show A.rel .lt ![(⟨x, hx⟩ : I), ⟨y, hy⟩] from hOld)
-        have hTargetSelf : edge Target .order (g sx) (g sx) := by
-          simpa [hxy] using hMappedOrder
+        have hTargetSelf : edge Target .lt (g sx) (g sx) := by
+          have hEqSy : sy = sx := Subtype.ext hxy.symm
+          have hMapped : edge Target .lt (g sx) (g sy) := by
+            simpa only [Function.comp_def] using hMappedOrder
+          simpa only [hEqSy] using hMapped
         exact hTarget.1.2.1 (g sx) hTargetSelf
       have hPair : (A.induce ({sx, sy} : Set I)).Irreducible :=
         weak_pair_irreducible_of_positive_edge A .lt sx sy hNe hOld
