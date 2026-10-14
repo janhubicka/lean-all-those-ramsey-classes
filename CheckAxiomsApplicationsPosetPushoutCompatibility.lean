@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.PosetPushoutOrderCompatibility
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_strict_order
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.posetPushoutRelation_antisymm
