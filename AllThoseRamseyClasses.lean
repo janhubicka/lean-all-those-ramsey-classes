@@ -1,3 +1,5 @@
+import AllThoseRamseyClasses.ApplicationsAPI
+
 /-!
 # All those Ramsey classes
 
@@ -10,4 +12,3 @@ application instances remain directly importable under `Published` and
 `Applications`, but do not pollute the default researcher-facing import.
 Every source module is still compiled and audited by CI.
 -/
-import AllThoseRamseyClasses.ApplicationsAPI
