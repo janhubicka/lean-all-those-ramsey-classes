@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalStrictProfileClosedTree2019
+
+#print axioms AllThoseRamseyClasses.Published.UClosedStrictTreeAmalgam.isUClosed
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_strict_tree_closedRoot_completion
