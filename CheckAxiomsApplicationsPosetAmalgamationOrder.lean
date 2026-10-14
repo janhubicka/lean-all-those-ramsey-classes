@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.PosetAmalgamationOrder
+
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_sideOrderRank_strictMono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_rootCut_mono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_rootCut_strict_after_root
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_sideOrderKey_strictMono
+#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.ambient_ordered_pushout_exists
