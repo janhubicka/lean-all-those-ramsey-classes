@@ -15,3 +15,6 @@ import AllThoseRamseyClasses.ApplicationsAPI
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.simpleGraphClass_freeAmalgamation
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedDigraphs_areRamsey
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedSimpleGraphs_areRamsey
+
+#print axioms AllThoseRamseyClasses.Applications.PaperGraphs.forwardReduct_preserves_ordered_copies
+#print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey
