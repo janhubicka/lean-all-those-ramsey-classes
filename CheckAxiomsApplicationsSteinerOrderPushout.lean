@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.SteinerOrderPushout
+
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderShadowEmbedding
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderShadow_ambient
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_compatible_label
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_order_extension
