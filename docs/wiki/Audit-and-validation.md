@@ -76,3 +76,7 @@ metric and unary-function applications, primitive-function
 transfer, and separate validation of the original native proof.
 A possible erratum is an author/editorial decision following
 review of the revised manuscript and formal evidence.
+
+The [15 October adversarial review](../adversarial-referee-pass-20261015.md)
+records three separate statement, proof-dependency and kernel/API
+checks, their limitations, and the no-loss axiom-certificate consolidation.

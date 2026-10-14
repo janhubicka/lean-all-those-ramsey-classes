@@ -107,6 +107,8 @@ This completes the alternative argument. It does not prove the independent nativ
 
 The reviewed final theorem has no hypothesis asserting the desired sparse witness or any rank promotion. Isomorphism invariance is explicit, as in the established corrected class interface. The proof uses finite structures in auxiliary signatures which need not be finite; the invoked Ramsey constructions allow those signatures.
 
-The CI error observed in PR #195 at line 49 was a colour-universe mismatch between `κ : Type*` and the pre-existing sparse-witness contract's `κ : Type`. Commit `c783c23377d56d29bdfb7d61fe95e9c7e96073d2` restricts that wrapper binder to the contract's universe. It does not change the mathematical class, tests, or conclusion. A new complete CI/axiom audit is required for this head.
+The CI error observed in PR #195 at line 49 was a colour-universe mismatch between `κ : Type*` and the pre-existing sparse-witness contract's `κ : Type`. Commit `c783c23377d56d29bdfb7d61fe95e9c7e96073d2` restricts that wrapper binder to the contract's universe. It does not change the mathematical class, tests, or conclusion. That corrected head subsequently passed the full CI/axiom audit
+in [run 38479503776](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38479503776)
+and was merged as `f88ce3113076f348a06906c0e2cf6e12b47c985d`.
 
 Provenance correction for the earlier cutoff-two result: GitHub PR #188 records squash merge `e8684e297974b0bfc0f63920892ccaf8c6a93f2d`, not `daec134f9400f8816e4d89b07f7327074cd24d52` as mistakenly written in an earlier status note. Its checked proof head `f0395a205022a145f2f84efbc7bea6740039d03b` and successful CI run `38461482875` are unchanged.

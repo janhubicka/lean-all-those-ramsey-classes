@@ -311,8 +311,9 @@ relevant application module:
 | **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact $\oplus_S$ specialization and full convexly ordered $S$-metric Ramsey theorem. |
 | **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | The rooted-quotient Ramsey construction, especially for countable targets. |
 
-The [manuscript applications ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-VALIDATION-2026-10-14.md)
-tracks remaining application-specific corrections. **Do not cite a
+The [public applications ledger](docs/wiki/Applications.md) tracks
+remaining example-specific proof obligations. The separate working
+manuscript maintains more detailed nonprinting validation markers. **Do not cite a
 verified component as if it were the final application Ramsey theorem.**
 
 ## Audit, reliability and historical status
@@ -338,6 +339,7 @@ with an **unproved assumption** is still only conditional. A green
 result about the corrected definitions does not retroactively verify
 the literal published theorem or its original proof. For provenance:
 
+* [Additional adversarial referee pass and audit-preserving cleanup](docs/adversarial-referee-pass-20261015.md)
 * [Current checked endpoint and CI certificate](docs/current-main-theorem-status.md)
 * [Full English profile/sparsening proof](docs/coordinated-profile-proof-20261013.md)
 * [Revised definitions and precise theorem scope](docs/wiki/Published-statements.md)

@@ -20,7 +20,8 @@ This file retains the PAPER'S quantifiers on exact induced substructures:
 The first theorem below isolates a sparse-Picture constructor as an explicit
 premise; the actual constructor is proved separately in
 Coordinated2019ProfileSparseWitness. This conditional interface predates
-that proof and is not itself the final Theorem 2.18 endpoint. The second theorem transfers
+that proof and is not itself the final Theorem 2.18 endpoint.
+The second theorem transfers
 an independently obtained ABSTRACT protected rank invariant through the
 precise induced local axiom; no higher-rank increment is asserted.
 -/
@@ -74,8 +75,8 @@ def InducedClosed2019Theorem218Target : Prop :=
     FiniteRamseyClass K
 
 /-- The exact finite output required of the repaired 2019
-partite/Picture construction, now supplied by the profile proof. Every small test is the ORIGINAL
-induced vertex set and is allowed to be nonclosed. -/
+partite/Picture construction, now supplied by the profile proof.
+Every small test is the ORIGINAL induced vertex set and is allowed to be nonclosed. -/
 def HasInducedClosed2019SparseWitness
     (K : StructureClass.{u,v} (L := L))
     (rules : ClosureDescription L)
