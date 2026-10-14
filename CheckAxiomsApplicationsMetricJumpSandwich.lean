@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricJumpSandwich
+
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_absorb
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_le
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_eq
+#print axioms AllThoseRamseyClasses.Applications.MetricJump.sandwich_constant_on_parts
