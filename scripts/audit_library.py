@@ -158,6 +158,51 @@ print(f"Curated imports reach: {len(supported)} modules")
 print(f"Optional directly importable research/audit modules: {len(optional)}")
 print("Optional modules are compiled individually by CI; they are NOT assumed dead.")
 print("Unreachable Published/* modules may document refutations or old proof routes.")
+
+# Referee C: report real import redundancy before pruning declarations.
+# Only local imports in the same direct import list are compared;
+# external Mathlib/partite dependencies are left to the Lean build.
+def redundant_direct(root: str) -> list[tuple[str, str]]:
+    direct = GRAPH.get(root, [])
+    return sorted((dep, through)
+                  for dep in direct
+                  for through in direct
+                  if dep != through and dep in closure(through))
+
+
+for root in (PUBLIC, APPLICATIONS, "AllThoseRamseyClasses", "CheckAxioms"):
+    redundant = redundant_direct(root)
+    print(f"Direct transitive-import redundancies in {root}: {len(redundant)}")
+    for dep, through in redundant:
+        print(f"  {dep} is already reached through {through}")
+
+# Distinguish unused-by-curated-import from *not even* imported by
+# the machine-checked theorem endpoint files. All Lean modules still
+# receive a full kernel build; neither test is a licence to delete.
+check_roots = sorted(m for m in FILES if m.startswith("CheckAxioms"))
+axiom_reached: set[str] = set()
+for m in check_roots:
+    axiom_reached.update(closure(m))
+not_in_axiom_roots = sorted(set(optional) - axiom_reached)
+print(f"Modules outside curated API but covered by CheckAxioms roots: "
+      f"{len(optional) - len(not_in_axiom_roots)}")
+print(f"Optional modules not imported by CheckAxioms roots: "
+      f"{len(not_in_axiom_roots)}")
+for module in not_in_axiom_roots:
+    print(f"  REVIEW (not proof of deadness): {module}")
+
+# A module without incoming local imports is a separately compilable
+# top-level leaf. This often means a publication counterexample,
+# not throwaway code; its mathematical uses still need audit.
+incoming = defaultdict(set)
+for parent, children in GRAPH.items():
+    for child in children:
+        incoming[child].add(parent)
+optional_roots = sorted(x for x in optional if not incoming[x])
+print(f"Optional local-import roots: {len(optional_roots)}")
+for module in optional_roots:
+    print(f"  STANDALONE: {module}")
+
 if errors:
     raise SystemExit("FAIL library audit:\n" + "\n".join(errors))
 print("PASS import DAG, curated API surface, and admission/axiom source scan")
