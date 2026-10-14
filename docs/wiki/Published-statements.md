@@ -1,65 +1,80 @@
-# Published 2019 statements and their exact Lean status
+# Published paper and the Lean-verified formulation
 
-The library formalizes actual relational structures with the
-2019 closure-description language. The original printed Theorem 2.18
-is refuted; the **coordinated corrected** theorem is proved. These
-are mathematically different claims.
+This page describes the relationship between Hubička–Nešetřil,
+*All those Ramsey classes* (2019), the working revised manuscript,
+and the formalized results. During formalization, **two definitions
+were adjusted together**. The theorem proved in Lean uses those
+revised definitions. The original published text and the revised
+manuscript must not be conflated, but this page **does not assert a
+verdict about the original formulation**. Author review and any
+decision to publish errata are separate from the proof certificate.
 
-| Paper claim | Formal entry point | Verdict |
+## Exactly which definitions changed?
+
+1. **Definition 2.15, protected homomorphism-embeddings.**
+   The working revision asks that the map restrict to an embedding
+   on every *induced* substructure that is both intrinsically
+   \(\mathcal U\)-closed and \(\mathcal U\)-irreducible.
+   The original wording tested intrinsic \(\mathcal U\)-irreducibility
+   without the additional closedness condition.
+2. **Definition 2.17(4b), membership tests.**
+   The working revision likewise requires membership in \(\mathcal K\)
+   for substructures that are both intrinsically
+   \(\mathcal U\)-closed and \(\mathcal U\)-irreducible.
+   The two changes are coordinated; they define the hypothesis
+   used by the certified Lean theorem.
+
+**Unchanged:** Definition 2.17(4a) retains the original ambient
+control \(C_0\), which need not be closed. Clause (4c) still checks
+**all original exact weak induced subsets** \(S\) with
+\(|S|\le n(B,C_0)\), including nonclosed sets. Neither S nor C0
+is replaced by its generated closure. The fixed cutoff is selected
+for B and C0 before verifying the weak candidate C.
+
+These distinctions are essential to reproduce the Lean theorem's
+actual hypotheses. Restricting protected tests weakens the map
+condition; in the local-completion *implication*, the revised
+antecedent becomes easier to satisfy, so the class hypothesis
+becomes stronger. Isomorphism invariance is explicitly packaged
+by `IsCoordinated2019MultiamalgamationClass`.
+
+## Mathematically verified endpoints
+
+| Paper topic | Lean declaration | What is certified |
 | --- | --- | --- |
-| Definitions 2.12–2.13, closure and roots | `ClosureRule`, `ClosureDescription`, `IsUClosed` | Matched definitions |
-| Intrinsic U-irreducibility | `IsUIrreducible` | Matched definition; not ordinary irreducibility |
-| Literal Definition 2.15 map | `IsUHomomorphismEmbedding` | Refuted universal-theorem context |
-| Corrected map | `IsInducedClosedUHomomorphismEmbedding` | Protected induced tests BOTH U-closed and U-irreducible |
-| Definition 2.17 class axioms | `InducedClosed2019MultiamalgamationClass` | Corrected (4b); original weak (4c) |
-| **Literal** Theorem 2.18 | `Theorem218Counterexample.lean` | **False**, Lean counterexample |
-| **Corrected** Theorem 2.18 | `coordinated2019_theorem218` | **Proved**, unrestricted |
-| Theorem 2.19 finite partial functions | `allThoseRamseyClasses_theorem_2_19_partialFunctions` | **Proved** in pinned dependency |
-| Lemma 2.23(1), exact closed subsets | `lemma_2_23_one` | Proved |
-| Lemma 2.23(2), free amalgams | `IsFreeAmalgam.isUClosed` | Proved with closed common root |
-| Lemma 2.28, repaired Picture coverage | `lemma_2_28_coordinated_unrestricted_induced` | Proved |
-| Lemma 2.29, repaired coverage | `lemma_2_29_coordinated_induced_full` | Proved; literal stronger assertion false |
-| Lemma 2.30 original rank induction | native `InducedClosed2019*` modules | **Unfinished original proof**, not needed by alternative theorem |
-| Ordered posets with linear extension | `orderedPoset_isRamsey` | **Proved**, equivalent named strict-order encoding |
-| Freely ordered partial Steiner triples | `Steiner*` application modules | Only components; final Ramsey theorem open |
-| Metric, pointed, unary, interposition, incidence | manuscript applications ledger | Full class conclusions still open |
+| Closure descriptions and roots | `ClosureRule`, `ClosureDescription`, `IsUClosed` | Working relational representation |
+| Intrinsic irreducibility | `IsUIrreducible` | Intrinsic, distinct from ordinary irreducibility and from closedness |
+| Revised Definition 2.15 | `IsInducedClosedUHomomorphismEmbedding` | Exact induced closed-and-irreducible protected maps |
+| Revised Definition 2.17 | `InducedClosed2019MultiamalgamationClass` | Coordinated membership tests and unchanged exact weak-subset cutoff |
+| **Theorem 2.18, working revised formulation** | `coordinated2019_theorem218` | **Proved**, for arbitrary fixed cutoff |
+| Theorem 2.19, finite ordered partial functions | `allThoseRamseyClasses_theorem_2_19_partialFunctions` | Proved in pinned dependency |
+| Lemma 2.23(1) | `lemma_2_23_one` | Closedness and exact induced subsets |
+| Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` | Closure of a free amalgam over a closed common root |
+| Lemma 2.28, revised closed-test Picture | `lemma_2_28_coordinated_unrestricted_induced` | Proved |
+| Lemma 2.29, revised closed-test coverage | `lemma_2_29_coordinated_induced_full` | Proved |
+| Lemma 2.30, original rank-increment proof | Manuscript proof | Not certified by the alternative Lean proof |
+| Posets with chosen linear extension | `orderedPoset_isRamsey` | Full class-level Ramsey theorem proved |
+| Ordered Steiner triples | `Steiner*` application components | Only identified components proved; class conclusion pending |
 
-## What the corrected Theorem 2.18 actually assumes
+The main theorem proof constructs its profile/sparsening witness:
+it does **not** posit a rank increment or compatible closed boundary
+as an extra assumption, and it does not impose closedness on C0.
 
-Fix the original B in K and C0 in the ambient Ramsey class R,
-then select the same n(B,C0) for all candidates C.
-The protected positive maps are embeddings on exact induced tests
-that are **both U-closed and U-irreducible**. Clause (4b) uses
-exactly those closed irreducible tests. Clause (4c) retains **every
-original weak induced set S with |S| <= n**, even when S is
-nonclosed. Neither the tested S nor C0 is replaced by its U-hull.
+## Manuscript and possible errata
 
-These are two simultaneous changes: modifying only (4b), without
-the map predicate, still admits the checked paired-equivalence
-obstruction. Restricting protected tests weakens the map predicate,
-so it **strengthens** the local-completion implication (its
-antecedent becomes easier). A raw Lean class predicate is not
-automatically invariant under isomorphism; the coordinated class
-interface explicitly includes that condition.
+The mathematical source is being kept as a *working revised manuscript*
+with reversible changes, TODOs and accurately scoped validation marks.
+The corrected proof and the manuscript's original native
+generating-rank argument are distinct: verifying the former does not
+establish every step of the latter. The two revisions of the
+definitions will be explained alongside the fixed manuscript.
+Whether to publish a separate erratum is a later decision with
+the authors; neither a positive certification nor a negative
+judgement about the original wording is stated here.
 
-`coordinated2019_theorem218` is a proved proposition packaging
-the general Ramsey-class conclusion, not a conditional native-rank
-constructor. The actual source proof is
-[Coordinated2019ProfileSparseWitness.lean](../../AllThoseRamseyClasses/Published/Coordinated2019ProfileSparseWitness.lean)
-and passed [full CI 38479503776](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38479503776).
-
-## Original proof and corrected conclusion differ
-
-The finite generated-closure profile/sparsening proof gives the
-coordinated theorem for ANY chosen finite weak-test cutoff, with
-no closedness assumption on original C0. It does NOT formalize
-the old rank-increment argument of Lemma 2.30. Keep its orange
-review marks independent of the green corrected theorem.
-
-The ordered-poset instance was fully discharged by PR
-[#227](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/227),
-[CI 38633955517](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38633955517),
-merged `01e890503a86b0e413f8b0ffb0a763dd7db42020`.
-The proof uses strict vertex order, reflexive partial order
-and an inert third empty relation, rather than silently asserting
-identical Lean language symbols with the paper.
+Proof certificate:
+[PR #195](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/195)
+and [full CI 38479503776](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38479503776).
+The completed poset application:
+[PR #227](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/227),
+[CI 38633955517](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38633955517).

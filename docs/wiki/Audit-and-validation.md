@@ -1,88 +1,75 @@
-# Library audit: statement fidelity, trust and dead-code policy
+# Validation and maintainability audit
 
-The project certifies two distinct things: (1) Lean's kernel checks
-the elaborated statements under explicitly audited assumptions;
-(2) a mathematical statement audit compares them with the
-published 2019 paper, recording both substantive corrections
-and parts of the printed proof still unfinished.
+The library distinguishes a kernel-checked Lean theorem from the
+editorial relationship between its definitions and the published
+2019 article. During verification, Definitions 2.15 and 2.17(4b)
+were adjusted in the working manuscript to test structures that
+are simultaneously intrinsically U-closed and U-irreducible.
+Clause (4c) continues to quantify over **all original weak induced
+subsets**, without passing to a closure hull. The verified theorem
+has precisely these revised hypotheses. Questions about the earlier
+wording belong to author review of the revised manuscript, not
+to the public status table.
 
-## Adversarial audit A — mathematical quantifiers
+## Mathematical referee checks
 
-* The literal protected map tests all intrinsic U-irreducibles,
-  even those not U-closed. Paired-equivalence counterexamples
-  disprove the universal theorem with that wording.
-* The coordinated repair simultaneously changes the protected
-  map tests and (4b) to those structures which are BOTH
-  intrinsically U-closed and U-irreducible.
-* Clause (4c) requires all **original exact weak induced subsets**
-  S with cardinal at most the already fixed n(B,C0). Replacing S
-  by its U-hull, or choosing n after seeing the weak C, is unsound.
-* Original control C0 can be nonclosed; a protected map need not
-  be globally injective.
-* The native generating-rank proof remains unverified; the
-  alternative strict-profile proof establishes the corrected
-  theorem without postulating that rank-constructor.
-* New class examples are not Ramsey merely because their
-  strong-amalgamation sublemmas are proved. The complete
-  ordered-poset instance is now checked; Steiner remains partial.
+* Select the cutoff \(n(B,C_0)\) only after fixing B and the
+  **original** ambient Ramsey control C0. C0 may be nonclosed.
+  Test every original weak induced set S with \(|S|\le n\).
+* Keep ordinary irreducibility, intrinsic U-irreducibility,
+  and intrinsic U-closedness separate.
+* A protected completion map need not be globally injective;
+  its required restrictions are full induced embeddings.
+* The verified alternative profile proof uses actual closed
+  boundaries, finite strict-tree completions and a second
+  fresh-root-tagged pass. It does not certify the manuscript's
+  separate native Lemma 2.30 generating-rank argument.
+* A Ramsey-class application becomes certified only when all
+  class hypotheses, including exact local completion, have
+  been proved. Ordered posets have a complete endpoint;
+  ordered Steiner triples remain a partial application.
 
-## Adversarial audit B — Lean soundness
+## Proof integrity
 
-The repository workflow builds **every** module under
-`AllThoseRamseyClasses/`, not merely the curated umbrella.
-It runs all `CheckAxioms*.lean` endpoints and the
-`scripts/check_axioms.py` permitted-axiom audit.
-Allowed axioms: `propext`, `Classical.choice` and `Quot.sound`.
-The paired-equivalence, strong-amalgamation and coordinated-cycle
-finite regressions are also executed.
+GitHub Actions builds the curated library and individual retained
+modules, then compiles the named `CheckAxioms*.lean` endpoints.
+The permitted axioms are `propext`, `Classical.choice` and
+`Quot.sound`. The import and source audit rejects missing
+imports, cycles, `sorry`, `admit` and additional local axioms.
+A finite regression or a conditional blueprint is not by
+itself a proof of an unconditional class theorem.
 
-The additional `scripts/audit_library.py` scans executable Lean
-code after removing nested comments and string literals. It
-rejects `sorry`, `admit` and explicit local axioms/constants,
-checks missing local imports and cycles, and enforces the
-application-neutral `PublicAPI`.
+## Dead-end cleanup policy
 
-A successful bounded regression is not a kernel proof.
-Conversely, a kernel proof of a conditional proposition P → Q
-is not an unconditional proof of Q. Public status tables
-record the precise final theorem scope.
+The source tree keeps the transitive proof dependencies of the
+completed relational theorem, reusable class examples and
+actively developed applications. Obsolete proof experiments and
+their redundant axiom-check stubs are deleted rather than
+perpetuated as compatibility layers; Git history preserves
+them for retrospective investigation. In-progress application
+modules remain under their exact imports and are not asserted
+as completed Ramsey classes.
 
-## Adversarial audit C — maintainable research library
+The inventory script distinguishes actual dependencies from
+an old file merely having a successful historical compilation.
+Removing an abandoned file never changes the hypotheses of a
+public theorem, and full CI must pass after each cleanup.
 
-The curated umbrella imports the completed `ApplicationsAPI`,
-which imports the corrected `PublicAPI` and the proved
-ordered-poset theorem. Historical counterexample modules and
-native Lemma 2.30 experiments are directly importable and
-individually built, not silently dragged into the default API.
+## Working manuscript
 
-The source audit reports modules unreachable from the public
-imports. **Import-unreachable does not prove dead:** a file may
-be an axiom-check root, a published-statement counterexample
-or ongoing separate formalization. Delete only after inspecting
-all importing modules, `CheckAxioms*.lean` roots, manuscript
-validation references, and mathematical reuse. Arbitrary
-removal of historical evidence would harm reproducibility.
+The manuscript uses reversible, explicitly approved textual
+corrections and nonprinting validation/TODO overlays.
+The frozen-source checker reconstructs its published historical
+Git blob after reversing approved changes and stripping markers.
+This guards against accidental changes to mathematical prose.
+Actual TeX compilation remains a separate check from Lean CI.
 
-## Original manuscript safety
+## Continuing the formalization
 
-The TeX source's approved corrections are recorded in ordered,
-reversible manifests. `scripts/check_frozen_annotations.py`
-removes nonprinting Lean blocks, reverses approved textual
-changes and compares the resulting historical Git blob; it also
-checks numbered mathematical environments. Extra green/orange/blue
-markers and TODOs are nonprinting in ordinary output.
-
-The private manuscript CI failures before runner allocation do
-not establish any TeX compilation error or successful TeX build.
-A static environment check is not a substitute for pdflatex.
-
-## Next verification targets
-
-Finish strong amalgamation and exact local completion for
-freely ordered partial Steiner triples; continue auditing the
-original Lemma 2.30 without mixing it into the alternative
-main theorem; validate remaining metric, unary, pointed,
-interposition and incidence class examples; prove the separate
-primitive-function formulation/transfer if desired.
-Update this wiki and the annotations only after complete
-Lean CI and permitted-axiom verification.
+Maintain the source API, wiki, statement crosswalk and manuscript
+markers together when a **complete** new Lean proof passes CI.
+Outstanding targets include the full Steiner class instance,
+metric and unary-function applications, primitive-function
+transfer, and separate validation of the original native proof.
+A possible erratum is an author/editorial decision following
+review of the revised manuscript and formal evidence.

@@ -32,7 +32,7 @@ The displayed signature abbreviates the carrier/universe binders; consult the ci
 
 The two coordinated definition repairs remain exactly as agreed: Definition 2.15 protects induced source tests which are BOTH intrinsically U-closed and U-irreducible, and Definition 2.17(4b) tests membership on those same structures. Intrinsic U-irreducibility is unchanged. Clause (4c) still quantifies over ALL original exact weak induced subsets with at most the fixed n(B,C0) vertices. The original Ramsey control may be nonclosed. No extra root, rank, sparsity, or completion assumption was added to the final class interface.
 
-This closes the corrected **relational closure-description main theorem**. It does not certify the literal published theorem (which is refuted), every remaining result in the paper, or a primitive-function formulation without its explicit relationalization bridge. The original native Lemma 2.30 generating-rank statement remains separate and unproved by this route.
+This closes the corrected **relational closure-description main theorem**. It certifies the revised relational formulation, not the earlier printed definitions, every remaining result in the paper, or a primitive-function formulation without its explicit relationalization bridge. This is a statement about the scope of certification rather than a verdict on the earlier text. The original native Lemma 2.30 generating-rank statement remains separate and unproved by this route.
 
 ## How the construction closes the gap
 
@@ -64,7 +64,7 @@ The auxiliary profile language permits all finite tuple lengths and need not hav
 
 The old conditional interfaces `coordinated2019_ramsey_of_two_picture_constructors` and `coordinated2019_ramsey_of_higher_rank_constructor` are historical alternative proof contracts. Their unproved native constructor is not a remaining dependency of the new theorem.
 
-For that original rank argument, the counterexamples to automatic free covers of transverse copy ranges and to ignoring separator costs still apply. A possibly noninjective protected root completion is not a pair of compatible full boundary embeddings. These objections must not be erased or promoted to green simply because the alternative proof now succeeds.
+For that original rank argument, the outstanding proof obligations concerning free covers of transverse copy ranges and separator costs still require justification. A possibly noninjective protected root completion is not a pair of compatible full boundary embeddings. These objections must not be erased or promoted to green simply because the alternative proof now succeeds.
 
 A primitive-function version of the manuscript theorem needs its relationalization hypotheses and transfer to be explicitly connected to the corrected relational statement. The final declaration above does not itself perform that transfer. Other numbered results retain their individual validation status. Replacing the original printed proof by the profile proof is an editorial decision; the new proof is supplied separately in the review TeX, without modifying the numbered mathematical prose.
 
