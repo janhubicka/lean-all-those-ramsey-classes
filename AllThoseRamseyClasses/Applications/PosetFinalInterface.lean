@@ -65,7 +65,7 @@ theorem orderedPoset_coordinatedClass_of_exactLocal
   · intro X A hA
     exact orderedPosetClass_finite A hA
   · intro X A hA rule hrule
-    exact (Set.not_mem_empty rule hrule).elim
+    simp at hrule
   · intro X A hA S _
     exact orderedPosetClass_hereditary hA (inclusion A S)
   · intro X Y hFiniteX hFiniteY B C0 hB hC0
