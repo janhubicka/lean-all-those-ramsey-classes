@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.SteinerStrongEmbedding
+
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.edge_embedding_iff
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.triple_embedding_iff
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.embedding_no_exterior_block_of_uncovered
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.embedding_block_third_vertex_in_range
