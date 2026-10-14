@@ -6,7 +6,7 @@
 
 The endpoint is `AllThoseRamseyClasses.Published.coordinated2019_ramsey_by_profile_sparsening` in `AllThoseRamseyClasses/Published/Coordinated2019ProfileSparseWitness.lean`. It constructs the sparse witness rather than taking it as a premise. There is no native rank-increment or compatible-boundary constructor hypothesis, and no restriction on the local cutoff n(B,C0).
 
-PR **#195**, proof head `c783c23377d56d29bdfb7d61fe95e9c7e96073d2`, passed complete GitHub Actions run **38479503776**, job **115578421589**. All project modules, the permitted-axiom checks, the three finite regressions, and the admission scan passed. The run finished at 22:51:57 UTC on 13 October 2026. The final declarations are explicitly audited in `CheckAxiomsCoordinated2019ProfileMain.lean`; only `propext`, `Classical.choice`, and `Quot.sound` are permitted. PR #195 was squash-merged as **`f88ce3113076f348a06906c0e2cf6e12b47c985d`**.
+PR **#195**, proof head `c783c23377d56d29bdfb7d61fe95e9c7e96073d2`, passed complete GitHub Actions run **38479503776**, job **115578421589**. All project modules, the permitted-axiom checks, the three finite regressions, and the admission scan passed. The run finished at 22:51:57 UTC on 13 October 2026. The final declarations were originally audited in `CheckAxiomsCoordinated2019ProfileMain.lean` and are now in `CheckAxiomsStructuralCore.lean` plus `CheckAxioms.lean`; only `propext`, `Classical.choice`, and `Quot.sound` are permitted. PR #195 was squash-merged as **`f88ce3113076f348a06906c0e2cf6e12b47c985d`**.
 
 The fresh-tag dependency **#194**, head `34b8208782134db0e6ea38902df90ce34f010d5a`, independently passed complete run **38479196563**, job **115577338249**, and was merged first as `23ffded78eab0d9e8ce3fa03c9bc1e2f41f83817`.
 

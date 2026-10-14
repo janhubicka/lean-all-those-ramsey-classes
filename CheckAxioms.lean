@@ -1,5 +1,4 @@
 import AllThoseRamseyClasses.ApplicationsAPI
-import AllThoseRamseyClasses.Published.InducedClosed2019Lemma229
 
 /-!
 Kernel-axiom smoke checks for the maintained, researcher-facing endpoints.

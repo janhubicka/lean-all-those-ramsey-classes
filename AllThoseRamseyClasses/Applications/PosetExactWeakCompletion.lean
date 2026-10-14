@@ -17,10 +17,9 @@ comparisons. Thus the identity is protected on the two-vertex
 irreducible tests most relevant for the 2019 locally finite
 poset-class application.
 
-The full `InducedClosed2019MultiamalgamationClass` still requires
-transporting the precise protected relational maps, membership
-test hypotheses and B-copywise conclusion; strong amalgamation
-is also separate. We do not assert these class hypotheses here.
+This relation-level lemma alone does not assert the class axioms.
+The protected maps, membership tests, strong amalgamation and
+B-copywise endgame are discharged in PosetRamseyTheorem.
 -/
 
 namespace AllThoseRamseyClasses.Applications

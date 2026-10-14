@@ -322,7 +322,9 @@ Each repository change is built by
 
 1. builds `AllThoseRamseyClasses` **and all Lean files** under
    `AllThoseRamseyClasses/`, even if not in the umbrella import;
-2. runs every `CheckAxioms*.lean` and
+2. runs the **seven grouped `CheckAxioms*.lean` certificates**, preserving
+   all 199 distinct previously audited declarations, and verifies their
+   exact output multiplicities with
    [`scripts/check_axioms.py`](scripts/check_axioms.py);
 3. verifies the reachable proof/active-application module graph;
 4. runs the entire-source import, axiom-declaration and admission audit
