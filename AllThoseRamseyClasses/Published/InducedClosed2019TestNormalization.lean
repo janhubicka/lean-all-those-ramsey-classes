@@ -234,4 +234,20 @@ theorem inducedClosedLocalCompletion_iff_abstract_2019
     exact (inducedClosedKCompletion_iff_abstract_2019).mp
       (hSmall S hS)
 
+/-- Protected maps for the revised 2019 Definition 2.15 compose.
+The proof uses the checked equivalence with abstract embedded closed tests;
+there is no reference to the obsolete native rank-increment construction. -/
+theorem inducedClosedMap_comp_2019
+    {rules : ClosureDescription L}
+    {X Y Z : Type v}
+    {A : RelStructure L X} {B : RelStructure L Y}
+    {C : RelStructure L Z}
+    {f : X → Y} {g : Y → Z}
+    (hg : IsInducedClosedUHomomorphismEmbedding rules B C g)
+    (hf : IsInducedClosedUHomomorphismEmbedding rules A B f) :
+    IsInducedClosedUHomomorphismEmbedding rules A C (g ∘ f) :=
+  IsClosedUHomomorphismEmbedding.toInducedClosed
+    ((IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hg).comp
+      (IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hf))
+
 end AllThoseRamseyClasses.Published
