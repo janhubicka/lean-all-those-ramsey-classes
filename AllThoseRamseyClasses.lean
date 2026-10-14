@@ -1,45 +1,14 @@
-import AllThoseRamseyClasses.PublicAPI
+import AllThoseRamseyClasses.ApplicationsAPI
 
-import AllThoseRamseyClasses.Published.Definitions
-import AllThoseRamseyClasses.Published.SingletonObstruction
-import AllThoseRamseyClasses.Published.PairedEquivalences
+/-!
+# All those Ramsey classes
 
-import AllThoseRamseyClasses.Published.LiteralLocalFiniteness
+Curated top-level import. The corrected relational 2019 theorem is in
+`AllThoseRamseyClasses.PublicAPI`; fully proved application theorems
+(including ordered posets) are in `AllThoseRamseyClasses.ApplicationsAPI`.
 
-import AllThoseRamseyClasses.Published.MatchingClosure
-
-import AllThoseRamseyClasses.Published.MatchingHereditary
-
-import AllThoseRamseyClasses.Published.FinitePairedClass
-
-import AllThoseRamseyClasses.Published.MatchingFreeAmalgam
-
-import AllThoseRamseyClasses.Published.MinimalRepair4b
-
-import AllThoseRamseyClasses.Published.LiteralWeakRankBridge
-
-import AllThoseRamseyClasses.Published.Lemma229Counterexample
-
-import AllThoseRamseyClasses.Published.CorrectedMainTheoremContract
-
-import AllThoseRamseyClasses.Published.OrderedAmbient
-
-import AllThoseRamseyClasses.Published.OrderedAmbientOrder
-
-import AllThoseRamseyClasses.Published.NamedOrderLanguage
-
-import AllThoseRamseyClasses.Published.OrderedAmbientRamsey
-
--- Historical literal counterexamples and native-induction audit modules.
--- The verified unrestricted corrected relational main theorem is exported
--- above through PublicAPI; the original native rank-increment proof remains
--- a separate, unresolved validation task.
-import AllThoseRamseyClasses.Published.InducedClosed2019MainTwoConstructors
-import AllThoseRamseyClasses.Published.InducedClosed2019NativeRankPreservation
-import AllThoseRamseyClasses.Published.InducedClosed2019RankSaturation
-import AllThoseRamseyClasses.Published.InducedClosed2019NativeCommonCoordinate
-import AllThoseRamseyClasses.Published.InducedClosed2019SingleActiveLine
-import AllThoseRamseyClasses.Published.InducedClosed2019MixedCut
-import AllThoseRamseyClasses.Published.InducedClosed2019ExteriorIndices
-import AllThoseRamseyClasses.Published.InducedClosed2019EssentialGenerators
-import AllThoseRamseyClasses.Published.WeakAmbientHullUSize2019
+Historical refutations, native 2019 proof investigations and unfinished
+application instances remain directly importable under `Published` and
+`Applications`, but do not pollute the default researcher-facing import.
+Every source module is still compiled and audited by CI.
+-/

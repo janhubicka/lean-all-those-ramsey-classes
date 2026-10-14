@@ -6,6 +6,14 @@ documents **exactly which definitions to use** for the corrected
 relational theorem, the names of the checked statements, and the
 additional hypotheses needed to specialize the theorem.
 
+**Core import:**
+
+Use `AllThoseRamseyClasses.ApplicationsAPI` (or the curated root
+`AllThoseRamseyClasses`) for the newly completed finite ordered-poset
+Ramsey theorem `AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey`.
+The core `PublicAPI` stays independent of individual applications.
+See the [research wiki's applications reference](wiki/Applications.md).
+
 **Preferred import:**
 
 ```lean

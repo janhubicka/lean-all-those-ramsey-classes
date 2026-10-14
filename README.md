@@ -34,7 +34,12 @@ the proof certificate and a complete readable proof are in
 [`docs/current-main-theorem-status.md`](docs/current-main-theorem-status.md)
 and [`docs/coordinated-profile-proof-20261013.md`](docs/coordinated-profile-proof-20261013.md).
 For detailed theorem signatures, semantic subtleties and a migration guide,
-see [**Public API reference**](docs/public-api-reference.md).
+see [**Public API reference**](docs/public-api-reference.md). The
+[researcher wiki](docs/wiki/README.md) provides a paper-to-Lean theorem
+crosswalk, the proof architecture, checked class examples and audit
+records, following the `lean-milliken` documentation style. Its separate
+[GitHub Wiki](https://github.com/janhubicka/lean-all-those-ramsey-classes/wiki)
+synchronizes from version-controlled Markdown when initialized.
 
 ## Find the theorem or definition you need
 
@@ -77,11 +82,13 @@ open AllThoseRamseyClasses.Published
 #check coordinated2019_ramsey_by_profile_sparsening
 ```
 
-`import AllThoseRamseyClasses` also imports this public API and retains
-the historical/counterexample modules for backward compatibility.
-A researcher only using the corrected result can instead import
-`AllThoseRamseyClasses.PublicAPI` to avoid conflating the literal,
-refuted formulation with the proved one.
+`import AllThoseRamseyClasses` now imports the curated
+`AllThoseRamseyClasses.ApplicationsAPI`, which re-exports the corrected
+`PublicAPI` and fully verified concrete Ramsey-class results.
+Historical/counterexample and incomplete native-induction modules remain
+separately importable and are built by CI, but are no longer implicit
+dependencies of the default import. Users of only the main theorem can
+import `AllThoseRamseyClasses.PublicAPI`.
 
 For an actual application, supply an ambient Ramsey class $\mathcal R$,
 a target class $\mathcal K$, a closure description, the ordinary
@@ -242,10 +249,10 @@ every pair, and a full relational embedding is the intended
 and `orderedSteinerAmbient_isRamsey` components.
 The **Steiner class Ramsey corollary is not yet Lean-verified**.
 
-For ordered posets, the full strong-amalgamation class hypothesis
-**is verified** in `PosetStrongAmalgamation.lean`. The remaining
-application issue is the *exact weak-subset local-completion axiom*,
-not the already proved general corrected Theorem 2.18.
+For ordered posets the exact original weak-test local-completion
+statement is **now proved** at `Nat.card C0`. The complete theorem
+`orderedPoset_isRamsey` has no class-instance premise and is exported by
+`ApplicationsAPI` (PR #227, complete CI 38633955517).
 
 ## Main proved theorems
 
@@ -260,6 +267,7 @@ not the already proved general corrected Theorem 2.18.
 | Original Lemma 2.23(1) | `lemma_2_23_one` | **Proved** exact induced-set closedness iff relative $\mathcal U$-substructure. |
 | Original Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` (in `StructuralRamsey.RelStructure`) | **Proved**; the free-amalgam root and both sides must be $\mathcal U$-closed. |
 | **Separate ordered partial-function theorem (2019 Theorem 2.19)** | `StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions` | **Proved in pinned dependency**; finite A and B, genuinely partial **single-valued** functions (empty/singleton fibres), full functional embeddings, finite ordered Ramsey witness. |
+| **Finite posets with a chosen linear extension** | `AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey` | **Fully proved**; exact weak local completion and all class fields discharged (PR #227). |
 
 The partial-function theorem above is an *independent free-amalgamation
 application* for finite ordered partial-function structures. It is
@@ -300,8 +308,8 @@ relevant application module:
 
 | Application | Verified entry points | What is **not yet certified** |
 | --- | --- | --- |
-| **Ordered posets with a linear extension** | `Applications/OrderedPosetClass.lean`, `PosetAmalgamationOrder.lean`, `PosetGlobalQuasiCycle.lean`, `PosetExactWeakCompletion.lean`, `PosetStrongAmalgamation.lean` | **Strong amalgamation is proved** (`orderedPosetClass_strongAmalgamation`, CI-green PR #218). Still missing: assembled exact corrected local-completion class instance and final Ramsey declaration. The relation `.lt` is strict even when the manuscript uses reflexive $\le$. |
-| **Freely ordered partial Steiner triples, strong embeddings** | `SteinerTripleClass.lean`, `SteinerStrongEmbedding.lean`, `SteinerTripleIsomorphism.lean`, `SteinerAmbientRamsey.lean` | Actual strong-amalgamation, local-completion and final class theorem. The binary *covered-pair* marker makes embeddings strong; arbitrary orders are allowed. |
+| **Ordered posets with a linear extension** | `Applications/PosetRamseyTheorem.lean`: `orderedPoset_exactLocalAtControlCard`, `orderedPoset_isCoordinated2019Multiamalgamation`, `orderedPoset_isRamsey` | **The full Ramsey class is verified** (PR #227, CI 38633955517). The exact local cutoff is `Nat.card C0`; `.lt` denotes strict order although the manuscript uses reflexive $\le$. |
+| **Freely ordered partial Steiner triples, strong embeddings** | `SteinerTripleClass.lean`, `SteinerFreeAmalgamClosure.lean`, `SteinerOrderPushout.lean` and other component files | Closure of free strong-root amalgams (PR #228) and arbitrary compatible vertex orders (PR #229) are checked. Full block/relation normal forms, exact local completion and final class Ramsey theorem are still open. |
 | **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact $\oplus_S$ specialization and full convexly ordered $S$-metric Ramsey theorem. |
 | **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | The rooted-quotient Ramsey construction, especially for countable targets. |
 
@@ -319,7 +327,9 @@ Each repository change is built by
 2. runs every `CheckAxioms*.lean` and
    [`scripts/check_axioms.py`](scripts/check_axioms.py);
 3. runs finite regression checks, including literal counterexamples;
-4. rejects source admissions such as `sorry` and `admit`.
+4. runs the entire-source import, axiom-declaration and admission audit
+   `python3 scripts/audit_library.py`, preserving optional research modules;
+5. rejects source admissions such as `sorry` and `admit`.
 
 Only Lean's standard `propext`, `Classical.choice`, and
 `Quot.sound` are permitted for green theorems. A checked theorem
@@ -331,6 +341,7 @@ the literal published theorem or its original proof. For provenance:
 * [Full English profile/sparsening proof](docs/coordinated-profile-proof-20261013.md)
 * [Literal 2019 counterexample](docs/literal-counterexample.md)
 * [Public API and symbol/reference guide](docs/public-api-reference.md)
+* [Research wiki: statements, applications, proof architecture and audits](docs/wiki/README.md)
 * [Separate manuscript and reversible correction history](https://github.com/janhubicka/All-those-Ramsey-classes)
 
 The literature often cites Theorem 2.18 without specifying its
