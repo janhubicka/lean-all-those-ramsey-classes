@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Published.EquivalencePushoutRelation
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.exists_equivalence_amalgam
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.exists_equivalence_amalgam_with_matching

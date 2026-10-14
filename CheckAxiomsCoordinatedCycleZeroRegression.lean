@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedCycleZeroRegression
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_zero_path
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_zero_not_pairedClass
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_zero_not_K

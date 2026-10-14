@@ -1,7 +1,0 @@
-import AllThoseRamseyClasses.Published.FunctionalRankBridge2019
-
-#print axioms StructuralRamsey.Structure.IsEHNHomomorphismEmbedding.rankReduct
-#print axioms StructuralRamsey.Structure.TreeAmalgam.rankExpand_treeReduct
-#print axioms StructuralRamsey.Structure.arrow_of_singletonExpansion
-
-#print axioms StructuralRamsey.Structure.exists_tuple_equality_pattern_exact

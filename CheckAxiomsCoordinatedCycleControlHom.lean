@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedCycleControlHom
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_M_projects
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleGadgetWitness_control_homomorphism

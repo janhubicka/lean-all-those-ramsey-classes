@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedNonlocalityCriterion
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.CoordinatedEPathBadWitnessAt.refutes_cutoff
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.not_coordinated_local_completion_of_all_cutoffs

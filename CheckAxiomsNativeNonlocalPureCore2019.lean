@@ -1,7 +1,0 @@
-import AllThoseRamseyClasses.Published.NativeNonlocalPureCore2019
-
--- Native relation tuple nonlocality is PURE-CORE, never a cross
--- relation involving private exterior vertices of different copies.
-#print axioms AllThoseRamseyClasses.Published.native2019_nonlocal_two_copy_tuple_is_pure_core
-#print axioms AllThoseRamseyClasses.Published.native2019_nonlocal_positive_source_tuple_is_pure_core
-#print axioms AllThoseRamseyClasses.Published.native2019_two_copy_source_tuples_local_of_core_tuples_local

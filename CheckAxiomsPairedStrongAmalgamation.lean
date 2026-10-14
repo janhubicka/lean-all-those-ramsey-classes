@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Published.PairedStrongAmalgamation
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_strong_amalgamation

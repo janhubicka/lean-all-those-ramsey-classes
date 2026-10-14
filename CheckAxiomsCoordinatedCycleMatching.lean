@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedCycleMatching
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.isUClosed_of_reflexive_E_and_total_M
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleMatching_total
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cyclePairScaffold_isUClosed

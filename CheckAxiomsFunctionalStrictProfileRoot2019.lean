@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Published.FunctionalStrictProfileRoot2019
-
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_two_base_copies_closed_root

@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Published.PairedEquivalenceCycleObstruction
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.equiv_along_chain
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.no_copywise_completion_of_E_cycle
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.no_K_copywise_completion_of_E_cycle
