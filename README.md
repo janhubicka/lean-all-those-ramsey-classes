@@ -15,15 +15,15 @@ collection of proposed statements and proof sketches.
 > counterexamples. The library proves a **coordinated correction** changing
 > *both* the protected-map tests of Definition 2.15 and the membership tests
 > of Definition 2.17(4b) to structures that are **simultaneously intrinsically
-> \(\mathcal U\)-closed and \(\mathcal U\)-irreducible**. The original
+> $\mathcal U$-closed and $\mathcal U$-irreducible**. The original
 > Definition 2.17(4c) still tests **every exact weak induced subset of at
-> most \(n(B,C_0)\) vertices**. It does *not* replace that subset by its
+> most $n(B,C_0)$ vertices**. It does *not* replace that subset by its
 > generated closure. This distinction is indispensable when applying or
 > citing the theorem.
 
 The revised relational theorem has **no missing construction lemma as a
 hypothesis**, no restriction on the local test cutoff, and no assumption that
-the ambient Ramsey control \(C_0\) is closed. It is proved via closed
+the ambient Ramsey control $C_0$ is closed. It is proved via closed
 Ramsey Pictures, generated-closure profiles, strict-tree sparsening and a
 second fresh-root-tagged closed pass. The older generating-rank proof of
 Lemma 2.30 is **not** certified by this alternative proof.
@@ -62,9 +62,9 @@ A researcher only using the corrected result can instead import
 `AllThoseRamseyClasses.PublicAPI` to avoid conflating the literal,
 refuted formulation with the proved one.
 
-For an actual application, supply an ambient Ramsey class \(\mathcal R\),
-a target class \(\mathcal K\), a closure description, the ordinary
-irreducibility of \(\mathcal R\), and the *corrected* class predicate:
+For an actual application, supply an ambient Ramsey class $\mathcal R$,
+a target class $\mathcal K$, a closure description, the ordinary
+irreducibility of $\mathcal R$, and the *corrected* class predicate:
 
 ```lean
 import AllThoseRamseyClasses.PublicAPI
@@ -130,20 +130,20 @@ definition is silently introduced here.
 | `RelStructure.Embedding A B` | Injective **full** embedding; reflects as well as preserves every relational tuple. |
 | `RelStructure.Irreducible A` | Every pair of distinct vertices occurs together in some positive relation tuple (complete Gaifman graph). |
 | `RelStructure.IsHomomorphismEmbedding` | Positive homomorphism which is a full embedding on each ordinary irreducible induced test. |
-| `StructuralRamsey.Arrow A B C κ` | Every \(\kappa\)-colouring of full \(A\)-embeddings into \(C\) has a monochromatic full \(B\)-embedding. |
-| `FiniteRamseyClass K` | For every finite \(A,B\in K\) and every nonempty finite colour type, some finite \(C\in K\) satisfies the arrow. |
+| `StructuralRamsey.Arrow A B C κ` | Every $\kappa$-colouring of full $A$-embeddings into $C$ has a monochromatic full $B$-embedding. |
+| `FiniteRamseyClass K` | For every finite $A,B\in K$ and every nonempty finite colour type, some finite $C\in K$ satisfies the arrow. |
 | `ClosureRule` / `ClosureDescription` | A closure-relation symbol with a nonempty proper irreducible root / a set of such rules. |
 | `IsUClosed rules A` | Exactly **one entire closure tuple** above each embedded rule root, and none above an invalid root. |
 | `IsUSemiClosed rules A` | A partially defined closure relation, single-valued wherever defined; not necessarily total on roots. |
-| `IsUSubstructure rules A S` | The **exact** subset \(S\) contains every output of an existing closure tuple whose root is in \(S\). |
-| `UClosureHull rules A S` | The smallest such relative closed vertex set containing \(S\); it is a *different object* from the weak test \(S\). |
+| `IsUSubstructure rules A S` | The **exact** subset $S$ contains every output of an existing closure tuple whose root is in $S$. |
+| `UClosureHull rules A S` | The smallest such relative closed vertex set containing $S$; it is a *different object* from the weak test $S$. |
 | `USize rules A` | Minimum cardinality of a generating set, not the number of vertices of its closure hull. |
-| `IsUIrreducible rules A` | No free decomposition into two proper intrinsically \(\mathcal U\)-closed sides, even if \(A\) itself is not closed. |
+| `IsUIrreducible rules A` | No free decomposition into two proper intrinsically $\mathcal U$-closed sides, even if $A$ itself is not closed. |
 
 **Never interchange** ordinary irreducibility, intrinsic
-\(\mathcal U\)-irreducibility, and the conjunction of
-\(\mathcal U\)-closedness with \(\mathcal U\)-irreducibility.
-Ordinary irreducibility implies intrinsic \(\mathcal U\)-irreducibility,
+$\mathcal U$-irreducibility, and the conjunction of
+$\mathcal U$-closedness with $\mathcal U$-irreducibility.
+Ordinary irreducibility implies intrinsic $\mathcal U$-irreducibility,
 but the reverse is not automatic.
 
 ## Which completion and class predicates should I use?
@@ -153,22 +153,22 @@ embedded-test presentation are *distinct Lean interfaces*:
 
 | Role | Main exported declaration | Exact scope |
 | --- | --- | --- |
-| Literal published map, **audit only** | `IsUHomomorphismEmbedding` | Protects **all** intrinsic \(\mathcal U\)-irreducible induced tests, even nonclosed ones. Do **not** use this as the corrected theorem hypothesis. |
+| Literal published map, **audit only** | `IsUHomomorphismEmbedding` | Protects **all** intrinsic $\mathcal U$-irreducible induced tests, even nonclosed ones. Do **not** use this as the corrected theorem hypothesis. |
 | **Corrected** paper-style map | `IsInducedClosedUHomomorphismEmbedding` | Positive map; embeds precisely induced tests that are both intrinsically closed and irreducible. |
-| Corrected finite \(K\)-completion | `HasInducedClosedUKCompletion` | Finite irreducible \(K\)-target; protected map from the **original weak source**. |
-| Corrected local axiom | `InducedClosedULocalCompletionAt K rules B C0 n` | Tests **every original weak induced** \(S\) with \(|S|\le n\); demands a completion respecting every \(B\)-copy. |
-| Corrected class hypothesis | `InducedClosed2019MultiamalgamationClass R K rules` | Subclass, finite, closed, induced closed-hereditary, finite strong amalgamation, and existence of a suitable local cutoff for each \(B,C_0\). |
+| Corrected finite $K$-completion | `HasInducedClosedUKCompletion` | Finite irreducible $K$-target; protected map from the **original weak source**. |
+| Corrected local axiom | `InducedClosedULocalCompletionAt K rules B C0 n` | Tests **every original weak induced** $S$ with $\lvert S\rvert\le n$; demands a completion respecting every $B$-copy. |
+| Corrected class hypothesis | `InducedClosed2019MultiamalgamationClass R K rules` | Subclass, finite, closed, induced closed-hereditary, finite strong amalgamation, and existence of a suitable local cutoff for each $B,C_0$. |
 | Isomorphism invariance | `IsomorphismClosed2019 K` | Explicit assumption: bare `StructureClass` predicates are **not** automatically invariant under isomorphism. |
 | **Recommended theorem hypothesis** | `IsCoordinated2019MultiamalgamationClass R K rules` | Packages the exact corrected class predicate with isomorphism invariance. |
 | Internal embedded-test bridge | `IsClosedUHomomorphismEmbedding`, `ClosedUMultiamalgamationClass` | Equivalent/sufficient *working* predicates only under their proved transfer hypotheses; do not redefine the paper with these silently. |
 
-Crucial quantifier order: **first** fix \(B\in\mathcal K\)
-and an ambient Ramsey control \(C_0\in\mathcal R\);
-**then** select \(n(B,C_0)\);
-**then** check all original weak subsets of a candidate \(C\) at that
-same cutoff. No \(\mathcal U\)-closedness of \(C_0\) is assumed.
-The completion conclusion preserves copies of \(B\), not necessarily
-all copies of \(A\) in \(C\).
+Crucial quantifier order: **first** fix $B\in\mathcal K$
+and an ambient Ramsey control $C_0\in\mathcal R$;
+**then** select $n(B,C_0)$;
+**then** check all original weak subsets of a candidate $C$ at that
+same cutoff. No $\mathcal U$-closedness of $C_0$ is assumed.
+The completion conclusion preserves copies of $B$, not necessarily
+all copies of $A$ in $C$.
 
 The exact bridge
 `IsCoordinated2019MultiamalgamationClass.toAbstract`
@@ -183,10 +183,10 @@ conditions, see `closedHereditary2019_iff_embedded`.
 | The same theorem as one reusable universal proposition | `coordinated2019_theorem218` | Direct proved wrapper of `Coordinated2019Theorem218Target`, exported by `PublicAPI`. |
 | Construct the unrestricted closed/sparse witness | `coordinated2019_profile_sparse_witness` | **Constructed**, not a constructor premise. |
 | Corrected unrestricted initial Picture (Lemma 2.28) | `lemma_2_28_coordinated_unrestricted_induced` | **Proved** even with a nonclosed original control. |
-| Direct restricted fixed-cutoff Ramsey result | `coordinated2019_cutoff_three_unrestricted_induced` | **Proved** for \(n\le3\); superseded in generality by the unrestricted theorem. |
+| Direct restricted fixed-cutoff Ramsey result | `coordinated2019_cutoff_three_unrestricted_induced` | **Proved** for $n\le3$; superseded in generality by the unrestricted theorem. |
 | Induced-test to working embedded-test class transport | `coordinated2019_to_abstract_closed_class`, `IsCoordinated2019MultiamalgamationClass.toAbstract` | **Proved** with explicit isomorphism invariance. |
-| Original Lemma 2.23(1) | `lemma_2_23_one` | **Proved** exact induced-set closedness iff relative \(\mathcal U\)-substructure. |
-| Original Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` (in `StructuralRamsey.RelStructure`) | **Proved**; the free-amalgam root and both sides must be \(\mathcal U\)-closed. |
+| Original Lemma 2.23(1) | `lemma_2_23_one` | **Proved** exact induced-set closedness iff relative $\mathcal U$-substructure. |
+| Original Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` (in `StructuralRamsey.RelStructure`) | **Proved**; the free-amalgam root and both sides must be $\mathcal U$-closed. |
 | **Separate ordered partial-function theorem (2019 Theorem 2.19)** | `StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions` | **Proved in pinned dependency**; finite A and B, genuinely partial **single-valued** functions (empty/singleton fibres), full functional embeddings, finite ordered Ramsey witness. |
 
 The partial-function theorem above is an *independent free-amalgamation
@@ -206,14 +206,14 @@ The complete main proof exports smaller results for further formal work:
   by its generators; full embeddings of closed structures lift.
 * `closureProfile2019_tree_completion_to_K`:
   strict trees of profiled base copies admit actual finite
-  \(K\)-completions by strong amalgamation over a **shared full closed
+  $K$-completions by strong amalgamation over a **shared full closed
   boundary**, not an assumed root-completion oracle.
 * `profileTag2019_original_closed_and_coverage`,
   `profileRootTag2019_forget_arrow`:
   transfer original closure, protected tests, and Ramsey arrows back
   after the fresh-tagged final pass.
 * `arrow_of_BCopywiseCompletion_inClass` (dependency):
-  transfer a Ramsey arrow when only the selected \(B\)-copies
+  transfer a Ramsey arrow when only the selected $B$-copies
   survive in the completion.
 
 These are **proof ingredients**, not alternative formulations of the
@@ -228,9 +228,9 @@ relevant application module:
 
 | Application | Verified entry points | What is **not yet certified** |
 | --- | --- | --- |
-| **Ordered posets with a linear extension** | `Applications/OrderedPosetClass.lean`, `PosetAmalgamationOrder.lean`, `PosetGlobalQuasiCycle.lean`, `PosetExactWeakCompletion.lean`, `PosetStrongAmalgamation.lean` | **Strong amalgamation is proved** (`orderedPosetClass_strongAmalgamation`, CI-green PR #218). Still missing: assembled exact corrected local-completion class instance and final Ramsey declaration. The relation `.lt` is strict even when the manuscript uses reflexive \(\le\). |
+| **Ordered posets with a linear extension** | `Applications/OrderedPosetClass.lean`, `PosetAmalgamationOrder.lean`, `PosetGlobalQuasiCycle.lean`, `PosetExactWeakCompletion.lean`, `PosetStrongAmalgamation.lean` | **Strong amalgamation is proved** (`orderedPosetClass_strongAmalgamation`, CI-green PR #218). Still missing: assembled exact corrected local-completion class instance and final Ramsey declaration. The relation `.lt` is strict even when the manuscript uses reflexive $\le$. |
 | **Freely ordered partial Steiner triples, strong embeddings** | `SteinerTripleClass.lean`, `SteinerStrongEmbedding.lean`, `SteinerTripleIsomorphism.lean`, `SteinerAmbientRamsey.lean` | Actual strong-amalgamation, local-completion and final class theorem. The binary *covered-pair* marker makes embeddings strong; arbitrary orders are allowed. |
-| **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact \(\oplus_S\) specialization and full convexly ordered \(S\)-metric Ramsey theorem. |
+| **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact $\oplus_S$ specialization and full convexly ordered $S$-metric Ramsey theorem. |
 | **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | The rooted-quotient Ramsey construction, especially for countable targets. |
 
 The [manuscript applications ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-VALIDATION-2026-10-14.md)
