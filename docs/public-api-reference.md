@@ -275,14 +275,13 @@ reverse this logical direction.
 
 ## Theorems and completion infrastructure
 
-**Stable researcher entry points:**
+**Stable unrestricted researcher entry points:**
 
 ```lean
 #check coordinated2019_theorem218
 #check coordinated2019_ramsey_by_profile_sparsening
 #check coordinated2019_profile_sparse_witness
 #check lemma_2_28_coordinated_unrestricted_induced
-#check coordinated2019_cutoff_three_unrestricted_induced
 ```
 
 * `coordinated2019_ramsey_by_profile_sparsening` proves
