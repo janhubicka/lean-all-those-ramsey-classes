@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Applications.SteinerTripleHereditary
-
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.covered_root_of_embedding
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_of_closed_embedding
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_closedUHereditary

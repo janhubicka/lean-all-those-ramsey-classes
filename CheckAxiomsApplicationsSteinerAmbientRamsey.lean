@@ -1,7 +1,0 @@
-import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
-
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_subset_ambient
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steinerAmbient_irreducible
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.arrow_nameExternal
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.name_ordered_auxiliaryReduct_eq
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerAmbient_isRamsey

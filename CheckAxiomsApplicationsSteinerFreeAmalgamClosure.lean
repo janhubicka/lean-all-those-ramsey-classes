@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure
-
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_blockRules_closed
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.steiner_freeAmalgam_unique_block_extension

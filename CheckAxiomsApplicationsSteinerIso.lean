@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Applications.SteinerTripleIsomorphism
-
-#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isomorphismClosed

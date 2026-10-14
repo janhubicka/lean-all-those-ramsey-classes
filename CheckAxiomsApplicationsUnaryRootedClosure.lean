@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit
-
-#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.generatedClosure_full
-#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.unrooted_two_cycle_closures_equal
-#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.naive_unrooted_closure_not_injective
-#print axioms AllThoseRamseyClasses.Applications.UnaryQuotient.rootedClosure_injective
