@@ -1,5 +1,0 @@
-import AllThoseRamseyClasses.Published.GeneratedClosureProfileBoundary2019
-
-#print axioms AllThoseRamseyClasses.Published.closureProfileOfTuple2019
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_common_weak_root_closed_boundary
-#print axioms AllThoseRamseyClasses.Published.closureProfile2019_base_hereditarily_irreducible

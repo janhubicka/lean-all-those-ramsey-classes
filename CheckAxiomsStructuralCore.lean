@@ -1,0 +1,105 @@
+import AllThoseRamseyClasses.Published.Coordinated2019ProfileSparseWitness
+import AllThoseRamseyClasses.Published.CoordinatedRepair2019
+import AllThoseRamseyClasses.Published.Corrected4bLocalCounterexample
+import AllThoseRamseyClasses.Published.CorrectedSingletonEscapeBound
+import AllThoseRamseyClasses.Published.EquivalenceGlobalLabels
+import AllThoseRamseyClasses.Published.EquivalenceOverlapClasses
+import AllThoseRamseyClasses.Published.EquivalencePushoutLabels
+import AllThoseRamseyClasses.Published.EquivalenceSideTags
+import AllThoseRamseyClasses.Published.GeneratedClosureProfileBoundary2019
+import AllThoseRamseyClasses.Published.GeneratedClosureProfiles2019
+import AllThoseRamseyClasses.Published.InducedClosed2019ClassBridge
+import AllThoseRamseyClasses.Published.InducedClosed2019HereditaryBridge
+import AllThoseRamseyClasses.Published.InducedClosed2019Lemma229
+import AllThoseRamseyClasses.Published.InducedClosed2019MainContract
+
+/-!
+# Kernel-axiom certificates: corrected 2019 classes and structural foundations
+
+The 46 original per-module `#print axioms` commands below are preserved verbatim.
+Each section states its historical source filename for review and blame.
+-/
+
+-- Preserved certificate from CheckAxiomsCoordinated2019ProfileMain.lean
+-- Exact repaired 2019 statements. No native rank increment or
+-- compatible-boundary/sparse-witness oracle is a theorem premise.
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_profile_sparse_witness
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_ramsey_by_profile_sparsening
+
+-- Preserved certificate from CheckAxiomsCoordinatedRepair2019.lean
+#print axioms AllThoseRamseyClasses.Published.fullyProtected_implies_proposedMap
+
+-- Preserved certificate from CheckAxiomsCorrected4bLocal.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_corrected_local_cutoff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePairedClass_corrected_local_all
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.finitePaired_corrected_multiamalgamation_of_strong
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.correctedTheorem218_implies_not_pairedStrong
+
+-- Preserved certificate from CheckAxiomsCorrectedSingletonEscape.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.corrected_cover_singleton_not_closed
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.corrected_cover_has_escaping_output
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.injective_option_of_deleted_embedding
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.card_le_succ_of_option_injective
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.corrected_cover_literal_control_card_bound
+
+-- Preserved certificate from CheckAxiomsEquivalenceGlobalLabels.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.includeLeftClassTag_injective
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.includeRightClassTag_injective
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.leftAmalgamTag_eq_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.rightAmalgamTag_eq_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.amalgamTag_agree_on_root
+
+-- Preserved certificate from CheckAxiomsEquivalenceOverlap.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.equivalence_embedding_iff
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.root_class_unique_of_two_contacts
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.equivalence_agrees_on_overlap
+
+-- Preserved certificate from CheckAxiomsEquivalencePushoutLabels.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.IsFreeAmalgam.exists_compatible_label
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.exists_amalgam_E_labels
+
+-- Preserved certificate from CheckAxiomsEquivalenceSideTags.lean
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideClassTag_root
+#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.sideClassTag_eq_iff
+
+-- Preserved certificate from CheckAxiomsGeneratedClosureProfileBoundary2019.lean
+#print axioms AllThoseRamseyClasses.Published.closureProfileOfTuple2019
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_common_weak_root_closed_boundary
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_base_hereditarily_irreducible
+
+-- Preserved certificate from CheckAxiomsGeneratedClosureProfiles2019.lean
+#print axioms AllThoseRamseyClasses.Published.generated2019_realization_in_closed_range
+#print axioms AllThoseRamseyClasses.Published.closureProfileEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.closureProfileForgetEmbedding2019
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_irreducible
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_arrow
+#print axioms AllThoseRamseyClasses.Published.closureProfile2019_transport_boundary_record
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019ClassBridge.lean
+-- Exact paper-induction versus embedded-test class comparison.
+-- The global Ramsey theorem remains an explicit assumption.
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_to_abstract_closed_class
+#print axioms AllThoseRamseyClasses.Published.IsCoordinated2019MultiamalgamationClass.toAbstract
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_target_of_abstract_target
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019HereditaryBridge.lean
+-- A literal 2019 induced-substructure bridge. No extra axioms.
+#print axioms AllThoseRamseyClasses.Published.isUClosed_of_surjective_embedding
+#print axioms AllThoseRamseyClasses.Published.inducedRangeEmbedding_surjective
+#print axioms AllThoseRamseyClasses.Published.IsUClosed.inducedRange
+#print axioms AllThoseRamseyClasses.Published.inducedClosedHereditary_of_embedded
+#print axioms AllThoseRamseyClasses.Published.embeddedClosedHereditary_of_induced
+#print axioms AllThoseRamseyClasses.Published.closedHereditary2019_iff_embedded
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019Lemma229.lean
+-- A PROVED repaired version of Lemma 2.29 with exact induced tests.
+-- The original literal all-intrinsic-test lemma remains refuted.
+#print axioms AllThoseRamseyClasses.Published.lemma_2_29_coordinated_induced
+
+#print axioms AllThoseRamseyClasses.Published.lemma_2_29_coordinated_induced_full
+
+-- Preserved certificate from CheckAxiomsInducedClosed2019MainContract.lean
+-- Conditional transfer statements only. These do not prove the
+-- outstanding higher-rank Picture construction or Theorem 2.18.
+#print axioms AllThoseRamseyClasses.Published.inducedClosed2019_ramsey_of_sparse_witnesses
+#print axioms AllThoseRamseyClasses.Published.inducedClosed2019_rank_transfer

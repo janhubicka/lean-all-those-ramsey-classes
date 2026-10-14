@@ -1,9 +1,0 @@
-import AllThoseRamseyClasses.Published.InducedClosed2019HereditaryBridge
-
--- A literal 2019 induced-substructure bridge. No extra axioms.
-#print axioms AllThoseRamseyClasses.Published.isUClosed_of_surjective_embedding
-#print axioms AllThoseRamseyClasses.Published.inducedRangeEmbedding_surjective
-#print axioms AllThoseRamseyClasses.Published.IsUClosed.inducedRange
-#print axioms AllThoseRamseyClasses.Published.inducedClosedHereditary_of_embedded
-#print axioms AllThoseRamseyClasses.Published.embeddedClosedHereditary_of_induced
-#print axioms AllThoseRamseyClasses.Published.closedHereditary2019_iff_embedded
