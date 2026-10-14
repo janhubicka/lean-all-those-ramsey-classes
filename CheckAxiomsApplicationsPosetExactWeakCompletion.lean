@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.PosetExactWeakCompletion
+
+#print axioms AllThoseRamseyClasses.Applications.poset_reflexive_completion_of_exact_weak_local_tests
