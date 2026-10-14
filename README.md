@@ -37,9 +37,9 @@ For detailed theorem signatures, semantic subtleties and a migration guide,
 see [**Public API reference**](docs/public-api-reference.md). The
 [researcher wiki](docs/wiki/README.md) provides a paper-to-Lean theorem
 crosswalk, the proof architecture, checked class examples and audit
-records, following the `lean-milliken` documentation style. Its separate
-[GitHub Wiki](https://github.com/janhubicka/lean-all-those-ramsey-classes/wiki)
-synchronizes from version-controlled Markdown when initialized.
+records, following the `lean-milliken` documentation style. The [live GitHub Wiki](https://github.com/janhubicka/lean-all-those-ramsey-classes/wiki)
+was published in [CI run 38642603486](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38642603486) and now synchronizes
+from version-controlled Markdown.
 
 ## Find the theorem or definition you need
 

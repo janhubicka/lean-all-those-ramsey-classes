@@ -12,8 +12,21 @@ follows the established `lean-milliken` mechanism: pushes that change
 the separate Wiki Git repository is initialized. An initial
 `gollum` event and a manual `workflow_dispatch` can also start it.
 The version-controlled `docs/wiki/README.md` becomes Wiki Home,
-and `_Sidebar.md` supplies navigation. The publisher does not
-force-push Wiki history.
+and `_Sidebar.md` supplies navigation. The publisher action currently issues `git push -f origin master`
+after cloning the Wiki. The canonical source remains `docs/wiki/`;
+direct or simultaneous manual Wiki edits may be overwritten. Review
+this behaviour before changing publishing strategies.
+
+## Verified publication status — 14 October 2026
+
+**Published.** [Workflow run 38642603486](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38642603486)
+cloned `lean-all-those-ramsey-classes.wiki.git`, created the pages,
+and pushed Wiki commit `61f639b` to `master`, synchronized from
+Lean source commit `e185d6105ac80643bf81b1cc3c4cbd8d11eee6c0`.
+The live [GitHub Wiki](https://github.com/janhubicka/lean-all-those-ramsey-classes/wiki)
+needs no initial setup for this repository. The following instructions
+apply only to a new fork or a replica whose separate Wiki storage
+is still absent.
 
 ## One-time Wiki initialization, if needed
 

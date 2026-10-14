@@ -50,4 +50,8 @@ Evidence:
 
 The canonical source of this wiki is the repository directory
 [docs/wiki/](https://github.com/janhubicka/lean-all-those-ramsey-classes/tree/main/docs/wiki).
-The separate GitHub Wiki is synchronized automatically after initialization.
+The [GitHub Wiki](https://github.com/janhubicka/lean-all-those-ramsey-classes/wiki)
+was published successfully on 14 October 2026 from merged source
+`e185d6105ac80643bf81b1cc3c4cbd8d11eee6c0` (workflow
+[38642603486](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38642603486)),
+and is automatically synchronized from subsequent source changes.
