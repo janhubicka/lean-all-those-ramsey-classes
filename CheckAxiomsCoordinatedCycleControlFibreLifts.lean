@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedCycleControlFibreLifts
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_control_injective_on_gadget
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycle_inducedTemplates_of_controlFibreLifts

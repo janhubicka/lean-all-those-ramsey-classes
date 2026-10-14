@@ -4,6 +4,7 @@ import AllThoseRamseyClasses.Published.InducedClosed2019MainContract
 import AllThoseRamseyClasses.Published.InducedClosed2019ClassBridge
 import AllThoseRamseyClasses.Published.InducedClosed2019HereditaryBridge
 import AllThoseRamseyClasses.Published.InducedClosed2019UnrestrictedInitial
+import AllThoseRamseyClasses.Published.InducedClosed2019Lemma229
 import AllThoseRamseyClasses.Published.InducedClosed2019CutoffThree
 import AllThoseRamseyClasses.Published.Coordinated2019ProfileSparseWitness
 import PartiteConstruction.Ramsey.ClosureUSize2019
@@ -22,9 +23,8 @@ local-completion predicates, the 2019 closure definitions, the
 unrestricted initial Picture and fixed-cutoff corollaries, and the
 separately verified free partial-function ordered Ramsey theorem.
 
-The printed literal 2019 main theorem is refuted by a checked
-counterexample. The theorem exported here has the TWO explicitly
-coordinated corrections:
+The working manuscript updates TWO definitions together; this module
+exports the theorem under those revised hypotheses:
 
 * protected map tests are simultaneously intrinsically U-closed
   and U-irreducible;

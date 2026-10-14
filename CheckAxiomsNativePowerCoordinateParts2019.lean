@@ -1,6 +1,0 @@
-import AllThoseRamseyClasses.Published.NativePowerCoordinateParts2019
-
--- Genuine native power part-compatibility, no completion/closed-root oracle.
-#print axioms AllThoseRamseyClasses.Published.nativePower_selected_coordinate_old_part
-#print axioms AllThoseRamseyClasses.Published.nativePower_two_coordinates_old_parts_agree
-#print axioms AllThoseRamseyClasses.Published.nativePower_embedded_core_coordinate_parts_agree

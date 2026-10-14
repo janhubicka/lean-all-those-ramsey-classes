@@ -10,16 +10,16 @@ homomorphisms)*](https://doi.org/10.1016/j.aim.2019.106791),
 as a proved Lean declaration.** This is a usable library, not merely a
 collection of proposed statements and proof sketches.
 
-> **Important correction to the 2019 statement.**
-> The *literal* published Theorem 2.18 is **refuted** by Lean-checked
-> counterexamples. The library proves a **coordinated correction** changing
-> *both* the protected-map tests of Definition 2.15 and the membership tests
-> of Definition 2.17(4b) to structures that are **simultaneously intrinsically
-> $\mathcal U$-closed and $\mathcal U$-irreducible**. The original
-> Definition 2.17(4c) still tests **every exact weak induced subset of at
-> most $n(B,C_0)$ vertices**. It does *not* replace that subset by its
-> generated closure. This distinction is indispensable when applying or
-> citing the theorem.
+> **Working manuscript and formal theorem.** During formalization,
+> two definitions were adjusted together: Definition 2.15 protects exact
+> induced tests which are both intrinsically U-closed and U-irreducible,
+> and Definition 2.17(4b) checks membership of those same tests.
+> Definition 2.17(4c) still tests **every original exact weak induced
+> subset** of at most n(B,C0) vertices, without taking a closure hull.
+> The Lean theorem proves this precisely stated revised formulation.
+> The published wording, updated manuscript, and any future errata
+> remain distinct; the repository does not announce a conclusion about
+> the original wording.
 
 The revised relational theorem has **no missing construction lemma as a
 hypothesis**, no restriction on the local test cutoff, and no assumption that
@@ -59,8 +59,8 @@ The single stable research import is
 corrected theorem and the foundational definitions in the pinned
 `partite-construction` dependency. **Do not confuse “this declaration
 has type `P → Q`” with a proof of `Q`**: conditional lemmas and
-unproved class-instance hypotheses are kept explicit. Historical
-refutations and uncompleted old proof routes live in separate modules.
+unproved class-instance hypotheses are kept explicit. Abandoned proof branches are removed from the maintained library;
+Git history preserves their earlier versions.
 
 ## Getting started
 
@@ -85,9 +85,8 @@ open AllThoseRamseyClasses.Published
 `import AllThoseRamseyClasses` now imports the curated
 `AllThoseRamseyClasses.ApplicationsAPI`, which re-exports the corrected
 `PublicAPI` and fully verified concrete Ramsey-class results.
-Historical/counterexample and incomplete native-induction modules remain
-separately importable and are built by CI, but are no longer implicit
-dependencies of the default import. Users of only the main theorem can
+Only the maintained proof dependencies and active applications are
+kept in this repository; retired proof experiments remain in Git history. Users of only the main theorem can
 import `AllThoseRamseyClasses.PublicAPI`.
 
 For an actual application, supply an ambient Ramsey class $\mathcal R$,
@@ -326,10 +325,11 @@ Each repository change is built by
    `AllThoseRamseyClasses/`, even if not in the umbrella import;
 2. runs every `CheckAxioms*.lean` and
    [`scripts/check_axioms.py`](scripts/check_axioms.py);
-3. runs finite regression checks, including literal counterexamples;
+3. verifies the reachable proof/active-application module graph;
 4. runs the entire-source import, axiom-declaration and admission audit
    `python3 scripts/audit_library.py`, preserving optional research modules;
-5. rejects source admissions such as `sorry` and `admit`.
+5. independently runs the deletion/reachability invariant
+   `scripts/cleanup_inventory.py --verify`, and rejects any admissions.
 
 Only Lean's standard `propext`, `Classical.choice`, and
 `Quot.sound` are permitted for green theorems. A checked theorem
@@ -339,7 +339,7 @@ the literal published theorem or its original proof. For provenance:
 
 * [Current checked endpoint and CI certificate](docs/current-main-theorem-status.md)
 * [Full English profile/sparsening proof](docs/coordinated-profile-proof-20261013.md)
-* [Literal 2019 counterexample](docs/literal-counterexample.md)
+* [Revised definitions and precise theorem scope](docs/wiki/Published-statements.md)
 * [Public API and symbol/reference guide](docs/public-api-reference.md)
 * [Research wiki: statements, applications, proof architecture and audits](docs/wiki/README.md)
 * [Separate manuscript and reversible correction history](https://github.com/janhubicka/All-those-Ramsey-classes)

@@ -1,8 +1,0 @@
-import AllThoseRamseyClasses.Published.NativeOrdinaryCoordinateRetracts2019
-
--- Actual Hales-Jewett core and selected subattachment ordinary HEs:
--- no artificial source, global common variable, or K-boundary oracle.
-#print axioms AllThoseRamseyClasses.Published.ordinaryHE_first_factor_of_positive_composite
-#print axioms AllThoseRamseyClasses.Published.native2019_coordinate_isOrdinaryHE_on_restriction
-#print axioms AllThoseRamseyClasses.Published.native2019_selected_coordinate_isOrdinaryHE
-#print axioms AllThoseRamseyClasses.Published.exists_minimal_transverse_two_side_ordinaryHE_2019

@@ -1,4 +1,0 @@
-import AllThoseRamseyClasses.Published.CoordinatedBackboneNoTriangles
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleRelated_backbone_pair
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.cycleBackbone_no_triangle

@@ -166,17 +166,19 @@ from the first without also proving closedness.
 
 ## Literal-versus-corrected maps and exact weak completions
 
-**Literal Definition 2.15 (for audits only):**
+**Published Definition 2.15 (comparison of predicates):**
 
 ```lean
 #check IsUHomomorphismEmbedding
 ```
 
-This protects **every** intrinsically U-irreducible induced
-test, including nonclosed ones. The literal class theorem with
-this convention has a checked counterexample. Merely changing
-clause (4b) to closed tests while retaining the literal map
-still fails (separate checked counterexample).
+This predicate protects **every** intrinsically U-irreducible
+induced test, even nonclosed ones. The theorem certified in this
+library instead uses the paired changes to Definition 2.15 and
+Definition 2.17(4b), requiring U-closedness together with
+U-irreducibility. This comparison specifies which theorem is
+formalized; it does not offer an editorial verdict on the
+original published formulation.
 
 **Corrected paper-style map:**
 
@@ -303,10 +305,6 @@ reverse this logical direction.
 * `lemma_2_28_coordinated_unrestricted_induced`
   constructs a closed initial Ramsey Picture over the
   originally selected (possibly nonclosed) control.
-* `coordinated2019_cutoff_three_unrestricted_induced`
-  provides a separately constructed theorem for fixed
-  local cutoffs at most three; it is a historical partial
-  milestone, not an extra hypothesis for the general one.
 
 **Construction and transport theorems:**
 
@@ -367,11 +365,12 @@ completion and **reflects comparisons on originally ordered pairs**.
 The second produces a linear order on a strong vertex pushout
 extending both side orders. The third, verified separately in PR #218,
 constructs the **actual finite strong amalgam of ordered posets**,
-including the induced partial-order relations. These components
-still need the precise paper-style 2019 local-completion bridge
-and final corrected class-level Ramsey theorem.
+including the induced partial-order relations. The full class-level conclusion is now separately proved by
+`AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey`;
+the exact weak local-completion bridge was discharged in PR #227.
 The original paper writes reflexive $\le$, whereas the
-named Lean order symbol `.lt` is **strict**. Do not confuse them.
+named Lean order symbol `.lt` is **strict**. The completed class
+theorem uses the equivalent strict-order representation.
 
 For freely ordered partial Steiner triples:
 ```lean
@@ -396,7 +395,7 @@ For the metric and unary audits, import
 `Applications.MetricJumpSandwich` and
 `Applications.UnaryRootedClosureAudit`. The first proves
 an algebraic idempotent sandwich lemma, not the full
-$S$-metric theorem; the latter refutes an unrooted
+$S$-metric theorem; the latter identifies an issue with an unrooted
 closure-quotient shortcut, not the countable unary Ramsey
 theorem.
 
@@ -408,14 +407,15 @@ The project CI builds all files in
 `AllThoseRamseyClasses/`, runs every axiom checker, and
 rejects `sorry`/`admit`. Green declarations permit only
 `propext`, `Classical.choice` and `Quot.sound`.
-The historical literal 2019 theorem and the (4b)-only
-repair have checked counterexamples; alternative unfinished
-native rank proofs remain audit modules.
+This library proves the revised relational formulation with both
+Definition 2.15 and Definition 2.17(4b) updated together.
+Historical proof explorations have been removed from the maintained
+source tree and remain available in Git history.
 
 When citing this library, distinguish:
 
 * **Original publication:** Hubička–Nešetřil (2019),
-  Theorem 2.18, as literally printed (not formalized as true);
+  Theorem 2.18 under the original wording (not the certified revised theorem);
 * **Verified correction:** the *coordinated corrected
   relational* theorem exported as
   `coordinated2019_ramsey_by_profile_sparsening`;

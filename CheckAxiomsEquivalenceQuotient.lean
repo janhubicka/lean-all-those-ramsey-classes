@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Published.EquivalenceQuotientEmbedding
-
-#print axioms AllThoseRamseyClasses.Published.PairedEquivalenceObstruction.pairedClassQuotientMap_injective

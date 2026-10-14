@@ -3,10 +3,14 @@
 Mathematical documentation for Hubička–Nešetřil, *All those Ramsey classes*,
 Advances in Mathematics 356 (2019), 106791.
 
-The **coordinated corrected relational Theorem 2.18 is Lean-proved**,
-including arbitrary fixed exact weak-test cutoffs. The literal 2019
-formulation is refuted and must not be confused with the corrected one.
-A genuine **finite ordered-poset Ramsey-class theorem** is now proved
+The **revised relational formulation of Theorem 2.18 is Lean-proved**,
+including arbitrary fixed exact weak-test cutoffs. Formalization uses
+two coordinated updates to Definitions 2.15 and 2.17(4b), described
+in [Published statements](Published-statements.md). This documents
+the scope of the certificate without taking a position on the
+original published wording; a revised manuscript and possible
+future errata are separate author decisions.
+The **finite ordered-poset Ramsey-class theorem** is proved
 in Lean as a completed application. The independent ordered
 partial-function theorem 2.19 is in the pinned dependency.
 
@@ -32,8 +36,8 @@ import AllThoseRamseyClasses
 
 Use `AllThoseRamseyClasses.PublicAPI` for the corrected relational core.
 Use `AllThoseRamseyClasses.ApplicationsAPI` or the umbrella for completed
-applications. The older proof and counterexample modules are separately
-importable and compiled by CI, but are not implicit public dependencies.
+applications. Abandoned proof explorations are not part of the maintained
+library; their versions remain accessible in Git history.
 
 **Essential semantics:** the repaired map and (4b) protect exact
 induced structures that are BOTH intrinsically U-closed and

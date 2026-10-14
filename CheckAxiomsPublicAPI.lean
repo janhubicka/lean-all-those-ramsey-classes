@@ -42,6 +42,7 @@ new wrapper and its principal theorem dependencies. -/
 #check AllThoseRamseyClasses.Published.coordinated2019_ramsey_by_profile_sparsening
 #check AllThoseRamseyClasses.Published.coordinated2019_profile_sparse_witness
 #check AllThoseRamseyClasses.Published.lemma_2_28_coordinated_unrestricted_induced
+#check AllThoseRamseyClasses.Published.lemma_2_29_coordinated_induced_full
 #check AllThoseRamseyClasses.Published.coordinated2019_cutoff_three_unrestricted_induced
 #check AllThoseRamseyClasses.Published.IsCoordinated2019MultiamalgamationClass.toAbstract
 #check AllThoseRamseyClasses.Published.coordinated2019_to_abstract_closed_class
@@ -52,4 +53,5 @@ new wrapper and its principal theorem dependencies. -/
 #print axioms AllThoseRamseyClasses.Published.coordinated2019_theorem218
 #print axioms AllThoseRamseyClasses.Published.coordinated2019_ramsey_by_profile_sparsening
 #print axioms AllThoseRamseyClasses.Published.lemma_2_28_coordinated_unrestricted_induced
+#print axioms AllThoseRamseyClasses.Published.lemma_2_29_coordinated_induced_full
 #print axioms StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions

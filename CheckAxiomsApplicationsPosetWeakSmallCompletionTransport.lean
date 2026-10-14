@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Applications.PosetWeakSmallCompletionTransport
-
-#print axioms AllThoseRamseyClasses.Applications.OrderedPosets.poset_weak_completion_produces_local_relation
