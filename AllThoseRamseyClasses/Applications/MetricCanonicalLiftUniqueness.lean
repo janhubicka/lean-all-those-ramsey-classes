@@ -30,8 +30,14 @@ theorem canonicalClosureTag_of_root {S : Set ℝ} {V : Type u}
     {d : V → V → ℝ} (hd : MetricOn S d)
     (tag : CanonicalJumpTag hpos hS hd) :
     canonicalClosureTag hpos hS hd tag.1 (canonicalTagRoot tag) = tag := by
-  apply Sigma.ext rfl
-  exact canonicalTagRoot_class tag
+  cases tag with
+  | mk j q =>
+      have hclass := canonicalTagRoot_class
+        (⟨j, q⟩ : CanonicalJumpTag hpos hS hd)
+      exact congrArg
+        (fun q' : JumpClasses hpos hS hd j.val (Or.inr j.property) =>
+          (⟨j, q'⟩ : CanonicalJumpTag hpos hS hd))
+        hclass
 
 /-- The induced canonical lift acts on a closure-function value
 exactly as prescribed: take the jump class of the isometric image
