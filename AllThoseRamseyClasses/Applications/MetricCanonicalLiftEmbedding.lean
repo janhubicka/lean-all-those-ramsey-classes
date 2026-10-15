@@ -41,8 +41,7 @@ theorem mapCanonicalJumpTag_injective {S : Set ℝ}
           (Or.inr j.property) a =
         mapJumpClass hpos hS hdV hdW f hf j.val
           (Or.inr j.property) b := by
-    injection hab with _ heq
-    exact heq
+    injection hab
   have heq := (mapJumpClass_injective hpos hS hdV hdW
     f hf j.val (Or.inr j.property)) hclasses
   cases heq
