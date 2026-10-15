@@ -50,6 +50,8 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricCanonicalClosureFunctions",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftThresholds",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftEmbedding",
+    "AllThoseRamseyClasses.Applications.MetricCompletedClosureFunctions",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalInsertionOrder",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftUniqueness",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
@@ -58,6 +60,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions",
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
+    "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
 }
 missing = sorted(ACTIVE - sources.keys())
 if missing:
