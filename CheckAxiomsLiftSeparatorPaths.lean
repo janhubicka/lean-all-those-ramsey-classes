@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.SeparatorPaths
+import AllThoseRamseyClasses.Lifts.MinimalSeparatorForward
 
 #check AllThoseRamseyClasses.Lifts.outsideCutMap
 #check AllThoseRamseyClasses.Lifts.reachOutside_of_cut_subset
@@ -8,6 +8,14 @@ import AllThoseRamseyClasses.Lifts.SeparatorPaths
 #check AllThoseRamseyClasses.Lifts.reachOutside_stays_in
 #check AllThoseRamseyClasses.Lifts.reachOutside_stays_in_avoid_boundary
 
+#check AllThoseRamseyClasses.Lifts.IsMinimalClosedSeparator
+#check AllThoseRamseyClasses.Lifts.closureNeighborhood_separates
+#check AllThoseRamseyClasses.Lifts.minimalClosedSeparator_leftBoundary_eq
+#check AllThoseRamseyClasses.Lifts.minimalClosedSeparator_swap
+#check AllThoseRamseyClasses.Lifts.minimalClosedSeparator_bothBoundaries_eq
+
+#print axioms AllThoseRamseyClasses.Lifts.closureNeighborhood_separates
+#print axioms AllThoseRamseyClasses.Lifts.minimalClosedSeparator_bothBoundaries_eq
 #print axioms AllThoseRamseyClasses.Lifts.reachOutside_of_cut_subset
 #print axioms AllThoseRamseyClasses.Lifts.reachOutside_symm
 #print axioms AllThoseRamseyClasses.Lifts.componentFrom_disjoint_of_not_reach
