@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalJumpTags
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_positiveJumpLevels
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_jumpClassQuotient
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_canonicalJumpTags
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_canonicalTagEnumeration
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalTagLevel_jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalTagRoot
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalTagRoot_class
