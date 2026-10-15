@@ -246,7 +246,10 @@ every pair, and a full relational embedding is the intended
 `SteinerTriples.blockRules`; see the verified
 `orderedSteiner_isUClosed`, `orderedSteiner_closedUHereditary`,
 and `orderedSteinerAmbient_isRamsey` components.
-The **Steiner class Ramsey corollary is not yet Lean-verified**.
+The full auxiliary Steiner class theorem is **Lean-verified** in
+`SteinerLocalCompletion.lean`: `orderedSteiner_isRamsey` (PR #236,
+CI 38664801588), with exact weak local completion already at
+`n(B,C0)=0`. This is not an example in the 2019 manuscript.
 
 For ordered posets the exact original weak-test local-completion
 statement is **now proved** at `Nat.card C0`. The complete theorem
@@ -266,6 +269,12 @@ statement is **now proved** at `Nat.card C0`. The complete theorem
 | Original Lemma 2.23(2) | `IsFreeAmalgam.isUClosed` (in `StructuralRamsey.RelStructure`) | **Proved**; the free-amalgam root and both sides must be $\mathcal U$-closed. |
 | **Separate ordered partial-function theorem (2019 Theorem 2.19)** | `StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions` | **Proved in pinned dependency**; finite A and B, genuinely partial **single-valued** functions (empty/singleton fibres), full functional embeddings, finite ordered Ramsey witness. |
 | **Finite posets with a chosen linear extension** | `AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey` | **Fully proved**; exact weak local completion and all class fields discharged (PR #227). |
+| **Freely ordered graphs and digraphs (paper)** | `PaperGraphs.freelyOrderedSimpleGraphs_areRamsey`, `freelyOrderedDigraphs_areRamsey` | **Fully proved**, PR #237. |
+| **Ordered acyclic digraphs (paper)** | `PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey` | **Fully proved**, PR #238. |
+| **Freely ordered K_n-free graphs (paper remark)** | `PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey` | **Fully proved**, reusable forbidden-irreducible proof, PR #241. |
+| **Pointed equivalences (paper)** | `PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey` | **Fully proved**, PR #239; total idempotent singleton-valued unary function. |
+| **Finite-target ordered m-unary functions (paper)** | `TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey` | **Fully proved for finite B**, PR #240; countably infinite B remains separate. |
+| **Auxiliary freely ordered partial Steiner triples** | `SteinerTriples.orderedSteiner_isRamsey` | **Fully proved**, PR #236; strong embeddings, exact weak cutoff zero. Not in the paper. |
 
 The partial-function theorem above is an *independent free-amalgamation
 application* for finite ordered partial-function structures. It is
@@ -304,12 +313,12 @@ We explicitly distinguish a proved *application component* from a
 fully verified Ramsey statement for that class. Import only the
 relevant application module:
 
-| Application | Verified entry points | What is **not yet certified** |
+| Application | Verified entry points | Precise scope and remaining work |
 | --- | --- | --- |
 | **Ordered posets with a linear extension** | `Applications/PosetRamseyTheorem.lean`: `orderedPoset_exactLocalAtControlCard`, `orderedPoset_isCoordinated2019Multiamalgamation`, `orderedPoset_isRamsey` | **The full Ramsey class is verified** (PR #227, CI 38633955517). The exact local cutoff is `Nat.card C0`; `.lt` denotes strict order although the manuscript uses reflexive $\le$. |
-| **Freely ordered partial Steiner triples, strong embeddings** | `SteinerTripleClass.lean`, `SteinerFreeAmalgamClosure.lean`, `SteinerOrderPushout.lean` and other component files | Closure of free strong-root amalgams (PR #228) and arbitrary compatible vertex orders (PR #229) are checked. Full block/relation normal forms, exact local completion and final class Ramsey theorem are still open. |
+| **Auxiliary partial Steiner triples, freely ordered** | `SteinerStrongAmalgamation.lean` and `SteinerLocalCompletion.lean`: `orderedSteinerClass_strongAmalgamation`, `orderedSteiner_exactLocal_zero`, `orderedSteiner_isRamsey` | **Full class Ramsey theorem verified** (PRs #235–#236). Cutoff `n(B,C0)=0`; marked-pair strong embeddings. Not a numbered paper example. |
 | **Jump-distance metric lemma** | `MetricJumpSandwich.lean`: `sandwich_constant_on_parts` | Its exact $\oplus_S$ specialization and full convexly ordered $S$-metric Ramsey theorem. |
-| **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | The rooted-quotient Ramsey construction, especially for countable targets. |
+| **Unary-function quotient counterexample** | `UnaryRootedClosureAudit.lean`: `naive_unrooted_closure_not_injective` | **Finite** m-unary Ramsey is proved separately (PR #240). Rooted-quotient and **countably infinite B** part of `thm:unaryfunc` remain open. |
 
 The [public applications ledger](docs/wiki/Applications.md) tracks
 remaining example-specific proof obligations. The separate working
