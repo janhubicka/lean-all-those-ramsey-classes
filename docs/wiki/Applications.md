@@ -160,6 +160,25 @@ at zero. These modules are directly importable components, not complete
 metric Ramsey classes in `ApplicationsAPI`. The full class-level Ramsey
 theorem and the general infinite-S block interpretation remain open.
 
+## One-point metric closure: a checked construction component
+
+`Applications.MetricOnePointClosure` now proves the actual
+S-metric extension obtained by adjoining a single positive-jump
+closure vertex at a chosen root. Original distances are unchanged;
+the new vertex is at distance exactly j to every member of the
+root's j-class and at distance ≤j to no other original vertices.
+The formula `j⊕d(root,x)` is independent of which class member
+is used for the two-edge attachment path, and is maximal among
+S-metric extensions with that root edge. Full CI and axiom audit:
+[PR #250](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/250),
+[CI 38761542466](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38761542466).
+
+This is a genuine metric construction, not the paper's entire
+lift `L(A)`: all tagged jump-class imaginaries, their inter-level
+distances, the extended order and embedding extension are still
+open. See [Metric applications](Metric-applications.md) for
+the proof and exact source endpoints.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |

@@ -356,6 +356,70 @@ lemmas. This still does **not** construct the tagged lifted
 metric, finish shortest-path completion on its closure
 imaginaries, or prove the structural Ramsey arrow.
 
+## One-point metric closure at a positive jump
+
+[PR #250](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/250)
+is the first **actual metric-construction** component for the paper's
+closure vertices, rather than merely rounded-sum algebra or quotient labels.
+It imports the previously verified genuine S-metric model
+`MetricOn S d` and the neutral-zero operation on S∪{0}.
+
+Given a positive jump j and a chosen original root r, define the
+one-point extension on `Option V`, with `none` representing the new
+closure vertex:
+
+    d'(some x,some y) = d(x,y)
+    d'(none,none) = 0
+    d'(none,some x) = j ⊕ d(r,x)
+    d'(some x,none) = d(x,r) ⊕ j.
+
+The operation on the right is the *actual* rounded supremum with zero
+neutral. `onePointDistance_metric` proves the extension is an S-metric:
+all off-diagonal distances belong to S, symmetry and all triangle
+cases hold, and original distances remain exactly unchanged.
+
+The proof does not appeal to an unproved completion theorem. For
+triangles with the new vertex as an endpoint, use the base metric
+triangle, monotonicity and associativity of the zero-adjoined
+rounded sum. For a triangle passing through the new vertex,
+each edge dominates the corresponding original path segment.
+All other triangles are already in the old metric.
+
+    import AllThoseRamseyClasses.Applications.MetricOnePointClosure
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check onePointDistance_metric
+    #check onePointDistance_to_class
+    #check onePointDistance_new_class_iff
+    #check onePointDistance_attachment_independent
+    #check onePointDistance_maximal
+
+The exact class theorem states that `d'(none,some x)≤j` if and only
+if `d(r,x)≤j`; for any member of that class the distance to the
+new vertex is *exactly* j. The attachment-independence theorem
+states that attaching the new vertex to any other class member
+with an edge of length j yields the same two-edge rounded
+path length to every original vertex.
+
+There is also a maximality theorem: any S-metric extension that
+preserves old distances and has `d''(none,some r)=j` satisfies
+`d''(none,some x)≤d'(none,some x)` for every x. This is the
+maximal-distance property of the one-point shortest-path completion;
+the separate walk-based completion API is not yet connected.
+
+The full Lean build, source-integrity and permitted-axiom checks
+passed in [CI 38761542466](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38761542466)
+at source revision `876598f13aadca9282e18c52f389830cfc3d5c9c`.
+`CheckAxiomsMetricOnePointClosure.lean` audits every new endpoint;
+the module remains an active supported dependency in the inventory.
+
+**Boundary:** this attaches *one* positive-jump closure vertex.
+The paper's `L(A)` simultaneously attaches one quotient imaginary
+per proper jump class, possibly at several levels. The distances
+between those vertices, the tagged disjoint union, their order,
+extension of embeddings and the full Ramsey-class proof still
+need dedicated formalization. No theorem in this module certifies
+`lem:Smetricemb` or the final Ramsey arrow.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
