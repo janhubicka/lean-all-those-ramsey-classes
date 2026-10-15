@@ -198,8 +198,8 @@ theorem onePointDistance_metric {S : Set ℝ} {V : Type u}
                     rw [sumWithZero_comm S (d x root) j, hd.symm x root]
                   _ ≤ sumWithZero S j (d root y) + d y x := h
                   _ = d x y + sumWithZero S (d y root) j := by
-                    rw [hd.symm y x, ← hd.symm root y,
-                      ← sumWithZero_comm S j (d y root)]
+                    rw [hd.symm y x, ← hd.symm root y]
+                    rw [sumWithZero_comm S j (d root y)]
                     ac_rfl
             | some z => exact hd.triangle x y z
 
