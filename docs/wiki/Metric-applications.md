@@ -238,28 +238,82 @@ strong amalgamation and convex order are additional obligations.
 Thus `lem:Smetricemb` and the finite metric Ramsey class remain
 only partially validated.
 
-## Finite block decomposition: next verification step
+## Verified canonical finite blocks and the corrected manuscript lemma
 
-The paper defines blocks as inclusion-maximal four-values subsets
-without internal jumps. A promising independent proof is to
-partition finite S by their **jump-cut signatures**: distances
-a,b are together exactly when for every proper jump j of S,
-`a≤j` and `b≤j` agree. Show each such interval is closed
-under the operation capped at its maximum, hence is a four-values
-set without internal jumps. Then show any set without internal
-jumps cannot straddle a proper jump cut. Maximality identifies
-the canonical pieces with the manuscript's blocks; a proper
-piece must end at a jump.
+[PR #248](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/248)
+formalizes the paper's **literal block definition**, rather than
+presupposing a decomposition: a `PaperBlock S B` is an
+inclusion-maximal subset B of S satisfying the four-values
+condition and containing no jump in the elementary gap sense.
 
-**Adversarial warning:** one cannot simply enlarge a candidate
-block by adding the next larger distance and assume four-values
-is preserved. For example S={2,3,4,5,7}, B={2,3,5};
-B itself has no internal jump and satisfies four-values, while
-B∪{7} fails the four-values test: triangles (2,3,5) and (2,7,5)
-have a common side 5 but no replacement diagonal in {2,3,5,7}.
-The missing 4 matters. An argument by *saturating entire intervals*
-is needed. This observation is a review regression, not yet
-a Lean-certified theorem.
+For finite positive four-values S, `wellDefined_of_finite`
+first proves the real-supremum rounded operation is automatically
+well-defined. Define the **jump-cut signature** of a distance a
+by the truth values of `a ≤ j` for all proper S-jumps j.
+The piece `JumpPiece S a` contains exactly the members of S with
+the same signature as a. Its properties are proved in stages:
+
+1. Each piece is finite and has a greatest member m. It is closed
+   under the original ambient rounded sum capped at m. It therefore
+   has its own well-defined associative rounded operation and is
+   four-values; no arbitrary-subset inheritance is assumed.
+2. An internal jump of a piece would also be an ambient jump, which
+   contradicts the equal signature of two members straddling it.
+3. Every *arbitrary finite no-jump subset* of S stays on one side
+   of every ambient jump cut. Otherwise the greatest member t below
+   a cut j would itself be an internal jump: every larger member
+   is above j and therefore above 2j ≥ 2t.
+4. Maximality identifies exactly these canonical pieces with
+   the paper's maximal no-jump four-values blocks.
+5. Every non-top block has a maximum which is an ambient jump.
+   Furthermore, any block containing a particular ambient jump j
+   has maximum exactly j, and the block containing j is unique.
+
+    import AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check wellDefined_of_finite
+    #check jumpPiece_fourValues
+    #check jumpPiece_noGapJumps
+    #check jumpPiece_isPaperBlock
+    #check paperBlock_eq_jumpPiece
+    #check paperBlock_proper_max_isJump
+    #check paperBlock_unique_at_jump
+
+### The corrected finite-S Lemma samedist
+
+`PaperGapBlockAtLevel` now expresses exactly either the trivial
+zero block {0}, or a positive level j satisfying the paper's
+gap-jump definition, together with the (now certified) paper
+block containing j. The theorem
+
+    #check finite_paperBlock_samedist_published
+
+starts with finite positive S, four-values and a genuine S-metric.
+It takes two such levels and disjoint rooted block-equivalence
+classes, and produces a constant belonging to S for the expression
+j1⊕d(u,v)⊕j2, independent of u,v. All zero-radius cases are
+included and the block maxima and well-defined rounded sums
+are *derived*, not assumptions.
+
+This proves the **mathematical corrected lemma** with the explicit
+neutral convention `0⊕a=a⊕0=a`. The numbered published text
+does not declare that convention before using j=0, and its
+four-point proof cannot construct zero-length edges. The TeX
+circulation body remains frozen. Its validation addendum records
+the repaired statement and distinguishes it from the literal
+printed notation. The full metric lift and Ramsey arrow are
+separate obligations.
+
+### Adversarial regression
+
+Adding the next larger distance one at a time does not preserve
+four-values. S={2,3,4,5,7} and B={2,3,5} both have four-values,
+and B has no internal jump, but B∪{7} fails four-values:
+triangles (2,3,5) and (2,7,5) require replacement diagonal 4
+for side pairs (2,2) and (3,7). The missing distance 4 is essential.
+The formal proof therefore uses full jump-signature pieces,
+not single-distance extensions. This small finite regression is
+a mathematical audit, not a separately claimed Lean computation.
 
 ## Remaining metric Ramsey work
 
