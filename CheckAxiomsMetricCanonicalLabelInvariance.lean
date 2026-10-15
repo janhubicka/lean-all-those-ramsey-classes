@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalLabelInvariance
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_mixed_quotientLabel
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_cross_quotientLabel
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_mixed_anyRoot
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_cross_anyRoots
