@@ -51,6 +51,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftThresholds",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftEmbedding",
     "AllThoseRamseyClasses.Applications.MetricCompletedClosureFunctions",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalInsertionOrder",
     "AllThoseRamseyClasses.Applications.MetricCanonicalClassLastInLift",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
@@ -60,6 +61,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
     "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
+    "AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts",
 }
 missing = sorted(ACTIVE - sources.keys())
 if missing:
