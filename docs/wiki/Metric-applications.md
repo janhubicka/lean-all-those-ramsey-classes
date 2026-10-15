@@ -315,15 +315,57 @@ The formal proof therefore uses full jump-signature pieces,
 not single-distance extensions. This small finite regression is
 a mathematical audit, not a separately claimed Lean computation.
 
+## The paper's finite block-convex orders
+
+[PR #249](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/249)
+closes the remaining **finite** convex-order interpretation.
+The class `PaperBlockConvex S d` is defined literally by the
+paper's block-equivalence relation: for every maximal no-jump
+four-values block B, if the endpoints x≤z of an ordered
+triple x≤y≤z satisfy `∃b∈B, d(x,z)≤b`, then
+both (x,y) and (y,z) must satisfy the same B-relation.
+
+    import AllThoseRamseyClasses.Applications.MetricBlockConvexity
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check paperBlockConvex_iff_jumpConvex
+    #check paperBlockConvex_iff_capped_subset
+
+The first theorem proves for a genuine finite-S metric that
+the paper's block-convexity is **equivalent** to convexity
+at all proper ambient jump thresholds. A non-top block has
+a maximum jump by the certified finite decomposition in
+PR #248. For a top block, all metric distances are at
+most max S, so its equivalence relation is universal and
+its convexity imposes no additional condition. Conversely,
+each ambient jump j lies in its unique canonical block B_j
+and is the maximum of B_j.
+
+The second theorem is the exact finite-distance transfer:
+if S is finite positive four-values and T is a finite
+capped-closed subset of S, then any ordered metric with
+distances in T is block-convex with respect to S exactly
+when it is block-convex with respect to T. It combines
+the checked jump-threshold transfer with the two
+block/jump equivalences. The four-values property of T
+is **derived** from cap closure, rather than assumed
+as an extra premise.
+
+The scalar finite-distance reduction and finite block-order
+interface are consequently available as independent library
+lemmas. This still does **not** construct the tagged lifted
+metric, finish shortest-path completion on its closure
+imaginaries, or prove the structural Ramsey arrow.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
 completion. Remaining tasks are the finite metric Ramsey theorem,
-closure-vertex representation, the full block-equivalence interpretation
-of jump thresholds (especially for infinite S), strong amalgamation,
-exact weak local-completion bounds, and the finite-to-arbitrary-distance
-Ramsey transfer. Jump-threshold convexity itself is now transported, but
-its identification with the paper's full block-convexity is not automatic.
+closure-vertex representation, its shortest-path distance completion,
+strong amalgamation, exact weak local-completion bounds, and the
+finite-to-arbitrary-distance Ramsey transfer. For finite S, the paper's
+block-convexity is now identified with jump-threshold convexity and
+transports across finite capped subsets. Infinite-S blocks may lack maxima;
+the general infinite-S interpretation is a separate open question.
 
 The old scalar finite-generation TODO in the manuscript's review material
 is superseded by the new component certificate once PR #244 passes the full
