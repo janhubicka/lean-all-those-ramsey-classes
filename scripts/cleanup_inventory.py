@@ -41,6 +41,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperPointedEquivalences",
+    "AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions",
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
 }
