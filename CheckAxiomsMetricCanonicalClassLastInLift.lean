@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalClassLastInLift
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertion_original_lt_tag_of_le_last
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertion_tag_lt_tag_of_last_lt
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertion_closure_last_of_threshold
