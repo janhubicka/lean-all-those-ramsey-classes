@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalDistance
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_old
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_new_old
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_old_new
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_new_diag
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_new_new
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalDistance_metric

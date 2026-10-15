@@ -219,12 +219,36 @@ and [CI 38774053990](https://github.com/janhubicka/lean-all-those-ramsey-classes
 Choosing canonical unique (jump,class) tags, the lifted
 order and functorial embeddings remain separate.
 
+## Canonical metric on unique jump-class imaginaries
+
+The finite metric carrier is no longer based on arbitrary attachment
+stages. `Applications.MetricCanonicalJumpTags` defines one tag for
+each dependent pair (proper jump, original threshold-equivalence class),
+with a proved finite enumeration. `MetricCanonicalFiniteLift`
+constructs a genuine S-metric on precisely that carrier.
+`Applications.MetricCanonicalDistance` then defines the distance
+**explicitly**, with zero diagonal and representative-invariant
+sandwich formulas for all other pairs. It proves the resulting
+`canonicalDistance` is a genuine S-metric, including the empty
+original-space case.
+
+See [Metric applications](Metric-applications.md), Lean
+[PR #255](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/255),
+[PR #257](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/257),
+[PR #258](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/258),
+and full [CI 38779692029](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38779692029).
+
+The paper's **full** `L(A)` still requires the prescribed convex
+order, closure functions and embedding extension. The finite
+metric Ramsey arrow, strong amalgamation and local completion
+have not been certified by the metric component alone.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Corrected zero-radius lemma, maximal finite blocks, four-values and exact paper block-convexity reduction | Construct the tagged closure-vertex metric, strong amalgamation, exact local completion and finite Ramsey endpoint |
+| Convexly ordered S-metrics with jumps | Corrected zero-radius lemma, maximal finite blocks, four-values and exact paper block-convexity reduction | Prove lifted convex order/functions/embedding extension, strong amalgamation, exact local completion and finite Ramsey endpoint |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
 | Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
