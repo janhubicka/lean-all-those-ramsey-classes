@@ -147,6 +147,13 @@ finite-S lemma under the original gap-jump and disjoint-class assumptions.
 `wellDefined_of_finite` removes the unnecessary extra well-definedness
 premise. See [Metric applications](Metric-applications.md) and
 [PR #248](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/248).
+**PR #249 verifies the finite convex-order interface.** The theorem
+`paperBlockConvex_iff_jumpConvex` identifies the paper's block-convex
+metric orders with the already formalized jump-threshold convexity.
+`paperBlockConvex_iff_capped_subset` proves exact preservation of the
+paper's block-convexity when passing from finite S to a finite
+capped-closed T⊆S for a T-valued metric, deriving four-values for T.
+See [PR #249](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/249).
 The neutral-zero convention is essential and must be stated explicitly
 in a corrected manuscript; the printed four-point proof remains invalid
 at zero. These modules are directly importable components, not complete
@@ -158,7 +165,7 @@ theorem and the general infinite-S block interpretation remain open.
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Verified S-metric zero-radius sandwich under block-max assumptions; finite four-values and jump-threshold convexity reduction | Prove block-max representation and finite metric Ramsey/closure/local-completion endpoints |
+| Convexly ordered S-metrics with jumps | Corrected zero-radius lemma, maximal finite blocks, four-values and exact paper block-convexity reduction | Construct the tagged closure-vertex metric, strong amalgamation, exact local completion and finite Ramsey endpoint |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
 | Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
