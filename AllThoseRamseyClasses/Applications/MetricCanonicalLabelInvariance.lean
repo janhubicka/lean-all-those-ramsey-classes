@@ -78,6 +78,7 @@ theorem canonicalDistance_mixed_anyRoot {S : Set ℝ}
   rw [← hu]
   rw [quotientSandwichLabel_mk]
   simp only [sumWithZero_zero_right]
+  rfl
 
 /-- Any representatives of two *distinct* canonical tags compute
 the same cross-distance; equality of the class tags, rather than
