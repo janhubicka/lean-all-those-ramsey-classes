@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.MetricClosureTowerLabels
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.towerClosure
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.towerClosure_succ_last
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.towerClosure_succ_old
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.closureTowerDistance_closure_original
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.closureTowerDistance_twoClosures
