@@ -18,3 +18,7 @@ import AllThoseRamseyClasses.ApplicationsAPI
 
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.forwardReduct_preserves_ordered_copies
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey
+
+#print axioms AllThoseRamseyClasses.Applications.TotalUnaryFunctions.totalUnaryClass_iff_functions
+#print axioms AllThoseRamseyClasses.Applications.TotalUnaryFunctions.totalUnaryClass_freeAmalgamation
+#print axioms AllThoseRamseyClasses.Applications.TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey
