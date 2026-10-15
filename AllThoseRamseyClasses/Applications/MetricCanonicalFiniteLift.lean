@@ -5,7 +5,7 @@ import AllThoseRamseyClasses.Applications.MetricCanonicalJumpTags
 
 For finite S and finite nonempty original V, the canonical closure
 tags are exactly the pairs (positive jump j, original j-class).
-By the preceding finiteness theorem they admit a bijection with
+The preceding finiteness theorem gives a bijection with
 Fin n, with no duplicate tags. Use this bijection to pull the
 checked tagged metric on V ⊕ Fin n back to the canonical carrier
 
