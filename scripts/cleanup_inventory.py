@@ -44,7 +44,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricJumpQuotient",
     "AllThoseRamseyClasses.Applications.MetricBlockConvexity",
     "AllThoseRamseyClasses.Applications.MetricTwoPointClosure",
-    "AllThoseRamseyClasses.Applications.MetricCanonicalQuotientMap",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalLabelInvariance",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
