@@ -37,10 +37,12 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure",
     "AllThoseRamseyClasses.Applications.SteinerOrderPushout",
     "AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation",
+    "AllThoseRamseyClasses.Applications.SteinerLocalCompletion",
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
-    "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
+    "AllThoseRamseyClasses.Applications.PaperPointedEquivalences",
     "AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions",
+    "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
 }
 missing = sorted(ACTIVE - sources.keys())
