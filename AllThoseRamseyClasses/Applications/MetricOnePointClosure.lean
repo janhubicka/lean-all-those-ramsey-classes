@@ -264,4 +264,22 @@ theorem onePointDistance_attachment_independent {S : Set ℝ} {V : Type u}
     y root x x hyClass hrClass hxClass hxClass
   simpa only [sumWithZero_zero_right] using hh
 
+
+/-- The constructed one-point metric is the greatest allowed
+S-metric extension with the prescribed edge from the new vertex
+to root: the rounded triangle inequality in any other extension
+bounds every new distance by j ⊕ d(root,x). This is the key
+universal property of shortest-path completion without quantifying
+over all walks. -/
+theorem onePointDistance_maximal {S : Set ℝ} {V : Type u}
+    (hpos : Positive S) (hS : WellDefined S)
+    {d : V → V → ℝ} (root : V) (j : ℝ)
+    {e : Option V → Option V → ℝ} (he : MetricOn S e)
+    (hOld : ∀ x y : V, e (some x) (some y) = d x y)
+    (hNewRoot : e none (some root) = j) (x : V) :
+    e none (some x) ≤ onePointDistance S d root j none (some x) := by
+  have h := metric_triangle_rounded hpos hS he none (some root) (some x)
+  rw [hNewRoot, hOld root x] at h
+  exact h
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
