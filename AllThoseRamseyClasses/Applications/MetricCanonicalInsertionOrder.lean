@@ -81,7 +81,7 @@ theorem canonicalInsertionKey_injective {S : Set ℝ}
               canonicalTagLevel other := by
             have hsome : (some (canonicalTagLevel tag) : WithBot ℝ) =
                 some (canonicalTagLevel other) := by
-              simpa [canonicalInsertionKey] using congrArg Prod.snd heq
+              exact congrArg Prod.snd heq
             exact Option.some.inj hsome
           have htag := canonicalTag_eq_of_level_last
             hpos hS hd tag other hlevel hlast
@@ -117,7 +117,8 @@ theorem canonicalInsertion_old_lt_iff {S : Set ℝ}
   constructor
   · rintro (hlt | ⟨_, hnone⟩)
     · exact hlt
-    · exact False.elim ((lt_irrefl (none : WithBot ℝ)) hnone)
+    · change WithBot.LT none none at hnone
+      cases hnone
   · intro hlt
     exact Or.inl hlt
 
