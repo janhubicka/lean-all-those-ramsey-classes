@@ -79,7 +79,10 @@ theorem canonicalInsertionKey_injective {S : Set ℝ}
             simpa [canonicalInsertionKey] using congrArg Prod.fst heq
           have hlevel : canonicalTagLevel tag =
               canonicalTagLevel other := by
-            simpa [canonicalInsertionKey] using congrArg Prod.snd heq
+            have hsome : (some (canonicalTagLevel tag) : WithBot ℝ) =
+                some (canonicalTagLevel other) := by
+              simpa [canonicalInsertionKey] using congrArg Prod.snd heq
+            exact Option.some.inj hsome
           have htag := canonicalTag_eq_of_level_last
             hpos hS hd tag other hlevel hlast
           cases htag
@@ -110,7 +113,13 @@ theorem canonicalInsertion_old_lt_iff {S : Set ℝ}
         (Sum.inl y : V ⊕ CanonicalJumpTag hpos hS hd)) ↔ x < y := by
   change toLex ((x, none) : V × WithBot ℝ) <
       toLex ((y, none) : V × WithBot ℝ) ↔ x < y
-  simp [Prod.Lex.toLex_lt_toLex]
+  rw [Prod.Lex.toLex_lt_toLex]
+  constructor
+  · rintro (hlt | ⟨_, hnone⟩)
+    · exact hlt
+    · exact False.elim ((lt_irrefl (none : WithBot ℝ)) hnone)
+  · intro hlt
+    exact Or.inl hlt
 
 /-- A closure representative is strictly after the last original
 member of its class in the extended linear order. -/
@@ -127,7 +136,10 @@ theorem canonicalInsertion_after_last {S : Set ℝ}
     toLex
       ((canonicalClassLast hpos hS hd tag,
         some (canonicalTagLevel tag)) : V × WithBot ℝ)
-  simp [Prod.Lex.toLex_lt_toLex]
+  rw [Prod.Lex.toLex_lt_toLex]
+  refine Or.inr ⟨rfl, ?_⟩
+  simpa only [WithBot.none_eq_bot, WithBot.some_eq_coe] using
+    (WithBot.bot_lt_coe (canonicalTagLevel tag))
 
 /-- If two closure classes end at the same original vertex,
 the closure vertex at the smaller jump level is inserted first. -/
@@ -149,6 +161,7 @@ theorem canonicalInsertion_increasing_levels {S : Set ℝ}
       ((canonicalClassLast hpos hS hd b,
         some (canonicalTagLevel b)) : V × WithBot ℝ)
   rw [Prod.Lex.toLex_lt_toLex]
-  exact Or.inr ⟨hlast, hlevel⟩
+  refine Or.inr ⟨hlast, ?_⟩
+  simpa only [WithBot.some_eq_coe, WithBot.coe_lt_coe] using hlevel
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
