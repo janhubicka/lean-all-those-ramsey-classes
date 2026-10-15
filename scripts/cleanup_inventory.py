@@ -51,6 +51,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftThresholds",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftEmbedding",
     "AllThoseRamseyClasses.Applications.MetricCompletedClosureFunctions",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalInsertionOrder",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
