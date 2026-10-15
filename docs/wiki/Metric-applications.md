@@ -469,6 +469,52 @@ not provide all levels, the extended order or embeddings.
 Those tasks belong to the simultaneous tagged lift and
 the still-open finite metric Ramsey proof.
 
+## All pairwise distances in the finite closure tower
+
+[PR #253](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/253)
+strengthens #252 by identifying every formal closure vertex by its
+attachment-stage index `i<n`:
+
+    import AllThoseRamseyClasses.Applications.MetricClosureTowerLabels
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check towerClosure
+    #check closureTowerDistance_closure_original
+    #check closureTowerDistance_twoClosures
+
+The `towerClosure` constructor transports the vertex from stage i
+through all later Option layers. The first theorem proves its distance
+to any original x at any later stage is still precisely
+
+    levels(i) ⊕ d(roots(i), x).
+
+For two *distinct* stages i,k<n, the second theorem proves
+
+    d_tower(v_i,v_k)
+        = levels(i) ⊕ d(roots(i),roots(k)) ⊕ levels(k).
+
+The proof is induction on n. The old-old case reduces directly to
+the previous stage's metric, the newest-to-original distances are
+already checked, and the newest-to-old-closure case uses metric
+symmetry and associativity of the actual zero-adjoined rounded sum.
+The assumptions require proper jumps only at the stages i<n
+actually used. The two-closure computation from #251 is a special
+case; the formula for any two indices does not depend on attachments
+made between them or on the attachment order.
+
+The full Lean build, source-integrity and permitted-axiom audit passed
+in [CI 38773004610](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38773004610)
+at proof source commit `7ce3de99f39ce018fadea18763d4f4a14ebd460b`.
+The dedicated audit is `CheckAxiomsMetricClosureTowerLabels.lean`.
+
+**Canonical-lift boundary.** Stage indices still represent *formally
+distinct* vertices, even if two stages use the same jump level and
+the same original equivalence class. The next reusable interface
+is an explicitly tagged carrier `V ⊕ Fin n` isometric to the tower;
+thereafter choose one index per (jump,class) pair. An ordered
+enumeration of the canonical classes, convex extension of the
+vertex order, functorial embeddings, and full metric Ramsey
+amalgamation/local-completion remain separate obligations.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level

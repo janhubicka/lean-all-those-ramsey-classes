@@ -192,6 +192,20 @@ and [Metric applications](Metric-applications.md) for exact proof scope.
 Distinct attached tags are not yet automatically deduplicated by
 their block class; the full L(A) lift remains unfinished.
 
+## Finite towers: every closure-pair distance
+
+`Applications.MetricClosureTowerLabels` extends the checked finite
+metric tower to indexed closure stages and proves the universal
+pairwise formula
+`d(v_i,v_k)=j_i⊕d(r_i,r_k)⊕j_k` for any distinct stages.
+Each closure-to-original distance is likewise independent of later
+attachments. This supplies the complete distance matrix on the
+formally tagged finite tower and agrees with the quotient sandwich
+label, but does **not** yet identify duplicate tags or construct
+the canonical `L(A)`. See
+[PR #253](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/253)
+and [Metric applications](Metric-applications.md).
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
