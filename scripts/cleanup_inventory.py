@@ -48,6 +48,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricCanonicalQuotientMap",
     "AllThoseRamseyClasses.Applications.MetricCanonicalClassLast",
     "AllThoseRamseyClasses.Applications.MetricCanonicalClosureFunctions",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalLiftThresholds",
     "AllThoseRamseyClasses.Applications.MetricCanonicalLiftEmbedding",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
