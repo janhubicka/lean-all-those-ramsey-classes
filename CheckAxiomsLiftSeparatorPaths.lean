@@ -1,0 +1,14 @@
+import AllThoseRamseyClasses.Lifts.SeparatorPaths
+
+#check AllThoseRamseyClasses.Lifts.outsideCutMap
+#check AllThoseRamseyClasses.Lifts.reachOutside_of_cut_subset
+#check AllThoseRamseyClasses.Lifts.reachOutside_symm
+#check AllThoseRamseyClasses.Lifts.componentFrom_subset_of_cut_subset
+#check AllThoseRamseyClasses.Lifts.componentFrom_disjoint_of_not_reach
+#check AllThoseRamseyClasses.Lifts.reachOutside_stays_in
+#check AllThoseRamseyClasses.Lifts.reachOutside_stays_in_avoid_boundary
+
+#print axioms AllThoseRamseyClasses.Lifts.reachOutside_of_cut_subset
+#print axioms AllThoseRamseyClasses.Lifts.reachOutside_symm
+#print axioms AllThoseRamseyClasses.Lifts.componentFrom_disjoint_of_not_reach
+#print axioms AllThoseRamseyClasses.Lifts.reachOutside_stays_in_avoid_boundary
