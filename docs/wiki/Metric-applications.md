@@ -203,6 +203,64 @@ that representation fact is checked. The printed four-point proof is
 not valid at j=0; the nonprinting TeX addendum records the neutral-zero
 replacement rather than rewriting the frozen numbered proof.
 
+## Quotient-invariant cross-labels for closure imaginaries
+
+[PR #247](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/247)
+takes the next step toward the lifted metric structure.
+
+The new `Applications.MetricJumpQuotient` proves that
+`d(x,y)≤j` defines a genuine `Setoid` for each allowed level
+`j=0` or a positive proper jump of S: reflexivity comes from the
+zero diagonal, symmetry from the metric, and transitivity from
+jump idempotency. Its `JumpClasses` type is the ordinary quotient
+by this relation.
+
+`quotientSandwichLabel` descends the expression
+`j1⊕d(u,v)⊕j2` to a pair of quotient classes, by invoking
+the already proved zero-radius sandwich lemma for alternative
+representatives. This label is independent of both representatives,
+and it is S-valued for distinct representatives. No finiteness
+assumption on S or the metric's vertex set is used.
+
+    import AllThoseRamseyClasses.Applications.MetricJumpQuotient
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check jumpSetoid
+    #check quotientSandwichLabel
+    #check quotientSandwichLabel_mk
+    #check quotientSandwichLabel_mem_of_distinct
+
+**Important distinction:** this cross-label is not itself a metric
+on a quotient. If a closure imaginary is compared with itself,
+the diagonal must be assigned zero rather than the sandwich
+value (which may be positive). The eventual tagged vertex set,
+inter-level closure representatives, shortest-path completion,
+strong amalgamation and convex order are additional obligations.
+Thus `lem:Smetricemb` and the finite metric Ramsey class remain
+only partially validated.
+
+## Finite block decomposition: next verification step
+
+The paper defines blocks as inclusion-maximal four-values subsets
+without internal jumps. A promising independent proof is to
+partition finite S by their **jump-cut signatures**: distances
+a,b are together exactly when for every proper jump j of S,
+`a≤j` and `b≤j` agree. Show each such interval is closed
+under the operation capped at its maximum, hence is a four-values
+set without internal jumps. Then show any set without internal
+jumps cannot straddle a proper jump cut. Maximality identifies
+the canonical pieces with the manuscript's blocks; a proper
+piece must end at a jump.
+
+**Adversarial warning:** one cannot simply enlarge a candidate
+block by adding the next larger distance and assume four-values
+is preserved. For example S={2,3,4,5,7}, B={2,3,5};
+B itself has no internal jump and satisfies four-values, while
+B∪{7} fails the four-values test: triangles (2,3,5) and (2,7,5)
+have a common side 5 but no replacement diagonal in {2,3,5,7}.
+The missing 4 matters. An argument by *saturating entire intervals*
+is needed. This observation is a review regression, not yet
+a Lean-certified theorem.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
