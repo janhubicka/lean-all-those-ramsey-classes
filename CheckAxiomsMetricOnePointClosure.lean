@@ -6,3 +6,5 @@ import AllThoseRamseyClasses.Applications.MetricOnePointClosure
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.onePoint_new_triangle
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.onePointDistance_metric
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.onePointDistance_to_class
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.onePointDistance_new_class_iff
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.onePointDistance_attachment_independent
