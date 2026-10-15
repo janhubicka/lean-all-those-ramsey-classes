@@ -104,8 +104,8 @@ private theorem positive_edge_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
   · right
     refine ⟨t 0,t 1,?_,?_,?_⟩
     · change B.rel .edge ![t 0,t 1]
@@ -114,8 +114,8 @@ private theorem positive_edge_side
         fin_cases i <;> rfl
       rw [ht]
       exact hRel
-    · simpa only [Function.comp_apply] using congrFun hEq 0
-    · simpa only [Function.comp_apply] using congrFun hEq 1
+    · simpa [Function.comp_apply] using congrFun hEq 0
+    · simpa [Function.comp_apply] using congrFun hEq 1
 
 /-- The symmetric irreflexive graphs form a genuine finite relational
 free-amalgamation class, with no extra identified vertices. -/
