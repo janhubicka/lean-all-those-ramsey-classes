@@ -42,6 +42,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricJumpSamedist",
     "AllThoseRamseyClasses.Applications.MetricConvexityTransfer",
     "AllThoseRamseyClasses.Applications.MetricJumpQuotient",
+    "AllThoseRamseyClasses.Applications.MetricBlockConvexity",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
