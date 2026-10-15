@@ -60,7 +60,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
     "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
     "AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts",
-    "AllThoseRamseyClasses.Lifts.MinimalSeparatorForward",
+    "AllThoseRamseyClasses.Lifts.MinimalSeparatorReverse",
 }
 missing = sorted(ACTIVE - sources.keys())
 if missing:
