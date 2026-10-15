@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Lifts.GaifmanCuts
-import PartiteConstruction.Structure.Basic
+import PartiteConstruction.Structure.GeneratedWeakHomImage
 
 /-!
 # Closed cuts and functional Gaifman components
@@ -183,5 +183,19 @@ def functionalComponentEmbedding
     Structure.Embedding (functionalComponentInduce A R hR root) A :=
   A.inclusion (functionalComponentUnion A R root)
     (functionalComponentUnion_isClosed A R hR root)
+
+
+/-- The full generated function closure of the external neighborhood
+is still contained in a closed cut. This is the second clause of
+Observation `cuty`, without assuming a finite generating set or
+unary closure. -/
+theorem functionalClosure_neighborhood_subset_cut
+    (A : Structure L V) (R : Set V)
+    (hR : A.IsClosed R) (root : {v : V // v ∉ R}) :
+    A.functionClosure
+      (functionalGaifmanNeighborhood A
+        (functionalComponentFrom A R root)) ⊆ R := by
+  intro x hx
+  exact hx R hR (functionalNeighborhood_component_subset_cut A R root)
 
 end AllThoseRamseyClasses.Lifts
