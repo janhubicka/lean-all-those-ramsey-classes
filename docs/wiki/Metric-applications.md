@@ -569,13 +569,79 @@ paper's closure-vertex functions and order, and functorial
 embedding extension remain to be formalized. No result here
 certifies the complete L(A) lemma or finite Ramsey arrow.
 
+## Canonical finite closure metric: exact class tags and explicit distances
+
+[PR #255](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/255)
+formalizes the **canonical** vertex type: a dependent pair of
+a positive proper jump level j and one quotient class of the
+original metric under `d(x,y)≤j`.
+For finite S and finite original V the type
+`CanonicalJumpTag` is finite and admits a bijection
+`Fin n ≃ CanonicalJumpTag`, with **no duplicate tags**.
+`canonicalTagRoot` chooses a representative in the class;
+`canonicalTagRoot_class` proves it belongs to that quotient.
+Full build and permitted-axiom audit:
+[CI 38775275526](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38775275526).
+
+[PR #257](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/257)
+uses the bijection to transport the checked `V ⊕ Fin n` metric
+onto **exactly** `V ⊕ CanonicalJumpTag`, with the correct
+zero diagonal and all three explicit pairwise distance laws.
+It certifies this is a *genuine* S-metric for a nonempty finite
+base. A generic `metricOn_comap` isometry/pullback lemma
+explicitly requires injectivity. Full Lean and source/axiom checks:
+[CI 38778667880](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38778667880).
+The superseded stacked PR #256 was closed because squash-merging #255
+would have made its duplicate commits conflict; #257 is the clean
+unstacked implementation.
+
+[PR #258](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/258)
+removes the arbitrary enumeration from the **public metric definition**:
+
+    import AllThoseRamseyClasses.Applications.MetricCanonicalDistance
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check CanonicalJumpTag
+    #check canonicalTagRoot_class
+    #check canonicalDistance
+    #check canonicalDistance_new_old
+    #check canonicalDistance_new_new
+    #check canonicalDistance_metric
+
+`canonicalDistance` is defined directly on the duplicate-free
+carrier `V ⊕ CanonicalJumpTag`. It is d on original vertices,
+equals `j ⊕ d(root,x)` on closure/original pairs, and is
+`j ⊕ d(root,root') ⊕ k` for **distinct** closure tags;
+the diagonal is zero. The chosen class representatives are
+internal to the definition, not additional user arguments.
+The existing quotient-sandwich theorem establishes the
+mathematical representative-independence of these labels.
+
+`canonicalDistance_metric` checks the explicit function by
+identifying its distances with the metric whose existence
+was proved in #257. It also handles **empty V** separately:
+then no quotient class tags exist and all metric axioms are
+vacuous. No default or fictitious original root is introduced.
+Full project build, source-integrity and permitted-axiom audit:
+[CI 38779692029](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38779692029).
+
+**Remaining boundary:** the metric on canonical vertices is now
+constructed. The paper also requires a specific convex extension
+of the given linear order, functions pointing from original
+vertices to each closure representative, and extension of
+embeddings to the lifted structures. Strong amalgamation,
+exact weak local completion and the finite Ramsey arrow
+remain distinct class-level obligations. The current theorem
+does **not** certify the complete `lem:Smetricemb`.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
-completion. Remaining tasks are the finite metric Ramsey theorem,
-closure-vertex representation, its shortest-path distance completion,
-strong amalgamation, exact weak local-completion bounds, and the
-finite-to-arbitrary-distance Ramsey transfer. For finite S, the paper's
+completion. The finite canonical closure **metric** is now
+verified, including the correct duplicate-free carrier and pairwise
+distances. Remaining tasks are the prescribed lifted convex order,
+closure functions and extension of embeddings, strong amalgamation,
+exact weak local-completion bounds, the finite metric Ramsey theorem,
+and the finite-to-arbitrary-distance Ramsey transfer. For finite S, the paper's
 block-convexity is now identified with jump-threshold convexity and
 transports across finite capped subsets. Infinite-S blocks may lack maxima;
 the general infinite-S interpretation is a separate open question.
