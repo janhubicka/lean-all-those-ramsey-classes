@@ -106,8 +106,9 @@ theorem finite_closure [CommSemigroup M] (D : Set M) (hD : D.Finite)
       Subsemigroup.closure ({a} : Set M) ⊔ Subsemigroup.closure E
     apply Subsemigroup.closure_le.2
     intro x hx
-    rcases Set.mem_insert_iff.mp hx with rfl | hx
-    · exact (show Subsemigroup.closure ({a} : Set M) ≤
+    rcases Set.mem_insert_iff.mp hx with hxa | hx
+    · subst x
+      exact (show Subsemigroup.closure ({a} : Set M) ≤
           Subsemigroup.closure ({a} : Set M) ⊔ Subsemigroup.closure E from le_sup_left)
         (Subsemigroup.subset_closure (Set.mem_singleton a))
     · exact (show Subsemigroup.closure E ≤
