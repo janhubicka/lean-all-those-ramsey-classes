@@ -256,6 +256,24 @@ the cross-distance/representative-independence bridge and
 injectivity of the dependent tag map; the convex order and
 Ramsey class are not implied.
 
+## Canonical labels independent of chosen class roots
+
+`Applications.MetricCanonicalLabelInvariance` now certifies
+the exact quotient-label identities for mixed and
+distinct closure-pair distances. The formulas in
+`canonicalDistance` may use **any** original roots
+representing the same jump classes, not only the
+implementation's `Quotient.out` representatives.
+This is a reusable prerequisite for functorial metric
+embeddings of the lifted structures.
+See [PR #261](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/261),
+[CI 38798821065](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38798821065)
+and [Metric applications](Metric-applications.md).
+
+The complete canonical metric-embedding theorem is
+under review separately in PR #264, and the paper's
+particular convex order remains unverified.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |

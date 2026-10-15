@@ -670,6 +670,46 @@ canonical tag family and comparison of every mixed and
 cross metric label. Preserving the prescribed convex
 linear order remains a separate obligation.
 
+## Representative-independent canonical metric labels
+
+[PR #261](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/261)
+makes representative independence a **directly importable**
+property of the explicit canonical metric. The clean
+main-based implementation supersedes a conflicted but
+previously passing PR #259.
+
+    import AllThoseRamseyClasses.Applications.MetricCanonicalLabelInvariance
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check canonicalDistance_mixed_quotientLabel
+    #check canonicalDistance_cross_quotientLabel
+    #check canonicalDistance_mixed_anyRoot
+    #check canonicalDistance_cross_anyRoots
+
+For every closure tag (j,E) and original vertex x, the
+mixed distance equals the two-variable quotient sandwich
+label with the singleton zero-level class of x. For two
+distinct closure tags (j,E),(k,F), their distance equals
+the sandwich label of E and F. Hence either chosen root
+may be replaced by **any original representative of the
+same threshold class** without changing the result.
+Equality of canonical tags, not equality of chosen
+representatives, determines the zero diagonal.
+
+The full Lean build, source-integrity and permitted-axiom
+audit passed in
+[CI 38798821065](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38798821065)
+at source revision `99e496f2bf8239c4e632bceb7547d89fe61d08ed`.
+PR #261 merged as
+`c6f94dce957a747e20f9719a151ac6d2c2a5490a`.
+
+[PR #264](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/264)
+combines this result with the quotient transport from #260
+to prove the complete distance-preserving map of canonical
+metric lifts; its CI status must be checked independently
+before treating that theorem as verified. The *prescribed
+convex extension order* remains separate even after
+the metric embedding has been checked.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
