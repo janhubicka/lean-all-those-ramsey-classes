@@ -232,4 +232,48 @@ theorem metric_samedist_bounded_blocks {S : Set ℝ} {V : Type u}
   · rw [← blockClass_eq_thresholdClass d B2 q hqB hqmax root2]
     exact hv
 
+
+/-- Under the paper's disjoint-block hypothesis, the constant is a
+genuine positive S-distance, even if one or both jump parameters are
+zero. Distinct representatives suffice; disjoint block classes imply
+that the chosen representatives are distinct. -/
+theorem metric_samedist_bounded_blocks_distinct {S : Set ℝ} {V : Type u}
+    (hpos : Positive S) (hS : WellDefined S)
+    (hassoc : AssociativeOn S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (B1 B2 : Set ℝ) (p q : ℝ)
+    (hp : p = 0 ∨ Jump S p) (hq : q = 0 ∨ Jump S q)
+    (hpB : p ∈ B1) (hpmax : ∀ b ∈ B1, b ≤ p)
+    (hqB : q ∈ B2) (hqmax : ∀ b ∈ B2, b ≤ q)
+    (root1 root2 : V) (hroots : root1 ≠ root2) :
+    ∃ ell : ℝ, ell ∈ S ∧
+      ∀ u : V, (∃ b ∈ B1, d u root1 ≤ b) →
+        ∀ v : V, (∃ b ∈ B2, d v root2 ≤ b) →
+          sumWithZero S (sumWithZero S p (d u v)) q = ell := by
+  obtain ⟨ell, hconstant⟩ :=
+    metric_samedist_bounded_blocks hpos hS hassoc hd
+      B1 B2 p q hp hq hpB hpmax hqB hqmax root1 root2
+  have hpS : p = 0 ∨ p ∈ S :=
+    hp.elim Or.inl (fun h => Or.inr h.1)
+  have hqS : q = 0 ∨ q ∈ S :=
+    hq.elim Or.inl (fun h => Or.inr h.1)
+  have hdist : d root1 root2 ∈ S := hd.values root1 root2 hroots
+  have hinner : sumWithZero S p (d root1 root2) ∈ S :=
+    sumWithZero_mem_of_right_mem hpos hS hpS hdist
+  have houter : sumWithZero S
+      (sumWithZero S p (d root1 root2)) q ∈ S :=
+    sumWithZero_mem_of_left_mem hpos hS hinner hqS
+  have hroot1 : ∃ b ∈ B1, d root1 root1 ≤ b := by
+    refine ⟨p, hpB, ?_⟩
+    rw [hd.diag root1]
+    exact threshold_nonneg hpos hp
+  have hroot2 : ∃ b ∈ B2, d root2 root2 ≤ b := by
+    refine ⟨q, hqB, ?_⟩
+    rw [hd.diag root2]
+    exact threshold_nonneg hpos hq
+  have hvalue := hconstant root1 hroot1 root2 hroot2
+  refine ⟨ell, ?_, hconstant⟩
+  rw [← hvalue]
+  exact houter
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
