@@ -121,4 +121,39 @@ theorem paperBlockConvex_iff_jumpConvex {S : Set ℝ}
   · exact jumpConvex_of_paperBlockConvex hfin hpos h4
   · exact paperBlockConvex_of_jumpConvex hfin hpos h4 hd
 
+
+/-- The manuscript's block-convexity transfers exactly between a finite
+four-values distance set S and a finite capped-closed subset T,
+for any metric whose distances lie in T. This combines the literal
+block/jump equivalence with the previously verified jump-threshold
+transfer. No equivalence of blocks between S and T is postulated. -/
+theorem paperBlockConvex_iff_capped_subset {S T : Set ℝ} {m : ℝ}
+    {V : Type u} [LinearOrder V]
+    (hfinS : S.Finite) (hfinT : T.Finite)
+    (hposS : Positive S) (h4S : FourValues S)
+    (h4T : FourValues T)
+    (hTS : T ⊆ S) (hm : m ∈ T)
+    (hbound : ∀ t ∈ T, t ≤ m)
+    (hclosed : ∀ x ∈ T, ∀ y ∈ T,
+      cappedSum S m x y ∈ T)
+    {d : V → V → ℝ} (hd : MetricOn T d) :
+    PaperBlockConvex S d ↔ PaperBlockConvex T d := by
+  have hdS : MetricOn S d := {
+    diag := hd.diag
+    values := by
+      intro x y hxy
+      exact hTS (hd.values x y hxy)
+    symm := hd.symm
+    triangle := hd.triangle
+  }
+  have hposT : Positive T := fun s hs => hposS s (hTS hs)
+  have hSconv : PaperBlockConvex S d ↔ JumpConvex S d :=
+    paperBlockConvex_iff_jumpConvex hfinS hposS h4S hdS
+  have hTconv : PaperBlockConvex T d ↔ JumpConvex T d :=
+    paperBlockConvex_iff_jumpConvex hfinT hposT h4T hd
+  have hJconv : JumpConvex S d ↔ JumpConvex T d :=
+    jumpConvex_iff_of_capped_closed d hposS hfinT hTS hm
+      hbound hclosed hd.diag hd.values
+  exact hSconv.trans (hJconv.trans hTconv.symm)
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
