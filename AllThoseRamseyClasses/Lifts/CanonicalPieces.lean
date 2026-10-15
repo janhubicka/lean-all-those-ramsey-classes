@@ -15,7 +15,7 @@ The canonical extra relation faithfully records the formula in lines
 pattern from the selected class has a homomorphism-embedding realizing
 that root tuple.  Preservation by a full embedding of the shadow is
 proved below.  Reflection is deliberately NOT asserted: the larger
-target can admit additional piece witnesses.
+target may acquire additional piece witnesses.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
