@@ -53,11 +53,15 @@ private theorem steiner_tuple_hull_in_class
     obtain ⟨i, hi⟩ := x.2
     obtain ⟨j, hj⟩ := y.2
     refine ⟨R, (fun k => ⟨t k, ⟨k, rfl⟩⟩), i, j, ?_, ?_, ?_⟩
-    · exact ht
+    · change C.rel R
+        (Subtype.val ∘ (fun k => (⟨t k, ⟨k, rfl⟩⟩ : Seed)))
+      convert ht using 1
+      funext k
+      rfl
     · apply Subtype.ext
-      exact hi.symm
+      exact hi
     · apply Subtype.ext
-      exact hj.symm
+      exact hj
   let S : Set V := UClosureHull blockRules C Seed
   refine ⟨S, ?_, ?_⟩
   · intro i
