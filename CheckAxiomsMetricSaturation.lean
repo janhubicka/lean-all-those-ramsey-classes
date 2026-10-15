@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Applications.MetricSaturation
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.le_cappedSum
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.cappedSum_mem
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.power_mem_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_power_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_power_stable
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.power_eq_of_stable
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_range_power
