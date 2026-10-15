@@ -29,11 +29,11 @@ has been identified with the paper's rooted free-amalgam obstruction. -/
 def pieceSetoid {Piece : Type u} {Test : Type v}
     (bad : Piece → Test → Prop) : Setoid Piece where
   r p q := incompatibilityProfile bad p = incompatibilityProfile bad q
-  iseqv := ⟨
-    (fun _ => rfl),
-    (fun _ _ h => h.symm),
-    (fun _ _ _ h₁ h₂ => h₁.trans h₂)
-  ⟩
+  iseqv := {
+    refl := by intro p; rfl
+    symm := by intro p q h; exact h.symm
+    trans := by intro p q r hpq hqr; exact hpq.trans hqr
+  }
 
 /-- Equivalent pieces have identical compatibility behaviour against
 every rooted test. The argument is independent of their presentations. -/
@@ -41,7 +41,7 @@ theorem incompatible_iff_of_equiv
     {Piece : Type u} {Test : Type v}
     {bad : Piece → Test → Prop}
     {p q : Piece}
-    (h : (pieceSetoid bad).Rel p q) (t : Test) :
+    (h : (pieceSetoid bad).r p q) (t : Test) :
     bad p t ↔ bad q t := by
   have hmem : t ∈ incompatibilityProfile bad p ↔
       t ∈ incompatibilityProfile bad q := by
@@ -55,7 +55,7 @@ theorem equiv_of_incompatible_iff
     {bad : Piece → Test → Prop}
     {p q : Piece}
     (h : ∀ t, bad p t ↔ bad q t) :
-    (pieceSetoid bad).Rel p q := by
+    (pieceSetoid bad).r p q := by
   apply Set.ext
   intro t
   exact h t
