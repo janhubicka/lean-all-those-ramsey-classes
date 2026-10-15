@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteBlocks
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.gapJump_iff_Jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.sameJumpSignature_trans
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_jumpPiece_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpPiece_capped_closed
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpPiece_fourValues
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpPiece_noGapJumps
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpPiece_max_isJump
