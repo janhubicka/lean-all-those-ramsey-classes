@@ -42,6 +42,7 @@ theorem canonicalDistance_mixed_quotientLabel {S : Set ℝ}
   rw [← canonicalTagRoot_class tag]
   rw [quotientSandwichLabel_mk]
   simp only [sumWithZero_zero_right]
+  rfl
 
 /-- Two distinct canonical closure tags have their cross-distance
 given by the genuine two-quotient sandwich label. -/
@@ -59,6 +60,7 @@ theorem canonicalDistance_cross_quotientLabel {S : Set ℝ}
   rw [canonicalDistance_new_new hpos hS hd a b hab]
   rw [← canonicalTagRoot_class a, ← canonicalTagRoot_class b]
   rw [quotientSandwichLabel_mk]
+  rfl
 
 /-- Replace the chosen root of one closure tag by *any* original
 representative of that class without changing its distances to V. -/
@@ -99,5 +101,6 @@ theorem canonicalDistance_cross_anyRoots {S : Set ℝ}
   rw [canonicalDistance_cross_quotientLabel hpos hS hassoc hd a b hab]
   rw [← hu, ← hv]
   rw [quotientSandwichLabel_mk]
+  rfl
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
