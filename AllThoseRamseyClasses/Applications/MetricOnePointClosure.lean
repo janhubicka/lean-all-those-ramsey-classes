@@ -222,4 +222,46 @@ theorem onePointDistance_to_class {S : Set ℝ} {V : Type u}
   rw [hjid] at hupper
   exact le_antisymm hupper hlower
 
+
+/-- The new closure vertex has distance at most j to precisely the
+old j-class. This is stronger than the edge-length assertion in the
+definition of the lift: no vertex outside the class enters it. -/
+theorem onePointDistance_new_class_iff {S : Set ℝ} {V : Type u}
+    (hpos : Positive S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    {j : ℝ} (hj : Jump S j) (root x : V) :
+    onePointDistance S d root j none (some x) ≤ j ↔ d root x ≤ j := by
+  constructor
+  · intro h
+    change sumWithZero S j (d root x) ≤ j at h
+    have hle := le_sumWithZero_right hpos
+      (Or.inr hj.1) (metric_value_mem hd root x)
+    exact hle.trans h
+  · intro h
+    rw [onePointDistance_to_class hpos hd hj root x h]
+
+/-- The length of the two-edge path through any member y of the
+chosen class is independent of y: it equals the length through root.
+This identifies the added distance with the value selected by the
+paper's shortest-path completion, at the level of two-edge walks. -/
+theorem onePointDistance_attachment_independent {S : Set ℝ} {V : Type u}
+    (hpos : Positive S) (hS : WellDefined S)
+    (hassoc : AssociativeOn S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    {j : ℝ} (hj : Jump S j) (root x y : V)
+    (hy : d y root ≤ j) :
+    sumWithZero S j (d y x) = sumWithZero S j (d root x) := by
+  have hyClass : y ∈ thresholdClass d j root := hy
+  have hrClass : root ∈ thresholdClass d j root :=
+    root_mem_thresholdClass hpos hd (Or.inr hj) root
+  have hxClass : x ∈ thresholdClass d 0 x :=
+    root_mem_thresholdClass hpos hd (Or.inl rfl) x
+  have hh := metric_sandwich_constant_on_parts hpos hS hassoc hd
+    j 0 (Or.inr hj) (Or.inl rfl)
+    (thresholdClass d j root) (thresholdClass d 0 x)
+    (thresholdClass_diameter hpos hS hd (Or.inr hj) root)
+    (thresholdClass_diameter hpos hS hd (Or.inl rfl) x)
+    y root x x hyClass hrClass hxClass hxClass
+  simpa only [sumWithZero_zero_right] using hh
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
