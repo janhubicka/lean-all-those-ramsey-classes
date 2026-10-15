@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Applications.MetricFiniteBlockMaximal
 import AllThoseRamseyClasses.Applications.MetricJumpSamedist
+import AllThoseRamseyClasses.Applications.MetricFiniteWellDefined
 
 /-!
 # The published finite-block interface to Lemma samedist
@@ -154,5 +155,74 @@ theorem finite_paperBlock_samedist_disjoint {S B₁ B₂ : Set ℝ}
     exact (Set.disjoint_left.mp hdisjoint) hroot₁ hroot₂
   exact finite_paperBlock_samedist hfin hpos hS h4 hd
     j₁ j₂ hB₁ hB₂ root₁ root₂ hroots
+
+
+/-- The literal manuscript level language: its jump predicate is
+the elementary gap condition, and the zero level uses {0}.
+No rounded-sum well-definedness assumption is embedded in this
+definition. -/
+def PaperGapBlockAtLevel (S B : Set ℝ) (j : ℝ) : Prop :=
+  (j = 0 ∧ B = {0}) ∨
+    (GapJump S j ∧ PaperBlock S B ∧ j ∈ B)
+
+/-- On finite positive distance sets, the paper's gap-jump level
+supplies exactly the idempotent jump required by the corrected
+sandwich lemma; well-definedness is automatic and not an extra
+paper hypothesis. -/
+theorem paperGapBlockAtLevel_to_jump {S B : Set ℝ} {j : ℝ}
+    (hfin : S.Finite) (hpos : Positive S)
+    (hB : PaperGapBlockAtLevel S B j) :
+    PaperBlockAtLevel S B j := by
+  rcases hB with hzero | ⟨hgap, hblock, hjB⟩
+  · exact Or.inl hzero
+  · have hS : WellDefined S := wellDefined_of_finite hfin hpos
+    exact Or.inr ⟨(gapJump_iff_Jump hpos hS j).mp hgap, hblock, hjB⟩
+
+/-- The manuscript's stated hypotheses on a finite four-values S
+suffice for the corrected Lemma samedist. No independent condition
+on rounded-sum attainment or on block maxima is supplied. Blocks
+are literal inclusion-maximal no-jump four-values subsets, jumps
+are their original gap-defined levels, and zero is the trivial
+singleton block. This includes the disjointness hypothesis of the
+published lemma and yields a genuine S-valued constant. -/
+theorem finite_paperBlock_samedist_published {S B₁ B₂ : Set ℝ}
+    {V : Type u}
+    (hfin : S.Finite) (hpos : Positive S)
+    (h4 : FourValues S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (j₁ j₂ : ℝ)
+    (hB₁ : PaperGapBlockAtLevel S B₁ j₁)
+    (hB₂ : PaperGapBlockAtLevel S B₂ j₂)
+    (root₁ root₂ : V)
+    (hdisjoint :
+      Disjoint
+        {u : V | ∃ b ∈ B₁, d u root₁ ≤ b}
+        {v : V | ∃ b ∈ B₂, d v root₂ ≤ b}) :
+    ∃ ell : ℝ, ell ∈ S ∧
+      ∀ u : V, (∃ b ∈ B₁, d u root₁ ≤ b) →
+        ∀ v : V, (∃ b ∈ B₂, d v root₂ ≤ b) →
+          sumWithZero S (sumWithZero S j₁ (d u v)) j₂ = ell := by
+  have hS : WellDefined S := wellDefined_of_finite hfin hpos
+  exact finite_paperBlock_samedist_disjoint hfin hpos hS h4 hd
+    j₁ j₂
+    (paperGapBlockAtLevel_to_jump hfin hpos hB₁)
+    (paperGapBlockAtLevel_to_jump hfin hpos hB₂)
+    root₁ root₂ hdisjoint
+
+/-- Each gap-defined positive jump belongs to a unique maximal
+four-values no-jump block; the zero level uses the trivial class.
+This reconstructs the finite-S block assignment rather than
+assuming existence of a selected block. -/
+theorem exists_paperGapBlockAtLevel {S : Set ℝ}
+    (hfin : S.Finite) (hpos : Positive S) (h4 : FourValues S)
+    (j : ℝ) (hj : j = 0 ∨ GapJump S j) :
+    ∃ B : Set ℝ, PaperGapBlockAtLevel S B j := by
+  rcases hj with hzero | hj
+  · exact ⟨{0}, Or.inl ⟨hzero, rfl⟩⟩
+  · have hS : WellDefined S := wellDefined_of_finite hfin hpos
+    have hjJ : Jump S j := (gapJump_iff_Jump hpos hS j).mp hj
+    exact ⟨JumpPiece S j, Or.inr
+      ⟨hj, jumpPiece_isPaperBlock hfin hpos hS h4 hjJ.1,
+        jumpPiece_self hjJ.1⟩⟩
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
