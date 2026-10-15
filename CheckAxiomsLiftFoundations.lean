@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.ComponentPieces
+import AllThoseRamseyClasses.Lifts.RootedFreeGluing
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
 #check AllThoseRamseyClasses.Lifts.language
@@ -48,6 +48,21 @@ import AllThoseRamseyClasses.Lifts.ComponentPieces
 #check AllThoseRamseyClasses.Lifts.component_subset_pieceVertices
 #check AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
 
+#check AllThoseRamseyClasses.Lifts.rootReduct
+#check AllThoseRamseyClasses.Lifts.rootEmbedding
+#check AllThoseRamseyClasses.Lifts.RootCompatible
+#check AllThoseRamseyClasses.Lifts.compatibleRightRootEmbedding
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgamLeft
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgamRight
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_isFreeAmalgam
+#check AllThoseRamseyClasses.Lifts.RelIsomorphic
+#check AllThoseRamseyClasses.Lifts.ForbiddenUpToIso
+#check AllThoseRamseyClasses.Lifts.IncompatibleByFreeGluing
+
+#print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
+#print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_isFreeAmalgam
 #print axioms AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
 #print axioms AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
