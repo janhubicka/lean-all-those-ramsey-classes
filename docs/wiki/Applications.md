@@ -243,6 +243,19 @@ order, closure functions and embedding extension. The finite
 metric Ramsey arrow, strong amalgamation and local completion
 have not been certified by the metric component alone.
 
+## Isometry-induced maps on canonical closure tags
+
+The reusable `MetricCanonicalQuotientMap` component transports
+original jump-equivalence classes along an exact metric isometry.
+It proves the quotient map is injective and the dependent
+canonical-tag map preserves the jump level and representative
+class. See [PR #260](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/260)
+and the [metric API note](Metric-applications.md). Full
+canonical **metric** isometry on lifted vertices still needs
+the cross-distance/representative-independence bridge and
+injectivity of the dependent tag map; the convex order and
+Ramsey class are not implied.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |

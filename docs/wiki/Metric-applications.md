@@ -633,6 +633,43 @@ exact weak local completion and the finite Ramsey arrow
 remain distinct class-level obligations. The current theorem
 does **not** certify the complete `lem:Smetricemb`.
 
+## Isometric transport of jump-equivalence classes
+
+[PR #260](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/260)
+formalizes the canonical class map induced by an **exact
+isometry** of original S-metric spaces. For each proper
+jump level j (and for zero), d(x,y)≤j holds precisely when
+d(f(x),f(y))≤j, since the embedding preserves all distances.
+
+    import AllThoseRamseyClasses.Applications.MetricCanonicalQuotientMap
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check mapJumpClass
+    #check mapJumpClass_mk
+    #check mapJumpClass_injective
+    #check mapCanonicalJumpTag
+    #check mapCanonicalJumpTag_level
+    #check mapCanonicalJumpTag_class_mk
+
+`mapJumpClass` is constructed by a genuine `Quotient.liftOn`;
+its computation on representatives is explicit, and
+`mapJumpClass_injective` uses **reflection**, not merely
+preservation, of the threshold relation. The dependent
+`mapCanonicalJumpTag` preserves the positive jump level
+and sends a class represented by x to the corresponding
+class represented by f(x). These are reusable library
+components even when the underlying vertex sets are
+infinite, and require no finite distance-set assumption.
+
+The full Lean build, source-integrity and permitted-axiom
+checks passed in [CI 38781956316](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38781956316)
+at proof source commit `d5460f18c3e38cbcebaf57521616be27d42db85f`.
+
+The full canonical metric embedding has **not** yet been
+proved: it additionally needs injectivity on the dependent
+canonical tag family and comparison of every mixed and
+cross metric label. Preserving the prescribed convex
+linear order remains a separate obligation.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
