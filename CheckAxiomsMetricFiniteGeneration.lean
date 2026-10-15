@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteGeneration
+
+#print axioms AllThoseRamseyClasses.FiniteSemigroup.positivePower_mul
+#print axioms AllThoseRamseyClasses.FiniteSemigroup.finite_sup
+#print axioms AllThoseRamseyClasses.FiniteSemigroup.finite_closure_singleton
+#print axioms AllThoseRamseyClasses.FiniteSemigroup.finite_closure
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.cappedSum_assoc
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.distanceSum_subset_eq_capped
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.wellDefined_subset
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.associativeOn_subset
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_finite_capped_extension
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_finite_distance_extension
