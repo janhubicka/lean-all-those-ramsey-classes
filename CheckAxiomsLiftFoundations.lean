@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
+import AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
 #check AllThoseRamseyClasses.Lifts.language
@@ -70,6 +70,23 @@ import AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
 #check AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
 #check AllThoseRamseyClasses.Lifts.forbiddenPieceLanguage
 
+#check AllThoseRamseyClasses.Lifts.functionalGaifmanAdjacent
+#check AllThoseRamseyClasses.Lifts.functionalGaifmanAdjacent_symm
+#check AllThoseRamseyClasses.Lifts.functionalReachOutside
+#check AllThoseRamseyClasses.Lifts.functionalComponentFrom
+#check AllThoseRamseyClasses.Lifts.functionalComponentFrom_root
+#check AllThoseRamseyClasses.Lifts.functionalComponentFrom_disjoint_cut
+#check AllThoseRamseyClasses.Lifts.functionalComponentFrom_step
+#check AllThoseRamseyClasses.Lifts.functionalGaifmanNeighborhood
+#check AllThoseRamseyClasses.Lifts.functionalNeighborhood_component_subset_cut
+#check AllThoseRamseyClasses.Lifts.functionalComponentUnion
+#check AllThoseRamseyClasses.Lifts.functionalComponentUnion_isClosed
+#check AllThoseRamseyClasses.Lifts.functionalComponentInduce
+#check AllThoseRamseyClasses.Lifts.functionalComponentEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponentUnion_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponentEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.functionalNeighborhood_component_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.forbiddenPiece_equiv_iff
 #print axioms AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
 #print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
