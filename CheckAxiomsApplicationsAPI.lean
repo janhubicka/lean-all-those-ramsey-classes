@@ -31,3 +31,7 @@ import AllThoseRamseyClasses.ApplicationsAPI
 #print axioms AllThoseRamseyClasses.Applications.ForbiddenPatterns.orderedRamsey_avoiding_irreducible
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.KnFreeClass_freeAmalgamation
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey
+
+#check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isRamsey
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_exactLocal_zero
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isRamsey

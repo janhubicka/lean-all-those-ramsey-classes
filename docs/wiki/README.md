@@ -10,16 +10,20 @@ in [Published statements](Published-statements.md). This documents
 the scope of the certificate without taking a position on the
 original published wording; a revised manuscript and possible
 future errata are separate author decisions.
-The **finite ordered-poset Ramsey-class theorem** is proved
-in Lean as a completed application. The independent ordered
-partial-function theorem 2.19 is in the pinned dependency.
+Verified examples now include finite ordered posets, ordered graphs,
+digraphs, acyclic digraphs, K_n-free graphs, pointed equivalences and
+the finite-target m-unary-function case. A separate auxiliary class
+of freely ordered partial Steiner triple systems is also completely
+proved. The countably infinite unary target remains open.
+The independent ordered partial-function theorem 2.19 is in the
+pinned dependency.
 
 | Chapter | Contents |
 | --- | --- |
 | [Using the library](Using-the-library.md) | Lake installation, imports, definitions and running examples |
 | [Published statements](Published-statements.md) | Exact 2019 theorem scopes, corrections, proofs and unverified claims |
 | [Proof architecture](Proof-architecture.md) | Generated closure profiles, strict-tree sparsening and fresh-tag pass |
-| [Applications](Applications.md) | Proved posets; partial Steiner, metric and unary-function results |
+| [Applications](Applications.md) | Complete paper examples, auxiliary Steiner class, remaining metric/countable-unary tasks |
 | [Audit and validation](Audit-and-validation.md) | Theorem-level adversarial checks, source trust, unused-code criteria |
 | [Publishing](Publishing.md) | Source-controlled wiki and automatic GitHub synchronization |
 
@@ -31,6 +35,10 @@ import AllThoseRamseyClasses
 #check AllThoseRamseyClasses.Published.coordinated2019_ramsey_by_profile_sparsening
 #check AllThoseRamseyClasses.Published.coordinated2019_profile_sparse_witness
 #check AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey
+#check AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey
+#check AllThoseRamseyClasses.Applications.PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey
+#check AllThoseRamseyClasses.Applications.TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey
+#check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isRamsey
 #check StructuralRamsey.Structure.allThoseRamseyClasses_theorem_2_19_partialFunctions
 ```
 

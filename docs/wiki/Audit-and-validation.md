@@ -26,8 +26,9 @@ to the public status table.
   separate native Lemma 2.30 generating-rank argument.
 * A Ramsey-class application becomes certified only when all
   class hypotheses, including exact local completion, have
-  been proved. Ordered posets have a complete endpoint;
-  ordered Steiner triples remain a partial application.
+  been proved. Ordered posets and the auxiliary freely ordered Steiner triples
+  have complete endpoints, as do several original paper examples.
+  The countably infinite target for total unary functions is open.
 
 ## Proof integrity
 
@@ -71,8 +72,8 @@ Actual TeX compilation remains a separate check from Lean CI.
 
 Maintain the source API, wiki, statement crosswalk and manuscript
 markers together when a **complete** new Lean proof passes CI.
-Outstanding targets include the full Steiner class instance,
-metric and unary-function applications, primitive-function
+Outstanding targets include metric applications, the countably infinite
+total-unary target, other manuscript class instances, primitive-function
 transfer, and separate validation of the original native proof.
 A possible erratum is an author/editorial decision following
 review of the revised manuscript and formal evidence.

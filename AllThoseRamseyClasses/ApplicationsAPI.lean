@@ -5,6 +5,7 @@ import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
 import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
 import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
+import AllThoseRamseyClasses.Applications.SteinerLocalCompletion
 
 /-!
 # Verified application theorems
@@ -12,10 +13,13 @@ import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
 Import this module (or `AllThoseRamseyClasses`) for the corrected 2019
 multiamalgamation theorem and *completed* class-level applications.
 
-Currently the independently checked nontrivial class instance is the
-Ramsey class of finite posets with a chosen linear extension.
-The extra empty binary relation in its named Lean ambient language is
-inert; `.lt` is strict, whereas the paper uses a reflexive linear order.
+Completed applications now include finite ordered posets, freely ordered
+digraphs and simple graphs, ordered acyclic digraphs, K_n-free graphs,
+pointed equivalences, and the finite-target m-unary-function case.
+The freely ordered partial Steiner triple class is a separately completed
+**auxiliary** example not included among the paper's examples.
+The named poset representation has one inert empty binary relation;
+its vertex order `.lt` is strict, whereas the paper uses a reflexive order.
 
 The additional acyclic-digraph-with-linear-extension corollary from
 the paper is proved using the B-copywise forward-edge deletion lemma.
@@ -31,7 +35,6 @@ The finite-target part of the paper's m-unary-function Ramsey theorem
 is proved separately; the infinite-target clause remains open.
 
 The freestanding partial-function theorem 2.19 is exported by
-`PublicAPI`. Other `Applications/*` modules document useful Lean-proved
-components, but their class-level Ramsey conclusions are not certified
-and are deliberately not aggregated here.
+`PublicAPI`. Other `Applications/*` modules document further Lean-proved components,
+whose still-open class-level Ramsey conclusions are not exported here.
 -/

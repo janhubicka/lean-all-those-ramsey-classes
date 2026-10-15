@@ -9,8 +9,9 @@ additional hypotheses needed to specialize the theorem.
 **Core import:**
 
 Use `AllThoseRamseyClasses.ApplicationsAPI` (or the curated root
-`AllThoseRamseyClasses`) for the newly completed finite ordered-poset
-Ramsey theorem `AllThoseRamseyClasses.Applications.OrderedPosets.orderedPoset_isRamsey`.
+`AllThoseRamseyClasses`) for the verified ordered-poset, paper graph,
+acyclic digraph, K_n-free graph, pointed-equivalence, finite-target
+m-unary, and auxiliary Steiner Ramsey theorems.
 The core `PublicAPI` stays independent of individual applications.
 See the [research wiki's applications reference](wiki/Applications.md).
 
@@ -375,11 +376,15 @@ For freely ordered partial Steiner triples:
 ```lean
 import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
 import AllThoseRamseyClasses.Applications.SteinerTripleIsomorphism
+import AllThoseRamseyClasses.Applications.SteinerLocalCompletion
 
 #check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isUClosed
 #check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_closedUHereditary
 #check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isomorphismClosed
 #check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerAmbient_isRamsey
+#check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerClass_strongAmalgamation
+#check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_exactLocal_zero
+#check AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteiner_isRamsey
 ```
 
 Covered pairs are marked by a binary predicate and determine
@@ -387,8 +392,20 @@ the exact roots of the ternary block-closure rule. A full
 relational embedding in this language is a **strong**
 Steiner-subsystem embedding, not an arbitrary induced
 hypergraph embedding. Linear orders are arbitrary. The
-Steiner **K-class** strong amalgamation and local completion
-have not yet been bundled into a verified Ramsey instance.
+Steiner **K-class** strong amalgamation, exact weak local completion
+with cutoff zero, and the unconditional class Ramsey theorem are
+all **verified** (PRs #235–#236). This is an auxiliary non-paper example.
+
+For the completed paper graph, pointed-equivalence and finite-unary
+applications, use `AllThoseRamseyClasses.ApplicationsAPI` and check
+`PaperGraphs.freelyOrderedDigraphs_areRamsey`,
+`PaperGraphs.freelyOrderedSimpleGraphs_areRamsey`,
+`PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey`,
+`PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey`,
+`PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey`, and
+`TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey`.
+The last theorem covers **finite B only**, not the countably infinite
+B target clause of the manuscript.
 
 For the metric and unary audits, import
 `Applications.MetricJumpSandwich` and
