@@ -18,3 +18,7 @@ import AllThoseRamseyClasses.ApplicationsAPI
 
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.forwardReduct_preserves_ordered_copies
 #print axioms AllThoseRamseyClasses.Applications.PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey
+
+#print axioms AllThoseRamseyClasses.Applications.PointedEquivalences.pointedClass_iff_total_idempotent
+#print axioms AllThoseRamseyClasses.Applications.PointedEquivalences.pointedClass_freeAmalgamation
+#print axioms AllThoseRamseyClasses.Applications.PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey
