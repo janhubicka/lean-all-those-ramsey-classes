@@ -39,7 +39,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation",
     "AllThoseRamseyClasses.Applications.SteinerLocalCompletion",
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
-    "AllThoseRamseyClasses.Applications.MetricSaturation",
+    "AllThoseRamseyClasses.Applications.MetricFiniteGeneration",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
     "AllThoseRamseyClasses.Applications.PaperPointedEquivalences",
