@@ -179,6 +179,19 @@ distances, the extended order and embedding extension are still
 open. See [Metric applications](Metric-applications.md) for
 the proof and exact source endpoints.
 
+## Two-closure metric cross distances
+
+`Applications.MetricTwoPointClosure` composes two verified one-point
+metric adjunctions and proves the new inter-closure distance is
+`j⊕d(r,s)⊕k`, exactly the quotient-invariant class-pair label.
+The result is an S-metric, preserves the original distances and
+is independent of which closure vertex was attached first.
+See [PR #251](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/251),
+[CI 38763120354](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38763120354)
+and [Metric applications](Metric-applications.md) for exact proof scope.
+Distinct attached tags are not yet automatically deduplicated by
+their block class; the full L(A) lift remains unfinished.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
