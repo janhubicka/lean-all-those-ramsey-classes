@@ -206,6 +206,19 @@ the canonical `L(A)`. See
 [PR #253](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/253)
 and [Metric applications](Metric-applications.md).
 
+## Directly tagged finite closure metric
+
+`Applications.MetricTaggedClosure` supplies an actual finite
+S-metric on `V ⊕ Fin n`, with all original distances unchanged,
+closure-to-original distances `j_i⊕d(r_i,x)`, and distinct
+closure-to-closure distances `j_i⊕d(r_i,r_k)⊕j_k`.
+It proves off-diagonal membership in the positive distance set,
+not merely a pullback pseudometric. See
+[PR #254](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/254)
+and [CI 38774053990](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38774053990).
+Choosing canonical unique (jump,class) tags, the lifted
+order and functorial embeddings remain separate.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |

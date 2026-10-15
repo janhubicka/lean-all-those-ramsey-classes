@@ -515,6 +515,60 @@ enumeration of the canonical classes, convex extension of the
 vertex order, functorial embeddings, and full metric Ramsey
 amalgamation/local-completion remain separate obligations.
 
+## A directly tagged finite S-metric carrier
+
+[PR #254](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/254)
+reindexes the already verified closure tower on the user-facing
+disjoint-union carrier `V ⊕ Fin n`:
+
+    original x        = Sum.inl x
+    closure stage i    = Sum.inr i
+
+`taggedClosureDistance` is the actual checked tower distance
+evaluated at the corresponding indexed vertices. Its explicit
+metric entries are
+
+    d'(inl x,inl y) = d(x,y)
+    d'(inr i,inl x) = j_i ⊕ d(r_i,x)
+    d'(inr i,inr k) = j_i ⊕ d(r_i,r_k) ⊕ j_k   (i≠k)
+    d'(a,a)         = 0.
+
+Crucially, `taggedClosureDistance_metric` verifies a **genuine**
+S-metric on this disjoint union, not a pseudometric. The proof
+does not assume the map to the underlying Option tower is
+injective: for each type of distinct tagged vertices, it proves
+the corresponding distance belongs to positive S using the
+computed rounded formulas. Symmetry and triangles then follow
+from the proved tower metric. Equal roots or equal jump levels
+at different stages are allowed; their tags stay separate and
+their distance remains positive.
+
+    import AllThoseRamseyClasses.Applications.MetricTaggedClosure
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check taggedTowerVertex
+    #check taggedClosureDistance
+    #check taggedClosureDistance_old
+    #check taggedClosureDistance_new_original
+    #check taggedClosureDistance_new_new
+    #check taggedClosureDistance_metric
+
+The complete Lean build, source-integrity check and permitted-axiom
+audit passed in
+[CI 38774053990](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38774053990)
+at source revision `dca9df110b5636b97d01a6018bf1fffeda8af104`.
+The root `MetricTaggedClosure` is retained by the library's
+active-module inventory.
+
+**Canonical-lift boundary.** Stage indices need to be chosen to
+enumerate each distinct (proper jump, original equivalence class)
+exactly once. The metric on any such chosen enumeration is already
+available, and the all-pair formulas imply it is independent of
+representative choices. The existence of the canonical finite
+tag enumeration, the concrete correspondence with the
+paper's closure-vertex functions and order, and functorial
+embedding extension remain to be formalized. No result here
+certifies the complete L(A) lemma or finite Ramsey arrow.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
