@@ -145,4 +145,62 @@ theorem exists_finite_capped_extension_convex {S D : Set ℝ}
       hTm hclosed hdiag
       (fun x y hxy => hDT (hrange x y hxy))⟩
 
+
+/-- Every finite set of distances admits a finite four-values extension
+which preserves exactly the jump-threshold convexity constraints on
+an ordered structure using those distances. The empty set of distances
+is included (then the vertex set has at most one element). -/
+theorem exists_finite_fourValues_jumpConvex_extension {S D : Set ℝ}
+    {V : Type u} [LinearOrder V] (d : V → V → ℝ)
+    (hpos : Positive S) (hS : WellDefined S) (h4 : FourValues S)
+    (hD : D.Finite) (hDS : D ⊆ S)
+    (hdiag : ∀ x, d x x = 0)
+    (hrange : ∀ x y, x ≠ y → d x y ∈ D) :
+    ∃ T : Set ℝ, T.Finite ∧ D ⊆ T ∧ T ⊆ S ∧
+      WellDefined T ∧ FourValues T ∧
+      (JumpConvex S d ↔ JumpConvex T d) := by
+  classical
+  by_cases hne : D.Nonempty
+  · let F : Finset ℝ := hD.toFinset
+    have hF : F.Nonempty := by
+      obtain ⟨a, ha⟩ := hne
+      exact ⟨a, hD.mem_toFinset.mpr ha⟩
+    let m : ℝ := F.max' hF
+    have hmD : m ∈ D := hD.mem_toFinset.mp (Finset.max'_mem F hF)
+    have hDm : ∀ s ∈ D, s ≤ m := by
+      intro s hs
+      exact Finset.le_max' F s (hD.mem_toFinset.mpr hs)
+    obtain ⟨T, hT, hDT, hTS, hTw, hTa, hconv⟩ :=
+      exists_finite_capped_extension_convex d hpos hS
+        (associativeOn_of_fourValues hpos hS h4)
+        hD hDS hmD hDm hdiag hrange
+    exact ⟨T, hT, hDT, hTS, hTw,
+      fourValues_of_associativeOn (fun t ht => hpos t (hTS ht)) hTw hTa,
+      hconv⟩
+  · have hEmpty : D = ∅ := Set.not_nonempty_iff_eq_empty.mp hne
+    have hUnique : ∀ x y : V, x = y := by
+      intro x y
+      by_contra hxy
+      have hdxy := hrange x y hxy
+      simp [hEmpty] at hdxy
+    have hSconv : JumpConvex S d := by
+      intro j hj x y z _ _ _
+      have hxy := hUnique x y
+      have hyz := hUnique y z
+      subst y
+      subst z
+      rw [hdiag]
+      exact ⟨(hpos j hj.1).le, (hpos j hj.1).le⟩
+    refine ⟨∅, Set.finite_empty, ?_, Set.empty_subset S, ?_, ?_, ?_⟩
+    · simp [hEmpty]
+    · intro a ha
+      exact False.elim ha
+    · intro a ha
+      exact False.elim ha
+    · constructor
+      · intro _ j hj
+        exact False.elim hj.1
+      · intro _
+        exact hSconv
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
