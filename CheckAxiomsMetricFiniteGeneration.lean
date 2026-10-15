@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Applications.MetricFiniteGeneration
+import AllThoseRamseyClasses.Applications.MetricFourValues
 
 #print axioms AllThoseRamseyClasses.FiniteSemigroup.positivePower_mul
 #print axioms AllThoseRamseyClasses.FiniteSemigroup.finite_sup
@@ -10,3 +10,7 @@ import AllThoseRamseyClasses.Applications.MetricFiniteGeneration
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.associativeOn_subset
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_finite_capped_extension
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_finite_distance_extension
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.fourValues_of_associativeOn
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.associativeOn_of_fourValues
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.associativeOn_iff_fourValues
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_finite_fourValues_extension
