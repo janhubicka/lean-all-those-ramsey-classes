@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalFiniteLift
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricOn_comap
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalTagIndexEquiv
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_canonicalFiniteMetric_nonempty
