@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.PieceEquivalence
+import AllThoseRamseyClasses.Lifts.GaifmanCuts
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
 #check AllThoseRamseyClasses.Lifts.language
@@ -26,6 +26,22 @@ import AllThoseRamseyClasses.Lifts.PieceEquivalence
 #check AllThoseRamseyClasses.Lifts.equiv_of_incompatible_iff
 #check AllThoseRamseyClasses.Lifts.RegularByProfiles
 
+#check AllThoseRamseyClasses.Lifts.GaifmanAdjacent
+#check AllThoseRamseyClasses.Lifts.GaifmanAdjacent.symm
+#check AllThoseRamseyClasses.Lifts.outsideAdjacency
+#check AllThoseRamseyClasses.Lifts.ReachOutside
+#check AllThoseRamseyClasses.Lifts.componentFrom
+#check AllThoseRamseyClasses.Lifts.IsComponentOutside
+#check AllThoseRamseyClasses.Lifts.componentFrom_root
+#check AllThoseRamseyClasses.Lifts.componentFrom_disjoint_cut
+#check AllThoseRamseyClasses.Lifts.componentFrom_step
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_component_subset_cut
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
+#check AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
+
+#print axioms AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
+#print axioms AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.incompatible_iff_of_equiv
 #print axioms AllThoseRamseyClasses.Lifts.shadow_withExtra
 #print axioms AllThoseRamseyClasses.Lifts.RootRealization.map_embedding
