@@ -87,6 +87,7 @@ theorem mapCanonicalLift_preserves_completedClosureValue {S : Set ℝ}
           exact hlevel
         rw [canonicalCompletedClosureValue_lower hpos hS hdV
           j tag hlevel]
+        rw [mapCanonicalLift_tag hpos hS hdV hdW f hf tag]
         rw [canonicalCompletedClosureValue_lower hpos hS hdW
           j target htargetLevel]
         change some (.inr
