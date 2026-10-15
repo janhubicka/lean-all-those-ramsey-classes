@@ -121,15 +121,19 @@ theorem mapCanonicalJumpTag_class_mk {S : Set ℝ}
     (hf : ∀ x y : V, dW (f x) (f y) = dV x y)
     (tag : CanonicalJumpTag hpos hS hdV) (x : V)
     (hx : Quotient.mk
-        (jumpSetoid hpos hS hdV (canonicalTagLevel tag)
-          (Or.inr (canonicalTagLevel_jump tag))) x = tag.2) :
+        (jumpSetoid hpos hS hdV tag.1.val
+          (Or.inr tag.1.property)) x = tag.2) :
     Quotient.mk
-        (jumpSetoid hpos hS hdW (canonicalTagLevel tag)
-          (Or.inr (canonicalTagLevel_jump tag))) (f x) =
+        (jumpSetoid hpos hS hdW tag.1.val
+          (Or.inr tag.1.property)) (f x) =
       (mapCanonicalJumpTag hpos hS hdV hdW f hf tag).2 := by
+  change Quotient.mk
+      (jumpSetoid hpos hS hdW tag.1.val
+        (Or.inr tag.1.property)) (f x) =
+    mapJumpClass hpos hS hdV hdW f hf tag.1.val
+      (Or.inr tag.1.property) tag.2
   rw [← hx]
   exact (mapJumpClass_mk hpos hS hdV hdW f hf
-    (canonicalTagLevel tag)
-    (Or.inr (canonicalTagLevel_jump tag)) x).symm
+    tag.1.val (Or.inr tag.1.property) x).symm
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
