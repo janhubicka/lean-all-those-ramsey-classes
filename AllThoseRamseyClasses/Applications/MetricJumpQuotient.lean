@@ -62,7 +62,7 @@ noncomputable def quotientSandwichLabel {S : Set ℝ} {V : Type u}
     Quotient.liftOn₂ X Y
       (fun u v => sumWithZero S (sumWithZero S p (d u v)) q)
       (by
-        intro u u' v v' huu' hvv'
+        intro u v u' v' huu' hvv'
         have hu' : u' ∈ thresholdClass d p u := by
           change d u' u ≤ p
           rw [hd.symm u' u]
