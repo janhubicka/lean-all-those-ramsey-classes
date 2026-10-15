@@ -101,7 +101,7 @@ private theorem block_from_one_side
 
 /-- Unique completion of a covered pair follows from intrinsic
 closedness; we use the exact original root, not a newly generated hull. -/
-private theorem block_unique_of_closed
+theorem steiner_block_unique_of_UClosed
     {P : Type} (C : RelStructure Lang P)
     (hC : IsUClosed blockRules C)
     {x y z w : P}
@@ -280,7 +280,7 @@ theorem orderedSteinerClass_strongAmalgamation :
       · obtain ⟨c,habc⟩ := hRight.covered_has_block a b hab
         exact ⟨jR c, (triple_embedding_iff jR a b c).mpr habc⟩
     · intro x y z w hz hw
-      exact block_unique_of_closed G hGClosed hz hw
+      exact steiner_block_unique_of_UClosed G hGClosed hz hw
     · intro x y z hxyz
       rcases block_from_one_side hFree hxyz with
         ⟨a,b,c,habc,rfl,rfl,rfl⟩ |

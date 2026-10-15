@@ -22,7 +22,7 @@ The freely ordered digraph and simple-graph results from the paper are
 proved separately using ordered relational Ramsey and the genuine free
 amalgamation criterion; their order is the distinguished external order.
 
-The freely ordered pointed-equivalence Ramsey class from the manuscript is
+The freely ordered pointed-equivalence Ramsey class from the paper is
 proved via its full idempotent unary-function encoding.
 
 The freestanding partial-function theorem 2.19 is exported by
