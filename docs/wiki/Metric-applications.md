@@ -105,6 +105,53 @@ associativity inequality; reversing a and c gives the other.
 Thus the final finite extension starts from the original four-values
 hypothesis and returns four-values, rather than assuming an unproved bridge.
 
+## Convexity at jump thresholds: finite reduction
+
+[PR #245](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/245)
+adds two reusable modules:
+
+- MetricJumpThresholds identifies the manuscript jump criterion
+  (j is nonmaximal and no S-distance lies in (j,2j]) with a proper
+  rounded-sum idempotent. It shows all proper jumps of a cap-closed
+  subset T are ambient jumps, and that an ambient jump j<m is either
+  invisible to T or has the same distance threshold as the largest
+  t in T below j, itself a T-jump.
+- MetricConvexityTransfer formalizes interval convexity of the relation
+  d(x,y)<=j on a linearly ordered vertex set. When distinct vertices
+  have T-distances and d(x,x)=0, it proves that this property at all
+  S-jumps is equivalent to the same property at all T-jumps.
+
+Import and inspect these endpoints:
+
+    import AllThoseRamseyClasses.Applications.MetricConvexityTransfer
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check jump_iff_gap
+    #check exists_restricted_jump_below
+    #check jumpConvex_iff_of_capped_closed
+    #check exists_finite_fourValues_jumpConvex_extension
+
+The last theorem combines this transport with finite four-values
+generation: for any finite D of distances in S used by an ordered
+structure, it returns a finite T containing D, with well-defined
+four-values operation and an exact equivalence between jump-threshold
+convexity for S and T. This also handles D empty: the vertex set
+must then have at most one element.
+
+**Scope caution.** This is not yet the full paper's block-convex
+metric Ramsey theorem. For finite four-values distance sets, jumps
+index the proper block equivalences, but the identification of
+block-convexity with this threshold formulation (especially for
+infinite S), the closure-vertex representation and the finite metric
+Ramsey theorem are separate formal obligations. The jump algebra
+does not itself construct Ramsey witnesses.
+
+The proofs use the actual real-supremum operation. No ambient finite
+block count, topological closedness, metric symmetry or triangle
+inequality is added to the order-theoretic transfer. The real metric
+conditions will enter when relating thresholds to block equivalences.
+The new endpoints have a separate permitted-axiom audit in
+CheckAxiomsMetricConvexityTransfer.lean.
+
 ## Idempotent jump sandwich
 
 `Applications.MetricJumpSandwich` independently proves
@@ -117,11 +164,11 @@ precise block-equivalence/triangle-inequality bridge.
 
 The scalar reduction does not construct a Ramsey witness or a class-level
 completion. Remaining tasks are the finite metric Ramsey theorem,
-closure-vertex representation, compatible convex orders, strong amalgamation,
+closure-vertex representation, the full block-equivalence interpretation
+of jump thresholds (especially for infinite S), strong amalgamation,
 exact weak local-completion bounds, and the finite-to-arbitrary-distance
-Ramsey transfer. In particular, convex-order compatibility when passing
-between S and the finite extension T is a separate obligation, not a
-consequence already asserted by the scalar extension theorem.
+Ramsey transfer. Jump-threshold convexity itself is now transported, but
+its identification with the paper's full block-convexity is not automatic.
 
 The old scalar finite-generation TODO in the manuscript's review material
 is superseded by the new component certificate once PR #244 passes the full
