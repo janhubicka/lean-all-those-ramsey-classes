@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation
 import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
 import AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure
 import AllThoseRamseyClasses.Applications.SteinerOrderPushout
@@ -63,3 +64,5 @@ No class-level Steiner Ramsey theorem is asserted by these checks.
 -- Preserved certificate from CheckAxiomsExamplesClassApplication.lean
 #print axioms AllThoseRamseyClasses.Examples.coordinated_class_of_checked_fields
 #print axioms AllThoseRamseyClasses.Examples.ramsey_of_coordinated_hypothesis
+
+#print axioms AllThoseRamseyClasses.Applications.SteinerTriples.orderedSteinerClass_strongAmalgamation

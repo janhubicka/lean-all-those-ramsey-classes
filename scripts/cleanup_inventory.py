@@ -36,6 +36,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerAmbientRamsey",
     "AllThoseRamseyClasses.Applications.SteinerFreeAmalgamClosure",
     "AllThoseRamseyClasses.Applications.SteinerOrderPushout",
+    "AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation",
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
