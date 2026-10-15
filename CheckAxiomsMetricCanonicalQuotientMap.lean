@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalQuotientMap
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapJumpClass
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapJumpClass_mk
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapJumpClass_injective
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalJumpTag
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalJumpTag_level
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalJumpTag_class_mk
