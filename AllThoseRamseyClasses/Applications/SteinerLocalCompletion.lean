@@ -114,6 +114,14 @@ theorem orderedSteiner_exactLocal_zero
       | .covered, t => C.rel .covered t
       | .block, t => C.rel .block t
   }
+  have hInducedOrder (S : Set V) (x y : S)
+      (h : edge (C.induce S) .order x y) :
+      edge C .order x.1 y.1 := by
+    change C.rel .order ![x.1, y.1]
+    change C.rel .order (Subtype.val ∘ ![x,y]) at h
+    convert h using 1
+    funext i
+    fin_cases i <;> rfl
   have hEmbOnKTest (S : Set V)
       (hKS : orderedSteinerClass (C.induce S)) :
       Embedding (C.induce S) Target := by
@@ -140,27 +148,35 @@ theorem orderedSteiner_exactLocal_zero
           rcases hKS.order_total (t 0) (t 1) hne with h | h
           · exact h
           · exact (lt_asymm hnew
-              (hOldOrder (t 1).1 (t 0).1 (by simpa [edge, RelStructure.induce] using h))).elim
+              (hOldOrder (t 1).1 (t 0).1 (hInducedOrder S (t 1) (t 0) h))).elim
         · intro hold
-          exact hOldOrder (t 0).1 (t 1).1 (by simpa [edge, RelStructure.induce] using hold)
+          exact hOldOrder (t 0).1 (t 1).1 (hInducedOrder S (t 0) (t 1) hold)
     | covered =>
         exact Iff.rfl
     | block =>
         exact Iff.rfl
-  /-- The non-order predicates stay literally unchanged on induced sets. -/
+  -- The non-order predicates stay literally unchanged on induced sets.
   have hCoveredFromInduce (S : Set V) (x y : S)
       (h : edge (C.induce S) .covered x y) :
       edge Target .covered x.1 y.1 := by
-    simpa [edge, RelStructure.induce, Target] using h
+    change C.rel .covered ![x.1, y.1]
+    change C.rel .covered (Subtype.val ∘ ![x,y]) at h
+    convert h using 1
+    funext i
+    fin_cases i <;> rfl
   have hTripleFromInduce (S : Set V) (x y z : S)
       (h : triple (C.induce S) x y z) :
       triple Target x.1 y.1 z.1 := by
-    simpa [triple, RelStructure.induce, Target] using h
+    change C.rel .block ![x.1, y.1, z.1]
+    change C.rel .block (Subtype.val ∘ ![x,y,z]) at h
+    convert h using 1
+    funext i
+    fin_cases i <;> rfl
   have hOrderFromInduce (S : Set V) (x y : S)
       (h : edge (C.induce S) .order x y) :
       edge Target .order x.1 y.1 := by
-    have hOld : edge C .order x.1 y.1 := by
-      simpa [edge, RelStructure.induce] using h
+    have hOld : edge C .order x.1 y.1 :=
+      hInducedOrder S x y h
     exact hOldOrder x.1 y.1 hOld
   have hTarget : orderedSteinerClass Target := by
     refine {
@@ -188,7 +204,11 @@ theorem orderedSteiner_exactLocal_zero
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       have hInside : edge (C.induce S) .covered xS yS := by
-        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
+        change C.rel .covered (Subtype.val ∘ ![xS, yS])
+        have h0 : C.rel .covered ![x, y] := hxy
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       exact hOrderFromInduce S xS yS (hKS.covered_implies_order xS yS hInside)
     · intro x y hxy
       obtain ⟨S, hS, hKS⟩ :=
@@ -196,7 +216,11 @@ theorem orderedSteiner_exactLocal_zero
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       have hInside : edge (C.induce S) .covered xS yS := by
-        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
+        change C.rel .covered (Subtype.val ∘ ![xS, yS])
+        have h0 : C.rel .covered ![x, y] := hxy
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       obtain ⟨e,he0,he1⟩ := hKS.covered_root xS yS hInside
       refine ⟨(hEmbOnKTest S hKS).comp e, ?_, ?_⟩
       · change (e 0).1 = x
@@ -210,7 +234,11 @@ theorem orderedSteiner_exactLocal_zero
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
       have hInside : triple (C.induce S) xS yS zS := by
-        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
+        change C.rel .block (Subtype.val ∘ ![xS, yS, zS])
+        have h0 : C.rel .block ![x, y, z] := hxyz
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       exact hCoveredFromInduce S xS yS (hKS.block_valid xS yS zS hInside)
     · intro x y z hxyz
       obtain ⟨S, hS, hKS⟩ :=
@@ -219,7 +247,11 @@ theorem orderedSteiner_exactLocal_zero
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
       have hInside : triple (C.induce S) xS yS zS := by
-        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
+        change C.rel .block (Subtype.val ∘ ![xS, yS, zS])
+        have h0 : C.rel .block ![x, y, z] := hxyz
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       obtain ⟨hxy,hxz,hyz⟩ := hKS.block_distinct xS yS zS hInside
       exact ⟨fun h => hxy (Subtype.ext h),
         fun h => hxz (Subtype.ext h),
@@ -230,7 +262,11 @@ theorem orderedSteiner_exactLocal_zero
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       have hInside : edge (C.induce S) .covered xS yS := by
-        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
+        change C.rel .covered (Subtype.val ∘ ![xS, yS])
+        have h0 : C.rel .covered ![x, y] := hxy
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       obtain ⟨zS,hz⟩ := hKS.covered_has_block xS yS hInside
       exact ⟨zS.1, hTripleFromInduce S xS yS zS hz⟩
     · intro x y z w hz hw
@@ -242,7 +278,11 @@ theorem orderedSteiner_exactLocal_zero
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
       have hInside : triple (C.induce S) xS yS zS := by
-        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
+        change C.rel .block (Subtype.val ∘ ![xS, yS, zS])
+        have h0 : C.rel .block ![x, y, z] := hxyz
+        convert h0 using 1
+        funext i
+        fin_cases i <;> rfl
       obtain ⟨hXZ,hYZ⟩ := hKS.other_pairs xS yS zS hInside
       constructor
       · rcases hXZ with ⟨htr,hord⟩ | ⟨htr,hord⟩
