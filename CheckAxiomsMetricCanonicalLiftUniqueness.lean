@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalLiftUniqueness
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalClosureTag_of_root
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_closure
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_unique
