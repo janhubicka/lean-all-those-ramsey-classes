@@ -116,16 +116,24 @@ Mathlib's actual generated subsemigroup, without an identity or a finite
 ambient carrier. See [Metric applications](Metric-applications.md) and
 [PR #244](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/244)
 for the proof structure, exact assumptions and full CI review.
-These components remain direct imports, not purported complete metric
-classes in `ApplicationsAPI`. Neither `prop:Smetric` nor the complete
-metric Ramsey theorem is certified by the scalar reduction alone.
+`MetricJumpThresholds` additionally proves the manuscript's gap/jump
+criterion agrees with proper rounded-sum idempotence and compares ambient
+jumps with those of a finite capped-closed subset. In
+`MetricConvexityTransfer`, `exists_finite_fourValues_jumpConvex_extension`
+combines finite four-values generation with invariance of the convexity
+condition at jump distance thresholds, including the empty-distance case.
+See [PR #245](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/245).
+These are directly importable components, not complete metric classes
+in `ApplicationsAPI`. The additional identification with the paper's
+block equivalences (especially for infinite S) and the class-level
+Ramsey theorem remain open.
 
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Abstract idempotent sandwich; finite scalar four-values reduction | Finite metric Ramsey proof, closure/local completion and convex-order transfer |
+| Convexly ordered S-metrics with jumps | Abstract idempotent sandwich; finite four-values and jump-threshold convexity reduction | Finite metric Ramsey proof, closure/local completion and block-equivalence bridge |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
 | Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
