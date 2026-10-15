@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Applications.MetricFiniteBlockMaximal
+import AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist
 
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.gapJump_iff_Jump
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.sameJumpSignature_trans
@@ -12,3 +12,9 @@ import AllThoseRamseyClasses.Applications.MetricFiniteBlockMaximal
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlock_eq_jumpPiece
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpPiece_eq_of_mem
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlock_proper_max_isJump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlock_containing_jump_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlockAtLevel_bounds
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_paperBlockAtLevel
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlock_unique_at_jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_paperBlock_samedist
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finite_paperBlock_samedist_disjoint
