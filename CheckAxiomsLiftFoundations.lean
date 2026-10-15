@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GaifmanCuts
+import AllThoseRamseyClasses.Lifts.ComponentPieces
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
 #check AllThoseRamseyClasses.Lifts.language
@@ -40,6 +40,15 @@ import AllThoseRamseyClasses.Lifts.GaifmanCuts
 #check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
 #check AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
 
+#check AllThoseRamseyClasses.Lifts.componentPieceVertices
+#check AllThoseRamseyClasses.Lifts.componentPiece
+#check AllThoseRamseyClasses.Lifts.componentPiece_inclusion
+#check AllThoseRamseyClasses.Lifts.componentPiece_root_val
+#check AllThoseRamseyClasses.Lifts.componentPiece_root_range
+#check AllThoseRamseyClasses.Lifts.component_subset_pieceVertices
+#check AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
+
+#print axioms AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
 #print axioms AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.incompatible_iff_of_equiv
