@@ -2,6 +2,8 @@ import AllThoseRamseyClasses.PublicAPI
 import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
+import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
+import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
 
 /-!
@@ -21,6 +23,12 @@ the paper is proved using the B-copywise forward-edge deletion lemma.
 The freely ordered digraph and simple-graph results from the paper are
 proved separately using ordered relational Ramsey and the genuine free
 amalgamation criterion; their order is the distinguished external order.
+
+The freely ordered pointed-equivalence Ramsey class from the paper is
+proved via its full idempotent unary-function encoding.
+
+The finite-target part of the paper's m-unary-function Ramsey theorem
+is proved separately; the infinite-target clause remains open.
 
 The freestanding partial-function theorem 2.19 is exported by
 `PublicAPI`. Other `Applications/*` modules document useful Lean-proved
