@@ -1,5 +1,5 @@
 import Mathlib.Algebra.Group.Subsemigroup.Basic
-import Mathlib.Data.Finite.Prod
+import Mathlib.Basic.Finite.Prod
 import Mathlib.Tactic
 
 /-!
@@ -95,8 +95,8 @@ theorem finite_closure [CommSemigroup M] (D : Set M) (hD : D.Finite)
   revert hpower
   refine Set.Finite.induction_on D hD ?_ ?_
   · intro _
-    simpa using (Set.finite_empty : (∅ : Set M).Finite)
-  · intro a E _hnot hE ih hpower
+    simp
+  · intro a E _hnot _hE ih hpower
     have hsingle := finite_closure_singleton a (hpower a (Set.mem_insert a E))
     have hrest := ih (fun b hb => hpower b (Set.mem_insert_of_mem a hb))
     have hjoin := finite_sup (Subsemigroup.closure ({a} : Set M))
@@ -107,7 +107,11 @@ theorem finite_closure [CommSemigroup M] (D : Set M) (hD : D.Finite)
     apply Subsemigroup.closure_le.2
     intro x hx
     rcases Set.mem_insert_iff.mp hx with rfl | hx
-    · exact le_sup_left (Subsemigroup.subset_closure (Set.mem_singleton a))
-    · exact le_sup_right (Subsemigroup.subset_closure hx)
+    · exact (show Subsemigroup.closure ({a} : Set M) ≤
+          Subsemigroup.closure ({a} : Set M) ⊔ Subsemigroup.closure E from le_sup_left)
+        (Subsemigroup.subset_closure (Set.mem_singleton a))
+    · exact (show Subsemigroup.closure E ≤
+          Subsemigroup.closure ({a} : Set M) ⊔ Subsemigroup.closure E from le_sup_right)
+        (Subsemigroup.subset_closure hx)
 
 end AllThoseRamseyClasses.FiniteSemigroup
