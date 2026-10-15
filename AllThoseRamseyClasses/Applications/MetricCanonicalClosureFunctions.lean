@@ -84,7 +84,7 @@ theorem canonicalClosureTag_distance {S : Set ℝ}
     canonicalDistance hpos hS hd
         (.inr (canonicalClosureTag hpos hS hd j x))
         (.inl x) = j.val := by
-  rw [canonicalDistance_new_old]
+  rw [canonicalDistance_new_old, canonicalClosureTag_level]
   have hjump : Jump S j.val := j.property
   have hjid : sumWithZero S j.val j.val = j.val := by
     rw [sumWithZero_eq_distanceSum hpos hjump.1 hjump.1]
@@ -99,8 +99,7 @@ theorem canonicalClosureTag_distance {S : Set ℝ}
     (Or.inr hjump.1)
     (metric_value_mem hd
       (canonicalTagRoot (canonicalClosureTag hpos hS hd j x)) x)
-  rw [canonicalClosureTag_level, hjid] at hupper
-  rw [canonicalClosureTag_level] at hlower
+  rw [hjid] at hupper
   exact le_antisymm hupper hlower
 
 /-- Every two original vertices in one j-class have the same
