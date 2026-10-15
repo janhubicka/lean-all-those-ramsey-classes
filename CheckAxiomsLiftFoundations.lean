@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
 import AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
@@ -81,9 +82,11 @@ import AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts
 #check AllThoseRamseyClasses.Lifts.functionalNeighborhood_component_subset_cut
 #check AllThoseRamseyClasses.Lifts.functionalComponentUnion
 #check AllThoseRamseyClasses.Lifts.functionalComponentUnion_isClosed
+#check AllThoseRamseyClasses.Lifts.functionalClosure_neighborhood_subset_cut
 #check AllThoseRamseyClasses.Lifts.functionalComponentInduce
 #check AllThoseRamseyClasses.Lifts.functionalComponentEmbedding
 
+#print axioms AllThoseRamseyClasses.Lifts.functionalClosure_neighborhood_subset_cut
 #print axioms AllThoseRamseyClasses.Lifts.functionalComponentUnion_isClosed
 #print axioms AllThoseRamseyClasses.Lifts.functionalComponentEmbedding
 #print axioms AllThoseRamseyClasses.Lifts.functionalNeighborhood_component_subset_cut
