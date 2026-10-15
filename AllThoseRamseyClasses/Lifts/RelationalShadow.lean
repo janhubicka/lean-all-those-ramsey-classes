@@ -1,4 +1,4 @@
-import PartiteConstruction.Ramsey.Basic
+import PartiteConstruction.Relational.FreeAmalgamationClass
 import PartiteConstruction.Relational.Homomorphism
 
 /-!
