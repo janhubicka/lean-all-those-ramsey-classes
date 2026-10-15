@@ -1,0 +1,83 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
+
+-- Section 3 of the 2019 paper: initial relational lift layer.
+#check AllThoseRamseyClasses.Lifts.language
+#check AllThoseRamseyClasses.Lifts.shadow
+#check AllThoseRamseyClasses.Lifts.withExtra
+#check AllThoseRamseyClasses.Lifts.shadow_withExtra
+#check AllThoseRamseyClasses.Lifts.shadowEmbedding
+#check AllThoseRamseyClasses.Lifts.withExtraEmbedding
+#check AllThoseRamseyClasses.Lifts.LiftFibre
+#check AllThoseRamseyClasses.Lifts.LabelledPrecompactLift
+#check AllThoseRamseyClasses.Lifts.LiftPropertyFor
+#check AllThoseRamseyClasses.Lifts.HasLiftProperty
+#check AllThoseRamseyClasses.Lifts.RootedPattern
+#check AllThoseRamseyClasses.Lifts.RootRealization
+#check AllThoseRamseyClasses.Lifts.RootRealization.map_embedding
+#check AllThoseRamseyClasses.Lifts.CanonicalExtraRelation
+#check AllThoseRamseyClasses.Lifts.canonicalLift
+#check AllThoseRamseyClasses.Lifts.shadow_canonicalLift
+#check AllThoseRamseyClasses.Lifts.canonicalLift_relation_injective
+#check AllThoseRamseyClasses.Lifts.canonicalLift_relation_map
+
+#check AllThoseRamseyClasses.Lifts.incompatibilityProfile
+#check AllThoseRamseyClasses.Lifts.pieceSetoid
+#check AllThoseRamseyClasses.Lifts.incompatible_iff_of_equiv
+#check AllThoseRamseyClasses.Lifts.equiv_of_incompatible_iff
+#check AllThoseRamseyClasses.Lifts.RegularByProfiles
+
+#check AllThoseRamseyClasses.Lifts.GaifmanAdjacent
+#check AllThoseRamseyClasses.Lifts.GaifmanAdjacent.symm
+#check AllThoseRamseyClasses.Lifts.outsideAdjacency
+#check AllThoseRamseyClasses.Lifts.ReachOutside
+#check AllThoseRamseyClasses.Lifts.componentFrom
+#check AllThoseRamseyClasses.Lifts.IsComponentOutside
+#check AllThoseRamseyClasses.Lifts.componentFrom_root
+#check AllThoseRamseyClasses.Lifts.componentFrom_disjoint_cut
+#check AllThoseRamseyClasses.Lifts.componentFrom_step
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_component_subset_cut
+#check AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
+#check AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
+
+#check AllThoseRamseyClasses.Lifts.componentPieceVertices
+#check AllThoseRamseyClasses.Lifts.componentPiece
+#check AllThoseRamseyClasses.Lifts.componentPiece_inclusion
+#check AllThoseRamseyClasses.Lifts.componentPiece_root_val
+#check AllThoseRamseyClasses.Lifts.componentPiece_root_range
+#check AllThoseRamseyClasses.Lifts.component_subset_pieceVertices
+#check AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
+
+#check AllThoseRamseyClasses.Lifts.rootReduct
+#check AllThoseRamseyClasses.Lifts.rootEmbedding
+#check AllThoseRamseyClasses.Lifts.RootCompatible
+#check AllThoseRamseyClasses.Lifts.compatibleRightRootEmbedding
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgamLeft
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgamRight
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
+#check AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_isFreeAmalgam
+#check AllThoseRamseyClasses.Lifts.RelIsomorphic
+#check AllThoseRamseyClasses.Lifts.ForbiddenUpToIso
+#check AllThoseRamseyClasses.Lifts.IncompatibleByFreeGluing
+
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSetoid
+#check AllThoseRamseyClasses.Lifts.forbiddenPiece_equiv_iff
+#check AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
+#check AllThoseRamseyClasses.Lifts.ForbiddenRegularByPieces
+#check AllThoseRamseyClasses.Lifts.ForbiddenPieceSymbol
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceLanguage
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenPiece_equiv_iff
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
+#print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
+#print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_isFreeAmalgam
+#print axioms AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
+#print axioms AllThoseRamseyClasses.Lifts.gaifmanNeighborhood_isComponent_subset_cut
+#print axioms AllThoseRamseyClasses.Lifts.closure_neighborhood_component_subset_cut
+#print axioms AllThoseRamseyClasses.Lifts.incompatible_iff_of_equiv
+#print axioms AllThoseRamseyClasses.Lifts.shadow_withExtra
+#print axioms AllThoseRamseyClasses.Lifts.RootRealization.map_embedding
+#print axioms AllThoseRamseyClasses.Lifts.canonicalLift_relation_map
