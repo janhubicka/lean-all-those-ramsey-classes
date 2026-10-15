@@ -34,8 +34,8 @@ theorem canonicalDistance_mixed_quotientLabel {S : Set ℝ}
     (tag : CanonicalJumpTag hpos hS hd) (x : V) :
     canonicalDistance hpos hS hd (.inr tag) (.inl x) =
       quotientSandwichLabel hpos hS hassoc hd
-        (canonicalTagLevel tag) 0
-        (Or.inr (canonicalTagLevel_jump tag)) (Or.inl rfl)
+        tag.1.val 0
+        (Or.inr tag.1.property) (Or.inl rfl)
         tag.2
         (Quotient.mk (jumpSetoid hpos hS hd 0 (Or.inl rfl)) x) := by
   rw [canonicalDistance_new_old]
@@ -52,9 +52,9 @@ theorem canonicalDistance_cross_quotientLabel {S : Set ℝ}
     (a b : CanonicalJumpTag hpos hS hd) (hab : a ≠ b) :
     canonicalDistance hpos hS hd (.inr a) (.inr b) =
       quotientSandwichLabel hpos hS hassoc hd
-        (canonicalTagLevel a) (canonicalTagLevel b)
-        (Or.inr (canonicalTagLevel_jump a))
-        (Or.inr (canonicalTagLevel_jump b))
+        a.1.val b.1.val
+        (Or.inr a.1.property)
+        (Or.inr b.1.property)
         a.2 b.2 := by
   rw [canonicalDistance_new_new hpos hS hd a b hab]
   rw [← canonicalTagRoot_class a, ← canonicalTagRoot_class b]
@@ -68,8 +68,8 @@ theorem canonicalDistance_mixed_anyRoot {S : Set ℝ}
     {d : V → V → ℝ} (hd : MetricOn S d)
     (tag : CanonicalJumpTag hpos hS hd) (u x : V)
     (hu : Quotient.mk
-        (jumpSetoid hpos hS hd (canonicalTagLevel tag)
-          (Or.inr (canonicalTagLevel_jump tag))) u = tag.2) :
+        (jumpSetoid hpos hS hd tag.1.val
+          (Or.inr tag.1.property)) u = tag.2) :
     canonicalDistance hpos hS hd (.inr tag) (.inl x) =
       sumWithZero S (canonicalTagLevel tag) (d u x) := by
   rw [canonicalDistance_mixed_quotientLabel hpos hS hassoc hd tag x]
@@ -87,11 +87,11 @@ theorem canonicalDistance_cross_anyRoots {S : Set ℝ}
     (a b : CanonicalJumpTag hpos hS hd) (hab : a ≠ b)
     (u v : V)
     (hu : Quotient.mk
-        (jumpSetoid hpos hS hd (canonicalTagLevel a)
-          (Or.inr (canonicalTagLevel_jump a))) u = a.2)
+        (jumpSetoid hpos hS hd a.1.val
+          (Or.inr a.1.property)) u = a.2)
     (hv : Quotient.mk
-        (jumpSetoid hpos hS hd (canonicalTagLevel b)
-          (Or.inr (canonicalTagLevel_jump b))) v = b.2) :
+        (jumpSetoid hpos hS hd b.1.val
+          (Or.inr b.1.property)) v = b.2) :
     canonicalDistance hpos hS hd (.inr a) (.inr b) =
       sumWithZero S
         (sumWithZero S (canonicalTagLevel a) (d u v))
