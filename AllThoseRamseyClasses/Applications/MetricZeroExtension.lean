@@ -155,4 +155,35 @@ theorem threshold_idempotent {S : Set ℝ}
   · have hj0 : j ≠ 0 := ne_of_gt (hpos j hJ.1)
     simp [sumWithZero, hj0, hJ.2.2]
 
+
+/-- When the right argument is a positive allowed distance, the
+zero-extended operation itself lies in S (rather than merely S ∪ {0}). -/
+theorem sumWithZero_mem_of_right_mem {S : Set ℝ}
+    (hpos : Positive S) (hS : WellDefined S)
+    {a b : ℝ} (ha : a = 0 ∨ a ∈ S) (hb : b ∈ S) :
+    sumWithZero S a b ∈ S := by
+  rcases ha with hzero | ha
+  · rw [hzero, sumWithZero_zero_left]
+    exact hb
+  · have ha0 : a ≠ 0 := ne_of_gt (hpos a ha)
+    have hb0 : b ≠ 0 := ne_of_gt (hpos b hb)
+    simpa [sumWithZero, ha0, hb0] using hS a ha b hb
+
+/-- Symmetric preservation of genuine positive distances. -/
+theorem sumWithZero_mem_of_left_mem {S : Set ℝ}
+    (hpos : Positive S) (hS : WellDefined S)
+    {a b : ℝ} (ha : a ∈ S) (hb : b = 0 ∨ b ∈ S) :
+    sumWithZero S a b ∈ S := by
+  rw [sumWithZero_comm S a b]
+  exact sumWithZero_mem_of_right_mem hpos hS hb ha
+
+/-- On positive operands the neutral-zero extension agrees with the
+original rounded-distance sum exactly. -/
+theorem sumWithZero_eq_distanceSum {S : Set ℝ} (hpos : Positive S)
+    {a b : ℝ} (ha : a ∈ S) (hb : b ∈ S) :
+    sumWithZero S a b = distanceSum S a b := by
+  have ha0 : a ≠ 0 := ne_of_gt (hpos a ha)
+  have hb0 : b ≠ 0 := ne_of_gt (hpos b hb)
+  simp [sumWithZero, ha0, hb0]
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
