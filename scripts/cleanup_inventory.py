@@ -40,6 +40,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperPointedEquivalences",
+    "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
 }
 missing = sorted(ACTIVE - sources.keys())
