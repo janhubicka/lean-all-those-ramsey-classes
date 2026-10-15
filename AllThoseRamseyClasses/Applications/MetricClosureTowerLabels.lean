@@ -39,12 +39,14 @@ def towerClosure {V : Type u} : (n i : ℕ) → i < n → ClosureTower V n
 @[simp] theorem towerClosure_succ_last {V : Type u} (n : ℕ) :
     towerClosure (V := V) (n + 1) n (by omega) = none := by
   simp [towerClosure]
+  rfl
 
 @[simp] theorem towerClosure_succ_old {V : Type u} (n i : ℕ)
     (hi : i < n) :
     towerClosure (V := V) (n + 1) i (Nat.lt_succ_of_lt hi) =
       some (towerClosure n i hi) := by
   simp [towerClosure, Nat.ne_of_lt hi]
+  rfl
 
 /-- Each indexed closure representative has its prescribed rounded
 distance to every original vertex, independently of all subsequent
@@ -117,7 +119,7 @@ theorem closureTowerDistance_twoClosures {S : Set ℝ} {V : Type u}
                 (towerOriginal n (roots n))
                 (towerClosure n k hkprev)) := by
                   simp [towerClosure, Nat.ne_of_lt hkprev,
-                    closureTowerDistance, onePointDistance, towerOriginal]
+                    closureTowerDistance, onePointDistance]
           _ = sumWithZero S (levels n)
                 (closureTowerDistance S d roots levels n
                   (towerClosure n k hkprev) (towerOriginal n (roots n))) := by
@@ -146,7 +148,7 @@ theorem closureTowerDistance_twoClosures {S : Set ℝ} {V : Type u}
                   (towerClosure n i hiprev)
                   (towerOriginal n (roots n))) (levels n) := by
                     simp [towerClosure, hilast, closureTowerDistance,
-                      onePointDistance, towerOriginal]
+                      onePointDistance]
             _ = sumWithZero S
                   (sumWithZero S (levels i) (d (roots i) (roots n)))
                   (levels n) := by
