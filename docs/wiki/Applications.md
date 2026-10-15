@@ -137,11 +137,21 @@ cross-distance descends to an **exact quotient-invariant label** for
 pairs of classes. This is not yet a metric on imaginary vertices:
 the diagonal and inter-level distance construction remain separate.
 See [PR #247](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/247).
-These are directly importable components, not complete metric classes
-in `ApplicationsAPI`. The paper's finite-block maximum property is
-still an explicit assumption in the bounded-block specialization;
-the full class-level Ramsey theorem and the general infinite-S block
-interpretation remain open.
+**PR #248 now closes the finite block gap**: `MetricFiniteBlocks` and
+`MetricFiniteBlockMaximal` prove that maximal no-jump four-values blocks
+of finite S are precisely the jump-cut signature pieces, and every
+non-top block ends at an ambient jump. `MetricPaperBlockSamedist`
+derives the block maxima and the existence/uniqueness of a block at each
+proper jump; `finite_paperBlock_samedist_published` proves the corrected
+finite-S lemma under the original gap-jump and disjoint-class assumptions.
+`wellDefined_of_finite` removes the unnecessary extra well-definedness
+premise. See [Metric applications](Metric-applications.md) and
+[PR #248](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/248).
+The neutral-zero convention is essential and must be stated explicitly
+in a corrected manuscript; the printed four-point proof remains invalid
+at zero. These modules are directly importable components, not complete
+metric Ramsey classes in `ApplicationsAPI`. The full class-level Ramsey
+theorem and the general infinite-S block interpretation remain open.
 
 ## Remaining manuscript applications
 
