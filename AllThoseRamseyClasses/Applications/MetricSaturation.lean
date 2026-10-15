@@ -1,4 +1,4 @@
-import Mathlib.Data.Real.Archimedean
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 import Mathlib.Tactic
 
 /-!
@@ -16,7 +16,7 @@ rounded sum, so the next power is a maximum of the entire sequence.
 The sequence stabilizes at that maximum.
 
 No topological closedness of S, finite block count, associativity,
-or commutativity is needed for this one-generator result. The only
+nor commutativity is needed for this one-generator result. The only
 well-definedness assumption is that the displayed supremum belongs
 to S when its two operands do. Finite generation from several
 generators additionally needs the separate associative/commutative
@@ -91,9 +91,12 @@ theorem exists_power_max {S : Set ℝ} {m a : ℝ}
     exact le_csSup hb ⟨n, rfl⟩
   have hnear : ∃ n : ℕ, l - a < power S m a n := by
     by_contra h
-    push_neg at h
+    push Not at h
+    have hne : (Set.range (power S m a)).Nonempty :=
+      ⟨power S m a 0, ⟨0, rfl⟩⟩
     have hupper : l ≤ l - a := by
-      apply csSup_le ⟨power S m a 0, ⟨0, rfl⟩⟩
+      change sSup (Set.range (power S m a)) ≤ l - a
+      apply csSup_le hne
       rintro _ ⟨n, rfl⟩
       exact h n
     linarith
