@@ -168,7 +168,8 @@ theorem freelyOrderedTotalUnaryFunctions_areRamsey
         (@Structure.withLinearOrder (Lang m) W C o.toLT) κ := by
   have hPositive : (Lang m).PositiveFuncArity := by
     intro F
-    decide
+    change (0 : ℕ) < 1
+    exact Nat.zero_lt_one
   exact FreeAmalgamationClass.orderedRamsey
     (totalUnaryClass_freeAmalgamation m) A B hA hB hPositive κ
 
