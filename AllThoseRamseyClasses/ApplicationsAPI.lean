@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.PublicAPI
+import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
 
@@ -12,6 +13,9 @@ Currently the independently checked nontrivial class instance is the
 Ramsey class of finite posets with a chosen linear extension.
 The extra empty binary relation in its named Lean ambient language is
 inert; `.lt` is strict, whereas the paper uses a reflexive linear order.
+
+The additional acyclic-digraph-with-linear-extension corollary from
+the paper is proved using the B-copywise forward-edge deletion lemma.
 
 The freely ordered digraph and simple-graph results from the paper are
 proved separately using ordered relational Ramsey and the genuine free
