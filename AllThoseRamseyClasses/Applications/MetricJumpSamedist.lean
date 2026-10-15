@@ -148,8 +148,8 @@ theorem metric_sandwich_constant_on_parts {S : Set ℝ} {V : Type u}
   have hresult := MetricJump.sandwich_constant_on_parts
     op
     (zeroOp_assoc hpos hS hassoc)
-    (fun _ _ _ h => zeroOp_mono_left hpos hS h)
-    (fun _ _ _ h => zeroOp_mono_right hpos hS h)
+    (zeroOp_mono_left hpos hS)
+    (zeroOp_mono_right hpos hS)
     d0
     (metricDistance_triangle hpos hS hd)
     p0 q0 (threshold_idempotent hpos hS p hp)
