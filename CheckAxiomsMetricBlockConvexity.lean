@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricBlockConvexity
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlock_exists_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlockConvex_of_jumpConvex
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jumpConvex_of_paperBlockConvex
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.paperBlockConvex_iff_jumpConvex
