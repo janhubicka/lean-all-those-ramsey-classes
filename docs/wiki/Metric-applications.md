@@ -420,6 +420,55 @@ extension of embeddings and the full Ramsey-class proof still
 need dedicated formalization. No theorem in this module certifies
 `lem:Smetricemb` or the final Ramsey arrow.
 
+## Two closure vertices and the inter-level metric formula
+
+[PR #251](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/251)
+iterates the checked one-point metric extension *twice*.
+Original vertices are represented by `some (some x)`,
+the first closure vertex by `some none`, and the second
+by `none` in `Option (Option V)`.
+
+Choose positive jumps j,k and original roots r,s. The resulting
+distance is an actual S-metric (`twoPointDistance_metric`).
+It leaves all original distances unchanged, and retains the
+exact formulas
+
+    d'(first,x) = j ⊕ d(r,x)
+    d'(second,x) = k ⊕ d(s,x)
+    d'(first,second) = j ⊕ d(r,s) ⊕ k.
+
+All operations use the checked neutral-zero extension.
+The first two formulas still give exact jump radius to every
+original member of the corresponding jump class.
+The third formula is proved **definitionally equal** to the
+previously checked `quotientSandwichLabel` on the
+j-class of r and the k-class of s. Associativity, metric
+symmetry and commutativity show that swapping the attachment
+order yields the same cross-distance.
+
+    import AllThoseRamseyClasses.Applications.MetricTwoPointClosure
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check twoPointDistance_metric
+    #check twoPointDistance_old
+    #check twoPointDistance_closure_cross
+    #check twoPointDistance_eq_quotientLabel
+    #check twoPointDistance_cross_swap
+
+Full Lean build, source integrity and permitted-axiom audit:
+[CI 38763120354](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38763120354)
+at code commit `02223d9a68690a7d44c7f6d6f39092d242aa56f5`.
+The component is tested independently by
+`CheckAxiomsMetricTwoPointClosure.lean`.
+
+**Scope:** the two new vertices are distinct because they are
+distinct tags in the nested Option carrier. If they represent
+the same jump *and* the same block class, the paper's canonical
+L(A) would identify them rather than attach two copies.
+This theorem does not perform that deduplication, and does
+not provide all levels, the extended order or embeddings.
+Those tasks belong to the simultaneous tagged lift and
+the still-open finite metric Ramsey proof.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
