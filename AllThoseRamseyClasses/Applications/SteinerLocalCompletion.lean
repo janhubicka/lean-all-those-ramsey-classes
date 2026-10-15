@@ -122,7 +122,7 @@ theorem orderedSteiner_exactLocal_zero
     convert h using 1
     funext i
     fin_cases i <;> rfl
-  have hEmbOnKTest (S : Set V)
+  let hEmbOnKTest (S : Set V)
       (hKS : orderedSteinerClass (C.induce S)) :
       Embedding (C.induce S) Target := by
     refine {
