@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.RootedFreeGluing
+import AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
 
 -- Section 3 of the 2019 paper: initial relational lift layer.
 #check AllThoseRamseyClasses.Lifts.language
@@ -61,6 +61,17 @@ import AllThoseRamseyClasses.Lifts.RootedFreeGluing
 #check AllThoseRamseyClasses.Lifts.ForbiddenUpToIso
 #check AllThoseRamseyClasses.Lifts.IncompatibleByFreeGluing
 
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSetoid
+#check AllThoseRamseyClasses.Lifts.forbiddenPiece_equiv_iff
+#check AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses
+#check AllThoseRamseyClasses.Lifts.ForbiddenRegularByPieces
+#check AllThoseRamseyClasses.Lifts.ForbiddenPieceSymbol
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
+#check AllThoseRamseyClasses.Lifts.forbiddenPieceLanguage
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenPiece_equiv_iff
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenPieceSymbolArity_pos
 #print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_roots_agree
 #print axioms AllThoseRamseyClasses.Lifts.rootedFreeAmalgam_isFreeAmalgam
 #print axioms AllThoseRamseyClasses.Lifts.componentPiece_boundary_in_roots
