@@ -56,7 +56,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions",
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
     "AllThoseRamseyClasses.Applications.UnaryRootedClosureAudit",
-    "AllThoseRamseyClasses.Lifts.RootedFreeGluing",
+    "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
 }
 missing = sorted(ACTIVE - sources.keys())
 if missing:
