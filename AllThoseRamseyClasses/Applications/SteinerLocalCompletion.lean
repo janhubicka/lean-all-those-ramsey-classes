@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation
+import AllThoseRamseyClasses.Published.Coordinated2019ProfileSparseWitness
 import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
 import AllThoseRamseyClasses.Applications.SteinerTripleIsomorphism
 import PartiteConstruction.Ramsey.ClosureIrreducibleHulls
@@ -139,13 +140,28 @@ theorem orderedSteiner_exactLocal_zero
           rcases hKS.order_total (t 0) (t 1) hne with h | h
           · exact h
           · exact (lt_asymm hnew
-              (hOldOrder (t 1).1 (t 0).1 h)).elim
+              (hOldOrder (t 1).1 (t 0).1 (by simpa [edge, RelStructure.induce] using h))).elim
         · intro hold
-          exact hOldOrder (t 0).1 (t 1).1 hold
+          exact hOldOrder (t 0).1 (t 1).1 (by simpa [edge, RelStructure.induce] using hold)
     | covered =>
         exact Iff.rfl
     | block =>
         exact Iff.rfl
+  /-- The non-order predicates stay literally unchanged on induced sets. -/
+  have hCoveredFromInduce (S : Set V) (x y : S)
+      (h : edge (C.induce S) .covered x y) :
+      edge Target .covered x.1 y.1 := by
+    simpa [edge, RelStructure.induce, Target] using h
+  have hTripleFromInduce (S : Set V) (x y z : S)
+      (h : triple (C.induce S) x y z) :
+      triple Target x.1 y.1 z.1 := by
+    simpa [triple, RelStructure.induce, Target] using h
+  have hOrderFromInduce (S : Set V) (x y : S)
+      (h : edge (C.induce S) .order x y) :
+      edge Target .order x.1 y.1 := by
+    have hOld : edge C .order x.1 y.1 := by
+      simpa [edge, RelStructure.induce] using h
+    exact hOldOrder x.1 y.1 hOld
   have hTarget : orderedSteinerClass Target := by
     refine {
       finite := inferInstance
@@ -171,34 +187,39 @@ theorem orderedSteiner_exactLocal_zero
         steiner_tuple_hull_in_class C hClosed hCovered .covered ![x,y] hxy
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
-      have hInside : edge (C.induce S) .covered xS yS := hxy
-      exact hOldOrder x y (hKS.covered_implies_order xS yS hInside)
+      have hInside : edge (C.induce S) .covered xS yS := by
+        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
+      exact hOrderFromInduce S xS yS (hKS.covered_implies_order xS yS hInside)
     · intro x y hxy
       obtain ⟨S, hS, hKS⟩ :=
         steiner_tuple_hull_in_class C hClosed hCovered .covered ![x,y] hxy
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
-      have hInside : edge (C.induce S) .covered xS yS := hxy
+      have hInside : edge (C.induce S) .covered xS yS := by
+        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
       obtain ⟨e,he0,he1⟩ := hKS.covered_root xS yS hInside
       refine ⟨(hEmbOnKTest S hKS).comp e, ?_, ?_⟩
-      · exact congrArg (hEmbOnKTest S hKS) he0
-      · exact congrArg (hEmbOnKTest S hKS) he1
+      · change (e 0).1 = x
+        exact congrArg Subtype.val he0
+      · change (e 1).1 = y
+        exact congrArg Subtype.val he1
     · intro x y z hxyz
       obtain ⟨S, hS, hKS⟩ :=
         steiner_tuple_hull_in_class C hClosed hCovered .block ![x,y,z] hxyz
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
-      have hInside : triple (C.induce S) xS yS zS := hxyz
-      exact (edge_embedding_iff (hEmbOnKTest S hKS) .covered xS yS).mpr
-        (hKS.block_valid xS yS zS hInside)
+      have hInside : triple (C.induce S) xS yS zS := by
+        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
+      exact hCoveredFromInduce S xS yS (hKS.block_valid xS yS zS hInside)
     · intro x y z hxyz
       obtain ⟨S, hS, hKS⟩ :=
         steiner_tuple_hull_in_class C hClosed hCovered .block ![x,y,z] hxyz
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
-      have hInside : triple (C.induce S) xS yS zS := hxyz
+      have hInside : triple (C.induce S) xS yS zS := by
+        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
       obtain ⟨hxy,hxz,hyz⟩ := hKS.block_distinct xS yS zS hInside
       exact ⟨fun h => hxy (Subtype.ext h),
         fun h => hxz (Subtype.ext h),
@@ -208,10 +229,10 @@ theorem orderedSteiner_exactLocal_zero
         steiner_tuple_hull_in_class C hClosed hCovered .covered ![x,y] hxy
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
-      have hInside : edge (C.induce S) .covered xS yS := hxy
+      have hInside : edge (C.induce S) .covered xS yS := by
+        simpa [edge, RelStructure.induce, Target, xS , yS] using hxy
       obtain ⟨zS,hz⟩ := hKS.covered_has_block xS yS hInside
-      exact ⟨zS.1,
-        (triple_embedding_iff (hEmbOnKTest S hKS) xS yS zS).mpr hz⟩
+      exact ⟨zS.1, hTripleFromInduce S xS yS zS hz⟩
     · intro x y z w hz hw
       exact steiner_block_unique_of_UClosed C hClosed hz hw
     · intro x y z hxyz
@@ -220,20 +241,20 @@ theorem orderedSteiner_exactLocal_zero
       let xS : S := ⟨x,hS 0⟩
       let yS : S := ⟨y,hS 1⟩
       let zS : S := ⟨z,hS 2⟩
-      have hInside : triple (C.induce S) xS yS zS := hxyz
+      have hInside : triple (C.induce S) xS yS zS := by
+        simpa [triple, RelStructure.induce, Target, xS , yS , zS] using hxyz
       obtain ⟨hXZ,hYZ⟩ := hKS.other_pairs xS yS zS hInside
-      have e := hEmbOnKTest S hKS
       constructor
       · rcases hXZ with ⟨htr,hord⟩ | ⟨htr,hord⟩
-        · exact Or.inl ⟨(triple_embedding_iff e xS zS yS).mpr htr,
-            (edge_embedding_iff e .order xS zS).mpr hord⟩
-        · exact Or.inr ⟨(triple_embedding_iff e zS xS yS).mpr htr,
-            (edge_embedding_iff e .order zS xS).mpr hord⟩
+        · exact Or.inl ⟨hTripleFromInduce S xS zS yS htr,
+            hOrderFromInduce S xS zS hord⟩
+        · exact Or.inr ⟨hTripleFromInduce S zS xS yS htr,
+            hOrderFromInduce S zS xS hord⟩
       · rcases hYZ with ⟨htr,hord⟩ | ⟨htr,hord⟩
-        · exact Or.inl ⟨(triple_embedding_iff e yS zS xS).mpr htr,
-            (edge_embedding_iff e .order yS zS).mpr hord⟩
-        · exact Or.inr ⟨(triple_embedding_iff e zS yS xS).mpr htr,
-            (edge_embedding_iff e .order zS yS).mpr hord⟩
+        · exact Or.inl ⟨hTripleFromInduce S yS zS xS htr,
+            hOrderFromInduce S yS zS hord⟩
+        · exact Or.inr ⟨hTripleFromInduce S zS yS xS htr,
+            hOrderFromInduce S zS yS hord⟩
   refine ⟨V, inferInstance, Target, hTarget, (fun x : V => x), ?_⟩
   intro b
   let bTarget : Embedding B Target := {
