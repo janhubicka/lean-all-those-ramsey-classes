@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalClassLast
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.exists_canonicalClassLast
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalClassLast
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalClassLast_mem
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalClassLast_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalClassLast_class
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalTag_eq_of_level_last
