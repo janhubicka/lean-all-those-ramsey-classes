@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalLiftEmbedding
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalJumpTag_injective
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_old
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_tag
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_isometry
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_injective
