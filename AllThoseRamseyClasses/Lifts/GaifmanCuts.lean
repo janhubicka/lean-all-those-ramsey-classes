@@ -138,7 +138,7 @@ theorem closure_neighborhood_component_subset_cut
     cl (gaifmanNeighborhood A C) ⊆ R := by
   calc
     cl (gaifmanNeighborhood A C) ⊆ cl R :=
-      hmono (gaifmanNeighborhood_isComponent_subset_cut A R C)
+      hmono (gaifmanNeighborhood_isComponent_subset_cut A R C hC)
     _ = R := hclosed
 
 end AllThoseRamseyClasses.Lifts
