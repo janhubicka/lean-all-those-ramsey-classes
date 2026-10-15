@@ -152,13 +152,56 @@ conditions will enter when relating thresholds to block equivalences.
 The new endpoints have a separate permitted-axiom audit in
 CheckAxiomsMetricConvexityTransfer.lean.
 
-## Idempotent jump sandwich
+## Corrected metric jump sandwich and the zero convention
 
-`Applications.MetricJumpSandwich` independently proves
-`MetricJump.sandwich_constant_on_parts`. The algebraic proof permits
-idempotent zero thresholds and does not use commutativity. Its specialization
-to S-distance jumps still requires the neutral-zero convention and the
-precise block-equivalence/triangle-inequality bridge.
+[PR #246](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/246)
+specializes the previously checked abstract
+`MetricJump.sandwich_constant_on_parts` to **actual S-metrics**,
+including both zero-radius cases. It introduces
+`Applications.MetricZeroExtension` and
+`Applications.MetricJumpSamedist`.
+
+`WithZero S` is the actual ordered subtype S∪{0}; `sumWithZero`
+returns the original real-supremum rounded sum on positive operands,
+and has neutral zero on the diagonal. `zeroOp` is a closed operation on
+that subtype. Its associativity and both monotonicity laws are proved
+from the corresponding properties of the rounded S-operation, rather
+than assumed. Each positive jump j is an idempotent because
+`distanceSum S j j=j`; zero is an idempotent by the neutral convention.
+
+`MetricOn S d` has exactly the metric hypotheses: zero diagonal,
+S-valued distances off the diagonal, symmetry and the ordinary triangle
+inequality. `metric_triangle_rounded` derives the stronger triangle
+inequality for `sumWithZero` (including zero). The reusable
+`metric_sandwich_constant_on_parts` now gives the required invariance
+of the sandwiched cross-distance.
+
+    import AllThoseRamseyClasses.Applications.MetricJumpSamedist
+    open AllThoseRamseyClasses.Applications.MetricSaturation
+    #check metric_triangle_rounded
+    #check metric_samedist_threshold_classes
+    #check blockClass_eq_thresholdClass
+    #check metric_samedist_bounded_blocks
+    #check metric_samedist_bounded_blocks_distinct
+
+The last theorem is the paper's corrected block-class argument under
+the explicit facts `j∈B` and `∀b∈B, b≤j`, together with either
+`j=0` or `Jump S j`. The class represented by a root is then exactly
+the set of vertices at distance at most j from the root. The sandwich
+expression is constant on the two classes; if the roots are distinct
+(as for disjoint classes), the constant lies in S. This algebraic
+statement does not require S to be finite and does not require the
+two classes to be disjoint just for constancy.
+
+**Exact remaining interface.** The manuscript asserts that for finite
+four-values S every non-top block has a maximum j which is a jump, and
+uses the trivial zero equivalence for j=0. The formal proof explicitly
+takes the maximum-of-block facts as hypotheses; the formalization of the
+paper's maximal-no-jump block decomposition is not yet included.
+Accordingly the original lemma receives a scoped partial marker until
+that representation fact is checked. The printed four-point proof is
+not valid at j=0; the nonprinting TeX addendum records the neutral-zero
+replacement rather than rewriting the frozen numbered proof.
 
 ## Remaining metric Ramsey work
 
