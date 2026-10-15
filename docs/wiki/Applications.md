@@ -131,6 +131,12 @@ constant for distinct classes. The separate
 `MetricZeroExtension` proves the actual subtype operation laws.
 See [PR #246](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/246)
 and [Metric applications](Metric-applications.md) for exact hypotheses.
+`MetricJumpQuotient` goes further: the threshold relation at every
+proper jump or at zero is an equivalence relation, and the sandwiched
+cross-distance descends to an **exact quotient-invariant label** for
+pairs of classes. This is not yet a metric on imaginary vertices:
+the diagonal and inter-level distance construction remain separate.
+See [PR #247](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/247).
 These are directly importable components, not complete metric classes
 in `ApplicationsAPI`. The paper's finite-block maximum property is
 still an explicit assumption in the bounded-block specialization;
