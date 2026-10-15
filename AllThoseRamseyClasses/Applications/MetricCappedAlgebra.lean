@@ -108,7 +108,9 @@ theorem associativeOn_subset {S T : Set ℝ} {m : ℝ}
     (hclosed : ∀ x ∈ T, ∀ y ∈ T, cappedSum S m x y ∈ T) :
     AssociativeOn T := by
   have hT := wellDefined_subset hpos hTS hbound hclosed
-  have heq := distanceSum_subset_eq_capped hpos hTS hbound hclosed
+  have heq : ∀ {a b : ℝ}, a ∈ T → b ∈ T →
+      distanceSum T a b = cappedSum S m a b :=
+    fun ha hb => distanceSum_subset_eq_capped hpos hTS hbound hclosed ha hb
   intro a ha b hb c hc
   rw [heq (hT a ha b hb) hc, heq ha (hT b hb c hc), heq ha hb, heq hb hc]
   exact cappedSum_assoc hpos hS hassoc hm (hTS ha) (hTS hb) (hTS hc)
