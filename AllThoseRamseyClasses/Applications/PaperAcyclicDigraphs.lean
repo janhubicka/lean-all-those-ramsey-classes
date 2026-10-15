@@ -61,14 +61,22 @@ theorem forwardReduct_preserves_ordered_copies
       | inl s =>
           cases s with
           | edge =>
-              change (C.rel .edge (b ∘ t) ∧ b (t 0) < b (t 1)) ↔
+              let t₂ : Fin 2 → V := t
+              have ht : t = ![t₂ 0, t₂ 1] := by
+                funext i
+                fin_cases i <;> rfl
+              change (C.rel .edge (b ∘ t) ∧ b (t₂ 0) < b (t₂ 1)) ↔
                 B.rel .edge t
               constructor
               · intro h
                 exact (b.map_rel_iff (.inl .edge) t).mp h.1
               · intro h
                 refine ⟨(b.map_rel_iff (.inl .edge) t).mpr h, ?_⟩
-                exact b.strictMono (hB (t 0) (t 1) h)
+                have hEdge : edge B (t₂ 0) (t₂ 1) := by
+                  change B.rel .edge ![t₂ 0, t₂ 1]
+                  rw [← ht]
+                  exact h
+                exact b.strictMono (hB (t₂ 0) (t₂ 1) hEdge)
       | inr u =>
           cases u
           exact b.map_rel_iff (.inr ()) t
