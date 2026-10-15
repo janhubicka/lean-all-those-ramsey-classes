@@ -702,22 +702,79 @@ at source revision `99e496f2bf8239c4e632bceb7547d89fe61d08ed`.
 PR #261 merged as
 `c6f94dce957a747e20f9719a151ac6d2c2a5490a`.
 
-[PR #264](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/264)
-combines this result with the quotient transport from #260
-to prove the complete distance-preserving map of canonical
-metric lifts; its CI status must be checked independently
-before treating that theorem as verified. The *prescribed
-convex extension order* remains separate even after
-the metric embedding has been checked.
+[PR #274](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/274)
+combines this result with the quotient transport from #260.
+Its theorem `mapCanonicalLift_isometry` checks every old/old,
+mixed and distinct closure/closure metric distance under the
+induced map on canonical tags; `mapCanonicalLift_injective`
+derives injectivity from positive off-diagonal S-distances.
+Full CI [38812329333](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38812329333)
+passed, and PR #274 merged as
+`92104fea0a546974a15e51d005d05b77ed813b00`.
+The order-preserving part of the embedding is still separate.
+
+## Complete nested closure-function assignments
+
+[PR #273](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/273)
+formalizes the partial closure function F_j on **every** lifted
+vertex, including the previously omitted nested-level cases:
+
+    F_j(old x)             = (j,[x]_j)
+    F_j(new (k,E)), k<j    = (j,[root(E)]_j)
+    F_j(new (k,E)), k>=j   = undefined.
+
+It proves the first two formulas are compatible with the
+original class quotient and independent of which root
+represents E. The new F_j edge from a lower-jump closure
+vertex has **metric length exactly j**. This closes the
+specific function-table gap in the S={1,3,9} regression,
+not yet the entire ordered-functional class axiom.
+Complete CI [38813295544](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38813295544)
+passed; the PR merged as
+`b152fec45e13759efc374736abe5263994e21edd`.
+
+## Canonical finite insertion order
+
+[PR #270](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/270)
+defines a genuine linear order on the canonical tagged
+carrier by the faithful lexicographic keys
+
+    old x       -> (x, bottom)
+    tag (j,E)   -> (lastOriginal(E), j).
+
+The checkable `canonicalClassLast` comes from the proved
+finite class-max theorem in PR #266. The insertion key
+is injective because the pair (jump level, last original
+member) determines E uniquely. The order restricts to
+the original vertex order, puts each new closure vertex
+strictly after its last original class member, and
+places smaller-jump closure vertices first when
+nested tags share an anchor. This avoids the
+S={1,3,9} order inversion regression.
+Full integration CI [38824390934](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38824390934)
+passed; the PR merged as
+`566219d68cfdfa414ce60cf65afb8270212cfa48`.
+
+The **stronger** theorem that the closure representative
+is last among *all* vertices of its completed jump
+equivalence class, rather than merely last original
+anchor, is being checked in
+[PR #279](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/279).
+Convexity of all completed jump classes and preservation
+of this order under lifted embeddings remain separate
+proof obligations.
 
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
 completion. The finite canonical closure **metric** is now
 verified, including the correct duplicate-free carrier and pairwise
-distances. Remaining tasks are the prescribed lifted convex order,
-closure functions and extension of embeddings, strong amalgamation,
-exact weak local-completion bounds, the finite metric Ramsey theorem,
+distances. Remaining tasks are proof of convexity of the checked canonical
+insertion order, order-preserving lifted embeddings and the full
+completed-class closure-function axiom; metric distances, metric
+isometry, and the nested partial closure-function table are now
+certified. Strong amalgamation, exact weak local-completion
+bounds and the finite metric Ramsey theorem remain open,
 and the finite-to-arbitrary-distance Ramsey transfer. For finite S, the paper's
 block-convexity is now identified with jump-threshold convexity and
 transports across finite capped subsets. Infinite-S blocks may lack maxima;
