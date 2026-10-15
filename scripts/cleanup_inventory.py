@@ -74,7 +74,7 @@ for marker_path in sorted(ROOT_MARKERS.glob("*.txt")):
     if len(entries) != 1:
         raise SystemExit(f"Expected exactly one module in {marker_path}")
     name = entries[0]
-    if not re.fullmatch(r"AllThoseRamseyClasses(?:\\.[A-Za-z0-9_]+)+", name):
+    if not re.fullmatch(r"AllThoseRamseyClasses(?:\.[A-Za-z0-9_]+)+", name):
         raise SystemExit(f"Invalid root {name!r} in {marker_path}")
     if marker_path.stem != name.rsplit(".", 1)[-1]:
         raise SystemExit(f"Marker filename must match the module: {marker_path}")
