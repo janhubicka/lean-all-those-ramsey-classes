@@ -47,6 +47,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.MetricCanonicalLabelInvariance",
     "AllThoseRamseyClasses.Applications.MetricCanonicalQuotientMap",
     "AllThoseRamseyClasses.Applications.MetricCanonicalClassLast",
+    "AllThoseRamseyClasses.Applications.MetricCanonicalLiftThresholds",
     "AllThoseRamseyClasses.Applications.MetricPaperBlockSamedist",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
     "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
