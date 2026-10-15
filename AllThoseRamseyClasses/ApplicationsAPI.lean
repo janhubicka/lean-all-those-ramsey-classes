@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.PublicAPI
 import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
+import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
 import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
 import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem

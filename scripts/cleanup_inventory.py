@@ -40,6 +40,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerLocalCompletion",
     "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.PaperOrderedGraphs",
+    "AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles",
     "AllThoseRamseyClasses.Applications.PaperPointedEquivalences",
     "AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions",
     "AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs",
