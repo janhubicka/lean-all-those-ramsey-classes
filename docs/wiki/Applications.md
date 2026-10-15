@@ -123,17 +123,26 @@ jumps with those of a finite capped-closed subset. In
 combines finite four-values generation with invariance of the convexity
 condition at jump distance thresholds, including the empty-distance case.
 See [PR #245](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/245).
+`MetricJumpSamedist` additionally specializes the idempotent sandwich
+lemma to genuine S-metric distances and a neutral-zero operation on
+S∪{0}. It proves constancy on threshold classes, on the paper's block
+classes when their jump maxima are supplied, and positivity of the
+constant for distinct classes. The separate
+`MetricZeroExtension` proves the actual subtype operation laws.
+See [PR #246](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/246)
+and [Metric applications](Metric-applications.md) for exact hypotheses.
 These are directly importable components, not complete metric classes
-in `ApplicationsAPI`. The additional identification with the paper's
-block equivalences (especially for infinite S) and the class-level
-Ramsey theorem remain open.
+in `ApplicationsAPI`. The paper's finite-block maximum property is
+still an explicit assumption in the bounded-block specialization;
+the full class-level Ramsey theorem and the general infinite-S block
+interpretation remain open.
 
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Abstract idempotent sandwich; finite four-values and jump-threshold convexity reduction | Finite metric Ramsey proof, closure/local completion and block-equivalence bridge |
+| Convexly ordered S-metrics with jumps | Verified S-metric zero-radius sandwich under block-max assumptions; finite four-values and jump-threshold convexity reduction | Prove block-max representation and finite metric Ramsey/closure/local-completion endpoints |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
 | Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
