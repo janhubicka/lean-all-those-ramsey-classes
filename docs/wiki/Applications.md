@@ -270,16 +270,43 @@ See [PR #261](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/2
 [CI 38798821065](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38798821065)
 and [Metric applications](Metric-applications.md).
 
-The complete canonical metric-embedding theorem is
-under review separately in PR #264, and the paper's
-particular convex order remains unverified.
+The full canonical **metric embedding** is now verified
+by `MetricCanonicalLiftEmbedding.mapCanonicalLift_isometry`
+and `mapCanonicalLift_injective`, merged in
+[PR #274](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/274),
+full [CI 38812329333](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38812329333).
+The particular convex **order** and its preservation under
+embeddings remain unverified.
+
+## Nested metric closure functions and canonical insertion order
+
+`Applications.MetricCompletedClosureFunctions` checks the
+completed F_j table on all originals and lower-jump closure
+vertices, including the newly assigned edges of distance
+exactly j. [PR #273](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/273),
+[CI 38813295544](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38813295544).
+
+`Applications.MetricCanonicalInsertionOrder` constructs
+the faithful linear order via (last original class member,
+jump level), using a bottom value to keep originals
+before their attached closures. The order extends
+the originals and sorts nested levels increasingly.
+[PR #270](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/270),
+[CI 38824390934](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38824390934).
+
+The completed jump-class last-vertex property is under
+review in [PR #279](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/279).
+The full interval convexity and order-preserving
+functorial embedding remain open, as do strong
+amalgamation, exact local completion and the
+finite metric Ramsey theorem.
 
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Corrected zero-radius lemma, maximal finite blocks, four-values and exact paper block-convexity reduction | Prove lifted convex order/functions/embedding extension, strong amalgamation, exact local completion and finite Ramsey endpoint |
+| Convexly ordered S-metrics with jumps | Canonical S-metric and isometry, completed lower-to-higher F_j table, finite block/jump equivalence and candidate insertion order | Prove class-convexity and order-preserving embeddings, then strong amalgamation, exact local completion and the finite Ramsey endpoint |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
 | Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
