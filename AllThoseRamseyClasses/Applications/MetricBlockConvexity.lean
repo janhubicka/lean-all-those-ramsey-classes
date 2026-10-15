@@ -131,7 +131,6 @@ theorem paperBlockConvex_iff_capped_subset {S T : Set ℝ} {m : ℝ}
     {V : Type u} [LinearOrder V]
     (hfinS : S.Finite) (hfinT : T.Finite)
     (hposS : Positive S) (h4S : FourValues S)
-    (h4T : FourValues T)
     (hTS : T ⊆ S) (hm : m ∈ T)
     (hbound : ∀ t ∈ T, t ≤ m)
     (hclosed : ∀ x ∈ T, ∀ y ∈ T,
@@ -147,6 +146,15 @@ theorem paperBlockConvex_iff_capped_subset {S T : Set ℝ} {m : ℝ}
     triangle := hd.triangle
   }
   have hposT : Positive T := fun s hs => hposS s (hTS hs)
+  have hS : WellDefined S := wellDefined_of_finite hfinS hposS
+  have hTwell : WellDefined T :=
+    wellDefined_subset hposS hTS hbound hclosed
+  have hTassoc : AssociativeOn T :=
+    associativeOn_subset hposS hS
+      (associativeOn_of_fourValues hposS hS h4S)
+      (hTS hm) hTS hbound hclosed
+  have h4T : FourValues T :=
+    fourValues_of_associativeOn hposT hTwell hTassoc
   have hSconv : PaperBlockConvex S d ↔ JumpConvex S d :=
     paperBlockConvex_iff_jumpConvex hfinS hposS h4S hdS
   have hTconv : PaperBlockConvex T d ↔ JumpConvex T d :=
