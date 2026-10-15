@@ -24,11 +24,11 @@ theorem wellDefined_of_finite {S : Set ℝ}
   intro a ha b hb
   let C : Set ℝ := {s | s ∈ S ∧ s ≤ a + b}
   have hCfin : C.Finite := hfin.subset (fun s hs => hs.1)
-  have hCne : C.Nonempty :=
-    ⟨a, ha, by linarith [hpos b hb]⟩
+  have haC : a ∈ C := ⟨ha, by linarith [hpos b hb]⟩
+  have hCne : C.Nonempty := ⟨a, haC⟩
   let F : Finset ℝ := hCfin.toFinset
   have hF : F.Nonempty :=
-    ⟨a, hCfin.mem_toFinset.mpr hCne.some_mem⟩
+    ⟨a, hCfin.mem_toFinset.mpr haC⟩
   let m : ℝ := F.max' hF
   have hmC : m ∈ C :=
     hCfin.mem_toFinset.mp (Finset.max'_mem F hF)
