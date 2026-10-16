@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GlobalCanonicalFixedRootWitness
+
+#check AllThoseRamseyClasses.Lifts.globalCanonicalRelation_fixedRoot_witness
+#check AllThoseRamseyClasses.Lifts.globalCanonicalShared_fixedRoot_witness
+
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalRelation_fixedRoot_witness
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalShared_fixedRoot_witness
