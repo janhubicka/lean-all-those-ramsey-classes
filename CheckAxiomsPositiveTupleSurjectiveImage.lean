@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.PositiveTupleSurjectiveImage
+
+#check AllThoseRamseyClasses.Lifts.PositiveIncidenceSurjective
+#check AllThoseRamseyClasses.Lifts.PositiveIncidenceSurjective.domains
+#check AllThoseRamseyClasses.Lifts.weakImage_quotient_positiveIncidenceSurjective
+#check AllThoseRamseyClasses.Lifts.weakImage_quotient_weak_and_positiveSurjective
+
+#print axioms AllThoseRamseyClasses.Lifts.PositiveIncidenceSurjective.domains
+#print axioms AllThoseRamseyClasses.Lifts.weakImage_quotient_positiveIncidenceSurjective
+#print axioms AllThoseRamseyClasses.Lifts.weakImage_quotient_weak_and_positiveSurjective
