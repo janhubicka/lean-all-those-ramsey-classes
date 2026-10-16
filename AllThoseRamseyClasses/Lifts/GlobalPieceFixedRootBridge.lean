@@ -57,8 +57,7 @@ theorem chartIncompatible_sameRoot_iff
   constructor
   · rintro ⟨h, hbad⟩
     have heq : h = rfl := Subsingleton.elim _ _
-    subst h
-    exact hbad
+    simpa only [heq] using hbad
   · intro hbad
     exact ⟨rfl, hbad⟩
 
@@ -99,8 +98,10 @@ theorem globalFunctionalPiece_equiv_iff_fixedRoot
       (functionalRootPiece_equiv_iff Root F P Q).mp hfixed
     constructor
     · rintro ⟨hr, hpT⟩
+      change Root = T.root at hr
       exact ⟨hr, (htest (hr.symm ▸ T.ext)).mp hpT⟩
     · rintro ⟨hr, hqT⟩
+      change Root = T.root at hr
       exact ⟨hr, (htest (hr.symm ▸ T.ext)).mpr hqT⟩
 
 /-- The globally selected piece's own full root is a concrete
