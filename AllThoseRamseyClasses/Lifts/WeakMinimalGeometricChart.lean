@@ -28,6 +28,20 @@ open StructuralRamsey.Structure
 universe u v
 variable {L : Language.{u}} {V : Type v}
 
+/-- Reindex the same closed separating cut by an extensionally equal
+root set. Both distinguished vertices are transported with their exact
+complement proofs, not replaced by closure hulls. -/
+theorem minimalClosedSeparator_congr_cut
+    (A : Structure L V) {R S : Set V}
+    (h : S = R)
+    (x y : {z : V // z ∉ R})
+    (hmin : IsMinimalClosedSeparator A R x y) :
+    IsMinimalClosedSeparator A S
+      ⟨x.1, by simpa only [h] using x.2⟩
+      ⟨y.1, by simpa only [h] using y.2⟩ := by
+  cases h
+  exact hmin
+
 /-- Enumerate EVERY vertex of a finite minimal closed separator
 exactly once. The resulting chart is a genuine
 `GeometricFunctionalPieceData`, not merely an arbitrary rooted
@@ -61,7 +75,7 @@ theorem finiteMinimalClosedSeparator_toGeometricChart
     ⟨y.1, by simpa only [hRange] using y.2⟩
   have hMinRoots :
       IsMinimalClosedSeparator A (Set.range roots) left right := by
-    simpa [left, right, hRange] using hmin
+    exact minimalClosedSeparator_congr_cut A hRange x y hmin
   let d : GeometricFunctionalPieceData A (Fintype.card R) := {
     roots := roots
     roots_injective := hInjective
