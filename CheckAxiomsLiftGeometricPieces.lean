@@ -1,0 +1,18 @@
+import AllThoseRamseyClasses.Lifts.GeometricFunctionalPieces
+
+#check AllThoseRamseyClasses.Lifts.GeometricFunctionalPieceData
+#check AllThoseRamseyClasses.Lifts.geometricPieceCut
+#check AllThoseRamseyClasses.Lifts.geometricPieceVertices
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalPiece
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalPieceEmbedding
+#check AllThoseRamseyClasses.Lifts.geometricRootedGraphPiece
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalPiece_graph
+#check AllThoseRamseyClasses.Lifts.geometricPiece_components_disjoint
+#check AllThoseRamseyClasses.Lifts.geometricPiece_left_boundary_closure
+#check AllThoseRamseyClasses.Lifts.geometricPiece_right_boundary_closure
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricFunctionalPiece_graph
+#print axioms AllThoseRamseyClasses.Lifts.geometricFunctionalPieceEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_components_disjoint
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_left_boundary_closure
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_right_boundary_closure
