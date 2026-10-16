@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.CanonicalGlueDiagramBridge
+
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram_iff_glue
+#check AllThoseRamseyClasses.Lifts.functionalDiagramPiece_equiv_iff_glue
+#check AllThoseRamseyClasses.Lifts.canonicalFunctionalFlip_actualSource
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram_iff_glue
+#print axioms AllThoseRamseyClasses.Lifts.functionalDiagramPiece_equiv_iff_glue
+#print axioms AllThoseRamseyClasses.Lifts.canonicalFunctionalFlip_actualSource
