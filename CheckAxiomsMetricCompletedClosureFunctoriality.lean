@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricCompletedClosureFunctoriality
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalJumpTag_root_threshold
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_preserves_completedClosureValue
