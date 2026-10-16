@@ -216,7 +216,10 @@ theorem canonicalInsertion_map_tags_strictMono {S : Set ℝ}
           (mapCanonicalJumpTag hpos hS hdV hdW f hf b)) ≤
         canonicalTagLevel
           (mapCanonicalJumpTag hpos hS hdV hdW f hf b)
-      rw [hsame]
+      have hsameLast :
+          canonicalClassLast hpos hS hdV a =
+            canonicalClassLast hpos hS hdV b := hsame
+      rw [hsameLast]
       exact h
     have hle : canonicalTagLevel aa ≤ canonicalTagLevel bb := by
       change canonicalTagLevel
