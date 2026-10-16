@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.FunctionalFlipFold
+
+#check AllThoseRamseyClasses.Lifts.functionalFlipFold
+#check AllThoseRamseyClasses.Lifts.functionalFlipFold_left
+#check AllThoseRamseyClasses.Lifts.functionalFlipFold_right
+#check AllThoseRamseyClasses.Lifts.functionalFlipFold_isEHNHomomorphismEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalFlipFold_left
+#print axioms AllThoseRamseyClasses.Lifts.functionalFlipFold_right
+#print axioms AllThoseRamseyClasses.Lifts.functionalFlipFold_isEHNHomomorphismEmbedding
