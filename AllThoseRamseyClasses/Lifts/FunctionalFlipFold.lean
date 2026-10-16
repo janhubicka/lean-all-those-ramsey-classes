@@ -50,7 +50,9 @@ theorem functionalFlipFold_left
     (hcompat : ∀ r, pP (sP r) = pQ (sQ r)) (x : UP) :
     functionalFlipFold Root P Q sP sQ pP pQ hcompat
       (Structure.FreeAmalgam.leftEmbedding Root P Q sP sQ x) = pP x :=
-  RelStructure.FreeAmalgam.fold_left pP pQ hcompat x
+  RelStructure.FreeAmalgam.fold_left
+    (D := Root.graph) (A := P.graph) (B := Q.graph)
+    (fA := sP.graph) (fB := sQ.graph) pP pQ hcompat x
 
 /-- The folded map extends the right-hand complement map exactly. -/
 theorem functionalFlipFold_right
@@ -61,7 +63,9 @@ theorem functionalFlipFold_right
     (hcompat : ∀ r, pP (sP r) = pQ (sQ r)) (x : UQ) :
     functionalFlipFold Root P Q sP sQ pP pQ hcompat
       (Structure.FreeAmalgam.rightEmbedding Root P Q sP sQ x) = pQ x :=
-  RelStructure.FreeAmalgam.fold_right pP pQ hcompat x
+  RelStructure.FreeAmalgam.fold_right
+    (D := Root.graph) (A := P.graph) (B := Q.graph)
+    (fA := sP.graph) (fB := sQ.graph) pP pQ hcompat x
 
 /-- The exact replacement-map lemma needed for a flip:
 weak functional maps on each rooted side glue to a weak functional
@@ -77,9 +81,9 @@ theorem functionalFlipFold_isEHNHomomorphismEmbedding
     (hcompat : ∀ r, pP (sP r) = pQ (sQ r))
     (hpP : P.IsEHNHomomorphismEmbedding Target pP)
     (hpQ : Q.IsEHNHomomorphismEmbedding Target pQ) :
-    (Structure.FreeAmalgam.amalgam Root P Q sP sQ)
-      .IsEHNHomomorphismEmbedding Target
-        (functionalFlipFold Root P Q sP sQ pP pQ hcompat) := by
+    Structure.IsEHNHomomorphismEmbedding
+      (Structure.FreeAmalgam.amalgam Root P Q sP sQ) Target
+      (functionalFlipFold Root P Q sP sQ pP pQ hcompat) := by
   apply Structure.IsEHNHomomorphismEmbedding.of_freeAmalgam
     (Structure.FreeAmalgam.isFreeAmalgam Root P Q sP sQ)
     hpP hpQ
