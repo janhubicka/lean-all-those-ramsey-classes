@@ -61,14 +61,9 @@ theorem alignedFunctionalRootExtension_root
     (alignedFunctionalRootExtension A d P e).rootEmbedding
         (⟨d.roots i, ⟨i, rfl⟩⟩ : Set.range d.roots) =
       P.root i := by
-  calc
-    (alignedFunctionalRootExtension A d P e).rootEmbedding
-      (⟨d.roots i, ⟨i, rfl⟩⟩ : Set.range d.roots) =
-      (FunctionalRootedPatternIso.toFullEmbedding
-        (P := geometricFunctionalRootedPattern A d)
-        (Q := P) e.symm)
-        ((geometricFunctionalRootedPattern A d).root i) := rfl
-    _ = P.root i := e.symm.roots i
+  change e.symm.equiv ((geometricFunctionalRootedPattern A d).root i) =
+    P.root i
+  exact e.symm.roots i
 
 /-- Equality of weak target maps on the ORDERED root tuple becomes
 equality on EVERY vertex of the full induced functional root chart.
