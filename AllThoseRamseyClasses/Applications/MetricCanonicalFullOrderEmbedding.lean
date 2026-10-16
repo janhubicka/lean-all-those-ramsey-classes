@@ -65,9 +65,8 @@ theorem canonicalInsertion_tag_lt_old_iff {S : Set ℝ}
   constructor
   · rintro (hlt | ⟨_, hbad⟩)
     · exact hlt
-    · have hn : ¬ ((some (canonicalTagLevel tag) : WithBot ℝ) < none) := by
-        simp
-      exact (hn hbad).elim
+    · change WithBot.LT (some (canonicalTagLevel tag)) none at hbad
+      cases hbad
   · intro hlt
     exact Or.inl hlt
 
@@ -212,7 +211,13 @@ theorem canonicalInsertion_map_tags_strictMono {S : Set ℝ}
         canonicalTagLevel bb := by
       have h := mapCanonicalJumpTag_image_classLast_mem
         hpos hS hdV hdW f hf b
-      simpa only [← hsame] using h
+      change dW (f (canonicalClassLast hpos hS hdV a))
+        (canonicalTagRoot
+          (mapCanonicalJumpTag hpos hS hdV hdW f hf b)) ≤
+        canonicalTagLevel
+          (mapCanonicalJumpTag hpos hS hdV hdW f hf b)
+      rw [hsame]
+      exact h
     have hle : canonicalTagLevel aa ≤ canonicalTagLevel bb := by
       change canonicalTagLevel
         (mapCanonicalJumpTag hpos hS hdV hdW f hf a) ≤
