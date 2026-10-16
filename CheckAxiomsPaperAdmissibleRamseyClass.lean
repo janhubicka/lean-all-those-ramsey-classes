@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.PaperAdmissibleRamseyClass
+
+#check AllThoseRamseyClasses.Applications.AdmissibleOrders.HasFreeOrderRamsey
+#check AllThoseRamseyClasses.Applications.AdmissibleOrders.HasTypeAdmissibleRamsey
+#check AllThoseRamseyClasses.Applications.AdmissibleOrders.hasTypeAdmissibleRamsey_of_hasFreeOrderRamsey
+
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.hasTypeAdmissibleRamsey_of_hasFreeOrderRamsey
