@@ -14,6 +14,7 @@ and functional applications use full function-preserving embeddings.
 | Freely ordered simple undirected graphs | `PaperGraphs.freelyOrderedSimpleGraphs_areRamsey` | [PR #237](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/237) |
 | Directed acyclic graphs with linear extensions | `PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey` | [PR #238](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/238) |
 | Freely ordered `K_n`-free simple graphs | `PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey` | [PR #241](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/241) |
+| Unrestricted digraphs omitting arbitrary families of tournaments as **positive copies** | `PaperGraphs.freelyOrderedPositiveTournamentFreeAllDigraphs_areRamsey` | [PR #361](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/361) |
 | Oriented digraphs omitting arbitrary families of tournaments as **positive copies** | `PaperGraphs.freelyOrderedPositiveTournamentFreeDigraphs_areRamsey` | [PR #355](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/355) |
 | Finite ordered posets with chosen linear extensions | `OrderedPosets.orderedPoset_isRamsey` | [PR #227](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/227) |
 | Freely ordered pointed equivalences | `PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey` | [PR #239](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/239) |
@@ -43,8 +44,14 @@ PR #355 proves these notions coincide in oriented targets (an
 injective positive tournament copy must be induced), proves that
 oriented graphs are a free-amalgamation class, and obtains the
 unconditional Ramsey conclusion for any family of tournaments.
-Do not conflate these classes or claim ordinary subgraph avoidance
-for unrestricted digraphs.
+PR #361 supplies the stronger unrestricted-digraph theorem through
+a general reduction of **positive** avoidance to **full induced**
+avoidance of every same-carrier relational extension of the forbidden
+pattern. These extensions stay irreducible, so the checked arbitrary
+full-family theorem applies. Thus genuine positive tournament
+subgraph avoidance is now certified even if the ambient digraph has
+loops or opposite arcs. The class is distinct from the induced-copy
+version; both use full embeddings for the actual Ramsey colourings.
 
 ## Ordered posets: exact weak local completion
 
