@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.GeometricCanonicalWitnessFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricCutRootEquiv
+#check AllThoseRamseyClasses.Lifts.geometricCutRootEquiv_val
+#check AllThoseRamseyClasses.Lifts.canonicalGeometricRootImage_injective
+#check AllThoseRamseyClasses.Lifts.geometricMinimalPieceFlip_of_canonicalRelation
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricCutRootEquiv
+#print axioms AllThoseRamseyClasses.Lifts.canonicalGeometricRootImage_injective
+#print axioms AllThoseRamseyClasses.Lifts.geometricMinimalPieceFlip_of_canonicalRelation
