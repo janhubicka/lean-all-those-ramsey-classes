@@ -49,6 +49,7 @@ theorem globalFunctionalPiece_width_le_forbiddenCardBound
     Nat.card_le_card_of_injective d.roots d.roots_injective
   have hLe : Nat.card (Fin n) ≤ N :=
     hRootCard.trans (hBound Source hForbidden)
+  change n ≤ N
   simpa only [Nat.card_fin] using hLe
 
 end AllThoseRamseyClasses.Lifts
