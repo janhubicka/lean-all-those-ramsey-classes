@@ -283,4 +283,34 @@ theorem canonicalLift_jumpConvex {S : Set ℝ} {V : Type u}
       (Or.inr hj) b (.inl (anchor c)) c hBtoAnchorC hC
   exact ⟨hAB, hBC⟩
 
+
+/-- The exact paper-facing finite-S metric-order conclusion.
+If the original order is convex for every inclusion-maximal
+no-jump four-values block B of the manuscript, then the canonical
+metric extension on original vertices plus one quotient-class
+closure vertex per proper jump has the same block-convex order.
+
+The proof reuses the already checked literal paper-block ↔ jump-cut
+equivalence and the full canonical jump-convexity theorem. No
+comparison of two different block partitions is assumed. -/
+theorem canonicalLift_paperBlockConvex {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hfin : S.Finite)
+    (hpos : Positive S) (hS : WellDefined S)
+    (hassoc : AssociativeOn S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (hpaper : PaperBlockConvex S d) :
+    (letI := canonicalInsertionLinearOrder hpos hS hd;
+      PaperBlockConvex S (canonicalDistance hpos hS hd)) := by
+  letI : LinearOrder (V ⊕ CanonicalJumpTag hpos hS hd) :=
+    canonicalInsertionLinearOrder hpos hS hd
+  have h4 : FourValues S :=
+    fourValues_of_associativeOn hpos hS hassoc
+  have hOrig : JumpConvex S d :=
+    (paperBlockConvex_iff_jumpConvex hfin hpos h4 hd).mp hpaper
+  have hLift : JumpConvex S (canonicalDistance hpos hS hd) :=
+    canonicalLift_jumpConvex hfin hpos hS hassoc hd hOrig
+  exact (paperBlockConvex_iff_jumpConvex
+    hfin hpos h4 (canonicalDistance_metric hfin hpos hS hassoc hd)).mpr hLift
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
