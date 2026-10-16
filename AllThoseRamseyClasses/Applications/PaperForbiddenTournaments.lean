@@ -32,6 +32,7 @@ theorem finiteDigraphClass_freeAmalgamation :
     FreeAmalgamationClass finiteDigraphClass := by
   refine ⟨?_, ?_⟩
   · intro U V A B hB e
+    letI : Finite V := hB
     exact Finite.of_injective e e.injective
   · intro H E F W D A B C sA sB iA iB hA hB hFree
     letI : Finite E := hA
