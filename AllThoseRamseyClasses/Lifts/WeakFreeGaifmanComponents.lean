@@ -180,10 +180,19 @@ theorem weakFreePartition_component_left
       (weakFreeRootPart (sL := sL) (iL := iL) f) r) :
     y ∈ weakFreeLeftPart (sL := sL) (iL := iL) f := by
   obtain ⟨hyRoot, hreach⟩ := hy
-  induction hreach with
-  | refl => exact hr
-  | @tail a b hab hstep ih =>
-      exact weakFreePartition_left_step hfree f hf ih b.2 hstep
+  have hprop :
+      ∀ z : {x : U //
+        x ∉ weakFreeRootPart (sL := sL) (iL := iL) f},
+        Relation.ReflTransGen
+          (outsideAdjacency Source.graph
+            (weakFreeRootPart (sL := sL) (iL := iL) f)) r z →
+        z.1 ∈ weakFreeLeftPart (sL := sL) (iL := iL) f := by
+    intro z hz
+    induction hz with
+    | refl => exact hr
+    | @tail a b hab hstep ih =>
+        exact weakFreePartition_left_step hfree f hf ih b.2 hstep
+  exact hprop ⟨y, hyRoot⟩ hreach
 
 theorem weakFreePartition_component_right
     (hfree : Structure.IsFreeAmalgam sL sR iL iR)
@@ -195,9 +204,18 @@ theorem weakFreePartition_component_right
       (weakFreeRootPart (sL := sL) (iL := iL) f) r) :
     y ∈ weakFreeRightPart (sL := sL) (iL := iL) (iR := iR) f := by
   obtain ⟨hyRoot, hreach⟩ := hy
-  induction hreach with
-  | refl => exact hr
-  | @tail a b hab hstep ih =>
-      exact weakFreePartition_right_step hfree f hf ih b.2 hstep
+  have hprop :
+      ∀ z : {x : U //
+        x ∉ weakFreeRootPart (sL := sL) (iL := iL) f},
+        Relation.ReflTransGen
+          (outsideAdjacency Source.graph
+            (weakFreeRootPart (sL := sL) (iL := iL) f)) r z →
+        z.1 ∈ weakFreeRightPart (sL := sL) (iL := iL) (iR := iR) f := by
+    intro z hz
+    induction hz with
+    | refl => exact hr
+    | @tail a b hab hstep ih =>
+        exact weakFreePartition_right_step hfree f hf ih b.2 hstep
+  exact hprop ⟨y, hyRoot⟩ hreach
 
 end AllThoseRamseyClasses.Lifts
