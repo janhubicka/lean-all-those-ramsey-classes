@@ -80,13 +80,16 @@ def functionalBoundaryClosureInduce
     (A : Structure L V) (C : Set V) :
     Structure L
       (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C) :=
-  A.induce _ (functionalBoundaryClosure_union_isClosed A C)
+  A.induce
+    (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C)
+    (functionalBoundaryClosure_union_isClosed A C)
 
 /-- The corresponding exact full embedding back into A. -/
 def functionalBoundaryClosureEmbedding
     (A : Structure L V) (C : Set V) :
     Structure.Embedding (functionalBoundaryClosureInduce A C) A :=
-  A.inclusion _
+  A.inclusion
+    (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C)
     (functionalBoundaryClosure_union_isClosed A C)
 
 end AllThoseRamseyClasses.Lifts
