@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FreeAmalgamDiagramUniqueness
+
+#check AllThoseRamseyClasses.Lifts.freeAmalgamDiagram_unique
+#print axioms AllThoseRamseyClasses.Lifts.freeAmalgamDiagram_unique
