@@ -97,4 +97,53 @@ theorem finite_incidenceCarrier {L : RelLanguage.{u}}
   unfold IncidenceCarrier
   infer_instance
 
+
+/-- The partial incidence value is defined exactly for positive
+original tuples, and is undefined precisely on their complement. -/
+theorem incidenceValue_isSome_iff {L : RelLanguage.{u}} {V : Type v}
+    (A : TotalOrderData L V) (r : L.Symbol)
+    (t : Fin (L.arity r) → V) :
+    (incidenceValue A r t).isSome ↔ A.base.rel r t := by
+  classical
+  by_cases h : A.base.rel r t
+  · simp [incidenceValue, h]
+  · simp [incidenceValue, h]
+
+/-- The entire set-valued functional fibre is carried *onto* the
+target fibre by the incidence extension of an exact embedding.
+This includes the empty source/target fibres and is stronger than
+mere positive function-graph preservation. -/
+theorem incidenceMap_image_valueFibre {L : RelLanguage.{u}}
+    {U : Type v} {V : Type w}
+    (A : TotalOrderData L U) (B : TotalOrderData L V)
+    (f : U → V) (hf : IsExactEmbedding A B f)
+    (r : L.Symbol) (t : Fin (L.arity r) → U) :
+    incidenceMap A B f hf '' valueFibre A r t =
+      valueFibre B r (f ∘ t) := by
+  classical
+  ext y
+  have hmap := incidenceValue_map A B f hf r t
+  simp only [Set.mem_image, Set.mem_setOf_eq, valueFibre]
+  constructor
+  · rintro ⟨x, hx, rfl⟩
+    calc
+      some (incidenceMap A B f hf x) =
+          Option.map (incidenceMap A B f hf) (some x) := rfl
+      _ = Option.map (incidenceMap A B f hf) (incidenceValue A r t) := by
+        rw [hx]
+      _ = incidenceValue B r (f ∘ t) := hmap
+  · intro hy
+    cases hval : incidenceValue A r t with
+    | none =>
+        rw [hval] at hmap
+        simp only [Option.map_none] at hmap
+        rw [← hmap] at hy
+        cases hy
+    | some x =>
+        rw [hval] at hmap
+        simp only [Option.map_some] at hmap
+        have hxy : y = incidenceMap A B f hf x :=
+          Option.some.inj (hy.trans hmap.symm)
+        exact ⟨x, hval.symm, hxy.symm⟩
+
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
