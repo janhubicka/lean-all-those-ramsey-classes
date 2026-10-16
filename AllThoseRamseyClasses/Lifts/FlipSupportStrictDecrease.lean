@@ -63,8 +63,8 @@ theorem oldExclusiveSupport_card_lt_complement
     (oldVertex : OldCarrier)
     (hOldA : pOld oldVertex ∈ AOnly)
     (hOutside : ∀ b : RightCarrier, oldVertex ≠ iOldR b) :
-    Fintype.card {b : RightCarrier // pRight b ∈ AOnly} <
-      Fintype.card {x : OldCarrier // pOld x ∈ AOnly} := by
+    Nat.card {b : RightCarrier // pRight b ∈ AOnly} <
+      Nat.card {x : OldCarrier // pOld x ∈ AOnly} := by
   classical
   let supportMap :
       {b : RightCarrier // pRight b ∈ AOnly} →
@@ -81,8 +81,12 @@ theorem oldExclusiveSupport_card_lt_complement
     have hval : iOldR b.1 = oldVertex :=
       congrArg Subtype.val hb
     exact (hOutside b.1) hval.symm
-  exact Fintype.card_lt_of_injective_not_surjective
-    supportMap hInjective hNotSurjective
+  have hFiniteCard :
+      Fintype.card {b : RightCarrier // pRight b ∈ AOnly} <
+        Fintype.card {x : OldCarrier // pOld x ∈ AOnly} :=
+    Fintype.card_lt_of_injective_not_surjective
+      supportMap hInjective hNotSurjective
+  simpa only [Nat.card_eq_fintype_card] using hFiniteCard
 
 /-- The cardinality form of the checked exact support equivalence.
 This is useful when the original and new sources have different
@@ -96,12 +100,16 @@ theorem flipExclusiveSupport_fintype_card_eq
     (AOnly : Set TargetCarrier)
     (hNewLeftAvoid : ∀ a : NewPiece,
       pNew (iNewL a) ∉ AOnly) :
-    Fintype.card {x : NewCarrier // pNew x ∈ AOnly} =
-      Fintype.card {b : RightCarrier // pRight b ∈ AOnly} := by
+    Nat.card {x : NewCarrier // pNew x ∈ AOnly} =
+      Nat.card {b : RightCarrier // pRight b ∈ AOnly} := by
   classical
-  exact Fintype.card_congr
-    (flipExclusiveSupportEquiv
-      hFree pNew pRight hRight AOnly hNewLeftAvoid).symm
+  have hFiniteCard :
+      Fintype.card {x : NewCarrier // pNew x ∈ AOnly} =
+        Fintype.card {b : RightCarrier // pRight b ∈ AOnly} :=
+    Fintype.card_congr
+      (flipExclusiveSupportEquiv
+        hFree pNew pRight hRight AOnly hNewLeftAvoid).symm
+  simpa only [Nat.card_eq_fintype_card] using hFiniteCard
 
 /-- The strict support decrease underlying the first flip
 contradiction in the 2019 strong-amalgamation proof.
@@ -126,14 +134,14 @@ theorem flipExclusiveSupport_strict_decrease
     (oldVertex : OldCarrier)
     (hOldA : pOld oldVertex ∈ AOnly)
     (hOutside : ∀ b : RightCarrier, oldVertex ≠ iOldR b) :
-    Fintype.card {x : NewCarrier // pNew x ∈ AOnly} <
-      Fintype.card {x : OldCarrier // pOld x ∈ AOnly} := by
+    Nat.card {x : NewCarrier // pNew x ∈ AOnly} <
+      Nat.card {x : OldCarrier // pOld x ∈ AOnly} := by
   calc
-    Fintype.card {x : NewCarrier // pNew x ∈ AOnly} =
-        Fintype.card {b : RightCarrier // pRight b ∈ AOnly} :=
+    Nat.card {x : NewCarrier // pNew x ∈ AOnly} =
+        Nat.card {b : RightCarrier // pRight b ∈ AOnly} :=
       flipExclusiveSupport_fintype_card_eq
         hNewFree pNew pRight hNewRight AOnly hNewLeftAvoid
-    _ < Fintype.card {x : OldCarrier // pOld x ∈ AOnly} :=
+    _ < Nat.card {x : OldCarrier // pOld x ∈ AOnly} :=
       oldExclusiveSupport_card_lt_complement pOld pRight
         hOldRight AOnly oldVertex hOldA hOutside
 
