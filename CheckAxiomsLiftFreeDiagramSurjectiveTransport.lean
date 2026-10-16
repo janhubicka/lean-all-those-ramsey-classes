@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.FreeDiagramSurjectiveTransport
+
+#check AllThoseRamseyClasses.Lifts.surjectiveEmbedding_weakInverse
+#check AllThoseRamseyClasses.Lifts.freeAmalgamDiagram_transport_surjective
+
+#print axioms AllThoseRamseyClasses.Lifts.surjectiveEmbedding_weakInverse
+#print axioms AllThoseRamseyClasses.Lifts.freeAmalgamDiagram_transport_surjective
