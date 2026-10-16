@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceFullFibres
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.fullIncidenceFibre_old
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.fullIncidenceFibre_empty_of_new
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_image_fullIncidenceFibre
