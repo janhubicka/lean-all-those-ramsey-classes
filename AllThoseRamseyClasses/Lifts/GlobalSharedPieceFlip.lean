@@ -53,8 +53,9 @@ theorem geometricGlobalRelation_shared_from_piece
     (iRight : Structure.Embedding X Right)
     (hAgree : GlobalCanonicalLiftsAgreeOn F iLeft iRight)
     (pLeft : (geometricGlobalFunctionalChart Forbidden d).ext.Carrier → UA)
-    (hpLeft : ((geometricGlobalFunctionalChart Forbidden d).ext.str)
-      .IsEHNHomomorphismEmbedding Left pLeft)
+    (hpLeft : Structure.IsEHNHomomorphismEmbedding
+      ((geometricGlobalFunctionalChart Forbidden d).ext.str)
+      Left pLeft)
     (xsX : Fin n → UX)
     (hRootLeft : ∀ i : Fin n,
       pLeft ((geometricGlobalFunctionalChart Forbidden d).ext.rootEmbedding i)
@@ -115,8 +116,9 @@ theorem geometricGlobalSharedLiftFlip
     (hTargetAgree : ∀ x : UX,
       jLeft (iLeft x) = jRight (iRight x))
     (pLeft : (geometricGlobalFunctionalChart Forbidden d).ext.Carrier → UA)
-    (hpLeft : ((geometricGlobalFunctionalChart Forbidden d).ext.str)
-      .IsEHNHomomorphismEmbedding Left pLeft)
+    (hpLeft : Structure.IsEHNHomomorphismEmbedding
+      ((geometricGlobalFunctionalChart Forbidden d).ext.str)
+      Left pLeft)
     (hPieceMap : ∀ z :
       (geometricGlobalFunctionalChart Forbidden d).ext.Carrier,
       jLeft (pLeft z) = f z.1)
