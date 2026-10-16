@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
+
+#check AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceValue_map
+#check AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.finite_incidenceCarrier
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceValue_map
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.finite_incidenceCarrier
