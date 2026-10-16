@@ -1,5 +1,8 @@
 import AllThoseRamseyClasses.PublicAPI
 import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
+import AllThoseRamseyClasses.Applications.PaperAdmissibleRamseyClass
+import AllThoseRamseyClasses.Applications.PaperAdmissibleFreeAmalgamation
+import AllThoseRamseyClasses.Applications.PaperLoopFirstDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
 import AllThoseRamseyClasses.Applications.PaperPositiveForbiddenTournaments
@@ -18,7 +21,9 @@ multiamalgamation theorem and *completed* class-level applications.
 Completed applications now include finite ordered posets, freely ordered
 digraphs and simple graphs, ordered acyclic digraphs, K_n-free graphs,
 and arbitrary forbidden-tournament families in finite digraphs,
-pointed equivalences, and the finite-target m-unary-function case.
+pointed equivalences, the loop-first admissibly ordered digraphs,
+and general relational admissible-order Ramsey class transfers, together
+with the finite-target m-unary-function case.
 The freely ordered partial Steiner triple class is a separately completed
 **auxiliary** example not included among the paper's examples.
 The named poset representation has one inert empty binary relation;
@@ -42,6 +47,17 @@ and digons in ambient digraphs use
 `freelyOrderedPositiveTournamentFreeAllDigraphs_areRamsey`.
 This follows from the general positive-family theorem via all full
 relational extensions of each irreducible forbidden pattern.
+
+For the literal generic RELATIONAL admissible-order statement import
+`AdmissibleOrders.hasTypeAdmissibleRamsey_of_hasFreeOrderRamsey`;
+it assumes only Ramsey with freely chosen orders and imposes no
+free-amalgamation hypothesis. The class-level free-amalgamation
+specialization is
+`AdmissibleOrders.admissiblyOrderedFreeAmalgamation_areRamsey`.
+The source-matched concrete digraph instance is
+`PaperGraphs.loopFirstOrderedDigraphs_areRamsey`.
+This does not certify the printed proposition for arbitrary
+functional languages without a separate singleton-type bridge.
 
 The freely ordered pointed-equivalence Ramsey class from the paper is
 proved via its full idempotent unary-function encoding.
