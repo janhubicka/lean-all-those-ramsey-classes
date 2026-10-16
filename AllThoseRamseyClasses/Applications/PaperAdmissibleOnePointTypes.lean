@@ -99,15 +99,19 @@ theorem onePointType_embedding
     (B : RelStructure L U) (C : RelStructure L V)
     (b : Embedding B.ordered C.ordered) (x : U) :
     onePointType C (b x) = onePointType B x := by
-  apply OnePointCode.ext
-  ext R
-  have ht : (b ∘ (fun _ : Fin (L.arity R) => x)) =
-      (fun _ : Fin (L.arity R) => b x) := rfl
-  have h := b.map_rel_iff (.inl R) (fun _ : Fin (L.arity R) => x)
-  change C.rel R (b ∘ (fun _ : Fin (L.arity R) => x)) ↔
-      B.rel R (fun _ : Fin (L.arity R) => x) at h
-  rw [ht] at h
-  exact h
+  have hsupport :
+      ({R : L.Symbol | C.rel R (fun _ => b x)} : Set L.Symbol) =
+        {R : L.Symbol | B.rel R (fun _ => x)} := by
+    ext R
+    have ht : (b ∘ (fun _ : Fin (L.arity R) => x)) =
+        (fun _ : Fin (L.arity R) => b x) := rfl
+    have h := b.map_rel_iff (.inl R) (fun _ : Fin (L.arity R) => x)
+    change C.rel R (b ∘ (fun _ : Fin (L.arity R) => x)) ↔
+        B.rel R (fun _ : Fin (L.arity R) => x) at h
+    rw [ht] at h
+    exact h
+  exact congrArg (fun T : Set L.Symbol =>
+    (⟨T⟩ : OnePointCode L)) hsupport
 
 /-- Sorted target order still preserves the order of the B-copy. -/
 theorem typeSorted_copy_strictMono
