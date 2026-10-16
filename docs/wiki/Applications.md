@@ -355,11 +355,23 @@ preserving the original order within each one-point type. The
 old witness is **not** globally order-embedded in the reordered
 witness; the proof uses B-copywise Ramsey transfer.
 
-The arbitrary relational one-point-type version of the admissible
-reordering theorem is under validation in
-[PR #367](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/367).
-The original proposition's general-language scope must remain
-separate until the type-code bridge and complete CI pass.
+The arbitrary **relational one-point-type** version is now fully
+checked: `AdmissibleOrders.typeAdmissible_arrow_of_freeOrder`,
+[PR #367](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/367),
+proves copywise Ramsey-arrow transfer for any relational reduct
+class whose freely ordered Ramsey witnesses are available.
+The type record is packaged as a new `OnePointCode` carrier,
+so a chosen *total* order of one-point types is not confused with
+the inclusion order on sets.
+
+Moreover, `AdmissibleOrders.admissiblyOrderedFreeAmalgamation_areRamsey`,
+[PR #372](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/372),
+proves the full finite Ramsey-class conclusion for any relational
+free-amalgamation class equipped with these admissible orders.
+The unrestricted arbitrary-relational-class property is being
+packaged under CI in PR #373; genuine function-language one-point
+types and the manuscript's named reflexive-order representation
+remain separate from the verified relational results.
 
 ## Remaining manuscript applications
 
