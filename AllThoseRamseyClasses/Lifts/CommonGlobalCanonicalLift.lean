@@ -79,12 +79,12 @@ theorem CommonGlobalCanonicalLift.agreeOn
   calc
     (globalFunctionalCanonicalLift F A).rel (.inr s) (iA ∘ xs)
         ↔ h.lifted.rel (.inr s) xs := by
-          rw [← hA]
-          exact h.intoA.map_rel_iff (.inr s) xs
+          have he := h.intoA.map_rel_iff (.inr s) xs
+          simpa only [hA] using he
     _ ↔ (globalFunctionalCanonicalLift F B).rel (.inr s)
         (iB ∘ xs) := by
-          rw [← hB]
-          exact (h.intoB.map_rel_iff (.inr s) xs).symm
+          have he := (h.intoB.map_rel_iff (.inr s) xs).symm
+          simpa only [hB] using he
 
 /-- The verified geometric piece-class relation can be transferred
 between the two witnesses solely from their shared full expanded
