@@ -66,7 +66,7 @@ def secondTuple {n : ℕ} {V : Type v}
     (a b : Fin n → V) :
     secondTuple (Fin.append a b) = b := by
   funext i
-  simp [secondTuple]
+  exact Fin.append_right a b i
 
 @[simp] theorem firstTuple_comp {n : ℕ} {U : Type v} {V : Type w}
     (f : U → V) (t : Fin (n + n) → U) :
