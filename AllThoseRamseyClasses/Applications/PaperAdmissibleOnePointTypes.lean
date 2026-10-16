@@ -66,8 +66,14 @@ theorem typeSortedLinearOrder_lt_iff
        (onePointType A x) (onePointType A y) ∨
     (onePointType A x = onePointType A y ∧ x < y) := by
   letI : LinearOrder (Set L.Symbol) := typeOrder
+  change
+    (@LT.lt V (typeSortedLinearOrder typeOrder A).toLT x y) ↔
+      (@LT.lt (Set L.Symbol) typeOrder.toLT
+        (onePointType A x) (onePointType A y) ∨
+      (onePointType A x = onePointType A y ∧ x < y))
+  unfold typeSortedLinearOrder
   change toLex ((onePointType A x, x) : Set L.Symbol × V) <
-      toLex ((onePointType A y, y) : Set L.Symbol × V) ↔ _
+    toLex ((onePointType A y, y) : Set L.Symbol × V) ↔ _
   exact Prod.Lex.toLex_lt_toLex
 
 theorem typeSortedLinearOrder_isAdmissible
@@ -108,9 +114,14 @@ theorem typeSorted_copy_strictMono
   letI : LinearOrder (Set L.Symbol) := typeOrder
   have htype (z : U) : onePointType C (b z) = onePointType B z :=
     onePointType_embedding B C b z
-  have hle : onePointType B x ≤ onePointType B y := by
+  have hle :
+      @LE.le (Set L.Symbol) typeOrder.toLE
+        (onePointType B x) (onePointType B y) := by
     by_contra hn
-    have hgt : onePointType B y < onePointType B x := lt_of_not_ge hn
+    have hgt :
+        @LT.lt (Set L.Symbol) typeOrder.toLT
+          (onePointType B y) (onePointType B x) := by
+      exact lt_of_not_ge hn
     exact (not_lt_of_ge (le_of_lt hxy)) (hB y x hgt)
   apply (typeSortedLinearOrder_lt_iff typeOrder C (b x) (b y)).mpr
   rw [htype x, htype y]
