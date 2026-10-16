@@ -1,0 +1,14 @@
+import AllThoseRamseyClasses.Lifts.GlobalCanonicalWitness
+
+#check AllThoseRamseyClasses.Lifts.globalPieceSymbolOf
+#check AllThoseRamseyClasses.Lifts.globalPieceSymbolOf_arity
+#check AllThoseRamseyClasses.Lifts.globalCanonicalRelation_of_symbol_iff
+#check AllThoseRamseyClasses.Lifts.globalCanonicalRelation_compatible_witness
+#check AllThoseRamseyClasses.Lifts.globalCanonicalRelation_of_selected_weak
+#check AllThoseRamseyClasses.Lifts.globalCanonicalWitness_from_shared_relation
+
+#print axioms AllThoseRamseyClasses.Lifts.globalPieceSymbolOf_arity
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalRelation_of_symbol_iff
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalRelation_compatible_witness
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalRelation_of_selected_weak
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalWitness_from_shared_relation
