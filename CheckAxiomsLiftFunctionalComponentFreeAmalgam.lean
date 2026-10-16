@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.FunctionalComponentFreeAmalgam
+
+#check AllThoseRamseyClasses.Lifts.closedSubsetEmbedding
+#check AllThoseRamseyClasses.Lifts.componentRootToPiece
+#check AllThoseRamseyClasses.Lifts.componentRootToComplement
+#check AllThoseRamseyClasses.Lifts.component_isFreeAmalgam
+
+#print axioms AllThoseRamseyClasses.Lifts.closedSubsetEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.component_isFreeAmalgam
