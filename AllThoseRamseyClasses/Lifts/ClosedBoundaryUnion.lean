@@ -73,23 +73,27 @@ theorem functionalBoundaryClosure_union_isClosed
   · exact A.functionClosure_isClosed (gaifmanNeighborhood A.graph C)
   · exact A.subset_functionClosure (gaifmanNeighborhood A.graph C)
 
+/-- The literal vertex set of the induced boundary-plus-component
+structure. Naming it explicitly prevents `∪` from being interpreted
+as a union of TYPES when the set is coerced to its subtype. -/
+abbrev functionalBoundaryClosureVertices
+    (A : Structure L V) (C : Set V) : Set V :=
+  A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C
+
 /-- The induced structure on Cl(N(C)) ∪ C exists and its inclusion
 is a full embedding reflecting relations and entire function value
 sets, not merely a weak induced restriction. -/
 def functionalBoundaryClosureInduce
     (A : Structure L V) (C : Set V) :
-    Structure L
-      (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C) :=
-  A.induce
-    (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C)
+    Structure L (functionalBoundaryClosureVertices A C) :=
+  A.induce (functionalBoundaryClosureVertices A C)
     (functionalBoundaryClosure_union_isClosed A C)
 
 /-- The corresponding exact full embedding back into A. -/
 def functionalBoundaryClosureEmbedding
     (A : Structure L V) (C : Set V) :
     Structure.Embedding (functionalBoundaryClosureInduce A C) A :=
-  A.inclusion
-    (A.functionClosure (gaifmanNeighborhood A.graph C) ∪ C)
+  A.inclusion (functionalBoundaryClosureVertices A C)
     (functionalBoundaryClosure_union_isClosed A C)
 
 end AllThoseRamseyClasses.Lifts
