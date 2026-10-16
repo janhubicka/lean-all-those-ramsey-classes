@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidencePaperEmbedding
+
+#check AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.paperIncidenceStructure
+#check AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.paperIncidenceEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.paperIncidenceEmbedding
