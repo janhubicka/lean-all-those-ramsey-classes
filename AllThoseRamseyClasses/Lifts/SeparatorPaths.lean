@@ -33,8 +33,13 @@ theorem reachOutside_of_cut_subset (A : RelStructure L V)
     (x y : {v : V // v ∉ R})
     (h : ReachOutside A R x y) :
     ReachOutside A S (outsideCutMap hSR x) (outsideCutMap hSR y) := by
-  exact (Relation.ReflTransGen.lift (outsideCutMap hSR)
-    (fun _ _ hxy => hxy)) h
+  induction h with
+  | refl =>
+      exact Relation.ReflTransGen.refl
+  | tail hpath hedge ih =>
+      have hstep : outsideAdjacency A S
+          (outsideCutMap hSR _) (outsideCutMap hSR _) := hedge
+      exact ih.tail hstep
 
 /-- Gaifman reachability is symmetric (without needing an
 implicit symmetric-relation typeclass). -/
@@ -45,8 +50,9 @@ theorem reachOutside_symm (A : RelStructure L V) (R : Set V)
   induction h with
   | refl => exact Relation.ReflTransGen.refl
   | tail hpath hedge ih =>
-      exact (Relation.ReflTransGen.single
-        (GaifmanAdjacent.symm hedge)).trans ih
+      have hback : outsideAdjacency A R _ _ :=
+        GaifmanAdjacent.symm hedge
+      exact (Relation.ReflTransGen.single hback).trans ih
 
 /-- The original connected component is contained in the component
 after deleting fewer vertices. No additional vertex identifications. -/
