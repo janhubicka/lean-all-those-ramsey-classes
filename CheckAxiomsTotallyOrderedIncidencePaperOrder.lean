@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidencePaperOrder
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_new
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.paperIncidenceTagLE_map_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.paperIncidenceLE_map_iff
