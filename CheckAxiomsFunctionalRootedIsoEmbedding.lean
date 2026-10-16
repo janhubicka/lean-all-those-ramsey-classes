@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.FunctionalRootedIsoEmbedding
+
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding_surjective
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding_root
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.inverse_on_vertices
+
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding_surjective
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.toFullEmbedding_root
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso.inverse_on_vertices
