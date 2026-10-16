@@ -118,7 +118,7 @@ theorem markedEmbedding_old_image
   have hx : isOriginalVertex B (e (.inl x)) :=
     hSort.mpr (show isOriginalVertex A (.inl x) from trivial)
   cases h : e (.inl x) with
-  | inl y => exact ⟨y, h⟩
+  | inl y => exact ⟨y, rfl⟩
   | inr tag =>
       rw [h] at hx
       cases hx
