@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.AlignedForbiddenPieceRootChart
+
+#check AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension
+#check AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension_root
+#check AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension_rootMap
+
+#print axioms AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension
+#print axioms AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension_root
+#print axioms AllThoseRamseyClasses.Lifts.alignedFunctionalRootExtension_rootMap
