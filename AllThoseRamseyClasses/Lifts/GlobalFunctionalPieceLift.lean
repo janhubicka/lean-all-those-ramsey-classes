@@ -15,6 +15,8 @@ structure on the ordered standard carrier Fin n and an extension
 by a full root embedding. Two charts can be freely glued only when
 these structures are EQUAL, not merely when their widths agree.
 
+This first global index is universe-zero on the finite source carriers (Type), which permits an exact Fin n full root in the existing FunctionalRootExtension API. This does not assert a universe-polymorphic correspondence with every possible higher-universe carrier; that transfer needs an explicit renaming lemma.
+
 This handles pieces belonging to different full root structures:
 their incompatibility profiles are compared as subsets of the SAME
 type of all rooted charts at width n. Hence the setoid does not
@@ -36,20 +38,20 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u v
+universe u
 
 /-- One rooted functional structure with an exact complete induced
 root structure on its ordered Fin n root. -/
 structure FunctionalRootChart (L : Language.{u}) (n : ℕ) where
   root : Structure L (Fin n)
-  ext : FunctionalRootExtension.{u,v} root
+  ext : FunctionalRootExtension.{u,0} root
 
 /-- The underlying native rooted pattern, with ordered roots
 given by the full embedding of the standard root. -/
 def FunctionalRootChart.pattern
     {L : Language.{u}} {n : ℕ}
-    (P : FunctionalRootChart.{u,v} L n) :
-    FunctionalRootedPattern.{u,v} L n :=
+    (P : FunctionalRootChart.{u,0} L n) :
+    FunctionalRootedPattern.{u,0} L n :=
   FunctionalRootExtension.toEnumeratedRootedPattern
     P.root (Equiv.refl (Fin n)) P.ext
 
@@ -57,17 +59,17 @@ def FunctionalRootChart.pattern
 This predicate is geometric, not an arbitrary choice of patterns. -/
 def FunctionalRootChart.IsForbiddenPiece
     {L : Language.{u}} {n : ℕ}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    (P : FunctionalRootChart.{u,v} L n) : Prop :=
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (P : FunctionalRootChart.{u,0} L n) : Prop :=
   P.pattern ∈ forbiddenGeometricFunctionalPieces F n
 
 /-- All selected genuine forbidden pieces of a fixed width, with
 their full rooted structure still attached. -/
 abbrev SelectedFunctionalChart
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (n : ℕ) :=
-  {P : FunctionalRootChart.{u,v} L n // P.IsForbiddenPiece F}
+  {P : FunctionalRootChart.{u,0} L n // P.IsForbiddenPiece F}
 
 /-- Two charts are incompatible when their FULL root structures
 agree and the corresponding full functional free amalgam belongs
@@ -78,8 +80,8 @@ agree on all old relations and complete function value fibres
 over the rooted seam. -/
 def FunctionalRootChart.Incompatible
     {L : Language.{u}} {n : ℕ}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    (P Q : FunctionalRootChart.{u,v} L n) : Prop :=
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (P Q : FunctionalRootChart.{u,0} L n) : Prop :=
   ∃ h : P.root = Q.root,
     forbiddenFunctionalGlue P.root F P.ext (h.symm ▸ Q.ext)
 
@@ -88,7 +90,7 @@ forbidden pieces of fixed width, with arbitrary compatible rooted
 charts as tests (not only tests that are themselves forbidden). -/
 def globalFunctionalPieceSetoid
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (n : ℕ) : Setoid (SelectedFunctionalChart F n) :=
   pieceSetoid (fun P Q =>
     FunctionalRootChart.Incompatible F P.1 Q)
@@ -96,7 +98,7 @@ def globalFunctionalPieceSetoid
 /-- Global incompatibility-equivalence classes at root width n. -/
 abbrev GlobalFunctionalPieceClass
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (n : ℕ) :=
   Quotient (globalFunctionalPieceSetoid F n)
 
@@ -104,20 +106,20 @@ abbrev GlobalFunctionalPieceClass
 positive widths as in its regularity definition. -/
 abbrev GlobalFunctionalPieceSymbol
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop) :=
+    (F : ∀ {W : Type}, Structure L W → Prop) :=
   Σ k : {n : ℕ // 0 < n}, GlobalFunctionalPieceClass F k.1
 
 /-- Every global new relation symbol has exactly the width of
 the class of pieces it indexes. -/
 def globalFunctionalPieceArity
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (i : GlobalFunctionalPieceSymbol F) : ℕ :=
   i.1.1
 
 theorem globalFunctionalPieceArity_positive
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (i : GlobalFunctionalPieceSymbol F) :
     0 < globalFunctionalPieceArity F i :=
   i.1.2
@@ -127,9 +129,9 @@ a given global quotient class. No choice of an arbitrary canonical
 representative is used to interpret a new relation. -/
 def globalFunctionalPieceRepresentatives
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (F : ∀ {W : Type}, Structure L W → Prop)
     (i : GlobalFunctionalPieceSymbol F) :
-    Set (FunctionalRootedPattern.{u,v} L
+    Set (FunctionalRootedPattern.{u,0} L
       (globalFunctionalPieceArity F i)) :=
   {T | ∃ P : SelectedFunctionalChart F i.1.1,
     Quotient.mk (globalFunctionalPieceSetoid F i.1.1) P = i.2 ∧
@@ -140,7 +142,7 @@ quotient classes of actual forbidden pieces in every positive
 width; original functions are merely universe-lifted. -/
 def globalFunctionalPieceLanguage
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop) :=
+    (F : ∀ {W : Type}, Structure L W → Prop) :=
   functionalLiftLanguageBig L
     (GlobalFunctionalPieceSymbol F)
     (globalFunctionalPieceArity F)
@@ -151,8 +153,8 @@ The extra tuple is present exactly when some genuine piece
 from its class has a weak HE realization with distinct roots. -/
 def globalFunctionalCanonicalLift
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    {W : Type v} (A : Structure L W) :
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {W : Type} (A : Structure L W) :
     Structure (globalFunctionalPieceLanguage F) W :=
   functionalCanonicalLiftBig L
     (GlobalFunctionalPieceSymbol F)
@@ -163,8 +165,8 @@ def globalFunctionalCanonicalLift
 old partial/set-valued function interpretations. -/
 @[simp] theorem globalFunctionalCanonicalLift_shadow
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    {W : Type v} (A : Structure L W) :
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {W : Type} (A : Structure L W) :
     functionalShadowBig L
       (GlobalFunctionalPieceSymbol F)
       (globalFunctionalPieceArity F)
@@ -178,8 +180,8 @@ old partial/set-valued function interpretations. -/
 without accidentally restricting tests or losing root injectivity. -/
 theorem globalFunctionalCanonicalRelation_iff
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    {W : Type v} (A : Structure L W)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {W : Type} (A : Structure L W)
     (i : GlobalFunctionalPieceSymbol F)
     (xs : Fin (globalFunctionalPieceArity F i) → W) :
     (globalFunctionalCanonicalLift F A).rel (.inr i) xs ↔
@@ -203,8 +205,8 @@ tuple. This holds independently of the target's additional
 possible piece witnesses. -/
 theorem globalFunctionalCanonicalRelation_injective
     {L : Language.{u}}
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    {W : Type v} (A : Structure L W)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {W : Type} (A : Structure L W)
     (i : GlobalFunctionalPieceSymbol F)
     (xs : Fin (globalFunctionalPieceArity F i) → W)
     (h : (globalFunctionalCanonicalLift F A).rel (.inr i) xs) :
