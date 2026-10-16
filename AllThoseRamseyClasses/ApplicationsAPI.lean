@@ -2,6 +2,7 @@ import AllThoseRamseyClasses.PublicAPI
 import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
+import AllThoseRamseyClasses.Applications.PaperPositiveForbiddenTournaments
 import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
 import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
@@ -15,6 +16,7 @@ multiamalgamation theorem and *completed* class-level applications.
 
 Completed applications now include finite ordered posets, freely ordered
 digraphs and simple graphs, ordered acyclic digraphs, K_n-free graphs,
+and arbitrary forbidden-tournament families in oriented digraphs,
 pointed equivalences, and the finite-target m-unary-function case.
 The freely ordered partial Steiner triple class is a separately completed
 **auxiliary** example not included among the paper's examples.
@@ -27,6 +29,13 @@ the paper is proved using the B-copywise forward-edge deletion lemma.
 The freely ordered digraph and simple-graph results from the paper are
 proved separately using ordered relational Ramsey and the genuine free
 amalgamation criterion; their order is the distinguished external order.
+
+The arbitrary-family irreducible-pattern theorem and the source-matched
+positive tournament-avoidance theorem are now compiled in this API.
+For induced tournament avoidance in unrestricted digraphs use
+`freelyOrderedTournamentFreeDigraphs_areRamsey`; for Henson-style
+positive-copy avoidance in oriented digraphs use
+`freelyOrderedPositiveTournamentFreeDigraphs_areRamsey`.
 
 The freely ordered pointed-equivalence Ramsey class from the paper is
 proved via its full idempotent unary-function encoding.

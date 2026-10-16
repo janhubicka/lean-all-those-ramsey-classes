@@ -10,7 +10,8 @@ additional hypotheses needed to specialize the theorem.
 
 Use `AllThoseRamseyClasses.ApplicationsAPI` (or the curated root
 `AllThoseRamseyClasses`) for the verified ordered-poset, paper graph,
-acyclic digraph, K_n-free graph, pointed-equivalence, finite-target
+acyclic digraph, K_n-free graph, positive-tournament-free oriented
+digraph families, pointed-equivalence, finite-target
 m-unary, and auxiliary Steiner Ramsey theorems.
 The core `PublicAPI` stays independent of individual applications.
 See the [research wiki's applications reference](wiki/Applications.md).

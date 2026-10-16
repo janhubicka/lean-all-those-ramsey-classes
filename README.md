@@ -272,6 +272,7 @@ statement is **now proved** at `Nat.card C0`. The complete theorem
 | **Freely ordered graphs and digraphs (paper)** | `PaperGraphs.freelyOrderedSimpleGraphs_areRamsey`, `freelyOrderedDigraphs_areRamsey` | **Fully proved**, PR #237. |
 | **Ordered acyclic digraphs (paper)** | `PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey` | **Fully proved**, PR #238. |
 | **Freely ordered K_n-free graphs (paper remark)** | `PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey` | **Fully proved**, reusable forbidden-irreducible proof, PR #241. |
+| **Arbitrary families of forbidden tournaments (paper remark)** | `PaperGraphs.freelyOrderedPositiveTournamentFreeDigraphs_areRamsey` | **Fully proved**, PRs #350 and #355. Positive directed copies are forbidden in loopless oriented graphs; any finite tournament-family sizes, no finiteness requirement on the family. The distinct induced-copy version for unrestricted digraphs is also proved. |
 | **Pointed equivalences (paper)** | `PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey` | **Fully proved**, PR #239; total idempotent singleton-valued unary function. |
 | **Finite-target ordered m-unary functions (paper)** | `TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey` | **Fully proved for finite B**, PR #240; countably infinite B remains separate. |
 | **Auxiliary freely ordered partial Steiner triples** | `SteinerTriples.orderedSteiner_isRamsey` | **Fully proved**, PR #236; strong embeddings, exact weak cutoff zero. Not in the paper. |

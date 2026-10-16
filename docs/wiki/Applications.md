@@ -14,6 +14,7 @@ and functional applications use full function-preserving embeddings.
 | Freely ordered simple undirected graphs | `PaperGraphs.freelyOrderedSimpleGraphs_areRamsey` | [PR #237](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/237) |
 | Directed acyclic graphs with linear extensions | `PaperGraphs.freelyOrderedAcyclicDigraphs_areRamsey` | [PR #238](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/238) |
 | Freely ordered `K_n`-free simple graphs | `PaperGraphs.freelyOrderedKnFreeGraphs_areRamsey` | [PR #241](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/241) |
+| Oriented digraphs omitting arbitrary families of tournaments as **positive copies** | `PaperGraphs.freelyOrderedPositiveTournamentFreeDigraphs_areRamsey` | [PR #355](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/355) |
 | Finite ordered posets with chosen linear extensions | `OrderedPosets.orderedPoset_isRamsey` | [PR #227](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/227) |
 | Freely ordered pointed equivalences | `PointedEquivalences.freelyOrderedPointedEquivalences_areRamsey` | [PR #239](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/239) |
 | Finite B with any fixed finite number `m` of total unary functions | `TotalUnaryFunctions.freelyOrderedTotalUnaryFunctions_areRamsey` | [PR #240](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/240) |
@@ -24,14 +25,26 @@ acyclic examples are given as ordered relational structures with an
 external order; functional embeddings reflect the **entire set of
 function values**. These distinctions are explicit in the sources.
 
-For the K_n-free case, the stronger reusable theorem
+For the K_n-free case, the reusable theorem
 `ForbiddenPatterns.freeAmalgamation_of_irreducible_forbidden`
-proves that forbidding an irreducible **full-embedding** pattern
-preserves hereditary free amalgamation. The corresponding general
-ordered Ramsey theorem is
-`ForbiddenPatterns.orderedRamsey_avoiding_irreducible`.
-This is proved for one forbidden pattern; do not silently present it
-as a formalization of arbitrary infinite forbidden families.
+proves preservation of hereditary free amalgamation when one
+irreducible **full-embedding** pattern is forbidden. PR #350 extends
+this without a family-size bound: `ForbFamily` permits an arbitrary
+indexed family of irreducible patterns with **varying carrier types**,
+and `orderedRamsey_avoiding_irreducible_family` proves their
+finite freely ordered Ramsey property.
+
+The tournament remark has a nontrivial semantic distinction:
+`freelyOrderedTournamentFreeDigraphs_areRamsey` excludes *full
+induced* copies in unrestricted digraphs, while the Henson-style
+`freelyOrderedPositiveTournamentFreeDigraphs_areRamsey` excludes
+*positive directed subgraph* copies in loopless **oriented** graphs.
+PR #355 proves these notions coincide in oriented targets (an
+injective positive tournament copy must be induced), proves that
+oriented graphs are a free-amalgamation class, and obtains the
+unconditional Ramsey conclusion for any family of tournaments.
+Do not conflate these classes or claim ordinary subgraph avoidance
+for unrestricted digraphs.
 
 ## Ordered posets: exact weak local completion
 
