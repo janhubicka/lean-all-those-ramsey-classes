@@ -258,10 +258,16 @@ See [Metric applications](Metric-applications.md), Lean
 [PR #258](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/258),
 and full [CI 38779692029](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38779692029).
 
-The paper's **full** `L(A)` still requires the prescribed convex
-order, closure functions and embedding extension. The finite
-metric Ramsey arrow, strong amalgamation and local completion
-have not been certified by the metric component alone.
+The complete finite canonical `L(A)` embedding-map components
+have since been certified: convexity, all original/new closure
+order comparisons, exact preservation of the completed partial
+function table and uniqueness are collected in
+`MetricSaturation.canonicalLift_finite_orderedFunctionalEmbedding`
+and `mapCanonicalLift_unique_of_completedClosure`,
+[PR #342](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/342).
+The numbered lemma also has an infinite-S formulation and needs an
+exact source-matching bridge. Finite metric Ramsey, class-level
+strong amalgamation and exact local completion remain open.
 
 ## Isometry-induced maps on canonical closure tags
 
@@ -290,13 +296,15 @@ See [PR #261](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/2
 [CI 38798821065](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38798821065)
 and [Metric applications](Metric-applications.md).
 
-The full canonical **metric embedding** is now verified
-by `MetricCanonicalLiftEmbedding.mapCanonicalLift_isometry`
-and `mapCanonicalLift_injective`, merged in
-[PR #274](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/274),
-full [CI 38812329333](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38812329333).
-The particular convex **order** and its preservation under
-embeddings remain unverified.
+The canonical **metric embedding** is verified by
+`MetricCanonicalLiftEmbedding.mapCanonicalLift_isometry`
+and `mapCanonicalLift_injective`, [PR #274](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/274).
+The exact lifted **order preservation**, including closure-to-closure
+comparisons, is now proved in [PR #336](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/336).
+The assembled metric, order and completed partial-function
+embedding certificate is [PR #342](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/342).
+These proofs do not imply class-level metric Ramsey without the
+remaining functional amalgamation and local-completion arguments.
 
 ## Nested metric closure functions and canonical insertion order
 
@@ -314,22 +322,54 @@ the originals and sorts nested levels increasingly.
 [PR #270](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/270),
 [CI 38824390934](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38824390934).
 
-The completed jump-class last-vertex property is under
-review in [PR #279](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/279).
-The full interval convexity and order-preserving
-functorial embedding remain open, as do strong
-amalgamation, exact local completion and the
-finite metric Ramsey theorem.
+The completed canonical order is now checked through the
+nested class-interval convexity and full old/new order transport;
+[PR #293](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/293)
+checks the manuscript's literal paper-block convexity, and
+[PR #336](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/336)
+checks all pairwise order comparisons. The combined embedding
+certificate is PR #342. Full functional strong amalgamation,
+exact weak local completion and the finite metric Ramsey
+theorem remain open; do not mistake the embedding certificate
+for a class-level Ramsey proof.
+
+## Newly completed forbidden-pattern and admissible-order examples
+
+The general **positive-copy avoidance** theorem is now proved for an
+arbitrary family of irreducible relational patterns. Positive
+embeddings need only preserve relation tuples, but are injective;
+Ramsey copies remain *full/induced* embeddings. By passing to all
+same-carrier relational extensions of the forbidden patterns, this
+reduces to the checked full-forbidden-family criterion. In particular,
+`PaperGraphs.freelyOrderedPositiveTournamentFreeAllDigraphs_areRamsey`
+covers unrestricted finite digraphs allowing loops and digons;
+[PR #361](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/361).
+This generalizes the oriented positive-tournament theorem, PR #355,
+without conflating positive and induced tournament copies.
+
+The loop-first admissible-order Ramsey example is fully proved:
+`PaperGraphs.loopFirstOrderedDigraphs_areRamsey`,
+[PR #358](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/358).
+The target order is obtained by sorting looped vertices first and
+preserving the original order within each one-point type. The
+old witness is **not** globally order-embedded in the reordered
+witness; the proof uses B-copywise Ramsey transfer.
+
+The arbitrary relational one-point-type version of the admissible
+reordering theorem is under validation in
+[PR #367](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/367).
+The original proposition's general-language scope must remain
+separate until the type-code bridge and complete CI pass.
 
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
 | --- | --- | --- |
 | S-metric spaces without jumps | Numerical/completion components; rounded-sum/four-values algebra | Exact S-specific local completion and class Ramsey endpoint |
-| Convexly ordered S-metrics with jumps | Canonical S-metric and isometry, completed lower-to-higher F_j table, finite block/jump equivalence and candidate insertion order | Prove class-convexity and order-preserving embeddings, then strong amalgamation, exact local completion and the finite Ramsey endpoint |
+| Convexly ordered S-metrics with jumps | Fully audited finite canonical metric/order/partial-function embedding certificate (PRs #336, #342), paper-block convexity (#293), proper-jump crossing and empty-base metric gluing (#346, #349) | Complete nonempty-base functional strong amalgamation, simultaneous nested order extension, corrected weak local completion and the finite class Ramsey theorem |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
-| Totally ordered incidence structures | Proposed incidence translation | Full embedding reflection, closed heredity, exact local completion |
+| Totally ordered incidence structures | Doubled-arity exact relational embedding equivalence (#331); incidence map injectivity (#344); complete old/new partial-function fibres (#352) packaged as a genuine full functional embedding (#356) | Combine with the source-matched full ordered relational expansion, then functional class strong amalgamation, corrected exact weak local completion and Ramsey conclusion |
 
 The [working manuscript ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-VALIDATION-2026-10-14.md)
 records earlier checks and TODOs; the manuscript's nonprinting
