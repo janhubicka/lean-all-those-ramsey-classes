@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalHigherTagOrder
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertion_higher_tag_after_class
