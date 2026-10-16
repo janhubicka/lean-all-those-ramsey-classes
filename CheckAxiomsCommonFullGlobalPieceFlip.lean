@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.CommonFullGlobalPieceFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCommonFullLiftFlip
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRelation_from_common_lift_piece
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCommonFullLiftFlip
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRelation_from_common_lift_piece

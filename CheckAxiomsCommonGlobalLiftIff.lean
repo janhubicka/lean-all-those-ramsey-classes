@@ -1,0 +1,14 @@
+import AllThoseRamseyClasses.Lifts.CommonGlobalLiftIff
+
+#check AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft
+#check AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_shadow
+#check AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_embedding
+#check AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_embeddingRight
+#check AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift.ofAgreeOn
+#check AllThoseRamseyClasses.Lifts.commonGlobalCanonicalLift_nonempty_iff_agreeOn
+
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_shadow
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_embedding
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalLiftFromLeft_embeddingRight
+#print axioms AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift.ofAgreeOn
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalCanonicalLift_nonempty_iff_agreeOn
