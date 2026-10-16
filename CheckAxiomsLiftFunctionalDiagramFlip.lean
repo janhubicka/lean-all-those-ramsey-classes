@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Lifts.FunctionalDiagramFlip
+
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagramProfile
+#check AllThoseRamseyClasses.Lifts.functionalDiagramPieceSetoid
+#check AllThoseRamseyClasses.Lifts.functionalDiagramPiece_equiv_iff
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram_replace
+#check AllThoseRamseyClasses.Lifts.functionalDiagramFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalDiagramPiece_equiv_iff
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram_replace
+#print axioms AllThoseRamseyClasses.Lifts.functionalDiagramFlip
