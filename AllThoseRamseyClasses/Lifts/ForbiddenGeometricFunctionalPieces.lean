@@ -45,7 +45,7 @@ def functionalRootedGraph {n : ℕ}
 captured by a full graph isomorphism, including preservation and
 reflection of every actual function-value incidence. -/
 abbrev FunctionalRootedPatternIso {n : ℕ}
-    (P Q : FunctionalRootedPattern.{u,v} L n) : Type (max u (v+1)) :=
+    (P Q : FunctionalRootedPattern.{u,v} L n) :=
   RootedPatternIso (functionalRootedGraph P) (functionalRootedGraph Q)
 
 /-- The rooted isomorphism relation is an actual equivalence on
