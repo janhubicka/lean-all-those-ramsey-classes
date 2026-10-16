@@ -38,7 +38,6 @@ ACTIVE = {
     "AllThoseRamseyClasses.Applications.SteinerOrderPushout",
     "AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation",
     "AllThoseRamseyClasses.Applications.SteinerLocalCompletion",
-    "AllThoseRamseyClasses.Applications.MetricJumpSandwich",
     "AllThoseRamseyClasses.Applications.MetricJumpSamedist",
     "AllThoseRamseyClasses.Applications.MetricConvexityTransfer",
     "AllThoseRamseyClasses.Applications.MetricJumpQuotient",
@@ -62,6 +61,26 @@ ACTIVE = {
     "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
     "AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts",
 }
+# New independently validated proof modules register themselves with
+# one marker file per root.  This preserves an explicit reviewed
+# keep-list, while avoiding a Git conflict in this script whenever two
+# independent research PRs add new application theorems.
+ROOT_MARKERS = BASE / "scripts" / "active_roots"
+for marker_path in sorted(ROOT_MARKERS.glob("*.txt")):
+    entries = [line.strip() for line in
+               marker_path.read_text(encoding="utf-8").splitlines()
+               if line.strip() and not line.lstrip().startswith("#")]
+    if len(entries) != 1:
+        raise SystemExit(f"Expected exactly one module in {marker_path}")
+    name = entries[0]
+    if not re.fullmatch(r"AllThoseRamseyClasses(?:\.[A-Za-z0-9_]+)+", name):
+        raise SystemExit(f"Invalid root {name!r} in {marker_path}")
+    if marker_path.stem != name.rsplit(".", 1)[-1]:
+        raise SystemExit(f"Marker filename must match the module: {marker_path}")
+    if name in ACTIVE:
+        raise SystemExit(f"Root is already protected elsewhere: {name}")
+    ACTIVE.add(name)
+
 missing = sorted(ACTIVE - sources.keys())
 if missing:
     raise SystemExit("Missing active module: " + ", ".join(missing))
