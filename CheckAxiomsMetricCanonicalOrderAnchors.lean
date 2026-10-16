@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalOrderAnchors
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertionAnchor
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertionKey_fst
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertion_lt_of_anchor_lt
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalInsertionAnchor_mono
