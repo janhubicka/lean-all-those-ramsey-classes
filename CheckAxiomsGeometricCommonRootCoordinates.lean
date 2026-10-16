@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricCommonRootCoordinates
+
+#check AllThoseRamseyClasses.Lifts.geometricPiece_commonRootCoordinates
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_commonRootCoordinates
