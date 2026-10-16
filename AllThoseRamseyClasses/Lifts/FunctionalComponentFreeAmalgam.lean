@@ -35,8 +35,8 @@ def closedSubsetEmbedding
   toFun := fun x => ⟨x.1, hST x.2⟩
   injective := by
     intro x y h
-    apply Subtype.ext
-    exact congrArg Subtype.val h
+    have hv : x.1 = y.1 := congrArg (fun z : T => z.1) h
+    exact Subtype.ext hv
   map_rel_iff := fun _ _ => Iff.rfl
   map_func := by
     intro F xs
