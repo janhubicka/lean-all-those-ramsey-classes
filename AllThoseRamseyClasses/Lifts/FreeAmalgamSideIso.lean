@@ -167,11 +167,15 @@ theorem freeAmalgam_precompose_left_iso
     · rintro (⟨as, a, ha, hargs, hout⟩ |
               ⟨bs, b, hb, hargs, hout⟩)
       · have heval : e a ∈ Left.func F (e ∘ as) := by
-          rw [e.map_func F as]
-          exact ⟨a, ha, rfl⟩
+          have himg : e a ∈ imageSet e (NewLeft.func F as) :=
+            ⟨a, ha, rfl⟩
+          rw [e.map_func F as] at himg
+          exact himg
         apply (hfree.func_iff F xs y).mpr
         refine Or.inl ⟨e ∘ as, e a, heval, ?_, ?_⟩
-        · simpa [Function.comp_assoc] using hargs
+        · calc
+            xs = ((iL.comp e) ∘ as) := hargs
+            _ = iL ∘ (e ∘ as) := by funext i; rfl
         · exact hout
       · exact (hfree.func_iff F xs y).mpr
           (Or.inr ⟨bs, b, hb, hargs, hout⟩)
