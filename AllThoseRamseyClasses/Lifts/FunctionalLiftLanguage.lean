@@ -152,17 +152,9 @@ def FunctionalCanonicalExtraRelation
     ∃ P : FunctionalRootedPattern.{u,v} L (ar i),
       P ∈ pieces i ∧ FunctionalRootRealization P A xs
 
-/-- The actual functional expansion of A: no old function symbol
-is dropped or replaced by a temporary graph predicate. -/
-def functionalCanonicalLift
-    (L : Language.{u}) (I : Type u) (ar : I → ℕ)
-    (pieces : ∀ i : I, Set (FunctionalRootedPattern.{u,v} L (ar i)))
-    (A : Structure L (ULift PUnit)) :=
-  functionalWithExtra L I ar A
-    (FunctionalCanonicalExtraRelation L I ar pieces A)
-
-/-- General finite- or infinite-carrier canonical functional lift.
-This version is explicitly carrier-polymorphic. -/
+/-- The actual functional expansion of A, for any carrier:
+no old function symbol is dropped or replaced by a temporary
+graph predicate. -/
 def functionalCanonicalLiftOn
     (L : Language.{u}) (I : Type u) (ar : I → ℕ)
     (pieces : ∀ i : I, Set (FunctionalRootedPattern.{u,v} L (ar i)))
