@@ -1,0 +1,14 @@
+import AllThoseRamseyClasses.Lifts.NormalizedFunctionalFlip
+
+#check AllThoseRamseyClasses.Lifts.FunctionalRootExtension
+#check AllThoseRamseyClasses.Lifts.FunctionalRootExtension.glued
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalGlue
+#check AllThoseRamseyClasses.Lifts.functionalIncompatibilityProfile
+#check AllThoseRamseyClasses.Lifts.functionalRootPieceSetoid
+#check AllThoseRamseyClasses.Lifts.functionalRootPiece_equiv_iff
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalGlue_replace
+#check AllThoseRamseyClasses.Lifts.normalizedFunctionalFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootPiece_equiv_iff
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFunctionalGlue_replace
+#print axioms AllThoseRamseyClasses.Lifts.normalizedFunctionalFlip
