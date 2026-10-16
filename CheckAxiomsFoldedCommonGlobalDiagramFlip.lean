@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.FoldedCommonGlobalDiagramFlip
+
+#check AllThoseRamseyClasses.Lifts.FoldedGlobalCanonicalLiftsAgreeOn
+#check AllThoseRamseyClasses.Lifts.CommonFoldedGlobalCanonicalLift
+#check AllThoseRamseyClasses.Lifts.CommonFoldedGlobalCanonicalLift.agreeOn
+#check AllThoseRamseyClasses.Lifts.selectedFoldedCommonFullLiftDiagramFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.CommonFoldedGlobalCanonicalLift.agreeOn
+#print axioms AllThoseRamseyClasses.Lifts.selectedFoldedCommonFullLiftDiagramFlip
