@@ -73,8 +73,17 @@ with ordered roots. Existing piece-lift constructions can take
 this as their rooted pattern. -/
 def geometricRootedGraphPiece (A : Structure L V) {n : ℕ}
     (d : GeometricFunctionalPieceData A n) :
-    RootedPattern.{u,v} L.graph n :=
-  componentPiece A.graph d.roots d.roots_injective d.left
+    RootedPattern.{u,v} L.graph n where
+  Carrier := geometricPieceVertices A d
+  str := (geometricFunctionalPiece A d).graph
+  root := fun i => ⟨d.roots i, by
+    change d.roots i ∈
+      (Set.range d.roots ∪
+        componentFrom A.graph (Set.range d.roots) d.left)
+    exact Or.inl ⟨i, rfl⟩⟩
+  root_injective := by
+    intro i j h
+    exact d.roots_injective (congrArg Subtype.val h)
 
 /-- The graph of the genuinely induced functional piece is literally
 the relationally induced rooted pattern's underlying structure.
