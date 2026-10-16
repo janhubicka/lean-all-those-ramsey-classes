@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GeometricFunctionalDiagramFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalDiagramFlip
+#check AllThoseRamseyClasses.Lifts.geometricMinimalPieceDiagramFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricFunctionalDiagramFlip
+#print axioms AllThoseRamseyClasses.Lifts.geometricMinimalPieceDiagramFlip
