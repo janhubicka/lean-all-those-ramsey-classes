@@ -95,8 +95,37 @@ theorem GlobalCanonicalMaximalAlong.of_allowed_extension
   intro UC C hC eDC s xs
   have hCfromA := hmax C hC (eDC.comp eAD) s xs
   have hDfromA := hmax D hD eAD s xs
-  simpa only [Function.comp_assoc] using
-    hCfromA.trans hDfromA.symm
+  have hComposed :
+      ((eDC.comp eAD) ∘ iA ∘ xs) =
+        (eDC ∘ (eAD.comp iA) ∘ xs) := by
+    funext j
+    rfl
+  have hRoot :
+      (eAD ∘ iA ∘ xs) = ((eAD.comp iA) ∘ xs) := by
+    funext j
+    rfl
+  have h : (globalFunctionalCanonicalLift F C).rel (.inr s)
+      (eDC ∘ (eAD.comp iA) ∘ xs) ↔
+      (globalFunctionalCanonicalLift F D).rel (.inr s)
+        ((eAD.comp iA) ∘ xs) := by
+    calc
+      _ ↔ (globalFunctionalCanonicalLift F C).rel (.inr s)
+        ((eDC.comp eAD) ∘ iA ∘ xs) := by
+          exact Iff.of_eq (congrArg
+            (fun t : Fin (globalFunctionalPieceArity F s) → UC =>
+              (globalFunctionalCanonicalLift F C).rel (.inr s) t)
+            hComposed.symm)
+      _ ↔ (globalFunctionalCanonicalLift F A).rel (.inr s)
+        (iA ∘ xs) := hCfromA
+      _ ↔ (globalFunctionalCanonicalLift F D).rel (.inr s)
+        (eAD ∘ iA ∘ xs) := hDfromA.symm
+      _ ↔ (globalFunctionalCanonicalLift F D).rel (.inr s)
+        ((eAD.comp iA) ∘ xs) := by
+          exact Iff.of_eq (congrArg
+            (fun t : Fin (globalFunctionalPieceArity F s) → UD =>
+              (globalFunctionalCanonicalLift F D).rel (.inr s) t)
+            hRoot)
+  exact h
 
 /-- Two maximal canonical lift witnesses have the same new
 relations on their common embedded substructure whenever a
@@ -131,7 +160,11 @@ theorem maximalLifts_agree_in_allowed_common_extension
       (globalFunctionalCanonicalLift F D).rel (.inr s)
         (eA ∘ iA ∘ xs) := hA.symm
     _ ↔ (globalFunctionalCanonicalLift F D).rel (.inr s)
-        (eB ∘ iB ∘ xs) := by rw [hTuple]
+        (eB ∘ iB ∘ xs) := by
+          exact Iff.of_eq (congrArg
+            (fun t : Fin (globalFunctionalPieceArity F s) → UD =>
+              (globalFunctionalCanonicalLift F D).rel (.inr s) t)
+            hTuple)
     _ ↔ (globalFunctionalCanonicalLift F B).rel (.inr s)
         (iB ∘ xs) := hB
 
