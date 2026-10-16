@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.PaperAdmissibleOnePointTypes
+
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.onePointType_embedding
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.typeSortedLinearOrder_isAdmissible
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.typeSorted_preserves_ordered_copies
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.typeAdmissible_arrow_of_freeOrder
