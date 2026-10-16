@@ -62,7 +62,9 @@ theorem liftedOriginalRel_false_of_new
     {L : RelLanguage.{u}} {V : Type v}
     (A : TotalOrderData L V) (r : L.Symbol)
     (t : Fin (L.arity r) → IncidenceCarrier A)
-    (i : Fin (L.arity r)) (s : IncidenceTag A)
+    (i : Fin (L.arity r))
+    (s : Sigma fun q : L.Symbol =>
+      {a : Fin (L.arity q) → V // A.base.rel q a})
     (hi : t i = .inr s) :
     ¬ liftedOriginalRel A r t := by
   rintro ⟨old, hOld, _⟩
