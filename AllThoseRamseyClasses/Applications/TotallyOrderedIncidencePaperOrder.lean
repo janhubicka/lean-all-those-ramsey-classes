@@ -93,7 +93,20 @@ theorem paperIncidenceTagLE_map_iff
   rcases b with ⟨s, ⟨q, hq⟩⟩
   by_cases hrs : r = s
   · subst s
-    simpa [paperIncidenceTagLE, incidenceTagMap] using
+    have hCastU : ∀ h : r = r,
+        cast (congrArg
+          (fun z : L.Symbol => Fin (L.arity z) → U) h.symm) q = q := by
+      intro h
+      cases h
+      rfl
+    have hCastV : ∀ h : r = r,
+        cast (congrArg
+          (fun z : L.Symbol => Fin (L.arity z) → V) h.symm)
+          (f ∘ q) = f ∘ q := by
+      intro h
+      cases h
+      rfl
+    simpa [paperIncidenceTagLE, incidenceTagMap, hCastU, hCastV] using
       (hf.2.2.2 r t q)
   · simp [paperIncidenceTagLE, incidenceTagMap, hrs]
 
