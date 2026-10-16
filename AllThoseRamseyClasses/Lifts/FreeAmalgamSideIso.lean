@@ -137,7 +137,9 @@ theorem freeAmalgam_precompose_left_iso
     · rintro (⟨as, has, hargs⟩ | ⟨bs, hbs, hargs⟩)
       · apply (hfree.rel_iff R xs).mpr
         refine Or.inl ⟨e ∘ as, (e.map_rel_iff R as).mpr has, ?_⟩
-        simpa [Function.comp_assoc] using hargs
+        calc
+          xs = ((iL.comp e) ∘ as) := hargs
+          _ = iL ∘ (e ∘ as) := by funext i; rfl
       · exact (hfree.rel_iff R xs).mpr (Or.inr ⟨bs, hbs, hargs⟩)
   · intro F xs y
     constructor
@@ -147,8 +149,10 @@ theorem freeAmalgam_precompose_left_iso
         ⟨bs, b, hb, hargs, hout⟩
       · let asNew : Fin (L.funcArity F) → E' := g ∘ as
         have hnew : g a ∈ NewLeft.func F asNew := by
-          rw [g.map_func F as]
-          exact ⟨a, ha, rfl⟩
+          have himg : g a ∈ imageSet g (Left.func F as) :=
+            ⟨a, ha, rfl⟩
+          rw [g.map_func F as] at himg
+          exact himg
         have hmap :
             ((iL.comp e) ∘ asNew) = iL ∘ as := by
           funext i
