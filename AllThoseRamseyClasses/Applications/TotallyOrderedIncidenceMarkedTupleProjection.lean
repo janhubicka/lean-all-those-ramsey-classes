@@ -75,7 +75,11 @@ theorem markedEmbedding_positiveTag_map
       (fun i => (Sum.inl (f (t i)) : IncidenceCarrier B)) := by
     funext i
     exact markedEmbedding_originalPart_spec A B e (t i)
-  rw [htuple, fullIncidenceFibre_old B r (f ∘ t)] at himage
+  rw [htuple] at himage
+  change e (positiveTag A r t ht) ∈
+    fullIncidenceFibre B r
+      (fun i => (Sum.inl ((f ∘ t) i) : IncidenceCarrier B)) at himage
+  rw [fullIncidenceFibre_old B r (f ∘ t)] at himage
   change some (e (positiveTag A r t ht)) =
     incidenceValue B r (f ∘ t) at himage
   have htB : B.base.rel r (f ∘ t) :=
