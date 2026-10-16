@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.FunctionalPieceIncidence
+
+#check AllThoseRamseyClasses.Lifts.gaifmanTuple_side_localization
+#check AllThoseRamseyClasses.Lifts.functionalIncidence_side_localization
+
+#print axioms AllThoseRamseyClasses.Lifts.gaifmanTuple_side_localization
+#print axioms AllThoseRamseyClasses.Lifts.functionalIncidence_side_localization
