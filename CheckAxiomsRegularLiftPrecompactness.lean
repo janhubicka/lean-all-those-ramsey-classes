@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.RegularLiftPrecompactness
+
+#check AllThoseRamseyClasses.Lifts.GlobalFunctionalPieceRegular
+#check AllThoseRamseyClasses.Lifts.finite_globalDistinctRootExtraData_of_regular
+#check AllThoseRamseyClasses.Lifts.globalCanonicalDistinctRootExtraData
+#check AllThoseRamseyClasses.Lifts.finite_globalCanonicalLiftOptions_of_regular
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_globalDistinctRootExtraData_of_regular
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalDistinctRootExtraData
+#print axioms AllThoseRamseyClasses.Lifts.finite_globalCanonicalLiftOptions_of_regular
