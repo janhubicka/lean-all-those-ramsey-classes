@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Lifts.GeometricPieceRootChart
+
+#check AllThoseRamseyClasses.Lifts.closedCutRoot
+#check AllThoseRamseyClasses.Lifts.componentPieceRootExtension
+#check AllThoseRamseyClasses.Lifts.componentComplementRootExtension
+#check AllThoseRamseyClasses.Lifts.functionalSource_hasRootChartDiagram
+#check AllThoseRamseyClasses.Lifts.geometricPiece_rootChart_str
+#check AllThoseRamseyClasses.Lifts.forbiddenGeometricSource_hasRootChart
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalSource_hasRootChartDiagram
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_rootChart_str
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenGeometricSource_hasRootChart
