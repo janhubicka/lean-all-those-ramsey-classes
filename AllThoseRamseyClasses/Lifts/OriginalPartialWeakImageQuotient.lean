@@ -129,4 +129,94 @@ theorem originalPartialHom_weakImage_quotient_data
     originalPartialHom_weakImage_quotient A B f hf, ?_⟩
   exact (weakImage_quotient_positiveIncidenceSurjective A B f).toOriginalPartialTupleSurjective
 
+
+/-- The generated weak-image quotient also retains the ORIGINAL 2019
+homomorphism-embedding property: every irreducible full source test
+embeds fully in the quotient.
+
+The target's ordinary full image of each irreducible test reflects
+all relations and complete function fibres. The generated quotient
+cannot add an incidence on that test which was absent from the ambient
+target, since its inclusion is weak. This statement does not identify
+the entire weak image as a full substructure of the target. -/
+theorem originalPartialHE_weakImage_quotient
+    (A : Structure L U) (B : Structure L V)
+    (f : U → V)
+    (hf : IsOriginalPartialHomomorphismEmbedding A B f) :
+    IsOriginalPartialHomomorphismEmbedding A
+      (Structure.weakImage A B f)
+      (Structure.weakImage.quotientMap (f := f)) := by
+  refine ⟨originalPartialHom_weakImage_quotient A B f hf.1, ?_⟩
+  intro X E hE e
+  obtain ⟨gB, hgB⟩ := hf.2 E hE e
+  let g : X → Set.range f :=
+    fun x => Structure.weakImage.quotientMap (f := f) (e x)
+  have hval (x : X) : (g x).1 = gB x := (hgB x).symm
+  have hInclusion :
+      (Structure.weakImage A B f).IsWeakHomomorphism
+        B Subtype.val :=
+    Structure.weakImage.inclusion_weak hf.1.toWeak
+  refine ⟨{
+    toFun := g
+    injective := ?_
+    map_rel_iff := ?_
+    map_func := ?_
+  }, ?_⟩
+  · intro x y hxy
+    apply gB.injective
+    calc
+      gB x = (g x).1 := (hval x).symm
+      _ = (g y).1 := congrArg Subtype.val hxy
+      _ = gB y := hval y
+  · intro R xs
+    constructor
+    · intro hr
+      have hb := hInclusion.1 R (g ∘ xs) hr
+      have heq : Subtype.val ∘ (g ∘ xs) = gB ∘ xs := by
+        funext i
+        exact hval (xs i)
+      rw [heq] at hb
+      exact (gB.map_rel_iff R xs).mp hb
+    · intro hr
+      exact ⟨e ∘ xs, (e.map_rel_iff R xs).mpr hr,
+        fun _ => rfl⟩
+  · intro F xs
+    ext z
+    constructor
+    · rintro ⟨x, hx, rfl⟩
+      have hsrc : e x ∈ A.func F (e ∘ xs) := by
+        rw [← e.map_func F xs]
+        exact ⟨x, hx, rfl⟩
+      exact ⟨e ∘ xs, e x, hsrc, (fun _ => rfl), rfl⟩
+    · intro hz
+      have hb := hInclusion.2 F (g ∘ xs) z hz
+      have heq : Subtype.val ∘ (g ∘ xs) = gB ∘ xs := by
+        funext i
+        exact hval (xs i)
+      rw [heq, ← gB.map_func F xs] at hb
+      obtain ⟨x, hx, hgBx⟩ := hb
+      refine ⟨x, hx, ?_⟩
+      apply Subtype.ext
+      exact (hval x).trans hgBx
+  · intro x
+    rfl
+
+/-- The verified original-partial quotient packages its vertex,
+partial-function-domain and relational tuple-surjectivity together
+with the homomorphism-embedding guarantee. -/
+theorem originalPartialHE_weakImage_quotient_data
+    (A : Structure L U) (B : Structure L V)
+    (f : U → V)
+    (hf : IsOriginalPartialHomomorphismEmbedding A B f) :
+    Function.Surjective (Structure.weakImage.quotientMap (f := f)) ∧
+    IsOriginalPartialHomomorphismEmbedding A
+      (Structure.weakImage A B f)
+      (Structure.weakImage.quotientMap (f := f)) ∧
+    OriginalPartialTupleSurjective A (Structure.weakImage A B f)
+      (Structure.weakImage.quotientMap (f := f)) := by
+  exact ⟨Structure.weakImage.quotientMap_surjective (f := f),
+    originalPartialHE_weakImage_quotient A B f hf,
+    (weakImage_quotient_positiveIncidenceSurjective A B f)
+      .toOriginalPartialTupleSurjective⟩
+
 end AllThoseRamseyClasses.Lifts
