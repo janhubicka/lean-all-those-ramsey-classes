@@ -75,12 +75,17 @@ theorem canonicalClassLast_cut_iff_under_isometry {S : Set ℝ}
           (Or.inr tag.1.property)) (canonicalTagRoot tgtTag) =
         tgtTag.2 :=
     canonicalTagRoot_class tgtTag
+  have hLevel : canonicalTagLevel tgtTag = canonicalTagLevel tag := by
+    change canonicalTagLevel
+      (mapCanonicalJumpTag hpos hS hdV hdW f hf tag) = canonicalTagLevel tag
+    exact mapCanonicalJumpTag_level hpos hS hdV hdW f hf tag
   have hImageRoot : dW (f srcLast) (canonicalTagRoot tgtTag) ≤
       canonicalTagLevel tag :=
     Quotient.exact (hImageClass.trans hTargetRoot.symm)
   have hImageRoot' : dW (f srcLast)
       (canonicalTagRoot tgtTag) ≤ canonicalTagLevel tgtTag := by
-    simpa only [mapCanonicalJumpTag_level] using hImageRoot
+    rw [hLevel]
+    exact hImageRoot
   have hLastImage : f srcLast ≤ tgtLast :=
     canonicalClassLast_max hpos hS hdW tgtTag (f srcLast)
       hImageRoot'
@@ -97,7 +102,7 @@ theorem canonicalClassLast_cut_iff_under_isometry {S : Set ℝ}
     have hRootLast : dW (canonicalTagRoot tgtTag) tgtLast ≤
         canonicalTagLevel tag := by
       rw [hdW.symm (canonicalTagRoot tgtTag) tgtLast]
-      simpa only [mapCanonicalJumpTag_level] using hTargetMem
+      simpa only [hLevel] using hTargetMem
     have hEnds : dW (f srcLast) tgtLast ≤
         canonicalTagLevel tag :=
       metric_jump_threshold_trans hpos hS hdW
