@@ -73,7 +73,7 @@ theorem fullIncidenceFibre_empty_of_new {L : RelLanguage.{u}}
     rw [hi] at h
     cases h
   · intro hx
-    exact False.elim (Set.not_mem_empty x hx)
+    cases hx
 
 /-- Entire fibres are transported ONTO target fibres for every
 tuple of the lifted domain, not just for positive old tuples.
@@ -104,7 +104,7 @@ theorem incidenceMap_image_fullIncidenceFibre
     have hsource : ∀ i : Fin (L.arity r), ∃ x : U, t i = .inl x := by
       intro i
       cases hi : t i with
-      | inl x => exact ⟨x, hi⟩
+      | inl x => exact ⟨x, rfl⟩
       | inr x =>
           have h : incidenceMap A B f hf (t i) = .inl (s i) := hs i
           rw [hi] at h
