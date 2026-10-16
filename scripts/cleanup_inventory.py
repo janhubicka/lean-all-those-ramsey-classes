@@ -61,6 +61,7 @@ ACTIVE = {
     "AllThoseRamseyClasses.Lifts.ForbiddenPieceClasses",
     "AllThoseRamseyClasses.Lifts.FunctionalGaifmanCuts",
     "AllThoseRamseyClasses.Lifts.MinimalSeparatorReverse",
+    "AllThoseRamseyClasses.Lifts.GeometricFunctionalPieces",
 }
 # New independently validated proof modules register themselves with
 # one marker file per root.  This preserves an explicit reviewed
