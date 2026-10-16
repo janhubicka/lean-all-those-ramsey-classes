@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.ArbitraryFunctionalFreeFold
+
+#check AllThoseRamseyClasses.Lifts.compatibleFunctionalFold
+#check AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_left
+#check AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_right
+#check AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_isEHNHomomorphismEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_left
+#print axioms AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_right
+#print axioms AllThoseRamseyClasses.Lifts.compatibleFunctionalFold_isEHNHomomorphismEmbedding
