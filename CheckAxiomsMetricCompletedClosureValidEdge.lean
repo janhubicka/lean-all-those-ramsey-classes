@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricCompletedClosureValidEdge
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalCompletedClosure_valid_edge
