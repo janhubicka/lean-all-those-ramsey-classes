@@ -23,6 +23,7 @@ pinned dependency.
 | [Using the library](Using-the-library.md) | Lake installation, imports, definitions and running examples |
 | [Published statements](Published-statements.md) | Exact 2019 theorem scopes, corrections, proofs and unverified claims |
 | [Proof architecture](Proof-architecture.md) | Generated closure profiles, strict-tree sparsening and fresh-tag pass |
+| [Section 3 lifts](Lift-homogenization.md) | Verified forbidden-piece geometry, conditional flips, and remaining injectivity gap |
 | [Applications](Applications.md) | Complete paper examples, auxiliary Steiner class, remaining metric/countable-unary tasks |
 | [Audit and validation](Audit-and-validation.md) | Theorem-level adversarial checks, source trust, unused-code criteria |
 | [Publishing](Publishing.md) | Source-controlled wiki and automatic GitHub synchronization |
