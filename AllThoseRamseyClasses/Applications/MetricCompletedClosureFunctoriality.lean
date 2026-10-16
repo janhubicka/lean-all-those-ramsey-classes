@@ -90,12 +90,14 @@ theorem mapCanonicalLift_preserves_completedClosureValue {S : Set ℝ}
         rw [mapCanonicalLift_tag hpos hS hdV hdW f hf tag]
         rw [canonicalCompletedClosureValue_lower hpos hS hdW
           j target htargetLevel]
-        change some (.inr
+        change (some (Sum.inr
             (mapCanonicalJumpTag hpos hS hdV hdW f hf
               (canonicalClosureTag hpos hS hdV j
-                (canonicalTagRoot tag)))) =
-          some (.inr (canonicalClosureTag hpos hS hdW j
-            (canonicalTagRoot target)))
+                (canonicalTagRoot tag)))) :
+              Option (W ⊕ CanonicalJumpTag hpos hS hdW)) =
+          (some (Sum.inr (canonicalClosureTag hpos hS hdW j
+            (canonicalTagRoot target))) :
+              Option (W ⊕ CanonicalJumpTag hpos hS hdW))
         have htagMap :
             mapCanonicalJumpTag hpos hS hdV hdW f hf
               (canonicalClosureTag hpos hS hdV j
