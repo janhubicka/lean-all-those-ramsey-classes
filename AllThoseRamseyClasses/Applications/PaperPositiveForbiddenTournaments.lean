@@ -98,7 +98,7 @@ reflected because the target forbids digons, and loops are absent. -/
 theorem tournament_embedding_of_positiveCopy
     {U V : Type} {T : RelStructure Lang U}
     {C : RelStructure Lang V}
-    (hT : IsTournament T) (hC : orientedDigraphClass C)
+    (hT : IsTournament T) (hOriented : orientedDigraphClass C)
     (hcopy : PositiveCopy T C) :
     Nonempty (Embedding T C) := by
   obtain ⟨f, hf, hpos⟩ := hcopy
@@ -109,16 +109,16 @@ theorem tournament_embedding_of_positiveCopy
       change edge C (f (t 0)) (f (t 1)) ↔
         edge T (t 0) (t 1)
       constructor
-      · intro hC
+      · intro hEdge
         by_cases hEq : t 0 = t 1
         · have hloop : edge C (f (t 1)) (f (t 1)) := by
-            simpa only [hEq] using hC
-          exact False.elim (hC.2.1 (f (t 1)) hloop)
+            simpa only [hEq] using hEdge
+          exact False.elim (hOriented.2.1 (f (t 1)) hloop)
         · rcases hT.2 (t 0) (t 1) hEq with hfwd | hback
           · exact hfwd.1
           · have hrev : edge C (f (t 1)) (f (t 0)) :=
               hpos (t 1) (t 0) hback.1
-            exact False.elim ((hC.2.2 (f (t 1)) (f (t 0)) hrev) hC)
+            exact False.elim ((hOriented.2.2 (f (t 1)) (f (t 0)) hrev) hEdge)
       · exact hpos (t 0) (t 1)
 
 /-- Finite oriented digraphs omitting any positive tournament
