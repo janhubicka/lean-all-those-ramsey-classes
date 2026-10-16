@@ -146,4 +146,51 @@ theorem incidenceMap_image_valueFibre {L : RelLanguage.{u}}
           Option.some.inj (hy.trans hmap.symm)
         exact ⟨x, rfl, hxy.symm⟩
 
+
+/-- The canonical extension of an exact relational embedding to
+positive incidence vertices is injective, including across different
+relation symbols. This is needed for a genuine *strong* functional
+embedding rather than only a homomorphism of partial function fibres. -/
+theorem incidenceMap_injective {L : RelLanguage.{u}}
+    {U : Type v} {V : Type w}
+    (A : TotalOrderData L U) (B : TotalOrderData L V)
+    (f : U → V) (hf : IsExactEmbedding A B f) :
+    Function.Injective (incidenceMap A B f hf) := by
+  classical
+  intro a b hab
+  cases a with
+  | inl a =>
+      cases b with
+      | inl b =>
+          have hfb : f a = f b := by
+            simpa only [incidenceMap, Sum.inl.injEq] using hab
+          exact congrArg Sum.inl (hf.1 hfb)
+      | inr b =>
+          cases hab
+  | inr a =>
+      cases b with
+      | inl b =>
+          cases hab
+      | inr b =>
+          rcases a with ⟨r, ⟨t, ht⟩⟩
+          rcases b with ⟨s, ⟨q, hq⟩⟩
+          have hsig :
+              (⟨r, ⟨f ∘ t, (hf.2.1 r t).mpr ht⟩⟩ :
+                Sigma fun z : L.Symbol =>
+                  {v : Fin (L.arity z) → V // B.base.rel z v}) =
+              (⟨s, ⟨f ∘ q, (hf.2.1 s q).mpr hq⟩⟩ :
+                Sigma fun z : L.Symbol =>
+                  {v : Fin (L.arity z) → V // B.base.rel z v}) := by
+            exact Sum.inr.inj (by simpa only [incidenceMap] using hab)
+          have hrs : r = s := congrArg Sigma.fst hsig
+          subst s
+          have htuple : f ∘ t = f ∘ q := by
+            simpa only [Sigma.mk.injEq, heq_iff_eq, Subtype.mk.injEq,
+              eq_self_iff_true, true_and] using hsig
+          have heq : t = q := by
+            funext i
+            exact hf.1 (congrFun htuple i)
+          subst q
+          rfl
+
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence

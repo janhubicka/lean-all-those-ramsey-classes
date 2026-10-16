@@ -8,3 +8,5 @@ import AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
 
 #print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceValue_isSome_iff
 #print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_image_valueFibre
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_injective
