@@ -92,7 +92,7 @@ theorem noOriginalRelationalEmbedding :
     ¬ Nonempty (RelStructure.Embedding
       negativeOnePoint.base positiveOnePoint.base) := by
   rintro ⟨e⟩
-  have h := e.map_rel_iff () (fun _ : Fin 1 => ())
+  have h := e.map_rel_iff PUnit.unit (fun _ : Fin 1 => PUnit.unit)
   change True ↔ False at h
   exact h.mp trivial
 
