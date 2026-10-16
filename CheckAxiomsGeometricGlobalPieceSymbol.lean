@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.GeometricGlobalPieceSymbol
+
+#check AllThoseRamseyClasses.Lifts.geometricGlobalFunctionalChart
+#check AllThoseRamseyClasses.Lifts.geometricGlobalFunctionalChart_pattern
+#check AllThoseRamseyClasses.Lifts.geometricGlobalSelectedChart
+#check AllThoseRamseyClasses.Lifts.geometricGlobalPieceSymbol
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_of_weak
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalFunctionalChart_pattern
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSelectedChart
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_of_weak
