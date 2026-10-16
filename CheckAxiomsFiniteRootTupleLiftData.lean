@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Lifts.FiniteRootTupleLiftData
+
+#check AllThoseRamseyClasses.Lifts.ExtraRelationData
+#check AllThoseRamseyClasses.Lifts.ExtraRelationsDistinctRoots
+#check AllThoseRamseyClasses.Lifts.DistinctRootExtraData
+#check AllThoseRamseyClasses.Lifts.finite_distinctRootExtraData_of_active
+#check AllThoseRamseyClasses.Lifts.finite_distinctRootExtraData_of_finite_arity_fibres
+#check AllThoseRamseyClasses.Lifts.canonicalExtraData
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_distinctRootExtraData_of_active
+#print axioms AllThoseRamseyClasses.Lifts.finite_distinctRootExtraData_of_finite_arity_fibres
+#print axioms AllThoseRamseyClasses.Lifts.canonicalExtraData
