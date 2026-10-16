@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceSortCollision
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.noOriginalRelationalEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.originalToNewMap_injective
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.originalToNew_fullFunctionalEmbedding
