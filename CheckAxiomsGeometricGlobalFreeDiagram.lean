@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Lifts.GeometricGlobalFreeDiagram
+
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRootEmbedding
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRootEmbedding_surjective
+#check AllThoseRamseyClasses.Lifts.geometricGlobalComplementChart
+#check AllThoseRamseyClasses.Lifts.geometricGlobalSource_freeDiagram
+#check AllThoseRamseyClasses.Lifts.geometricGlobalSource_has_forbidden_diagram
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRootEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRootEmbedding_surjective
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_freeDiagram
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_has_forbidden_diagram
