@@ -103,7 +103,7 @@ theorem positiveExtension_irreducible
     (q : PositiveExtensionIndices Forbidden) :
     (positiveExtensionPattern Forbidden q).Irreducible := by
   intro x y hxy
-  obtain ⟨R, t, a, b, ht, hx, hy⟩ := hF q.1 x y hxy
+  obtain ⟨R, t, a, b, ht, hx, hy⟩ := hF q.1 hxy
   exact ⟨R, t, a, b, q.2.2 R t ht, hx, hy⟩
 
 /-- A POSITIVE-free hereditary free-amalgamation class, derived
