@@ -218,4 +218,33 @@ theorem weakFreePartition_component_right
         exact weakFreePartition_right_step hfree f hf ih b.2 hstep
   exact hprop ⟨y, hyRoot⟩ hreach
 
+
+/-- The exact common-root preimage separates EVERY left-exclusive
+source vertex from EVERY right-exclusive source vertex by Gaifman
+paths. This is the printed Section 3 observation prior to selecting
+minimal separating cuts, and does not assume injectivity of the
+homomorphism-embedding. -/
+theorem weakFreePartition_root_separates_exclusive
+    (hfree : Structure.IsFreeAmalgam sL sR iL iR)
+    (f : U → W) (hf : Source.IsWeakHomomorphism Whole f)
+    {x y : U}
+    (hx : x ∈ weakFreeLeftPart (sL := sL) (iL := iL) f)
+    (hy : y ∈ weakFreeRightPart
+      (sL := sL) (iL := iL) (iR := iR) f) :
+    ¬ ReachOutside Source.graph
+      (weakFreeRootPart (sL := sL) (iL := iL) f)
+      ⟨x, hx.2⟩ ⟨y, hy.2⟩ := by
+  intro hpath
+  have hyComponent :
+      y ∈ functionalComponentFrom Source
+        (weakFreeRootPart (sL := sL) (iL := iL) f)
+        ⟨x, hx.2⟩ :=
+    ⟨hy.2, hpath⟩
+  have hyLeft : y ∈ weakFreeLeftPart
+      (sL := sL) (iL := iL) f :=
+    weakFreePartition_component_left hfree f hf
+      ⟨x, hx.2⟩ hx hyComponent
+  exact (Set.disjoint_left.mp
+    (weakFreePartition_left_right_disjoint hfree f)) hyLeft hy
+
 end AllThoseRamseyClasses.Lifts
