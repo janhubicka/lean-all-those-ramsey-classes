@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenPieceClosedRoots
+
+#check AllThoseRamseyClasses.Lifts.forbiddenGeometricFunctionalPiece_rootClosed
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalPieceRootStructure
+#check AllThoseRamseyClasses.Lifts.forbiddenFunctionalPieceRootEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenGeometricFunctionalPiece_rootClosed
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFunctionalPieceRootEmbedding
