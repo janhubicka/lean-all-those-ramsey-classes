@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.ClosedBoundaryUnion
+
+#check AllThoseRamseyClasses.Lifts.functionalClosedUnion_of_boundary
+#check AllThoseRamseyClasses.Lifts.functionalBoundaryClosure_union_isClosed
+#check AllThoseRamseyClasses.Lifts.functionalBoundaryClosureInduce
+#check AllThoseRamseyClasses.Lifts.functionalBoundaryClosureEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalClosedUnion_of_boundary
+#print axioms AllThoseRamseyClasses.Lifts.functionalBoundaryClosure_union_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.functionalBoundaryClosureEmbedding
