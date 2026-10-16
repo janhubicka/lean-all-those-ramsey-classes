@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricEmptyBaseAmalgamation
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separatedSumDistance_metric
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.jump_lt_max
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separated_cross_not_jump
