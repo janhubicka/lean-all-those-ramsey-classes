@@ -185,7 +185,7 @@ theorem incidenceMap_injective {L : RelLanguage.{u}}
           have hrs : r = s := congrArg Sigma.fst hsig
           subst s
           have htuple : f ∘ t = f ∘ q := by
-            simpa only [Sigma.mk.injEq, Subtype.mk.injEq,
+            simpa only [Sigma.mk.injEq, heq_iff_eq, Subtype.mk.injEq,
               eq_self_iff_true, true_and] using hsig
           have heq : t = q := by
             funext i
