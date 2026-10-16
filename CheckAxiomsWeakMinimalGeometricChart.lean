@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.WeakMinimalGeometricChart
+
+#check AllThoseRamseyClasses.Lifts.finiteMinimalClosedSeparator_toGeometricChart
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_hasMinimalGeometricChart
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteMinimalClosedSeparator_toGeometricChart
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_hasMinimalGeometricChart
