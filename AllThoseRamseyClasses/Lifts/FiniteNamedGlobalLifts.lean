@@ -35,7 +35,7 @@ entire old functional structure unchanged. -/
 def NamedGlobalLiftOptions
     {L : Language.{u}}
     (F : ∀ {W : Type}, Structure L W → Prop)
-    {V : Type} (A : Structure L V) : Type :=
+    {V : Type} (A : Structure L V) :=
   {X : Structure (globalFunctionalPieceLanguage F) V //
     ∃ E : DistinctRootExtraData
         (GlobalFunctionalPieceSymbol F)
