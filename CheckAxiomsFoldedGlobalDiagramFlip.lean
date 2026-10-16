@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FoldedGlobalDiagramFlip
+
+#check AllThoseRamseyClasses.Lifts.selectedFoldedGlobalCanonicalDiagramFlip
+#print axioms AllThoseRamseyClasses.Lifts.selectedFoldedGlobalCanonicalDiagramFlip
