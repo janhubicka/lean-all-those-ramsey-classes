@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.FlipSupportStrictDecrease
+
+#check AllThoseRamseyClasses.Lifts.oldExclusiveSupport_card_lt_complement
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupport_fintype_card_eq
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupport_strict_decrease
+
+#print axioms AllThoseRamseyClasses.Lifts.oldExclusiveSupport_card_lt_complement
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupport_fintype_card_eq
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupport_strict_decrease
