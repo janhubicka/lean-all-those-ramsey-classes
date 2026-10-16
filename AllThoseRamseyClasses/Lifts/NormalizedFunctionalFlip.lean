@@ -56,7 +56,7 @@ def forbiddenFunctionalGlue
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P Q : FunctionalRootExtension Root) : Prop :=
   ∃ (W : Type v) (B : Structure L W),
-    F B ∧ ∃ e : Structure.Embedding (P.glued Q) B,
+    F B ∧ ∃ e : Structure.Embedding (FunctionalRootExtension.glued Root P Q) B,
       Function.Surjective e
 
 /-- The entire set of complementary root extensions whose actual
@@ -124,7 +124,7 @@ theorem normalizedFunctionalFlip
     forbiddenFunctionalGlue Root F P' Q ∧
       ∃ fold : Structure.FreeAmalgam.Vertex Root P'.str Q.str
           P'.rootEmbedding Q.rootEmbedding → UT,
-        (P'.glued Q).IsEHNHomomorphismEmbedding Target fold ∧
+        (FunctionalRootExtension.glued Root P' Q).IsEHNHomomorphismEmbedding Target fold ∧
         (∀ a : P'.Carrier,
           fold (Structure.FreeAmalgam.leftEmbedding Root P'.str Q.str
             P'.rootEmbedding Q.rootEmbedding a) = pP a) ∧
