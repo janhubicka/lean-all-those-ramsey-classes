@@ -145,8 +145,9 @@ theorem loopFirst_preserves_ordered_copies
             by_contra hn
             have hyx : y ≤ x := le_of_not_gt hn
             rcases eq_or_lt_of_le hyx with heq | hyxlt
-            · have hh : (@LT.lt V o.toLT (b x) (b x)) := by
+            · have hh : (@LT.lt V (loopFirstLinearOrder C).toLT (b x) (b x)) := by
                 simpa only [heq] using hlt
+              letI : LinearOrder V := loopFirstLinearOrder C
               exact (lt_irrefl _ hh)
             · have hh : (@LT.lt V (loopFirstLinearOrder C).toLT (b y) (b x)) :=
                 loopFirst_copy_strictMono B C hB b y x hyxlt
