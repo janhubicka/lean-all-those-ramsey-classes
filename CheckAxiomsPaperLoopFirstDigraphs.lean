@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.PaperLoopFirstDigraphs
+
+#print axioms AllThoseRamseyClasses.Applications.PaperGraphs.loopFirstLinearOrder_isLoopFirst
+#print axioms AllThoseRamseyClasses.Applications.PaperGraphs.loopFirst_preserves_ordered_copies
+#print axioms AllThoseRamseyClasses.Applications.PaperGraphs.loopFirstOrderedDigraphs_areRamsey
