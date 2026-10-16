@@ -124,12 +124,9 @@ theorem loopFirst_preserves_ordered_copies
     CopywiseCompletion B.ordered C.ordered
       (@RelStructure.ordered Lang V C (loopFirstLinearOrder C).toLT)
       (fun x => x) := by
-  let o := loopFirstLinearOrder C
-  change CopywiseCompletion B.ordered C.ordered
-    (@RelStructure.ordered Lang V C o.toLT) (fun x => x)
   intro b
   let e : Embedding B.ordered
-      (@RelStructure.ordered Lang V C o.toLT) := {
+      (@RelStructure.ordered Lang V C (loopFirstLinearOrder C).toLT) := {
     toFun := b
     injective := b.injective
     map_rel_iff := by
@@ -142,7 +139,7 @@ theorem loopFirst_preserves_ordered_copies
           let t₂ : Fin 2 → U := t
           let x : U := t₂ 0
           let y : U := t₂ 1
-          change (@LT.lt V o.toLT (b x) (b y)) ↔ x < y
+          change (@LT.lt V (loopFirstLinearOrder C).toLT (b x) (b y)) ↔ x < y
           constructor
           · intro hlt
             by_contra hn
@@ -176,9 +173,14 @@ theorem loopFirstOrderedDigraphs_areRamsey
     freelyOrderedDigraphs_areRamsey A B κ
   letI : LinearOrder W := o
   let o' : LinearOrder W := loopFirstLinearOrder C
-  have hCopies : CopywiseCompletion B.ordered C.ordered
-      (@RelStructure.ordered Lang W C o'.toLT) (fun x => x) :=
-    loopFirst_preserves_ordered_copies B C hB
+  have hCopies : CopywiseCompletion B.ordered
+      (@RelStructure.ordered Lang W C o.toLT)
+      (@RelStructure.ordered Lang W C o'.toLT) (fun x => x) := by
+    change CopywiseCompletion B.ordered
+      (@RelStructure.ordered Lang W C o.toLT)
+      (@RelStructure.ordered Lang W C (loopFirstLinearOrder C).toLT)
+      (fun x => x)
+    exact loopFirst_preserves_ordered_copies B C hB
   have hArrow : StructuralRamsey.Arrow A.ordered B.ordered
       (@RelStructure.ordered Lang W C o'.toLT) κ :=
     arrow_of_BCopywiseCompletion hRamsey hCopies
