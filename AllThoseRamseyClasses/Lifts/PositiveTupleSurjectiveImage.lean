@@ -76,9 +76,9 @@ theorem weakImage_quotient_positiveIncidenceSurjective
     (f : U → V) :
     PositiveIncidenceSurjective A
       (Structure.weakImage A B f)
-      (Structure.weakImage.quotientMap (A := A) (B := B) (f := f)) := by
+      (Structure.weakImage.quotientMap (f := f)) := by
   let q : U → Set.range f :=
-    Structure.weakImage.quotientMap (A := A) (B := B) (f := f)
+    Structure.weakImage.quotientMap (f := f)
   constructor
   · exact Structure.weakImage.quotientMap_surjective (f := f)
   constructor
@@ -102,9 +102,9 @@ theorem weakImage_quotient_weak_and_positiveSurjective
     (A : Structure L U) (B : Structure L V)
     (f : U → V) :
     A.IsWeakHomomorphism (Structure.weakImage A B f)
-      (Structure.weakImage.quotientMap (A := A) (B := B) (f := f)) ∧
+      (Structure.weakImage.quotientMap (f := f)) ∧
     PositiveIncidenceSurjective A (Structure.weakImage A B f)
-      (Structure.weakImage.quotientMap (A := A) (B := B) (f := f)) :=
+      (Structure.weakImage.quotientMap (f := f)) :=
   ⟨Structure.weakImage.quotientMap_weak (A := A) (B := B) (f := f),
     weakImage_quotient_positiveIncidenceSurjective A B f⟩
 
