@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.RegularLiftIsoTransport
+
+#check AllThoseRamseyClasses.Lifts.pullbackGlobalExtraRelations
+#check AllThoseRamseyClasses.Lifts.pullbackGlobalLiftOption
+#check AllThoseRamseyClasses.Lifts.pullbackGlobalLiftEmbedding
+#check AllThoseRamseyClasses.Lifts.pullbackGlobalLiftEmbedding_surjective
+
+#print axioms AllThoseRamseyClasses.Lifts.pullbackGlobalExtraRelations
+#print axioms AllThoseRamseyClasses.Lifts.pullbackGlobalLiftOption
+#print axioms AllThoseRamseyClasses.Lifts.pullbackGlobalLiftEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.pullbackGlobalLiftEmbedding_surjective
