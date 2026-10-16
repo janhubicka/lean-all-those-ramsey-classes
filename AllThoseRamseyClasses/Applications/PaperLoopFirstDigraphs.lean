@@ -148,7 +148,9 @@ theorem loopFirst_preserves_ordered_copies
             · have hh : (@LT.lt V o.toLT (b x) (b x)) := by
                 simpa only [heq] using hlt
               exact (lt_irrefl _ hh)
-            · have hh := loopFirst_copy_strictMono B C hB b y x hyxlt
+            · have hh : (@LT.lt V (loopFirstLinearOrder C).toLT (b y) (b x)) :=
+                loopFirst_copy_strictMono B C hB b y x hyxlt
+              letI : LinearOrder V := loopFirstLinearOrder C
               exact (lt_asymm hlt hh).elim
           · intro hlt
             exact loopFirst_copy_strictMono B C hB b x y hlt
@@ -172,18 +174,16 @@ theorem loopFirstOrderedDigraphs_areRamsey
   obtain ⟨W, hW, o, C, hRamsey⟩ :=
     freelyOrderedDigraphs_areRamsey A B κ
   letI : LinearOrder W := o
-  let o' : LinearOrder W := loopFirstLinearOrder C
   have hCopies : CopywiseCompletion B.ordered
       (@RelStructure.ordered Lang W C o.toLT)
-      (@RelStructure.ordered Lang W C o'.toLT) (fun x => x) := by
-    change CopywiseCompletion B.ordered
-      (@RelStructure.ordered Lang W C o.toLT)
-      (@RelStructure.ordered Lang W C (loopFirstLinearOrder C).toLT)
-      (fun x => x)
-    exact loopFirst_preserves_ordered_copies B C hB
+      (@RelStructure.ordered Lang W C
+        (@loopFirstLinearOrder W o C).toLT) (fun x => x) :=
+    @loopFirst_preserves_ordered_copies V W _ o B C hB
   have hArrow : StructuralRamsey.Arrow A.ordered B.ordered
-      (@RelStructure.ordered Lang W C o'.toLT) κ :=
+      (@RelStructure.ordered Lang W C
+        (@loopFirstLinearOrder W o C).toLT) κ :=
     arrow_of_BCopywiseCompletion hRamsey hCopies
-  exact ⟨W, hW, o', C, loopFirstLinearOrder_isLoopFirst C, hArrow⟩
+  exact ⟨W, hW, @loopFirstLinearOrder W o C, C,
+    @loopFirstLinearOrder_isLoopFirst W o C, hArrow⟩
 
 end AllThoseRamseyClasses.Applications.PaperGraphs
