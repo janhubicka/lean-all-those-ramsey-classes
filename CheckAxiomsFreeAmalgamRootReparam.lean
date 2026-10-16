@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FreeAmalgamRootReparam
+
+#check AllThoseRamseyClasses.Lifts.freeAmalgam_precompose_root_onto
+#print axioms AllThoseRamseyClasses.Lifts.freeAmalgam_precompose_root_onto
