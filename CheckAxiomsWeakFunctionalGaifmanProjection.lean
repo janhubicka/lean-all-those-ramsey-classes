@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.WeakFunctionalGaifmanProjection
+
+#check AllThoseRamseyClasses.Lifts.weakFunctionalGraph_homomorphism
+#check AllThoseRamseyClasses.Lifts.weakFunctionalGaifmanAdjacent_map
+#check AllThoseRamseyClasses.Lifts.weakFunctionalGaifmanAdjacent_of_images_distinct
+
+#print axioms AllThoseRamseyClasses.Lifts.weakFunctionalGraph_homomorphism
+#print axioms AllThoseRamseyClasses.Lifts.weakFunctionalGaifmanAdjacent_map
+#print axioms AllThoseRamseyClasses.Lifts.weakFunctionalGaifmanAdjacent_of_images_distinct
