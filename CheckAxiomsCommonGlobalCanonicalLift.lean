@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift
+
+#check AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift
+#check AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift.agreeOn
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRelation_from_common_full_lift
+
+#print axioms AllThoseRamseyClasses.Lifts.CommonGlobalCanonicalLift.agreeOn
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRelation_from_common_full_lift
