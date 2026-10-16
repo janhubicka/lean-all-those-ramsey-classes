@@ -152,6 +152,32 @@ def FunctionalCanonicalExtraRelation
     ∃ P : FunctionalRootedPattern.{u,v} L (ar i),
       P ∈ pieces i ∧ FunctionalRootRealization P A xs
 
+
+/-- Every new canonical relation has pairwise distinct root vertices. -/
+theorem functionalCanonicalExtraRelation_injective
+    (L : Language.{u}) (I : Type u) (ar : I → ℕ)
+    (pieces : ∀ i : I, Set (FunctionalRootedPattern.{u,v} L (ar i)))
+    {W : Type v} (A : Structure L W) (i : I)
+    (xs : Fin (ar i) → W)
+    (h : FunctionalCanonicalExtraRelation L I ar pieces A i xs) :
+    Function.Injective xs :=
+  h.1
+
+/-- Positive new-root relations are preserved by embeddings of
+the functional shadows. A target may realize additional pieces,
+so reflection is intentionally NOT asserted. -/
+theorem FunctionalCanonicalExtraRelation.map_embedding
+    (L : Language.{u}) (I : Type u) (ar : I → ℕ)
+    (pieces : ∀ i : I, Set (FunctionalRootedPattern.{u,v} L (ar i)))
+    {W Z : Type v} {A : Structure L W} {B : Structure L Z}
+    (e : Structure.Embedding A B) (i : I)
+    (xs : Fin (ar i) → W)
+    (h : FunctionalCanonicalExtraRelation L I ar pieces A i xs) :
+    FunctionalCanonicalExtraRelation L I ar pieces B i (e ∘ xs) := by
+  obtain ⟨hinj, P, hP, hreal⟩ := h
+  exact ⟨e.injective.comp hinj, P, hP,
+    FunctionalRootRealization.map_embedding P xs e hreal⟩
+
 /-- The actual functional expansion of A, for any carrier:
 no old function symbol is dropped or replaced by a temporary
 graph predicate. -/
