@@ -1,0 +1,16 @@
+import AllThoseRamseyClasses.Lifts.WeakSourceFreeAmalgamPartition
+
+#check AllThoseRamseyClasses.Lifts.weakFreeRootPart
+#check AllThoseRamseyClasses.Lifts.weakFreeLeftPart
+#check AllThoseRamseyClasses.Lifts.weakFreeRightPart
+#check AllThoseRamseyClasses.Lifts.weakFreeRootPart_isClosed
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_covers
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_left_right_disjoint
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_root_exclusive
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_univ
+
+#print axioms AllThoseRamseyClasses.Lifts.weakFreeRootPart_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_covers
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_left_right_disjoint
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_root_exclusive
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_univ
