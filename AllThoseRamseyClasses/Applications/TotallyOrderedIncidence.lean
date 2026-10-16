@@ -123,7 +123,7 @@ theorem incidenceMap_image_valueFibre {L : RelLanguage.{u}}
   classical
   ext y
   have hmap := incidenceValue_map A B f hf r t
-  simp only [Set.mem_image, Set.mem_setOf_eq, valueFibre]
+  simp only [Set.mem_image, Set.mem_ofPred_eq, valueFibre]
   constructor
   · rintro ⟨x, hx, rfl⟩
     calc
@@ -144,6 +144,6 @@ theorem incidenceMap_image_valueFibre {L : RelLanguage.{u}}
         simp only [Option.map_some] at hmap
         have hxy : y = incidenceMap A B f hf x :=
           Option.some.inj (hy.trans hmap.symm)
-        exact ⟨x, hval.symm, hxy.symm⟩
+        exact ⟨x, rfl, hxy.symm⟩
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
