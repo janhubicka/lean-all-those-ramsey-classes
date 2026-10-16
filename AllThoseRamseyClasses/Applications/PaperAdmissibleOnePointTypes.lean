@@ -27,17 +27,24 @@ open StructuralRamsey.RelStructure
 
 universe u v
 
-/-- Complete unary relational type recorded by diagonal tuples. -/
+/-- The truth record of diagonal relation tuples is packaged in
+a fresh type: unlike `Set L.Symbol` it has no conflicting built-in
+subset order. A chosen linear order on these records is independent
+of ordinary inclusion, as required by the manuscript. -/
+structure OnePointCode (L : RelLanguage.{u}) where
+  support : Set L.Symbol
+
+/-- Complete one-vertex relational type, including nullary symbols. -/
 def onePointType {L : RelLanguage.{u}} {V : Type v}
-    (A : RelStructure L V) (x : V) : Set L.Symbol :=
-  {R | A.rel R (fun _ => x)}
+    (A : RelStructure L V) (x : V) : OnePointCode L :=
+  ⟨{R | A.rel R (fun _ => x)}⟩
 
 /-- The chosen vertex order respects strictly increasing types. -/
 def TypeAdmissible {L : RelLanguage.{u}} {V : Type v}
-    [LinearOrder V] (typeOrder : LinearOrder (Set L.Symbol))
+    [LinearOrder V] (typeOrder : LinearOrder (OnePointCode L))
     (A : RelStructure L V) : Prop :=
   ∀ x y : V,
-    @LT.lt (Set L.Symbol) typeOrder.toLT
+    @LT.lt (OnePointCode L) typeOrder.toLT
       (onePointType A x) (onePointType A y) →
       x < y
 
@@ -45,40 +52,40 @@ def TypeAdmissible {L : RelLanguage.{u}} {V : Type v}
 as an injective tie-breaker inside each type. -/
 noncomputable def typeSortedLinearOrder
     {L : RelLanguage.{u}} {V : Type v} [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (A : RelStructure L V) : LinearOrder V := by
   classical
-  letI : LinearOrder (Set L.Symbol) := typeOrder
+  letI : LinearOrder (OnePointCode L) := typeOrder
   exact LinearOrder.lift'
-    (fun x => toLex ((onePointType A x, x) : Set L.Symbol × V))
+    (fun x => toLex ((onePointType A x, x) : OnePointCode L × V))
     (by
       intro x y h
       exact congrArg Prod.snd
         (congrArg
-          (ofLex : Lex (Set L.Symbol × V) → Set L.Symbol × V) h))
+          (ofLex : Lex (OnePointCode L × V) → OnePointCode L × V) h))
 
 theorem typeSortedLinearOrder_lt_iff
     {L : RelLanguage.{u}} {V : Type v} [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (A : RelStructure L V) (x y : V) :
     (letI := typeSortedLinearOrder typeOrder A; x < y) ↔
-    @LT.lt (Set L.Symbol) typeOrder.toLT
+    @LT.lt (OnePointCode L) typeOrder.toLT
        (onePointType A x) (onePointType A y) ∨
     (onePointType A x = onePointType A y ∧ x < y) := by
-  letI : LinearOrder (Set L.Symbol) := typeOrder
+  letI : LinearOrder (OnePointCode L) := typeOrder
   change
     (@LT.lt V (typeSortedLinearOrder typeOrder A).toLT x y) ↔
-      (@LT.lt (Set L.Symbol) typeOrder.toLT
+      (@LT.lt (OnePointCode L) typeOrder.toLT
         (onePointType A x) (onePointType A y) ∨
       (onePointType A x = onePointType A y ∧ x < y))
   unfold typeSortedLinearOrder
-  change toLex ((onePointType A x, x) : Set L.Symbol × V) <
-    toLex ((onePointType A y, y) : Set L.Symbol × V) ↔ _
+  change toLex ((onePointType A x, x) : OnePointCode L × V) <
+    toLex ((onePointType A y, y) : OnePointCode L × V) ↔ _
   exact Prod.Lex.toLex_lt_toLex
 
 theorem typeSortedLinearOrder_isAdmissible
     {L : RelLanguage.{u}} {V : Type v} [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (A : RelStructure L V) :
     (letI := typeSortedLinearOrder typeOrder A;
       TypeAdmissible typeOrder A) := by
@@ -92,6 +99,7 @@ theorem onePointType_embedding
     (B : RelStructure L U) (C : RelStructure L V)
     (b : Embedding B.ordered C.ordered) (x : U) :
     onePointType C (b x) = onePointType B x := by
+  apply OnePointCode.ext
   ext R
   have ht : (b ∘ (fun _ : Fin (L.arity R) => x)) =
       (fun _ : Fin (L.arity R) => b x) := rfl
@@ -105,21 +113,21 @@ theorem onePointType_embedding
 theorem typeSorted_copy_strictMono
     {L : RelLanguage.{u}} {U V : Type v}
     [LinearOrder U] [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (B : RelStructure L U) (C : RelStructure L V)
     (hB : TypeAdmissible typeOrder B)
     (b : Embedding B.ordered C.ordered)
     (x y : U) (hxy : x < y) :
     (letI := typeSortedLinearOrder typeOrder C; b x < b y) := by
-  letI : LinearOrder (Set L.Symbol) := typeOrder
+  letI : LinearOrder (OnePointCode L) := typeOrder
   have htype (z : U) : onePointType C (b z) = onePointType B z :=
     onePointType_embedding B C b z
   have hle :
-      @LE.le (Set L.Symbol) typeOrder.toLE
+      @LE.le (OnePointCode L) typeOrder.toLE
         (onePointType B x) (onePointType B y) := by
     by_contra hn
     have hgt :
-        @LT.lt (Set L.Symbol) typeOrder.toLT
+        @LT.lt (OnePointCode L) typeOrder.toLT
           (onePointType B y) (onePointType B x) := by
       exact lt_of_not_ge hn
     exact (not_lt_of_ge (le_of_lt hxy)) (hB y x hgt)
@@ -134,7 +142,7 @@ sorting C by types, as a full relational ordered embedding. -/
 theorem typeSorted_preserves_ordered_copies
     {L : RelLanguage.{u}} {U V : Type v}
     [LinearOrder U] [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (B : RelStructure L U) (C : RelStructure L V)
     (hB : TypeAdmissible typeOrder B) :
     CopywiseCompletion B.ordered C.ordered
@@ -185,7 +193,7 @@ and its membership in any ambient class K. -/
 theorem typeAdmissible_arrow_of_freeOrder
     {L : RelLanguage.{u}} {U V : Type v}
     [LinearOrder U] [LinearOrder V]
-    (typeOrder : LinearOrder (Set L.Symbol))
+    (typeOrder : LinearOrder (OnePointCode L))
     (K : StructureClass.{u,v} (L := L))
     (A : RelStructure L U) (B : RelStructure L V)
     (hB : TypeAdmissible typeOrder B)
