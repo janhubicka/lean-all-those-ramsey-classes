@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricCanonicalFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricMinimalPieceCanonicalFlip
+#print axioms AllThoseRamseyClasses.Lifts.geometricMinimalPieceCanonicalFlip
