@@ -7,6 +7,7 @@ import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
 #check AllThoseRamseyClasses.Lifts.weakFreePartition_right_step
 #check AllThoseRamseyClasses.Lifts.weakFreePartition_component_left
 #check AllThoseRamseyClasses.Lifts.weakFreePartition_component_right
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_root_separates_exclusive
 
 #print axioms AllThoseRamseyClasses.Lifts.functionalFreeAmalgam_graphTuple_side
 #print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_target_no_cross_edge
@@ -15,3 +16,4 @@ import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
 #print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_right_step
 #print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_component_left
 #print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_component_right
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_root_separates_exclusive
