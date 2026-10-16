@@ -1,0 +1,14 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenGeometricFunctionalPieces
+
+#check AllThoseRamseyClasses.Lifts.functionalRootedGraph
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPatternIso
+#check AllThoseRamseyClasses.Lifts.functionalRootedIsoSetoid
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalRootedPattern
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalRootedPattern_graph
+#check AllThoseRamseyClasses.Lifts.IsForbiddenGeometricFunctionalPiece
+#check AllThoseRamseyClasses.Lifts.forbiddenGeometricFunctionalPieces
+#check AllThoseRamseyClasses.Lifts.forbiddenGeometricFunctionalPieces_has_source
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIsoSetoid
+#print axioms AllThoseRamseyClasses.Lifts.geometricFunctionalRootedPattern_graph
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenGeometricFunctionalPieces_has_source
