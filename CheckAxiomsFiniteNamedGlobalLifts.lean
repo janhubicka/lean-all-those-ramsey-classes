@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Lifts.FiniteNamedGlobalLifts
+
+#check AllThoseRamseyClasses.Lifts.NamedGlobalLiftOptions
+#check AllThoseRamseyClasses.Lifts.finite_namedGlobalLiftOptions_of_regular
+#check AllThoseRamseyClasses.Lifts.namedGlobalLiftOptions_shadow
+#check AllThoseRamseyClasses.Lifts.namedGlobalLiftOptions_distinct
+#check AllThoseRamseyClasses.Lifts.namedGlobalCanonicalLift
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_namedGlobalLiftOptions_of_regular
+#print axioms AllThoseRamseyClasses.Lifts.namedGlobalLiftOptions_shadow
+#print axioms AllThoseRamseyClasses.Lifts.namedGlobalLiftOptions_distinct
+#print axioms AllThoseRamseyClasses.Lifts.namedGlobalCanonicalLift
