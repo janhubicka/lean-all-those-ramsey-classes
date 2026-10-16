@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceSortMarkers
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.original_or_tagged
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.original_not_tagged
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_original_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_tagSymbol_iff
