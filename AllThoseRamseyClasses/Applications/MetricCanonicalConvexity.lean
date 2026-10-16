@@ -227,7 +227,6 @@ theorem canonicalLift_jumpConvex {S : Set ℝ} {V : Type u}
             (.inr (canonicalClosureTag hpos hS hd J (anchor a)))
             (.inl (anchor a)) ≤ j
           rw [canonicalClosureTag_distance hpos hS hd J (anchor a)]
-          exact le_refl j
         have hAtoC : canonicalDistance hpos hS hd
             (.inl (anchor a)) c ≤ j :=
           metric_jump_threshold_trans hpos hS hLift
