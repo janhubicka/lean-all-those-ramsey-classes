@@ -48,12 +48,12 @@ def enumeratedRootPieceClass
     Set (FunctionalRootedPattern.{u,v} L n) :=
   {T | ∃ Q : FunctionalRootExtension Root,
     (functionalRootPieceSetoid Root F).r P Q ∧
-      T = Q.toEnumeratedRootedPattern rho}
+      T = FunctionalRootExtension.toEnumeratedRootedPattern Root rho Q}
 
 /-- A single new relation symbol of exactly the enumerated root arity. -/
 def enumeratedRootClassLanguage (L : Language.{u}) (n : ℕ) :
     Language.{u} :=
-  functionalLiftLanguage L PUnit.{u} (fun _ => n)
+  functionalLiftLanguage L PUnit.{u+1} (fun _ => n)
 
 /-- Canonical lift with the n-ary predicate of P's piece-equivalence
 class. Every original relation and function is left unchanged. -/
@@ -62,7 +62,7 @@ def enumeratedRootClassCanonicalLift
     (P : FunctionalRootExtension Root)
     {W : Type v} (A : Structure L W) :
     Structure (enumeratedRootClassLanguage L n) W :=
-  functionalCanonicalLiftOn L PUnit.{u} (fun _ => n)
+  functionalCanonicalLiftOn L PUnit.{u+1} (fun _ => n)
     (fun _ => enumeratedRootPieceClass Root rho F P) A
 
 /-- Exact semantics: an extra relation tuple belongs iff it is
@@ -84,7 +84,7 @@ theorem enumeratedRootClassCanonicalRelation_iff
                 f (Q.rootEmbedding (rho i)) = xs i := by
   constructor
   · intro h
-    change FunctionalCanonicalExtraRelation L PUnit.{u}
+    change FunctionalCanonicalExtraRelation L PUnit.{u+1}
       (fun _ => n)
       (fun _ => enumeratedRootPieceClass Root rho F P)
       A PUnit.unit xs at h
@@ -92,11 +92,11 @@ theorem enumeratedRootClassCanonicalRelation_iff
     subst T
     exact ⟨hinj, Q, hPQ, f, hf, hroot⟩
   · rintro ⟨hinj, Q, hPQ, f, hf, hroot⟩
-    change FunctionalCanonicalExtraRelation L PUnit.{u}
+    change FunctionalCanonicalExtraRelation L PUnit.{u+1}
       (fun _ => n)
       (fun _ => enumeratedRootPieceClass Root rho F P)
       A PUnit.unit xs
-    refine ⟨hinj, Q.toEnumeratedRootedPattern rho,
+    refine ⟨hinj, FunctionalRootExtension.toEnumeratedRootedPattern Root rho Q,
       ⟨Q, hPQ, rfl⟩, ?_⟩
     exact ⟨f, hf, hroot⟩
 
