@@ -2,27 +2,24 @@ import AllThoseRamseyClasses.Lifts.FunctionalLiftLanguage
 import AllThoseRamseyClasses.Lifts.NormalizedFunctionalFlip
 
 /-!
-# Extracting a replacement piece from a canonical fixed-root lift
+# Canonical lift witnesses in an enumerated full functional root chart
 
-For a fixed FULL functional root structure on the standard ordered
-carrier Fin n, every root extension has a rooted-pattern presentation.
-The family of representatives of one canonical incompatibility class
-can be used as the added n-ary relation of a functional lift.
+Fix a FULL functional root structure Root on any carrier U, together
+with an ORDERED bijective enumeration `rho : Fin n ≃ U`.
+Each root extension has the rooted-pattern presentation with roots
+`P.rootEmbedding (rho i)`. The family of representatives of one
+canonical incompatibility class is the new n-ary relation of a
+function-preserving lift.
 
-An occurrence of that relation in the target provides EXACTLY the
-data needed for the functional flip: a root extension in the same
-canonical incompatibility class and a weak (2019/EHN) realization
-whose ordered-root image is the prescribed tuple.
+Occurrence of that relation provides exactly the replacement data
+needed for a flip: an equivalent root extension Q and a weak (EHN)
+realization whose enumerated root image is the prescribed tuple.
 
-The image tuple is required to be injective by the canonical lift
-predicate. It is *not* inferred from a general weak HE. Conversely,
-a weak realization of the original piece with injective root image
-produces the canonical relation. Thus equality of the canonical
-added relation on an ordered root tuple in two ambient witnesses
-implies existence of a replacement realizing piece in the second.
-
-This is a fixed-full-root chart lemma. Normalization of arbitrary
-minimal-cut roots into Fin n charts is a separate task.
+The canonical predicate explicitly requires INJECTIVE root images.
+The manuscript's general weak homomorphism-embedding does not
+automatically supply this. The old root's carrier may be a closed
+separator subtype, not necessarily Fin n; the enumeration handles
+that without identifying arbitrary carriers definitionally.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
@@ -31,122 +28,102 @@ open StructuralRamsey
 open StructuralRamsey.Structure
 
 universe u v
-variable {L : Language.{u}} {n : ℕ}
-variable (Root : Structure L (Fin n))
+variable {L : Language.{u}} {n : ℕ} {U : Type v}
+variable (Root : Structure L U) (rho : Fin n ≃ U)
 
-/-- Forget the designated full root chart, keeping its ORDERED tuple. -/
-def FunctionalRootExtension.toRootedPattern
+/-- Forget the full root chart but preserve its ORDERED enumeration. -/
+def FunctionalRootExtension.toEnumeratedRootedPattern
     (P : FunctionalRootExtension Root) :
     FunctionalRootedPattern.{u,v} L n where
   Carrier := P.Carrier
   str := P.str
-  root := P.rootEmbedding
-  root_injective := P.rootEmbedding.injective
+  root := fun i => P.rootEmbedding (rho i)
+  root_injective := P.rootEmbedding.injective.comp rho.injective
 
-/-- All rooted presentations of pieces equivalent to P with the SAME
-full functional root. The equivalence tests ALL rooted complements,
-as required in the published canonical lift. -/
-def fixedRootPieceClass
+/-- All rooted presentations of extensions equivalent to P over
+the SAME full root; complements range over ALL root extensions. -/
+def enumeratedRootPieceClass
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P : FunctionalRootExtension Root) :
     Set (FunctionalRootedPattern.{u,v} L n) :=
   {T | ∃ Q : FunctionalRootExtension Root,
     (functionalRootPieceSetoid Root F).r P Q ∧
-      T = Q.toRootedPattern}
+      T = Q.toEnumeratedRootedPattern rho}
 
-/-- A single relation symbol whose arity is the ordered root width. -/
-def fixedRootClassLanguage
-    (L : Language.{u}) (n : ℕ) : Language.{u} :=
+/-- A single new relation symbol of exactly the enumerated root arity. -/
+def enumeratedRootClassLanguage (L : Language.{u}) (n : ℕ) :
+    Language.{u} :=
   functionalLiftLanguage L PUnit.{u} (fun _ => n)
 
-/-- Canonical lift containing the n-ary relation associated to the
-single piece-equivalence class P, retaining all original functions. -/
-def fixedRootClassCanonicalLift
+/-- Canonical lift with the n-ary predicate of P's piece-equivalence
+class. Every original relation and function is left unchanged. -/
+def enumeratedRootClassCanonicalLift
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P : FunctionalRootExtension Root)
     {W : Type v} (A : Structure L W) :
-    Structure (fixedRootClassLanguage L n) W :=
+    Structure (enumeratedRootClassLanguage L n) W :=
   functionalCanonicalLiftOn L PUnit.{u} (fun _ => n)
-    (fun _ => fixedRootPieceClass Root F P) A
+    (fun _ => enumeratedRootPieceClass Root rho F P) A
 
-/-- The exact meaning of the chosen canonical n-ary added relation.
-No constraint is imposed that its realizing weak map be globally
-injective, only that the ordered root image is injective. -/
-theorem fixedRootClassCanonicalRelation_iff
+/-- Exact semantics: an extra relation tuple belongs iff it is
+injective and an equivalent full-root piece has a weak realization
+mapping its i-th ENUMERATED root to the i-th target vertex. -/
+theorem enumeratedRootClassCanonicalRelation_iff
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P : FunctionalRootExtension Root)
     {W : Type v} (A : Structure L W)
     (xs : Fin n → W) :
-    (fixedRootClassCanonicalLift Root F P A).rel (.inr PUnit.unit) xs ↔
+    (enumeratedRootClassCanonicalLift Root rho F P A).rel
+      (.inr PUnit.unit) xs ↔
       Function.Injective xs ∧
         ∃ Q : FunctionalRootExtension Root,
           (functionalRootPieceSetoid Root F).r P Q ∧
             ∃ f : Q.Carrier → W,
               Q.str.IsEHNHomomorphismEmbedding A f ∧
-              ∀ i : Fin n, f (Q.rootEmbedding i) = xs i := by
+              ∀ i : Fin n,
+                f (Q.rootEmbedding (rho i)) = xs i := by
   constructor
   · intro h
     change FunctionalCanonicalExtraRelation L PUnit.{u}
-      (fun _ => n) (fun _ => fixedRootPieceClass Root F P)
+      (fun _ => n)
+      (fun _ => enumeratedRootPieceClass Root rho F P)
       A PUnit.unit xs at h
     obtain ⟨hinj, T, ⟨Q, hPQ, hT⟩, ⟨f, hf, hroot⟩⟩ := h
     subst T
     exact ⟨hinj, Q, hPQ, f, hf, hroot⟩
   · rintro ⟨hinj, Q, hPQ, f, hf, hroot⟩
     change FunctionalCanonicalExtraRelation L PUnit.{u}
-      (fun _ => n) (fun _ => fixedRootPieceClass Root F P)
+      (fun _ => n)
+      (fun _ => enumeratedRootPieceClass Root rho F P)
       A PUnit.unit xs
-    refine ⟨hinj, Q.toRootedPattern, ⟨Q, hPQ, rfl⟩, ?_⟩
+    refine ⟨hinj, Q.toEnumeratedRootedPattern rho,
+      ⟨Q, hPQ, rfl⟩, ?_⟩
     exact ⟨f, hf, hroot⟩
 
-/-- An original weak realization with an explicitly injective root
-image produces the canonical class relation in its ambient target. -/
-theorem fixedRootClassCanonicalRelation_of_weak
+/-- An original weak rooted realization with an EXPLICITLY injective
+image of its enumerated root produces the canonical class predicate. -/
+theorem enumeratedRootClassCanonicalRelation_of_weak
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P : FunctionalRootExtension Root)
     {W : Type v} (A : Structure L W)
     (f : P.Carrier → W)
     (hf : P.str.IsEHNHomomorphismEmbedding A f)
     (hroots : Function.Injective
-      (fun i : Fin n => f (P.rootEmbedding i))) :
-    (fixedRootClassCanonicalLift Root F P A).rel (.inr PUnit.unit)
-      (fun i : Fin n => f (P.rootEmbedding i)) := by
-  apply (fixedRootClassCanonicalRelation_iff Root F P A
-    (fun i : Fin n => f (P.rootEmbedding i))).mpr
+      (fun i : Fin n => f (P.rootEmbedding (rho i)))) :
+    (enumeratedRootClassCanonicalLift Root rho F P A).rel
+      (.inr PUnit.unit)
+      (fun i : Fin n => f (P.rootEmbedding (rho i))) := by
+  apply (enumeratedRootClassCanonicalRelation_iff Root rho F P A
+    (fun i : Fin n => f (P.rootEmbedding (rho i)))).mpr
   refine ⟨hroots, P, ?_, f, hf, ?_⟩
-  · exact (functionalRootPieceSetoid Root F).refl P
+  · rfl
   · intro i
     rfl
 
-/-- Equality of the class relation on one tuple in A and B transfers
-a rooted realization from A to a suitable equivalent replacement
-piece in B, with EXACT agreement of the ordered root tuple. -/
-theorem fixedRootClassCanonicalRelation_transfer
-    (F : ∀ {W : Type v}, Structure L W → Prop)
-    (P : FunctionalRootExtension Root)
-    {W Z : Type v}
-    (A : Structure L W) (B : Structure L Z)
-    (xsA : Fin n → W) (xsB : Fin n → Z)
-    (hA : (fixedRootClassCanonicalLift Root F P A).rel
-      (.inr PUnit.unit) xsA)
-    (hB : (fixedRootClassCanonicalLift Root F P B).rel
-      (.inr PUnit.unit) xsB) :
-    Function.Injective xsA ∧
-      Function.Injective xsB ∧
-      ∃ Q : FunctionalRootExtension Root,
-        (functionalRootPieceSetoid Root F).r P Q ∧
-          ∃ f : Q.Carrier → Z,
-            Q.str.IsEHNHomomorphismEmbedding B f ∧
-            ∀ i : Fin n, f (Q.rootEmbedding i) = xsB i := by
-  have hXA := (fixedRootClassCanonicalRelation_iff Root F P A xsA).mp hA
-  have hXB := (fixedRootClassCanonicalRelation_iff Root F P B xsB).mp hB
-  exact ⟨hXA.1, hXB.1, hXB.2⟩
-
-/-- The useful specialized version: if a root tuple originally
-realizes P in A and the SAME canonical lift relation is asserted
-in B, a replacement piece Q exists with a weak map into B and
-the prescribed roots. No arbitrary source-map injectivity is used. -/
-theorem fixedRootClassCanonicalWitness_from_other_lift
+/-- The canonical class relation can be transported from one witness
+to another. Its membership on the second tuple supplies a weak map
+on an EQUIVALENT replacement piece, with exact ordered roots. -/
+theorem enumeratedRootClassCanonicalWitness_from_other_lift
     (F : ∀ {W : Type v}, Structure L W → Prop)
     (P : FunctionalRootExtension Root)
     {W Z : Type v}
@@ -154,22 +131,37 @@ theorem fixedRootClassCanonicalWitness_from_other_lift
     (fA : P.Carrier → W)
     (hfA : P.str.IsEHNHomomorphismEmbedding A fA)
     (hrootA : Function.Injective
-      (fun i : Fin n => fA (P.rootEmbedding i)))
+      (fun i : Fin n => fA (P.rootEmbedding (rho i))))
     (xsB : Fin n → Z)
     (hSameRelation :
-      (fixedRootClassCanonicalLift Root F P A).rel
-        (.inr PUnit.unit) (fun i : Fin n => fA (P.rootEmbedding i)) →
-      (fixedRootClassCanonicalLift Root F P B).rel
+      (enumeratedRootClassCanonicalLift Root rho F P A).rel
+        (.inr PUnit.unit)
+        (fun i : Fin n => fA (P.rootEmbedding (rho i))) →
+      (enumeratedRootClassCanonicalLift Root rho F P B).rel
         (.inr PUnit.unit) xsB) :
     Function.Injective xsB ∧
       ∃ Q : FunctionalRootExtension Root,
         (functionalRootPieceSetoid Root F).r P Q ∧
           ∃ f : Q.Carrier → Z,
             Q.str.IsEHNHomomorphismEmbedding B f ∧
-            ∀ i : Fin n, f (Q.rootEmbedding i) = xsB i := by
-  have hRelA := fixedRootClassCanonicalRelation_of_weak
-    Root F P A fA hfA hrootA
-  exact (fixedRootClassCanonicalRelation_iff Root F P B xsB).mp
-    (hSameRelation hRelA)
+            ∀ i : Fin n,
+              f (Q.rootEmbedding (rho i)) = xsB i := by
+  have hRelA := enumeratedRootClassCanonicalRelation_of_weak
+    Root rho F P A fA hfA hrootA
+  exact (enumeratedRootClassCanonicalRelation_iff
+    Root rho F P B xsB).mp (hSameRelation hRelA)
+
+/-- Surjectivity of the enumeration converts equality at ALL ordered
+root coordinates into equality at EVERY vertex of the full root.
+This is the compatibility condition required by an actual-source
+free-amalgam fold, not merely tuple-wise compatibility by fiat. -/
+theorem enumeratedRootMap_agrees_on_full_root
+    {W : Type v} (P : FunctionalRootExtension Root)
+    (f : P.Carrier → W) (g : U → W)
+    (h : ∀ i : Fin n, f (P.rootEmbedding (rho i)) = g (rho i)) :
+    ∀ r : U, f (P.rootEmbedding r) = g r := by
+  intro r
+  obtain ⟨i, rfl⟩ := rho.surjective r
+  exact h i
 
 end AllThoseRamseyClasses.Lifts
