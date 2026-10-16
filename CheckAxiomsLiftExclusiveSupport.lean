@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.FlipExclusiveSupport
+
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupport_right_iff
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupport_set_eq
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupportEquiv
+#check AllThoseRamseyClasses.Lifts.flipExclusiveSupport_card_eq
+
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupport_right_iff
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupport_set_eq
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupportEquiv
+#print axioms AllThoseRamseyClasses.Lifts.flipExclusiveSupport_card_eq
