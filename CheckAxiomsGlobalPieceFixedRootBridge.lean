@@ -4,7 +4,9 @@ import AllThoseRamseyClasses.Lifts.GlobalPieceFixedRootBridge
 #check AllThoseRamseyClasses.Lifts.chartIncompatible_sameRoot_iff
 #check AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_iff_fixedRoot
 #check AllThoseRamseyClasses.Lifts.selectedChart_hasFullRoot
+#check AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_forces_root_eq
 
 #print axioms AllThoseRamseyClasses.Lifts.chartIncompatible_sameRoot_iff
 #print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_iff_fixedRoot
 #print axioms AllThoseRamseyClasses.Lifts.selectedChart_hasFullRoot
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_forces_root_eq
