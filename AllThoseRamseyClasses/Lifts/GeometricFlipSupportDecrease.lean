@@ -75,9 +75,11 @@ theorem geometricFlip_exclusiveSupport_strict_decrease
   let C : Set V := functionalComponentFrom A R d.left
   let T := componentComplementRootExtension A R d.minimal.1 d.left
   let iOldT := functionalComponentComplementEmbedding A R d.minimal.1 d.left
-  letI : Finite (Set.compl C) :=
-    Finite.of_injective Subtype.val Subtype.val_injective
-  letI : Fintype (Set.compl C) := Fintype.ofFinite (Set.compl C)
+  letI : Finite T.Carrier :=
+    Finite.of_injective (fun b : T.Carrier => b.1) (by
+      intro a b hab
+      exact Subtype.ext hab)
+  letI : Fintype T.Carrier := Fintype.ofFinite T.Carrier
   have hOldRight :
       ∀ b : T.Carrier, f (iOldT b) = f b.1 := by
     intro b
