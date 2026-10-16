@@ -46,10 +46,12 @@ def FunctionalRootedPatternIso.toFullEmbedding
         (Structure.funcTuple xs z)).mpr hp
       change Q.str.graph.rel (.inr F)
         (e.equiv ∘ Structure.funcTuple xs z) at hq
+      have htuple : e.equiv ∘ Structure.funcTuple xs z =
+          Structure.funcTuple (e.equiv ∘ xs) (e.equiv z) :=
+        Structure.comp_funcTuple e.equiv xs z
       have hq' : Q.str.graph.rel (.inr F)
-          (Structure.funcTuple (e.equiv ∘ xs) (e.equiv z)) := by
-        rw [← Structure.comp_funcTuple]
-        exact hq
+          (Structure.funcTuple (e.equiv ∘ xs) (e.equiv z)) :=
+        htuple ▸ hq
       exact (Structure.graph_func_snoc Q.str F
         (e.equiv ∘ xs) (e.equiv z)).mp hq'
     · intro hy
@@ -58,10 +60,12 @@ def FunctionalRootedPatternIso.toFullEmbedding
           (Structure.funcTuple (e.equiv ∘ xs) (e.equiv z)) :=
         (Structure.graph_func_snoc Q.str F
           (e.equiv ∘ xs) (e.equiv z)).mpr hy
+      have htuple : e.equiv ∘ Structure.funcTuple xs z =
+          Structure.funcTuple (e.equiv ∘ xs) (e.equiv z) :=
+        Structure.comp_funcTuple e.equiv xs z
       have hq' : Q.str.graph.rel (.inr F)
-          (e.equiv ∘ Structure.funcTuple xs z) := by
-        rw [Structure.comp_funcTuple]
-        exact hq
+          (e.equiv ∘ Structure.funcTuple xs z) :=
+        htuple.symm ▸ hq
       have hp : P.str.graph.rel (.inr F)
           (Structure.funcTuple xs z) :=
         (e.rel_iff (.inr F) (Structure.funcTuple xs z)).mp hq'
