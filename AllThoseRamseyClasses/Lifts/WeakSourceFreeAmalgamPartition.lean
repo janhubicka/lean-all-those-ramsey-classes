@@ -136,9 +136,9 @@ theorem weakFreePartition_univ
   constructor
   · intro _
     rcases weakFreePartition_covers hfree f x with h | h | h
-    · exact Or.inl h
-    · exact Or.inr (Or.inl h)
-    · exact Or.inr (Or.inr h)
+    · exact Or.inl (Or.inl h)
+    · exact Or.inl (Or.inr h)
+    · exact Or.inr h
   · intro _
     trivial
 
