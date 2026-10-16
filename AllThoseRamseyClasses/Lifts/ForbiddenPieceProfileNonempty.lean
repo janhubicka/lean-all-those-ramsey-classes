@@ -2,6 +2,7 @@ import AllThoseRamseyClasses.Lifts.GlobalPieceFixedRootBridge
 import AllThoseRamseyClasses.Lifts.FreeAmalgamSideIso
 import AllThoseRamseyClasses.Lifts.FreeAmalgamRootReparam
 import AllThoseRamseyClasses.Lifts.FunctionalRootedIsoEmbedding
+import AllThoseRamseyClasses.Lifts.GeometricPieceRootChart
 
 /-!
 # Every selected forbidden piece has an incompatible rooted complement
