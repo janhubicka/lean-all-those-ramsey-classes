@@ -48,11 +48,11 @@ theorem geometricMinimalPieceFlip_of_sharedCanonicalRelation
     (hf : A.IsEHNHomomorphismEmbedding Target f)
     (Left : Structure L UA)
     (jLeft : Structure.Embedding Left Target)
-    (pLeft : (geometricFunctionalPiece A d).Carrier → UA)
+    (pLeft : ↥(geometricPieceVertices A d) → UA)
     (hpLeft :
       (geometricFunctionalPiece A d).IsEHNHomomorphismEmbedding
         Left pLeft)
-    (hPieceMap : ∀ z : (geometricFunctionalPiece A d).Carrier,
+    (hPieceMap : ∀ z : ↥(geometricPieceVertices A d),
       jLeft (pLeft z) = f z.1)
     (hSourceRootInjective :
       Function.Injective (fun i : Fin n => f (d.roots i)))
