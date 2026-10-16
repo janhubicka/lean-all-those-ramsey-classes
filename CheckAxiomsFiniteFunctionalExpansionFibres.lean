@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFunctionalExpansionFibres
+
+#check AllThoseRamseyClasses.Lifts.FixedFunctionalShadowExpansions
+#check AllThoseRamseyClasses.Lifts.fixedFunctionalShadowExpansions_finite
+#print axioms AllThoseRamseyClasses.Lifts.fixedFunctionalShadowExpansions_finite
