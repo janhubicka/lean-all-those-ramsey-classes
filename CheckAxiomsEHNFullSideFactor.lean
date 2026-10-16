@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.EHNFullSideFactor
+
+#check AllThoseRamseyClasses.Lifts.ehnHomomorphismEmbedding_cancel_full
+#check AllThoseRamseyClasses.Lifts.ehnHomomorphismEmbedding_factor_full_side
+#check AllThoseRamseyClasses.Lifts.geometricPieceWeakMap_factor_ambient_side
+
+#print axioms AllThoseRamseyClasses.Lifts.ehnHomomorphismEmbedding_cancel_full
+#print axioms AllThoseRamseyClasses.Lifts.ehnHomomorphismEmbedding_factor_full_side
+#print axioms AllThoseRamseyClasses.Lifts.geometricPieceWeakMap_factor_ambient_side
