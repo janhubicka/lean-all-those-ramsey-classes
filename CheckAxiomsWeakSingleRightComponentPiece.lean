@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.WeakSingleRightComponentPiece
+
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_leftOnlyPiece_of_rightConnected
+#check AllThoseRamseyClasses.Lifts.weakFreePartition_leftFactor_of_rightConnected
+
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_leftOnlyPiece_of_rightConnected
+#print axioms AllThoseRamseyClasses.Lifts.weakFreePartition_leftFactor_of_rightConnected
