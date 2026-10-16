@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.ClosedFunctionalRoots
+
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.IsRootClosed
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.rootStructure
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.rootInclusion
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.rootInclusion_apply
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.rootEmbedding_range
+#check AllThoseRamseyClasses.Lifts.geometricFunctionalRootedPattern_rootClosed
+
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootedPattern.rootInclusion
+#print axioms AllThoseRamseyClasses.Lifts.geometricFunctionalRootedPattern_rootClosed
