@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.OriginalPartialWeakImageQuotient
+
+#check AllThoseRamseyClasses.Lifts.OriginalPartialTupleSurjective
+#check AllThoseRamseyClasses.Lifts.PositiveIncidenceSurjective.toOriginalPartialTupleSurjective
+#check AllThoseRamseyClasses.Lifts.originalPartialHom_weakImage_quotient
+#check AllThoseRamseyClasses.Lifts.originalPartialHom_weakImage_quotient_data
+
+#print axioms AllThoseRamseyClasses.Lifts.PositiveIncidenceSurjective.toOriginalPartialTupleSurjective
+#print axioms AllThoseRamseyClasses.Lifts.originalPartialHom_weakImage_quotient
+#print axioms AllThoseRamseyClasses.Lifts.originalPartialHom_weakImage_quotient_data
