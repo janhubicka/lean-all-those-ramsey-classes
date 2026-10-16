@@ -368,8 +368,11 @@ Moreover, `AdmissibleOrders.admissiblyOrderedFreeAmalgamation_areRamsey`,
 [PR #372](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/372),
 proves the full finite Ramsey-class conclusion for any relational
 free-amalgamation class equipped with these admissible orders.
-The unrestricted arbitrary-relational-class property is being
-packaged under CI in PR #373; genuine function-language one-point
+The unrestricted arbitrary-relational-class theorem is now
+fully verified by [PR #373](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/373):
+`AdmissibleOrders.hasTypeAdmissibleRamsey_of_hasFreeOrderRamsey`
+asserts the implication between genuinely class-level Ramsey properties,
+with NO free-amalgamation hypothesis. genuine function-language one-point
 types and the manuscript's named reflexive-order representation
 remain separate from the verified relational results.
 
