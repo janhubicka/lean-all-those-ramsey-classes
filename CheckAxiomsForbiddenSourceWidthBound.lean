@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenSourceWidthBound
+
+#check AllThoseRamseyClasses.Lifts.globalFunctionalPiece_width_le_forbiddenCardBound
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPiece_width_le_forbiddenCardBound
