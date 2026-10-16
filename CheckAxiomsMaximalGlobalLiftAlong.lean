@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.MaximalGlobalLiftAlong
+
+#check AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong
+#check AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong.relation_extension
+#check AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong.of_allowed_extension
+#check AllThoseRamseyClasses.Lifts.maximalLifts_agree_in_allowed_common_extension
+
+#print axioms AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong.relation_extension
+#print axioms AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong.of_allowed_extension
+#print axioms AllThoseRamseyClasses.Lifts.maximalLifts_agree_in_allowed_common_extension
