@@ -61,6 +61,10 @@ theorem minimum_distanceSum_le_jump_iff_witness {S : Set ℝ}
       rw [distanceSum_comm S (q a) j]
       exact distanceSum_mono_right hj.1
         (hpos (q a) (hq a)).le hqa
-    exact (hLower a).trans (hfirst.trans (hsecond.trans_eq hj.2.2))
+    calc
+      d ≤ distanceSum S (p a) (q a) := hLower a
+      _ ≤ distanceSum S (q a) j := hfirst
+      _ ≤ distanceSum S j j := hsecond
+      _ = j := hj.2.2
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
