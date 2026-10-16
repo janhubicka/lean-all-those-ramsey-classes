@@ -114,4 +114,24 @@ theorem selectedChart_hasFullRoot
         P.1 = FunctionalRootChart.ofExtension Root E :=
   ⟨P.1.root, P.1.ext, rfl⟩
 
+
+/-- If a selected forbidden piece has at least ONE forbidden rooted
+complement, equality of global incompatibility profiles forces
+equality of the COMPLETE induced functional root structures.
+This is the precise nonempty-profile step needed before
+identifying global classes with fixed-root classes. -/
+theorem globalFunctionalPiece_equiv_forces_root_eq
+    (F : ∀ {W : Type v}, Structure L W → Prop)
+    (P Q : SelectedFunctionalChart F n)
+    (hEq : (globalFunctionalPieceSetoid F n).r P Q)
+    (hNonempty : ∃ T : FunctionalRootChart.{u,v} L n,
+      FunctionalRootChart.Incompatible F P.1 T) :
+    P.1.root = Q.1.root := by
+  obtain ⟨T, hPT⟩ := hNonempty
+  have hQT : FunctionalRootChart.Incompatible F Q.1 T :=
+    (incompatible_iff_of_equiv hEq T).mp hPT
+  obtain ⟨hP, _⟩ := hPT
+  obtain ⟨hQ, _⟩ := hQT
+  exact hP.trans hQ.symm
+
 end AllThoseRamseyClasses.Lifts
