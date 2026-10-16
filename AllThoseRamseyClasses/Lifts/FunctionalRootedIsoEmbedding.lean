@@ -44,9 +44,12 @@ def FunctionalRootedPatternIso.toFullEmbedding
         (Structure.graph_func_snoc P.str F xs z).mpr hz
       have hq := (e.rel_iff (.inr F)
         (Structure.funcTuple xs z)).mpr hp
+      change Q.str.graph.rel (.inr F)
+        (e.equiv ∘ Structure.funcTuple xs z) at hq
       have hq' : Q.str.graph.rel (.inr F)
           (Structure.funcTuple (e.equiv ∘ xs) (e.equiv z)) := by
-        simpa only [Structure.comp_funcTuple] using hq
+        rw [← Structure.comp_funcTuple]
+        exact hq
       exact (Structure.graph_func_snoc Q.str F
         (e.equiv ∘ xs) (e.equiv z)).mp hq'
     · intro hy
@@ -57,7 +60,8 @@ def FunctionalRootedPatternIso.toFullEmbedding
           (e.equiv ∘ xs) (e.equiv z)).mpr hy
       have hq' : Q.str.graph.rel (.inr F)
           (e.equiv ∘ Structure.funcTuple xs z) := by
-        simpa only [Structure.comp_funcTuple] using hq
+        rw [Structure.comp_funcTuple]
+        exact hq
       have hp : P.str.graph.rel (.inr F)
           (Structure.funcTuple xs z) :=
         (e.rel_iff (.inr F) (Structure.funcTuple xs z)).mp hq'
@@ -81,7 +85,8 @@ functional embedding, and the two compositions are the identity
 on the underlying carriers. -/
 theorem FunctionalRootedPatternIso.inverse_on_vertices
     (e : FunctionalRootedPatternIso P Q) (x : P.Carrier) :
-    e.symm.toFullEmbedding (e.toFullEmbedding x) = x :=
+    (FunctionalRootedPatternIso.toFullEmbedding (P := Q) (Q := P) e.symm)
+      (e.toFullEmbedding x) = x :=
   e.equiv.symm_apply_apply x
 
 end AllThoseRamseyClasses.Lifts
