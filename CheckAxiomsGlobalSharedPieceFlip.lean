@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GlobalSharedPieceFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRelation_shared_from_piece
+#check AllThoseRamseyClasses.Lifts.geometricGlobalSharedLiftFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRelation_shared_from_piece
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSharedLiftFlip
