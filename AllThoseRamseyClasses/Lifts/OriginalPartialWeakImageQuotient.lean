@@ -216,7 +216,6 @@ theorem originalPartialHE_weakImage_quotient_data
       (Structure.weakImage.quotientMap (f := f)) := by
   exact ⟨Structure.weakImage.quotientMap_surjective (f := f),
     originalPartialHE_weakImage_quotient A B f hf,
-    (weakImage_quotient_positiveIncidenceSurjective A B f)
-      .toOriginalPartialTupleSurjective⟩
+    (weakImage_quotient_positiveIncidenceSurjective A B f).toOriginalPartialTupleSurjective⟩
 
 end AllThoseRamseyClasses.Lifts
