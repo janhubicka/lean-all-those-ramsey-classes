@@ -91,7 +91,7 @@ theorem originalPartialHom_weakImage_quotient
     ext z
     constructor
     · rintro ⟨a, ha, hqa⟩
-      exact ⟨xs, a, ha, (fun _ => rfl), hqa⟩
+      exact ⟨xs, a, ha, (fun _ => rfl), hqa.symm⟩
     · rintro ⟨ys, a, ha, hargs, hout⟩
       have hSame : f ∘ xs = f ∘ ys := by
         funext i
@@ -127,7 +127,6 @@ theorem originalPartialHom_weakImage_quotient_data
       (Structure.weakImage.quotientMap (f := f)) := by
   refine ⟨Structure.weakImage.quotientMap_surjective (f := f),
     originalPartialHom_weakImage_quotient A B f hf, ?_⟩
-  exact (weakImage_quotient_positiveIncidenceSurjective A B f)
-    .toOriginalPartialTupleSurjective
+  exact (weakImage_quotient_positiveIncidenceSurjective A B f).toOriginalPartialTupleSurjective
 
 end AllThoseRamseyClasses.Lifts
