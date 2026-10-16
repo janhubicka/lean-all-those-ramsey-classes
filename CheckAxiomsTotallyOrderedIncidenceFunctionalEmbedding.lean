@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceFunctionalEmbedding
+
+#check AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceFunctionalEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceFunctionalEmbedding
