@@ -36,9 +36,12 @@ theorem minimalClosedSeparator_nonempty_of_emptyCut_path
     R.Nonempty := by
   by_contra hnot
   have hR : R = ∅ := by
-    apply Set.eq_empty_iff_forall_not_mem.mpr
-    intro z hz
-    exact hnot ⟨z, hz⟩
+    ext z
+    constructor
+    · intro hz
+      exact (hnot ⟨z, hz⟩).elim
+    · intro hz
+      simp at hz
   cases hR
   exact hmin.2.1 (by simpa using hConnected)
 
