@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedEncoding
+
+#check AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.encodeEmbedding
+#check AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.exactEmbedding_of_encodeEmbedding
+#check AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.exactEmbedding_iff_encoded
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.encodeEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.exactEmbedding_of_encodeEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedEncoding.exactEmbedding_iff_encoded
