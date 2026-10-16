@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
 import AllThoseRamseyClasses.Lifts.FiniteClosedSeparatorSelection
 import AllThoseRamseyClasses.Lifts.GeometricFunctionalPieces
+import AllThoseRamseyClasses.Lifts.ForbiddenGeometricFunctionalPieces
 import Mathlib.Data.Fintype.EquivFin
 
 /-!
@@ -133,5 +134,39 @@ theorem weakFreePartition_hasMinimalGeometricChart
     exact hRS
   · exact hLeft
   · exact hRight
+
+
+/-- If the finite weak source is itself forbidden, the geometrically
+selected chart is a literal member of the indexed family of
+FORBIDDEN functional pieces (up to the existing root-preserving
+full isomorphism). No extraneous candidate-piece predicate is used.
+
+This DOES NOT assert that the chosen source component avoids the
+opposite exclusive target side, nor that images of distinct SOURCE
+roots are distinct in the target. -/
+theorem weakFreePartition_hasForbiddenGeometricPiece
+    [Finite U]
+    (Forbidden : ∀ {T : Type v}, Structure L T → Prop)
+    (hForbidden : Forbidden Source)
+    (hfree : Structure.IsFreeAmalgam sL sR iL iR)
+    (f : U → W) (hf : Source.IsWeakHomomorphism Whole f)
+    (x y : U)
+    (hx : x ∈ weakFreeLeftPart (sL := sL) (iL := iL) f)
+    (hy : y ∈ weakFreeRightPart
+      (sL := sL) (iL := iL) (iR := iR) f) :
+    ∃ (n : ℕ) (d : GeometricFunctionalPieceData Source n),
+      Set.range d.roots ⊆
+        weakFreeRootPart (sL := sL) (iL := iL) f ∧
+      d.left.1 = x ∧ d.right.1 = y ∧
+      geometricFunctionalRootedPattern Source d ∈
+        forbiddenGeometricFunctionalPieces Forbidden n := by
+  obtain ⟨n, d, hRoots, hLeft, hRight⟩ :=
+    weakFreePartition_hasMinimalGeometricChart
+      hfree f hf x y hx hy
+  refine ⟨n, d, hRoots, hLeft, hRight, ?_⟩
+  change IsForbiddenGeometricFunctionalPiece Forbidden
+    (geometricFunctionalRootedPattern Source d)
+  exact ⟨U, Source, inferInstance, hForbidden, d,
+    ⟨RootedPatternIso.refl _⟩⟩
 
 end AllThoseRamseyClasses.Lifts
