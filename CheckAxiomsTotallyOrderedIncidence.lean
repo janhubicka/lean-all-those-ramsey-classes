@@ -5,3 +5,6 @@ import AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
 
 #print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceValue_map
 #print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.finite_incidenceCarrier
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceValue_isSome_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceMap_image_valueFibre
