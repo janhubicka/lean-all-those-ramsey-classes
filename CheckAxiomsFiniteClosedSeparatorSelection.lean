@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteClosedSeparatorSelection
+
+#check AllThoseRamseyClasses.Lifts.finite_exists_minimalClosedSeparator_inside
+#print axioms AllThoseRamseyClasses.Lifts.finite_exists_minimalClosedSeparator_inside
