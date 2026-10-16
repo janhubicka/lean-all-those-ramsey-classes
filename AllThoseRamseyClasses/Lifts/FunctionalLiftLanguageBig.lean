@@ -13,7 +13,9 @@ symbols `New : Type w`, obtaining `Language.{max u w}`, while
 preserving every original relation and the COMPLETE original
 function interpretation exactly.
 
-The earlier same-universe constructor is the special case w=u.
+The earlier same-universe constructor has equivalent semantics when
+w=u. The old symbols are explicitly universe-lifted here, so the
+two language records need not be definitionally equal.
 No artificial enumeration of equivalence classes, additional
 function symbols, or conversion of undefined values into defined
 empty outputs occurs here.
@@ -31,10 +33,10 @@ function symbols and arities are unchanged. -/
 def functionalLiftLanguageBig
     (L : Language.{u}) (New : Type w)
     (ar : New → ℕ) : Language.{max u w} where
-  RelSymbol := L.RelSymbol ⊕ New
-  FuncSymbol := L.FuncSymbol
-  relArity := Sum.elim L.relArity ar
-  funcArity := L.funcArity
+  RelSymbol := ULift.{max u w, u} L.RelSymbol ⊕ New
+  FuncSymbol := ULift.{max u w, u} L.FuncSymbol
+  relArity := Sum.elim (fun R => L.relArity R.down) ar
+  funcArity F := L.funcArity F.down
 
 /-- The original structure on the SAME vertex carrier with all
 old relations and entire old function fibres preserved. -/
@@ -43,8 +45,8 @@ def functionalShadowBig
     {V : Type v}
     (X : Structure (functionalLiftLanguageBig L New ar) V) :
     Structure L V where
-  rel R := X.rel (.inl R)
-  func F := X.func F
+  rel R := X.rel (.inl (ULift.up R))
+  func F := X.func (ULift.up F)
 
 /-- Specify all extra relations, keeping the original function data
 literal rather than encoding it as temporary graph predicates. -/
@@ -56,9 +58,9 @@ def functionalWithExtraBig
     Structure (functionalLiftLanguageBig L New ar) V where
   rel R := by
     cases R with
-    | inl s => exact A.rel s
+    | inl s => exact A.rel s.down
     | inr i => exact extra i
-  func F := A.func F
+  func F := A.func F.down
 
 /-- Forgetting the new relations is exactly the original structure,
 not merely a weak homomorphism or an isomorphic copy. -/
@@ -85,8 +87,8 @@ def functionalShadowBigEmbedding
       (functionalShadowBig L New ar Y) where
   toFun := e
   injective := e.injective
-  map_rel_iff R xs := e.map_rel_iff (.inl R) xs
-  map_func F xs := e.map_func F xs
+  map_rel_iff R xs := e.map_rel_iff (.inl (ULift.up R)) xs
+  map_func F xs := e.map_func (ULift.up F) xs
 
 /-- The full shadow embedding lifts to the specified expansions
 when, and only when, it also reflects all new relation tuples. -/
@@ -106,9 +108,9 @@ def functionalWithExtraBigEmbedding
   injective := e.injective
   map_rel_iff R xs := by
     cases R with
-    | inl s => exact e.map_rel_iff s xs
+    | inl s => exact e.map_rel_iff s.down xs
     | inr i => exact hExtra i xs
-  map_func F xs := e.map_func F xs
+  map_func F xs := e.map_func F.down xs
 
 /-- Canonical extra relation associated to one arbitrary new
 piece-class symbol. The required injectivity of its ordered root
@@ -174,13 +176,20 @@ theorem functionalCanonicalExtraBig_map_embedding
   exact ⟨e.injective.comp hinj, P, hP,
     FunctionalRootRealization.map_embedding P xs e hreal⟩
 
-/-- Compatibility with the earlier same-symbol-universe
-constructor is definitional; the generalized version requires no
-changes in the already validated small-universe applications. -/
-theorem functionalLiftLanguageBig_self
-    (L : Language.{u}) (New : Type u) (ar : New → ℕ) :
-    functionalLiftLanguageBig L New ar =
-      functionalLiftLanguage L New ar := by
-  rfl
+/-- Old relation arities are preserved, with the old symbol
+universe-lifted into the larger relation language. -/
+@[simp] theorem functionalLiftLanguageBig_relArity_old
+    (L : Language.{u}) (New : Type w) (ar : New → ℕ)
+    (R : L.RelSymbol) :
+    (functionalLiftLanguageBig L New ar).relArity
+      (.inl (ULift.up R)) = L.relArity R := rfl
+
+/-- Old function arities are preserved exactly, after the necessary
+universe lift of the original function-symbol type. -/
+@[simp] theorem functionalLiftLanguageBig_funcArity
+    (L : Language.{u}) (New : Type w) (ar : New → ℕ)
+    (F : L.FuncSymbol) :
+    (functionalLiftLanguageBig L New ar).funcArity
+      (ULift.up F) = L.funcArity F := rfl
 
 end AllThoseRamseyClasses.Lifts
