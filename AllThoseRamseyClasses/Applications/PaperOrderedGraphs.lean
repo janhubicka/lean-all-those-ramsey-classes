@@ -84,7 +84,7 @@ theorem simpleGraphClass_hereditary
 
 /-- Convert a positive edge from a free amalgam into its
 full source-side ordered pair, without assuming any cross edges. -/
-private theorem positive_edge_side
+theorem positive_edge_side
     {H E F P : Type}
     {D : RelStructure Lang H} {A : RelStructure Lang E}
     {B : RelStructure Lang F} {C : RelStructure Lang P}
