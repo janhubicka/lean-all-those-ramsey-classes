@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceOrphanClosure
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.old_not_mem_newOnlySupport
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.newOnlySupport_isClosed
