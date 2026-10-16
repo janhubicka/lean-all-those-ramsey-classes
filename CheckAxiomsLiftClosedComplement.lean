@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.ClosedComponentComplement
+
+#check AllThoseRamseyClasses.Lifts.functionalComponentComplement_isClosed
+#check AllThoseRamseyClasses.Lifts.functionalComponent_side_intersection
+#check AllThoseRamseyClasses.Lifts.functionalComponentComplementInduce
+#check AllThoseRamseyClasses.Lifts.functionalComponentComplementEmbedding
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponentComplement_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponent_side_intersection
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponentComplementEmbedding
