@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Applications.MetricCanonicalHigherTagOrder
 import AllThoseRamseyClasses.Applications.MetricCanonicalOrderAnchors
 import AllThoseRamseyClasses.Applications.MetricConvexityTransfer
+import AllThoseRamseyClasses.Applications.MetricBlockConvexity
 
 /-!
 # Convexity of canonical finite metric closure lifts
