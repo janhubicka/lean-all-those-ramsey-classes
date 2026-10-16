@@ -63,8 +63,9 @@ theorem finite_globalDistinctRootExtraData_of_regular
     fun s => ⟨⟨s.1.1.1, s.1.2⟩, s.2⟩
   apply finite_distinctRootExtraData_of_active index
   intro i xs hinj
-  have hle : globalFunctionalPieceArity F i ≤ m :=
-    Fintype.card_le_of_injective xs hinj
+  have hle : globalFunctionalPieceArity F i ≤ m := by
+    simpa only [Fintype.card_fin, m] using
+      (Fintype.card_le_of_injective xs hinj)
   let k : {j : Fin (m + 1) // 0 < j.1} :=
     ⟨⟨globalFunctionalPieceArity F i,
         Nat.lt_succ_of_le hle⟩,
