@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.BoundedRegularFixedShadowPrecompactness
+
+#check AllThoseRamseyClasses.Lifts.boundedRegularGlobalPiece_fixedShadowFibre_finite
+#print axioms AllThoseRamseyClasses.Lifts.boundedRegularGlobalPiece_fixedShadowFibre_finite
