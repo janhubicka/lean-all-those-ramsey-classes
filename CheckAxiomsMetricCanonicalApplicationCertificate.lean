@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalApplicationCertificate
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalLift_finite_orderedFunctionalEmbedding
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mapCanonicalLift_unique_of_completedClosure
