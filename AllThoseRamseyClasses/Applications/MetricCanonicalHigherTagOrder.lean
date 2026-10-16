@@ -9,9 +9,9 @@ original vertex of a threshold class, then by increasing jump level.
 This order prevents a high-level closure representative from appearing
 inside a smaller-jump class it contains.
 
-Suppose j<k and the root of a k-closure tag lies in the original
-j-class of x. Then the last original vertex of the j-class of x
-also lies in the k-class. So the last original anchor of the
+Suppose j<k and the last original member of a k-closure tag's
+class lies in the original j-class of x. Then the entire original
+j-class of x also lies in that k-class. So the last original anchor of the
 j-closure is at most that of the k-closure; a strict inequality
 decides their order, and equality is resolved by j<k.
 
@@ -25,18 +25,18 @@ namespace AllThoseRamseyClasses.Applications.MetricSaturation
 
 universe u
 
-/-- A larger-level canonical closure tag whose original root belongs
-to the smaller j-class of x necessarily occurs *after* the j-closure
-of x. This excludes any k>j closure vertex from occurring between
+/-- A larger-level canonical closure tag whose last original class
+member belongs to the smaller j-class of x necessarily occurs *after*
+the j-closure of x. This excludes any k>j closure vertex from occurring between
 old members of the j-class and its designated last closure vertex. -/
-theorem canonicalInsertion_higher_tag_after_class {S : Set ℝ}
+theorem canonicalInsertion_higher_tag_after_of_anchor {S : Set ℝ}
     {V : Type u} [Finite V] [LinearOrder V]
     (hpos : Positive S) (hS : WellDefined S)
     {d : V → V → ℝ} (hd : MetricOn S d)
     (j : PositiveJumpLevel S) (x : V)
     (other : CanonicalJumpTag hpos hS hd)
     (hlevel : j.val < canonicalTagLevel other)
-    (hroot : d (canonicalTagRoot other) x ≤ j.val) :
+    (hmember : d (canonicalClassLast hpos hS hd other) x ≤ j.val) :
     (letI := canonicalInsertionLinearOrder hpos hS hd;
       (Sum.inr (canonicalClosureTag hpos hS hd j x) :
         V ⊕ CanonicalJumpTag hpos hS hd) < Sum.inr other) := by
@@ -51,19 +51,31 @@ theorem canonicalInsertion_higher_tag_after_class {S : Set ℝ}
     metric_jump_threshold_trans hpos hS hd (Or.inr j.property)
       (canonicalClassLast hpos hS hd c)
       (canonicalTagRoot c) x hclast hcroot
-  have hxother : d x (canonicalTagRoot other) ≤ j.val := by
-    rw [hd.symm x (canonicalTagRoot other)]
-    exact hroot
-  have hlastother : d (canonicalClassLast hpos hS hd c)
-      (canonicalTagRoot other) ≤ j.val :=
+  have hxother : d x (canonicalClassLast hpos hS hd other) ≤
+      j.val := by
+    rw [hd.symm x (canonicalClassLast hpos hS hd other)]
+    exact hmember
+  have hbetween : d (canonicalClassLast hpos hS hd c)
+      (canonicalClassLast hpos hS hd other) ≤ j.val :=
     metric_jump_threshold_trans hpos hS hd (Or.inr j.property)
       (canonicalClassLast hpos hS hd c)
-      x (canonicalTagRoot other) hlastx hxother
+      x (canonicalClassLast hpos hS hd other) hlastx hxother
+  have hotherMem : d (canonicalClassLast hpos hS hd other)
+      (canonicalTagRoot other) ≤ canonicalTagLevel other :=
+    canonicalClassLast_mem hpos hS hd other
+  have hlastother : d (canonicalClassLast hpos hS hd c)
+      (canonicalTagRoot other) ≤ canonicalTagLevel other :=
+    metric_jump_threshold_trans hpos hS hd
+      (Or.inr (canonicalTagLevel_jump other))
+      (canonicalClassLast hpos hS hd c)
+      (canonicalClassLast hpos hS hd other)
+      (canonicalTagRoot other)
+      (hbetween.trans (le_of_lt hlevel)) hotherMem
   have hanchor : canonicalClassLast hpos hS hd c ≤
       canonicalClassLast hpos hS hd other :=
     canonicalClassLast_max hpos hS hd other
       (canonicalClassLast hpos hS hd c)
-      (hlastother.trans (le_of_lt hlevel))
+      hlastother
   have hclevel : canonicalTagLevel c = j.val :=
     canonicalClosureTag_level hpos hS hd j x
   change (letI := canonicalInsertionLinearOrder hpos hS hd;
