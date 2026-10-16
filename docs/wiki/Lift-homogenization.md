@@ -63,22 +63,30 @@ ordered roots. Source-root distinctness is not target-image
 distinctness. Nor do they imply that a selected piece automatically
 avoids the opposite exclusive side.
 
-## Current conditional work (not certified here)
+## Additional verified conditional theorems
 
-- [PR #396](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/396)
-  composes the actual common-global-lift forbidden-source flip
-  with strict A-only support decrease. It explicitly assumes
-  the common **full** canonical lift, compatible piece/root maps,
-  injectivity of the selected root **image**, and finite forbidden
-  witnesses. The source map need not be globally injective.
-- [PR #397](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/397)
-  uses an actual Gaifman path in the undeleted source to exclude
-  empty selected root cuts, making their width positive.
-  This condition is required by the global lift's positive-width
-  symbol indexing.
+- [PR #396](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/396),
+  [CI 38975142048](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38975142048),
+  merged `cfca141ba624`: the actual common-global-lift forbidden-source
+  flip, together with the strict support inequality, constructs a new
+  forbidden weak-HE witness with fewer **A-only source vertices**.
+  Hypotheses explicitly include a common **full** canonical lift,
+  compatible piece/root maps, injectivity of the selected root **image**,
+  finite forbidden source and replacement source, and a chosen
+  A-only vertex of the selected component. Global map injectivity
+  is not required. This is a **conditional Claim 1**, not the
+  unrestricted paper claim.
+- [PR #397](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/397),
+  [CI 38975309197](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38975309197),
+  merged `e59d259eb13d`: an actual Gaifman path between selected
+  vertices in the original source rules out an empty separating cut,
+  yielding positive root width. This is the precise path-based bridge
+  to positive-width global lift symbols; connected forbidden sources
+  must supply that path in any eventual unrestricted theorem.
 
-Update their status here only when **full** Lean CI and adversarial
-hypothesis review have passed.
+These are **Lean-verified under their displayed hypotheses**.
+Neither supplies the missing root-image injectivity nor completes
+the strong-amalgamation theorem.
 
 ## Proof gap that must not be hidden
 
