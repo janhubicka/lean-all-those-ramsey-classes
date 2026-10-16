@@ -121,9 +121,9 @@ theorem loopFirst_preserves_ordered_copies
     {U V : Type} [LinearOrder U] [LinearOrder V]
     (B : RelStructure Lang U) (C : RelStructure Lang V)
     (hB : LoopFirst B) :
-    (let o := loopFirstLinearOrder C;
-      CopywiseCompletion B.ordered C.ordered
-        (@RelStructure.ordered Lang V C o.toLT) (fun x => x)) := by
+    CopywiseCompletion B.ordered C.ordered
+      (@RelStructure.ordered Lang V C (loopFirstLinearOrder C).toLT)
+      (fun x => x) := by
   let o := loopFirstLinearOrder C
   change CopywiseCompletion B.ordered C.ordered
     (@RelStructure.ordered Lang V C o.toLT) (fun x => x)
@@ -139,8 +139,9 @@ theorem loopFirst_preserves_ordered_copies
           exact b.map_rel_iff (.inl s) t
       | inr u =>
           cases u
-          let x : U := t 0
-          let y : U := t 1
+          let t₂ : Fin 2 → U := t
+          let x : U := t₂ 0
+          let y : U := t₂ 1
           change (@LT.lt V o.toLT (b x) (b y)) ↔ x < y
           constructor
           · intro hlt
