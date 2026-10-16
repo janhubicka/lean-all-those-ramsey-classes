@@ -25,7 +25,7 @@ namespace AllThoseRamseyClasses.Applications.AdmissibleOrders
 open StructuralRamsey
 open StructuralRamsey.RelStructure
 
-universe u v
+universe u v w
 
 /-- Every finite ordered pair of K-members admits a finite freely
 ordered Ramsey witness, for every finite nonempty colouring type. -/
@@ -36,7 +36,7 @@ def HasFreeOrderRamsey
       [LinearOrder U] [LinearOrder V],
     ∀ (A : RelStructure L U) (B : RelStructure L V),
       K A → K B →
-      ∀ (κ : Type*) [Fintype κ] [Nonempty κ],
+      ∀ (κ : Type w) [Fintype κ] [Nonempty κ],
         ∃ (W : Type v) (_ : Finite W) (o : LinearOrder W)
           (C : RelStructure L W),
           K C ∧
@@ -57,7 +57,7 @@ def HasTypeAdmissibleRamsey
       K A → K B →
       TypeAdmissible typeOrder A →
       TypeAdmissible typeOrder B →
-      ∀ (κ : Type*) [Fintype κ] [Nonempty κ],
+      ∀ (κ : Type w) [Fintype κ] [Nonempty κ],
         ∃ (W : Type v) (_ : Finite W) (o : LinearOrder W)
           (C : RelStructure L W),
           K C ∧
@@ -73,8 +73,8 @@ theorem hasTypeAdmissibleRamsey_of_hasFreeOrderRamsey
     {L : RelLanguage.{u}}
     (K : StructureClass.{u,v} (L := L))
     (typeOrder : LinearOrder (OnePointCode L))
-    (hK : HasFreeOrderRamsey K) :
-    HasTypeAdmissibleRamsey K typeOrder := by
+    (hK : HasFreeOrderRamsey.{u,v,w} K) :
+    HasTypeAdmissibleRamsey.{u,v,w} K typeOrder := by
   intro U V hU hV oU oV A B hA hB _hAord hBord κ hκ hκne
   exact typeAdmissible_arrow_of_freeOrder typeOrder K A B
     hBord κ (hK A B hA hB κ)
