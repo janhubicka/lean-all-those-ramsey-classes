@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.MetricCanonicalConvexity
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalActiveAtJump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalActive_of_close_ne
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalAnchor_close_active
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalAnchors_close_of_close
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalLift_jumpConvex
