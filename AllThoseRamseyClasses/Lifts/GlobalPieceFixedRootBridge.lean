@@ -57,7 +57,9 @@ theorem chartIncompatible_sameRoot_iff
   constructor
   · rintro ⟨h, hbad⟩
     have heq : h = rfl := Subsingleton.elim _ _
-    simpa only [heq] using hbad
+    rw [heq] at hbad
+    change forbiddenFunctionalGlue Root F P Q at hbad
+    exact hbad
   · intro hbad
     exact ⟨rfl, hbad⟩
 
