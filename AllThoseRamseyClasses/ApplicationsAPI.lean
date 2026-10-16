@@ -3,6 +3,7 @@ import AllThoseRamseyClasses.Applications.PaperAcyclicDigraphs
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import AllThoseRamseyClasses.Applications.PaperForbiddenIrreducibles
 import AllThoseRamseyClasses.Applications.PaperPositiveForbiddenTournaments
+import AllThoseRamseyClasses.Applications.PaperPositiveForbiddenAllDigraphs
 import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
 import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
@@ -16,7 +17,7 @@ multiamalgamation theorem and *completed* class-level applications.
 
 Completed applications now include finite ordered posets, freely ordered
 digraphs and simple graphs, ordered acyclic digraphs, K_n-free graphs,
-and arbitrary forbidden-tournament families in oriented digraphs,
+and arbitrary forbidden-tournament families in finite digraphs,
 pointed equivalences, and the finite-target m-unary-function case.
 The freely ordered partial Steiner triple class is a separately completed
 **auxiliary** example not included among the paper's examples.
@@ -35,7 +36,12 @@ positive tournament-avoidance theorem are now compiled in this API.
 For induced tournament avoidance in unrestricted digraphs use
 `freelyOrderedTournamentFreeDigraphs_areRamsey`; for Henson-style
 positive-copy avoidance in oriented digraphs use
-`freelyOrderedPositiveTournamentFreeDigraphs_areRamsey`.
+`freelyOrderedPositiveTournamentFreeDigraphs_areRamsey`. For the
+stronger source-matched POSITIVE omission condition allowing loops
+and digons in ambient digraphs use
+`freelyOrderedPositiveTournamentFreeAllDigraphs_areRamsey`.
+This follows from the general positive-family theorem via all full
+relational extensions of each irreducible forbidden pattern.
 
 The freely ordered pointed-equivalence Ramsey class from the paper is
 proved via its full idempotent unary-function encoding.
