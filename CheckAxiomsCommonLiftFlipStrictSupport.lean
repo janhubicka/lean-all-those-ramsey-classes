@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.CommonLiftFlipStrictSupport
+
+#check AllThoseRamseyClasses.Lifts.fullFreeLeftExclusiveTarget
+#check AllThoseRamseyClasses.Lifts.freeRight_avoids_fullLeftExclusiveTarget
+#check AllThoseRamseyClasses.Lifts.weakFreeLeftPart_iff_targetExclusive
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCommonFullLiftFlip_strict_leftSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.freeRight_avoids_fullLeftExclusiveTarget
+#print axioms AllThoseRamseyClasses.Lifts.weakFreeLeftPart_iff_targetExclusive
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCommonFullLiftFlip_strict_leftSupport
