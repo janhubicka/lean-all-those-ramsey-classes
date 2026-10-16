@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.SelectedGlobalPieceFixedRoot
+
+#check AllThoseRamseyClasses.Lifts.selectedGlobalPiece_to_fixedRoot
+#check AllThoseRamseyClasses.Lifts.selectedGlobalPiece_root_fixedProfile
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedGlobalPiece_to_fixedRoot
+#print axioms AllThoseRamseyClasses.Lifts.selectedGlobalPiece_root_fixedProfile
