@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.GeometricPieceSideDichotomy
+
+#check AllThoseRamseyClasses.Lifts.weakGeometricPiece_leftImage_of_no_right
+#check AllThoseRamseyClasses.Lifts.weakGeometricPiece_left_or_component_meets_right
+#check AllThoseRamseyClasses.Lifts.weakGeometricPiece_factor_left_if_no_right
+
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_leftImage_of_no_right
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_left_or_component_meets_right
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_factor_left_if_no_right
