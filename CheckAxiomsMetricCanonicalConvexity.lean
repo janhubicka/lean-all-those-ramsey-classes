@@ -5,3 +5,4 @@ import AllThoseRamseyClasses.Applications.MetricCanonicalConvexity
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalAnchor_close_active
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalAnchors_close_of_close
 #print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalLift_jumpConvex
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.canonicalLift_paperBlockConvex
