@@ -1,0 +1,23 @@
+import AllThoseRamseyClasses.Lifts.FunctionalLiftLanguage
+
+#check AllThoseRamseyClasses.Lifts.functionalLiftLanguage
+#check AllThoseRamseyClasses.Lifts.functionalShadow
+#check AllThoseRamseyClasses.Lifts.functionalWithExtra
+#check AllThoseRamseyClasses.Lifts.functionalShadow_withExtra
+#check AllThoseRamseyClasses.Lifts.functionalShadowEmbedding
+#check AllThoseRamseyClasses.Lifts.functionalWithExtraEmbedding
+#check AllThoseRamseyClasses.Lifts.FunctionalRootedPattern
+#check AllThoseRamseyClasses.Lifts.FunctionalRootRealization
+#check AllThoseRamseyClasses.Lifts.FunctionalRootRealization.map_embedding
+#check AllThoseRamseyClasses.Lifts.FunctionalCanonicalExtraRelation
+#check AllThoseRamseyClasses.Lifts.functionalCanonicalExtraRelation_injective
+#check AllThoseRamseyClasses.Lifts.FunctionalCanonicalExtraRelation.map_embedding
+#check AllThoseRamseyClasses.Lifts.functionalCanonicalLiftOn
+#check AllThoseRamseyClasses.Lifts.functionalShadow_canonicalLiftOn
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalShadow_withExtra
+#print axioms AllThoseRamseyClasses.Lifts.functionalShadowEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.functionalWithExtraEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalRootRealization.map_embedding
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalCanonicalExtraRelation.map_embedding
+#print axioms AllThoseRamseyClasses.Lifts.functionalShadow_canonicalLiftOn
