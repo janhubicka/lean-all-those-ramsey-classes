@@ -38,8 +38,9 @@ abbrev IncidenceCarrier {L : RelLanguage.{u}} {V : Type v}
 noncomputable def incidenceValue {L : RelLanguage.{u}} {V : Type v}
     (A : TotalOrderData L V) (r : L.Symbol)
     (t : Fin (L.arity r) → V) :
-    Option (IncidenceCarrier A) :=
-  if h : A.base.rel r t then
+    Option (IncidenceCarrier A) := by
+  classical
+  exact if h : A.base.rel r t then
     some (.inr ⟨r, ⟨t, h⟩⟩)
   else
     none
