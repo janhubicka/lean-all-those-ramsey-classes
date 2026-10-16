@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeometricSharedCanonicalFlip
+
+#check AllThoseRamseyClasses.Lifts.geometricMinimalPieceFlip_of_sharedCanonicalRelation
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricMinimalPieceFlip_of_sharedCanonicalRelation
