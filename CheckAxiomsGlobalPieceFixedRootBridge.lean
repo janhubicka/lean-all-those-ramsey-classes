@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.GlobalPieceFixedRootBridge
+
+#check AllThoseRamseyClasses.Lifts.FunctionalRootChart.ofExtension
+#check AllThoseRamseyClasses.Lifts.chartIncompatible_sameRoot_iff
+#check AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_iff_fixedRoot
+#check AllThoseRamseyClasses.Lifts.selectedChart_hasFullRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.chartIncompatible_sameRoot_iff
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_iff_fixedRoot
+#print axioms AllThoseRamseyClasses.Lifts.selectedChart_hasFullRoot
