@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.PaperAdmissibleFreeAmalgamation
+
+#check AllThoseRamseyClasses.Applications.AdmissibleOrders.admissiblyOrderedFreeAmalgamation_areRamsey
+#print axioms AllThoseRamseyClasses.Applications.AdmissibleOrders.admissiblyOrderedFreeAmalgamation_areRamsey
