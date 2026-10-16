@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.FreeAmalgamSideIso
+
+#check AllThoseRamseyClasses.Lifts.inverseFullEmbedding
+#check AllThoseRamseyClasses.Lifts.inverseFullEmbedding_right
+#check AllThoseRamseyClasses.Lifts.inverseFullEmbedding_left
+#check AllThoseRamseyClasses.Lifts.freeAmalgam_precompose_left_iso
+
+#print axioms AllThoseRamseyClasses.Lifts.inverseFullEmbedding_right
+#print axioms AllThoseRamseyClasses.Lifts.inverseFullEmbedding_left
+#print axioms AllThoseRamseyClasses.Lifts.freeAmalgam_precompose_left_iso
