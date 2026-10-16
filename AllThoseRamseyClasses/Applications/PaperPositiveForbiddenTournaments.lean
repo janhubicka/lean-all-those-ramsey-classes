@@ -106,6 +106,13 @@ theorem tournament_embedding_of_positiveCopy
   intro R t
   cases R with
   | edge =>
+      have hcomp : f ∘ t = ![f (t 0), f (t 1)] := by
+        funext i
+        fin_cases i <;> rfl
+      have ht : t = ![t 0, t 1] := by
+        funext i
+        fin_cases i <;> rfl
+      rw [hcomp, ht]
       change edge C (f (t 0)) (f (t 1)) ↔
         edge T (t 0) (t 1)
       constructor
