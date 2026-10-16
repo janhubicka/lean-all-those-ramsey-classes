@@ -31,7 +31,7 @@ theorem functionalComponentComplement_isClosed
     (A : Structure L V) (R : Set V)
     (hR : A.IsClosed R)
     (root : {v : V // v ∉ R}) :
-    A.IsClosed (functionalComponentFrom A R root)ᶜ := by
+    A.IsClosed (Set.compl (functionalComponentFrom A R root)) := by
   intro f xs hxs y hy
   intro hyC
   have hyOutR : y ∉ R := hyC.1
@@ -46,7 +46,7 @@ theorem functionalComponentComplement_isClosed
   have hnotC : xs i ∉ functionalComponentFrom A R root := hxs i
   have hneq : xs i ≠ y := by
     intro hxy
-    exact hnotC (hxy ▸ hyC)
+    exact hnotC (hxy.symm ▸ hyC)
   have hedge : GaifmanAdjacent A.graph (xs i) y := by
     refine ⟨hneq, (.inr f), Structure.funcTuple xs y,
       i.castSucc, Fin.last (L.funcArity f), ?_, ?_, ?_⟩
