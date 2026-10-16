@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GeometricFunctionalPieces
+import AllThoseRamseyClasses.Lifts.ForbiddenGeometricFunctionalPieces
 import AllThoseRamseyClasses.Lifts.FunctionalLiftLanguage
 import PartiteConstruction.Structure.FreeAmalgamationClass
 
