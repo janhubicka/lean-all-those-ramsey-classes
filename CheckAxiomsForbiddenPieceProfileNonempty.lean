@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenPieceProfileNonempty
+
+#check AllThoseRamseyClasses.Lifts.selectedFunctionalChart_has_forbidden_complement
+#check AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_root_eq
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_has_forbidden_complement
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPiece_equiv_root_eq
