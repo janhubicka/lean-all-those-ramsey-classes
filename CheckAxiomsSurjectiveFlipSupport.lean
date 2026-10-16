@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.SurjectiveFlipSupport
+
+#check AllThoseRamseyClasses.Lifts.exclusiveSupport_card_le_of_surjective
+#check AllThoseRamseyClasses.Lifts.exclusiveSupport_card_le_of_factorization
+#check AllThoseRamseyClasses.Lifts.exclusiveSupport_strict_decrease_after_quotient
+
+#print axioms AllThoseRamseyClasses.Lifts.exclusiveSupport_card_le_of_surjective
+#print axioms AllThoseRamseyClasses.Lifts.exclusiveSupport_card_le_of_factorization
+#print axioms AllThoseRamseyClasses.Lifts.exclusiveSupport_strict_decrease_after_quotient
