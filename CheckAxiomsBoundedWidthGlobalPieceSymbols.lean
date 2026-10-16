@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.BoundedWidthGlobalPieceSymbols
+
+#check AllThoseRamseyClasses.Lifts.globalFunctionalPieceSymbols_finite_of_boundedWidth
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceSymbols_finite_of_boundedWidth
