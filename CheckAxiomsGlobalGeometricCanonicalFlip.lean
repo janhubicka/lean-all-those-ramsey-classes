@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.GlobalGeometricCanonicalFlip
+
+#check AllThoseRamseyClasses.Lifts.selectedGlobalCanonicalDiagramFlip
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRootImage_injective
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalFlip_of_relation
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedGlobalCanonicalDiagramFlip
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRootImage_injective
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalFlip_of_relation
