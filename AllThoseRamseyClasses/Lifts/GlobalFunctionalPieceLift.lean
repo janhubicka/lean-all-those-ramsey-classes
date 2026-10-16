@@ -50,7 +50,7 @@ structure FunctionalRootChart (L : Language.{u}) (n : ℕ) where
 given by the full embedding of the standard root. -/
 def FunctionalRootChart.pattern
     {L : Language.{u}} {n : ℕ}
-    (P : FunctionalRootChart.{u,0} L n) :
+    (P : FunctionalRootChart.{u} L n) :
     FunctionalRootedPattern.{u,0} L n :=
   FunctionalRootExtension.toEnumeratedRootedPattern
     P.root (Equiv.refl (Fin n)) P.ext
@@ -60,7 +60,7 @@ This predicate is geometric, not an arbitrary choice of patterns. -/
 def FunctionalRootChart.IsForbiddenPiece
     {L : Language.{u}} {n : ℕ}
     (F : ∀ {W : Type}, Structure L W → Prop)
-    (P : FunctionalRootChart.{u,0} L n) : Prop :=
+    (P : FunctionalRootChart.{u} L n) : Prop :=
   P.pattern ∈ forbiddenGeometricFunctionalPieces F n
 
 /-- All selected genuine forbidden pieces of a fixed width, with
@@ -69,7 +69,7 @@ abbrev SelectedFunctionalChart
     {L : Language.{u}}
     (F : ∀ {W : Type}, Structure L W → Prop)
     (n : ℕ) :=
-  {P : FunctionalRootChart.{u,0} L n // P.IsForbiddenPiece F}
+  {P : FunctionalRootChart.{u} L n // P.IsForbiddenPiece F}
 
 /-- Two charts are incompatible when their FULL root structures
 agree and the corresponding full functional free amalgam belongs
@@ -81,7 +81,7 @@ over the rooted seam. -/
 def FunctionalRootChart.Incompatible
     {L : Language.{u}} {n : ℕ}
     (F : ∀ {W : Type}, Structure L W → Prop)
-    (P Q : FunctionalRootChart.{u,0} L n) : Prop :=
+    (P Q : FunctionalRootChart.{u} L n) : Prop :=
   ∃ h : P.root = Q.root,
     forbiddenFunctionalGlue P.root F P.ext (h.symm ▸ Q.ext)
 
