@@ -102,8 +102,9 @@ theorem finite_distinctRootExtraData_of_finite_arity_fibres
   let index : Active → New := fun x => x.2.1
   apply finite_distinctRootExtraData_of_active index
   intro i xs hxs
-  have hle : ar i ≤ m :=
-    Fintype.card_le_of_injective xs hxs
+  have hle : ar i ≤ m := by
+    simpa only [Fintype.card_fin, m] using
+      (Fintype.card_le_of_injective xs hxs)
   refine ⟨⟨⟨ar i, Nat.lt_succ_of_le hle⟩, ⟨i, rfl⟩⟩, rfl⟩
 
 /-- Canonical extra relations use only injective tuples, so they
