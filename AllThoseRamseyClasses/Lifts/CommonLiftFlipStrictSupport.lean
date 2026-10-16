@@ -53,7 +53,7 @@ theorem freeRight_avoids_fullLeftExclusiveTarget
     (b : UB) :
     jRight b ∉ fullFreeLeftExclusiveTarget iLeft jLeft := by
   rintro ⟨⟨a, ha⟩, hnotRoot⟩
-  have hab : jLeft a = jRight b := ha.symm
+  have hab : jLeft a = jRight b := ha
   obtain ⟨r, hrLeft, _hrRight⟩ := (hfree.overlap a b).mp hab
   apply hnotRoot
   refine ⟨r, ?_⟩
