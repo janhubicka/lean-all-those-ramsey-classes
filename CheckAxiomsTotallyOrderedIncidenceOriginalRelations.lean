@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceOriginalRelations
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.liftedOriginalRel_old
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.liftedOriginalRel_map_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceOriginalAndFunctionalEmbedding
