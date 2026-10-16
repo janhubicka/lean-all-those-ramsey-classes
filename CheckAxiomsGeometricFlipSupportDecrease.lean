@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeometricFlipSupportDecrease
+
+#check AllThoseRamseyClasses.Lifts.geometricFlip_exclusiveSupport_strict_decrease
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricFlip_exclusiveSupport_strict_decrease
