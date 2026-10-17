@@ -120,7 +120,7 @@ theorem CommonAllClosedComponentLift.agreeOn
 
 /-- Restrict a FULL embedding into the finite-source tagged lift
 to a FULL embedding of the exact original functional shadow. -/
-def allClosedComponentLift_shadowEmbedding
+noncomputable def allClosedComponentLift_shadowEmbedding
     [Finite V]
     (Source : Structure L V)
     {UX UA : Type v}
@@ -169,7 +169,7 @@ theorem allClosedComponentLift_shadowEmbedding_apply
 automatically give every field of the common lifted witness.
 No redundant root-agreement oracle is needed once that shared
 induced expansion has actually been supplied. -/
-def commonAllClosedComponentLift_of_sharedExpansion
+noncomputable def commonAllClosedComponentLift_of_sharedExpansion
     [Finite V]
     (Source : Structure L V)
     {UX UA UB : Type v}
