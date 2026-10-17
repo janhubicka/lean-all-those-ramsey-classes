@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyCanonicalMaximality
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedComponentCanonical_relation_map_embedding
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedCanonicalMaximalAlong_iff_no_new
+#print axioms AllThoseRamseyClasses.Lifts.FiniteNamedCanonicalMaximalAlong.of_allowed_extension
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalLifts_agree_in_allowed_common_extension
