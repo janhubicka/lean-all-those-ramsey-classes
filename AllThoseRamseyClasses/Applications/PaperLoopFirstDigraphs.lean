@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.ControlOrders
 import AllThoseRamseyClasses.Applications.PaperOrderedGraphs
 import PartiteConstruction.Ramsey.CopywiseRamseyTransfer
 import Mathlib.Order.Prod.Lex.Basic
@@ -37,13 +38,8 @@ noncomputable def loopKey {V : Type}
 /-- Order by loop status, then by the original vertex order.
 The key is injective because it also records the original vertex. -/
 noncomputable def loopFirstLinearOrder {V : Type} [LinearOrder V]
-    (C : RelStructure Lang V) : LinearOrder V := by
-  classical
-  apply LinearOrder.lift'
-    (fun x => toLex ((loopKey C x, x) : Fin 2 × V))
-  intro x y h
-  exact congrArg Prod.snd
-    (congrArg (ofLex : Lex (Fin 2 × V) → Fin 2 × V) h)
+    (C : RelStructure Lang V) : LinearOrder V :=
+  ControlOrders.stableSortLinearOrder (loopKey C)
 
 /-- Compare vertices by their two-valued loop type first, then
 by their old order within the same type. -/
@@ -52,9 +48,7 @@ theorem loopFirstLinearOrder_lt_iff {V : Type} [LinearOrder V]
     (letI := loopFirstLinearOrder C; x < y) ↔
     loopKey C x < loopKey C y ∨
       (loopKey C x = loopKey C y ∧ x < y) := by
-  change toLex ((loopKey C x, x) : Fin 2 × V) <
-    toLex ((loopKey C y, y) : Fin 2 × V) ↔ _
-  exact Prod.Lex.toLex_lt_toLex
+  exact ControlOrders.stableSortLinearOrder_lt_iff (loopKey C) x y
 
 /-- The new order has looped vertices first. -/
 theorem loopFirstLinearOrder_isLoopFirst {V : Type} [LinearOrder V]
