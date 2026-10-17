@@ -190,3 +190,62 @@ A standalone [author-review TeX note](https://github.com/janhubicka/All-those-Ra
 gives the precise folded-lift definition and conditional
 English proof of the flip, with remaining obligations.
 
+
+## 17 October: exact component structure and minimization
+
+The folded-root auxiliary argument has progressed beyond the earlier
+conditional diagram flip. The following endpoints are now **merged
+and fully CI checked**:
+
+| Result | Endpoint | Evidence |
+| --- | --- | --- |
+| Conditional collision-tolerant flip strictly decreases A-only **source** support, assuming a common full folded lift and the selected one-sided piece | `Lifts/FoldedCommonFlipStrictSupport.lean` | [#419](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/419), [CI 38985802308](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38985802308), merge `c7facb39` |
+| In the **one-right-component** case, construct the minimal geometric piece, its positive-width full functional root, its left weak EHN factorization and the shared ordered root coordinates, then obtain strict support decrease with **no root-image injectivity** | `Lifts/FoldedSingleRightSupportDecrease.lean` | [#424](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/424), [CI 38986497427](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38986497427), merge `ddb189ee` |
+| An opposite-side vertex found inside the selected piece cannot reconnect to the chosen opposite root after deleting the original root preimage; refactor the one-sided proof through this path lemma | `Lifts/MinimalGeometricCutComponentPath.lean` | [#423](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/423), [CI 38986175157](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38986175157), merge `8834bccf` |
+
+The geometric content of the last item is precise: if
+(Rsubseteq S=f^{-1}(X)) is the root of a genuine minimal piece
+(P=Rcup C), selected by separating (xin F_A) from
+(yin F_B), and (zin Ccap F_B), then **there is no path from
+(y) to (z) avoiding (S)**. Thus a mixed piece must involve a
+*different* right-exclusive component from the one selected as the
+opposite root. This is the concrete obstruction that still requires
+a multicomponent descent.
+
+The following are **separate unmerged proofs or pending CI**; do not
+confuse them with complete Claim 2:
+
+- [#430](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/430)
+  indexes exact source-minus-S components by a quotient of Gaifman
+  reachability and certifies that a mixed piece meets two distinct
+  right-exclusive component classes. Its historical stacked proof
+  passed CI, but clean-main integration remains separately checked.
+- [#428](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/428)
+  derives the common full folded lift package from two full
+  embeddings of the **same already supplied lifted expansion**,
+  including exact old functional shadow maps. It does not construct
+  maximal witness expansions.
+- [#429](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/429)
+  chooses a **finite** forbidden weak EHN witness with least
+  A-only source support and proves the abstract strict-descent
+  contradiction without any injectivization step.
+- [#433](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/433)
+  applies that minimization to the verified connected-right
+  folded flip. Its one-component and shared-full-folded-lift
+  assumptions remain explicit.
+
+A separate [author-review draft](https://github.com/janhubicka/All-those-Ramsey-classes/pull/125)
+gives a regular image-closed graph-family example with genuine
+folded-root relation occurrences of unbounded arity on one
+two-vertex shadow. It challenges an attempted reuse of the
+**printed distinct-root counting argument**, but is not a proof
+that the class of maximal folded lifts is non-precompact.
+That example is currently an English adversarial audit, not Lean
+certified.
+
+**Still open:** the general multicomponent peeling/Claim 2,
+existence of the relevant maximal folded lifts with sufficient
+amalgamation, and the unrestricted Section 3 strong-amalgamation
+and Ramsey consequences. The published 2019 theorem is not
+claimed refuted or Lean certified by these conditional results.
+
