@@ -12,7 +12,7 @@ vertices mapped into the A-only part of a free amalgam.
 It is NOT necessary to injectivize f before making this choice.
 In fact, the published blanket image-closure injectivization
 shortcut is invalid without extra assumptions. A nonempty family
-of actual weak EHN forbidden witnesses admits a minimizer of the
+of actual finite weak EHN forbidden witnesses admits a minimizer of the
 natural number support count by well ordering of the naturals.
 
 This module packages the real source witness and exact source
@@ -37,11 +37,14 @@ universe u
 variable {L : Language.{u}}
 
 /-- One actual forbidden-source weak homomorphism-embedding into
-a fixed target, with no injectivity or replacement quotient. -/
+a fixed target, with no injectivity or replacement quotient. The carrier is explicitly
+finite, since `Nat.card` would otherwise assign zero to infinite
+supports and invalidate the intended manuscript minimization. -/
 structure ForbiddenEHNWitness
     (F : ∀ {W : Type}, Structure L W → Prop)
     {UT : Type} (Target : Structure L UT) where
   Carrier : Type
+  finiteCarrier : Finite Carrier
   source : Structure L Carrier
   forbidden : F source
   toTarget : Carrier → UT
