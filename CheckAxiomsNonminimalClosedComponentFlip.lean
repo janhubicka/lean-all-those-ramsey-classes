@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NonminimalClosedComponentFlip
+
+#check AllThoseRamseyClasses.Lifts.closedComponent_rightRealization_strict_leftSupport
+#print axioms AllThoseRamseyClasses.Lifts.closedComponent_rightRealization_strict_leftSupport
