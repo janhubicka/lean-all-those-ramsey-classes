@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.WeakMixedPieceComponentCount
+
+#check AllThoseRamseyClasses.Lifts.weakRightComponentIdsInPiece
+#check AllThoseRamseyClasses.Lifts.weakRightComponentIdsInPiece_subset_all
+#check AllThoseRamseyClasses.Lifts.weakRightComponentId_chosenRight_not_inPiece
+#check AllThoseRamseyClasses.Lifts.weakRightComponentIdsInPiece_strict_count
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponentIdsInPiece_subset_all
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponentId_chosenRight_not_inPiece
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponentIdsInPiece_strict_count
