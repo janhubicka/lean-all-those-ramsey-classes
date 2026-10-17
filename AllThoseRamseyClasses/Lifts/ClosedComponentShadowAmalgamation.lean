@@ -51,7 +51,7 @@ D=A⊕_X B if it does not weakly embed into B and there is a
 common FULL induced all-component canonical tagged expansion on
 X in A and B. The proof never assumes the source map is injective. -/
 theorem wholeComponentTaggedLift_freeAmalgam_avoids_source
-    {V UX UA UB UT : Type v}
+    {V UX UA UB UT : Type}
     [Finite V]
     (Source : Structure L V)
     (Target : Structure L UT)
