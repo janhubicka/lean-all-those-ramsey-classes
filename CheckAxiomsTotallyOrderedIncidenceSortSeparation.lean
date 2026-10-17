@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceSortSeparation
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonical_separatedIncidenceSorts
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.SeparatedIncidenceSorts.of_embedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.SeparatedIncidenceSorts.free_amalgam
