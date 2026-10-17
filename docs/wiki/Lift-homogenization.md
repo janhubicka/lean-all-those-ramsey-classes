@@ -249,3 +249,48 @@ amalgamation, and the unrestricted Section 3 strong-amalgamation
 and Ramsey consequences. The published 2019 theorem is not
 claimed refuted or Lean certified by these conditional results.
 
+
+## 17 October continuation: finite-family all-closed-component lift
+
+The following is a **separate finite-forbidden-family construction**,
+not a verification of the printed 2019 minimal-separator lift for
+arbitrary regular infinite forbidden families. It names every genuine
+`(function-closed source root, complementary source component)`
+for each member of a *finite* list of *finite* forbidden native
+functional structures. Its finite tag language records actual weak
+EHN rooted realizations, even when distinct source-root vertices
+have the same image.
+
+The newest **merged, full-CI-checked** modules are:
+
+| Milestone | Lean file | Verified PR |
+| --- | --- | --- |
+| Exact source-preserving component retargeting implies forbidden-source avoidance in a true full native functional free amalgam, assuming transfer of all closed-root component realizations | `Lifts/RootedTransferShadowAvoidance.lean` | [#459](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/459) |
+| One common full finite-family canonical tag lift supplies that transfer for every named source; the free *shadow* is forbidden-free | `Lifts/FiniteFamilyShadowFreeAmalgamation.lean` | [#460](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/460) |
+| Positive canonical tags are embedding-monotone; a maximal witness remains maximal under allowed extensions, and two maximal witnesses agree on the root **if an allowed common extension is already available** | `Lifts/FiniteFamilyCanonicalMaximality.lean` | [#461](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/461) |
+| Maximal extension **exists** along any finite root by maximizing its finite set of positive canonical tag observations; `K` is a parameter and need not have AP or JEP | `Lifts/FiniteFamilyMaximalWitnessExistence.lean` | [#463](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/463) |
+| The *actual full induced trace* of the canonical lift on the old root is constructed; its original partial functions remain exact, and equality of all canonical tag profiles constructs the common full tagged expansion needed above | `Lifts/FiniteFamilyCanonicalTrace.lean` | [#466](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/466) |
+| Concrete strong amalgamation of two fully maximal canonical finite-family witnesses with matching full canonical tag profiles on a common root: the old free amalgam remains forbidden-free and the lifted embeddings reflect all tags with strong intersection | `Lifts/FiniteFamilyMaximalStrongAmalgamation.lean` | [#467](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/467) |
+
+The maximum-profile proof uses a **finite observation space**, not
+amalgamation or an assumed global maximal witness. In particular,
+the choice of an arbitrary class predicate `K` in #463 must be
+specialized to the **finite forbidden-free class** to guarantee
+a *finite* maximizing witness. Finite-witness specialization and
+restriction of maximality to smaller full roots are being separately
+validated in [#468](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/468).
+
+The remaining steps are to package *finite* maximal traces as a
+hereditary expanded age, to prove its complete class-level strong
+amalgamation (using a witness maximal on each actual embedded
+substructure, not just a witness maximal on its whole carrier), and
+to derive the corresponding Ramsey theorem. The argument must also
+be audited for empty-root/arity-zero tags and compatibility of
+overlap profiles. **None of these finite-family developments proves
+the printed theorem for general regular infinite forbidden families.**
+In particular, recording all closed components does not satisfy the
+printed regularity-based precompactness argument without a separate
+finite-arity-fibre theorem.
+
+The numbered mathematical manuscript remains frozen; these are
+library/wiki validation records only.
