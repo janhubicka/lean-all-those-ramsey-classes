@@ -100,7 +100,7 @@ theorem finiteNamedCanonicalMaximalAlong_iff_no_new
     · intro hA
       have hB := finiteNamedComponentCanonical_relation_map_embedding
         Family e tag (iA ∘ xs) hA
-      convert hB using 1
+      exact hB
 
 /-- Maximality persists after any allowed FULL extension: the
 composition of that extension with a further K-extension remains
