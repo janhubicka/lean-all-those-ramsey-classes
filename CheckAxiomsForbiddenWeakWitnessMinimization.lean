@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.ForbiddenWeakWitnessMinimization
+
+#check AllThoseRamseyClasses.Lifts.ForbiddenEHNWitness
+#check AllThoseRamseyClasses.Lifts.ForbiddenEHNWitness.sourceSupportCount
+#check AllThoseRamseyClasses.Lifts.exists_minimalForbiddenEHNWitness_support
+#check AllThoseRamseyClasses.Lifts.minimalForbiddenEHNWitness_no_strict_drop
+#check AllThoseRamseyClasses.Lifts.noForbiddenEHNWitness_of_strictSupportDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalForbiddenEHNWitness_support
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenEHNWitness_no_strict_drop
+#print axioms AllThoseRamseyClasses.Lifts.noForbiddenEHNWitness_of_strictSupportDescent
