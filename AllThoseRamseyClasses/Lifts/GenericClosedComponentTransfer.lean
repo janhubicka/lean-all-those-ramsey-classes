@@ -47,10 +47,6 @@ def AllClosedComponentRootedTransfer
     FunctionalRootRealization tag.rootedPattern Right
       (iRight ∘ xs)
 
-/-- A conditional support-decreasing fold requires ONLY realization
-transfer for actual closed-root components, not the full lifted
-structure interface. This makes finite families of named sources
-possible without constructing a separate lift for each source. -/
 /-- Direct strict source-support descent under the new finite
 ALL-CLOSED-COMPONENT folded canonical lift.
 
