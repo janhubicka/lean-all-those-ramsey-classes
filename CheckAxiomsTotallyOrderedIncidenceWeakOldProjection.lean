@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceWeakOldProjection
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_injective
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_originalRel_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_originalEmbedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_vertexLE_iff
