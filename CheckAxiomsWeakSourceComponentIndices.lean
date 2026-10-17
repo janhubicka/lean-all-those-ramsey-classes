@@ -1,0 +1,13 @@
+import AllThoseRamseyClasses.Lifts.WeakSourceComponentIndices
+
+#check AllThoseRamseyClasses.Lifts.functionalOutsideComponentSetoid
+#check AllThoseRamseyClasses.Lifts.functionalOutsideComponentId_eq_iff
+#check AllThoseRamseyClasses.Lifts.finite_functionalOutsideComponentId
+#check AllThoseRamseyClasses.Lifts.weakRightExclusiveComponentIds
+#check AllThoseRamseyClasses.Lifts.weakMixedPiece_rightComponentId_ne
+#check AllThoseRamseyClasses.Lifts.weakMixedPiece_twoDistinctRightComponents
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalOutsideComponentId_eq_iff
+#print axioms AllThoseRamseyClasses.Lifts.finite_functionalOutsideComponentId
+#print axioms AllThoseRamseyClasses.Lifts.weakMixedPiece_rightComponentId_ne
+#print axioms AllThoseRamseyClasses.Lifts.weakMixedPiece_twoDistinctRightComponents
