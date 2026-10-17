@@ -41,10 +41,17 @@ def functionalOutsideComponentSetoid
     (A : Structure L V) (S : Set V) :
     Setoid {x : V // x ∉ S} where
   r := ReachOutside A.graph S
-  iseqv := ⟨
-    (fun _ => Relation.ReflTransGen.refl),
-    (fun _ _ h => reachOutside_symm A.graph S h),
-    (fun _ _ _ hxy hyz => hxy.trans hyz)⟩
+  iseqv := {
+    refl := by
+      intro x
+      exact Relation.ReflTransGen.refl
+    symm := by
+      intro x y hxy
+      exact reachOutside_symm A.graph S hxy
+    trans := by
+      intro x y z hxy hyz
+      exact hxy.trans hyz
+  }
 
 /-- Genuine component identifiers after deleting exactly S. -/
 abbrev FunctionalOutsideComponentId
@@ -65,8 +72,10 @@ theorem functionalOutsideComponentId_eq_iff
       functionalOutsideComponentId A S y ↔
     ReachOutside A.graph S x y := by
   constructor
-  · exact Quotient.exact
-  · exact Quotient.sound
+  · intro h
+    exact Quotient.exact h
+  · intro h
+    exact Quotient.sound h
 
 /-- A finite source has only finitely many genuine Gaifman components
 outside ANY vertex set (which need not itself be closed). -/
