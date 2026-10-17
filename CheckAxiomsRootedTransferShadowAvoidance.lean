@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.RootedTransferShadowAvoidance
+
+#check AllThoseRamseyClasses.Lifts.wholeComponentRootedTransfer_freeAmalgam_avoids_source
+#print axioms AllThoseRamseyClasses.Lifts.wholeComponentRootedTransfer_freeAmalgam_avoids_source
