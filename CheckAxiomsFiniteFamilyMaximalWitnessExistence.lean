@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalWitnessExistence
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedRootObservation_finite
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedRootProfile_mono
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamed_exists_maximal_extension
