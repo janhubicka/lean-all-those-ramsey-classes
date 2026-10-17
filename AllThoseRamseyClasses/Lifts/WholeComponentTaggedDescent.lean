@@ -60,7 +60,7 @@ This requires NO assumption about the number of B-only source
 components, no minimal separating root, and no weak root-image
 injectivity. -/
 theorem wholeComponentTaggedLift_strict_leftSupport
-    {V UX UA UB UT : Type v}
+    {V UX UA UB UT : Type}
     [Finite V]
     (Source : Structure L V)
     (Target : Structure L UT)
