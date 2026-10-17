@@ -129,6 +129,7 @@ theorem commonFiniteNamedComponentLift_rightWitness
     (hCommon : CommonFiniteNamedComponentLift
       Family X A B iA iB)
     (i : Family.Index)
+    [Finite (Family.Carrier i)]
     (tag : ClosedComponentTag (Family.source i))
     (xs : Fin tag.width → UX)
     (hLeft : FunctionalRootRealization tag.rootedPattern
