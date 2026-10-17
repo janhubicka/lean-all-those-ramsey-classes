@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.FunctionFibreUtilities
 import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceAuxiliaryFreeAmalgam
 import PartiteConstruction.Structure.FreeAmalgamationClass
 import PartiteConstruction.Ramsey.FreeAmalgamationFunctionsAllArity
@@ -66,36 +67,19 @@ theorem IncidenceFunctionLaws.of_embedding
       (e.map_rel_iff (.paper (.original r)) t).mpr hPos
     obtain ⟨z, hz, hTagB⟩ :=
       hB.positive_singleton r (e ∘ t) hBpos
-    have hMap := e.map_func r t
-    have hzB : z ∈ B.func r (e ∘ t) := by
-      rw [hz]
-      exact Set.mem_singleton z
-    have hzImage : z ∈ e '' A.func r t := by
-      change z ∈ imageSet e (A.func r t)
-      rw [hMap]
-      exact hzB
-    obtain ⟨x, hx, hxeq⟩ := hzImage
-    refine ⟨x, ?_, ?_⟩
-    · ext y
-      constructor
-      · intro hy
-        have hey : e y ∈ e '' A.func r t := ⟨y, hy, rfl⟩
-        change e y ∈ imageSet e (A.func r t) at hey
-        rw [e.map_func r t, hz] at hey
-        have hyz : e y = z := by
-          simpa only [Set.mem_singleton_iff] using hey
-        exact e.injective (hyz.trans hxeq.symm)
-      · intro hy
-        have hxy : y = x := by simpa using hy
-        subst y
-        exact hx
-    · have hUnary : (e ∘ ![x]) = ![e x] := by
-        funext j
-        fin_cases j
-        rfl
-      apply (e.map_rel_iff (.newSymbol r) ![x]).mp
-      rw [hUnary, hxeq]
-      exact hTagB
+    have hImage : e '' A.func r t = B.func r (e ∘ t) :=
+      e.map_func r t
+    obtain ⟨x, hx, hxeq⟩ :=
+      FunctionFibreUtilities.singleton_pullback_of_image
+        e e.injective hImage z hz
+    refine ⟨x, hx, ?_⟩
+    have hUnary : (e ∘ ![x]) = ![e x] := by
+      funext j
+      fin_cases j
+      rfl
+    apply (e.map_rel_iff (.newSymbol r) ![x]).mp
+    rw [hUnary, hxeq]
+    exact hTagB
   · intro r t hNeg
     have hBneg : ¬ B.rel (.paper (.original r)) (e ∘ t) := by
       intro hBpos
