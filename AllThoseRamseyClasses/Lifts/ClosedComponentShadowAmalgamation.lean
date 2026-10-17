@@ -122,7 +122,7 @@ theorem wholeComponentTaggedLift_freeAmalgam_avoids_source
           _ = jRight (iRight r) :=
             (hFree.overlap (iLeft r) (iRight r)).mpr
               ⟨r, rfl, rfl⟩
-      · exact ⟨b, hb.symm⟩
+      · exact ⟨b, hb⟩
     obtain ⟨g, hg, _hfactor⟩ :=
       ehnHomomorphismEmbedding_factor_full_side
         hf jRight hImage
