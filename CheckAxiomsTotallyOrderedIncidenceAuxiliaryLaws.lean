@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceAuxiliaryLaws
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonical_incidenceFunctionLaws
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.IncidenceFunctionLaws.induce_closed
