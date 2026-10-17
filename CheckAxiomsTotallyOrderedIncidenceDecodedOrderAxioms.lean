@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceDecodedOrderAxioms
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakDecoded_tupleOrder_refl_of_positive
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakDecoded_tupleOrder_trans
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakDecoded_tupleOrder_antisymm
