@@ -61,7 +61,7 @@ theorem canonical_reverseCoordinateSilence
     | inl a =>
         ext y
         constructor
-        · rintro ⟨t, ht, hTag, hy⟩
+        · rintro ⟨t, _ht, hTag, _hy⟩
           cases hTag
         · intro hy
           cases hy
@@ -151,7 +151,7 @@ private theorem empty_fibre_push
     (hA : A.func F t = ∅) :
     B.func F (e ∘ t) = ∅ := by
   rw [← e.map_func F t, hA]
-  rfl
+  simp [imageSet]
 
 /-- Reverse-coordinate silence remains valid under genuine FULL
 functional free amalgamation. Every vertex comes from a side;
