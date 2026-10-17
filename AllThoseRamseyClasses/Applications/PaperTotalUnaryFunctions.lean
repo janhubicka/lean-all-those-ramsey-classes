@@ -93,6 +93,18 @@ theorem outputs_singleton_map
   exact FunctionFibreUtilities.singleton_map_of_image
     e (outputs_image m e i x) y h
 
+theorem totalUnaryClass_hereditary (m : ℕ)
+    {U V : Type}
+    {A : Structure (Lang m) U} {B : Structure (Lang m) V}
+    (hB : totalUnaryClass m B) (e : Embedding A B) :
+    totalUnaryClass m A := by
+  letI : Finite V := hB.1
+  refine ⟨Finite.of_injective e e.injective, ?_⟩
+  intro i x
+  obtain ⟨b, hBb⟩ := hB.2 i (e x)
+  obtain ⟨a, hAa, _hea⟩ := singleton_output_pullback m e i x b hBb
+  exact ⟨a, hAa⟩
+
 /-- The class of all finite m-unary algebras really has FULL functional
 free amalgamation over full function-closed embeddings. -/
 theorem totalUnaryClass_freeAmalgamation (m : ℕ) :
