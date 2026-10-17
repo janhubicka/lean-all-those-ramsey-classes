@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyShadowFreeAmalgamation
+
+#check AllThoseRamseyClasses.Lifts.AvoidsFiniteNamedEHN
+#check AllThoseRamseyClasses.Lifts.commonFiniteNamedLifts_rootedTransfer
+#check AllThoseRamseyClasses.Lifts.finiteNamedAllComponentLift_freeAmalgam_avoids
+
+#print axioms AllThoseRamseyClasses.Lifts.commonFiniteNamedLifts_rootedTransfer
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedAllComponentLift_freeAmalgam_avoids
