@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FoldedMinimalWitnessContradiction
+
+#check AllThoseRamseyClasses.Lifts.minimalFoldedWitness_contradiction_of_connectedRightRegion
+#print axioms AllThoseRamseyClasses.Lifts.minimalFoldedWitness_contradiction_of_connectedRightRegion
