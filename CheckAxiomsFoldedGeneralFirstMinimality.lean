@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FoldedGeneralFirstMinimality
+
+#check AllThoseRamseyClasses.Lifts.minimalFoldedForbiddenWitness_piece_meets_right
+#print axioms AllThoseRamseyClasses.Lifts.minimalFoldedForbiddenWitness_piece_meets_right
