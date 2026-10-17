@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GenericClosedComponentTransfer
+
+#check AllThoseRamseyClasses.Lifts.AllClosedComponentRootedTransfer
+#check AllThoseRamseyClasses.Lifts.wholeComponent_strict_leftSupport_of_rootedTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.wholeComponent_strict_leftSupport_of_rootedTransfer
