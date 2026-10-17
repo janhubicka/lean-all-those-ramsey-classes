@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.MinimalGeometricCutComponentPath
+
+#check AllThoseRamseyClasses.Lifts.minimalGeometricPiece_component_not_reachable_from_right
+#print axioms AllThoseRamseyClasses.Lifts.minimalGeometricPiece_component_not_reachable_from_right
