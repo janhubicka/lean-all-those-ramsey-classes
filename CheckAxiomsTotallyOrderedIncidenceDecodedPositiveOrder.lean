@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceDecodedPositiveOrder
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakPositiveTupleKey_injective
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakPositiveTuplesLinearOrder
