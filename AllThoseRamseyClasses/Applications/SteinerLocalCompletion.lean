@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.ControlOrders
 import AllThoseRamseyClasses.Applications.SteinerStrongAmalgamation
 import AllThoseRamseyClasses.Published.Coordinated2019ProfileSparseWitness
 import AllThoseRamseyClasses.Applications.SteinerAmbientRamsey
@@ -86,13 +87,8 @@ theorem orderedSteiner_exactLocal_zero
   letI : Fintype V := Fintype.ofFinite V
   letI : LinearOrder Y := ambientLinearOrder C0 hC0
   obtain ⟨_hC0Irred, f, hf⟩ := hControl
-  let key : V → Y ×ₗ Fin (Fintype.card V) :=
-    fun x => toLex (f x, Fintype.equivFin V x)
-  have hKeyInjective : Function.Injective key := by
-    intro x y hxy
-    apply (Fintype.equivFin V).injective
-    exact congrArg (fun z => (ofLex z).2) hxy
-  let o : LinearOrder V := LinearOrder.lift' key hKeyInjective
+  obtain ⟨o, hControlIncrease⟩ :=
+    AllThoseRamseyClasses.Applications.exists_linearOrder_strictOn_controlIncrease f
   letI : LinearOrder V := o
   have hOldOrder : ∀ x y : V, edge C .order x y →
       @LT.lt V o.toLT x y := by
@@ -106,8 +102,7 @@ theorem orderedSteiner_exactLocal_zero
       exact hf.1 .order ![x,y] hxy
     have hControlLt : f x < f y :=
       (ambientLinearOrder_lt_iff C0 hC0 (f x) (f y)).mpr hOrderInControl
-    change key x < key y
-    exact Prod.Lex.toLex_lt_toLex.mpr (Or.inl hControlLt)
+    exact hControlIncrease x y hControlLt
   let Target : RelStructure Lang V := {
     rel := fun
       | .order, t => @LT.lt V o.toLT (t 0) (t 1)
