@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FoldedMixedGeometricExistence
+
+#check AllThoseRamseyClasses.Lifts.minimalFoldedForbiddenWitness_has_mixed_piece
+#print axioms AllThoseRamseyClasses.Lifts.minimalFoldedForbiddenWitness_has_mixed_piece
