@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceAuxiliaryFreeAmalgam
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.IncidenceFunctionLaws.free_amalgam
