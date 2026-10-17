@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.FoldedFullWitnessBridge
+
+#check AllThoseRamseyClasses.Lifts.foldedFullWitness_shadowEmbedding
+#check AllThoseRamseyClasses.Lifts.foldedFullWitness_shadowEmbedding_apply
+#check AllThoseRamseyClasses.Lifts.commonFoldedFullLift_of_sharedExpansion
+#check AllThoseRamseyClasses.Lifts.sharedFoldedExpansion_relations_agree
+
+#print axioms AllThoseRamseyClasses.Lifts.foldedFullWitness_shadowEmbedding_apply
+#print axioms AllThoseRamseyClasses.Lifts.commonFoldedFullLift_of_sharedExpansion
+#print axioms AllThoseRamseyClasses.Lifts.sharedFoldedExpansion_relations_agree
