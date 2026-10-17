@@ -58,10 +58,22 @@ theorem IncidenceFunctionLaws.free_amalgam
       ⟨x, hX, hEq⟩ | ⟨y, hY, hEq⟩
     · subst t
       have hOld := hA.positive_old r x hX i
-      simpa using (iA.map_rel_iff (.old) ![x i]).mpr hOld
+      have hcopy := (iA.map_rel_iff (.old) ![x i]).mpr hOld
+      have ht : (iA ∘ ![x i]) = ![iA (x i)] := by
+        funext j
+        fin_cases j
+        rfl
+      rw [ht] at hcopy
+      exact hcopy
     · subst t
       have hOld := hB.positive_old r y hY i
-      simpa using (iB.map_rel_iff (.old) ![y i]).mpr hOld
+      have hcopy := (iB.map_rel_iff (.old) ![y i]).mpr hOld
+      have ht : (iB ∘ ![y i]) = ![iB (y i)] := by
+        funext j
+        fin_cases j
+        rfl
+      rw [ht] at hcopy
+      exact hcopy
   · intro r t hPositive
     rcases (hfree.rel_iff (.paper (.original r)) t).mp hPositive with
       ⟨x, hX, hEq⟩ | ⟨y, hY, hEq⟩
@@ -73,7 +85,14 @@ theorem IncidenceFunctionLaws.free_amalgam
             simpa only [imageSet] using (iA.map_func r x).symm
           _ = iA '' {a} := by rw [ha]
           _ = {iA a} := by simp
-      · simpa using (iA.map_rel_iff (.newSymbol r) ![a]).mpr hTag
+      · have hcopy :=
+          (iA.map_rel_iff (.newSymbol r) ![a]).mpr hTag
+        have ht : (iA ∘ ![a]) = ![iA a] := by
+          funext j
+          fin_cases j
+          rfl
+        rw [ht] at hcopy
+        exact hcopy
     · subst t
       obtain ⟨a, ha, hTag⟩ := hB.positive_singleton r y hY
       refine ⟨iB a, ?_, ?_⟩
@@ -82,7 +101,14 @@ theorem IncidenceFunctionLaws.free_amalgam
             simpa only [imageSet] using (iB.map_func r y).symm
           _ = iB '' {a} := by rw [ha]
           _ = {iB a} := by simp
-      · simpa using (iB.map_rel_iff (.newSymbol r) ![a]).mpr hTag
+      · have hcopy :=
+          (iB.map_rel_iff (.newSymbol r) ![a]).mpr hTag
+        have ht : (iB ∘ ![a]) = ![iB a] := by
+          funext j
+          fin_cases j
+          rfl
+        rw [ht] at hcopy
+        exact hcopy
   · intro r t hNegative
     ext z
     constructor
