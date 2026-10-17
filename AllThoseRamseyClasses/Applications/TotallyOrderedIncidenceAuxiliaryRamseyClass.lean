@@ -71,7 +71,7 @@ theorem IncidenceFunctionLaws.of_embedding
       rw [hz]
       exact Set.mem_singleton z
     have hzImage : z ∈ e '' A.func r t := by
-      change imageSet e (A.func r t) = B.func r (e ∘ t) at hMap
+      change z ∈ imageSet e (A.func r t)
       rw [hMap]
       exact hzB
     obtain ⟨x, hx, hxeq⟩ := hzImage
