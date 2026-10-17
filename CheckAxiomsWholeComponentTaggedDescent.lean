@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.WholeComponentTaggedDescent
+
+#check AllThoseRamseyClasses.Lifts.wholeComponentTaggedLift_strict_leftSupport
+#print axioms AllThoseRamseyClasses.Lifts.wholeComponentTaggedLift_strict_leftSupport
