@@ -130,14 +130,18 @@ theorem finiteNamed_exists_maximal_extension
     {P | ∃ (UB : Type) (B : Structure L UB),
       K B ∧ ∃ (e : Structure.Embedding A B),
         finiteNamedRootProfile Family (e.comp iA) = P}
-  have hFinite : possible.Finite := Set.toFinite possible
-  have hNonempty : possible.Nonempty := by
+  letI : Fintype (Finset Obs) := Fintype.ofFinite (Finset Obs)
+  let candidates : Finset (Finset Obs) :=
+    Finset.univ.filter (fun Q => Q ∈ possible)
+  have hNonempty : candidates.Nonempty := by
     refine ⟨finiteNamedRootProfile Family iA, ?_⟩
-    exact ⟨UA, A, hA, Structure.Embedding.id A, rfl⟩
+    apply Finset.mem_filter.mpr
+    exact ⟨Finset.mem_univ _, ⟨UA, A, hA, Structure.Embedding.id A, rfl⟩⟩
   obtain ⟨P, hP, hBest⟩ :=
-    hFinite.exists_max_image
+    Finset.exists_max_image candidates
       (fun Q : Finset Obs => Q.card) hNonempty
-  obtain ⟨UB, B, hB, e, hEq⟩ := hP
+  have hPpossible : P ∈ possible := (Finset.mem_filter.mp hP).2
+  obtain ⟨UB, B, hB, e, hEq⟩ := hPpossible
   refine ⟨UB, B, hB, e, ?_⟩
   apply (finiteNamedCanonicalMaximalAlong_iff_no_new
     Family K (e.comp iA)).2
@@ -149,7 +153,8 @@ theorem finiteNamed_exists_maximal_extension
       ((eBC.comp e).comp iA)).card ≤
       (finiteNamedRootProfile Family (e.comp iA)).card := by
     calc
-      _ ≤ P.card := hBest _ hExtended
+      _ ≤ P.card := hBest _ (Finset.mem_filter.mpr
+        ⟨Finset.mem_univ _, hExtended⟩)
       _ = _ := by rw [hEq]
   have hMono : finiteNamedRootProfile Family (e.comp iA) ⊆
       finiteNamedRootProfile Family
