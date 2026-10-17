@@ -116,7 +116,8 @@ noncomputable def ClosedComponentTag.rootedPattern
     intro i j h
     have hval :
         (t.enumeration i).1 = (t.enumeration j).1 :=
-      congrArg Subtype.val h
+      congrArg
+        (fun z : functionalComponentUnion Source t.cut t.chosen => z.1) h
     exact t.enumeration.injective (Subtype.ext hval)
 
 /-- Extend any target OLD functional structure by one tag relation
