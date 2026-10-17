@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.ControlOrders
 import PartiteConstruction.Ramsey.CopywiseRamseyTransfer
 import PartiteConstruction.Relational.Order
 import Mathlib.Order.Prod.Lex.Basic
@@ -56,13 +57,7 @@ noncomputable def typeSortedLinearOrder
     (A : RelStructure L V) : LinearOrder V := by
   classical
   letI : LinearOrder (OnePointCode L) := typeOrder
-  exact LinearOrder.lift'
-    (fun x => toLex ((onePointType A x, x) : OnePointCode L × V))
-    (by
-      intro x y h
-      exact congrArg Prod.snd
-        (congrArg
-          (ofLex : Lex (OnePointCode L × V) → OnePointCode L × V) h))
+  exact ControlOrders.stableSortLinearOrder (onePointType A)
 
 theorem typeSortedLinearOrder_lt_iff
     {L : RelLanguage.{u}} {V : Type v} [LinearOrder V]
@@ -73,15 +68,7 @@ theorem typeSortedLinearOrder_lt_iff
        (onePointType A x) (onePointType A y) ∨
     (onePointType A x = onePointType A y ∧ x < y) := by
   letI : LinearOrder (OnePointCode L) := typeOrder
-  change
-    (@LT.lt V (typeSortedLinearOrder typeOrder A).toLT x y) ↔
-      (@LT.lt (OnePointCode L) typeOrder.toLT
-        (onePointType A x) (onePointType A y) ∨
-      (onePointType A x = onePointType A y ∧ x < y))
-  unfold typeSortedLinearOrder
-  change toLex ((onePointType A x, x) : OnePointCode L × V) <
-    toLex ((onePointType A y, y) : OnePointCode L × V) ↔ _
-  exact Prod.Lex.toLex_lt_toLex
+  exact ControlOrders.stableSortLinearOrder_lt_iff (onePointType A) x y
 
 theorem typeSortedLinearOrder_isAdmissible
     {L : RelLanguage.{u}} {V : Type v} [LinearOrder V]

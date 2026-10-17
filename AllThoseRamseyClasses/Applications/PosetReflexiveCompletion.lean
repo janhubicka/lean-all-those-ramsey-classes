@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.ControlOrders
 import AllThoseRamseyClasses.Applications.PosetTransitiveClosure
 import Mathlib.Order.Prod.Lex.Basic
 
@@ -28,29 +29,6 @@ universe v w
 def posetStrictPart {V : Type v}
     (p : V → V → Prop) (x y : V) : Prop :=
   p x y ∧ x ≠ y
-
-/-- A finite control order can be extended to a STRICT linear order
-on the source, with an arbitrary tie-breaker inside each control
-fibre. No injectivity of f is assumed. -/
-theorem exists_linearOrder_strictOn_controlIncrease
-    {V : Type v} {D : Type w} [Finite V] [LinearOrder D]
-    (f : V → D) :
-    ∃ (o : LinearOrder V),
-      ∀ x y : V, f x < f y →
-        @LT.lt V o.toLT x y := by
-  classical
-  letI : Fintype V := Fintype.ofFinite V
-  let key : V → D ×ₗ Fin (Fintype.card V) :=
-    fun x => toLex (f x, Fintype.equivFin V x)
-  have hKeyInj : Function.Injective key := by
-    intro x y hxy
-    apply (Fintype.equivFin V).injective
-    exact congrArg (fun z => (ofLex z).2) hxy
-  let o : LinearOrder V := LinearOrder.lift' key hKeyInj
-  refine ⟨o, ?_⟩
-  intro x y hxy
-  change key x < key y
-  exact Prod.Lex.toLex_lt_toLex.mpr (Or.inl hxy)
 
 /-- The manuscript's reflexive poset relation admits an order-
 compatible partial-order completion on the SAME vertices, even
