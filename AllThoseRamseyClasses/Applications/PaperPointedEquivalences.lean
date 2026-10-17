@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.FunctionFibreUtilities
 import PartiteConstruction.Ramsey.FreeAmalgamationFunctions
 import Mathlib.Tactic
 
@@ -84,26 +85,8 @@ theorem singleton_output_pullback
     (e : Embedding A B) (x : U) (b : V)
     (hB : outputs B (e x) = {b}) :
     ∃ a : U, outputs A x = {a} ∧ e a = b := by
-  have hb : b ∈ outputs B (e x) := by
-    rw [hB]
-    exact Set.mem_singleton_iff.mpr rfl
-  rw [← outputs_image e x] at hb
-  obtain ⟨a, ha, hea⟩ := hb
-  refine ⟨a, ?_, hea⟩
-  ext z
-  constructor
-  · intro hz
-    have hez : e z ∈ outputs B (e x) := by
-      rw [← outputs_image e x]
-      exact ⟨z, hz, rfl⟩
-    rw [hB] at hez
-    have hza : z = a :=
-      e.injective ((Set.mem_singleton_iff.mp hez).trans hea.symm)
-    exact Set.mem_singleton_iff.mpr hza
-  · intro hz
-    have hza : z = a := Set.mem_singleton_iff.mp hz
-    subst z
-    exact ha
+  exact FunctionFibreUtilities.singleton_pullback_of_image
+    e e.injective (outputs_image e x) b hB
 
 /-- A singleton functional fibre stays singleton under an embedding. -/
 theorem outputs_singleton_map
@@ -111,10 +94,8 @@ theorem outputs_singleton_map
     (e : Embedding A B) (x y : U)
     (h : outputs A x = {y}) :
     outputs B (e x) = {e y} := by
-  calc
-    outputs B (e x) = e '' outputs A x := (outputs_image e x).symm
-    _ = e '' {y} := by rw [h]
-    _ = {e y} := by simp
+  exact FunctionFibreUtilities.singleton_map_of_image
+    e (outputs_image e x) y h
 
 /-- Pullback along any full embedding keeps totality and idempotency;
 ordinary induced relational subsets would not suffice. -/
@@ -145,12 +126,8 @@ theorem pointedClass_freeAmalgamation :
     have hP : Finite P := by
       letI : Finite E := hA.1
       letI : Finite F := hB.1
-      apply Finite.of_surjective
-        (fun z : E ⊕ F => Sum.elim iA iB z)
-      intro z
-      rcases hFree.covers z with ⟨a, ha⟩ | ⟨b, hb⟩
-      · exact ⟨Sum.inl a, ha.symm⟩
-      · exact ⟨Sum.inr b, hb.symm⟩
+      exact FunctionFibreUtilities.finite_of_two_image_cover
+        iA iB hFree.covers
     refine ⟨hP, ?_⟩
     intro x
     rcases hFree.covers x with ⟨a, ha⟩ | ⟨b, hb⟩

@@ -6,6 +6,19 @@ applications; `PublicAPI` contains only the revised relational main theorem
 and its foundations. Relational applications use full induced embeddings,
 and functional applications use full function-preserving embeddings.
 
+## Shared application utilities
+
+The pointed-equivalence and total-unary-function examples now reuse
+[FunctionFibreUtilities.lean](../../AllThoseRamseyClasses/Applications/FunctionFibreUtilities.lean)
+for singleton pullback/transport under **exact full fibre image equality**
+and for the finiteness of a two-side-covered amalgam. Their original
+researcher-facing declarations are unchanged; only their duplicate
+proof bodies were replaced. The same utility also applies to arbitrary
+function arities, so incidence-tag and closure-function proofs can
+reuse it without assuming positive arity or global injectivity of
+the function values. This does **not** replace the hypotheses required
+to prove free amalgamation for a particular class.
+
 ## Published 2019 examples: fully verified finite classes
 
 | Original example | Lean theorem | CI certificate |
