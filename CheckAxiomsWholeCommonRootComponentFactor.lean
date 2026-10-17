@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.WholeCommonRootComponentFactor
+
+#check AllThoseRamseyClasses.Lifts.weakSource_wholeCommonRootLeftComponent_factor
+#print axioms AllThoseRamseyClasses.Lifts.weakSource_wholeCommonRootLeftComponent_factor
