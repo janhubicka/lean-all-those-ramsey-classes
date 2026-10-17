@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalCanonicalLifts_strongAmalgam
