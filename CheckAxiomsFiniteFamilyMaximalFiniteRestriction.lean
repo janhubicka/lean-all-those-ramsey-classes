@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalFiniteRestriction
+
+#print axioms AllThoseRamseyClasses.Lifts.FiniteNamedCanonicalMaximalAlong.restrict_root
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamed_exists_finite_maximal_extension
