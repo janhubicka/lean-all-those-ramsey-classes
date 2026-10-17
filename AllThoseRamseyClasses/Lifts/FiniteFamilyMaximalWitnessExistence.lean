@@ -1,6 +1,6 @@
 import AllThoseRamseyClasses.Lifts.FiniteFamilyCanonicalMaximality
 import Mathlib.Data.Finset.Max
-import Mathlib.Data.Set.Finite
+import Mathlib.Data.Set.Finite.Lemmas
 
 /-!
 # Existence of finite-family maximal canonical witnesses
