@@ -109,7 +109,12 @@ theorem IncidenceFunctionLaws.induce_closed
   · intro r t hPositive i
     have hOld := h.positive_old r (Subtype.val ∘ t) hPositive i
     change C.rel .old (Subtype.val ∘ ![t i])
-    simpa only [Function.comp_apply] using hOld
+    have hUnary : (Subtype.val ∘ ![t i]) = ![(t i).1] := by
+      funext j
+      fin_cases j
+      rfl
+    rw [hUnary]
+    exact hOld
   · intro r t hPositive
     obtain ⟨y, hFunc, hTag⟩ :=
       h.positive_singleton r (Subtype.val ∘ t) hPositive
@@ -123,9 +128,19 @@ theorem IncidenceFunctionLaws.induce_closed
         {⟨y, hyS⟩}
       rw [hFunc]
       ext z
-      simp
+      simp only [Set.mem_setOf_eq, Set.mem_singleton_iff]
+      constructor
+      · intro hz
+        exact Subtype.ext hz
+      · intro hz
+        exact congrArg Subtype.val hz
     · change C.rel (.newSymbol r) (Subtype.val ∘ ![(⟨y, hyS⟩ : S)])
-      simpa only [Function.comp_apply] using hTag
+      have hUnary : (Subtype.val ∘ ![(⟨y, hyS⟩ : S)]) = ![y] := by
+        funext j
+        fin_cases j
+        rfl
+      rw [hUnary]
+      exact hTag
   · intro r t hNegative
     have hAbs : ¬ C.rel (.paper (.original r)) (Subtype.val ∘ t) :=
       hNegative
