@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceAuxiliaryRamseyClass
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.IncidenceFunctionLaws.of_embedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceLawsClass_free
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.incidenceLawsClass_freelyOrderedRamsey
