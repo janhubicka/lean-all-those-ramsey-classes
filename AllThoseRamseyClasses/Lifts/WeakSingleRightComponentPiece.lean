@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.WeakMinimalGeometricChart
 import AllThoseRamseyClasses.Lifts.GeometricPieceSideDichotomy
+import AllThoseRamseyClasses.Lifts.MinimalGeometricCutComponentPath
 
 /-!
 # A genuine one-sided forbidden piece when the opposite region is connected
@@ -74,34 +75,11 @@ theorem weakFreePartition_leftOnlyPiece_of_rightConnected
       hfree f hf x y hx hy
   refine ⟨n, d, hRoots, hLeft, hRight, ?_⟩
   intro z hzComponent hzRight
-  let S : Set U := weakFreeRootPart (sL := sL) (iL := iL) f
-  let R : Set U := Set.range d.roots
-  let yS : {z : U // z ∉ S} := ⟨y, hy.2⟩
-  let zS : {v : U // v ∉ S} := ⟨z, hzRight.2⟩
-  have hPath :
-      ReachOutside Source.graph R
-        (outsideCutMap hRoots yS)
-        (outsideCutMap hRoots zS) :=
-    reachOutside_of_cut_subset
-      Source.graph hRoots yS zS (hAllRight z hzRight)
-  have hY : d.right = outsideCutMap hRoots yS := by
-    apply Subtype.ext
-    exact hRight
-  have hZ :
-      (⟨z, hzComponent.1⟩ : {v : U // v ∉ R}) =
-        outsideCutMap hRoots zS := by
-    apply Subtype.ext
-    rfl
-  have hPathRight :
-      ReachOutside Source.graph R
-        d.right ⟨z, hzComponent.1⟩ := by
-    rw [hY, hZ]
-    exact hPath
-  have hPathLeftRight :
-      ReachOutside Source.graph R d.left d.right :=
-    hzComponent.2.trans (reachOutside_symm
-      Source.graph R hPathRight)
-  exact d.minimal.2.1 hPathLeftRight
+  exact (minimalGeometricPiece_component_not_reachable_from_right
+    Source d
+    (weakFreeRootPart (sL := sL) (iL := iL) f)
+    hRoots ⟨y, hy.2⟩ hRight
+    hzComponent hzRight.2) (hAllRight z hzRight)
 
 /-- Consequently the genuine minimal geometric LEFT piece weakly
 factors through the FULL left target side whenever the original
