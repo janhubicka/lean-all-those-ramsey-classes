@@ -52,7 +52,7 @@ structure ForbiddenEHNWitness
 
 /-- The exact natural-number measure on SOURCE vertices whose
 images belong to a specified subset of the target. -/
-def ForbiddenEHNWitness.sourceSupportCount
+noncomputable def ForbiddenEHNWitness.sourceSupportCount
     {F : ∀ {W : Type}, Structure L W → Prop}
     {UT : Type} {Target : Structure L UT}
     (w : ForbiddenEHNWitness F Target)
