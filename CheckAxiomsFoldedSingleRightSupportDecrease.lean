@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FoldedSingleRightSupportDecrease
+
+#check AllThoseRamseyClasses.Lifts.foldedFirstMinimality_of_connectedRightRegion
+#print axioms AllThoseRamseyClasses.Lifts.foldedFirstMinimality_of_connectedRightRegion
