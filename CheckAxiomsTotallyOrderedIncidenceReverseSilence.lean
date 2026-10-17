@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceReverseSilence
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonical_reverseCoordinateSilence
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.ReverseCoordinateSilence.of_embedding
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.ReverseCoordinateSilence.free_amalgam
