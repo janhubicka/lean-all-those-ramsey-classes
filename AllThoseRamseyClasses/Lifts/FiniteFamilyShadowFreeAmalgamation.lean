@@ -63,7 +63,8 @@ theorem commonFiniteNamedLifts_rootedTransfer
     (iRight : Structure.Embedding X Right)
     (hCommon : CommonFiniteNamedComponentLift
       Family X Left Right iLeft iRight)
-    (i : Family.Index) :
+    (i : Family.Index)
+    [Finite (Family.Carrier i)] :
     AllClosedComponentRootedTransfer
       (Family.source i) X Left Right iLeft iRight := by
   letI : Finite (Family.Carrier i) := Family.finiteCarrier i
