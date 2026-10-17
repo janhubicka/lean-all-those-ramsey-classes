@@ -198,7 +198,7 @@ theorem HasRecoverableCoordinates.free_amalgam
     change iA '' A.func (.inr ⟨r, i⟩) ![a] =
       C.func (.inr ⟨r, i⟩) (iA ∘ ![a]) at hmap
     rw [htup, hrev] at hmap
-    simpa only [Set.image_singleton] using hmap.symm
+    simpa only [Set.image_singleton, Function.comp_apply] using hmap.symm
   · subst t
     have hzCopy : z ∈ iB '' B.func (.inl r) x := by
       have hmap := iB.map_func (.inl r) x
@@ -217,6 +217,6 @@ theorem HasRecoverableCoordinates.free_amalgam
     change iB '' B.func (.inr ⟨r, i⟩) ![a] =
       C.func (.inr ⟨r, i⟩) (iB ∘ ![a]) at hmap
     rw [htup, hrev] at hmap
-    simpa only [Set.image_singleton] using hmap.symm
+    simpa only [Set.image_singleton, Function.comp_apply] using hmap.symm
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
