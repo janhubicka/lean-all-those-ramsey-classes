@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.FiniteNamedCommonComponentLift
+
+#check AllThoseRamseyClasses.Lifts.FiniteNamedComponentLiftsAgreeOn
+#check AllThoseRamseyClasses.Lifts.CommonFiniteNamedComponentLift
+#check AllThoseRamseyClasses.Lifts.CommonFiniteNamedComponentLift.agreeOn
+#check AllThoseRamseyClasses.Lifts.commonFiniteNamedComponentLift_rightWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.CommonFiniteNamedComponentLift.agreeOn
+#print axioms AllThoseRamseyClasses.Lifts.commonFiniteNamedComponentLift_rightWitness
