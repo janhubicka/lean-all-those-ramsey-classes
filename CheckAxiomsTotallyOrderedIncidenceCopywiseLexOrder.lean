@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceCopywiseLexOrder
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakPositiveTupleLexLE_on_embedded_canonical
