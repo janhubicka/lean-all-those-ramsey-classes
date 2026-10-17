@@ -200,4 +200,55 @@ def commonAllClosedComponentLift_of_sharedExpansion
     (allClosedComponentLift_shadowEmbedding_apply
       Source LiftX B eB x).symm
 
+/-- A weak realization of the SAME genuine closed-root component
+in Left, rooted in the common full tagged substructure X,
+produces a genuine weak realization of THAT VERY COMPONENT
+in Right on the matching root coordinates.
+
+There is no minimal-separator, incompatibility quotient,
+or root-image injectivity hypothesis. The full closed root
+may map noninjectively into X. -/
+theorem commonAllClosedComponentLift_rightWitness
+    [Finite V]
+    (Source : Structure L V)
+    {UX UA UB : Type v}
+    (X : Structure L UX)
+    (A : Structure L UA)
+    (B : Structure L UB)
+    (iA : Structure.Embedding X A)
+    (iB : Structure.Embedding X B)
+    (hCommon : CommonAllClosedComponentLift
+      Source X A B iA iB)
+    (tag : ClosedComponentTag Source)
+    (pA : tag.rootedPattern.Carrier → UA)
+    (hpA : tag.rootedPattern.str.IsEHNHomomorphismEmbedding
+      A pA)
+    (xsX : Fin tag.width → UX)
+    (hRootA : ∀ i : Fin tag.width,
+      pA (tag.rootedPattern.root i) = iA (xsX i)) :
+    ∃ pB : tag.rootedPattern.Carrier → UB,
+      tag.rootedPattern.str.IsEHNHomomorphismEmbedding B pB ∧
+      ∀ i : Fin tag.width,
+        pB (tag.rootedPattern.root i) = iB (xsX i) := by
+  have hRelA :
+      (allClosedComponentFoldedLift Source A).rel
+        (.inr tag)
+        (fun i : Fin tag.width =>
+          pA (tag.rootedPattern.root i)) :=
+    allClosedComponentFoldedRelation_of_weak
+      Source A tag pA hpA
+  have hTuple :
+      (fun i : Fin tag.width =>
+        pA (tag.rootedPattern.root i)) =
+      (iA ∘ xsX) := by
+    funext i
+    exact hRootA i
+  rw [hTuple] at hRelA
+  have hRelB :
+      (allClosedComponentFoldedLift Source B).rel
+        (.inr tag) (iB ∘ xsX) :=
+    (hCommon.agreeOn Source tag xsX).mp hRelA
+  exact allClosedComponentFoldedRelation_witness
+    Source B tag (iB ∘ xsX) hRelB
+
 end AllThoseRamseyClasses.Lifts
