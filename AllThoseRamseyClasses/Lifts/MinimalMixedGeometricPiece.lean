@@ -101,4 +101,31 @@ theorem minimalMixedGeometricPiece_no_strictSmaller
     ¬ Q.nonrootCount < P.nonrootCount :=
   Nat.not_lt_of_ge (hMinimal Q)
 
+/-- If P is a globally smallest genuine mixed source piece,
+no OTHER genuine mixed geometric piece may have a selected
+nonroot component properly contained in that of P.
+
+This is the exact contradiction interface for the printed
+Claim 2 "proper sub-piece" step. Its premises demand a
+real geometric piece with all closure conditions, not merely
+an arbitrary smaller vertex subset. -/
+theorem minimalMixedGeometricPiece_no_proper_mixed_component
+    [Finite V]
+    {Source : Structure L V} {S AOnly BOnly : Set V}
+    (P : MixedGeometricPiece Source S AOnly BOnly)
+    (hMinimal : ∀ Q : MixedGeometricPiece Source S AOnly BOnly,
+      P.nonrootCount ≤ Q.nonrootCount)
+    (Q : MixedGeometricPiece Source S AOnly BOnly)
+    (hProper :
+      functionalComponentFrom Source
+        (Set.range Q.data.roots) Q.data.left ⊂
+      functionalComponentFrom Source
+        (Set.range P.data.roots) P.data.left) :
+    False := by
+  have hLess : Q.nonrootCount < P.nonrootCount := by
+    dsimp [MixedGeometricPiece.nonrootCount]
+    exact Set.ncard_lt_ncard hProper
+  exact (minimalMixedGeometricPiece_no_strictSmaller
+    P hMinimal Q) hLess
+
 end AllThoseRamseyClasses.Lifts
