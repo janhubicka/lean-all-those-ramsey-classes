@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ClosedComponentShadowAmalgamation
+
+#check AllThoseRamseyClasses.Lifts.wholeComponentTaggedLift_freeAmalgam_avoids_source
+#print axioms AllThoseRamseyClasses.Lifts.wholeComponentTaggedLift_freeAmalgam_avoids_source
