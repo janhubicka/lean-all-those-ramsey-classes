@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyCanonicalTrace
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedCanonicalTrace_shadow
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedCanonicalTrace_into_witness
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedCanonicalTrace_into_allowed_extension
+#print axioms AllThoseRamseyClasses.Lifts.commonFiniteNamedComponentLift_of_agreement
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedAllComponentLift_freeAmalgam_avoids_of_agreement
