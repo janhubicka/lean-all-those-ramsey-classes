@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.MinimalMixedGeometricPiece
+
+#check AllThoseRamseyClasses.Lifts.MixedGeometricPiece
+#check AllThoseRamseyClasses.Lifts.MixedGeometricPiece.nonrootCount
+#check AllThoseRamseyClasses.Lifts.exists_minimalMixedGeometricPiece
+#check AllThoseRamseyClasses.Lifts.minimalMixedGeometricPiece_no_strictSmaller
+#check AllThoseRamseyClasses.Lifts.minimalMixedGeometricPiece_no_proper_mixed_component
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalMixedGeometricPiece
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedGeometricPiece_no_strictSmaller
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedGeometricPiece_no_proper_mixed_component
