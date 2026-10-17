@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.FunctionFibreUtilities
 import PartiteConstruction.Ramsey.FreeAmalgamationFunctions
 import Mathlib.Tactic
 
@@ -79,26 +80,8 @@ theorem singleton_output_pullback
     (e : Embedding A B) (i : Fin m) (x : U) (b : V)
     (hB : outputs m B i (e x) = {b}) :
     ∃ a : U, outputs m A i x = {a} ∧ e a = b := by
-  have hb : b ∈ outputs m B i (e x) := by
-    rw [hB]
-    exact Set.mem_singleton_iff.mpr rfl
-  rw [← outputs_image m e i x] at hb
-  obtain ⟨a, ha, hea⟩ := hb
-  refine ⟨a, ?_, hea⟩
-  ext z
-  constructor
-  · intro hz
-    have hez : e z ∈ outputs m B i (e x) := by
-      rw [← outputs_image m e i x]
-      exact ⟨z, hz, rfl⟩
-    rw [hB] at hez
-    have hza : z = a :=
-      e.injective ((Set.mem_singleton_iff.mp hez).trans hea.symm)
-    exact Set.mem_singleton_iff.mpr hza
-  · intro hz
-    have hza : z = a := Set.mem_singleton_iff.mp hz
-    subst z
-    exact ha
+  exact FunctionFibreUtilities.singleton_pullback_of_image
+    e e.injective (outputs_image m e i x) b hB
 
 /-- Embedded singleton values remain singleton values in the target. -/
 theorem outputs_singleton_map
@@ -107,23 +90,8 @@ theorem outputs_singleton_map
     (e : Embedding A B) (i : Fin m) (x y : U)
     (h : outputs m A i x = {y}) :
     outputs m B i (e x) = {e y} := by
-  calc
-    outputs m B i (e x) = e '' outputs m A i x :=
-      (outputs_image m e i x).symm
-    _ = e '' {y} := by rw [h]
-    _ = {e y} := by simp
-
-theorem totalUnaryClass_hereditary (m : ℕ)
-    {U V : Type}
-    {A : Structure (Lang m) U} {B : Structure (Lang m) V}
-    (hB : totalUnaryClass m B) (e : Embedding A B) :
-    totalUnaryClass m A := by
-  letI : Finite V := hB.1
-  refine ⟨Finite.of_injective e e.injective, ?_⟩
-  intro i x
-  obtain ⟨b, hBb⟩ := hB.2 i (e x)
-  obtain ⟨a, hAa, _hea⟩ := singleton_output_pullback m e i x b hBb
-  exact ⟨a, hAa⟩
+  exact FunctionFibreUtilities.singleton_map_of_image
+    e (outputs_image m e i x) y h
 
 /-- The class of all finite m-unary algebras really has FULL functional
 free amalgamation over full function-closed embeddings. -/
@@ -136,12 +104,8 @@ theorem totalUnaryClass_freeAmalgamation (m : ℕ) :
     have hP : Finite P := by
       letI : Finite E := hA.1
       letI : Finite F := hB.1
-      apply Finite.of_surjective
-        (fun z : E ⊕ F => Sum.elim iA iB z)
-      intro z
-      rcases hFree.covers z with ⟨a, ha⟩ | ⟨b, hb⟩
-      · exact ⟨Sum.inl a, ha.symm⟩
-      · exact ⟨Sum.inr b, hb.symm⟩
+      exact FunctionFibreUtilities.finite_of_two_image_cover
+        iA iB hFree.covers
     refine ⟨hP, ?_⟩
     intro i x
     rcases hFree.covers x with ⟨a, ha⟩ | ⟨b, hb⟩
