@@ -112,3 +112,81 @@ the **actual maximal-witness/free-amalgam configuration**, or develop
 a replacement flip/lift mechanism which tolerates collapsed roots.
 An unrestricted Claim 1, Claim 2, `lem:amalgamationstr` and the
 full Section 3 strong-amalgamation theorem remain **open**.
+
+
+## Experimental folded-root alternative (distinct from the printed lift)
+
+The printed canonical global relation requires an **injective image
+of the ordered root tuple**, even when the realizing map is merely a
+homomorphism-embedding. A weak HE can identify distinct vertices of
+a reducible closed root. The explicit relational example and its
+minimal-root collision are recorded in the
+[separate manuscript proof audit](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/validation-lifts-weakimage-20261016.tex).
+
+The **auxiliary folded global lift** retains the same genuine
+global forbidden-piece class symbols and the same complete old
+relations/functions, but allows a relation to be realized on
+a tuple with repeated coordinates.
+
+The following are separately Lean-certified and merged:
+
+| Exact result | Lean source | CI / merge |
+| --- | --- | --- |
+| Folded global relation admits every weak selected-piece realization; yields a true equivalent replacement with the same complete functional root, even with colliding images | `Lifts/FoldedGlobalCanonicalRelations.lean` | [#399](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/399), [CI 38980171184](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38980171184), `88a60103` |
+| An auxiliary folded relation builds a literal forbidden functional replacement-source diagram and weak compatible fold | `Lifts/FoldedGlobalDiagramFlip.lean` | clean [#407](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/407), [CI 38981225720](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38981225720), `52dc2efd` |
+| Folded and printed canonical relations agree **exactly on injective tuples**, and positive folded relations are preserved under full old-language embeddings | `Lifts/FoldedGlobalRelationTransport.lean` | [#409](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/409), [CI 38981437427](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38981437427), `57e5553b` |
+| Fixed finite functional shadows have finitely many expansions by any finite set of new relation symbols | `Lifts/FiniteFunctionalExpansionFibres.lean` | [#405](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/405), [CI 38980948053](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38980948053), `a156ce9d` |
+| Regular piece quotient **plus a uniform root-width bound** yields finitely many total new global relation symbols | `Lifts/BoundedWidthGlobalPieceSymbols.lean` | [#406](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/406), [CI 38981164845](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38981164845), `06a23edf` |
+
+The first two rows establish a genuine collision-tolerant
+**witness-extraction and flip** mechanism for a different expansion.
+They do not establish that two witnesses have a common full folded
+lift or that their maximal folded expansions amalgamate.
+
+The following exact statements are **CI-green on historical stacked
+branches or being integrated on clean branches**, not yet all
+promoted to the verified main-branch API:
+
+- [#414](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/414)
+  constructs relation agreement from a **common FULL folded lift**
+  and performs the actual source flip. Its stacked proof in #401
+  passed CI; clean integration must pass independently.
+- [#403](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/403)
+  combines the folded-common flip with strict A-only source support
+  decrease. This remains **conditional** on the existence of the
+  common full folded expansion and the relevant one-sided piece.
+- [#410](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/410)
+  derives a bound on genuine piece-symbol arities from a uniform
+  bound on the sizes of forbidden source witnesses.
+- [#413](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/413)
+  assembles finite symbols and finite expansion fibres into a
+  **bounded-width regular fixed-shadow precompactness** theorem.
+- [#412](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/412)
+  derives the needed common-root coordinate tuple from an actual
+  selected source-piece map, with NO root-image injectivity.
+- [#415](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/415)
+  selects a one-sided genuine minimal-cut piece when the opposite
+  exclusive source region occupies one Gaifman component. This
+  explicit special-case hypothesis is NOT part of the general
+  published theorem.
+
+**Precompactness warning.** The finite-source/bounded-width
+case is promising because finitely many global classes and a
+uniform width bound give finitely many added symbols.
+Regularity of an arbitrary infinite forbidden family does
+not bound the widths. Repeated root coordinates may let
+arbitrarily large-width folded relations appear on small
+target carriers, so the printed distinct-root precompactness
+argument cannot be reused without an additional theorem.
+
+Even in the bounded-width case, the following remain open:
+existence and maximality of the relevant common FULL folded
+lifts, the multicomponent second minimality contradiction,
+and the resulting full strong-amalgamation and Ramsey theorems.
+This investigation is **not** a refutation of the published
+theorem or a verified replacement for the original lift.
+
+A standalone [author-review TeX note](https://github.com/janhubicka/All-those-Ramsey-classes/pull/122)
+gives the precise folded-lift definition and conditional
+English proof of the flip, with remaining obligations.
+
