@@ -97,8 +97,8 @@ theorem closedComponent_rightRealization_strict_leftSupport
   have hSourceFree :
       Structure.IsFreeAmalgam sP sT iP iT :=
     component_isFreeAmalgam Source R hR root
-  let pP : P.Carrier → UT := jRight ∘ pRight
-  let pT : T.Carrier → UT := fun b => f b.1
+  let pP : (functionalComponentUnion Source R root) → UT := jRight ∘ pRight
+  let pT : (Set.compl (functionalComponentFrom Source R root)) → UT := fun b => f b.1
   have hpP : P.IsEHNHomomorphismEmbedding Target pP :=
     jRight.isEHNHomomorphismEmbedding.comp hpRight
   have hpT : T.IsEHNHomomorphismEmbedding Target pT :=
@@ -112,36 +112,36 @@ theorem closedComponent_rightRealization_strict_leftSupport
   have hFlip : Source.IsEHNHomomorphismEmbedding Target flip :=
     compatibleFunctionalFold_isEHNHomomorphismEmbedding
       hSourceFree pP pT hCompat hpP hpT
-  have hP : ∀ a : P.Carrier,
+  have hP : ∀ a : (functionalComponentUnion Source R root),
       flip (iP a) = jRight (pRight a) := by
     intro a
     exact compatibleFunctionalFold_left
       hSourceFree pP pT hCompat a
-  have hT : ∀ b : T.Carrier,
+  have hT : ∀ b : (Set.compl (functionalComponentFrom Source R root)),
       flip (iT b) = f b.1 := by
     intro b
     exact compatibleFunctionalFold_right
       hSourceFree pP pT hCompat b
   let AOnly : Set UT := fullFreeLeftExclusiveTarget iLeft jLeft
-  have hNoLeft : ∀ a : P.Carrier,
+  have hNoLeft : ∀ a : (functionalComponentUnion Source R root),
       flip (iP a) ∉ AOnly := by
     intro a
     rw [hP a]
     exact freeRight_avoids_fullLeftExclusiveTarget
       iLeft iRight jLeft jRight hTargetFree (pRight a)
   letI : Fintype V := Fintype.ofFinite V
-  letI : Finite T.Carrier :=
-    Finite.of_injective (fun b : T.Carrier => b.1) (by
+  letI : Finite (Set.compl (functionalComponentFrom Source R root)) :=
+    Finite.of_injective (fun b : (Set.compl (functionalComponentFrom Source R root)) => b.1) (by
       intro a b hab
       exact Subtype.ext hab)
-  letI : Fintype T.Carrier := Fintype.ofFinite T.Carrier
-  have hOldT : ∀ b : T.Carrier,
+  letI : Fintype (Set.compl (functionalComponentFrom Source R root)) := Fintype.ofFinite (Set.compl (functionalComponentFrom Source R root))
+  have hOldT : ∀ b : (Set.compl (functionalComponentFrom Source R root)),
       f (iT b) = pT b := by
     intro b
     rfl
-  have hNewT : ∀ b : T.Carrier,
+  have hNewT : ∀ b : (Set.compl (functionalComponentFrom Source R root)),
       flip (iT b) = pT b := hT
-  have hOutside : ∀ b : T.Carrier,
+  have hOutside : ∀ b : (Set.compl (functionalComponentFrom Source R root)),
       oldVertex ≠ iT b := by
     intro b hb
     have hv : oldVertex = b.1 := hb
