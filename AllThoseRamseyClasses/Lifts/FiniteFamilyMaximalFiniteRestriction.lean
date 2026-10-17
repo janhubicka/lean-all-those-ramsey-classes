@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalWitnessExistence
+import AllThoseRamseyClasses.Lifts.FiniteFamilyShadowFreeAmalgamation
 
 /-!
 # Root restriction and genuine FINITE maximal-witness existence
@@ -45,7 +46,12 @@ theorem FiniteNamedCanonicalMaximalAlong.restrict_root
     FiniteNamedCanonicalMaximalAlong Family K (iA.comp iY) := by
   intro UC C hC e tag xs
   have h := hMax C hC e tag (iY ∘ xs)
-  simpa only [Function.comp_assoc] using h
+  change
+    (finiteNamedClosedComponentFoldedLift Family C).rel
+      (.inr tag) (e ∘ iA ∘ iY ∘ xs) ↔
+    (finiteNamedClosedComponentFoldedLift Family A).rel
+      (.inr tag) (iA ∘ iY ∘ xs)
+  exact h
 
 /-- The exact class of FINITE native structures avoiding all
 weak EHN embeddings of a finite named forbidden family. -/
