@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FoldedCommonFlipStrictSupport
+
+#check AllThoseRamseyClasses.Lifts.geometricFoldedCommonFullLiftFlip_strict_leftSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricFoldedCommonFullLiftFlip_strict_leftSupport
