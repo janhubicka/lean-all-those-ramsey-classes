@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceRamseyArrow
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.totallyOrderedRelations_arrow_of_canonical_orders
