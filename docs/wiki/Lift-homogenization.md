@@ -316,13 +316,25 @@ Thus this is a kernel-checked finite-family **heredity + strong AP**
 theorem, not simply a conditional flip. The resulting expanded
 amalgam need not be free in the added tag relations.
 
-Additional class properties are tracked separately: [#482](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/482)
-proves JEP **conditional on full JEP of the finite native
-forbidden-free class**, and [#483](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/483)
-proves nonempty finite expansion fibres. Until their final CI
-and merge these are not promoted to this verified-main table.
-Disconnected forbidden families and nullary functions must not
-be used to infer unconditional JEP.
+**Precompactness and expansion existence are now kernel verified.**
+[PR #483](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/483)
+(`Lifts/FiniteFamilyMaximalTracePrecompactness.lean`)
+proves that for every finite native forbidden-free structure A,
+the exact maximal induced-trace fibre over A is BOTH **nonempty
+and finite**. Finiteness follows because the total family tag
+language is finite and old relation/function tables are fixed;
+nonemptiness follows from finite root-profile maximization (#468).
+
+**Conditional JEP transfer is also kernel verified**:
+[PR #482](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/482)
+(`Lifts/FiniteFamilyMaximalTraceJEP.lean`) proves that the maximal
+finite-family induced-trace age has FULL joint embedding whenever
+the finite native forbidden-free class has FULL joint embedding.
+The proof uses a finite native common witness, maximizes along its
+root, and transfers both original expanded witnesses by FULL
+embeddings. The premise is essential: disconnected forbidden
+families and nullary functions must not be used to infer
+unconditional JEP.
 
 **The remaining principal targets** are the class-level Ramsey
 property and a faithful repair/validation of the *printed* Section 3
