@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceAge
+
+#check AllThoseRamseyClasses.Lifts.IsFiniteNamedMaximalTrace
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedCanonicalTrace_mem_age
+#print axioms AllThoseRamseyClasses.Lifts.IsFiniteNamedMaximalTrace.of_embedding
