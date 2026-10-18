@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceMarkedPaperEmbedding
+import PartiteConstruction.Structure.Order
 
 /-!
 # Canonical incidence embeddings preserve a source-matched external order
