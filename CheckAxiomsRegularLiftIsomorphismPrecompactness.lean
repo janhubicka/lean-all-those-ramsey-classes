@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.RegularLiftIsomorphismPrecompactness
+
+#print axioms AllThoseRamseyClasses.Lifts.regularGlobalCanonicalLift_finiteIsoRepresentatives
