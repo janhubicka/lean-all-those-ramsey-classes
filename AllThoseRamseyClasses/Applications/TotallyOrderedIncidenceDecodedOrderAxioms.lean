@@ -34,7 +34,10 @@ theorem weakDecoded_tupleOrder_refl_of_positive
     (weakDecodedTotalOrderData C hC).tupleLE r t t := by
   letI : LinearOrder (WeakPositiveTuples C r) :=
     weakPositiveTuplesLinearOrder hC r
-  exact ⟨ht, ht, le_refl (weakOldPositiveTuple C r t ht)⟩
+  exact ⟨ht, ht,
+    @le_refl (WeakPositiveTuples C r)
+      (weakPositiveTuplesLinearOrder hC r).toPreorder
+      (weakOldPositiveTuple C r t ht)⟩
 
 theorem weakDecoded_tupleOrder_trans
     {L : RelLanguage.{u}} {W : Type v} [LinearOrder W]
@@ -54,7 +57,13 @@ theorem weakDecoded_tupleOrder_trans
     apply Subtype.ext
     rfl
   rw [hSame] at hleTS
-  exact ⟨ht, hq, le_trans hleTS hleSQ⟩
+  exact ⟨ht, hq,
+    @le_trans (WeakPositiveTuples C r)
+      (weakPositiveTuplesLinearOrder hC r).toPreorder
+      (weakOldPositiveTuple C r t ht)
+      (weakOldPositiveTuple C r s hs')
+      (weakOldPositiveTuple C r q hq)
+      hleTS hleSQ⟩
 
 theorem weakDecoded_tupleOrder_antisymm
     {L : RelLanguage.{u}} {W : Type v} [LinearOrder W]
@@ -80,7 +89,11 @@ theorem weakDecoded_tupleOrder_antisymm
   rw [hSameS, hSameT] at hleST
   have hp : weakOldPositiveTuple C r t ht =
       weakOldPositiveTuple C r s hs :=
-    le_antisymm hleTS hleST
+    @le_antisymm (WeakPositiveTuples C r)
+      (weakPositiveTuplesLinearOrder hC r).toPartialOrder
+      (weakOldPositiveTuple C r t ht)
+      (weakOldPositiveTuple C r s hs)
+      hleTS hleST
   have hTuple : (fun i => (t i).val) = (fun i => (s i).val) :=
     congrArg (fun a : WeakPositiveTuples C r => a.val) hp
   funext i
