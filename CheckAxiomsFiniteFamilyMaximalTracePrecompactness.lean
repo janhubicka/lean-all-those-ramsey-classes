@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTracePrecompactness
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_exists_above
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceFibre_finite
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceFibre_nonempty
