@@ -325,11 +325,14 @@ and finite**. Finiteness follows because the total family tag
 language is finite and old relation/function tables are fixed;
 nonemptiness follows from finite root-profile maximization (#468).
 
+**Conditional JEP transfer is also kernel verified**:
 [PR #482](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/482)
-addresses the remaining joint-embedding transfer, explicitly
-**conditional on full JEP of the finite native forbidden-free
-class**. This theorem is still awaiting its final CI rerun before
-promotion to the verified-main table. Disconnected forbidden
+(`Lifts/FiniteFamilyMaximalTraceJEP.lean`) proves that the maximal
+finite-family induced-trace age has FULL joint embedding whenever
+the finite native forbidden-free class has FULL joint embedding.
+The proof uses a finite native common witness, maximizes along its
+root, and transfers both original expanded witnesses by FULL
+embeddings. The premise is essential: disconnected forbidden
 families and nullary functions must not be used to infer
 unconditional JEP.
 
