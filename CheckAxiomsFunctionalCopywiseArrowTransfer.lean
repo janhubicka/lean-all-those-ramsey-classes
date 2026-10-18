@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.FunctionalCopywiseArrowTransfer
+
+#print axioms AllThoseRamseyClasses.Applications.arrow_of_functional_copy_projection
