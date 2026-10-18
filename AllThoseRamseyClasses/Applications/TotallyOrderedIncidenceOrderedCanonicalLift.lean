@@ -61,7 +61,8 @@ noncomputable def markedIncidencePaperOrderedEmbedding
   | inl R =>
       exact e.map_rel_iff R t
   | inr _ =>
-      change e (t 0) < e (t 1) ↔ t 0 < t 1
+      change e (t (0 : Fin 2)) < e (t (1 : Fin 2)) ↔
+        t (0 : Fin 2) < t (1 : Fin 2)
       rw [lt_iff_le_and_ne, lt_iff_le_and_ne]
       constructor
       · rintro ⟨hle, hne⟩
