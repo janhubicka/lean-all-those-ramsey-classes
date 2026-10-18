@@ -36,7 +36,7 @@ variable {L : Language.{u}}
 /-- The original-language structure obtained by forgetting all
 finite-family component predicates, without changing any old
 partial/set-valued function fibre. -/
-abbrev FiniteNamedTraceShadow
+noncomputable abbrev FiniteNamedTraceShadow
     (Family : FiniteNamedFunctionalSources.{u,0} L)
     {V : Type}
     (Y : Structure
@@ -90,11 +90,6 @@ theorem finiteNamedCanonicalTrace_mem_age
     IsFiniteNamedMaximalTrace Family
       (finiteNamedCanonicalTrace Family iW) := by
   refine ⟨inferInstance, UW, W, inferInstance, hAvoid, ?_⟩
-  have hShadow :
-      FiniteNamedTraceShadow Family
-        (finiteNamedCanonicalTrace Family iW) = X :=
-    finiteNamedCanonicalTrace_shadow Family iW
-  subst hShadow
   refine ⟨iW, hMax, ?_⟩
   intro tag xs
   exact Iff.rfl
