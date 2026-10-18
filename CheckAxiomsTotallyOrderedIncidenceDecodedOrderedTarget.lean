@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceDecodedOrderedTarget
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPositiveInclusion_injective
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakDecodedOrderedRelations_toTotalOrderData
