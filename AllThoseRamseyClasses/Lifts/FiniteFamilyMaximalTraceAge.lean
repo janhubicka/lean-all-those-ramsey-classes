@@ -90,7 +90,6 @@ theorem finiteNamedCanonicalTrace_mem_age
     IsFiniteNamedMaximalTrace Family
       (finiteNamedCanonicalTrace Family iW) := by
   refine ⟨inferInstance, UW, W, inferInstance, hAvoid, ?_⟩
-  rw [finiteNamedCanonicalTrace_shadow Family iW]
   refine ⟨iW, hMax, ?_⟩
   intro tag xs
   exact Iff.rfl
