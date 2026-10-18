@@ -66,10 +66,10 @@ noncomputable def markedIncidencePaperOrderedEmbedding
       rw [lt_iff_le_and_ne, lt_iff_le_and_ne]
       constructor
       · rintro ⟨hle, hne⟩
-        exact ⟨(hLe (t 0) (t 1)).mp hle,
+        exact ⟨(hLe (t (0 : Fin 2)) (t (1 : Fin 2))).mp hle,
           fun heq => hne (congrArg e heq)⟩
       · rintro ⟨hle, hne⟩
-        exact ⟨(hLe (t 0) (t 1)).mpr hle,
+        exact ⟨(hLe (t (0 : Fin 2)) (t (1 : Fin 2))).mpr hle,
           fun heq => hne (e.injective heq)⟩
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
