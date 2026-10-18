@@ -31,6 +31,35 @@ open AllThoseRamseyClasses.Applications.TotallyOrderedEncoding
 
 universe u v
 
+/-- Literal injection of old vertices and positive-tag vertices into the
+lexicographic sum used for the canonical external EHN order. -/
+def canonicalIncidenceOrderKey
+    {L : RelLanguage.{u}} {V : Type v}
+    (A : TotalOrderData L V) :
+    IncidenceCarrier A → Lex (V ⊕ Lex (IncidenceTag A))
+  | .inl x => toLex (Sum.inl x)
+  | .inr tag => toLex (Sum.inr (toLex tag))
+
+/-- The original incidence carrier can be recovered by simply
+unwrapping the two lexicographic sum wrappers. -/
+theorem canonicalIncidenceOrderKey_injective
+    {L : RelLanguage.{u}} {V : Type v}
+    (A : TotalOrderData L V) :
+    Function.Injective (canonicalIncidenceOrderKey A) := by
+  let recover : Lex (V ⊕ Lex (IncidenceTag A)) → IncidenceCarrier A :=
+    fun z =>
+      match (ofLex z : V ⊕ Lex (IncidenceTag A)) with
+      | .inl x => .inl x
+      | .inr t => .inr (ofLex t)
+  have recover_key (x : IncidenceCarrier A) :
+      recover (canonicalIncidenceOrderKey A x) = x := by
+    cases x <;> rfl
+  intro x y h
+  calc
+    x = recover (canonicalIncidenceOrderKey A x) := (recover_key x).symm
+    _ = recover (canonicalIncidenceOrderKey A y) := congrArg recover h
+    _ = y := recover_key y
+
 /-- Build the canonical OLD-first, symbol-first total external order of
 the full incidence carrier from genuine original and positive-tuple orders.
 No injectivity of any induced closure function is assumed or needed. -/
@@ -45,24 +74,8 @@ noncomputable def canonicalIncidenceExternalLinearOrder
   letI : (r : L.Symbol) →
       LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
     tupleOrders
-  let key : IncidenceCarrier A →
-      Lex (V ⊕ Lex (IncidenceTag A))
-    | .inl x => toLex (Sum.inl x)
-    | .inr tag => toLex (Sum.inr (toLex tag))
-  let recover : Lex (V ⊕ Lex (IncidenceTag A)) → IncidenceCarrier A :=
-    fun z =>
-      match (ofLex z : V ⊕ Lex (IncidenceTag A)) with
-      | .inl x => .inl x
-      | .inr t => .inr (ofLex t)
-  have recover_key (x : IncidenceCarrier A) :
-      recover (key x) = x := by
-    cases x <;> rfl
-  have hInjective : Function.Injective key := by
-    intro x y h
-    calc
-      x = recover (key x) := (recover_key x).symm
-      _ = recover (key y) := congrArg recover h
-      _ = y := recover_key y
-  exact LinearOrder.lift' key hInjective
+  exact LinearOrder.lift'
+    (canonicalIncidenceOrderKey A)
+    (canonicalIncidenceOrderKey_injective A)
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
