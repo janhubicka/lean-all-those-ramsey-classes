@@ -77,6 +77,7 @@ theorem finiteNamedMaximalTraceFibre_finite
         (fun tag => tag.width Family) A) :=
     fixedFunctionalShadowExpansions_finite
       L Family.ComponentTag (fun tag => tag.width Family) A
+  unfold FiniteNamedMaximalTraceFibre
   infer_instance
 
 /-- Each finite forbidden-free shadow has a NONEMPTY finite fibre
