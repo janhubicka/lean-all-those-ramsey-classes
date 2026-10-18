@@ -273,24 +273,66 @@ The newest **merged, full-CI-checked** modules are:
 | Concrete strong amalgamation of two fully maximal canonical finite-family witnesses with matching full canonical tag profiles on a common root: the old free amalgam remains forbidden-free and the lifted embeddings reflect all tags with strong intersection | `Lifts/FiniteFamilyMaximalStrongAmalgamation.lean` | [#467](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/467) |
 
 The maximum-profile proof uses a **finite observation space**, not
-amalgamation or an assumed global maximal witness. In particular,
-the choice of an arbitrary class predicate `K` in #463 must be
-specialized to the **finite forbidden-free class** to guarantee
-a *finite* maximizing witness. Finite-witness specialization and
-restriction of maximality to smaller full roots are being separately
-validated in [#468](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/468).
+amalgamation or an assumed global maximal witness. In particular, the
+arbitrary class predicate `K` in #463 must be specialized to the
+**finite forbidden-free class** to guarantee a *finite* maximizing
+witness. This finite specialization and preservation of maximality
+under restriction to smaller FULL functional roots are proved in
+[#468](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/468).
 
-The remaining steps are to package *finite* maximal traces as a
-hereditary expanded age, to prove its complete class-level strong
-amalgamation (using a witness maximal on each actual embedded
-substructure, not just a witness maximal on its whole carrier), and
-to derive the corresponding Ramsey theorem. The argument must also
-be audited for empty-root/arity-zero tags and compatibility of
-overlap profiles. **None of these finite-family developments proves
-the printed theorem for general regular infinite forbidden families.**
-In particular, recording all closed components does not satisfy the
-printed regularity-based precompactness argument without a separate
-finite-arity-fibre theorem.
+### 18 October: hereditary age and class-level strong amalgamation
 
-The numbered mathematical manuscript remains frozen; these are
-library/wiki validation records only.
+The next steps are now **merged and fully CI checked**:
+
+| Exact formal milestone | Proof module | PR |
+| --- | --- | --- |
+| Define finite maximal **induced** component-tag traces from finite forbidden-free ambient witnesses, maximal along the displayed root against finite allowed extensions; prove closure under arbitrary FULL expanded embeddings | `Lifts/FiniteFamilyMaximalTraceAge.lean` | [#476](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/476) |
+| If one full old embedding is compatible with an allowed common witness, maximality transfers the original expanded structure as a FULL embedding into the actual trace on the larger root, with exact function fibres and reflection of all new tags | `Lifts/FiniteFamilyMaximalTraceTransfer.lean` | [#477](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/477) |
+| The hereditary age of finite maximal traces has **strong amalgamation** over any arbitrary full expanded common root, using a genuine functional shadow free amalgam and a finite maximal extension along its carrier | `Lifts/FiniteFamilyMaximalTraceStrongAmalgamation.lean` | [#479](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/479) |
+
+The class-level proof has a crucial asymmetry. Its objects are finite
+expanded structures `X*` with an old shadow `X` embedded into some
+**finite** forbidden-free `W`, where the new relation tables of
+`X*` are the *FULL induced trace* of canonical relations of `W` and
+`W` is maximal **along the image of X**. The witness need NOT be
+maximal along its entire carrier. Canonical lifts themselves are not
+claimed hereditary.
+
+For strong AP, choose such witnesses `WA`, `WB` for two expanded
+members `A*`, `B*`, together with full expanded embeddings of
+their common `X*`. Reflection through these embeddings forces equal
+**complete component-tag profiles** on the two copies of `X`.
+The genuine OLD functional free amalgam `D=WA ⊕_X WB` excludes all
+named forbidden weak EHN sources by the previously verified
+source-preserving component retargeting/descent theorem (#460/#466).
+Because `D` is finite and forbidden-free, take a finite forbidden-free
+extension `M` maximal along `D` (#468). Its actual full induced
+canonical trace on `D` belongs to the expanded age. The maximality
+of `WA` along `A` and `WB` along `B` then supplies FULL
+embeddings of the original expanded sides into this trace; the
+underlying old pushout gives EXACTLY the desired intersection.
+
+Thus this is a kernel-checked finite-family **heredity + strong AP**
+theorem, not simply a conditional flip. The resulting expanded
+amalgam need not be free in the added tag relations.
+
+Additional class properties are tracked separately: [#482](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/482)
+proves JEP **conditional on full JEP of the finite native
+forbidden-free class**, and [#483](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/483)
+proves nonempty finite expansion fibres. Until their final CI
+and merge these are not promoted to this verified-main table.
+Disconnected forbidden families and nullary functions must not
+be used to infer unconditional JEP.
+
+**The remaining principal targets** are the class-level Ramsey
+property and a faithful repair/validation of the *printed* Section 3
+minimal-separator lift for arbitrary connected, HE-image-closed,
+regular infinite forbidden families. The all-closed-component
+finite-family indexing used above does not yield the printed
+regularity-based finite-arity-fibre/precompactness theorem for an
+infinite family. In particular the original multicomponent Claim 2
+and noninjective-root issues of `lem:amalgamationstr` are not
+declared verified by these alternative finite-family results.
+
+The numbered mathematical manuscript remains frozen; these
+are library/wiki validation records only.
