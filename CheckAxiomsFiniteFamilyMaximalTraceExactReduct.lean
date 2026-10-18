@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceExactReduct
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_of_embedding
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_shadow_avoids
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_exact_reduct
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceFibre_nonempty_iff_avoids
