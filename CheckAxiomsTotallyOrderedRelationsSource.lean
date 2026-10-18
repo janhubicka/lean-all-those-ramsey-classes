@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedRelationsSource
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.OrderedRelations.vertexLE_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.OrderedRelations.positiveTupleLE_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.OrderedRelations.tupleOrdersSupported
