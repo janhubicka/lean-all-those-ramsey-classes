@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Applications.FunctionFibreUtilities
 import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceAuxiliaryRamseyClass
 import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceMarkedTupleProjection
 
@@ -103,13 +104,15 @@ theorem weakOutputTag_of_embedded_canonical
       (fun i => (Sum.inl (t i) : IncidenceCarrier A)) =
     C.func r
       (e ∘ (fun i => (Sum.inl (t i) : IncidenceCarrier A))) at hMap
-  have hMember : e (positiveTag A r t ht) ∈
+  have hTarget :
       C.func r
-        (e ∘ (fun i => (Sum.inl (t i) : IncidenceCarrier A))) := by
-    rw [← hMap, canonical_positiveTag_fibre A r t ht]
-    exact ⟨positiveTag A r t ht, Set.mem_singleton _, rfl⟩
-  rw [weakOutputTag_fibre hC r _ hPos] at hMember
-  exact (Set.mem_singleton_iff.mp hMember).symm
+        (e ∘ (fun i => (Sum.inl (t i) : IncidenceCarrier A))) =
+          {e (positiveTag A r t ht)} :=
+    FunctionFibreUtilities.singleton_map_of_image
+      e hMap (positiveTag A r t ht)
+        (canonical_positiveTag_fibre A r t ht)
+  have hChosen := weakOutputTag_fibre hC r _ hPos
+  exact Set.singleton_eq_singleton_iff.mp (hChosen.symm.trans hTarget)
 
 /-- Distinct source r-tuples have distinct canonical incidence
 vertices even if they share coordinates; the TAG contains the
