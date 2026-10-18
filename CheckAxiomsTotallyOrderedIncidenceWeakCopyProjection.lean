@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceWeakCopyProjection
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_positiveTupleLE_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.weakOldPart_originalExactIntoDecoded
