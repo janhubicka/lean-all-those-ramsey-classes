@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceCanonicalExternalOrder
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonicalIncidenceExternalLinearOrder
