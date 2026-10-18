@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTrace_embedding_into_allowed_trace
