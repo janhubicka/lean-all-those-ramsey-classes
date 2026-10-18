@@ -336,15 +336,54 @@ embeddings. The premise is essential: disconnected forbidden
 families and nullary functions must not be used to infer
 unconditional JEP.
 
-**The remaining principal targets** are the class-level Ramsey
-property and a faithful repair/validation of the *printed* Section 3
-minimal-separator lift for arbitrary connected, HE-image-closed,
-regular infinite forbidden families. The all-closed-component
-finite-family indexing used above does not yield the printed
-regularity-based finite-arity-fibre/precompactness theorem for an
-infinite family. In particular the original multicomponent Claim 2
-and noninjective-root issues of `lem:amalgamationstr` are not
-declared verified by these alternative finite-family results.
+### 18 October continuation: exact reduct and regular isomorphism precompactness
+
+**Exact finite-family reduct, fully Lean certified.**
+[PR #491](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/491)
+(`Lifts/FiniteFamilyMaximalTraceExactReduct.lean`, full
+[Lean CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/39119057113))
+shows that the underlying native functional shadow of EVERY member of the
+hereditary finite-family maximal-trace age is forbidden-free. Conversely,
+EVERY finite forbidden-free native shadow has a maximal-trace expansion.
+Equivalently, its genuine maximal-trace expansion fibre is nonempty
+**if and only if** the native structure avoids the finite named
+weak-EHN forbidden family. This completes the exact-reduct direction
+of the **finite-family alternative**, with all original function
+value fibres preserved.
+
+**Regular global canonical lifts: precompactness UP TO FULL ISOMORPHISM,
+fully Lean certified.**
+[PR #492](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/492)
+(`Lifts/RegularLiftIsomorphismPrecompactness.lean`, full
+[Lean CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/39119388795))
+packages the previous finite-support and pullback transport results
+into one explicit theorem. For an arbitrary **regular** family of
+genuine forbidden-piece classes and any fixed finite old functional
+shadow A, there is a finite collection of named-carrier expanded
+representatives such that the original global **root-INJECTIVE**
+canonical lift of ANY full-isomorphic old shadow is itself fully
+isomorphic to one of these representatives. No uniform bound on
+root width and no finite total lifted language is assumed; original
+set-valued function data remain exact. This closes the counting /
+isomorphism-type precompactness component of the printed construction,
+**not** its maximal-witness strong-amalgamation or Ramsey conclusion.
+
+The two developments deliberately remain separate: the finite-family
+folded ALL-closed-component lift tolerates noninjective root-image
+tuples and yields class-level strong amalgamation, while the original
+regular global canonical lift uses only pairwise distinct root images
+and now has full isomorphism-type precompactness. A regular infinite
+family need not have finite active folded relation symbols on a fixed
+finite carrier, so one cannot combine their advantages without an
+additional argument.
+
+**The remaining principal targets** are the Ramsey property of the
+finite-family maximal-trace age, and a faithful proof or justified
+repair of the printed Section 3 strong-amalgamation argument for
+arbitrary connected, HE-image-closed, regular infinite forbidden
+families. The original multicomponent Claim 2 and noninjective-root
+issues of `lem:amalgamationstr` remain unresolved; neither #491
+nor #492 claims that theorem.
 
 The numbered mathematical manuscript remains frozen; these
 are library/wiki validation records only.
