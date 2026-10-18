@@ -64,9 +64,9 @@ theorem canonicalIncidenceTagLE_iff
   rcases b with ⟨s, ⟨q, hq⟩⟩
   by_cases hrs : r = s
   · subst s
-    simpa [paperIncidenceTagLE, Sigma.Lex.le_def] using
+    simpa [paperIncidenceTagLE, Sigma.Lex.le_def, toLex] using
       (hTuple r ⟨t, ht⟩ ⟨q, hq⟩)
-  · simp [paperIncidenceTagLE, Sigma.Lex.le_def, hrs]
+  · simp [paperIncidenceTagLE, Sigma.Lex.le_def, hrs, toLex]
 
 /-- The genuine canonical external order matches the paper's entire
 Old-first, symbol-first incidence comparison whenever original vertex
