@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceStrongAmalgamation
+
+#check AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_strongAmalgamation
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_strongAmalgamation
