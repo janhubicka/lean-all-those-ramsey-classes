@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceOrderedCanonicalLift
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.markedIncidencePaperOrderedEmbedding
