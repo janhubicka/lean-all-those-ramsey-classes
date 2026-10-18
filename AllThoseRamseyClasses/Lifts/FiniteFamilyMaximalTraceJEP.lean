@@ -47,7 +47,7 @@ def FiniteNamedNativeFiniteJEP
         (_eB : Structure.Embedding B C), True
 
 /-- Every finite maximal component-trace class whose native finite
-forbidden-free shadows admit FULL JEP also has FULL JEP. This
+forbidden-free shadows satisfy FULL JEP also has FULL JEP. This
 statement is deliberately conditional on the native JEP hypothesis:
 strong amalgamation alone is not a substitute. -/
 theorem finiteNamedMaximalTraceAge_JEP_of_nativeJEP
