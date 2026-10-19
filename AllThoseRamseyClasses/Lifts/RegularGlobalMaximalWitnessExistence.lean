@@ -227,6 +227,12 @@ theorem regularGlobal_exists_maximal_extension
           Nat.lt_succ_of_le hle⟩,
         globalFunctionalPieceArity_positive F s⟩
     let p : Obs := ⟨k, (s.2, xs)⟩
+    have hSymbol :
+        regularGlobalRootObservationSymbol F p = s := by
+      rcases s with ⟨⟨n, hn⟩, cls⟩
+      rfl
+    have hTuple :
+        regularGlobalRootObservationTuple F p = xs := rfl
     have hExtended :
         regularGlobalRootProfile F hRegular
           ((eBC.comp e).comp iA) ∈ possible := by
@@ -251,9 +257,8 @@ theorem regularGlobal_exists_maximal_extension
           ((eBC.comp e).comp iA) := by
       apply (regularGlobalRootProfile_mem F hRegular
         ((eBC.comp e).comp iA) p).2
-      simpa [p, k, regularGlobalRootObservationSymbol,
-        regularGlobalRootObservationTuple, Function.comp_assoc]
-        using hRelC
+      rw [hSymbol, hTuple]
+      exact hRelC
     have hMemberB :
         p ∈ regularGlobalRootProfile F hRegular
           (e.comp iA) := by
@@ -262,9 +267,8 @@ theorem regularGlobal_exists_maximal_extension
     have hRelB :=
       (regularGlobalRootProfile_mem F hRegular
         (e.comp iA) p).mp hMemberB
-    simpa [p, k, regularGlobalRootObservationSymbol,
-      regularGlobalRootObservationTuple, Function.comp_assoc]
-      using hRelB
+    rw [hSymbol, hTuple] at hRelB
+    exact hRelB
   · intro hRelB
     exact globalCanonicalRelation_map_fullEmbedding
       F eBC s ((e.comp iA) ∘ xs) hRelB
