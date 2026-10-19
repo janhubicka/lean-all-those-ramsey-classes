@@ -98,6 +98,8 @@ theorem globalFunctionalLift_reconstruct
   | mk relY funcY =>
       cases Z with
       | mk relZ funcZ =>
+          change relY = relZ at hR
+          change funcY = funcZ at hF
           exact congrArg₂
             (fun r f => (Structure.mk r f :
               Structure (globalFunctionalPieceLanguage F) V))
