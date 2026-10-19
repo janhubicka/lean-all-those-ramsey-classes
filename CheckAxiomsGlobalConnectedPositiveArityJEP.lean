@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalConnectedPositiveArityJEP
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeEmptyFullEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.nativeCommonEmptyRoots_of_positiveArity
+#print axioms AllThoseRamseyClasses.Lifts.globalNativeFiniteJEP_connected_positiveArity
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_JEP_connected_positiveArity
