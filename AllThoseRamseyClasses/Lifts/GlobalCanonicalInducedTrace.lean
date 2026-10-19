@@ -44,7 +44,18 @@ theorem GlobalCanonicalMaximalAlong.restrict_root
     GlobalCanonicalMaximalAlong F K (iA.comp small) := by
   intro UC C hC e s xs
   have h := hMax C hC e s (small ∘ xs)
-  simpa only [Function.comp_assoc] using h
+  have hCtuple :
+      e ∘ (iA.comp small) ∘ xs =
+        e ∘ iA ∘ small ∘ xs := by
+    funext j
+    rfl
+  have hAtuple :
+      (iA.comp small) ∘ xs =
+        iA ∘ small ∘ xs := by
+    funext j
+    rfl
+  rw [hCtuple, hAtuple]
+  exact h
 
 /-- The FULL induced original global canonical lift on X as SEEN
 inside a larger old-language witness A. In general this is not
