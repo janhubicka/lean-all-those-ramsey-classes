@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalForbiddenEHNAvoidance
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_of_embedding
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_of_full_surjective
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_iff_full_isomorphism
