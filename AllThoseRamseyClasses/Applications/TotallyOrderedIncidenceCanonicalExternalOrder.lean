@@ -76,6 +76,25 @@ theorem canonicalIncidenceOrderKey_injective
     _ = recover (canonicalIncidenceOrderKey A y) := congrArg recover h
     _ = y := recover_key y
 
+/-- The exact lexicographic target order used in the canonical
+external order, with all dependent positive-tuple orders fixed
+explicitly. Naming this instance prevents elaboration from silently
+choosing an unrelated direct `LE` instance in later proofs. -/
+noncomputable def canonicalIncidenceKeyOrder
+    {L : RelLanguage.{u}} [LinearOrder L.Symbol]
+    {V : Type v} [LinearOrder V]
+    (A : TotalOrderData L V)
+    (tupleOrders : (r : L.Symbol) →
+      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t}) :
+    LinearOrder (Lex (V ⊕ Lex (IncidenceTag A))) := by
+  classical
+  letI : (r : L.Symbol) →
+      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
+    tupleOrders
+  letI : LinearOrder (Lex (IncidenceTag A)) :=
+    incidenceTagLexLinearOrder A tupleOrders
+  infer_instance
+
 /-- Build the canonical OLD-first, symbol-first total external order of
 the full incidence carrier from genuine original and positive-tuple orders.
 No injectivity of any induced closure function is assumed or needed. -/
@@ -92,7 +111,9 @@ noncomputable def canonicalIncidenceExternalLinearOrder
     tupleOrders
   letI : LinearOrder (Lex (IncidenceTag A)) :=
     incidenceTagLexLinearOrder A tupleOrders
-  exact LinearOrder.lift'
+  exact @LinearOrder.lift' (IncidenceCarrier A)
+    (Lex (V ⊕ Lex (IncidenceTag A)))
+    (canonicalIncidenceKeyOrder A tupleOrders)
     (canonicalIncidenceOrderKey A)
     (canonicalIncidenceOrderKey_injective A)
 
