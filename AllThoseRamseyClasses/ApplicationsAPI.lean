@@ -11,6 +11,7 @@ import AllThoseRamseyClasses.Applications.PaperPointedEquivalences
 import AllThoseRamseyClasses.Applications.PaperTotalUnaryFunctions
 import AllThoseRamseyClasses.Applications.PosetRamseyTheorem
 import AllThoseRamseyClasses.Applications.SteinerLocalCompletion
+import AllThoseRamseyClasses.Applications.TotallyOrderedRelationsFiniteSignature
 
 /-!
 # Verified application theorems
@@ -58,6 +59,14 @@ The source-matched concrete digraph instance is
 `PaperGraphs.loopFirstOrderedDigraphs_areRamsey`.
 This does not certify the printed proposition for arbitrary
 functional languages without a separate singleton-type bridge.
+
+The finite relational language of totally ordered relations (`thm:TO`)
+is proved by `TotallyOrderedIncidence.genuinelyTotallyOrderedRelations_areRamsey_finiteSignature`:
+it orders genuine positive relation-instance subtypes, employs full
+induced embeddings of the doubled-arity encoding and needs NO
+additional symbol-order premise. The proof uses a free auxiliary
+functional Ramsey class and copywise projection of the weak target.
+No metric or infinite-language Ramsey statement is inferred.
 
 The freely ordered pointed-equivalence Ramsey class from the paper is
 proved via its full idempotent unary-function encoding.

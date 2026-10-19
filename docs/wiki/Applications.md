@@ -389,6 +389,45 @@ with NO free-amalgamation hypothesis. genuine function-language one-point
 types and the manuscript's named reflexive-order representation
 remain separate from the verified relational results.
 
+## Totally ordered relation instances: paper Theorem TO
+
+The source-matched `thm:TO` formalization is packaged as
+`TotallyOrderedIncidence.genuinelyTotallyOrderedRelations_areRamsey_finiteSignature`
+in `TotallyOrderedRelationsFiniteSignature.lean` (candidate PRs
+[#499](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/499)
+and [#513](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/513);
+**do not treat as validated until complete CI and axiom audit**).
+
+Objects consist of a finite relational structure with a genuine linear
+vertex order and, **separately for each relation symbol**, a genuine
+linear order of the POSITIVE instances of that relation. Negative tuples
+are not spuriously ordered. The proof works for arbitrary finite
+relation arities, including zero, and does not require a preselected
+linear order on the finite type of relation symbols.
+
+The 2019 doubled-arity encoding preserves and reflects full embeddings.
+A canonical incidence expansion attaches a function-output tag to each
+positive relation instance; its external order puts original vertices
+first, then tags by symbol and the source tuple order. The actual EHN
+Ramsey step is run in a larger **orphan-tolerant** class of marked
+functional structures, which is free-amalgamation closed and does
+not require any INTERNAL target order to be linear. An arbitrary
+weak Ramsey witness is decoded on its Old-marked vertices. Positive
+tuple orders in the decoded target compare the singleton output tag
+first, and the entire original input tuple second to resolve
+collisions. Every selected full auxiliary copy of a canonical
+source projects to an honest original copy; the generic copywise
+Ramsey arrow transfer finishes the proof.
+
+The final result asserts a Ramsey arrow into an **actual**
+`OrderedRelations` target and a finite original vertex type.
+It is distinct from the older
+`totallyOrderedRelations_arrow_of_canonical_orders` conditional
+interface, which assumes compatible source incidence orders and
+returns an unconstrained `TotalOrderData` record.
+The old partial/set-valued function output fibres are compared
+exactly, not merely by forward preservation.
+
 ## Remaining manuscript applications
 
 | Application | Verified ingredient | Unfinished obligation |
@@ -397,7 +436,7 @@ remain separate from the verified relational results.
 | Convexly ordered S-metrics with jumps | Fully audited finite canonical metric/order/partial-function embedding certificate (PRs #336, #342), paper-block convexity (#293), proper-jump crossing and empty-base metric gluing (#346, #349) | Complete nonempty-base functional strong amalgamation, simultaneous nested order extension, corrected weak local completion and the finite class Ramsey theorem |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
-| Totally ordered incidence structures | Doubled-arity exact relational embedding equivalence (#331); incidence map injectivity (#344); complete old/new partial-function fibres (#352) packaged as a genuine full functional embedding (#356) | Combine with the source-matched full ordered relational expansion, then functional class strong amalgamation, corrected exact weak local completion and Ramsey conclusion |
+| Totally ordered relation instances | Genuine finite Ramsey endpoint using free auxiliary functional EHN, source-matched order, and collision-safe weak-target decoding (PRs #499, #513; awaiting final independent CI) | Verify CI and export the theorem; no further functional weak completion required for this direct transfer route |
 
 The [working manuscript ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-VALIDATION-2026-10-14.md)
 records earlier checks and TODOs; the manuscript's nonprinting
