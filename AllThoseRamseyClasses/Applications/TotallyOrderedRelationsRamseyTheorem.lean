@@ -113,15 +113,8 @@ theorem genuinelyTotallyOrderedRelations_areRamsey
         C.withLinearOrder)
       (x y : IncidenceCarrier DA) :
       paperIncidenceLE DA x y ↔ e x ≤ e y := by
-    have hReflect : (e x ≤ e y) ↔ x ≤ y := by
-      simp only [le_iff_lt_or_eq]
-      constructor
-      · rintro (hlt | heq)
-        · exact Or.inl (e.strictMono.lt_iff_lt.mp hlt)
-        · exact Or.inr (e.injective heq)
-      · rintro (hlt | heq)
-        · exact Or.inl (e.strictMono hlt)
-        · exact Or.inr (congrArg e heq)
+    have hReflect : (e x ≤ e y) ↔ x ≤ y :=
+      e.strictMono.le_iff_le
     exact (A.canonicalIncidenceOrder_agrees x y).trans hReflect.symm
 
   have orderedReflectionB
@@ -130,15 +123,8 @@ theorem genuinelyTotallyOrderedRelations_areRamsey
         C.withLinearOrder)
       (x y : IncidenceCarrier DB) :
       paperIncidenceLE DB x y ↔ e x ≤ e y := by
-    have hReflect : (e x ≤ e y) ↔ x ≤ y := by
-      simp only [le_iff_lt_or_eq]
-      constructor
-      · rintro (hlt | heq)
-        · exact Or.inl (e.strictMono.lt_iff_lt.mp hlt)
-        · exact Or.inr (e.injective heq)
-      · rintro (hlt | heq)
-        · exact Or.inl (e.strictMono hlt)
-        · exact Or.inr (congrArg e heq)
+    have hReflect : (e x ≤ e y) ↔ x ≤ y :=
+      e.strictMono.le_iff_le
     exact (B.canonicalIncidenceOrder_agrees x y).trans hReflect.symm
 
   let projectA (e : Structure.Embedding
