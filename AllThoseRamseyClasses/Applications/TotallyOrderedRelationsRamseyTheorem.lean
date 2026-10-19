@@ -85,6 +85,13 @@ theorem genuinelyTotallyOrderedRelations_areRamsey
     B.canonicalIncidenceOrder
   letI : LinearOrder (IncidenceCarrier DA) := oA
   letI : LinearOrder (IncidenceCarrier DB) := oB
+  -- These sum carriers also have independently synthesized direct
+  -- Sum.LE/Sum.LT instances. Override them explicitly so `withLinearOrder`
+  -- and ordered-copy reflection use the ACTUAL chosen external EHN order.
+  letI : LE (IncidenceCarrier DA) := oA.toLE
+  letI : LT (IncidenceCarrier DA) := oA.toLT
+  letI : LE (IncidenceCarrier DB) := oB.toLE
+  letI : LT (IncidenceCarrier DB) := oB.toLT
   letI : Finite (IncidenceCarrier DA) := finite_incidenceCarrier DA
   letI : Finite (IncidenceCarrier DB) := finite_incidenceCarrier DB
 
