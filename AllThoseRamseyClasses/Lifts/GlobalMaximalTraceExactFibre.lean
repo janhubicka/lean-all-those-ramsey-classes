@@ -98,9 +98,10 @@ theorem globalFunctionalLift_reconstruct
   | mk relY funcY =>
       cases Z with
       | mk relZ funcZ =>
-          cases hR
-          cases hF
-          rfl
+          exact congrArg₂
+            (fun r f => (Structure.mk r f :
+              Structure (globalFunctionalPieceLanguage F) V))
+            hR hF
 
 /-- ALL actual maximal-trace age members over the literal old
 shadow A, with equality of every original function fibre. -/
@@ -141,8 +142,12 @@ theorem globalMaximalTraceExactFibre_toNamedOption_injective
     Function.Injective
       (globalMaximalTraceExactFibre_toNamedOption F K A) := by
   intro Y Z h
+  have hVal :
+      (globalMaximalTraceExactFibre_toNamedOption F K A Y).1 =
+        (globalMaximalTraceExactFibre_toNamedOption F K A Z).1 :=
+    congrArg (fun p : NamedGlobalLiftOptions F A => p.1) h
   apply Subtype.ext
-  exact congrArg Subtype.val h
+  exact hVal
 
 /-- Finiteness of the ENTIRE actual maximal-trace expansion fibre
 over an arbitrary fixed finite original native structure. In
