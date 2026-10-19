@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedRelationsFiniteSignature
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.genuinelyTotallyOrderedRelations_areRamsey_finiteSignature
