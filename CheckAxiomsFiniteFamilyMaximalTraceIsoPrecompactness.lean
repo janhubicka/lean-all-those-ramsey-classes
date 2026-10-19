@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceIsoPrecompactness
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalBigExpansionPullback_shadow
+#print axioms AllThoseRamseyClasses.Lifts.functionalBigExpansionPullbackEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.functionalBigExpansionPullbackEmbedding_surjective
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_pullback_iso
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_finiteIsoRepresentatives
