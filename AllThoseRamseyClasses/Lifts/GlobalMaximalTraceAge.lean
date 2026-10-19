@@ -9,7 +9,7 @@ in the ORIGINAL 2019 Section 3 construction, with the old functional
 language retained exactly:
 
 * For a regular family, finite observations on any fixed finite root
-  admit a finite allowed witness maximal along that root (choosing
+  yield a finite allowed witness maximal along that root (choosing
   the allowed class to contain only finite native structures).
 * The FULL induced global-piece trace of such a witness on its root
   preserves all original old relations and complete function fibres.
