@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTrace_embedding_into_allowed_trace
