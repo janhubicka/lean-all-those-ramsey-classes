@@ -139,7 +139,7 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
         (canonicalIncidenceOrderKey A)
         (canonicalIncidenceOrderKey_injective A)).le a b ↔
       canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b
-    rfl
+    simp only [LinearOrder.lift', LinearOrder.lift]
   rw [hkey x y]
   cases x with
   | inl x =>
@@ -175,7 +175,8 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
               (toLex (Sum.inr (toLex other) : V ⊕ Lex (IncidenceTag A)))
           have hTag :=
             canonicalIncidenceTagLE_iff A tupleOrders hTuple tag other
-          simpa only [incidenceTagLexLinearOrder,
-            Sum.Lex.inr_le_inr_iff] using hTag
+          change paperIncidenceTagLE A tag other ↔
+            (toLex tag : Lex (IncidenceTag A)) ≤ toLex other at hTag
+          exact hTag.trans (Sum.Lex.inr_le_inr_iff).symm
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
