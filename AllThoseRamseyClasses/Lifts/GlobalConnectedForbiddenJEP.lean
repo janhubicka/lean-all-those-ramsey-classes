@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalForbiddenEHNAvoidance
 import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceJEP
 import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
 import AllThoseRamseyClasses.Lifts.EHNFullSideFactor
