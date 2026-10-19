@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.RegularGlobalMaximalWitnessExistence
+
+#print axioms AllThoseRamseyClasses.Lifts.regularGlobalRootObservation_finite
+#print axioms AllThoseRamseyClasses.Lifts.regularGlobalRootProfile_mono
+#print axioms AllThoseRamseyClasses.Lifts.regularGlobal_exists_maximal_extension
