@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceAge
+
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalInducedTrace_mem_maximalAge
+#print axioms AllThoseRamseyClasses.Lifts.IsGlobalFiniteMaximalTrace.of_embedding
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_exists_above
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_shadow_mem
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_exact_reduct
