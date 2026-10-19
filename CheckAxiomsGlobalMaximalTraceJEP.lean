@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceJEP
+
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_JEP_of_nativeJEP
