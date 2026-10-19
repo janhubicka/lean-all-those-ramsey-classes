@@ -114,7 +114,7 @@ theorem genuinelyTotallyOrderedRelations_areRamsey
       (x y : IncidenceCarrier DA) :
       paperIncidenceLE DA x y ↔ e x ≤ e y := by
     have hReflect : (e x ≤ e y) ↔ x ≤ y := by
-      rw [le_iff_lt_or_eq, le_iff_lt_or_eq]
+      simp only [le_iff_lt_or_eq]
       constructor
       · rintro (hlt | heq)
         · exact Or.inl (e.strictMono.lt_iff_lt.mp hlt)
@@ -131,7 +131,7 @@ theorem genuinelyTotallyOrderedRelations_areRamsey
       (x y : IncidenceCarrier DB) :
       paperIncidenceLE DB x y ↔ e x ≤ e y := by
     have hReflect : (e x ≤ e y) ↔ x ≤ y := by
-      rw [le_iff_lt_or_eq, le_iff_lt_or_eq]
+      simp only [le_iff_lt_or_eq]
       constructor
       · rintro (hlt | heq)
         · exact Or.inl (e.strictMono.lt_iff_lt.mp hlt)
