@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedRelationsSourceIncidenceOrder
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.OrderedRelations.canonicalIncidenceOrder_agrees
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.OrderedRelations.source_tupleOrdersSupported
