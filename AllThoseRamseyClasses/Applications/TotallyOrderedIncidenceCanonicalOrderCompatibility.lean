@@ -64,9 +64,21 @@ theorem canonicalIncidenceTagLE_iff
   rcases b with ⟨s, ⟨q, hq⟩⟩
   by_cases hrs : r = s
   · subst s
-    simpa [paperIncidenceTagLE, Sigma.Lex.le_def, toLex, Equiv.refl] using
-      (hTuple r ⟨t, ht⟩ ⟨q, hq⟩)
-  · simp [paperIncidenceTagLE, Sigma.Lex.le_def, hrs, toLex, Equiv.refl]
+    change A.tupleLE r t q ↔
+      (r < r ∨ ∃ h : r = r,
+        h.rec (⟨t, ht⟩ :
+          {z : Fin (L.arity r) → V // A.base.rel r z}) ≤ ⟨q, hq⟩)
+    simp only [lt_irrefl, false_or]
+    simpa only using (hTuple r ⟨t, ht⟩ ⟨q, hq⟩)
+  · change (r < s) ↔
+      (r < s ∨ ∃ h : r = s,
+        h.rec (⟨t, ht⟩ :
+          {z : Fin (L.arity r) → V // A.base.rel r z}) ≤ ⟨q, hq⟩)
+    constructor
+    · exact Or.inl
+    · rintro (h | ⟨h, _⟩)
+      · exact h
+      · exact (hrs h).elim
 
 /-- The genuine canonical external order matches the paper's entire
 Old-first, symbol-first incidence comparison whenever original vertex
@@ -95,7 +107,7 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
       @LE.le (IncidenceCarrier A)
         (canonicalIncidenceExternalLinearOrder A tupleOrders).toLE a b ↔
         canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b := by
-    rfl
+    dsimp [canonicalIncidenceExternalLinearOrder, LinearOrder.lift']
   rw [hkey x y]
   cases x with
   | inl x =>
@@ -129,7 +141,8 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
           change paperIncidenceTagLE A tag other ↔
             (toLex (Sum.inr (toLex tag) : V ⊕ Lex (IncidenceTag A))) ≤
               (toLex (Sum.inr (toLex other) : V ⊕ Lex (IncidenceTag A)))
-          exact (canonicalIncidenceTagLE_iff A tupleOrders hTuple tag other).trans
-            (Sum.Lex.inr_le_inr_iff).symm
+          exact (canonicalIncidenceTagLE_iff
+            A tupleOrders hTuple tag other).trans
+              (Sum.Lex.inr_le_inr_iff.symm)
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
