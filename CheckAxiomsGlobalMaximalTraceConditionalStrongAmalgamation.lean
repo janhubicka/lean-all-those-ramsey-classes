@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceConditionalStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_strongAmalgamation_of_shadowFree
