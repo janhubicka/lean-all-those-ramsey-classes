@@ -31,6 +31,22 @@ open AllThoseRamseyClasses.Applications.TotallyOrderedEncoding
 
 universe u v
 
+/-- The dependent Sigma-lex order using EXACTLY the supplied
+source-positive-tuple orders, rather than an unrelated synthesized
+instance on the tagged subtype. This named instance is used by the
+whole incidence carrier order and by the compatibility proof. -/
+noncomputable def incidenceTagLexLinearOrder
+    {L : RelLanguage.{u}} [LinearOrder L.Symbol]
+    {V : Type v} (A : TotalOrderData L V)
+    (tupleOrders : (r : L.Symbol) →
+      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t}) :
+    LinearOrder (Lex (IncidenceTag A)) := by
+  classical
+  letI : (r : L.Symbol) →
+      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
+    tupleOrders
+  infer_instance
+
 /-- Literal injection of old vertices and positive-tag vertices into the
 lexicographic sum used for the canonical external EHN order. -/
 def canonicalIncidenceOrderKey
@@ -74,6 +90,8 @@ noncomputable def canonicalIncidenceExternalLinearOrder
   letI : (r : L.Symbol) →
       LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
     tupleOrders
+  letI : LinearOrder (Lex (IncidenceTag A)) :=
+    incidenceTagLexLinearOrder A tupleOrders
   exact LinearOrder.lift'
     (canonicalIncidenceOrderKey A)
     (canonicalIncidenceOrderKey_injective A)
