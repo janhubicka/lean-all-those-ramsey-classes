@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalCanonicalInducedTrace
+
+#print axioms AllThoseRamseyClasses.Lifts.GlobalCanonicalMaximalAlong.restrict_root
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalInducedTrace_shadow
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalInducedTrace_into_witness
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalInducedTrace_into_allowed_extension
