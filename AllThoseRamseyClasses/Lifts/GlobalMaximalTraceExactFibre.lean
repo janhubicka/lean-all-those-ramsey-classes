@@ -94,10 +94,12 @@ theorem globalFunctionalLift_reconstruct
     exact congrArg
       (fun T : Structure L V => T.func f.down xs) hShadow
   change Y = Z
+  revert hR hF
   cases Y with
   | mk relY funcY =>
       cases Z with
       | mk relZ funcZ =>
+          intro hR hF
           change relY = relZ at hR
           change funcY = funcZ at hF
           exact congrArg₂
