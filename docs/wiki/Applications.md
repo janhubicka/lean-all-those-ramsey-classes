@@ -393,10 +393,17 @@ remain separate from the verified relational results.
 
 The source-matched `thm:TO` formalization is packaged as
 `TotallyOrderedIncidence.genuinelyTotallyOrderedRelations_areRamsey_finiteSignature`
-in `TotallyOrderedRelationsFiniteSignature.lean` (candidate PRs
-[#499](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/499)
-and [#513](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/513);
-**do not treat as validated until complete CI and axiom audit**).
+in `TotallyOrderedRelationsFiniteSignature.lean`.
+**Fully verified and exported in `ApplicationsAPI`**: the genuine
+source/target construction and full Ramsey arrow passed the complete
+Lean build, axiom and admission scans in
+[PR #499](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/499)
+(merge `ab8ca7d3`); the removal of the auxiliary symbol-order
+assumption passed independent CI in
+[PR #513](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/513)
+(merge `de376fae`); and the exported API passed full CI in
+[PR #514](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/514)
+(merge `843deb68`).
 
 Objects consist of a finite relational structure with a genuine linear
 vertex order and, **separately for each relation symbol**, a genuine
@@ -436,7 +443,6 @@ exactly, not merely by forward preservation.
 | Convexly ordered S-metrics with jumps | Fully audited finite canonical metric/order/partial-function embedding certificate (PRs #336, #342), paper-block convexity (#293), proper-jump crossing and empty-base metric gluing (#346, #349) | Complete nonempty-base functional strong amalgamation, simultaneous nested order extension, corrected weak local completion and the finite class Ramsey theorem |
 | Countably infinite target for m-unary operations | Finite-B Ramsey theorem, rooted-counterexample regression | Infinite Ramsey/quotient argument and countability statement |
 | Multiple orders and interpositions | Proposed structural decomposition | Functional root representation and one fixed weak-test cutoff |
-| Totally ordered relation instances | Genuine finite Ramsey endpoint using free auxiliary functional EHN, source-matched order, and collision-safe weak-target decoding (PRs #499, #513; awaiting final independent CI) | Verify CI and export the theorem; no further functional weak completion required for this direct transfer route |
 
 The [working manuscript ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-VALIDATION-2026-10-14.md)
 records earlier checks and TODOs; the manuscript's nonprinting
