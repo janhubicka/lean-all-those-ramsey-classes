@@ -23,20 +23,6 @@ open AllThoseRamseyClasses.Applications.TotallyOrderedEncoding
 
 universe u v
 
-/-- Dependently ordered positive tuples yield a genuine Sigma-lex order
-of tagged positive relation instances. -/
-noncomputable def incidenceTagLexLinearOrder
-    {L : RelLanguage.{u}} [LinearOrder L.Symbol]
-    {V : Type v} (A : TotalOrderData L V)
-    (tupleOrders : (r : L.Symbol) →
-      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t}) :
-    LinearOrder (Lex (IncidenceTag A)) := by
-  classical
-  letI : (r : L.Symbol) →
-      LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
-    tupleOrders
-  infer_instance
-
 /-- The paper's new-tag comparison is exactly Mathlib's lexicographic
 Sigma comparison, including equality of relation symbols and dependent
 tuples of distinct arities. -/
@@ -58,6 +44,8 @@ theorem canonicalIncidenceTagLE_iff
   letI : (r : L.Symbol) →
       LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
     tupleOrders
+  letI : LinearOrder (Lex (IncidenceTag A)) :=
+    incidenceTagLexLinearOrder A tupleOrders
   change paperIncidenceTagLE A a b ↔
     (toLex a : Lex (IncidenceTag A)) ≤ toLex b
   rcases a with ⟨r, ⟨t, ht⟩⟩
@@ -130,6 +118,8 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
   letI : (r : L.Symbol) →
       LinearOrder {t : Fin (L.arity r) → V // A.base.rel r t} :=
     tupleOrders
+  letI : LinearOrder (Lex (IncidenceTag A)) :=
+    incidenceTagLexLinearOrder A tupleOrders
   have hkey (a b : IncidenceCarrier A) :
       @LE.le (IncidenceCarrier A)
         (canonicalIncidenceExternalLinearOrder A tupleOrders).toLE a b ↔
