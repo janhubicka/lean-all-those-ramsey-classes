@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceExactFibre
+
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTrace_extra_injective
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalLift_reconstruct
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceExactFibre_toNamedOption_injective
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceExactFibre_finite
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceExactFibre_nonempty_iff
