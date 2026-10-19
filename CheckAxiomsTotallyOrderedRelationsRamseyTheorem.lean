@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedRelationsRamseyTheorem
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.genuinelyTotallyOrderedRelations_areRamsey

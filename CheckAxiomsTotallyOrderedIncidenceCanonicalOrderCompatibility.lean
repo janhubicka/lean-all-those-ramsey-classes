@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.TotallyOrderedIncidenceCanonicalOrderCompatibility
+
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonicalIncidenceTagLE_iff
+#print axioms AllThoseRamseyClasses.Applications.TotallyOrderedIncidence.canonicalIncidenceExternalLinearOrder_agrees
