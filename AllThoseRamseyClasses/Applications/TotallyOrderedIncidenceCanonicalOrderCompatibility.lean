@@ -60,28 +60,52 @@ theorem canonicalIncidenceTagLE_iff
     tupleOrders
   change paperIncidenceTagLE A a b ↔
     (toLex a : Lex (IncidenceTag A)) ≤ toLex b
-  rw [Sigma.Lex.le_def]
   rcases a with ⟨r, ⟨t, ht⟩⟩
   rcases b with ⟨s, ⟨q, hq⟩⟩
   by_cases hrs : r = s
   · subst s
-    simp only [paperIncidenceTagLE, dif_pos rfl, Sigma.fst,
-      Sigma.snd, lt_irrefl, false_or]
-    constructor
-    · intro h
-      exact ⟨rfl, (hTuple r ⟨t, ht⟩ ⟨q, hq⟩).mp h⟩
-    · rintro ⟨h, hle⟩
-      cases h
-      exact (hTuple r ⟨t, ht⟩ ⟨q, hq⟩).mpr hle
-  · change (r < s) ↔
-      (r < s ∨ ∃ h : r = s,
-        h.rec (⟨t, ht⟩ :
-          {z : Fin (L.arity r) → V // A.base.rel r z}) ≤ ⟨q, hq⟩)
-    constructor
-    · exact Or.inl
-    · rintro (h | ⟨h, _⟩)
-      · exact h
-      · exact (hrs h).elim
+    have hPaper :
+        paperIncidenceTagLE A
+          (⟨r, ⟨t, ht⟩⟩ : IncidenceTag A)
+          (⟨r, ⟨q, hq⟩⟩ : IncidenceTag A) ↔
+        A.tupleLE r t q := by
+      simp [paperIncidenceTagLE]
+    have hLex :
+        (toLex (⟨r, ⟨t, ht⟩⟩ : IncidenceTag A) :
+          Lex (IncidenceTag A)) ≤
+          toLex (⟨r, ⟨q, hq⟩⟩ : IncidenceTag A) ↔
+        (⟨t, ht⟩ : {z : Fin (L.arity r) → V //
+          A.base.rel r z}) ≤ ⟨q, hq⟩ := by
+      constructor
+      · intro h
+        rcases (Sigma.Lex.le_def).mp h with hlt | ⟨heq, hle⟩
+        · have hrr : r < r := hlt
+          exact (lt_irrefl r hrr).elim
+        · cases heq
+          exact hle
+      · intro h
+        exact (Sigma.Lex.le_def).mpr (Or.inr ⟨rfl, h⟩)
+    exact hPaper.trans
+      ((hTuple r ⟨t, ht⟩ ⟨q, hq⟩).trans hLex.symm)
+  · have hPaper :
+        paperIncidenceTagLE A
+          (⟨r, ⟨t, ht⟩⟩ : IncidenceTag A)
+          (⟨s, ⟨q, hq⟩⟩ : IncidenceTag A) ↔
+        r < s := by
+      simp [paperIncidenceTagLE, hrs]
+    have hLex :
+        (toLex (⟨r, ⟨t, ht⟩⟩ : IncidenceTag A) :
+          Lex (IncidenceTag A)) ≤
+          toLex (⟨s, ⟨q, hq⟩⟩ : IncidenceTag A) ↔
+        r < s := by
+      constructor
+      · intro h
+        rcases (Sigma.Lex.le_def).mp h with hlt | ⟨heq, _⟩
+        · exact hlt
+        · exact (hrs heq).elim
+      · intro h
+        exact (Sigma.Lex.le_def).mpr (Or.inl h)
+    exact hPaper.trans hLex.symm
 
 /-- The genuine canonical external order matches the paper's entire
 Old-first, symbol-first incidence comparison whenever original vertex
@@ -110,6 +134,11 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
       @LE.le (IncidenceCarrier A)
         (canonicalIncidenceExternalLinearOrder A tupleOrders).toLE a b ↔
         canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b := by
+    change
+      (LinearOrder.lift'
+        (canonicalIncidenceOrderKey A)
+        (canonicalIncidenceOrderKey_injective A)).le a b ↔
+      canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b
     rfl
   rw [hkey x y]
   cases x with
@@ -144,14 +173,9 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
           change paperIncidenceTagLE A tag other ↔
             (toLex (Sum.inr (toLex tag) : V ⊕ Lex (IncidenceTag A))) ≤
               (toLex (Sum.inr (toLex other) : V ⊕ Lex (IncidenceTag A)))
-          constructor
-          · intro h
-            exact Sum.Lex.inr_le_inr_iff.mpr
-              ((canonicalIncidenceTagLE_iff
-                A tupleOrders hTuple tag other).mp h)
-          · intro h
-            exact (canonicalIncidenceTagLE_iff
-              A tupleOrders hTuple tag other).mpr
-                (Sum.Lex.inr_le_inr_iff.mp h)
+          have hTag :=
+            canonicalIncidenceTagLE_iff A tupleOrders hTuple tag other
+          simpa only [incidenceTagLexLinearOrder,
+            Sum.Lex.inr_le_inr_iff] using hTag
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
