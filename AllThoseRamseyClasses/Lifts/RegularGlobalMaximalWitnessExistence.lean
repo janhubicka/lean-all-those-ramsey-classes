@@ -257,7 +257,7 @@ theorem regularGlobal_exists_maximal_extension
           ((eBC.comp e).comp iA) := by
       apply (regularGlobalRootProfile_mem F hRegular
         ((eBC.comp e).comp iA) p).2
-      rw [hSymbol, hTuple]
+      rcases s with ⟨⟨n, hn⟩, cls⟩
       exact hRelC
     have hMemberB :
         p ∈ regularGlobalRootProfile F hRegular
@@ -267,7 +267,7 @@ theorem regularGlobal_exists_maximal_extension
     have hRelB :=
       (regularGlobalRootProfile_mem F hRegular
         (e.comp iA) p).mp hMemberB
-    rw [hSymbol, hTuple] at hRelB
+    rcases s with ⟨⟨n, hn⟩, cls⟩
     exact hRelB
   · intro hRelB
     exact globalCanonicalRelation_map_fullEmbedding
