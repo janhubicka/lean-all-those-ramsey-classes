@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalIrreducibleNoPieces
+
+#print axioms AllThoseRamseyClasses.Lifts.noGeometricFunctionalPiece_of_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.noSelectedGlobalChart_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.globalPieceSymbols_empty_of_irreducible
