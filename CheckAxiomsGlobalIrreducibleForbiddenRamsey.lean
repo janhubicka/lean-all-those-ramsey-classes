@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalIrreducibleForbiddenRamsey
+
+#print axioms AllThoseRamseyClasses.Lifts.globalForbiddenIrreducible_freeClass
+#print axioms AllThoseRamseyClasses.Lifts.globalForbiddenIrreducible_freelyOrderedRamsey
