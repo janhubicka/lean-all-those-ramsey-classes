@@ -54,8 +54,23 @@ theorem GlobalCanonicalMaximalAlong.restrict_root
         iA ∘ small ∘ xs := by
     funext j
     rfl
-  rw [hCtuple, hAtuple]
-  exact h
+  calc
+    (globalFunctionalCanonicalLift F C).rel (.inr s)
+        (e ∘ (iA.comp small) ∘ xs) ↔
+      (globalFunctionalCanonicalLift F C).rel (.inr s)
+        (e ∘ iA ∘ small ∘ xs) := by
+          exact Iff.of_eq (congrArg
+            (fun t : Fin (globalFunctionalPieceArity F s) → UC =>
+              (globalFunctionalCanonicalLift F C).rel (.inr s) t)
+            hCtuple)
+    _ ↔ (globalFunctionalCanonicalLift F A).rel (.inr s)
+        (iA ∘ small ∘ xs) := h
+    _ ↔ (globalFunctionalCanonicalLift F A).rel (.inr s)
+        ((iA.comp small) ∘ xs) := by
+          exact Iff.of_eq (congrArg
+            (fun t : Fin (globalFunctionalPieceArity F s) → UA =>
+              (globalFunctionalCanonicalLift F A).rel (.inr s) t)
+            hAtuple.symm)
 
 /-- The FULL induced original global canonical lift on X as SEEN
 inside a larger old-language witness A. In general this is not
