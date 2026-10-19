@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalIrreducibleForbiddenStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_freeAmalgam_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalShadowFree_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_strongAmalgamation_irreducible
