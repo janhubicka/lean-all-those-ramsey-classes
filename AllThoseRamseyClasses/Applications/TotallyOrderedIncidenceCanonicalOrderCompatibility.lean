@@ -60,16 +60,19 @@ theorem canonicalIncidenceTagLE_iff
     tupleOrders
   change paperIncidenceTagLE A a b ↔
     (toLex a : Lex (IncidenceTag A)) ≤ toLex b
+  rw [Sigma.Lex.le_def]
   rcases a with ⟨r, ⟨t, ht⟩⟩
   rcases b with ⟨s, ⟨q, hq⟩⟩
   by_cases hrs : r = s
   · subst s
-    change A.tupleLE r t q ↔
-      (r < r ∨ ∃ h : r = r,
-        h.rec (⟨t, ht⟩ :
-          {z : Fin (L.arity r) → V // A.base.rel r z}) ≤ ⟨q, hq⟩)
-    simp only [lt_irrefl, false_or]
-    simpa only using (hTuple r ⟨t, ht⟩ ⟨q, hq⟩)
+    simp only [paperIncidenceTagLE, dif_pos rfl, Sigma.fst,
+      Sigma.snd, lt_irrefl, false_or]
+    constructor
+    · intro h
+      exact ⟨rfl, (hTuple r ⟨t, ht⟩ ⟨q, hq⟩).mp h⟩
+    · rintro ⟨h, hle⟩
+      cases h
+      exact (hTuple r ⟨t, ht⟩ ⟨q, hq⟩).mpr hle
   · change (r < s) ↔
       (r < s ∨ ∃ h : r = s,
         h.rec (⟨t, ht⟩ :
@@ -107,7 +110,7 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
       @LE.le (IncidenceCarrier A)
         (canonicalIncidenceExternalLinearOrder A tupleOrders).toLE a b ↔
         canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b := by
-    dsimp [canonicalIncidenceExternalLinearOrder, LinearOrder.lift']
+    rfl
   rw [hkey x y]
   cases x with
   | inl x =>
@@ -141,8 +144,14 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
           change paperIncidenceTagLE A tag other ↔
             (toLex (Sum.inr (toLex tag) : V ⊕ Lex (IncidenceTag A))) ≤
               (toLex (Sum.inr (toLex other) : V ⊕ Lex (IncidenceTag A)))
-          exact (canonicalIncidenceTagLE_iff
-            A tupleOrders hTuple tag other).trans
-              (Sum.Lex.inr_le_inr_iff.symm)
+          constructor
+          · intro h
+            exact Sum.Lex.inr_le_inr_iff.mpr
+              ((canonicalIncidenceTagLE_iff
+                A tupleOrders hTuple tag other).mp h)
+          · intro h
+            exact (canonicalIncidenceTagLE_iff
+              A tupleOrders hTuple tag other).mpr
+                (Sum.Lex.inr_le_inr_iff.mp h)
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
