@@ -387,3 +387,68 @@ nor #492 claims that theorem.
 
 The numbered mathematical manuscript remains frozen; these
 are library/wiki validation records only.
+
+## 19 October: actual regular global maximal-trace age and precise remaining gap
+
+The **original distinct-root** regular infinite-family lift has now been
+formalized beyond the counting theorem of 18 October. These are independent
+full-CI-checked, merged results, not proposed proof sketches:
+
+| Verified result | Lean source / pull request |
+| --- | --- |
+| Finite maximization produces a genuinely allowed maximal global canonical witness over every finite old root, using regularity and **no AP/JEP assumption** | `RegularGlobalMaximalWitnessExistence.lean`, [#494](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/494) |
+| Exact **FULL induced** canonical global traces, preserving all old functions; restriction of maximality | `GlobalCanonicalInducedTrace.lean`, [#496](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/496) |
+| Native forbidden-free EHN class is hereditary under full embeddings and invariant under full isomorphism | `GlobalForbiddenEHNAvoidance.lean`, [#498](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/498) |
+| Hereditary age of genuine finite maximal global traces, with exact reduct over every finite allowed native structure | `GlobalMaximalTraceAge.lean`, [#500](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/500) |
+| Actual FULL expanded embeddings of old maximal traces into compatible allowed extensions | `GlobalMaximalTraceTransfer.lean`, [#502](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/502) |
+| The ENTIRE genuine maximal-trace expansion fibre over a fixed finite native structure is finite; for a hereditary allowed class K it is nonempty **iff** A belongs to K | `GlobalMaximalTraceExactFibre.lean`, [#501](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/501) |
+| Full class-level strong amalgamation, constructing an actual finite maximal-trace amalgam with exactly prescribed overlap, **conditional on the explicit old shadow-avoidance principle** | `GlobalMaximalTraceConditionalStrongAmalgamation.lean`, [#503](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/503) |
+| Full JEP of the maximal global trace age, **conditional on** native finite full JEP | `GlobalMaximalTraceJEP.lean`, [#504](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/504) |
+
+### One unconditional subclass: irreducible forbidden sources
+
+[PR #505](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/505)
+proves unconditional native free-amalgam avoidance and hence original
+global maximal-trace **strong amalgamation** whenever every forbidden
+finite native source is irreducible. The EHN condition then embeds the
+*whole* forbidden source FULLY into the amalgam; irreducibility
+forces its image into one side, contrary to the side's avoidance.
+No questionable weak-image injectivization is used.
+
+[PR #506](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/506)
+also proves the genuine **freely ordered Ramsey theorem** for the native
+forbidden-free class in this irreducible-source case by applying the
+previously verified all-arity EHN free-amalgamation Ramsey theorem.
+This needs neither regularity nor an image-closed forbidden family.
+It is a restricted **proved** Ramsey theorem, not the unresolved
+general 2019 Section 3 theorem.
+
+### Active validation and open mathematical gap
+
+Separate new proofs under CI (do not mark fully certified or merged
+until their full Lean runs pass):
+
+* [#507](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/507):
+  finite full-isomorphism representatives for the **actual regular global
+  maximal-trace AGE** (rather than merely fixed-carrier fibres or
+  global canonical lifts).
+* [#508](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/508):
+  a reusable general full relation-only expansion pullback and
+  full-isomorphism precompactness for the finite-family **folded** age,
+  including repeated root coordinates.
+* [#509](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/509):
+  no genuine minimal-separator geometric pieces, hence no global new
+  piece symbols, when all forbidden sources are irreducible.
+
+**The unrestricted reducible-source theorem is still open.**
+The exact obligation is `GlobalCanonicalShadowFreeAmalgamation F K`
+with `K=Forb_EHN(F)`: given two allowed FULL native witnesses whose
+entire original global root-injective canonical piece profiles agree
+on the same FULL root, prove that their actual old functional free
+amalgam still avoids F. The printed proof's weak-image
+injectivization does NOT follow from the verified tuple-surjective
+quotient alone, and the multicomponent flip is not yet certified.
+Neither precompactness nor conditional strong AP discharges this
+gap, and the final unrestricted Ramsey theorem has not been proved.
+
+The numbered 2019 mathematical manuscript remains frozen.
