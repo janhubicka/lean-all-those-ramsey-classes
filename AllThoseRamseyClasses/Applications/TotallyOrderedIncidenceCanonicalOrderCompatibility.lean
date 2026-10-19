@@ -120,16 +120,30 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
     tupleOrders
   letI : LinearOrder (Lex (IncidenceTag A)) :=
     incidenceTagLexLinearOrder A tupleOrders
+  letI : LinearOrder (Lex (V ⊕ Lex (IncidenceTag A))) :=
+    canonicalIncidenceKeyOrder A tupleOrders
+  letI : LE (Lex (IncidenceTag A)) :=
+    (incidenceTagLexLinearOrder A tupleOrders).toLE
+  letI : LE (Lex (V ⊕ Lex (IncidenceTag A))) :=
+    (canonicalIncidenceKeyOrder A tupleOrders).toLE
   have hkey (a b : IncidenceCarrier A) :
       @LE.le (IncidenceCarrier A)
         (canonicalIncidenceExternalLinearOrder A tupleOrders).toLE a b ↔
-        canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b := by
+      @LE.le (Lex (V ⊕ Lex (IncidenceTag A)))
+        (canonicalIncidenceKeyOrder A tupleOrders).toLE
+        (canonicalIncidenceOrderKey A a)
+        (canonicalIncidenceOrderKey A b) := by
     change
-      (LinearOrder.lift'
+      (@LinearOrder.lift' (IncidenceCarrier A)
+        (Lex (V ⊕ Lex (IncidenceTag A)))
+        (canonicalIncidenceKeyOrder A tupleOrders)
         (canonicalIncidenceOrderKey A)
         (canonicalIncidenceOrderKey_injective A)).le a b ↔
-      canonicalIncidenceOrderKey A a ≤ canonicalIncidenceOrderKey A b
-    simp only [LinearOrder.lift', LinearOrder.lift]
+      @LE.le (Lex (V ⊕ Lex (IncidenceTag A)))
+        (canonicalIncidenceKeyOrder A tupleOrders).toLE
+        (canonicalIncidenceOrderKey A a)
+        (canonicalIncidenceOrderKey A b)
+    rfl
   rw [hkey x y]
   cases x with
   | inl x =>
@@ -165,8 +179,6 @@ theorem canonicalIncidenceExternalLinearOrder_agrees
               (toLex (Sum.inr (toLex other) : V ⊕ Lex (IncidenceTag A)))
           have hTag :=
             canonicalIncidenceTagLE_iff A tupleOrders hTuple tag other
-          change paperIncidenceTagLE A tag other ↔
-            (toLex tag : Lex (IncidenceTag A)) ≤ toLex other at hTag
           exact hTag.trans (Sum.Lex.inr_le_inr_iff).symm
 
 end AllThoseRamseyClasses.Applications.TotallyOrderedIncidence
