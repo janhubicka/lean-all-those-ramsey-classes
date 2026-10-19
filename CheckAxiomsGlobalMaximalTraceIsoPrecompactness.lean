@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceIsoPrecompactness
+
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_pullback_iso
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_finiteIsoRepresentatives
