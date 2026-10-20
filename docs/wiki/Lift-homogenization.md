@@ -569,7 +569,7 @@ older provisional status in this chronology.
 single-component connectivity are NOT established for arbitrary
 support-minimal forbidden weak witnesses. The truly multicomponent
 proper-piece/flip descent of Claim 2, general
-\`GlobalCanonicalShadowFreeAmalgamation\`, and the unrestricted regular
+`GlobalCanonicalShadowFreeAmalgamation`, and the unrestricted regular
 Section 3 Ramsey conclusion remain OPEN. The finite-family folded
 construction's strong amalgamation and the irreducible-source Ramsey
 special case are distinct already-verified results. No numbered
@@ -578,10 +578,10 @@ mathematical manuscript edits are authorized by these wiki records.
 
 ## Claim 2 audit after the original-global one-component reduction
 
-The original printed Claim 2 (in \`ramsey.tex\`,
-\`lem:amalgamationstr\`) is more than an assertion about disconnected
+The original printed Claim 2 (in `ramsey.tex`,
+`lem:amalgamationstr`) is more than an assertion about disconnected
 Gaifman components. It selects a smallest genuinely mixed piece
-\`(P,R)\`, tries to flip proper sub-pieces of the opposite exclusive
+`(P,R)`, tries to flip proper sub-pieces of the opposite exclusive
 colour, and uses neighbourhood closures to produce a **proper
 sub-piece of the original forbidden source**. Source-map collisions
 make the original root-injective piece predicates inapplicable to
@@ -600,39 +600,39 @@ The next independently auditable certificates are:
   a support-minimal witness from arbitrary witness existence.
 * [#550](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/550)
   (**pending CI and merge**) proves the nested-cut set-theoretic
-  descent for an actual mixed source piece: if \`R ⊆ S\`, the
-  left component of \`F\\setminus S\` is a **proper subset** of the
-  selected left component of \`F\\setminus R\`, and has strictly
-  fewer vertices when \`F\` is finite. The proof uses genuine
+  descent for an actual mixed source piece: if `R ⊆ S`, the
+  left component of `F\\setminus S` is a **proper subset** of the
+  selected left component of `F\\setminus R`, and has strictly
+  fewer vertices when `F` is finite. The proof uses genuine
   Gaifman reachability and the monochromatic source components
-  outside \`S\`, with no image quotient.
+  outside `S`, with no image quotient.
 
 
 * [#551](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/551)
   (**pending CI and merge**) isolates the EXACT two-sided
   boundary-closure implication used in the printed Claim 2.
-  If \`C_x,C_y\` are components after deleting a larger cut \`R\`,
-  and \`S ⊆ R\` is a smaller function-closed cut still separating
+  If `C_x,C_y` are components after deleting a larger cut `R`,
+  and `S ⊆ R` is a smaller function-closed cut still separating
   them, then
-  \`Cl(N(C_x)) ∩ Cl(N(C_y)) ⊆ S\`.
+  `Cl(N(C_x)) ∩ Cl(N(C_y)) ⊆ S`.
   This follows from the existing functional boundary-closure
-  transport into the two disjoint components outside \`S\`.
+  transport into the two disjoint components outside `S`.
   Consequently, any proposed old piece root contained in both
   boundary closures must lie in the new separating cut.
 
   **Not yet proved:** the old root of the minimal mixed piece
   actually lies in both boundary closures of the chosen source
   components, the premise needed to use this new theorem in the
-  manuscript's \`R' ⊆ C\` argument.
+  manuscript's `R' ⊆ C` argument.
 
 **Crucial distinction:** the last proper inclusion does **not**
 produce a proper *geometric forbidden sub-piece*. The full root
-preimage \`S\` is closed but need not be an inclusion-minimal
-separator, nor is \`S\` automatically contained in the original
-selected piece \`P\`. To finish the printed Claim 2 one must
+preimage `S` is closed but need not be an inclusion-minimal
+separator, nor is `S` automatically contained in the original
+selected piece `P`. To finish the printed Claim 2 one must
 construct a genuine minimal function-closed root and a component
-\`Q\` contained in \`P\`, preserve the exact source functional
-structure, and prove that \`Q\` is either a smaller mixed forbidden
+`Q` contained in `P`, preserve the exact source functional
+structure, and prove that `Q` is either a smaller mixed forbidden
 piece or can be flipped while preserving a forbidden EHN witness.
 This final step must also handle possibly coinciding target images
 of distinct root vertices. Neither #549 nor #550 asserts it.
@@ -644,20 +644,20 @@ claim that Section 3 is fully verified.
 
 ## 20 October evening: localizing the genuine Claim 2 proper-subpiece step
 
-The printed proof of \`lem:amalgamationstr\` uses a globally smallest
-mixed *source-attached* piece \`P=R∪C\`. Its Claim 2 argument needs
-two components \`A',B'\` of the original forbidden source outside
-\`S=F_X\`, both lying in \`C\`, with the decisive inclusions
+The printed proof of `lem:amalgamationstr` uses a globally smallest
+mixed *source-attached* piece `P=R∪C`. Its Claim 2 argument needs
+two components `A',B'` of the original forbidden source outside
+`S=F_X`, both lying in `C`, with the decisive inclusions
 
-\`\`\`
+```
 R ⊆ Cl_F(N_F(A')) ∩ Cl_F(N_F(B')).
-\`\`\`
+```
 
 These inclusions are **not** consequences of the already formalized
 minimal-separator proposition by themselves: that proposition gives
 boundary closure equalities for a pair of components after deleting
-the *same minimal cut*. Here \`A',B'\` are components after deleting
-the potentially larger, different cut \`S\`.
+the *same minimal cut*. Here `A',B'` are components after deleting
+the potentially larger, different cut `S`.
 
 The following exact geometric statements are now **merged with full
 Lean CI and axiom audits**:
@@ -704,7 +704,7 @@ The following proofs are **pending full CI and integration**:
 
 **Remaining major mathematical obligations.** The two displayed
 boundary inclusions have NOT been established for the actual
-unflippable \`B'\` and selected \`A'\` in the printed Claim 2.
+unflippable `B'` and selected `A'` in the printed Claim 2.
 Moreover weak EHN maps may identify root vertices, and the
 original canonical lift records only distinct-root image tuples.
 Even if the boundary argument is completed, either the
@@ -724,23 +724,23 @@ The two-boundary hypothesis above cannot be derived from the
 *minimality of the old separating root alone*. For example, take the
 ordinary undirected path on five vertices
 
-\`\`\`
+```
 d -- r -- a -- c -- b
-\`\`\`
+```
 
-with no functions. The set \`R={r}\` is an inclusion-minimal
-closed separator of \`d\` from \`a\` (every set is function-closed).
-Its selected \`a\`-component is \`C={a,c,b}\`, and the old piece
-has vertices \`P={r,a,c,b}\`. Now enlarge the deleted set to
-\`S={r,c}\`. The two vertices \`a,b\` belong to the same old
-component \`C\`, but to different components \`A'={a}\` and
-\`B'={b}\` after deleting \`S\`. We have \`r∈N(A')\`, yet
-\`r∉N(B')\`; with no functions, generated closure is the
+with no functions. The set `R={r}` is an inclusion-minimal
+closed separator of `d` from `a` (every set is function-closed).
+Its selected `a`-component is `C={a,c,b}`, and the old piece
+has vertices `P={r,a,c,b}`. Now enlarge the deleted set to
+`S={r,c}`. The two vertices `a,b` belong to the same old
+component `C`, but to different components `A'={a}` and
+`B'={b}` after deleting `S`. We have `r∈N(A')`, yet
+`r∉N(B')`; with no functions, generated closure is the
 identity. Thus
 
-\`\`\`
+```
 R ⊈ Cl(N(B')).
-\`\`\`
+```
 
 This is **not** a counterexample to the printed Claim 2 or to
 the theorem: the example has not been equipped with the full
