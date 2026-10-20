@@ -784,3 +784,81 @@ The example proves only that a proof of the needed boundary
 inclusions cannot use minimal mixed size alone: Claim 1 and
 the non-flippable-component mechanism of Claim 2 must provide
 additional information.
+
+
+## Independent 20 October audit: Claim 1 plus minimum mixed size is insufficient
+
+A more targeted five-vertex function-free graph shows that the
+**one-sided-piece exclusion of Claim 1**, even together with the
+globally smallest mixed-piece criterion and root-image injectivity,
+does **not**, as a purely source-geometric matter, force the
+two-boundary inclusions required in the conditional Claim 2 proof.
+
+Let the undirected graph have vertices \(\{0,1,2,3,4\}\) and edges
+
+\[
+01,\quad 03,\quad 04,\quad 23,\quad 34.
+\]
+
+Thus \(0,3,4\) form a triangle; \(1\) is a pendant vertex at \(0\),
+and \(2\) is a pendant vertex at \(3\). Let
+\(S=\{0,3\}\), \(A_{\mathrm{only}}=\{4\}\),
+\(B_{\mathrm{only}}=\{1,2\}\). The three components of
+\(F\setminus S\) are the singleton sets \(\{4\},\{1\},\{2\}\),
+and each is monochromatic.
+
+For the original source's **inclusion-minimal nonempty vertex
+separators whose root is contained in \(S\)**, the complete
+list of genuine rooted components is:
+
+| Minimal root | Selected component | Colours in component |
+| --- | --- | --- |
+| \(\{0\}\) | \(\{1\}\) | B only |
+| \(\{0\}\) | \(\{2,3,4\}\) | Both |
+| \(\{3\}\) | \(\{2\}\) | B only |
+| \(\{3\}\) | \(\{0,1,4\}\) | Both |
+
+The root \(\{0,3\}\) is not minimal for any pair of remaining
+components. In particular, **every** genuine piece rooted inside
+\(S\) that meets \(A_{\mathrm{only}}\) also meets
+\(B_{\mathrm{only}}\): the source-only conclusion of Claim 1 HOLDS.
+Both mixed pieces have minimum nonroot cardinality three.
+
+However, for the mixed root \(R=\{3\}\), with component
+\(C=\{0,1,4\}\), the only opposite-colour components after
+deleting \(S\) within \(C\) are \(A'=\{4\}\) and \(B'=\{1\}\).
+Their external neighborhoods are \(N(A')=\{0,3\}\) and
+\(N(B')=\{0\}\), so \(R\not\subseteq N(B')\).
+For the other minimum mixed root \(R=\{0\}\) and component
+\(\{2,3,4\}\), the pair is \(A'=\{4\}\) and \(B'=\{2\}\);
+now \(N(B')=\{3\}\), so again \(R\not\subseteq N(B')\).
+There are no functions, so generated closure is the identity.
+Thus **neither** minimum mixed piece has even a *selected*
+opposite-colour pair satisfying both boundary inclusions.
+
+Every genuine separating root above has width one. Therefore its
+target root image is automatically injective under every map,
+and pairwise irreducible-test coverage of these roots is vacuous.
+This countercheck consequently also blocks a derivation using only
+piecewise root coverage plus the source-only conclusions of Claim 1.
+
+**Why this is not a counterexample to the 2019 theorem.** Each
+minimum mixed piece has a *proper B-only geometric sub-piece*:
+\(\{0,1\}\subsetneq \{0,1,3,4\}\), rooted at \(\{0\}\), and
+\(\{2,3\}\subsetneq \{0,2,3,4\}\), rooted at \(\{3\}\),
+respectively. Such components are precisely the ones the printed
+Claim 2 tries to eliminate by flipping. No forbidden-image-closed
+family with the required compatible maximal full lifts and a
+support-minimal forbidden EHN witness has been supplied by this
+example. The example isolates the indispensable missing work:
+the **unflippable-component / flip-minimality** argument must
+select the right component or replace the two-boundary lemma.
+It cannot be replaced merely by Claim 1, minimal mixed-piece
+cardinality, root injectivity or the elementary cut proposition.
+
+The later proof reductions [#565](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/565)
+and [#566](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/566)
+are deliberately conditional on selected-pair source geometry;
+this audit explains why that assumption cannot be omitted.
+Their CI status must be checked separately before counting the
+theorems as verified. Numbered manuscript text remains frozen.
