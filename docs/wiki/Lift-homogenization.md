@@ -750,3 +750,37 @@ hypotheses. It only rules out a tempting but invalid shortcut
 from the general minimal-separator proposition to the special
 two-boundary conclusion. Any complete proof must use those
 additional minimality/flip hypotheses in an essential way.
+
+
+### A stronger source-only minimal-mixed sanity check
+
+Even **minimum nonroot size among the genuinely mixed pieces**
+is not by itself enough to imply the two-boundary condition.
+Consider the tree on vertices `0,1,2,3,4` with edges
+`01,12,03,04`. Colour `S={0,1,2}`,
+`AOnly={3}`, `BOnly={4}`. There are no edges between
+the two exclusive regions. Among all nonempty inclusion-minimal
+separating roots `R⊆S` with a selected component containing
+both exclusive colours, the only possible root is `R={1}`:
+the selected component is `C={0,3,4}`; removing `2`
+alone does not disconnect the graph, and a root containing
+`0` separates the exclusive vertices rather than keeping
+them in one mixed component. Thus the mixed piece
+`P={1,0,3,4}` has minimum nonroot size, namely three.
+
+After deleting `S`, the opposite-exclusive source components
+are `A'={3}` and `B'={4}`. Both have external neighborhood
+`{0}`. In this function-free graph the generated closure is
+the identity, so `R={1}` lies in **neither**
+`Cl(N(A'))` nor `Cl(N(B'))`.
+
+This is an adversarial **source-only** example, not a
+counterexample to the paper. It does not demonstrate that the
+associated forbidden family is image-closed or that the two
+witnesses have a common FULL original canonical lift, and the
+source also has one-sided pieces rooted at `{0}` which have
+not been ruled out by Claim 1's support-minimality argument.
+The example proves only that a proof of the needed boundary
+inclusions cannot use minimal mixed size alone: Claim 1 and
+the non-flippable-component mechanism of Claim 2 must provide
+additional information.
