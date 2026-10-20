@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRootedPrivateThresholdClass
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_privateLeftThresholdClass_eq
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_privateRightThresholdClass_eq

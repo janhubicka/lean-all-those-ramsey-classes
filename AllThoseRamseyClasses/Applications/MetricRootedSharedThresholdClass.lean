@@ -27,7 +27,7 @@ universe u v w
 /-- The identified-root union is covered by the TWO original side
 images, including each root vertex only once. This is independent
 of the distance function and order. -/
-private theorem metricRooted_covers
+theorem metricRooted_covers
     {A : Type u} {U : Type v} {V : Type w}
     (iU : A → U) (iV : A → V)
     (hiU : Function.Injective iU) (hiV : Function.Injective iV)
