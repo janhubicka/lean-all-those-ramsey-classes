@@ -192,12 +192,114 @@ private theorem metricRootedOrderKey_left
     [Fintype A] [Fintype U] [Fintype V]
     [LinearOrder U] [LinearOrder V]
     (iU : A → U) (iV : A → V)
+    (hiU : Function.Injective iU)
     (p : A ⊕ MetricOutsideRoot iU) :
     metricRootedOrderKey iU iV (metricLeftSideIntoRooted iU iV p) =
-      metricSideKey iU 0 ((metricSideEquiv iU
-        (by
-          intro a b hab
-          exact a == b)).toFun p) := by
-  sorry
+      metricSideKey iU 0 (metricSideEquiv iU hiU p) := by
+  cases p with
+  | inl a => rfl
+  | inr x => rfl
+
+private theorem metricRootedOrderKey_right
+    {A : Type u} {U : Type v} {V : Type w}
+    [Fintype A] [Fintype U] [Fintype V]
+    [LinearOrder U] [LinearOrder V]
+    (iU : A → U) (iV : A → V)
+    (hiV : Function.Injective iV)
+    (hCompat : ∀ a b : A, iU a < iU b ↔ iV a < iV b)
+    (p : A ⊕ MetricOutsideRoot iV) :
+    metricRootedOrderKey iU iV (metricRightSideIntoRooted iU iV p) =
+      metricSideKey iV 1 (metricSideEquiv iV hiV p) := by
+  cases p with
+  | inl a => exact metricSideKey_root_agree iU iV hCompat a
+  | inr y => rfl
+
+private theorem metricRootedOrderKey_of_left
+    {A : Type u} {U : Type v} {V : Type w}
+    [Fintype A] [Fintype U] [Fintype V]
+    [LinearOrder U] [LinearOrder V]
+    (iU : A → U) (iV : A → V)
+    (hiU : Function.Injective iU) (x : U) :
+    metricRootedOrderKey iU iV (metricRootedLeft iU iV hiU x) =
+      metricSideKey iU 0 x := by
+  unfold metricRootedLeft
+  rw [metricRootedOrderKey_left iU iV hiU
+      ((metricSideEquiv iU hiU).symm x),
+    (metricSideEquiv iU hiU).apply_symm_apply x]
+
+private theorem metricRootedOrderKey_of_right
+    {A : Type u} {U : Type v} {V : Type w}
+    [Fintype A] [Fintype U] [Fintype V]
+    [LinearOrder U] [LinearOrder V]
+    (iU : A → U) (iV : A → V)
+    (hiV : Function.Injective iV)
+    (hCompat : ∀ a b : A, iU a < iU b ↔ iV a < iV b)
+    (y : V) :
+    metricRootedOrderKey iU iV (metricRootedRight iU iV hiV y) =
+      metricSideKey iV 1 y := by
+  unfold metricRootedRight
+  rw [metricRootedOrderKey_right iU iV hiV hCompat
+      ((metricSideEquiv iV hiV).symm y),
+    (metricSideEquiv iV hiV).apply_symm_apply y]
+
+/-- A linear order exists on the EXACT identified-base metric
+pushout, preserving both original side orders. This is the
+plain ordered-amalgam component; metric jump-convexity is NOT
+part of the conclusion. -/
+theorem metricRootedLinearOrder_exists
+    {A : Type u} {U : Type v} {V : Type w}
+    [Finite A] [Finite U] [Finite V]
+    [LinearOrder U] [LinearOrder V]
+    (iU : A → U) (iV : A → V)
+    (hiU : Function.Injective iU) (hiV : Function.Injective iV)
+    (hCompat : ∀ a b : A, iU a < iU b ↔ iV a < iV b) :
+    ∃ (o : LinearOrder (MetricRootedAmalgamVertex iU iV)),
+      (∀ x y : U, x < y →
+        @LT.lt _ o.toLT
+          (metricRootedLeft iU iV hiU x)
+          (metricRootedLeft iU iV hiU y)) ∧
+      (∀ x y : V, x < y →
+        @LT.lt _ o.toLT
+          (metricRootedRight iU iV hiV x)
+          (metricRootedRight iU iV hiV y)) := by
+  classical
+  letI : Fintype A := Fintype.ofFinite A
+  letI : Fintype U := Fintype.ofFinite U
+  letI : Fintype V := Fintype.ofFinite V
+  let P := MetricRootedAmalgamVertex iU iV
+  letI : Finite P := metricRootedAmalgamVertex_finite iU iV
+  letI : Fintype P := Fintype.ofFinite P
+  let key : P → (ℕ ×ₗ (ℕ ×ₗ ℕ)) ×ₗ Fin (Fintype.card P) :=
+    fun x => toLex (metricRootedOrderKey iU iV x, Fintype.equivFin P x)
+  have hKeyInj : Function.Injective key := by
+    intro x y hxy
+    apply (Fintype.equivFin P).injective
+    exact congrArg (fun t => (ofLex t).2) hxy
+  let o : LinearOrder P := LinearOrder.lift' key hKeyInj
+  refine ⟨o, ?_, ?_⟩
+  · intro x y hxy
+    have hSide : metricSideKey iU 0 x < metricSideKey iU 0 y :=
+      metricSideKey_strict iU 0 (by omega) hxy
+    have hMerged :
+        metricRootedOrderKey iU iV (metricRootedLeft iU iV hiU x) <
+        metricRootedOrderKey iU iV (metricRootedLeft iU iV hiU y) := by
+      rw [metricRootedOrderKey_of_left iU iV hiU x,
+          metricRootedOrderKey_of_left iU iV hiU y]
+      exact hSide
+    change key (metricRootedLeft iU iV hiU x) <
+      key (metricRootedLeft iU iV hiU y)
+    exact Prod.Lex.toLex_lt_toLex.mpr (Or.inl hMerged)
+  · intro x y hxy
+    have hSide : metricSideKey iV 1 x < metricSideKey iV 1 y :=
+      metricSideKey_strict iV 1 (by omega) hxy
+    have hMerged :
+        metricRootedOrderKey iU iV (metricRootedRight iU iV hiV x) <
+        metricRootedOrderKey iU iV (metricRootedRight iU iV hiV y) := by
+      rw [metricRootedOrderKey_of_right iU iV hiV hCompat x,
+          metricRootedOrderKey_of_right iU iV hiV hCompat y]
+      exact hSide
+    change key (metricRootedRight iU iV hiV x) <
+      key (metricRootedRight iU iV hiV y)
+    exact Prod.Lex.toLex_lt_toLex.mpr (Or.inl hMerged)
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
