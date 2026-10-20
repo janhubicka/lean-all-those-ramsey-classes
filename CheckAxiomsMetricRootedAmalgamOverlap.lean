@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamOverlap
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_sideOverlap
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_sides_intersect_exactly_on_root
