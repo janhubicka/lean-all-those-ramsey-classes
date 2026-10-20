@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRoundedPathTriangle
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.distanceSum_triangle_path_bound
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.distanceSum_triangle_path_bound_right
