@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteRootTwoCrossTriangle
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_twoCross_triangle_left
