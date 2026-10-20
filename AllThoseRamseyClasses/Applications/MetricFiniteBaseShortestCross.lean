@@ -79,7 +79,7 @@ theorem finiteBaseShortestDistance_mem
   hS _ (hp _) _ (hq _)
 
 /-- The actual finite nonempty-base jump crossing theorem: a
-cross-side pair is j-close precisely if its two endpoints admit
+cross-side pair is j-close precisely if its two endpoints share
 a **shared base point** to which both are j-close.
 
 The old abstract lemma's lower-bound and attainment premises are
