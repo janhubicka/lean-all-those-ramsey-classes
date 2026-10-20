@@ -75,21 +75,20 @@ theorem labelFirst_fibre_convex
     (hyz : @LE.le X (labelFirstOrder label).toLE y z)
     (hxz : label x = label z) :
     label x = label y := by
-  letI : LinearOrder X := labelFirstOrder label
-  have hxy' : x ≤ y := hxy
-  have hyz' : y ≤ z := hyz
+  change (toLex (label x, x) : K ×ₗ X) ≤
+    toLex (label y, y) at hxy
+  change (toLex (label y, y) : K ×ₗ X) ≤
+    toLex (label z, z) at hyz
   have hleXY : label x ≤ label y := by
     by_contra h
     have hyx : label y < label x := lt_of_not_ge h
-    have hnew : y < x :=
-      (labelFirst_lt_iff label y x).mpr (Or.inl hyx)
-    exact (not_lt_of_ge hxy') hnew
+    exact (not_lt_of_ge hxy)
+      (Prod.Lex.toLex_lt_toLex.mpr (Or.inl hyx))
   have hleYZ : label y ≤ label z := by
     by_contra h
     have hzy : label z < label y := lt_of_not_ge h
-    have hnew : z < y :=
-      (labelFirst_lt_iff label z y).mpr (Or.inl hzy)
-    exact (not_lt_of_ge hyz') hnew
+    exact (not_lt_of_ge hyz)
+      (Prod.Lex.toLex_lt_toLex.mpr (Or.inl hzy))
   have hleYX : label y ≤ label x := by
     calc
       label y ≤ label z := hleYZ
