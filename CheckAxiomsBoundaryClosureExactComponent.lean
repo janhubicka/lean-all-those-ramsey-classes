@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.BoundaryClosureExactComponent
+
+#print axioms AllThoseRamseyClasses.Lifts.componentBoundaryClosure_closed_subset_cut
+#print axioms AllThoseRamseyClasses.Lifts.componentBoundaryClosure_preserves_exact_component
