@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ClosedBoundaryIntersectionCut
+
+#print axioms AllThoseRamseyClasses.Lifts.boundaryClosures_intersection_subset_smallerSeparator
+#print axioms AllThoseRamseyClasses.Lifts.rootedBoundarySubset_of_smallerClosedSeparator
