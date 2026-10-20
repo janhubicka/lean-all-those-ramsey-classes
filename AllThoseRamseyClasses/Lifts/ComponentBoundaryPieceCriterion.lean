@@ -112,13 +112,9 @@ theorem finite_componentBoundary_hasGeometricPiece_of_partner
       d.left.1 = x.1 ∧ d.right.1 = y.1 ∧
       componentFrom A.graph (Set.range d.roots) d.left =
         componentFrom A.graph S x := by
-  have hMin : IsMinimalClosedSeparator A T
-      (outsideCutMap hTS x) y :=
-    (componentBoundary_hasMinimalPiece_iff_partner
-      A S T hS x hT hTS).2 ⟨y, hSep, hYBoundary⟩
-      |>.choose_spec
-  -- The existential converse has the supplied y; derive its
-  -- exact proof with the checked boundary equalities.
+  -- Construct the selected minimal separator directly for
+  -- this specified partner, without losing its identity to
+  -- existential choice.
   have hClosedT : A.IsClosed T := by
     rw [hT]
     exact A.functionClosure_isClosed
