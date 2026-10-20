@@ -523,3 +523,55 @@ the missing shadow-avoidance lemma.
 
 All additions remain in the version-controlled research wiki.
 The original numbered mathematical manuscript is frozen.
+
+
+## 20 October, later integration: original-global root collision audit
+
+The pending labels on #530 and #531 in the earlier 20 October checkpoint
+are superseded by subsequent successful main-branch merges. The source
+of truth for these new results is the actual Lean theorem, not the
+older provisional status in this chronology.
+
+* [#530](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/530)
+  now proves the one-sided Claim 1 reduction when the **target image
+  of the selected root is injective**; its auxiliary EHN side map and
+  shared-root coordinates are constructed from the geometric piece.
+* [#531](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/531)
+  and [#534](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/534)
+  show that a residual one-sided obstruction must have width at least
+  two, a reducible function-closed source root, and colliding target
+  root images. These are necessary conditions, not existence.
+* [#536](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/536)
+  establishes the genuine support-minimal original-global dichotomy:
+  either a selected positive-width geometric root has a collision in
+  its target image, or its left component meets the opposite exclusive
+  side. No global injectivization of the forbidden weak EHN witness.
+* [#540](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/540)
+  uses injectivity **only on the common-root preimage** to exclude
+  the collision alternative and choose an actual mixed geometric piece
+  minimizing the number of nonroot source vertices.
+* [#544](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/544)
+  further refines the collision alternative: if every pair of root
+  vertices lies together in some FULL irreducible source test (possibly
+  extending outside the closed root), the EHN map is injective on that
+  root. Therefore a one-sided minimal obstruction cannot have such
+  pairwise coverage, and the original dichotomy can be stated as
+  **failure of source-side pairwise irreducible-test coverage or a
+  genuine mixed piece**. This is now merged with full Lean CI.
+* [#546](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/546)
+  is a **pending** dependent proof of the single-right-component
+  specialization: with all right-exclusive source vertices connected
+  outside the common-root preimage, the chosen piece cannot be mixed,
+  so its root must fail pairwise irreducible-test coverage; coverage
+  of the whole root preimage rules out that special obstruction.
+  Its independent CI must pass before it can be counted verified.
+
+**Remaining gap unchanged.** Pairwise irreducible-test coverage and
+single-component connectivity are NOT established for arbitrary
+support-minimal forbidden weak witnesses. The truly multicomponent
+proper-piece/flip descent of Claim 2, general
+\`GlobalCanonicalShadowFreeAmalgamation\`, and the unrestricted regular
+Section 3 Ramsey conclusion remain OPEN. The finite-family folded
+construction's strong amalgamation and the irreducible-source Ramsey
+special case are distinct already-verified results. No numbered
+mathematical manuscript edits are authorized by these wiki records.
