@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricConvexOrderRefinement
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.labelFirst_strict_of_label_mono
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.labelFirst_fibre_convex
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.nestedLabelOrder_fine_convex
