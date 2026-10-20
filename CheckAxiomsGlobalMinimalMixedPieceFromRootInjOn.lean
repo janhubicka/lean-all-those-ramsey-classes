@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalMinimalMixedPieceFromRootInjOn
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_exists_minimalMixedPiece_of_rootInjOn
