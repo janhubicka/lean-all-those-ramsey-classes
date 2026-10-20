@@ -1,7 +1,6 @@
 import AllThoseRamseyClasses.Lifts.GlobalForbiddenEHNAvoidance
 import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceJEP
-import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
-import AllThoseRamseyClasses.Lifts.EHNFullSideFactor
+import AllThoseRamseyClasses.Lifts.ConnectedEHNRootAvoidance
 import PartiteConstruction.Functional.FullFreeAmalgam
 
 /-!
@@ -70,45 +69,17 @@ theorem avoidsGlobalFunctionalEHN_emptyFreeAmalgam_connected
     (hB : AvoidsGlobalFunctionalEHN F B) :
     AvoidsGlobalFunctionalEHN F D := by
   intro U Source hFin hF f hf
-  obtain ⟨⟨base⟩, hConn⟩ := hConnected Source hFin hF
+  have hc := hConnected Source hFin hF
   have hNoRoot (x : U) :
       x ∉ weakFreeRootPart (sL := iA) (iL := jA) f := by
     rintro ⟨r, _⟩
     exact isEmptyElim r
-  rcases weakFreePartition_covers hFree f base with
-    hRoot | hLeft | hRight
-  · exact hNoRoot base hRoot
-  · have hAllLeft (x : U) :
-        x ∈ weakFreeLeftPart (sL := iA) (iL := jA) f := by
-      have hPath := hConn base x
-      induction hPath with
-      | refl => exact hLeft
-      | @tail a b hab hedge ih =>
-          exact weakFreePartition_left_step
-            hFree f hf.1 ih (hNoRoot b) hedge
-    have hRange : ∀ x : U, ∃ a : UA, f x = jA a := by
-      intro x
-      obtain ⟨⟨a, ha⟩, _⟩ := hAllLeft x
-      exact ⟨a, ha⟩
-    obtain ⟨g, hg, _⟩ :=
-      ehnHomomorphismEmbedding_factor_full_side hf jA hRange
-    exact (hA Source hFin hF g) hg
-  · have hAllRight (x : U) :
-        x ∈ weakFreeRightPart
-          (sL := iA) (iL := jA) (iR := jB) f := by
-      have hPath := hConn base x
-      induction hPath with
-      | refl => exact hRight
-      | @tail a b hab hedge ih =>
-          exact weakFreePartition_right_step
-            hFree f hf.1 ih (hNoRoot b) hedge
-    have hRange : ∀ x : U, ∃ b : UB, f x = jB b := by
-      intro x
-      obtain ⟨⟨b, hb⟩, _⟩ := hAllRight x
-      exact ⟨b, hb⟩
-    obtain ⟨g, hg, _⟩ :=
-      ehnHomomorphismEmbedding_factor_full_side hf jB hRange
-    exact (hB Source hFin hF g) hg
+  rcases connectedEHN_factor_fullSide_of_avoidsRoot
+      Source hc.1 hc.2 X A B D
+      iA iB jA jB hFree f hf hNoRoot with
+    ⟨g, hg⟩ | ⟨g, hg⟩
+  · exact (hA Source hFin hF g) hg
+  · exact (hB Source hFin hF g) hg
 
 /-- Exact compatibility condition on nullary native data needed to
 form a common FULL empty substructure of any two finite K-members.
