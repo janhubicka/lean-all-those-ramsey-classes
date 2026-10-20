@@ -98,9 +98,13 @@ theorem finiteMetricBaseCrossDistance_twoCross_triangle_left
         (hdU.values y (iU b) (hy b))
         (hpos _ (hdV.values (iV b) z (hz b))).le
     by_cases hab : a = b
-    · subst b
+    · have hLeftBSame :
+          dU (iU a) y ≤
+            finiteMetricBaseCrossDistance S dU dV iU iV y z := by
+        rw [hab]
+        exact hLeftB
       exact (hdU.triangle x (iU a) y).trans
-        (add_le_add hLeftA hLeftB)
+        (add_le_add hLeftA hLeftBSame)
     · have hABne : iU a ≠ iU b := by
         intro heq
         exact hab (hiU heq)
