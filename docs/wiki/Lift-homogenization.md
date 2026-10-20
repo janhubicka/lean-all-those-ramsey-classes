@@ -473,35 +473,53 @@ strong amalgamation, and JEP** package. This is NOT yet its Ramsey
 property. For the original infinite regular family, the proven JEP
 does not imply the missing unconditional strong amalgamation.
 
-### Proofs still undergoing full CI
+### Additional merged source-root and Claim 1 results
 
-Do NOT label these as verified merely because their proof modules
-compile:
+The following have now also completed full Lean CI, were merged on
+20 October, and keep the original native partial-function semantics:
 
 * [#525](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/525):
-  from an actual connected forbidden weak map across two
-  forbidden-free FULL sides, automatically select an authentic
-  **positive-width minimal CLOSED separator piece** whose root
-  lies inside the common-root preimage. The source root enumeration
-  is injective; its image under the weak map need NOT be.
+  selects a genuine **positive-width** forbidden geometric piece from
+  any connected source weak EHN obstruction crossing a full free amalgam
+  of forbidden-free sides. The closed separator is a subset of the
+  common-root PREIMAGE; only the SOURCE root enumeration is injective.
 * [#529](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/529):
-  complete the **conditional** original global Claim 1 minimality
-  contradiction using the already certified common-full-lift flip
-  and exact source support descent. One-sidedness of the selected
-  piece and injectivity of its target root image remain
-  EXPLICIT hypotheses.
+  packages the original quotient-indexed common-full-lift flip, forbidden
+  replacement source, strict A-only SOURCE support decrease, and
+  minimality contradiction, conditional on an actual one-sided piece
+  and target **root-image injectivity**.
 * [#527](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/527):
-  eliminate duplicated connected-source Gaifman path inductions
-  from the global and finite-family lift code without changing
-  exported theorem interfaces or proof hypotheses.
+  extracts the common noninjective connected-source root-avoidance
+  factorization, eliminating duplicate Gaifman-path arguments in the
+  original-global and finite-family folded lift proofs while preserving
+  their established theorem interfaces.
 
-**Still open:** the general selection of a one-sided flippable
-minimal piece OR a collision-tolerant replacement mechanism
-compatible with the printed root-injective global quotient language;
-the multicomponent Claim 2 step; full regular infinite-family
-shadow avoidance; and the unrestricted Section 3 Ramsey theorem.
-Neither root intersection nor positivity of the selected source cut
-implies injectivity of its image in the target.
+New dependent modules awaiting full independent CI and clean-main merge:
+
+* [#530](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/530):
+  the auxiliary *left piece weak EHN factorization* and *common-root
+  coordinate tuple* required by #529 are consequences of genuine
+  one-sidedness and shared-root containment; Claim 1 then forces the
+  selected left component to meet the right-exclusive source region,
+  **provided** its ordered target root images are injective.
+* [#531](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/531):
+  sufficient root-image injectivity when the whole induced function-closed
+  root is IRREDUCIBLE (via EHN's full irreducible-test embedding), and
+  the trivial width-one case; derive Claim 1 without an extra root
+  injectivity premise for these strictly limited root configurations.
+
+**Precise remaining gap:** even for a connected finite forbidden source,
+the minimal function-closed separating root may be reducible and may
+contain distinct source vertices that a weak HE identifies in the
+target. The original distinct-root canonical lift does not record
+such a noninjective tuple. The general selection of a one-sided
+flippable piece or a sound root-image normalization, the genuinely
+multicomponent Claim 2 argument, the unrestricted
+`GlobalCanonicalShadowFreeAmalgamation` theorem for image-closed
+regular families, and the final full Section 3 Ramsey lift theorem
+remain OPEN. In particular no amount of finite-profile counting,
+precompactness, or conditional strong amalgamation discharges
+the missing shadow-avoidance lemma.
 
 All additions remain in the version-controlled research wiki.
 The original numbered mathematical manuscript is frozen.
