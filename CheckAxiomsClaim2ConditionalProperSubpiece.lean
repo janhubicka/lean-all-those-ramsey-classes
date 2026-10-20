@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2ConditionalProperSubpiece
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_geometricPiece_exists_properSubpiece_of_twoBoundaries
