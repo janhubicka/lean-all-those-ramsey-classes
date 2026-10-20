@@ -856,9 +856,48 @@ select the right component or replace the two-boundary lemma.
 It cannot be replaced merely by Claim 1, minimal mixed-piece
 cardinality, root injectivity or the elementary cut proposition.
 
-The later proof reductions [#565](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/565)
+The later reductions [#565](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/565)
 and [#566](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/566)
-are deliberately conditional on selected-pair source geometry;
-this audit explains why that assumption cannot be omitted.
-Their CI status must be checked separately before counting the
-theorems as verified. Numbered manuscript text remains frozen.
+are **merged and full-Lean-CI verified**. Their conditional
+selected-pair source-geometric hypothesis is deliberately retained;
+this source-only countercheck explains why it cannot be omitted
+solely using Claim 1 and mixed-piece size minimality. It does
+NOT refute the manuscript's further unflippable-component argument.
+Numbered manuscript text remains frozen.
+
+
+### Further exact boundary and one-sided-factor tools (pending CI)
+
+The next verification branches distinguish the PURE SOURCE cuts from
+the target EHN factorization needed for a legitimate canonical flip:
+
+* [#570](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/570):
+  for a full native function-closed source cut S and a component C
+  of Source minus S, let T=Cl(N(C)). Then T is itself closed and
+  contained in S, and **the component of Source minus T containing
+  C is exactly C**. The proof uses the actual generated functional
+  closure and the Gaifman boundary no-escape lemma.
+* [#571](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/571):
+  if TWO S-components C,D have the same generated boundary closure
+  T, the exact-component lemma proves that T is an actual
+  inclusion-minimal *function-closed* separator of C and D.
+  For finite sources, it constructs a **genuine geometric piece**
+  with whole root T and selected component precisely C.
+* [#574](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/574):
+  a genuine piece rooted in the common full amalgam seam with
+  NO left-exclusive vertex in its selected component has an actual
+  FULL right-side EHN homomorphism-embedding. In particular this
+  holds when its selected component is exactly an S-component
+  of right-exclusive source vertices. The factorization uses
+  real side cancellation, not a fictitious injective image quotient.
+
+As of writing, these three PRs are **not yet merged** and require
+individual complete CI. Once verified, they can be combined to
+identify genuine *B-only flippable* pieces whenever two distinct
+S-components have matching full generated boundaries. There
+remain significant missing tasks: deriving the requisite matched
+boundaries from the old minimum-mixed/unflippable hypotheses,
+ensuring ordered root-image injectivity in the printed distinct-root
+canonical lift, and proving a strict Claim 2 flip descent in the
+proper minimality parameter. None of these new lemmas asserts the
+unrestricted original global Ramsey theorem.
