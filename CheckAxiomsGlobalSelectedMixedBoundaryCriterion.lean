@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalSelectedMixedBoundaryCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedPieceSelectedBoundaries_of_allPairs
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_no_of_piecewiseCover_selectedBoundaries
