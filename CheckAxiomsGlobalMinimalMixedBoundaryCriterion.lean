@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalMinimalMixedBoundaryCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_no_of_rootInjOn_twoBoundaries
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_no_of_pairCover_twoBoundaries
