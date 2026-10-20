@@ -1,5 +1,5 @@
 import Mathlib.Logic.Equiv.Sum
-import Mathlib.Data.Finite.Defs
+import Mathlib.Basic.Finite.Sum
 
 /-!
 # Concrete vertex carrier for gluing two finite metric spaces over a base
@@ -49,7 +49,16 @@ theorem metricRootedAmalgamVertex_finite
     {A : Type u} {U : Type v} {V : Type w}
     [Finite A] [Finite U] [Finite V]
     (iU : A → U) (iV : A → V) :
-    Finite (MetricRootedAmalgamVertex iU iV) := inferInstance
+    Finite (MetricRootedAmalgamVertex iU iV) := by
+  have hU : Finite (MetricOutsideRoot iU) :=
+    Finite.of_injective
+      (fun x : MetricOutsideRoot iU => x.val) Subtype.val_injective
+  have hV : Finite (MetricOutsideRoot iV) :=
+    Finite.of_injective
+      (fun x : MetricOutsideRoot iV => x.val) Subtype.val_injective
+  letI : Finite (MetricOutsideRoot iU) := hU
+  letI : Finite (MetricOutsideRoot iV) := hV
+  infer_instance
 
 /-- Any injective root map identifies its original carrier
 with one copy of the root plus all the off-root vertices.
