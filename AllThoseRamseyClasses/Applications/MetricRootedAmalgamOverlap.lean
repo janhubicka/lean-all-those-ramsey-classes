@@ -41,6 +41,7 @@ theorem metricRooted_sideOverlap
             exact ⟨a, rfl, rfl⟩
           · rintro ⟨c, ha, hb⟩
             rw [ha, hb]
+            rfl
       | inr q =>
           constructor
           · intro h
