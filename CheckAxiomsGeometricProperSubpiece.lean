@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricProperSubpiece
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_proper_subpiece_of_rightInOldComponent
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_proper_subpiece_strictTotalCount
