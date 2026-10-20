@@ -423,32 +423,103 @@ This needs neither regularity nor an image-closed forbidden family.
 It is a restricted **proved** Ramsey theorem, not the unresolved
 general 2019 Section 3 theorem.
 
-### Active validation and open mathematical gap
+### Additional verified results and remaining general gap
 
-Separate new proofs under CI (do not mark fully certified or merged
-until their full Lean runs pass):
+The following 19 October milestones have since passed FULL Lean CI and
+been merged:
 
 * [#507](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/507):
-  finite full-isomorphism representatives for the **actual regular global
-  maximal-trace AGE** (rather than merely fixed-carrier fibres or
-  global canonical lifts).
+  isomorphism-type precompactness of the **actual hereditary regular
+  global maximal-trace age**, not just finite named-carrier fibres.
 * [#508](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/508):
-  a reusable general full relation-only expansion pullback and
-  full-isomorphism precompactness for the finite-family **folded** age,
-  including repeated root coordinates.
+  full isomorphism-type precompactness of the finite-family folded
+  maximal-trace age, allowing repeated root-image coordinates;
+  exports generic full functional expansion pullback.
 * [#509](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/509):
-  no genuine minimal-separator geometric pieces, hence no global new
-  piece symbols, when all forbidden sources are irreducible.
+  an irreducible forbidden source has no genuine closed minimal
+  separator piece; hence the entire added global piece-symbol type
+  is empty for such forbidden families.
 
-**The unrestricted reducible-source theorem is still open.**
-The exact obligation is `GlobalCanonicalShadowFreeAmalgamation F K`
-with `K=Forb_EHN(F)`: given two allowed FULL native witnesses whose
-entire original global root-injective canonical piece profiles agree
-on the same FULL root, prove that their actual old functional free
-amalgam still avoids F. The printed proof's weak-image
-injectivization does NOT follow from the verified tuple-surjective
-quotient alone, and the multicomponent flip is not yet certified.
-Neither precompactness nor conditional strong AP discharges this
-gap, and the final unrestricted Ramsey theorem has not been proved.
+**The unrestricted reducible-source theorem remains OPEN.**
+Its exact remaining class-level obligation is
+`GlobalCanonicalShadowFreeAmalgamation F K`, with
+`K=Forb_EHN(F)`: equal FULL root-injective global piece profiles
+of two native forbidden-free witnesses must imply that their actual
+native functional free amalgam is forbidden-free. The published
+proof's tuple-surjective weak-image shortcut does NOT give an
+injective witness in the same target. Root-image collisions and the
+multicomponent Claim 2 flip remain unresolved, despite verified
+precompactness and conditional global strong amalgamation.
 
 The numbered 2019 mathematical manuscript remains frozen.
+
+## 20 October: connected-source reductions without injectivization
+
+These **merged, full-CI-verified** steps distinguish two independent
+homogenizations and the exact source-root geometry:
+
+| Result | Verification |
+| --- | --- |
+| Native full JEP of the original regular global maximal-trace age for finite connected nonempty forbidden sources over compatible FULL empty roots | [#511](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/511) |
+| The previous common-empty-root condition is automatic when EVERY original relation and function symbol has positive arity | [#512](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/512) |
+| The finite-family ALL-CLOSED-COMPONENT folded maximal-trace age has full JEP for connected forbidden sources with compatible empty roots, and without a separate root assumption for positive arity | [#517](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/517) |
+| A connected nonempty weak EHN map into a FULL free amalgam which avoids its root factors through one full side; if both sides exclude the forbidden source, every obstruction must HIT the root | [#520](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/520) |
+| The initial three-region partition of the printed proof is VALID without global map injectivity: both exclusive side regions and the shared-root preimage are nonempty; the latter is function-closed and separates opposite exclusive source vertices | [#523](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/523) |
+
+Thus, for finite connected forbidden families in positive-arity native
+languages, the folded maximal-trace age has the kernel-verified
+**heredity, nonempty finite fibres, isomorphism-level precompactness,
+strong amalgamation, and JEP** package. This is NOT yet its Ramsey
+property. For the original infinite regular family, the proven JEP
+does not imply the missing unconditional strong amalgamation.
+
+### Additional merged source-root and Claim 1 results
+
+The following have now also completed full Lean CI, were merged on
+20 October, and keep the original native partial-function semantics:
+
+* [#525](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/525):
+  selects a genuine **positive-width** forbidden geometric piece from
+  any connected source weak EHN obstruction crossing a full free amalgam
+  of forbidden-free sides. The closed separator is a subset of the
+  common-root PREIMAGE; only the SOURCE root enumeration is injective.
+* [#529](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/529):
+  packages the original quotient-indexed common-full-lift flip, forbidden
+  replacement source, strict A-only SOURCE support decrease, and
+  minimality contradiction, conditional on an actual one-sided piece
+  and target **root-image injectivity**.
+* [#527](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/527):
+  extracts the common noninjective connected-source root-avoidance
+  factorization, eliminating duplicate Gaifman-path arguments in the
+  original-global and finite-family folded lift proofs while preserving
+  their established theorem interfaces.
+
+New dependent modules awaiting full independent CI and clean-main merge:
+
+* [#530](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/530):
+  the auxiliary *left piece weak EHN factorization* and *common-root
+  coordinate tuple* required by #529 are consequences of genuine
+  one-sidedness and shared-root containment; Claim 1 then forces the
+  selected left component to meet the right-exclusive source region,
+  **provided** its ordered target root images are injective.
+* [#531](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/531):
+  sufficient root-image injectivity when the whole induced function-closed
+  root is IRREDUCIBLE (via EHN's full irreducible-test embedding), and
+  the trivial width-one case; derive Claim 1 without an extra root
+  injectivity premise for these strictly limited root configurations.
+
+**Precise remaining gap:** even for a connected finite forbidden source,
+the minimal function-closed separating root may be reducible and may
+contain distinct source vertices that a weak HE identifies in the
+target. The original distinct-root canonical lift does not record
+such a noninjective tuple. The general selection of a one-sided
+flippable piece or a sound root-image normalization, the genuinely
+multicomponent Claim 2 argument, the unrestricted
+`GlobalCanonicalShadowFreeAmalgamation` theorem for image-closed
+regular families, and the final full Section 3 Ramsey lift theorem
+remain OPEN. In particular no amount of finite-profile counting,
+precompactness, or conditional strong amalgamation discharges
+the missing shadow-avoidance lemma.
+
+All additions remain in the version-controlled research wiki.
+The original numbered mathematical manuscript is frozen.
