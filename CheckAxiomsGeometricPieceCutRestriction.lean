@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GeometricPieceCutRestriction
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_intersectClosedCut_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_root_subset_intersectCut
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_component_intersectCut_eq
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_intersectCut_separates
