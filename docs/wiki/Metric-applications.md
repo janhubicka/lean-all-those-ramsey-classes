@@ -802,23 +802,52 @@ Both one-cross mixed triangles are certified; all of these
 statements use actual S-valued metrics and **ordinary real**
 triangle inequalities, not a guessed associative abstract monoid.
 
-**Under validation, not yet promoted to verified:** the remaining
-two-cross-distance triangle is being decomposed into the independent
-rounded scalar inequality [#533](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/533),
-the genuine same-side geometric triangle with possibly distinct
-minimizing base points [#535](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/535),
-and the swapped other-side counterpart [#537](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/537).
-The separate cross/base triangles are under audit in
-[#538](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/538).
+**All finite-root metric triangles are now verified.** The
+scalar/two-cross work in [#533](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/533),
+[#535](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/535),
+[#537](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/537)
+and the cross/base cases
+[#538](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/538)/
+[#543](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/543)
+all passed full Lean CI and merged. The complete actual
+identified-root carrier is in [#541](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/541);
+the exact distance table has a zero diagonal, symmetry and positive
+S-values by [#542](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/542).
+The remaining real metric triangles, in all 27 possible location
+patterns, are assembled into a genuine `MetricOn S` theorem in
+[#547](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/547)
+(full CI [39414556962](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/39414556962)).
+Both original sides embed **isometrically** by
+[#545](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/545);
+their images overlap **only on the prescribed root** by
+[#548](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/548).
+This closes the **finite nonempty-base METRIC strong amalgamation**,
+with exact old metrics and no accidental identifications.
 
-After these, an identified-base **pushout carrier** must still be
-constructed and checked for all metrics with base vertices,
-injective side maps, extension of compatible old distances, and
-the resulting metric convex linear order. The partial closure
-functions `F_j` and exact weak local completion must then be
-treated. None of the certified scalar/triangle fragments by itself
-proves class-level strong amalgamation or the finite S-metric
-Ramsey theorem.
+**The order and functions remain separate.**
+[#553](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/553)
+(full CI [39473087370](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/39473087370))
+constructs an ordinary common linear order extending both original
+orders. That alone is **not jump-convex**: take S={1,3}, root {r},
+left ordered r<x<v with d(r,x)=1 and d(r,v)=d(x,v)=3,
+and right ordered r<y with d(r,y)=1. The private-priority order
+r<x<v<y separates the j=1 class {r,x,y} by v.
+
+The precise class geometry is stronger. The checked
+[#557](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/557)
+(full CI [39474380725](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/39474380725))
+proves that any two original vertices on opposite sides are
+j-close at a proper jump exactly when a COMMON root vertex is
+j-close to both, including endpoints that already lie in the
+root. PR [#560](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/560)
+separately constructs the exact union of the two side j-classes
+above each root class; as of this note it remains under CI.
+The proof plan
+[for recursively amalgamating the finite nested jump classes](../metric-rooted-convex-order-proof-20261020.md)
+was merged in [#558](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/558).
+It is a **standalone English proof plan**, not a Lean validation of
+the compatible convex order. It explicitly replaces the invalid
+idea of ordering all private vertices by one global root-cut key.
 
 ## Remaining metric Ramsey work
 
@@ -831,12 +860,19 @@ modules referenced above. The remaining target is the class-level
 strong amalgamation and **exact weak local completion** of the
 completed ordered-functional metric class, followed by the
 finite metric Ramsey arrow and finite-to-arbitrary-distance transfer.
-The finite nonempty-base geometric pushout is being built through
-the now-verified shortest-path lemmas. For finite S, the paper's
+The complete finite-root metric pushout and exact root-overlap
+are proved; the compatible **jump-convex** root order, all F_j
+closure-function assignments on arbitrary auxiliary amalgamation
+sources, and the exact weak local-completion cutoff remain open.
+For finite S, the paper's
 block-convexity is identified with jump-threshold convexity and
 transports across finite capped subsets. Infinite-S blocks may
 lack maxima, so the infinite-S interpretation remains separate.
 
-The old scalar finite-generation TODO in the manuscript's review material
-is superseded by the new component certificate once PR #244 passes the full
-CI gates. The full `prop:Smetric` and `thm:Smetric` remain partial.
+The finite semigroup-generation theorem in #244 has already passed
+the full CI gates, and the manuscript's nonprinting markers have
+been updated. The candidate **printed proof replacement** is a separate
+author-review change; neither the full `prop:Smetric` Ramsey-arrow
+transfer nor `thm:Smetric` is yet completely certified.
+See the manuscript's proof-difference ledger for the distinction
+between alternative verified constructions and the exact printed proof.
