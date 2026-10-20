@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalConnectedForbiddenJEP
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_emptyFreeAmalgam_connected
+#print axioms AllThoseRamseyClasses.Lifts.globalNativeFiniteJEP_connected_of_emptyRoots
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_JEP_connected_of_emptyRoots
