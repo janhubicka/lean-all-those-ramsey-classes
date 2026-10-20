@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteRootTwoCrossRight
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_swap
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_twoCross_triangle_right
