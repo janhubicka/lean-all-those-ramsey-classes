@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamDistance
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedShortestDistance_diag
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedShortestDistance_symm
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedShortestDistance_values
