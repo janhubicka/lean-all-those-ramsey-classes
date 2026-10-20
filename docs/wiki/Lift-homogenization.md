@@ -559,12 +559,11 @@ older provisional status in this chronology.
   **failure of source-side pairwise irreducible-test coverage or a
   genuine mixed piece**. This is now merged with full Lean CI.
 * [#546](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/546)
-  is a **pending** dependent proof of the single-right-component
-  specialization: with all right-exclusive source vertices connected
-  outside the common-root preimage, the chosen piece cannot be mixed,
-  so its root must fail pairwise irreducible-test coverage; coverage
-  of the whole root preimage rules out that special obstruction.
-  Its independent CI must pass before it can be counted verified.
+  is **merged and full-CI verified**: with all right-exclusive source
+  vertices connected outside the common-root preimage, the chosen
+  piece cannot be mixed, so its root must fail pairwise irreducible-test
+  coverage; coverage of the whole root preimage rules out that special
+  obstruction. Its conclusion remains restricted to this case.
 
 **Remaining gap unchanged.** Pairwise irreducible-test coverage and
 single-component connectivity are NOT established for arbitrary
@@ -575,3 +574,51 @@ Section 3 Ramsey conclusion remain OPEN. The finite-family folded
 construction's strong amalgamation and the irreducible-source Ramsey
 special case are distinct already-verified results. No numbered
 mathematical manuscript edits are authorized by these wiki records.
+
+
+## Claim 2 audit after the original-global one-component reduction
+
+The original printed Claim 2 (in \`ramsey.tex\`,
+\`lem:amalgamationstr\`) is more than an assertion about disconnected
+Gaifman components. It selects a smallest genuinely mixed piece
+\`(P,R)\`, tries to flip proper sub-pieces of the opposite exclusive
+colour, and uses neighbourhood closures to produce a **proper
+sub-piece of the original forbidden source**. Source-map collisions
+make the original root-injective piece predicates inapplicable to
+some of these flips.
+
+The next independently auditable certificates are:
+
+* [#549](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/549)
+  (**pending CI and merge**) packages an unconditional source-matched
+  dichotomy at a minimum of actual left-exclusive source support:
+  either a genuine closed separating root is **not** pairwise covered
+  by irreducible full source tests, or two right-exclusive source
+  vertices belong to different source-minus-common-root Gaifman
+  components. The latter follows from the literal minimal-cut path
+  obstruction, not from target injectivity. The theorem also selects
+  a support-minimal witness from arbitrary witness existence.
+* [#550](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/550)
+  (**pending CI and merge**) proves the nested-cut set-theoretic
+  descent for an actual mixed source piece: if \`R ⊆ S\`, the
+  left component of \`F\\setminus S\` is a **proper subset** of the
+  selected left component of \`F\\setminus R\`, and has strictly
+  fewer vertices when \`F\` is finite. The proof uses genuine
+  Gaifman reachability and the monochromatic source components
+  outside \`S\`, with no image quotient.
+
+**Crucial distinction:** the last proper inclusion does **not**
+produce a proper *geometric forbidden sub-piece*. The full root
+preimage \`S\` is closed but need not be an inclusion-minimal
+separator, nor is \`S\` automatically contained in the original
+selected piece \`P\`. To finish the printed Claim 2 one must
+construct a genuine minimal function-closed root and a component
+\`Q\` contained in \`P\`, preserve the exact source functional
+structure, and prove that \`Q\` is either a smaller mixed forbidden
+piece or can be flipped while preserving a forbidden EHN witness.
+This final step must also handle possibly coinciding target images
+of distinct root vertices. Neither #549 nor #550 asserts it.
+
+The numbered manuscript and its editorially sensitive statements
+remain frozen. These records track mathematical lemmas, not a
+claim that Section 3 is fully verified.
