@@ -69,11 +69,26 @@ theorem minimalClosedSeparator_of_matchingComponentBoundaries
       componentFrom A.graph T xT =
         componentFrom A.graph S x :=
     componentBoundaryClosure_preserves_exact_component A S hS x
+  have hBoundaryY :
+      gaifmanNeighborhood A.graph
+        (componentFrom A.graph S y) ⊆ T := by
+    intro z hz
+    have hzInY : z ∈ A.functionClosure
+        (gaifmanNeighborhood A.graph
+          (componentFrom A.graph S y)) :=
+      A.subset_functionClosure
+        (gaifmanNeighborhood A.graph
+          (componentFrom A.graph S y)) hz
+    simpa only [hSameBoundary] using hzInY
   have hCy :
       componentFrom A.graph T yT =
         componentFrom A.graph S y := by
-    simpa only [hSameBoundary] using
-      (componentBoundaryClosure_preserves_exact_component A S hS y)
+    apply Set.Subset.antisymm
+    · intro z hz
+      exact reachOutside_stays_in_avoid_boundary
+        A.graph T (componentFrom A.graph S y) yT
+        (componentFrom_root A.graph S y) hBoundaryY hz.2
+    · exact componentFrom_subset_of_cut_subset A.graph hTS y
   have hSepT : ¬ ReachOutside A.graph T xT yT := by
     intro hPath
     have hyCxT : y.1 ∈ componentFrom A.graph T xT :=
@@ -83,7 +98,6 @@ theorem minimalClosedSeparator_of_matchingComponentBoundaries
   apply minimalClosedSeparator_of_bothBoundaries_eq
     A T hClosedT xT yT hSepT
   · rw [hCx]
-    rfl
   · rw [hCy]
     exact hSameBoundary
 
@@ -122,13 +136,15 @@ theorem finite_matchingComponentBoundaries_hasGeometricPiece
       A S hS x y hNotReach hSameBoundary
   obtain ⟨n, d, hRoots, hLeft, hRight⟩ :=
     finiteMinimalClosedSeparator_toGeometricChart A T xT yT hMin
-  have hLeftEq : d.left = outsideCutMap hTS x := by
-    apply Subtype.ext
-    exact hLeft
   have hComp :
       componentFrom A.graph (Set.range d.roots) d.left =
         componentFrom A.graph S x := by
-    rw [hRoots, hLeftEq]
+    -- Transport the dependent root subtype before identifying its
+    -- two surviving distinguished vertices.
+    cases hRoots
+    have hLeftEq : d.left = outsideCutMap hTS x :=
+      Subtype.ext hLeft
+    rw [hLeftEq]
     exact componentBoundaryClosure_preserves_exact_component
       A S hS x
   exact ⟨n, d, by simpa only [hRoots] using hTS,
