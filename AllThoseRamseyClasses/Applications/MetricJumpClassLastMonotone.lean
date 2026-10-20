@@ -159,4 +159,75 @@ theorem metricJumpClassLast_mono
         y (metricJumpClassLast hpos hd j hj y)
         hmemX hmemY hClose hlt)
 
+/-- Taking the last member of a j-class twice changes nothing:
+the selected maximum lies in the original threshold class. -/
+theorem metricJumpClassLast_idempotent
+    {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hpos : Positive S) (hS : WellDefined S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (j : ℝ) (hj : Jump S j) (x : V) :
+    metricJumpClassLast hpos hd j hj
+        (metricJumpClassLast hpos hd j hj x) =
+      metricJumpClassLast hpos hd j hj x :=
+  metricJumpClassLast_eq_of_close hpos hS hd j hj
+    (metricJumpClassLast hpos hd j hj x) x
+    (metricJumpClassLast_mem hpos hd j hj x)
+
+/-- Concrete finite representatives of the j-classes: precisely
+the fixed points of the last-member map. They inherit the
+original linear order, with no chosen quotient order. -/
+abbrev MetricJumpClassRep
+    {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hpos : Positive S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (j : ℝ) (hj : Jump S j) : Type u :=
+  {x : V // metricJumpClassLast hpos hd j hj x = x}
+
+/-- The actual j-class label of an original vertex, as a point
+of the finite, linearly ordered class-representative carrier. -/
+noncomputable def metricJumpClassTag
+    {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hpos : Positive S) (hS : WellDefined S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (j : ℝ) (hj : Jump S j) (x : V) :
+    MetricJumpClassRep hpos hd j hj :=
+  ⟨metricJumpClassLast hpos hd j hj x,
+    metricJumpClassLast_idempotent hpos hS hd j hj x⟩
+
+/-- Equality of canonical class representatives is equivalent
+to the genuine metric j-threshold equivalence. -/
+theorem metricJumpClassTag_eq_iff_close
+    {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hpos : Positive S) (hS : WellDefined S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (j : ℝ) (hj : Jump S j) (x y : V) :
+    metricJumpClassTag hpos hS hd j hj x =
+      metricJumpClassTag hpos hS hd j hj y ↔
+        d x y ≤ j := by
+  constructor
+  · intro h
+    exact metricJumpClassLast_close_of_eq hpos hS hd j hj x y
+      (congrArg Subtype.val h)
+  · intro h
+    apply Subtype.ext
+    exact metricJumpClassLast_eq_of_close hpos hS hd j hj x y h
+
+/-- Class labels are monotone along the original j-convex order.
+This is exactly the hypothesis required for lexicographic
+refinement while preserving old side orders. -/
+theorem metricJumpClassTag_mono
+    {S : Set ℝ} {V : Type u}
+    [Finite V] [LinearOrder V]
+    (hpos : Positive S) (hS : WellDefined S)
+    {d : V → V → ℝ} (hd : MetricOn S d)
+    (hconv : JumpConvex S d)
+    (j : ℝ) (hj : Jump S j) :
+    Monotone (metricJumpClassTag hpos hS hd j hj) := by
+  intro x y hxy
+  exact metricJumpClassLast_mono hpos hS hd hconv j hj hxy
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
