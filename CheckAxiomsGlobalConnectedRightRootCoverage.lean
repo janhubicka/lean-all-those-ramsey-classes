@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalConnectedRightRootCoverage
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_uncoveredRoot_of_connectedRight
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_no_connectedRight_of_pairCover
