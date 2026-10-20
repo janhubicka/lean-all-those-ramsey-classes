@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteBaseShortestCross
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_attained
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_mem
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_le_jump_iff_witness
