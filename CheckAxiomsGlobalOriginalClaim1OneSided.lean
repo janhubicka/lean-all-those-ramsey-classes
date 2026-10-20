@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalClaim1OneSided
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalWitness_noOneSidedPiece_of_rootInjective
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalWitness_pieceMeetsRight_of_rootInjective
