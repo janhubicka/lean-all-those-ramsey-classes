@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamVertex
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedAmalgamVertex_finite
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricSideEquiv
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedLeft_injective
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedRight_injective
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_sides_agree_on_root
