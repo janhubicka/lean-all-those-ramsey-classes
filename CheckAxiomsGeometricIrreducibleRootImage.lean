@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeometricIrreducibleRootImage
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricRootImage_injective_of_irreducibleClosedRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricRootImage_injective_widthOne
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalWitness_pieceMeetsRight_of_irreducibleRoot
