@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalMinimalForbiddenObstructionDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_collidingRoot_or_mixedPiece
