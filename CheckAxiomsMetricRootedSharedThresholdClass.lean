@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricRootedSharedThresholdClass
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_rootThresholdClass_eq_union
