@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.MatchingBoundaryGeometricPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalClosedSeparator_of_matchingComponentBoundaries
+#print axioms AllThoseRamseyClasses.Lifts.finite_matchingComponentBoundaries_hasGeometricPiece
