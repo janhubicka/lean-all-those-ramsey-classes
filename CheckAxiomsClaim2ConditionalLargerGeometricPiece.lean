@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ConditionalLargerGeometricPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_exists_strictlyLargerMinimalClosedSeparator
+#print axioms AllThoseRamseyClasses.Lifts.finite_geometricPiece_strictComponentDescent_of_boundaries
