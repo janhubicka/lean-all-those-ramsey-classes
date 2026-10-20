@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalPiecewiseRootCoverageCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricRootImage_injective_of_piecewiseCover
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_no_of_piecewiseCover_twoBoundaries
