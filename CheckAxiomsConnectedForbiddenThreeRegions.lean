@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ConnectedForbiddenThreeRegions
+
+#print axioms AllThoseRamseyClasses.Lifts.ehnWitness_bothExclusiveRegions_nonempty
+#print axioms AllThoseRamseyClasses.Lifts.globalForbiddenConnectedWitness_threeRegions
