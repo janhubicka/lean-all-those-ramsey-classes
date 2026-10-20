@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteRootBaseCrossTriangle
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.distanceSum_base_cross_triangle_bound
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_le_base_path
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_left_base_triangle
