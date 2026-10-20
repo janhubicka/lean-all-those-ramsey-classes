@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.IrreducibleTestRootCollisions
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_injOn_of_rootPairsCoveredByIrreducibleTests
+#print axioms AllThoseRamseyClasses.Lifts.geometricRootImage_injective_of_pairwiseIrreducibleTestCover
+#print axioms AllThoseRamseyClasses.Lifts.geometricRoot_not_pairwiseIrreducibleTestCovered_of_collision
