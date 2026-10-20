@@ -139,13 +139,16 @@ theorem finite_componentBoundary_hasGeometricPiece_of_partner
   obtain ⟨n, d, hRoot, hLeft, hRight⟩ :=
     finiteMinimalClosedSeparator_toGeometricChart
       A T (outsideCutMap hTS x) y hMin'
-  have hLeftEq : d.left = outsideCutMap hTS x := by
-    apply Subtype.ext
-    exact hLeft
   have hComp :
       componentFrom A.graph (Set.range d.roots) d.left =
         componentFrom A.graph S x := by
-    rw [hRoot, hLeftEq]
+    -- First transport the whole dependent subtype along the
+    -- chart's literal root-set equality. An ordinary rw is
+    -- insufficient because the type of d.left depends on it.
+    cases hRoot
+    have hLeftEq : d.left = outsideCutMap hTS x :=
+      Subtype.ext hLeft
+    rw [hLeftEq]
     exact hCx
   exact ⟨n, d, hRoot, by simpa only [hRoot] using hTS,
     hLeft, hRight, hComp⟩
