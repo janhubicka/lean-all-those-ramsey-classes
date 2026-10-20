@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteRootCrossGeometry
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_pos_mem
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteMetricBaseCrossDistance_le_jump_iff
