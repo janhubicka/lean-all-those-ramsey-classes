@@ -640,3 +640,79 @@ of distinct root vertices. Neither #549 nor #550 asserts it.
 The numbered manuscript and its editorially sensitive statements
 remain frozen. These records track mathematical lemmas, not a
 claim that Section 3 is fully verified.
+
+
+## 20 October evening: localizing the genuine Claim 2 proper-subpiece step
+
+The printed proof of \`lem:amalgamationstr\` uses a globally smallest
+mixed *source-attached* piece \`P=R∪C\`. Its Claim 2 argument needs
+two components \`A',B'\` of the original forbidden source outside
+\`S=F_X\`, both lying in \`C\`, with the decisive inclusions
+
+\`\`\`
+R ⊆ Cl_F(N_F(A')) ∩ Cl_F(N_F(B')).
+\`\`\`
+
+These inclusions are **not** consequences of the already formalized
+minimal-separator proposition by themselves: that proposition gives
+boundary closure equalities for a pair of components after deleting
+the *same minimal cut*. Here \`A',B'\` are components after deleting
+the potentially larger, different cut \`S\`.
+
+The following exact geometric statements are now **merged with full
+Lean CI and axiom audits**:
+
+* [#550](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/550):
+  within an actual mixed piece, replacing the old root by the full
+  common-root preimage strictly shrinks its selected component, in
+  the SOURCE graph, and strictly lowers finite component cardinality
+* [#551](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/551):
+  every smaller function-closed cut separating components of a
+  larger cut contains the intersection of their two generated
+  neighbourhood closures
+* [#552](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/552):
+  assuming the two displayed boundary inclusions for chosen x,y,
+  finite minimal-cut selection produces a GENUINE source-attached
+  geometric piece with strictly larger root and strictly smaller
+  selected nonroot component
+* [#554](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/554):
+  intersecting the larger source cut with the original geometric
+  piece is function-closed and preserves EXACTLY the components of
+  x,y in the original selected old component; the new cut separates
+  them exactly as before
+
+The following proofs are **pending full CI and integration**:
+
+* [#555](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/555):
+  a source-attached new geometric piece whose root stays inside
+  the old piece, whose selected component is inside the old
+  component and whose opposite distinguished vertex is inside the
+  old component, is a literal **PROPER sub-piece** (including the
+  entire new root), with strict total vertex count
+* [#556](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/556):
+  compose #552, #554 and #555 so the new root stays INSIDE the
+  old piece. Under the same two boundary inclusions this produces
+  an ACTUAL proper geometric sub-piece in the paper's sense, not
+  merely a smaller abstract connected set
+* [#559](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/559):
+  under (i) injectivity of the original weak EHN source map on S
+  and (ii) the exact two-boundary condition for a size-minimal
+  mixed source piece, the new strict descent followed by verified
+  Claim 1 produces a smaller genuine mixed piece, a contradiction
+  to minimality; also gives a source intrinsic variant using
+  pairwise full irreducible-test coverage of S
+
+**Remaining major mathematical obligations.** The two displayed
+boundary inclusions have NOT been established for the actual
+unflippable \`B'\` and selected \`A'\` in the printed Claim 2.
+Moreover weak EHN maps may identify root vertices, and the
+original canonical lift records only distinct-root image tuples.
+Even if the boundary argument is completed, either the
+root-image normalization must be justified under the printed
+image-closure hypothesis or the flip must be repaired to handle
+collisions without destroying regular-infinite-family
+precompactness. The unrestricted original-global strong
+amalgamation and Ramsey theorems remain OPEN.
+
+The numbered manuscript is frozen; this is only a validation
+record, not an erratum or a claim of completed certification.
