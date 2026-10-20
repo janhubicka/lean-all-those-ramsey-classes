@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalClaim1Minimality
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_noOneSidedInjectiveRootPiece
