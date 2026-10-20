@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
+
+#print axioms AllThoseRamseyClasses.Lifts.gaifmanPath_to_emptyCutReach
+#print axioms AllThoseRamseyClasses.Lifts.globalConnectedForbiddenWitness_hasPositivePiece
