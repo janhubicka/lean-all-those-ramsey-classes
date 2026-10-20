@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamLinearOrder
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedLinearOrder_exists
