@@ -75,6 +75,8 @@ theorem metricRooted_rootThresholdClass_eq_union
   ext p
   constructor
   · intro hp
+    change metricRootedShortestDistance S iU iV dU dV
+      p (.inl a) ≤ j at hp
     rcases metricRooted_covers iU iV hiU hiV p with
       ⟨x, hx⟩ | ⟨z, hz⟩
     · have hDist := hp
