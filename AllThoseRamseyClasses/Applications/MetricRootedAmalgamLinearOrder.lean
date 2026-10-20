@@ -56,6 +56,7 @@ private theorem metricRootCut_strict_after_root
     [Fintype A] [LinearOrder X]
     (i : A → X) (a : A) (x : X) (h : i a < x) :
     metricRootCut i (i a) < metricRootCut i x := by
+  classical
   unfold metricRootCut
   apply Finset.card_lt_card
   apply Finset.ssubset_iff.mpr
