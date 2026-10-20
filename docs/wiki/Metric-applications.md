@@ -764,6 +764,47 @@ Convexity of all completed jump classes and preservation
 of this order under lifted embeddings remain separate
 proof obligations.
 
+## 20 October: ordered empty base and finite-base shortest-path interfaces
+
+**Completed and full-CI verified:** [PR #516](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/516)
+(merge `5ec658e0`, `MetricEmptyBaseOrderedAmalgamation.lean`).
+The verified separated metric on the disjoint sum U ⊕ V can be equipped
+with a *genuine* linear sum order, old U vertices first and old V
+vertices second, retaining each side order exactly. At every proper
+jump j of S, the cross distance is `max S > j`, so a j-class is
+contained wholly in one side. Convexity of the two original orders
+therefore gives `separatedSumDistance_jumpConvex`. For finite
+positive four-values S the checked equivalence between threshold
+convexity and literal maximal-no-jump **paper block convexity**
+gives `separatedSumDistance_paperBlockConvex`, including empty
+summands. The former `MetricEmptyBaseAmalgamation` already verifies
+all ordinary metric triangles and S-valuedness of this separated
+distance. This now closes the **ordered metric** empty-base branch,
+not the completed F_j partial-function amalgamation.
+
+**In progress, not yet promoted to verified:** finite nonempty-base
+rounded shortest-path gluing is split into explicit, independently
+testable lemmas:
+
+| Draft PR | Precise open-to-validation result |
+| --- | --- |
+| [#518](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/518) | A finite nonempty base has an attained minimum `min_a(p(a) ⊕ q(a))`; automatically discharges the lower-bound and attainment assumptions in the earlier crossing-witness theorem |
+| [#519](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/519) | Cross-minimum symmetry and positive allowed S-value bounds, even when minimizing base points differ |
+| [#521](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/521) | Geometric specialization to actual metric endpoints outside the embedded base: cross distance ≤ j iff a common base point lies within j of both |
+| [#522](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/522) | Scalar real triangle law `x ⊕ c ≤ a + (b ⊕ c)` when `x≤a+b` and operands lie in S |
+| [#524](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/524) | Mixed triangle `δ(x,z) ≤ d_U(x,y)+δ(y,z)` for two off-base left endpoints |
+| [#526](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/526) | Mirrored mixed triangle `δ(x,z) ≤ δ(x,y)+d_V(y,z)` for two off-base right endpoints |
+
+The essential remaining geometric cases are the WITHIN-SIDE
+distance bounded by **two cross distances**, exact preservation
+of the original distances when the two sides are identified on
+a compatible metric base, and simultaneous construction of a
+convex order extending both side orders. After that the canonical
+partial-function closure assignments and exact weak local-completion
+cutoff must be verified. Consequently **no nonempty-base metric
+strong amalgam and no finite metric Ramsey theorem is claimed
+by the partial proofs above**.
+
 ## Remaining metric Ramsey work
 
 The scalar reduction does not construct a Ramsey witness or a class-level
