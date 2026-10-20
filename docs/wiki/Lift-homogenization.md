@@ -716,3 +716,37 @@ amalgamation and Ramsey theorems remain OPEN.
 
 The numbered manuscript is frozen; this is only a validation
 record, not an erratum or a claim of completed certification.
+
+
+### A five-vertex graph sanity check for the missing boundary step
+
+The two-boundary hypothesis above cannot be derived from the
+*minimality of the old separating root alone*. For example, take the
+ordinary undirected path on five vertices
+
+\`\`\`
+d -- r -- a -- c -- b
+\`\`\`
+
+with no functions. The set \`R={r}\` is an inclusion-minimal
+closed separator of \`d\` from \`a\` (every set is function-closed).
+Its selected \`a\`-component is \`C={a,c,b}\`, and the old piece
+has vertices \`P={r,a,c,b}\`. Now enlarge the deleted set to
+\`S={r,c}\`. The two vertices \`a,b\` belong to the same old
+component \`C\`, but to different components \`A'={a}\` and
+\`B'={b}\` after deleting \`S\`. We have \`r∈N(A')\`, yet
+\`r∉N(B')\`; with no functions, generated closure is the
+identity. Thus
+
+\`\`\`
+R ⊈ Cl(N(B')).
+\`\`\`
+
+This is **not** a counterexample to the printed Claim 2 or to
+the theorem: the example has not been equipped with the full
+minimal-forbidden-EHN-witness, compatible global canonical lifts,
+or globally smallest mixed-piece and unflippable-component
+hypotheses. It only rules out a tempting but invalid shortcut
+from the general minimal-separator proposition to the special
+two-boundary conclusion. Any complete proof must use those
+additional minimality/flip hypotheses in an essential way.
