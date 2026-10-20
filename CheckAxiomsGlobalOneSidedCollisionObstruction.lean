@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOneSidedCollisionObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalOneSidedPiece_rootImagesCollide
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalOneSidedPiece_hasReducibleCollidingRoot
