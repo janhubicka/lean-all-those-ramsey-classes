@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricJumpClassLastMonotone
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClassLast_eq_of_close
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClassLast_close_of_eq
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClassLast_mono
