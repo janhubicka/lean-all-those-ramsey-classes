@@ -590,7 +590,7 @@ some of these flips.
 The next independently auditable certificates are:
 
 * [#549](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/549)
-  (**pending CI and merge**) packages an unconditional source-matched
+  (**merged and fully CI-verified, #549**) packages an unconditional source-matched
   dichotomy at a minimum of actual left-exclusive source support:
   either a genuine closed separating root is **not** pairwise covered
   by irreducible full source tests, or two right-exclusive source
@@ -606,6 +606,24 @@ The next independently auditable certificates are:
   fewer vertices when \`F\` is finite. The proof uses genuine
   Gaifman reachability and the monochromatic source components
   outside \`S\`, with no image quotient.
+
+
+* [#551](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/551)
+  (**pending CI and merge**) isolates the EXACT two-sided
+  boundary-closure implication used in the printed Claim 2.
+  If \`C_x,C_y\` are components after deleting a larger cut \`R\`,
+  and \`S ⊆ R\` is a smaller function-closed cut still separating
+  them, then
+  \`Cl(N(C_x)) ∩ Cl(N(C_y)) ⊆ S\`.
+  This follows from the existing functional boundary-closure
+  transport into the two disjoint components outside \`S\`.
+  Consequently, any proposed old piece root contained in both
+  boundary closures must lie in the new separating cut.
+
+  **Not yet proved:** the old root of the minimal mixed piece
+  actually lies in both boundary closures of the chosen source
+  components, the premise needed to use this new theorem in the
+  manuscript's \`R' ⊆ C\` argument.
 
 **Crucial distinction:** the last proper inclusion does **not**
 produce a proper *geometric forbidden sub-piece*. The full root
