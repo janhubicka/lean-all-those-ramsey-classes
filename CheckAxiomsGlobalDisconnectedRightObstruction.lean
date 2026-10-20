@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalDisconnectedRightObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_uncoveredRoot_or_disconnectedRight
+#print axioms AllThoseRamseyClasses.Lifts.globalForbiddenWitness_exists_uncoveredRoot_or_disconnectedRight
