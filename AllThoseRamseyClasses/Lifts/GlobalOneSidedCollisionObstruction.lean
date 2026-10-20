@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Lifts.GeometricIrreducibleRootImage
-import Mathlib.Tactic.Omega
+import Mathlib.Tactic
 
 /-!
 # The exact obstruction to original global Claim 1 for a one-sided piece
