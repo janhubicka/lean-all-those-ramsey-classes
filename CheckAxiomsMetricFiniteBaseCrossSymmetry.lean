@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteBaseCrossSymmetry
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_comm
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_pos
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteBaseShortestDistance_le_upper
