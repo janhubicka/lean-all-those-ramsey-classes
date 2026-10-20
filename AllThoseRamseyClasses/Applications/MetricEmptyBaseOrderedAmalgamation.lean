@@ -142,10 +142,10 @@ theorem separatedSumDistance_jumpConvex
   | inr a =>
     cases c with
     | inl c =>
-      have hAC : (Sum.inr a : U ⊕ V) ≤ Sum.inl c :=
-        hab.trans hbc
-      exact False.elim (separatedSumLinearOrder_not_inr_le_inl
-        (U := U) (V := V) a c hAC)
+      -- Both endpoints lie on opposite sides, so their distance is
+      -- the maximal S-distance and exceeds every proper jump.
+      change m ≤ j at hac
+      exact False.elim ((not_le.mpr (jump_lt_max hmax hj)) hac)
     | inr c =>
       cases b with
       | inl b =>
