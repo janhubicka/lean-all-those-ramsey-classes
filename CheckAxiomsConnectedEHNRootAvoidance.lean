@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.ConnectedEHNRootAvoidance
+
+#print axioms AllThoseRamseyClasses.Lifts.connectedEHN_factor_fullSide_of_avoidsRoot
