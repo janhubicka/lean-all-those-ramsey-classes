@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.WeakMixedPieceStrictComponent
+
+#print axioms AllThoseRamseyClasses.Lifts.weakMixedPiece_fullRootComponent_proper
+#print axioms AllThoseRamseyClasses.Lifts.weakMixedPiece_fullRootComponent_strictCount
