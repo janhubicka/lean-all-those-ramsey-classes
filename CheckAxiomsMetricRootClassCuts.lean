@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricRootClassCuts
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.rootClassCut_mono
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.rootClassCut_strict_after_root
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.rootClassCut_root_agree
