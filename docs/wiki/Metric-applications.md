@@ -782,44 +782,60 @@ all ordinary metric triangles and S-valuedness of this separated
 distance. This now closes the **ordered metric** empty-base branch,
 not the completed F_j partial-function amalgamation.
 
-**In progress, not yet promoted to verified:** finite nonempty-base
-rounded shortest-path gluing is split into explicit, independently
-testable lemmas:
+**Complete Lean build, axiom audit and admission scan passed** for
+the following independently importable nonempty-base components,
+now all merged on `main`:
 
-| Draft PR | Precise open-to-validation result |
+| Verified PR | Exported result and scope |
 | --- | --- |
-| [#518](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/518) | A finite nonempty base has an attained minimum `min_a(p(a) ⊕ q(a))`; automatically discharges the lower-bound and attainment assumptions in the earlier crossing-witness theorem |
-| [#519](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/519) | Cross-minimum symmetry and positive allowed S-value bounds, even when minimizing base points differ |
-| [#521](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/521) | Geometric specialization to actual metric endpoints outside the embedded base: cross distance ≤ j iff a common base point lies within j of both |
-| [#522](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/522) | Scalar real triangle law `x ⊕ c ≤ a + (b ⊕ c)` when `x≤a+b` and operands lie in S |
-| [#524](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/524) | Mixed triangle `δ(x,z) ≤ d_U(x,y)+δ(y,z)` for two off-base left endpoints |
-| [#526](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/526) | Mirrored mixed triangle `δ(x,z) ≤ δ(x,y)+d_V(y,z)` for two off-base right endpoints |
+| [#518](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/518) | A finite nonempty base has an attained minimum `min_a(p(a) ⊕ q(a))`; the old abstract j-crossing theorem's minimum/attainment premises follow automatically |
+| [#519](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/519) | Cross-minimum symmetry, actual S-membership, strictly positive off-side distances and bounds by a common maximum |
+| [#521](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/521) | For genuine S-metric endpoints outside the embedded finite root, cross distance ≤ j iff some base point is within j of both endpoints |
+| [#522](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/522) | Scalar real triangle `x ⊕ c ≤ a + (b ⊕ c)` for S-valued x,a,b,c with x≤a+b, derived from the real-supremum rounded operation |
+| [#524](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/524) | Actual one-cross mixed triangle `δ(x,z) ≤ d_U(x,y)+δ(y,z)` for two off-base LEFT endpoints |
+| [#526](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/526) | Mirrored one-cross mixed triangle `δ(x,z) ≤ δ(x,y)+d_V(y,z)` for two off-base RIGHT endpoints |
 
-The essential remaining geometric cases are the WITHIN-SIDE
-distance bounded by **two cross distances**, exact preservation
-of the original distances when the two sides are identified on
-a compatible metric base, and simultaneous construction of a
-convex order extending both side orders. After that the canonical
-partial-function closure assignments and exact weak local-completion
-cutoff must be verified. Consequently **no nonempty-base metric
-strong amalgam and no finite metric Ramsey theorem is claimed
-by the partial proofs above**.
+The exact rounded distance chosen by a nonempty-base finite
+shortest path is now well-defined, attained, strictly positive,
+symmetric and has the required proper-jump crossing criterion.
+Both one-cross mixed triangles are certified; all of these
+statements use actual S-valued metrics and **ordinary real**
+triangle inequalities, not a guessed associative abstract monoid.
+
+**Under validation, not yet promoted to verified:** the remaining
+two-cross-distance triangle is being decomposed into the independent
+rounded scalar inequality [#533](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/533),
+the genuine same-side geometric triangle with possibly distinct
+minimizing base points [#535](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/535),
+and the swapped other-side counterpart [#537](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/537).
+The separate cross/base triangles are under audit in
+[#538](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/538).
+
+After these, an identified-base **pushout carrier** must still be
+constructed and checked for all metrics with base vertices,
+injective side maps, extension of compatible old distances, and
+the resulting metric convex linear order. The partial closure
+functions `F_j` and exact weak local completion must then be
+treated. None of the certified scalar/triangle fragments by itself
+proves class-level strong amalgamation or the finite S-metric
+Ramsey theorem.
 
 ## Remaining metric Ramsey work
 
-The scalar reduction does not construct a Ramsey witness or a class-level
-completion. The finite canonical closure **metric** is now
-verified, including the correct duplicate-free carrier and pairwise
-distances. Remaining tasks are proof of convexity of the checked canonical
-insertion order, order-preserving lifted embeddings and the full
-completed-class closure-function axiom; metric distances, metric
-isometry, and the nested partial closure-function table are now
-certified. Strong amalgamation, exact weak local-completion
-bounds and the finite metric Ramsey theorem remain open,
-and the finite-to-arbitrary-distance Ramsey transfer. For finite S, the paper's
-block-convexity is now identified with jump-threshold convexity and
-transports across finite capped subsets. Infinite-S blocks may lack maxima;
-the general infinite-S interpretation is a separate open question.
+The scalar reduction does not by itself construct a Ramsey witness
+or a class-level completion. The **finite canonical lifted metric**,
+duplicate-free closure carrier, inserted convex order, ordered
+isometric embeddings, exact nested closure-function tables, and
+uniqueness of canonical extension have already been proved in the
+modules referenced above. The remaining target is the class-level
+strong amalgamation and **exact weak local completion** of the
+completed ordered-functional metric class, followed by the
+finite metric Ramsey arrow and finite-to-arbitrary-distance transfer.
+The finite nonempty-base geometric pushout is being built through
+the now-verified shortest-path lemmas. For finite S, the paper's
+block-convexity is identified with jump-threshold convexity and
+transports across finite capped subsets. Infinite-S blocks may
+lack maxima, so the infinite-S interpretation remains separate.
 
 The old scalar finite-generation TODO in the manuscript's review material
 is superseded by the new component certificate once PR #244 passes the full
