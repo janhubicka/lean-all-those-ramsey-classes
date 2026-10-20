@@ -1,5 +1,4 @@
-import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
-import AllThoseRamseyClasses.Lifts.EHNFullSideFactor
+import AllThoseRamseyClasses.Lifts.ConnectedEHNRootAvoidance
 
 /-!
 # A reusable connected-source EHN factorization over an empty full root
@@ -46,44 +45,12 @@ theorem connectedSourceEHN_factor_emptyFreeSide
     (hf : Source.IsEHNHomomorphismEmbedding D f) :
     (∃ g : U → UA, Source.IsEHNHomomorphismEmbedding A g) ∨
       (∃ g : U → UB, Source.IsEHNHomomorphismEmbedding B g) := by
-  obtain ⟨base⟩ := hNonempty
   have hNoRoot (x : U) :
       x ∉ weakFreeRootPart (sL := iA) (iL := jA) f := by
     rintro ⟨r, _⟩
     exact isEmptyElim r
-  rcases weakFreePartition_covers hFree f base with
-    hRoot | hLeft | hRight
-  · exact False.elim (hNoRoot base hRoot)
-  · have hAllLeft (x : U) :
-        x ∈ weakFreeLeftPart (sL := iA) (iL := jA) f := by
-      have hPath := hConnected base x
-      induction hPath with
-      | refl => exact hLeft
-      | @tail a b hab hedge ih =>
-          exact weakFreePartition_left_step
-            hFree f hf.1 ih (hNoRoot b) hedge
-    have hRange : ∀ x : U, ∃ a : UA, f x = jA a := by
-      intro x
-      obtain ⟨⟨a, ha⟩, _⟩ := hAllLeft x
-      exact ⟨a, ha⟩
-    obtain ⟨g, hg, _⟩ :=
-      ehnHomomorphismEmbedding_factor_full_side hf jA hRange
-    exact Or.inl ⟨g, hg⟩
-  · have hAllRight (x : U) :
-        x ∈ weakFreeRightPart
-          (sL := iA) (iL := jA) (iR := jB) f := by
-      have hPath := hConnected base x
-      induction hPath with
-      | refl => exact hRight
-      | @tail a b hab hedge ih =>
-          exact weakFreePartition_right_step
-            hFree f hf.1 ih (hNoRoot b) hedge
-    have hRange : ∀ x : U, ∃ b : UB, f x = jB b := by
-      intro x
-      obtain ⟨⟨b, hb⟩, _⟩ := hAllRight x
-      exact ⟨b, hb⟩
-    obtain ⟨g, hg, _⟩ :=
-      ehnHomomorphismEmbedding_factor_full_side hf jB hRange
-    exact Or.inr ⟨g, hg⟩
+  exact connectedEHN_factor_fullSide_of_avoidsRoot
+    Source hNonempty hConnected X A B D
+    iA iB jA jB hFree f hf hNoRoot
 
 end AllThoseRamseyClasses.Lifts
