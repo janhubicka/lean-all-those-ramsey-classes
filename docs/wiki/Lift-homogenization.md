@@ -871,12 +871,13 @@ Numbered manuscript text remains frozen.
 The next verification branches distinguish the PURE SOURCE cuts from
 the target EHN factorization needed for a legitimate canonical flip:
 
-* [#570](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/570):
-  for a full native function-closed source cut S and a component C
-  of Source minus S, let T=Cl(N(C)). Then T is itself closed and
-  contained in S, and **the component of Source minus T containing
-  C is exactly C**. The proof uses the actual generated functional
-  closure and the Gaifman boundary no-escape lemma.
+* [#570](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/570)
+  (**merged; full Lean CI green**): for a full native
+  function-closed cut S and a component C of Source minus S, let
+  T=Cl(N(C)). Then T is itself closed and contained in S, and
+  **the component of Source minus T containing C is exactly C**.
+  The proof uses actual generated functional closure and the
+  Gaifman boundary no-escape lemma.
 * [#571](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/571):
   if TWO S-components C,D have the same generated boundary closure
   T, the exact-component lemma proves that T is an actual
@@ -901,3 +902,36 @@ ensuring ordered root-image injectivity in the printed distinct-root
 canonical lift, and proving a strict Claim 2 flip descent in the
 proper minimality parameter. None of these new lemmas asserts the
 unrestricted original global Ramsey theorem.
+
+
+#### Exact boundary-partner criterion under validation
+
+[#576](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/576)
+(**draft, under Lean CI**) generalizes the sufficient
+matching-S-component case in #571. Once C is shown to be the
+exact Source-minus-T component after shrinking S to
+T=Cl(N(C)), **T is a minimal closed separator with selected
+component C if and only if there is a SECOND Source-minus-T
+component D** separated from C whose generated neighborhood
+closure is exactly T. This is a direct use of BOTH directions
+of the already certified minimal-closed-separator proposition,
+and in the finite case produces a genuine function-closed
+geometric piece rooted at T.
+
+Unlike #571, the partner D need NOT itself be a component after
+deleting the original larger S: it may absorb vertices of
+S-minus-T. In the five-vertex audit above, the B-only component
+{1} has T={0}; after deleting T its opposite component
+{2,3,4} has generated boundary {0}, even though the S-components
+{1} and {2} have distinct original boundaries. Similarly
+the B-only component {2} has T={3} and partner {0,1,4}.
+Thus the more general criterion captures genuine B-only pieces
+that a same-original-boundary test would overlook.
+
+The exact component lemma #570 is now verified; #576 and the
+right-side EHN factoring step #574 are NOT YET certified. Even
+when they pass, an actual original canonical-lift flip still
+requires injective target images of the ORDERED piece root and
+compatible full global lift data. The critical multicomponent
+flip-minimality argument and unrestricted Section 3 theorem
+remain unproved.
