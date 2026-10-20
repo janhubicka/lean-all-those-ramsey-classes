@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamTriangle
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedShortestDistance_triangle
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedShortestDistance_metric
