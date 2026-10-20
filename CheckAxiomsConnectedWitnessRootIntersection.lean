@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.ConnectedWitnessRootIntersection
+
+#print axioms AllThoseRamseyClasses.Lifts.connectedEHN_factor_fullSide_of_avoidsRoot
+#print axioms AllThoseRamseyClasses.Lifts.connectedEHNWitness_meets_sharedRoot
+#print axioms AllThoseRamseyClasses.Lifts.globalConnectedForbiddenWitness_meets_sharedRoot
