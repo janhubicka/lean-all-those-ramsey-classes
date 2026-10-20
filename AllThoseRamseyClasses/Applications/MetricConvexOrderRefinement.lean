@@ -126,4 +126,70 @@ theorem nestedLabelOrder_fine_convex
     labelFirst_fibre_convex label x y z hxy hyz hEq
   exact congrArg (fun t : C ×ₗ F => (ofLex t).2) hLabels
 
+/-- The coarser class fibres are always convex in the two-level
+lex order. Unlike finer convexity, this does not require any
+nesting hypothesis: the coarse label is the FIRST coordinate. -/
+theorem nestedLabelOrder_coarse_convex
+    {X : Type u} {C : Type v} {F : Type w}
+    [LinearOrder X] [LinearOrder C] [LinearOrder F]
+    (coarse : X → C) (fine : X → F)
+    (x y z : X)
+    (hxy : @LE.le X (nestedLabelOrder coarse fine).toLE x y)
+    (hyz : @LE.le X (nestedLabelOrder coarse fine).toLE y z)
+    (hc : coarse x = coarse z) :
+    coarse x = coarse y := by
+  let label : X → C ×ₗ F :=
+    fun t => toLex (coarse t, fine t)
+  have hkeyXY :
+      (toLex (label x, x) : (C ×ₗ F) ×ₗ X) ≤
+        toLex (label y, y) := hxy
+  have hkeyYZ :
+      (toLex (label y, y) : (C ×ₗ F) ×ₗ X) ≤
+        toLex (label z, z) := hyz
+  have hleXY : coarse x ≤ coarse y := by
+    by_contra h
+    have hyx : coarse y < coarse x := lt_of_not_ge h
+    have hLabel : label y < label x :=
+      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hyx)
+    exact (not_lt_of_ge hkeyXY)
+      (Prod.Lex.toLex_lt_toLex.mpr (Or.inl hLabel))
+  have hleYZ : coarse y ≤ coarse z := by
+    by_contra h
+    have hzy : coarse z < coarse y := lt_of_not_ge h
+    have hLabel : label z < label y :=
+      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hzy)
+    exact (not_lt_of_ge hkeyYZ)
+      (Prod.Lex.toLex_lt_toLex.mpr (Or.inl hLabel))
+  have hleYX : coarse y ≤ coarse x := by
+    calc
+      coarse y ≤ coarse z := hleYZ
+      _ = coarse x := hc.symm
+  exact le_antisymm hleXY hleYX
+
+/-- If both class levels are nondecreasing along one original
+comparison, that comparison remains strict after two-level
+lex refinement. This is the side-embedding compatibility needed
+when sorting the finite hierarchy from coarser to finer jumps. -/
+theorem nestedLabelOrder_strict_of_components_mono
+    {X : Type u} {C : Type v} {F : Type w}
+    [LinearOrder X] [LinearOrder C] [LinearOrder F]
+    (coarse : X → C) (fine : X → F)
+    {x y : X} (hxy : x < y)
+    (hc : coarse x ≤ coarse y)
+    (hf : fine x ≤ fine y) :
+    @LT.lt X (nestedLabelOrder coarse fine).toLT x y := by
+  let label : X → C ×ₗ F :=
+    fun t => toLex (coarse t, fine t)
+  apply labelFirst_strict_of_label_mono label hxy
+  rcases lt_or_eq_of_le hc with hclt | hceq
+  · exact le_of_lt
+      (Prod.Lex.toLex_lt_toLex.mpr (Or.inl hclt))
+  · rcases lt_or_eq_of_le hf with hflt | hfeq
+    · exact le_of_lt
+        (Prod.Lex.toLex_lt_toLex.mpr
+          (Or.inr ⟨hceq, hflt⟩))
+    · exact le_of_eq (by
+        dsimp [label]
+        rw [hceq, hfeq])
+
 end AllThoseRamseyClasses.Applications.MetricConvexOrder
