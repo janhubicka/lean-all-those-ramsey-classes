@@ -74,7 +74,8 @@ theorem refineClassLevels_preserves_comparison
         exact hKeys next (by simp [hn])
       have hResult :=
         ih o' hFirst hLater
-      simpa only [refineClassLevels, List.foldl_cons] using hResult
+      change @LT.lt X (refineClassLevels o' rest).toLT x y
+      exact hResult
 
 /-- General finite induction invariant: all previously
 convex fibres remain convex when the new coarser
@@ -122,7 +123,8 @@ theorem refineClassLevels_preserves_prior_convex
         simp only [List.mem_append, List.mem_cons] at hf ⊢
         tauto
       have hF := hIH f hMem
-      simpa only [refineClassLevels, List.foldl_cons] using hF
+      change FibreConvex (refineClassLevels o' rest) f
+      exact hF
 
 /-- An ARBITRARY finite nested hierarchy of labels can be
 made simultaneously convex by a SINGLE linear order.
