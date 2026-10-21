@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricRootClassKeys
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.classSideKey_root_agree
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.classSideKey_strict
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.classSideKey_injective
