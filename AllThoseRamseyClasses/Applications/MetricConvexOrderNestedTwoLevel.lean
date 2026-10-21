@@ -18,55 +18,6 @@ namespace AllThoseRamseyClasses.Applications.MetricConvexOrder
 
 universe u v w
 
-/-- Coarse class fibres are intervals in the two-level
-order, regardless of the fine class labelling. -/
-theorem nestedLabelOrder_coarse_convex
-    {X : Type u} {C : Type v} {F : Type w}
-    [LinearOrder X] [LinearOrder C] [LinearOrder F]
-    (coarse : X → C) (fine : X → F)
-    (x y z : X)
-    (hxy : @LE.le X (nestedLabelOrder coarse fine).toLE x y)
-    (hyz : @LE.le X (nestedLabelOrder coarse fine).toLE y z)
-    (hc : coarse x = coarse z) :
-    coarse x = coarse y := by
-  change
-    (toLex ((toLex (coarse x, fine x) : C ×ₗ F), x) :
-      (C ×ₗ F) ×ₗ X) ≤
-    (toLex ((toLex (coarse y, fine y) : C ×ₗ F), y) :
-      (C ×ₗ F) ×ₗ X) at hxy
-  change
-    (toLex ((toLex (coarse y, fine y) : C ×ₗ F), y) :
-      (C ×ₗ F) ×ₗ X) ≤
-    (toLex ((toLex (coarse z, fine z) : C ×ₗ F), z) :
-      (C ×ₗ F) ×ₗ X) at hyz
-  have hleXY : coarse x ≤ coarse y := by
-    by_contra h
-    have hyx : coarse y < coarse x := lt_of_not_ge h
-    have hKey :
-        (toLex (coarse y, fine y) : C ×ₗ F) <
-          toLex (coarse x, fine x) :=
-      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hyx)
-    have hOuter :
-        (toLex ((toLex (coarse y, fine y) : C ×ₗ F), y) :
-          (C ×ₗ F) ×ₗ X) <
-          toLex ((toLex (coarse x, fine x) : C ×ₗ F), x) :=
-      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hKey)
-    exact (not_lt_of_ge hxy) hOuter
-  have hleYZ : coarse y ≤ coarse z := by
-    by_contra h
-    have hzy : coarse z < coarse y := lt_of_not_ge h
-    have hKey :
-        (toLex (coarse z, fine z) : C ×ₗ F) <
-          toLex (coarse y, fine y) :=
-      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hzy)
-    have hOuter :
-        (toLex ((toLex (coarse z, fine z) : C ×ₗ F), z) :
-          (C ×ₗ F) ×ₗ X) <
-          toLex ((toLex (coarse y, fine y) : C ×ₗ F), y) :=
-      Prod.Lex.toLex_lt_toLex.mpr (Or.inl hKey)
-    exact (not_lt_of_ge hyz) hOuter
-  exact le_antisymm hleXY (hleYZ.trans_eq hc.symm)
-
 /-- Old comparisons survive sorting by coarse, then fine, then
 the original order, if these class keys do not decrease. -/
 theorem nestedLabelOrder_strict_of_mono
