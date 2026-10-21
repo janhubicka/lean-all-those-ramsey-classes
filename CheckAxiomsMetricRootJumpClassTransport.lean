@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRootJumpClassTransport
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootJumpClassImage_strictMono
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootJumpClassImages_agree_order
