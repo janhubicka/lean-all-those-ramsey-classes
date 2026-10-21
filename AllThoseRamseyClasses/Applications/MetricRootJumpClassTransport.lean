@@ -89,7 +89,8 @@ private theorem strictMono_order_reflection
     have hyx : y ≤ x := le_of_not_gt hn
     have hle : f y ≤ f x := hf.monotone hyx
     exact (not_lt_of_ge hle) h
-  · exact hf
+  · intro hxy
+    exact hf hxy
 
 /-- The classes of one common isometric ordered root have the
 SAME relative order when measured by the last-member label
