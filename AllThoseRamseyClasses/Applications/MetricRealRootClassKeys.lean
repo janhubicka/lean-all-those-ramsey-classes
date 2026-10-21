@@ -35,7 +35,7 @@ open AllThoseRamseyClasses.Applications.MetricConvexOrder
 universe u v w
 
 /-- Two compatible isometric order embeddings of a common finite
-S-metric root admit monotone class keys that identify each old
+S-metric root possess monotone class keys that identify each old
 j-class correctly and coincide at every shared root vertex. -/
 theorem metricRootJump_sideClassKeys_exist
     {S : Set ℝ}
