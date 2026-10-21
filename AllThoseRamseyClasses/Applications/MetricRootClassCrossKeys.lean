@@ -57,14 +57,16 @@ theorem classSideKey_cross_eq_iff_root
   · intro h
     by_cases hL : ∃ a : R, rootLeft a = x
     · obtain ⟨a, ha⟩ := hL
+      have hRootL : ∃ t : R, rootLeft t = x := ⟨a, ha⟩
       by_cases hR : ∃ b : R, rootRight b = y
       · obtain ⟨b, hb⟩ := hR
+        have hRootR : ∃ t : R, rootRight t = y := ⟨b, hb⟩
         have hCut :
             rootClassCut rootLeft id x =
               rootClassCut rootRight id y := by
           have hp := congrArg
             (fun z : ℕ ×ₗ (ℕ ×ₗ ℕ) => (ofLex z).1) h
-          simpa [classSideKey, hL, hR] using hp
+          simpa [classSideKey, hRootL, hRootR] using hp
         have hRightCut :
             rootClassCut rootRight id (rootRight a) =
               rootClassCut rootRight id (rootRight b) := by
@@ -90,7 +92,7 @@ theorem classSideKey_cross_eq_iff_root
       · have hPriority := congrArg
           (fun z : ℕ ×ₗ (ℕ ×ₗ ℕ) =>
             (ofLex (ofLex z).2).1) h
-        simp [classSideKey, hL, hR] at hPriority
+        simp [classSideKey, hRootL, hR] at hPriority
     · by_cases hR : ∃ b : R, rootRight b = y
       · have hPriority := congrArg
           (fun z : ℕ ×ₗ (ℕ ×ₗ ℕ) =>
