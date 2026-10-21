@@ -46,11 +46,14 @@ theorem labelFirst_le_old_of_label_eq
     (hxy : @LE.le X (labelFirstOrder label).toLE x y)
     (heq : label x = label y) :
     x ≤ y := by
+  change (toLex (label x, x) : K ×ₗ X) ≤
+    toLex (label y, y) at hxy
   by_contra hn
   have hyx : y < x := lt_of_not_ge hn
   have hnew :
-      @LT.lt X (labelFirstOrder label).toLT y x :=
-    (labelFirst_lt_iff label y x).mpr
+      (toLex (label y, y) : K ×ₗ X) <
+        toLex (label x, x) :=
+    Prod.Lex.toLex_lt_toLex.mpr
       (Or.inr ⟨heq.symm, hyx⟩)
   exact (not_lt_of_ge hxy) hnew
 
