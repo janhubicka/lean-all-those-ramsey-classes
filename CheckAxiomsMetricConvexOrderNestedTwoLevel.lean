@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricConvexOrderNestedTwoLevel
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.nestedLabelOrder_coarse_convex
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.nestedLabelOrder_strict_of_mono
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.nestedLabelOrder_both_convex
