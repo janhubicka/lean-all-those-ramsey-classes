@@ -156,7 +156,10 @@ theorem classSideKey_injective
     [Fintype R] [Fintype K] [LinearOrder K]
     (rootClass : R → K) (priority : ℕ)
     (hPriority : priority < 2) :
-    Function.Injective (classSideKey rootClass priority) :=
-  (classSideKey_strict rootClass priority hPriority).injective
+    Function.Injective (classSideKey rootClass priority) := by
+  have hstrict : StrictMono (classSideKey rootClass priority) := by
+    intro x y hxy
+    exact classSideKey_strict rootClass priority hPriority hxy
+  exact hstrict.injective
 
 end AllThoseRamseyClasses.Applications.MetricConvexOrder
