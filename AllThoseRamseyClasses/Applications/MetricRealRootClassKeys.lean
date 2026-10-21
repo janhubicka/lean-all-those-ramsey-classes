@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Applications.MetricRootJumpClassTransport
-import AllThoseRamseyClasses.Applications.MetricRootClassKeys
+import AllThoseRamseyClasses.Applications.MetricRootClassCrossKeys
 
 /-!
 # Compatible finite class keys from ACTUAL convex S-metrics
@@ -60,7 +60,10 @@ theorem metricRootJump_sideClassKeys_exist
       Monotone keyU ∧ Monotone keyV ∧
       (∀ a : A, keyU (iU a) = keyV (iV a)) ∧
       (∀ x y : U, keyU x = keyU y ↔ dU x y ≤ j) ∧
-      (∀ z t : V, keyV z = keyV t ↔ dV z t ≤ j) := by
+      (∀ z t : V, keyV z = keyV t ↔ dV z t ≤ j) ∧
+      (∀ x : U, ∀ z : V,
+        keyU x = keyV z ↔
+          ∃ a : A, dU x (iU a) ≤ j ∧ dV (iV a) z ≤ j) := by
   classical
   let R := MetricJumpClassRep hpos hdA j hj
   let K := MetricJumpClassRep hpos hdU j hj
@@ -79,6 +82,10 @@ theorem metricRootJump_sideClassKeys_exist
       hpos hS hdA hdU hdV hconvU hconvV
       iU iV hiUOrder hiVOrder
       hiUDist hiVDist j hj a b
+  have hRootVStrict : StrictMono rootV := by
+    intro a b hab
+    exact metricRootJumpClassImage_strictMono
+      hpos hS hdA hdV hconvV iV hiVOrder hiVDist j hj hab
   let keyU : U → ℕ ×ₗ (ℕ ×ₗ ℕ) := fun x =>
     classSideKey rootU 0 (metricJumpClassTag hpos hS hdU j hj x)
   let keyV : V → ℕ ×ₗ (ℕ ×ₗ ℕ) := fun z =>
@@ -89,7 +96,7 @@ theorem metricRootJump_sideClassKeys_exist
   have hKeyV : StrictMono (classSideKey rootV 1) := by
     intro x y hxy
     exact classSideKey_strict rootV 1 (by omega) hxy
-  refine ⟨keyU, keyV, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨keyU, keyV, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro x y hxy
     exact hKeyU.monotone
       (metricJumpClassTag_mono hpos hS hdU hconvU j hj hxy)
@@ -151,5 +158,63 @@ theorem metricRootJump_sideClassKeys_exist
       exact congrArg (classSideKey rootV 1)
         ((metricJumpClassTag_eq_iff_close
           hpos hS hdV j hj z t).mpr hclose)
+
+  · intro x z
+    constructor
+    · intro heq
+      have htags :
+          classSideKey rootU 0
+            (metricJumpClassTag hpos hS hdU j hj x) =
+          classSideKey rootV 1
+            (metricJumpClassTag hpos hS hdV j hj z) := heq
+      obtain ⟨ra, htagU, htagV⟩ :=
+        (classSideKey_cross_eq_iff_root rootU rootV
+          hRootOrder hRootVStrict
+          (metricJumpClassTag hpos hS hdU j hj x)
+          (metricJumpClassTag hpos hS hdV j hj z)).mp htags
+      refine ⟨ra.val, ?_, ?_⟩
+      · exact (metricJumpClassTag_eq_iff_close
+          hpos hS hdU j hj x (iU ra.val)).mp htagU.symm
+      · exact (metricJumpClassTag_eq_iff_close
+          hpos hS hdV j hj (iV ra.val) z).mp htagV
+    · rintro ⟨a, hxa, haz⟩
+      let ra : R := metricJumpClassTag hpos hS hdA j hj a
+      have hRootClose : dA a ra.val ≤ j := by
+        change dA a (metricJumpClassLast hpos hdA j hj a) ≤ j
+        rw [hdA.symm a (metricJumpClassLast hpos hdA j hj a)]
+        exact metricJumpClassLast_mem hpos hdA j hj a
+      have hUClose : dU (iU a) (iU ra.val) ≤ j := by
+        rw [hiUDist a ra.val]
+        exact hRootClose
+      have hVClose : dV (iV a) (iV ra.val) ≤ j := by
+        rw [hiVDist a ra.val]
+        exact hRootClose
+      have hUtag :
+          metricJumpClassTag hpos hS hdU j hj (iU a) =
+            rootU ra :=
+        (metricJumpClassTag_eq_iff_close hpos hS hdU j hj
+          (iU a) (iU ra.val)).mpr hUClose
+      have hVtag :
+          metricJumpClassTag hpos hS hdV j hj (iV a) =
+            rootV ra :=
+        (metricJumpClassTag_eq_iff_close hpos hS hdV j hj
+          (iV a) (iV ra.val)).mpr hVClose
+      have hRootKey : keyU (iU a) = keyV (iV a) := by
+        change
+          classSideKey rootU 0
+            (metricJumpClassTag hpos hS hdU j hj (iU a)) =
+          classSideKey rootV 1
+            (metricJumpClassTag hpos hS hdV j hj (iV a))
+        rw [hUtag, hVtag]
+        exact classSideKey_root_agree rootU rootV hRootOrder ra
+      have hUkey : keyU x = keyU (iU a) :=
+        congrArg (classSideKey rootU 0)
+          ((metricJumpClassTag_eq_iff_close
+            hpos hS hdU j hj x (iU a)).mpr hxa)
+      have hVkey : keyV (iV a) = keyV z :=
+        congrArg (classSideKey rootV 1)
+          ((metricJumpClassTag_eq_iff_close
+            hpos hS hdV j hj (iV a) z).mpr haz)
+      exact hUkey.trans (hRootKey.trans hVkey)
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
