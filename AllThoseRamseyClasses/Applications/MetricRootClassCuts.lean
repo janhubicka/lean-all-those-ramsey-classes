@@ -75,6 +75,7 @@ theorem rootClassCut_strict_after_root
     (hax : rootClass a < label x) :
     rootClassCut rootClass id (rootClass a) <
       rootClassCut rootClass label x := by
+  classical
   unfold rootClassCut
   apply Finset.card_lt_card
   apply Finset.ssubset_iff.mpr
