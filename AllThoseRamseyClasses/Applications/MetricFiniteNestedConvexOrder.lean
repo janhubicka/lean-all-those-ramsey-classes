@@ -62,12 +62,12 @@ theorem refineClassLevels_preserves_comparison
     @LT.lt X (refineClassLevels o levels).toLT x y := by
   induction levels generalizing o with
   | nil =>
-      simpa [refineClassLevels] using hxy
+      change @LT.lt X o.toLT x y
+      exact hxy
   | cons label rest ih =>
-      letI : LinearOrder X := o
-      let o' : LinearOrder X := labelFirstOrder label
+      let o' : LinearOrder X := @labelFirstOrder X K o _ label
       have hFirst : @LT.lt X o'.toLT x y :=
-        labelFirst_strict_of_label_mono label hxy
+        @labelFirst_strict_of_label_mono X K o _ label x y hxy
           (hKeys label (by simp))
       have hLater : ∀ next ∈ rest, next x ≤ next y := by
         intro next hn
@@ -99,15 +99,14 @@ theorem refineClassLevels_preserves_prior_convex
       have hTop : ∀ next ∈ rest, ∀ x y : X,
           g x = g y → next x = next y := hNested.1
       have hTail : NestedLevels rest := hNested.2
-      letI : LinearOrder X := o
-      let o' : LinearOrder X := labelFirstOrder g
+      let o' : LinearOrder X := @labelFirstOrder X K o _ g
       have hDone' : ∀ f ∈ g :: done, FibreConvex o' f := by
         intro f hf
         rcases List.mem_cons.mp hf with hEq | hfOld
         · subst f
-          exact labelFirst_coarse_fibre_convex g
-        · exact labelFirst_preserves_nested_fibre_convex g f
-            (fun x y heq => hCross f hfOld g (by simp) x y heq)
+          exact @labelFirst_coarse_fibre_convex X K o _ g
+        · exact @labelFirst_preserves_nested_fibre_convex X K K o _
+            g f (fun x y heq => hCross f hfOld g (by simp) x y heq)
             (hDone f hfOld)
       have hCross' : ∀ f ∈ g :: done, ∀ next ∈ rest,
           ∀ x y : X, f x = f y → next x = next y := by
