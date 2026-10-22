@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimalRightSingletonContradiction
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_noSingletonBoundaryMixedPiece
