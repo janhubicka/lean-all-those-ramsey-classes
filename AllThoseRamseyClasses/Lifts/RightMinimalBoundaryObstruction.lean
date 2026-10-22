@@ -39,8 +39,8 @@ boundary-partner component with injective target boundary.
 The forbidden-family connectedness hypothesis supplies
 positive root width automatically.
 
-The resulting failure of irreducible-test coverage is a
-SOURCE-side necessary condition, not a blanket image
+The explicit colliding source pair and failure of
+irreducible-test coverage form a SOURCE-side necessary condition, not a blanket image
 injectivization or a strong-amalgamation conclusion. -/
 theorem minimalRightWitness_boundaryPartner_forcesCollision
     (F : ∀ {W : Type}, Structure L W → Prop)
@@ -87,7 +87,8 @@ theorem minimalRightWitness_boundaryPartner_forcesCollision
       (Set.range P.roots) P.left)
     (haLeft : a ∈ weakFreeLeftPart
       (sL := iLeft) (iL := jLeft) w.toTarget) :
-    (¬ Set.InjOn w.toTarget T) ∧
+    (∃ u v : w.Carrier,
+        u ∈ T ∧ v ∈ T ∧ u ≠ v ∧ w.toTarget u = w.toTarget v) ∧
       ¬ RootPairsCoveredByIrreducibleTests w.source T := by
   have hPath : ReachOutside w.source.graph (∅ : Set w.Carrier)
       (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
@@ -136,7 +137,12 @@ theorem minimalRightWitness_boundaryPartner_forcesCollision
       (fullFreeRightExclusiveTarget iRight jRight)
       w hMinRight replacement) hStrict
   constructor
-  · exact hBadInjectivity
+  · classical
+    by_contra hNoCollision
+    apply hBadInjectivity
+    intro u hu v hv huv
+    by_contra hne
+    exact hNoCollision ⟨u, v, hu, hv, hne, huv⟩
   · intro hCovered
     apply hBadInjectivity
     exact ehn_injOn_of_rootPairsCoveredByIrreducibleTests
