@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimalLeftUncoveredMixedPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_uncoveredBoundary_hasSmallerRootMixedPiece
