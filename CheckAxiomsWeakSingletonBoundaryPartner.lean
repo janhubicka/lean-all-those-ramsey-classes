@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.WeakSingletonBoundaryPartner
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_singletonBoundary_hasPartner
