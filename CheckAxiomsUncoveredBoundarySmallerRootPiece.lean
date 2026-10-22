@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.UncoveredBoundarySmallerRootPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_uncoveredBoundary_hasSmallerRootGeometricPiece
