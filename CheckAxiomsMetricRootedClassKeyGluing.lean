@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricRootedClassKeyGluing
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedClassKey_left
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedClassKey_right
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedClassKey_eq_iff_distance
