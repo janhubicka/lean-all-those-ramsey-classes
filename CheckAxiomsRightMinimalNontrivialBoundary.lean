@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.RightMinimalNontrivialBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_rightComponent_hasTwoBoundaryVertices
