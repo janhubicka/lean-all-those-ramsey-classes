@@ -164,4 +164,70 @@ theorem weakRightComponent_boundaryPartner_hasPositiveInjectiveFactor
   exact ⟨n, d, hn, hRoot, hRootS,
     hInj, pRight, hpRight, hMap⟩
 
+/-- When the full generated boundary T contains at most ONE vertex,
+the same actual right-side component construction has an
+automatically injective ordered TARGET root tuple. No EHN test-cover
+assumption is needed: the roots are distinct SOURCE vertices all
+lying in a singleton, so the root index itself has at most one
+element. Positivity still uses an actual path in the full source.
+
+This is a useful direct one-root case of the original 2019
+distinct-root canonical lift. It does not assert the complementary
+full-lift diagram or existence of a boundary partner. -/
+theorem weakRightComponent_singletonBoundary_hasPositiveInjectiveFactor
+    [Finite U]
+    (hfree : Structure.IsFreeAmalgam sL sR iL iR)
+    (f : U → W)
+    (hf : Source.IsEHNHomomorphismEmbedding Whole f)
+    (x : {z : U // z ∉
+      weakFreeRootPart (sL := sL) (iL := iL) f})
+    (hxRight : x.1 ∈
+      weakFreeRightPart (sL := sL) (iL := iL) (iR := iR) f)
+    (T : Set U)
+    (hT : T = Source.functionClosure
+      (gaifmanNeighborhood Source.graph
+        (componentFrom Source.graph
+          (weakFreeRootPart (sL := sL) (iL := iL) f) x)))
+    (hTS : T ⊆
+      weakFreeRootPart (sL := sL) (iL := iL) f)
+    (hSingleton : ∀ a b : U, a ∈ T → b ∈ T → a = b)
+    (y : {z : U // z ∉ T})
+    (hSep : ¬ ReachOutside Source.graph T
+      (outsideCutMap hTS x) y)
+    (hBoundary : Source.functionClosure
+      (gaifmanNeighborhood Source.graph
+        (componentFrom Source.graph T y)) = T)
+    (hConnected : ReachOutside Source.graph (∅ : Set U)
+      (⟨x.1, by simp⟩ : {z : U // z ∉ ∅})
+      (⟨y.1, by simp⟩ : {z : U // z ∉ ∅})) :
+    ∃ (n : ℕ) (d : GeometricFunctionalPieceData Source n),
+      0 < n ∧
+      Set.range d.roots = T ∧
+      Function.Injective (fun i : Fin n => f (d.roots i)) ∧
+      ∃ pRight : geometricPieceVertices Source d → F,
+        (geometricFunctionalPiece Source d).IsEHNHomomorphismEmbedding
+          Right pRight ∧
+        ∀ z, iR (pRight z) = f z.1 := by
+  obtain ⟨n, d, hRoot, _hRootS, hLeft, hRight, _hComp,
+      pRight, hpRight, hMap⟩ :=
+    weakRightComponent_boundaryPartner_hasGenuineFactor
+      hfree f hf x hxRight T hT hTS y hSep hBoundary
+  have hPathD : ReachOutside Source.graph (∅ : Set U)
+      (⟨d.left.1, by simp⟩ : {z : U // z ∉ ∅})
+      (⟨d.right.1, by simp⟩ : {z : U // z ∉ ∅}) := by
+    simpa only [hLeft, hRight] using hConnected
+  have hn : 0 < n :=
+    geometricPiece_positiveWidth_of_emptyCut_path Source d hPathD
+  have hInj : Function.Injective
+      (fun i : Fin n => f (d.roots i)) := by
+    intro i j _hEq
+    apply d.roots_injective
+    apply hSingleton
+    · rw [← hRoot]
+      exact ⟨i, rfl⟩
+    · rw [← hRoot]
+      exact ⟨j, rfl⟩
+  exact ⟨n, d, hn, hRoot, hInj, pRight, hpRight, hMap⟩
+
+
 end AllThoseRamseyClasses.Lifts
