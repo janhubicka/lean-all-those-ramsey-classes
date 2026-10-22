@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricNestedConvexPreservation
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.labelFirst_le_old_of_label_eq
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.labelFirst_preserves_nested_fibre_convex
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.labelFirst_refinement_both_convex
