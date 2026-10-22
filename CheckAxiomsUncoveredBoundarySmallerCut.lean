@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.UncoveredBoundarySmallerCut
+
+#print axioms AllThoseRamseyClasses.Lifts.uncoveredBoundary_hasStrictSmallerClosedSeparator
