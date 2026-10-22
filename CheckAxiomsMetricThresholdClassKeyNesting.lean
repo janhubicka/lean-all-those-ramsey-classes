@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricThresholdClassKeyNesting
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.thresholdClassKeys_nested
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.thresholdClassKeys_cover
