@@ -2,3 +2,5 @@ import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
 
 #print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_leftVertex_separatedByBoundary
 #print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_oppositeCoverage_hasPartner
+#print axioms AllThoseRamseyClasses.Lifts.rightComponent_oppositeCoverage_strictRightSupport
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_oppositeCoverage_forcesCollision
