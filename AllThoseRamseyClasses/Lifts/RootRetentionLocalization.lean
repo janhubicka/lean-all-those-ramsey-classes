@@ -162,4 +162,118 @@ theorem minimalMixedPiece_localCandidate_losesOldRoot
   exact minimalMixedGeometricPiece_no_proper_mixed_component
     P hMinimal Q hProper
 
+/-- If the selected component of Q starts inside P's selected
+component but subsequently escapes it, the path MUST pass
+through an original separator-root vertex of P. That vertex
+then belongs to Q's complete selected nonroot component.
+
+This is an ACTUAL path/connectedness result in the original
+functional Gaifman graph, not a weak-image or quotient claim.
+No relation between the two selected root tuples is assumed. -/
+theorem geometricPiece_escapingComponent_capturesOldRoot
+    (A : Structure L V)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData A n)
+    (Q : GeometricFunctionalPieceData A m)
+    (hQleftOld : Q.left.1 ∈ functionalComponentFrom A
+      (Set.range P.roots) P.left)
+    (hEscapes :
+      ¬ functionalComponentFrom A (Set.range Q.roots) Q.left ⊆
+          functionalComponentFrom A (Set.range P.roots) P.left) :
+    ∃ r : V,
+      r ∈ Set.range P.roots ∧
+      r ∈ functionalComponentFrom A
+        (Set.range Q.roots) Q.left := by
+  classical
+  by_contra hNoRoot
+  have hAvoidOldRoot : ∀ r : V,
+      r ∈ Set.range P.roots →
+      r ∉ functionalComponentFrom A
+        (Set.range Q.roots) Q.left := by
+    intro r hrOld hrNew
+    exact hNoRoot ⟨r, hrOld, hrNew⟩
+  have hLift :
+      ∀ (v : {z : V // z ∉ Set.range Q.roots}),
+        ReachOutside A.graph (Set.range Q.roots) Q.left v →
+        v.1 ∈ functionalComponentFrom A
+          (Set.range P.roots) P.left := by
+    intro v hPath
+    induction hPath with
+    | refl =>
+        exact hQleftOld
+    | @tail a b hab hedge ih =>
+        have hbNew :
+            b.1 ∈ functionalComponentFrom A
+              (Set.range Q.roots) Q.left :=
+          ⟨b.2, hab.tail hedge⟩
+        have hbNotOldRoot : b.1 ∉ Set.range P.roots := by
+          intro hbRoot
+          exact hAvoidOldRoot b.1 hbRoot hbNew
+        exact componentFrom_step A.graph
+          (Set.range P.roots) P.left
+          ih hbNotOldRoot hedge
+  apply hEscapes
+  intro z hzNew
+  exact hLift ⟨z, hzNew.1⟩ hzNew.2
+
+/-- For a genuinely NONROOT-size-minimal mixed piece P, any
+other mixed piece Q whose two distinguished vertices are in
+P's selected component must CAPTURE an old separator-root
+vertex INSIDE Q's selected nonroot component.
+
+This strengthens mere root loss: the lost old root has a
+specific geometric role, providing an escape path from P's
+selected component. No new-root containment or target map
+injectivity hypothesis is required. -/
+theorem minimalMixedPiece_otherMixed_capturesOldRoot
+    [Finite V]
+    (Source : Structure L V)
+    (S AOnly BOnly : Set V)
+    (P Q : MixedGeometricPiece Source S AOnly BOnly)
+    (hMinimal : ∀ D : MixedGeometricPiece Source S AOnly BOnly,
+      P.nonrootCount ≤ D.nonrootCount)
+    (hQleftOld : Q.data.left.1 ∈
+      functionalComponentFrom Source
+        (Set.range P.data.roots) P.data.left)
+    (hQrightOld : Q.data.right.1 ∈
+      functionalComponentFrom Source
+        (Set.range P.data.roots) P.data.left) :
+    ∃ r : V,
+      r ∈ Set.range P.data.roots ∧
+      r ∈ functionalComponentFrom Source
+        (Set.range Q.data.roots) Q.data.left := by
+  have hQrightNotNew :
+      Q.data.right.1 ∉ functionalComponentFrom Source
+        (Set.range Q.data.roots) Q.data.left := by
+    intro hz
+    have hRightEq :
+        (⟨Q.data.right.1, hz.1⟩ :
+          {z : V // z ∉ Set.range Q.data.roots}) = Q.data.right :=
+      Subtype.ext rfl
+    have hPath : ReachOutside Source.graph
+        (Set.range Q.data.roots) Q.data.left Q.data.right := by
+      simpa only [hRightEq] using hz.2
+    exact Q.data.minimal.2.1 hPath
+  have hNotSubset :
+      ¬ functionalComponentFrom Source
+          (Set.range Q.data.roots) Q.data.left ⊆
+        functionalComponentFrom Source
+          (Set.range P.data.roots) P.data.left := by
+    intro hSub
+    have hProper :
+        functionalComponentFrom Source
+          (Set.range Q.data.roots) Q.data.left ⊂
+        functionalComponentFrom Source
+          (Set.range P.data.roots) P.data.left := by
+      apply Set.ssubset_iff_subset_ne.mpr
+      refine ⟨hSub, ?_⟩
+      intro hEq
+      apply hQrightNotNew
+      rw [hEq]
+      exact hQrightOld
+    exact minimalMixedGeometricPiece_no_proper_mixed_component
+      P hMinimal Q hProper
+  exact geometricPiece_escapingComponent_capturesOldRoot
+    Source P.data Q.data hQleftOld hNotSubset
+
 end AllThoseRamseyClasses.Lifts
