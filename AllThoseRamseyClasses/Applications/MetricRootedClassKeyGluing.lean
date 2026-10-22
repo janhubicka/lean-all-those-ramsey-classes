@@ -83,9 +83,8 @@ theorem metricRootedClassKey_right
   cases p with
   | inl a =>
       change keyU (iU a) = keyV z
-      rw [← hRoot a]
       rw [metricSideEquiv_inl] at hOriginal
-      exact congrArg keyU hOriginal
+      exact (hRoot a).trans (congrArg keyV hOriginal)
   | inr y =>
       change keyV y.val = keyV z
       rw [metricSideEquiv_inr] at hOriginal
