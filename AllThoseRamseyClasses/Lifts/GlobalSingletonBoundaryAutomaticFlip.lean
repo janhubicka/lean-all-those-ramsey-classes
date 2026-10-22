@@ -90,14 +90,14 @@ theorem globalSingletonBoundary_rightToLeftFlip_of_connectedOpposite
                  (∀ u : Q.Carrier, flip (iQ u) = jLeft (g u)) ∧
                  (∀ v : C.Carrier, flip (iC v) = f v.1)) := by
   letI : Finite V := hFinite
-  obtain ⟨y, hSep, hYBoundary⟩ :=
+  obtain ⟨y, hYa, hSep, hYBoundary⟩ :=
     weakRightComponent_singletonBoundary_hasPartner
       hFree f hf x hxRight T hT hTS
       hSingleton a haLeft hConnected
   have hPathY : ReachOutside Forbidden.graph (∅ : Set V)
       (⟨x.1, by simp⟩ : {z : V // z ∉ ∅})
       (⟨y.1, by simp⟩ : {z : V // z ∉ ∅}) := by
-    simpa only using hConnected
+    simpa only [hYa] using hConnected
   exact globalSingletonBoundary_rightToLeftFlip
     F Forbidden hFinite hForbidden
     Target f hf Left Right jLeft jRight
