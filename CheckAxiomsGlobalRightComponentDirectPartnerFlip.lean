@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalRightComponentDirectPartnerFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.rightComponent_partner_strictRightSupport
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_partner_forcesBoundaryCollision
