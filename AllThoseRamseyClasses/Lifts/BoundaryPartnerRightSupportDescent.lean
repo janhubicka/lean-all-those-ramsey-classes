@@ -128,6 +128,8 @@ theorem boundaryPartner_properRightPiece_strictRightSupport
       hFree f hzLeft (pRight zP)) hRightImage
   have hxQ : x.1 ∈ functionalComponentFrom Forbidden
       (Set.range Q.roots) Q.left := by
+    change x.1 ∈ componentFrom Forbidden.graph
+      (Set.range Q.roots) Q.left
     rw [hQcomponent]
     exact componentFrom_root Forbidden.graph
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x
