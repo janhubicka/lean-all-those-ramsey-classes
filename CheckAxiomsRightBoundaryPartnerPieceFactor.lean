@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.RightBoundaryPartnerPieceFactor
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_boundaryPartner_hasGenuineFactor
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_boundaryPartner_hasPositiveInjectiveFactor
