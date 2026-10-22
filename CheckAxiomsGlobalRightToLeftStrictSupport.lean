@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalRightToLeftStrictSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCommonFullLiftFlip_strict_rightSupport
