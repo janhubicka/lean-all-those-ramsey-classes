@@ -151,4 +151,122 @@ theorem weakRightComponent_oppositeCoverage_hasPartner
     Set.Subset.antisymm hBoundLe (hCoverage y hYa)
   exact ⟨y, hYa, hSep, hBoundary⟩
 
+
+/-- The EXACT remaining source-geometric coverage inclusion of an
+opposite left-exclusive component, plus injectivity only on the
+generated right-component boundary, is sufficient for a direct
+arbitrary-width right-to-left source flip. No chosen outer mixed
+piece and no arbitrary extra partner selection. -/
+theorem rightComponent_oppositeCoverage_strictRightSupport
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    {V UX UA UB UT : Type}
+    (Source : Structure L V)
+    (hFinite : Finite V) (hForbidden : F Source)
+    (Target : Structure L UT) (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (x : {z : V // z ∉
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) f})
+    (hxRight : x.1 ∈ weakFreeRightPart
+      (sL := iLeft) (iL := jLeft) (iR := jRight) f)
+    (T : Set V)
+    (hT : T = Source.functionClosure
+      (gaifmanNeighborhood Source.graph
+        (componentFrom Source.graph
+          (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)))
+    (hTS : T ⊆ weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+    (a : V)
+    (haLeft : a ∈ weakFreeLeftPart
+      (sL := iLeft) (iL := jLeft) f)
+    (hCoverage : ∀ y : {z : V // z ∉ T}, y.1 = a →
+      T ⊆ Source.functionClosure
+        (gaifmanNeighborhood Source.graph
+          (componentFrom Source.graph T y)))
+    (hConnected : ReachOutside Source.graph (∅ : Set V)
+      (⟨x.1, by simp⟩ : {z : V // z ∉ ∅})
+      (⟨a, by simp⟩ : {z : V // z ∉ ∅}))
+    (hInjT : Set.InjOn f T) :
+    ∃ (V' : Type) (New : Structure L V'),
+      F New ∧
+      ∃ flip : V' → UT,
+        New.IsEHNHomomorphismEmbedding Target flip ∧
+        Nat.card {v : V' //
+          flip v ∈ fullFreeRightExclusiveTarget iRight jRight} <
+        Nat.card {v : V //
+          f v ∈ fullFreeRightExclusiveTarget iRight jRight} := by
+  obtain ⟨y, hYa, hSep, hPartner⟩ :=
+    weakRightComponent_oppositeCoverage_hasPartner
+      hFree f hf x hxRight T hT hTS a haLeft hCoverage
+  have hPathY : ReachOutside Source.graph (∅ : Set V)
+      (⟨x.1, by simp⟩ : {z : V // z ∉ ∅})
+      (⟨y.1, by simp⟩ : {z : V // z ∉ ∅}) := by
+    simpa only [hYa] using hConnected
+  exact rightComponent_partner_strictRightSupport
+    F hFiniteF Source hFinite hForbidden
+    Target f hf Left Right jLeft jRight X iLeft iRight
+    hFree hCommon x hxRight
+    T hT hTS y hSep hPartner hPathY hInjT
+
+/-- In a RIGHT-support-minimal forbidden weak EHN witness, if a
+left-exclusive component covers the complete generated boundary
+of a right-exclusive S-component, then the target weak map must
+collapse two distinct boundary vertices. The same boundary cannot
+be pairwise covered by irreducible FULL source tests. -/
+theorem minimalRightWitness_oppositeCoverage_forcesCollision
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (w : ForbiddenEHNWitness F Target)
+    (hMinRight : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount (fullFreeRightExclusiveTarget iRight jRight) ≤
+        v.sourceSupportCount (fullFreeRightExclusiveTarget iRight jRight))
+    (x : {z : w.Carrier // z ∉
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget})
+    (hxRight : x.1 ∈ weakFreeRightPart
+      (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget)
+    (T : Set w.Carrier)
+    (hT : T = w.source.functionClosure
+      (gaifmanNeighborhood w.source.graph
+        (componentFrom w.source.graph
+          (weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget) x)))
+    (hTS : T ⊆ weakFreeRootPart
+      (sL := iLeft) (iL := jLeft) w.toTarget)
+    (a : w.Carrier)
+    (haLeft : a ∈ weakFreeLeftPart
+      (sL := iLeft) (iL := jLeft) w.toTarget)
+    (hCoverage : ∀ y : {z : w.Carrier // z ∉ T}, y.1 = a →
+      T ⊆ w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T y))) :
+    (∃ u v : w.Carrier,
+      u ∈ T ∧ v ∈ T ∧ u ≠ v ∧ w.toTarget u = w.toTarget v) ∧
+      ¬ RootPairsCoveredByIrreducibleTests w.source T := by
+  obtain ⟨y, _hYa, hSep, hPartner⟩ :=
+    weakRightComponent_oppositeCoverage_hasPartner
+      hFree w.toTarget w.homEmbedding
+      x hxRight T hT hTS a haLeft hCoverage
+  exact minimalRightWitness_partner_forcesBoundaryCollision
+    F hFiniteF hConnected
+    Target Left Right jLeft jRight
+    X iLeft iRight hFree hCommon
+    w hMinRight x hxRight T hT hTS y hSep hPartner
+
 end AllThoseRamseyClasses.Lifts
