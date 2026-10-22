@@ -1004,3 +1004,44 @@ the original distinct-root canonical-lift root-image
 injectivization remains unproved. Neither #586 nor #588
 claims the unrestricted shadow avoidance or Ramsey theorem.
 The numbered mathematical manuscript remains frozen.
+
+
+### 22 October continuation: quantitative right-side elimination
+
+[#590](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/590)
+(**pending independent Lean CI**) gives the opposite orientation
+of the previously kernel-checked strict-support source flip.
+When an ACTUAL positive-width B-only geometric piece has its
+entire root in the shared canonical-lift seam, a common FULL
+global lift, and injective TARGET images of its ordered root,
+then moving the piece from B into A produces a literal new
+forbidden source and an EHN map into the same native target
+with a strict natural-number decrease
+
+\[
+|\{v\in F' : f'(v)\in B\setminus X\}|
+<
+|\{v\in F : f(v)\in B\setminus X\}|.
+\]
+
+The proof invokes the fully checked
+\`geometricGlobalCommonFullLiftFlip_strict_leftSupport\` on
+the SWAPPED real free-amalgam diagram. It does not replicate
+the finite cardinality arguments and does not presume that
+the forbidden weak EHN map is globally injective.
+
+This is a genuine decreasing parameter **for a successful B→A
+flip**, not yet a termination proof for the whole printed
+Claim 2. In particular, after such a flip the selected
+globally minimal mixed piece and the availability of
+further B-only pieces must still be controlled. The
+unflippable-component selection / two-boundary step
+and arbitrary regular-family root-image collision issue
+remain unproved.
+
+PR #571 now compiles and its axiom audit passed on the
+previous revision; the remaining CI failure there was
+only the repository's lexical admission scanner rejecting
+the natural-language verb "admit" in a Lean comment.
+The comment was reworded and fresh full CI is pending.
+The numbered manuscript remains frozen.
