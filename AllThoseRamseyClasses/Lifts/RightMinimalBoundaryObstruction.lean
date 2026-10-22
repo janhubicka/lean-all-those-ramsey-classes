@@ -104,7 +104,10 @@ theorem minimalRightWitness_boundaryPartner_forcesCollision
       · intro hz
         simp at hz
     cases hEmpty
-    exact hSep (by simpa using hPath)
+    change ¬ ReachOutside w.source.graph (∅ : Set w.Carrier)
+      (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
+      (⟨y.1, by simp⟩ : {z : w.Carrier // z ∉ ∅}) at hSep
+    exact hSep hPath
   have hBadInjectivity : ¬ Set.InjOn w.toTarget T := by
     intro hInjT
     obtain ⟨m, Q, hQroot, hProper,
