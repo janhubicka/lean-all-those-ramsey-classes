@@ -23,7 +23,9 @@ vertex. Otherwise retaining all old roots would make Q a
 genuine proper sub-piece with strictly fewer nonroot vertices,
 contradicting the choice of P.
 
-The actual lost old-root vertex is returned in the conclusion.
+The actual lost old-root vertex is returned together with
+its membership in Q's selected nonroot component: it is
+literally the escape route from the old selected component.
 This is a positive necessary obstruction for the original
 Claim 2, NOT a claim that the full canonical lift prevents
 the loss of that vertex. Old-root retention remains the
@@ -109,8 +111,11 @@ theorem minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
       (r : w.Carrier),
       0 < n ∧
       Set.range d.roots ⊂ T ∧
+      Set.range d.roots ⊆ geometricPieceVertices w.source P.data ∧
       d.left.1 = y.1 ∧ d.right.1 = x.1 ∧
       r ∈ Set.range P.data.roots ∧
+      r ∈ functionalComponentFrom w.source
+        (Set.range d.roots) d.left ∧
       r ∉ Set.range d.roots := by
   letI : Finite w.Carrier := w.finiteCarrier
   let S : Set w.Carrier :=
@@ -165,11 +170,11 @@ theorem minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
       (Set.range P.data.roots) P.data.left
     rw [hQright]
     exact hxOld
-  obtain ⟨r, hrOld, hrMissing⟩ :=
-    minimalMixedPiece_localCandidate_losesOldRoot
-      w.source S AOnly BOnly
-      P Q hMinP hNewRootInside hLeftOld hRightOld
-  exact ⟨n, d, r, hn, hQrootT, hQleft, hQright,
-    hrOld, hrMissing⟩
+  obtain ⟨r, hrOld, hrCaptured⟩ :=
+    minimalMixedPiece_otherMixed_capturesOldRoot
+      w.source S AOnly BOnly P Q hMinP hLeftOld hRightOld
+  have hrLost : r ∉ Set.range d.roots := hrCaptured.1
+  exact ⟨n, d, r, hn, hQrootT, hNewRootInside,
+    hQleft, hQright, hrOld, hrCaptured, hrLost⟩
 
 end AllThoseRamseyClasses.Lifts
