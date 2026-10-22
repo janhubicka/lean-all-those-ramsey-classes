@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_leftVertex_separatedByBoundary
