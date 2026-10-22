@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalRightBoundaryCoverageStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalShadowFree_of_minimalRightBoundaryCoverage
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_strongAmalgamation_rightCoverage
