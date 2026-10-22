@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteNestedConvexOrder
+
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.refineClassLevels_preserves_comparison
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.refineClassLevels_preserves_prior_convex
+#print axioms AllThoseRamseyClasses.Applications.MetricConvexOrder.refineClassLevels_all_convex
