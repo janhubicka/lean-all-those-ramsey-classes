@@ -18,7 +18,7 @@ For a finite source, enumerate its whole root T to produce an
 actual geometric forbidden-source piece (once the source itself
 belongs to the forbidden family), with its selected nonroot
 component EXACTLY C. This gives a concrete sufficient condition
-for a one-sided component to admit a genuine source piece
+for a one-sided component to support a genuine source piece
 rooted in the common-root preimage.
 
 The hypothesis that the two component boundaries agree is
