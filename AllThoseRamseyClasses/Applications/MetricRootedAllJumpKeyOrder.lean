@@ -38,7 +38,7 @@ theorem metricRooted_allJumpConvexOrder_of_keys
     (S : Set ℝ)
     {A : Type u} {U : Type v} {V : Type w}
     {K : Type z}
-    [Finite A] [Finite U] [Finite V]
+    [Finite A] [Nonempty A] [Finite U] [Finite V]
     [LinearOrder U] [LinearOrder V] [LinearOrder K]
     (iU : A → U) (iV : A → V)
     (hiU : Function.Injective iU)
