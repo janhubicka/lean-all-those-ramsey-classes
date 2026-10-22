@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SingletonBoundaryStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.globalCanonicalShadowFree_of_singletonBoundaries
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTraceAge_strongAmalgamation_singletonBoundaries
