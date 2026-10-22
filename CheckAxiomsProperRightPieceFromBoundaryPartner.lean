@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.ProperRightPieceFromBoundaryPartner
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_partner_has_properRightFactor
