@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.BoundaryClosureExactComponent
 import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
+import PartiteConstruction.Functional.WeakInvariant
 
 /-!
 # A generated right-component boundary separates all opposite-colour vertices
