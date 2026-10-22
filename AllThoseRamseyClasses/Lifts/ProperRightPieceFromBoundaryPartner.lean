@@ -87,6 +87,9 @@ theorem weakRightComponent_partner_has_properRightFactor
     (haLeft : a ∈ weakFreeLeftPart (sL := sL) (iL := iL) f) :
     ∃ (m : ℕ) (Q : GeometricFunctionalPieceData Source m),
       Set.range Q.roots = T ∧
+      componentFrom Source.graph (Set.range Q.roots) Q.left =
+        componentFrom Source.graph
+          (weakFreeRootPart (sL := sL) (iL := iL) f) x ∧
       geometricPieceVertices Source Q ⊂
         geometricPieceVertices Source P ∧
       ∃ pRight : geometricPieceVertices Source Q → F,
@@ -115,6 +118,6 @@ theorem weakRightComponent_partner_has_properRightFactor
   obtain ⟨pRight, hpRight, hMap⟩ :=
     weakGeometricPiece_factor_right_of_exactSharedRootComponent
       hFree f hf Q hQrootsS x hxRight hQcomponent
-  exact ⟨m, Q, hQroot, hProper, pRight, hpRight, hMap⟩
+  exact ⟨m, Q, hQroot, hQcomponent, hProper, pRight, hpRight, hMap⟩
 
 end AllThoseRamseyClasses.Lifts

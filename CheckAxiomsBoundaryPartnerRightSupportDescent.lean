@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.BoundaryPartnerRightSupportDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.boundaryPartner_properRightPiece_strictRightSupport
