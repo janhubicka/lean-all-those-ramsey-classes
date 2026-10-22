@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.BoundaryPartnerProperSubpiece
+
+#print axioms AllThoseRamseyClasses.Lifts.componentBoundaryClosure_inside_geometricPiece
+#print axioms AllThoseRamseyClasses.Lifts.finite_boundaryPartner_gives_proper_geometricSubpiece
