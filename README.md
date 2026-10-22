@@ -41,6 +41,24 @@ records, following the `lean-milliken` documentation style. The [live GitHub Wik
 was published in [CI run 38642603486](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/38642603486) and now synchronizes
 from version-controlled Markdown.
 
+## Section 3 lift formalization (separate from Theorem 2.18)
+
+The original **global forbidden-piece homogenization** in Section 3 is
+still under verification. Its full unrestricted strong-amalgamation
+theorem is **not certified**. However, the library has proved
+actual native-functional canonical-lift flips, arbitrary-width
+source-component partner/factorization criteria, and strict
+source-support descent. It also has conditional and restricted
+class-level strong-amalgamation theorems with their additional
+hypotheses displayed explicitly.
+
+For the paper-to-Lean map, current mathematical obstructions and
+CI-verified modules, see
+[**Lift homogenization**](docs/wiki/Lift-homogenization.md).
+Do not substitute its auxiliary folded-root lift for the original
+distinct-root construction or assume arbitrary weak HE maps
+are injective on reducible closed separator roots.
+
 ## Find the theorem or definition you need
 
 | You want to… | Start here |
