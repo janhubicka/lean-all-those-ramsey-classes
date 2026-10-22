@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalSingletonBoundaryAutomaticFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.globalSingletonBoundary_rightToLeftFlip_of_connectedOpposite
