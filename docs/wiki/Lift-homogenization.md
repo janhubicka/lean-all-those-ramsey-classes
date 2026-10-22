@@ -935,3 +935,72 @@ requires injective target images of the ORDERED piece root and
 compatible full global lift data. The critical multicomponent
 flip-minimality argument and unrestricted Section 3 theorem
 remain unproved.
+
+
+## 22 October: right-side source pieces and original full-lift flips
+
+Current maintained Lean-main integration has advanced beyond the
+earlier "pending" checkpoint above:
+
+* [#574](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/574)
+  **MERGED, full Lean CI green** (merge
+  \`bbf131b8085a\`). It constructs a literal full RIGHT-side EHN
+  map of a genuine geometric source piece if its selected component
+  contains no left-exclusive source vertices. The special case
+  whose component equals an actual right-exclusive source-minus-S
+  component needs no additional no-crossing assumption.
+* [#576](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/576)
+  **MERGED, full Lean CI green** (merge
+  \`7cfeeeefcdfe\`). Given C an actual source component after
+  deleting the closed seam preimage S, let T=Cl(N(C))⊆S.
+  Then **T is a minimal closed separator with selected component
+  C if and only if** there is a second Source-minus-T component D
+  separated from C whose generated boundary closure also equals T.
+  For finite source carriers the theorem constructs an actual
+  minimal-root geometric piece with ordered whole root T.
+  Unlike the sufficient matching-S-component condition, D may
+  absorb vertices of S-minus-T.
+* [#571](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/571)
+  is a **pending** specialization when two original S-components
+  already have the same generated boundary. Its earlier version
+  failed on dependent root-set subtype transports; the revised
+  proof delegates finite chart construction to the stronger
+  certified #576 and awaits independent CI. It must not be marked
+  validated or merged until full checks pass.
+
+The further proof modules are **pending** and conditional:
+
+* [#586](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/586)
+  composes the boundary-partner construction and verified right
+  factorization. It provides an ACTUAL B-side EHN piece map from
+  one B-exclusive source component with a certified partner.
+  With a source path and pairwise irreducible-test coverage of
+  genuine roots, it additionally proves positive width and
+  injective ordered target-root images. A second special case
+  obtains root-image injectivity for **singleton boundaries**
+  without the test-coverage assumption. A universe-zero carrier
+  adjustment was necessary because the existing global
+  pair-coverage API currently lives in Type (not all Type v).
+* [#588](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/588)
+  uses the already certified global left-to-right flip **with
+  its sides exchanged**. Under full common canonical-lift
+  agreement, a genuinely one-sided B-source piece, positive
+  width and injective target-root tuple, it constructs a
+  LITERAL forbidden replacement source and genuine native
+  functional free-amalgam diagram whose NEW piece maps into A
+  and whose OLD complement map is unchanged vertex-by-vertex.
+  This is the actual right-to-left source flip called for by
+  printed Claim 2, rather than a proposed abstract
+  "flip available" oracle.
+
+**Still not proved:** the published Claim 2 must show that,
+under global source-support/minimum-mixed-piece minimality,
+the chosen B-only components have the necessary boundary
+partners, or explain how to flip them through a different
+valid construction; then it must prove that the sequence
+terminates or strictly decreases a suitable parameter.
+For arbitrary regular HE-image-closed forbidden families,
+the original distinct-root canonical-lift root-image
+injectivization remains unproved. Neither #586 nor #588
+claims the unrestricted shadow avoidance or Ramsey theorem.
+The numbered mathematical manuscript remains frozen.
