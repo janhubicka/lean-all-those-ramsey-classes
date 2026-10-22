@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Applications.MetricFiniteNestedConvexOrder
 import AllThoseRamseyClasses.Applications.MetricRootedAmalgamLinearOrder
+import AllThoseRamseyClasses.Applications.MetricRootedAmalgamDistance
 import AllThoseRamseyClasses.Applications.MetricConvexityTransfer
 
 /-!
