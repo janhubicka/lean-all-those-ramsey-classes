@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SingletonClosedSeparator
+
+#print axioms AllThoseRamseyClasses.Lifts.singletonClosedCut_isMinimal_of_connectedSeparation
+#print axioms AllThoseRamseyClasses.Lifts.singletonClosedCut_bothBoundaries_of_connectedSeparation
