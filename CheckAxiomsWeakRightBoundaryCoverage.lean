@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
+
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_leftVertex_separatedByBoundary
+#print axioms AllThoseRamseyClasses.Lifts.weakRightComponent_oppositeCoverage_hasPartner
