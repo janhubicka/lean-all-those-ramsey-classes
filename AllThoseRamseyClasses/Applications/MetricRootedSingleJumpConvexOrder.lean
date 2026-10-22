@@ -95,9 +95,6 @@ theorem metricRooted_oneJumpConvexOrder_exists
       rw [metricRootedClassKey_left iU iV hiU keyU keyV x,
           metricRootedClassKey_left iU iV hiU keyU keyV y]
       exact hMonoU (le_of_lt hxy)
-    change @LT.lt W (labelFirstOrder label).toLT
-      (metricRootedLeft iU iV hiU x)
-      (metricRootedLeft iU iV hiU y)
     exact @labelFirst_strict_of_label_mono W K o0 _
       label _ _ (hOrdU x y hxy) hKey
   · intro x y hxy
@@ -111,9 +108,6 @@ theorem metricRooted_oneJumpConvexOrder_exists
       rw [metricRootedClassKey_right iU iV hiV keyU keyV hRoot x,
           metricRootedClassKey_right iU iV hiV keyU keyV hRoot y]
       exact hMonoV (le_of_lt hxy)
-    change @LT.lt W (labelFirstOrder label).toLT
-      (metricRootedRight iU iV hiV x)
-      (metricRootedRight iU iV hiV y)
     exact @labelFirst_strict_of_label_mono W K o0 _
       label _ _ (hOrdV x y hxy) hKey
   · intro p q t hpq hqt hpt
