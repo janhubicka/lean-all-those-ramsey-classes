@@ -1,5 +1,4 @@
-import AllThoseRamseyClasses.Lifts.BoundaryClosureExactComponent
-import AllThoseRamseyClasses.Lifts.WeakMinimalGeometricChart
+import AllThoseRamseyClasses.Lifts.ComponentBoundaryPieceCriterion
 
 /-!
 # Matching source-component boundaries construct a GENUINE geometric piece
@@ -134,20 +133,18 @@ theorem finite_matchingComponentBoundaries_hasGeometricPiece
   have hMin : IsMinimalClosedSeparator A T xT yT :=
     minimalClosedSeparator_of_matchingComponentBoundaries
       A S hS x y hNotReach hSameBoundary
-  obtain ⟨n, d, hRoots, hLeft, hRight⟩ :=
-    finiteMinimalClosedSeparator_toGeometricChart A T xT yT hMin
-  have hComp :
-      componentFrom A.graph (Set.range d.roots) d.left =
-        componentFrom A.graph S x := by
-    -- Transport the dependent root subtype before identifying its
-    -- two surviving distinguished vertices.
-    cases hRoots
-    have hLeftEq : d.left = outsideCutMap hTS x :=
-      Subtype.ext hLeft
-    rw [hLeftEq]
-    exact componentBoundaryClosure_preserves_exact_component
-      A S hS x
-  exact ⟨n, d, by simpa only [hRoots] using hTS,
-    hLeft, hRight, hComp⟩
+  -- Reuse the stronger, already verified boundary-partner theorem
+  -- (#576): it produces the exact component equality as part of
+  -- the geometric chart, avoiding dependent-subtype rewriting.
+  have hBoundaryY :
+      A.functionClosure
+        (gaifmanNeighborhood A.graph (componentFrom A.graph T yT)) =
+        T :=
+    (minimalClosedSeparator_bothBoundaries_eq
+      A T xT yT hMin).2
+  obtain ⟨n, d, _hRoot, hRootS, hLeft, hRight, hComponent⟩ :=
+    finite_componentBoundary_hasGeometricPiece_of_partner
+      A S T hS x rfl hTS yT hMin.2.1 hBoundaryY
+  exact ⟨n, d, hRootS, hLeft, hRight, hComponent⟩
 
 end AllThoseRamseyClasses.Lifts
