@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteJumpEnumeration
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.mem_finiteJumpThresholdList_iff
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteJumpThresholdList_pairwise
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.finiteJumpThresholdList_certificate
