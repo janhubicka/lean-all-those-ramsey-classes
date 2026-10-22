@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SingletonRightComponentStrictSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.singletonRightComponent_strictSupport_of_connectedOpposite
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_noSingletonRightComponent
