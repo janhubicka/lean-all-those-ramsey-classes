@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
-import AllThoseRamseyClasses.Lifts.GlobalMaximalTraceConditionalStrongAmalgamation
+import AllThoseRamseyClasses.Lifts.CommonGlobalLiftIff
+import AllThoseRamseyClasses.Lifts.GlobalShadowAvoidanceFromGeometricConditions
 
 /-!
 # The original global lift has strong AP under an exact component-boundary test
