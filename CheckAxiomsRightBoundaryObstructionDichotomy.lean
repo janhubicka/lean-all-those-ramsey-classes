@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.RightBoundaryObstructionDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_boundaryCollision_or_uncovered
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_uncovered_of_rootInjOn
