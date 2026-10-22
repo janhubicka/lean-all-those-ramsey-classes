@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.RootRetentionLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_proper_of_retainedOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_strictNonrootCount_of_retainedOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedPiece_localCandidate_losesOldRoot
