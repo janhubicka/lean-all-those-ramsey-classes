@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.RightMinimalBoundaryObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalRightWitness_boundaryPartner_forcesCollision
