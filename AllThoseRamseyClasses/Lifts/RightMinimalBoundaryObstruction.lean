@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Lifts.BoundaryPartnerRightSupportDescent
 import AllThoseRamseyClasses.Lifts.ForbiddenWeakWitnessMinimization
 import AllThoseRamseyClasses.Lifts.IrreducibleTestRootCollisions
+import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
 
 /-!
 # Minimal RIGHT-support obstruction: a partner forces boundary image collisions
@@ -10,9 +11,10 @@ strict B-to-A flip. An old mixed piece P contains a right-only
 component B outside the entire shared-root preimage S, and a
 left-only vertex a in P's selected component.
 
-If B has a genuine closed-boundary partner and its generated
-boundary T is nonempty, then a RIGHT-support-minimal forbidden
-witness cannot be injective on T. Hence T is NOT pairwise
+If B has a genuine closed-boundary partner, connectedness
+of the forbidden source forces its generated boundary T to
+be nonempty. A RIGHT-support-minimal forbidden witness
+therefore cannot be injective on T. Hence T is NOT pairwise
 covered by full irreducible source tests.
 
 The support minimum here is on the RIGHT side, not the LEFT
@@ -32,8 +34,10 @@ variable {L : Language.{u}}
 
 /-- An actual right-support-minimal forbidden EHN map, with a
 mixed source piece P containing a right-exclusive component
-and a left-exclusive vertex, cannot have a nonempty
+and a left-exclusive vertex, cannot have a genuine
 boundary-partner component with injective target boundary.
+The forbidden-family connectedness hypothesis supplies
+positive root width automatically.
 
 The resulting failure of irreducible-test coverage is a
 SOURCE-side necessary condition, not a blanket image
@@ -41,6 +45,7 @@ injectivization or a strong-amalgamation conclusion. -/
 theorem minimalRightWitness_boundaryPartner_forcesCollision
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
     {UX UA UB UT : Type}
     (Target : Structure L UT)
     (Left : Structure L UA) (Right : Structure L UB)
@@ -81,10 +86,25 @@ theorem minimalRightWitness_boundaryPartner_forcesCollision
     (haOld : a ∈ functionalComponentFrom w.source
       (Set.range P.roots) P.left)
     (haLeft : a ∈ weakFreeLeftPart
-      (sL := iLeft) (iL := jLeft) w.toTarget)
-    (hTnonempty : T.Nonempty) :
+      (sL := iLeft) (iL := jLeft) w.toTarget) :
     (¬ Set.InjOn w.toTarget T) ∧
       ¬ RootPairsCoveredByIrreducibleTests w.source T := by
+  have hPath : ReachOutside w.source.graph (∅ : Set w.Carrier)
+      (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
+      (⟨y.1, by simp⟩ : {z : w.Carrier // z ∉ ∅}) :=
+    gaifmanPath_to_emptyCutReach w.source
+      ((hConnected w.source w.finiteCarrier w.forbidden).2 x.1 y.1)
+  have hTnonempty : T.Nonempty := by
+    by_contra hNot
+    have hEmpty : T = ∅ := by
+      ext z
+      constructor
+      · intro hz
+        exact (hNot ⟨z, hz⟩).elim
+      · intro hz
+        simp at hz
+    cases hEmpty
+    exact hSep (by simpa using hPath)
   have hBadInjectivity : ¬ Set.InjOn w.toTarget T := by
     intro hInjT
     obtain ⟨m, Q, hQroot, hProper,
