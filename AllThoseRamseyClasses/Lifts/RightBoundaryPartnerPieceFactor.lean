@@ -35,9 +35,12 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u v
+universe u
 variable {L : Language.{u}}
-variable {H E F W U : Type v}
+-- The existing global piecewise-coverage theorem is universe-zero
+-- on source and target carriers; this module follows that
+-- original global 2019 witness convention.
+variable {H E F W U : Type}
 variable {Root : Structure L H}
 variable {Left : Structure L E} {Right : Structure L F}
 variable {Whole : Structure L W} {Source : Structure L U}
