@@ -1045,3 +1045,105 @@ only the repository's lexical admission scanner rejecting
 the natural-language verb "admit" in a Lean comment.
 The comment was reworded and fresh full CI is pending.
 The numbered manuscript remains frozen.
+
+## Latest verified lift checkpoint — 22 October 2026
+
+**The unrestricted Section 3 strong-amalgamation and Ramsey-lift
+theorems remain unproved.** The original numbered manuscript is frozen.
+The following results do, however, validate actual source-attached
+forbidden-piece operations in the full native functional language.
+
+### Original canonical-lift flips, not a folded substitute
+
+| Verified result | What it actually proves |
+| --- | --- |
+| [#590](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/590) | A successful **B-to-A** flip of a genuine geometric forbidden piece strictly reduces the ORIGINAL right-exclusive **source-vertex count** |
+| [#592](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/592) and [#594](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/594) | An actual boundary partner yields a genuine **proper B-only sub-piece**, including its entire closed root, with a full native right-side EHN factorization |
+| [#595](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/595) | The proper B-only piece construction composes with a strict support-reducing original-global flip, under explicit boundary partner, positive width and injective target root hypotheses |
+| [#598](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/598), [#599](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/599), [#602](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/602) | A **singleton generated boundary** has an automatically constructed opposite-side partner in a connected source; the original-global B-to-A flip acts on the **whole right component**, without selecting an outer mixed piece |
+| [#603](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/603) | At a minimum of RIGHT source support, **every** right-exclusive component has at least two DISTINCT source vertices in its generated boundary; the weak target map may still collapse them |
+| [#605](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/605) | For **arbitrary root width**, a right-exclusive component with an actual boundary partner, a connecting path and an injective **target boundary image** can be flipped directly, again with NO outer mixed piece |
+| [#606](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/606) | For arbitrary width, the right-component generated boundary **already separates** it from any left-exclusive source vertex. A left-side component is a true boundary partner precisely when its generated neighborhood closure **covers the complete right boundary**. No additional separation premise is needed |
+
+All seven rows describe merged Lean modules with successful
+complete module builds and permitted-axiom/admission audits on
+their feature branches. The direct arbitrary-width proof imports
+`AllThoseRamseyClasses.Lifts.GlobalRightComponentDirectPartnerFlip`;
+the exact boundary criterion imports
+`AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage`.
+
+The only unresolved source-geometric input to this particular
+**direct** proof is the coverage inclusion. Write
+`S=f^{-1}(X)`, let `B` be a right-only component of
+`F\\S`, put `T=Cl_F(N_F(B))`, and choose a left-only
+source vertex `a`. If `D` is the component of `a`
+after deleting `T`, the required condition is
+
+\[
+ T \subseteq \operatorname{Cl}_F(N_F(D)).
+\]
+
+The reverse inclusion follows from native closedness of `T`.
+The other unresolved input is **injectivity of `f` on `T`**,
+which is not automatic under a weak EHN map for a reducible
+root. An old source with connected components and a minimal
+mixed geometric piece need not have a matching boundary partner
+by pure Gaifman geometry; the five-vertex path
+`a_1-r_1-b-r_2-a_2` provides an example. It does NOT
+refute the full lifted theorem, because full canonical relation
+agreement has not been established for that example.
+
+A RIGHT-support-minimal witness possessing a genuine
+boundary partner must have two distinct boundary vertices with
+the SAME target image, unless the source can be flipped and
+the support minimum contradicted. Crucially, this is a minimum
+of RIGHT-exclusive source support; the printed Claim 1 minimizes
+LEFT-exclusive source support. These may not be interchanged.
+
+### Restricted and conditional class results
+
+[#604](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/604)
+verifies a genuine strong-amalgamation theorem for the original
+finite maximal-trace age under the **additional strong hypothesis**
+that every component outside **every closed source cut** has a
+generated boundary with at most one vertex. For a function-free
+relational signature this already forces maximum Gaifman degree
+at most one (take the cut `V\\{v}`), so connected forbidden
+sources have at most two vertices and the result is essentially
+subsumed by the earlier irreducible-source theorem. Its new
+potential lies in genuinely functional languages, where such
+vertex-complement cuts need not be closed.
+
+[PR #607](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/607)
+is an **additional conditional** class-level criterion from
+a single right-minimal component with the above boundary coverage
+and pairwise irreducible-test protection. These conditions have
+NOT been proved from the paper's unrestricted regularity or
+closure under tuple-surjective homomorphism-embedding images;
+do not mistake the conditional class theorem for the original
+statement. The PR requires its own full CI audit.
+
+[PR #608](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/608)
+is an in-progress library cleanup extracting the pure boundary
+separation lemma into a light module, then reusing it in the
+earlier singleton partner proof. It changes no mathematical
+statement and must pass its independent checks before merging.
+
+### Next genuine mathematical proof obligations
+
+1. Prove the opposite-component **full boundary coverage**
+   for a suitable right-only component from actual matching
+   full canonical-lift relations, or isolate why a different
+   geometric step is needed in the printed multicomponent proof.
+2. Repair the **colliding target-root images** of arbitrary-width
+   minimal separators in the original distinct-root canonical
+   lift. The auxiliary folded-root lift does not supply its
+   unrestricted precompactness.
+3. If following the printed Claim 2 instead of the direct
+   component route, certify a repeated-flip invariant preserving
+   the chosen outer rooted piece; termination of strictly
+   decreasing RIGHT support alone does not recover the original
+   LEFT-support-minimality contradiction.
+
+For the stand-alone printed-proof differences, see the
+[nonprinting manuscript audit](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/LIFTS-CLAIM2-AUDIT-2026-10-22.md).
