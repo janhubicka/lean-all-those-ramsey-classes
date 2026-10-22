@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeometricPieceRightFactor
+
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_rightImage_of_no_left
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_factor_right_if_no_left
+#print axioms AllThoseRamseyClasses.Lifts.weakGeometricPiece_factor_right_of_exactSharedRootComponent
