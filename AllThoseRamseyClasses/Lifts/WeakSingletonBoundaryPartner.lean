@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Lifts.SingletonClosedSeparator
-import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
+import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
 
 /-!
 # A singleton boundary has an ACTUAL partner in a connected mixed source
