@@ -19,6 +19,8 @@ the real class-key maps nor assumes metric completion.
 
 namespace AllThoseRamseyClasses.Applications.MetricConvexOrder
 
+open AllThoseRamseyClasses.Applications.MetricSaturation
+
 universe u v
 
 /-- Threshold equivalence itself forces nestedness of all
@@ -36,8 +38,12 @@ theorem thresholdClassKeys_nested
   induction levels with
   | nil => trivial
   | cons j rest ih =>
-      have hHead : ∀ k ∈ rest, j < k := hIncreasing.1
-      have hTail : rest.Pairwise (· < ·) := hIncreasing.2
+      have hHead : ∀ k ∈ rest, j < k := by
+        cases hIncreasing with
+        | cons hRel _ => exact hRel
+      have hTail : rest.Pairwise (· < ·) := by
+        cases hIncreasing with
+        | cons _ hRest => exact hRest
       have hExactRest : ∀ k ∈ rest, ∀ x y : X,
           key k x = key k y ↔ d x y ≤ k := by
         intro k hk x y
