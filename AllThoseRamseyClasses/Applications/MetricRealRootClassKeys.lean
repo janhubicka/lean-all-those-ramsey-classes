@@ -174,9 +174,9 @@ theorem metricRootJump_sideClassKeys_exist
           (metricJumpClassTag hpos hS hdV j hj z)).mp htags
       refine ⟨ra.val, ?_, ?_⟩
       · exact (metricJumpClassTag_eq_iff_close
-          hpos hS hdU j hj x (iU ra.val)).mp htagU
+          hpos hS hdU j hj x (iU ra.val)).mp htagU.symm
       · exact (metricJumpClassTag_eq_iff_close
-          hpos hS hdV j hj (iV ra.val) z).mp htagV.symm
+          hpos hS hdV j hj (iV ra.val) z).mp htagV
     · rintro ⟨a, hxa, haz⟩
       let ra : R := metricJumpClassTag hpos hS hdA j hj a
       have hRootClose : dA a ra.val ≤ j := by
