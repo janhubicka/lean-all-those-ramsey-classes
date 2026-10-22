@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.UncoveredMinimalMixedOldRootLoss
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
