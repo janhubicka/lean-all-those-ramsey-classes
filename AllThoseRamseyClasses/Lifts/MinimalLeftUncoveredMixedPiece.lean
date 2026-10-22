@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Lifts.UncoveredBoundarySmallerRootPiece
-import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
+import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
 import AllThoseRamseyClasses.Lifts.GlobalOriginalClaim1OneSided
 import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
 
