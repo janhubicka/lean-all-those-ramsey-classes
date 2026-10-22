@@ -1,6 +1,5 @@
 import AllThoseRamseyClasses.Lifts.SingletonClosedSeparator
-import AllThoseRamseyClasses.Lifts.BoundaryClosureExactComponent
-import AllThoseRamseyClasses.Lifts.WeakFreeGaifmanComponents
+import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
 
 /-!
 # A singleton boundary has an ACTUAL partner in a connected mixed source
@@ -17,9 +16,9 @@ deleting T is an ACTUAL boundary partner of B:
 * it is distinct from the x-component after deleting T;
 * its generated external neighbourhood closure is EXACTLY T.
 
-The proof uses the true monochromatic S-component property,
-exact component preservation on shrinking S to T, and the
-minimality of any connected singleton separator. The partner
+The proof reuses the general closed-boundary separation theorem
+for opposite-colour vertices. The singleton assumption is needed
+only for minimality and the second exact boundary equation. The partner
 is **constructed**, not separately assumed. No EHN map or
 image quotient is made injective, and all original function
 fibres remain unchanged.
@@ -75,34 +74,10 @@ theorem weakRightComponent_singletonBoundary_hasPartner
       Source.functionClosure
         (gaifmanNeighborhood Source.graph
           (componentFrom Source.graph T y)) = T := by
+  obtain ⟨y, hYa, hSep⟩ :=
+    weakRightComponent_leftVertex_separatedByBoundary
+      hFree f hf x hxRight T hT hTS a haLeft
   let S : Set U := weakFreeRootPart (sL := sL) (iL := iL) f
-  have hSclosed : Source.IsClosed S :=
-    weakFreeRootPart_isClosed (sL := sL) (iL := iL) f hf.1
-  have haNotS : a ∉ S := haLeft.2
-  have haNotT : a ∉ T := fun ht => haNotS (hTS ht)
-  let y : {z : U // z ∉ T} := ⟨a, haNotT⟩
-  have haNotB : a ∉ componentFrom Source.graph S x := by
-    intro haB
-    have haRight :
-        a ∈ weakFreeRightPart (sL := sL) (iL := iL) (iR := iR) f :=
-      weakFreePartition_component_right
-        hFree f hf.1 x hxRight haB
-    exact (Set.disjoint_left.mp
-      (weakFreePartition_left_right_disjoint hFree f))
-        haLeft haRight
-  have hCompT :
-      componentFrom Source.graph T (outsideCutMap hTS x) =
-        componentFrom Source.graph S x := by
-    cases hT
-    exact componentBoundaryClosure_preserves_exact_component
-      Source S hSclosed x
-  have hSep : ¬ ReachOutside Source.graph T
-      (outsideCutMap hTS x) y := by
-    intro hReach
-    have haComp : a ∈ componentFrom Source.graph T
-        (outsideCutMap hTS x) := ⟨haNotT, hReach⟩
-    rw [hCompT] at haComp
-    exact haNotB haComp
   have hTclosed : Source.IsClosed T := by
     rw [hT]
     exact Source.functionClosure_isClosed
@@ -113,10 +88,12 @@ theorem weakRightComponent_singletonBoundary_hasPartner
       (⟨y.1, by simp⟩ : {z : U // z ∉ ∅}) := by
     change ReachOutside Source.graph (∅ : Set U)
       (⟨x.1, by simp⟩ : {z : U // z ∉ ∅})
-      (⟨a, by simp⟩ : {z : U // z ∉ ∅})
-    exact hConnected
-  have hPartner := (singletonClosedCut_bothBoundaries_of_connectedSeparation
-    Source T hTclosed hSingleton (outsideCutMap hTS x) y hSep hPath).2
-  exact ⟨y, rfl, hSep, hPartner⟩
+      (⟨y.1, by simp⟩ : {z : U // z ∉ ∅})
+    simpa only [hYa] using hConnected
+  have hPartner :=
+    (singletonClosedCut_bothBoundaries_of_connectedSeparation
+      Source T hTclosed hSingleton
+      (outsideCutMap hTS x) y hSep hPath).2
+  exact ⟨y, hYa, hSep, hPartner⟩
 
 end AllThoseRamseyClasses.Lifts
