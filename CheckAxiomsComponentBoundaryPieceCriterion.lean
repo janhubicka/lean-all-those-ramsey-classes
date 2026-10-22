@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ComponentBoundaryPieceCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.componentBoundary_hasMinimalPiece_iff_partner
+#print axioms AllThoseRamseyClasses.Lifts.finite_componentBoundary_hasGeometricPiece_of_partner
