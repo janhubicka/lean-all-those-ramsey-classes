@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SingletonBoundaryProperRightDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.singletonBoundary_properRightPiece_strictSupport
