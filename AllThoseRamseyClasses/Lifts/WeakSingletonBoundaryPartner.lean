@@ -70,6 +70,7 @@ theorem weakRightComponent_singletonBoundary_hasPartner
       (⟨x.1, by simp⟩ : {z : U // z ∉ ∅})
       (⟨a, by simp⟩ : {z : U // z ∉ ∅})) :
     ∃ y : {z : U // z ∉ T},
+      y.1 = a ∧
       ¬ ReachOutside Source.graph T (outsideCutMap hTS x) y ∧
       Source.functionClosure
         (gaifmanNeighborhood Source.graph
@@ -116,6 +117,6 @@ theorem weakRightComponent_singletonBoundary_hasPartner
     exact hConnected
   have hPartner := (singletonClosedCut_bothBoundaries_of_connectedSeparation
     Source T hTclosed hSingleton (outsideCutMap hTS x) y hSep hPath).2
-  exact ⟨y, hSep, hPartner⟩
+  exact ⟨y, rfl, hSep, hPartner⟩
 
 end AllThoseRamseyClasses.Lifts
