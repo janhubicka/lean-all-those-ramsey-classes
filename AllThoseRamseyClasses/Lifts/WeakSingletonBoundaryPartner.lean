@@ -92,7 +92,7 @@ theorem weakRightComponent_singletonBoundary_hasPartner
   have hCompT :
       componentFrom Source.graph T (outsideCutMap hTS x) =
         componentFrom Source.graph S x := by
-    rw [hT]
+    cases hT
     exact componentBoundaryClosure_preserves_exact_component
       Source S hSclosed x
   have hSep : ¬ ReachOutside Source.graph T
@@ -110,7 +110,10 @@ theorem weakRightComponent_singletonBoundary_hasPartner
   have hPath : ReachOutside Source.graph (∅ : Set U)
       (⟨(outsideCutMap hTS x).1, by simp⟩ : {z : U // z ∉ ∅})
       (⟨y.1, by simp⟩ : {z : U // z ∉ ∅}) := by
-    simpa only using hConnected
+    change ReachOutside Source.graph (∅ : Set U)
+      (⟨x.1, by simp⟩ : {z : U // z ∉ ∅})
+      (⟨a, by simp⟩ : {z : U // z ∉ ∅})
+    exact hConnected
   have hPartner := (singletonClosedCut_bothBoundaries_of_connectedSeparation
     Source T hTclosed hSingleton (outsideCutMap hTS x) y hSep hPath).2
   exact ⟨y, hSep, hPartner⟩
