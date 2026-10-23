@@ -131,6 +131,7 @@ theorem metricRootedPartialFunction_root_agree_of_source
       simp [h]
   | some b =>
       simp only [h, Option.map_some]
-      exact metricRooted_sides_agree_on_root iU iV hiU hiV b
+      exact congrArg Option.some
+        (metricRooted_sides_agree_on_root iU iV hiU hiV b)
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
