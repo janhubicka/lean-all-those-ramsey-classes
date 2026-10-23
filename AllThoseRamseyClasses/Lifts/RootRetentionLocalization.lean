@@ -122,46 +122,6 @@ theorem geometricPiece_strictNonrootCount_of_retainedOldRoot
       A P Q hRootRetained hQrootInsideP
       hQleftOld hQrightOld).2
 
-/-- At a source-minimal genuinely mixed piece P, an alternative
-genuinely mixed piece Q whose entire root remains inside P and
-whose two distinguished vertices belong to P's old selected
-component MUST OMIT AN ORIGINAL ROOT VERTEX of P.
-
-This is an explicit root-loss WITNESS: it explains why a
-smaller-root mixed piece constructed from failed boundary
-coverage need not give the printed nonroot-size contradiction. -/
-theorem minimalMixedPiece_localCandidate_losesOldRoot
-    [Finite V]
-    (Source : Structure L V)
-    (S AOnly BOnly : Set V)
-    (P Q : MixedGeometricPiece Source S AOnly BOnly)
-    (hMinimal : ∀ D : MixedGeometricPiece Source S AOnly BOnly,
-      P.nonrootCount ≤ D.nonrootCount)
-    (hQrootInsideP :
-      Set.range Q.data.roots ⊆ geometricPieceVertices Source P.data)
-    (hQleftOld : Q.data.left.1 ∈
-      functionalComponentFrom Source
-        (Set.range P.data.roots) P.data.left)
-    (hQrightOld : Q.data.right.1 ∈
-      functionalComponentFrom Source
-        (Set.range P.data.roots) P.data.left) :
-    ∃ r : V,
-      r ∈ Set.range P.data.roots ∧
-      r ∉ Set.range Q.data.roots := by
-  classical
-  by_contra hNoLost
-  have hRetained :
-      Set.range P.data.roots ⊆ Set.range Q.data.roots := by
-    intro r hrP
-    by_contra hrNotQ
-    exact hNoLost ⟨r, hrP, hrNotQ⟩
-  have hProper :=
-    (geometricPiece_proper_of_retainedOldRoot
-      Source P.data Q.data hRetained
-      hQrootInsideP hQleftOld hQrightOld).2
-  exact minimalMixedGeometricPiece_no_proper_mixed_component
-    P hMinimal Q hProper
-
 /-- If the selected component of Q starts inside P's selected
 component but subsequently escapes it, the path MUST pass
 through an original separator-root vertex of P. That vertex
