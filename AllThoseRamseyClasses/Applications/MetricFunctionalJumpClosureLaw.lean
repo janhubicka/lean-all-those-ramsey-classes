@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Applications.MetricJumpThresholds
-import AllThoseRamseyClasses.Applications.MetricFourValues
+import AllThoseRamseyClasses.Applications.MetricJumpSamedist
 
 /-!
 # Faithful per-jump closure law for the printed metric functional lift
