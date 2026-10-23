@@ -7,9 +7,9 @@ import AllThoseRamseyClasses.Lifts.MinimalMixedGeometricPiece
 The original Section 3 Claim 2 chooses a genuinely mixed
 source piece P with the least possible number of nonroot
 vertices. Suppose its old separating root consists of at
-most ONE vertex. Let Q be another genuine geometric piece
-whose two distinguished vertices lie in P's selected
-component, while its LEFT component captures the old
+most ONE vertex. Let Q be another genuine geometric piece whose full
+root lies inside P and whose two distinguished vertices
+lie in P's selected component, while its LEFT component captures the old
 separator-root vertex.
 
 The previously verified path/capture theorem gives a simple
@@ -20,7 +20,8 @@ already captured by Q's LEFT component, contradicting
 disjointness of the two components.
 
 Thus Q's opposite/right component is contained in P's
-selected component. It is a STRICT subset because the
+selected component, and the entire opposite-oriented
+rooted piece is a genuine proper sub-piece of P. It is a STRICT subset because the
 original Q.left vertex belongs to P but cannot belong to
 Q.right's component. Minimum mixed nonroot size then
 forces this opposite component to contain NO left-exclusive
@@ -70,6 +71,8 @@ theorem minimalMixedSingletonOldRoot_oppositeComponent_oneSided
     (Q : GeometricFunctionalPieceData Source m)
     (hQpositive : 0 < m)
     (hQrootS : Set.range Q.roots ⊆ S)
+    (hQrootInsideP :
+      Set.range Q.roots ⊆ geometricPieceVertices Source P.data)
     (hQleftOld :
       Q.left.1 ∈ functionalComponentFrom Source
         (Set.range P.data.roots) P.data.left)
@@ -81,7 +84,10 @@ theorem minimalMixedSingletonOldRoot_oppositeComponent_oneSided
       r ∈ Set.range P.data.roots ∧
       r ∈ functionalComponentFrom Source
         (Set.range Q.roots) Q.left) :
-    functionalComponentFrom Source (Set.range Q.roots) Q.right ⊂
+    (Set.range Q.roots ∪
+      functionalComponentFrom Source (Set.range Q.roots) Q.right) ⊂
+        geometricPieceVertices Source P.data ∧
+      functionalComponentFrom Source (Set.range Q.roots) Q.right ⊂
         functionalComponentFrom Source
           (Set.range P.data.roots) P.data.left ∧
       ∀ z : V,
@@ -160,6 +166,16 @@ theorem minimalMixedSingletonOldRoot_oppositeComponent_oneSided
     }
     exact minimalMixedGeometricPiece_no_proper_mixed_component
       P hMinP M hRightProper
-  exact ⟨hRightProper, hNoLeft⟩
+  have hPieceProper :
+      geometricPieceVertices Source Qswap ⊂
+        geometricPieceVertices Source P.data :=
+    geometricPiece_proper_subpiece_of_rightInOldComponent
+      Source P.data Qswap hQrootInsideP hRightSubset hQleftOld
+  have hFullProper :
+      (Set.range Q.roots ∪
+        functionalComponentFrom Source
+          (Set.range Q.roots) Q.right) ⊂
+      geometricPieceVertices Source P.data := hPieceProper
+  exact ⟨hFullProper, hRightProper, hNoLeft⟩
 
 end AllThoseRamseyClasses.Lifts
