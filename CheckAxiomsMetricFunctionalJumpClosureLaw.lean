@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricFunctionalJumpClosureLaw
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_none_is_last
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.rootClosure_none_preserved
