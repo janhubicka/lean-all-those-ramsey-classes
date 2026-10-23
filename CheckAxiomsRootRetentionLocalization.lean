@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.RootRetentionLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_proper_of_retainedOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_strictNonrootCount_of_retainedOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_escapingComponent_capturesOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedPiece_otherMixed_capturesOldRoot
