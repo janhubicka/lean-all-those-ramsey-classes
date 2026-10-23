@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SingletonOldRootProperRightFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftSingletonOldRoot_uncovered_hasProperRightFlip
