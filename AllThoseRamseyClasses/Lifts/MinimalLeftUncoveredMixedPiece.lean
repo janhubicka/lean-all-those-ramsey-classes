@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.UncoveredBoundarySmallerRootPiece
+import AllThoseRamseyClasses.Lifts.UncoveredExactOppositeRootPiece
 import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
 import AllThoseRamseyClasses.Lifts.GlobalOriginalClaim1OneSided
 import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
@@ -21,7 +21,8 @@ Consequently, if the weak source map is injective merely on
 the full common-root preimage S, an uncovered right-component
 boundary gives a smaller-root GENUINELY MIXED source piece.
 
-The new piece's root lies STRICTLY inside T and the original
+The new piece's root is EXACTLY the generated opposite-component
+boundary U, strictly inside T, and the original
 left/right distinguished source vertices are retained. It is
 not asserted to be a proper sub-piece of a previously selected
 mixed piece P: the component may enlarge when the final minimal
@@ -44,7 +45,8 @@ variable {L : Language.{u}}
 /-- Under actual left-support minimality and injectivity on the
 entire shared-root preimage, an uncovered generated right
 component boundary T yields a GENUINE positive-width
-geometric piece with root strictly smaller than T whose
+geometric piece with root EXACTLY the opposite generated
+boundary U, which is strictly smaller than T, whose
 selected component contains both exclusive colours.
 
 This does NOT identify that piece with a proper sub-piece of
@@ -90,6 +92,9 @@ theorem minimalLeftWitness_uncoveredBoundary_hasSmallerRootMixedPiece
         (componentFrom w.source.graph T y))) :
     ∃ (n : ℕ) (d : GeometricFunctionalPieceData w.source n),
       0 < n ∧
+      Set.range d.roots = w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T y)) ∧
       Set.range d.roots ⊂ T ∧
       d.left.1 = y.1 ∧
       d.right.1 = x.1 ∧
@@ -118,10 +123,29 @@ theorem minimalLeftWitness_uncoveredBoundary_hasSmallerRootMixedPiece
       (⟨y.1, by simp⟩ : {z : w.Carrier // z ∉ ∅}) :=
     gaifmanPath_to_emptyCutReach w.source
       ((hConnected w.source w.finiteCarrier w.forbidden).2 x.1 y.1)
-  obtain ⟨n, d, hn, hRootProper, hLeftOriginal, hRightOriginal⟩ :=
-    finite_uncoveredBoundary_hasSmallerRootGeometricPiece
+  let S : Set w.Carrier :=
+    weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget
+  have hSclosed : w.source.IsClosed S :=
+    weakFreeRootPart_isClosed
+      (sL := iLeft) (iL := jLeft)
+      w.toTarget w.homEmbedding.1
+  have hComponentT :
+      componentFrom w.source.graph T (outsideCutMap hTS x) =
+        componentFrom w.source.graph S x := by
+    cases hT
+    exact componentBoundaryClosure_preserves_exact_component
+      w.source S hSclosed x
+  have hFullXBoundary :
+      w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T (outsideCutMap hTS x))) = T := by
+    rw [hComponentT]
+    exact hT.symm
+  obtain ⟨n, d, hn, hRootExact, hRootProper,
+      hLeftOriginal, hRightOriginal⟩ :=
+    finite_uncoveredBoundary_hasExactOppositeRootGeometricPiece
       w.source T hTclosed (outsideCutMap hTS x) y
-      hSep hUncovered hPath
+      hSep hFullXBoundary hUncovered hPath
   have hRootsInS : Set.range d.roots ⊆
       weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget := by
     intro z hz
@@ -141,7 +165,7 @@ theorem minimalLeftWitness_uncoveredBoundary_hasSmallerRootMixedPiece
       F hFiniteF Target Left Right jLeft jRight
       X iLeft iRight hFree hCommon
       w hMinLeft d hn hRootsInS hLeftD hRootImageInj
-  exact ⟨n, d, hn, hRootProper, hLeftOriginal, hRightOriginal,
-    z, hzComp, hzRight⟩
+  exact ⟨n, d, hn, hRootExact, hRootProper,
+    hLeftOriginal, hRightOriginal, z, hzComp, hzRight⟩
 
 end AllThoseRamseyClasses.Lifts
