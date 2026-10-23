@@ -9,8 +9,8 @@ The original Claim 2 chooses an outer genuine mixed piece P of
 minimum NONROOT component size. The recently verified left-support
 minimality lemma constructs a NEW mixed source piece Q when the
 generated boundary of a right-only component B is not covered
-by an opposite left component. Q's root lies strictly INSIDE
-T=Cl(N(B)), the complete generated boundary of B.
+by an opposite left component. Q's root is EXACTLY the generated boundary U of the opposite
+component after deleting T=Cl(N(B)), and U is strictly inside T.
 
 When B occurs in P's original selected component, native
 closed-component geometry proves T lies inside the FULL old
@@ -23,9 +23,10 @@ vertex. Otherwise retaining all old roots would make Q a
 genuine proper sub-piece with strictly fewer nonroot vertices,
 contradicting the choice of P.
 
-The actual lost old-root vertex is returned together with
-its membership in Q's selected nonroot component: it is
-literally the escape route from the old selected component.
+The captured old-root vertex is returned inside Q's selected
+nonroot component and OUTSIDE the complete opposite-component
+generated boundary U. This makes its precise coverage defect
+explicit, without proving that such a defect is impossible.
 This is a positive necessary obstruction for the original
 Claim 2, NOT a claim that the full canonical lift prevents
 the loss of that vertex. Old-root retention remains the
@@ -110,13 +111,18 @@ theorem minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
     ∃ (n : ℕ) (d : GeometricFunctionalPieceData w.source n)
       (r : w.Carrier),
       0 < n ∧
+      Set.range d.roots = w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T y)) ∧
       Set.range d.roots ⊂ T ∧
       Set.range d.roots ⊆ geometricPieceVertices w.source P.data ∧
       d.left.1 = y.1 ∧ d.right.1 = x.1 ∧
       r ∈ Set.range P.data.roots ∧
       r ∈ functionalComponentFrom w.source
         (Set.range d.roots) d.left ∧
-      r ∉ Set.range d.roots := by
+      r ∉ w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T y)) := by
   letI : Finite w.Carrier := w.finiteCarrier
   let S : Set w.Carrier :=
     weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget
@@ -125,7 +131,7 @@ theorem minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
   let BOnly : Set w.Carrier :=
     weakFreeRightPart
       (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget
-  obtain ⟨n, d, hn, hQrootT, hQleft, hQright,
+  obtain ⟨n, d, hn, hQrootExact, hQrootT, hQleft, hQright,
       z, hzComponent, hzRight⟩ :=
     minimalLeftWitness_uncoveredBoundary_hasSmallerRootMixedPiece
       F hFiniteF hConnected
@@ -173,8 +179,16 @@ theorem minimalLeftWitness_uncoveredInsideMinimalMixed_losesOldRoot
   obtain ⟨r, hrOld, hrCaptured⟩ :=
     minimalMixedPiece_otherMixed_capturesOldRoot
       w.source S AOnly BOnly P Q hMinP hLeftOld hRightOld
-  have hrLost : r ∉ Set.range d.roots := hrCaptured.1
-  exact ⟨n, d, r, hn, hQrootT, hNewRootInside,
-    hQleft, hQright, hrOld, hrCaptured, hrLost⟩
+  have hrUncovered :
+      r ∉ w.source.functionClosure
+        (gaifmanNeighborhood w.source.graph
+          (componentFrom w.source.graph T y)) := by
+    intro hrU
+    exact hrCaptured.1 (by
+      rw [hQrootExact]
+      exact hrU)
+  exact ⟨n, d, r, hn, hQrootExact, hQrootT,
+    hNewRootInside, hQleft, hQright, hrOld,
+    hrCaptured, hrUncovered⟩
 
 end AllThoseRamseyClasses.Lifts
