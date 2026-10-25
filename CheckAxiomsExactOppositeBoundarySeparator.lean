@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ExactOppositeBoundarySeparator
+
+#print axioms AllThoseRamseyClasses.Lifts.oppositeBoundaryClosure_isMinimalClosedSeparator
+#print axioms AllThoseRamseyClasses.Lifts.oppositeBoundaryClosure_eq_of_closedSeparatingSubset

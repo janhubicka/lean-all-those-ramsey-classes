@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.UncoveredExactOppositeRootPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_uncoveredBoundary_hasExactOppositeRootGeometricPiece
