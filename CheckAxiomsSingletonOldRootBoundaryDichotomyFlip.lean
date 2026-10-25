@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SingletonOldRootBoundaryDichotomyFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftSingletonOldRoot_alwaysCanDecreaseRight
