@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFunctionalClosureTargets
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_some_is_target
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_none_is_exact_target
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootClosure_target_inside_closed_root
