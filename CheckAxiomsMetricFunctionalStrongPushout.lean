@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricFunctionalStrongPushout
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRooted_finiteS_functionalStrongAmalgam_exists
