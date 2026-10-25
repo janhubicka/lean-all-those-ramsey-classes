@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricRootedFunctionalUndefinedPrivate
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_none_leftPrivate_target
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_none_rightPrivate_target
