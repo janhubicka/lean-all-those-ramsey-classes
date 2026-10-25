@@ -123,4 +123,43 @@ theorem metricRootClosure_target_inside_closed_root
             simp [hc] at hNone
       exact ⟨c, hRootNone, le_of_eq hDistance, Or.inr rfl⟩
 
+/-- An undefined closure vertex outside an induced closed root
+cannot be j-close to ANY root vertex. Otherwise the root
+vertex would have to map under F_j to that private closure,
+contradicting the exact induced partial-function restriction. -/
+theorem metricPrivateClosure_disjoint_from_closed_root
+    {S : Set ℝ}
+    (hpos : Positive S)
+    {A : Type u} {U : Type v}
+    [LinearOrder U]
+    {dU : U → U → ℝ}
+    (hdU : MetricOn S dU)
+    (j : ℝ) (hj : Jump S j)
+    (i : A → U)
+    (fA : A → Option A)
+    (fU : U → Option U)
+    (hExt : ∀ a : A,
+      fU (i a) = Option.map i (fA a))
+    (hLawU : MetricJumpClosureLaw dU fU j)
+    (c : U) (hNone : fU c = none)
+    (hPrivate : ∀ a : A, c ≠ i a) :
+    ∀ a : A, ¬ dU c (i a) ≤ j := by
+  intro a hca
+  have hac : dU (i a) c ≤ j := by
+    rw [hdU.symm (i a) c]
+    exact hca
+  have hDifferent : i a ≠ c := (hPrivate a).symm
+  have hSome : fU (i a) = some c :=
+    (metricJumpClosureLaw_none_is_exact_target
+      hpos hdU j hj fU hLawU c hNone (i a)
+      hDifferent hac).2.2
+  rw [hExt a] at hSome
+  cases ha : fA a with
+  | none =>
+      simp [ha] at hSome
+  | some b =>
+      simp only [ha, Option.map_some] at hSome
+      have hb : i b = c := Option.some.inj hSome
+      exact hPrivate b hb.symm
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
