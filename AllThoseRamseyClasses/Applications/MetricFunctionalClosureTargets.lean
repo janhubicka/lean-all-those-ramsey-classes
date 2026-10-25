@@ -105,7 +105,8 @@ theorem metricRootClosure_target_inside_closed_root
       (a = c ∨ fA a = some c) := by
   cases h : fA a with
   | none =>
-      refine ⟨a, h, ?_, Or.inl rfl⟩
+      refine ⟨a, ?_, ?_, Or.inl rfl⟩
+      · simp [h]
       rw [hdU.diag (i a)]
       exact (hpos j hj.1).le
   | some c =>
@@ -118,7 +119,7 @@ theorem metricRootClosure_target_inside_closed_root
       have hRootNone : fA c = none := by
         rw [hExt c] at hNone
         cases hc : fA c with
-        | none => rfl
+        | none => simpa [hc]
         | some x =>
             simp [hc] at hNone
       exact ⟨c, hRootNone, le_of_eq hDistance, Or.inr rfl⟩
