@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Lifts.SingletonOldRootProperRightFlip
 import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
 import AllThoseRamseyClasses.Lifts.BoundaryPartnerRightSupportDescent
+import AllThoseRamseyClasses.Lifts.ComponentBoundaryPieceCriterion
 import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
 
 /-!
@@ -154,25 +155,25 @@ theorem minimalLeftSingletonOldRoot_alwaysCanDecreaseRight
         (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
         (⟨yPartner.1, by simp⟩ : {z : w.Carrier // z ∉ ∅}) := by
       simpa only [hPartnerA] using hPath
+    obtain ⟨k, dPartner, hPartnerRoot, _hPartnerRootS,
+        hPartnerLeft, hPartnerRight, _hPartnerComponent⟩ :=
+      finite_componentBoundary_hasGeometricPiece_of_partner
+        w.source S T hSclosed x rfl hTS
+        yPartner hSep hYBoundary
+    have hPartnerPath : ReachOutside w.source.graph
+        (∅ : Set w.Carrier)
+        (⟨dPartner.left.1, by simp⟩ :
+          {z : w.Carrier // z ∉ ∅})
+        (⟨dPartner.right.1, by simp⟩ :
+          {z : w.Carrier // z ∉ ∅}) := by
+      simpa only [hPartnerLeft, hPartnerRight] using hPathPartner
+    have hk : 0 < k :=
+      geometricPiece_positiveWidth_of_emptyCut_path
+        w.source dPartner hPartnerPath
     have hTnonempty : T.Nonempty := by
-      by_contra hNot
-      have hEmpty : T = ∅ := by
-        ext z
-        constructor
-        · intro hz
-          exact (hNot ⟨z, hz⟩).elim
-        · intro hz
-          simp at hz
-      cases hEmpty
-      have hEmptyPath : ReachOutside w.source.graph
-          (∅ : Set w.Carrier)
-          (outsideCutMap hTS x) yPartner := by
-        change ReachOutside w.source.graph
-          (∅ : Set w.Carrier)
-          (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
-          (⟨yPartner.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
-        exact hPathPartner
-      exact hSep hEmptyPath
+      refine ⟨dPartner.roots ⟨0, hk⟩, ?_⟩
+      rw [← hPartnerRoot]
+      exact ⟨⟨0, hk⟩, rfl⟩
     obtain ⟨m, Q, _hRootT, hProper,
         V', New, hNew, flip, hFlip, hDrop⟩ :=
       boundaryPartner_properRightPiece_strictRightSupport
