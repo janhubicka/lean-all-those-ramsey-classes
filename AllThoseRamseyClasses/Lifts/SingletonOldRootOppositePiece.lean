@@ -43,6 +43,40 @@ open StructuralRamsey.Structure
 universe u v
 variable {L : Language.{u}} {V : Type v}
 
+/-- If the LEFT component of a genuine source piece Q
+captures one vertex of an OLD singleton separator-root R(P),
+then NONE of R(P) lies in the OPPOSITE Q component.
+
+The old-root coordinates are therefore all outside the
+one-sided component that may later be replaced by a
+right-to-left canonical flip. No target map, full lift or
+forbidden-family condition enters this source-side fact. -/
+theorem singletonOldRoot_capturedLeft_disjoint_opposite
+    (Source : Structure L V)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Source n)
+    (Q : GeometricFunctionalPieceData Source m)
+    (hSingletonOldRoot : ∀ a b : V,
+      a ∈ Set.range P.roots → b ∈ Set.range P.roots → a = b)
+    (hCaptured : ∃ r : V,
+      r ∈ Set.range P.roots ∧
+      r ∈ functionalComponentFrom Source
+        (Set.range Q.roots) Q.left) :
+    Disjoint (Set.range P.roots)
+      (functionalComponentFrom Source
+        (Set.range Q.roots) Q.right) := by
+  apply Set.disjoint_left.mpr
+  intro z hzRoot hzRight
+  obtain ⟨r, hrOld, hrLeft⟩ := hCaptured
+  have hzEq : z = r :=
+    hSingletonOldRoot z r hzRoot hrOld
+  have hrRight : r ∈ functionalComponentFrom Source
+      (Set.range Q.roots) Q.right := by
+    rw [← hzEq]
+    exact hzRight
+  exact (Set.disjoint_left.mp
+    (geometricPiece_components_disjoint Source Q)) hrLeft hrRight
+
 /-- Suppose P is a smallest genuine mixed geometric source
 piece and its OLD root has at most one original vertex.
 
@@ -115,19 +149,10 @@ theorem minimalMixedSingletonOldRoot_oppositeComponent_oneSided
     obtain ⟨rEscape, hrEscapeOld, hrEscapeRight⟩ :=
       geometricPiece_escapingComponent_capturesOldRoot
         Source P.data Qswap hQrightOld hEscapeSwap
-    obtain ⟨rLeft, hrLeftOld, hrLeftInQ⟩ := hCaptured
-    have hSameRoot : rEscape = rLeft :=
-      hSingletonOldRoot rEscape rLeft hrEscapeOld hrLeftOld
-    have hrRight :
-        rLeft ∈ functionalComponentFrom Source
-          (Set.range Q.roots) Q.right := by
-      change rEscape ∈ functionalComponentFrom Source
-        (Set.range Q.roots) Q.right at hrEscapeRight
-      rw [hSameRoot] at hrEscapeRight
-      exact hrEscapeRight
-    have hDisjoint :=
-      geometricPiece_components_disjoint Source Q
-    exact (Set.disjoint_left.mp hDisjoint) hrLeftInQ hrRight
+    exact (Set.disjoint_left.mp
+      (singletonOldRoot_capturedLeft_disjoint_opposite
+        Source P.data Q hSingletonOldRoot hCaptured))
+      hrEscapeOld hrEscapeRight
   have hLeftNotRight :
       Q.left.1 ∉ functionalComponentFrom Source
         (Set.range Q.roots) Q.right := by
