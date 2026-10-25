@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.SingletonOldRootProperRightFlip
 import AllThoseRamseyClasses.Lifts.WeakRightBoundaryCoverage
+import AllThoseRamseyClasses.Lifts.BoundaryPartnerRightSupportDescent
 import AllThoseRamseyClasses.Lifts.ConnectedForbiddenPositivePiece
 
 /-!
@@ -25,7 +26,8 @@ The original source, not an image quotient, determines two cases.
   theorem produces an actual right-only PROPER sub-piece of P. Its
   genuine original-global B-to-A flip again decreases right support.
 
-Thus EVERY such choice admits a literal forbidden replacement with
+Thus EVERY such choice yields a literal PROPER B-only rooted sub-piece
+of the chosen smallest mixed piece P, and a forbidden replacement with
 STRICTLY fewer right-exclusive SOURCE vertices; no external boundary
 partner or coverage assumption remains.
 
@@ -94,9 +96,12 @@ theorem minimalLeftSingletonOldRoot_alwaysCanDecreaseRight
       (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget)
     (hxOld : x.1 ∈ functionalComponentFrom w.source
       (Set.range P.data.roots) P.data.left) :
-    ∃ (V' : Type) (New : Structure L V'),
-      F New ∧
-      ∃ flip : V' → UT,
+    ∃ (m : ℕ) (Q : GeometricFunctionalPieceData w.source m),
+      geometricPieceVertices w.source Q ⊂
+        geometricPieceVertices w.source P.data ∧
+      ∃ (V' : Type) (New : Structure L V'),
+        F New ∧
+        ∃ flip : V' → UT,
         New.IsEHNHomomorphismEmbedding Target flip ∧
         Nat.card {v : V' //
           flip v ∈ fullFreeRightExclusiveTarget iRight jRight} <
@@ -140,12 +145,45 @@ theorem minimalLeftSingletonOldRoot_alwaysCanDecreaseRight
     have hInjT : Set.InjOn w.toTarget T := by
       intro u hu v hv huv
       exact hInjOnRoot (hTS hu) (hTS hv) huv
-    exact rightComponent_oppositeCoverage_strictRightSupport
-      F hFiniteF w.source w.finiteCarrier w.forbidden
-      Target w.toTarget w.homEmbedding
-      Left Right jLeft jRight X iLeft iRight
-      hFree hCommon x hxRight
-      T rfl hTS a haLeft hCoverageAll hPath hInjT
+    obtain ⟨yPartner, hPartnerA, hSep, hYBoundary⟩ :=
+      weakRightComponent_oppositeCoverage_hasPartner
+        hFree w.toTarget w.homEmbedding
+        x hxRight T rfl hTS a haLeft hCoverageAll
+    have hPathPartner : ReachOutside w.source.graph
+        (∅ : Set w.Carrier)
+        (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
+        (⟨yPartner.1, by simp⟩ : {z : w.Carrier // z ∉ ∅}) := by
+      simpa only [hPartnerA] using hPath
+    have hTnonempty : T.Nonempty := by
+      by_contra hNot
+      have hEmpty : T = ∅ := by
+        ext z
+        constructor
+        · intro hz
+          exact (hNot ⟨z, hz⟩).elim
+        · intro hz
+          simp at hz
+      cases hEmpty
+      have hEmptyPath : ReachOutside w.source.graph
+          (∅ : Set w.Carrier)
+          (outsideCutMap hTS x) yPartner := by
+        change ReachOutside w.source.graph
+          (∅ : Set w.Carrier)
+          (⟨x.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
+          (⟨yPartner.1, by simp⟩ : {z : w.Carrier // z ∉ ∅})
+        exact hPathPartner
+      exact hSep hEmptyPath
+    obtain ⟨m, Q, _hRootT, hProper,
+        V', New, hNew, flip, hFlip, hDrop⟩ :=
+      boundaryPartner_properRightPiece_strictRightSupport
+        F hFiniteF w.source w.finiteCarrier w.forbidden
+        Target w.toTarget w.homEmbedding
+        Left Right jLeft jRight X iLeft iRight
+        hFree hCommon P.data P.roots_in_common
+        x hxOld hxRight T rfl hTS
+        yPartner hSep hYBoundary a haOld haLeft
+        hTnonempty hInjT
+    exact ⟨m, Q, hProper, V', New, hNew, flip, hFlip, hDrop⟩
   · obtain ⟨m, Qright, hm, hRootExact, hProper, hNoLeft,
         V', New, hNew, flip, hFlip, hDrop⟩ :=
       minimalLeftSingletonOldRoot_uncovered_hasProperRightFlip
@@ -155,6 +193,6 @@ theorem minimalLeftSingletonOldRoot_alwaysCanDecreaseRight
         P hMinP hSingletonOldRoot
         x hxRight hxOld T rfl hTS
         y haLeft haOld hCoverage
-    exact ⟨V', New, hNew, flip, hFlip, hDrop⟩
+    exact ⟨m, Qright, hProper, V', New, hNew, flip, hFlip, hDrop⟩
 
 end AllThoseRamseyClasses.Lifts
