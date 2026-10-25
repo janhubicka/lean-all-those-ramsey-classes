@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricRootedPartialFunctions
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_left
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_right
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_root_agree_of_source
