@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipOuterRootPreservation
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_preserves_outerRootCoordinates
