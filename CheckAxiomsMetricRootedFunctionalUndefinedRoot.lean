@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricRootedFunctionalUndefinedRoot
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_none_root_target
