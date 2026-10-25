@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricFunctionalClosurePointwise
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_of_pointwise
