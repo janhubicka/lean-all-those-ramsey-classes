@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SingletonOldRootOppositePiece
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedSingletonOldRoot_oppositeComponent_oneSided
