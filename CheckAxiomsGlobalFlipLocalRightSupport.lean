@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipLocalRightSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerSubpiece_oldOuterContext_eq
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerSubpiece_strict_localRightSupport_of_global
