@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipClosedOuterContext
+
+#print axioms AllThoseRamseyClasses.Lifts.oldOuterContextInInnerComplement_isClosed
+#print axioms AllThoseRamseyClasses.Lifts.oldOuterContext_contains_innerRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterContext_closed_after_innerReplacement
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterRoot_mem_closedContext_after_innerReplacement
