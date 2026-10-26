@@ -134,7 +134,7 @@ theorem geometricInnerSubpiece_strict_localRightSupport_of_global
   have hOldContextEq :=
     geometricInnerSubpiece_oldOuterContext_eq
       Old P d hInnerInside
-  rw [hOldContextEq] at hLocalDrop
+  rw [← hOldContextEq]
   exact hLocalDrop
 
 end AllThoseRamseyClasses.Lifts
