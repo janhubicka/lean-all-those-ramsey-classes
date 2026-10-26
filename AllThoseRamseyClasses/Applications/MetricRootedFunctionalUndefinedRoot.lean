@@ -27,6 +27,7 @@ theorem metricRootedPartialFunction_none_root_target
     (S : Set ℝ)
     (hpos : Positive S)
     {A : Type u} {U : Type v} {V : Type w}
+    [Finite A] [Nonempty A]
     [LinearOrder U] [LinearOrder V]
     (iU : A → U) (iV : A → V)
     (hiU : Function.Injective iU)
