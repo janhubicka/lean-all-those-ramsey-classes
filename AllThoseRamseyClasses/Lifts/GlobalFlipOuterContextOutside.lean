@@ -55,10 +55,10 @@ theorem fullFreeAmalgam_fullLeft_contextOutside_iff
   constructor
   · intro hw
     rcases hFree.covers w with ⟨a, ha⟩ | ⟨b, hb⟩
-    · exact False.elim (hw (Or.inl ⟨a, Set.mem_univ _, ha⟩))
-    · refine ⟨b, ?_, hb⟩
+    · exact False.elim (hw (Or.inl ⟨a, Set.mem_univ _, ha.symm⟩))
+    · refine ⟨b, ?_, hb.symm⟩
       intro hbSR
-      exact hw (Or.inr ⟨b, hbSR, hb⟩)
+      exact hw (Or.inr ⟨b, hbSR, hb.symm⟩)
   · rintro ⟨b, hbNotSR, rfl⟩ hmem
     rcases hmem with hLeft | hRight
     · obtain ⟨a, _ha, hab⟩ := hLeft
