@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipContextInducedFreeDiagram
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_nestedContext_exactSidePreimages
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_nestedClosedContext_inducedFreeDiagram
