@@ -88,11 +88,15 @@ theorem geometricOuterRoot_closed_in_fullComplementReplacement
     (hOuterRootOutside : ∀ i : Fin n,
       P.roots i ∉ functionalComponentFrom Source
         (Set.range d.roots) d.left) :
-    New.IsClosed (Set.range
-      (fun i : Fin n => iComplement
-        (⟨P.roots i, hOuterRootOutside i⟩ :
-          (geometricGlobalComplementChart Source d).Carrier))) := by
+    ∃ rootsInComplement : Fin n →
+        (geometricGlobalComplementChart Source d).Carrier,
+      (∀ i : Fin n, (rootsInComplement i).1 = P.roots i) ∧
+      New.IsClosed (Set.range (iComplement ∘ rootsInComplement)) := by
   let Compl := geometricGlobalComplementChart Source d
+  let rootsInComplement : Fin n → Compl.Carrier :=
+    fun i => ⟨P.roots i, hOuterRootOutside i⟩
+  have hRootsVal : ∀ i : Fin n, (rootsInComplement i).1 = P.roots i :=
+    fun _ => rfl
   let oldCompl : Structure.Embedding Compl.str Source :=
     functionalComponentComplementEmbedding Source
       (Set.range d.roots) d.minimal.1 d.left
@@ -104,23 +108,20 @@ theorem geometricOuterRoot_closed_in_fullComplementReplacement
   have hImageClosed : New.IsClosed (iComplement '' RCompl) :=
     functionalEmbedding_image_closed
       Compl.str New iComplement RCompl hRComplClosed
-  have hRange : Set.range
-      (fun i : Fin n => iComplement
-        (⟨P.roots i, hOuterRootOutside i⟩ : Compl.Carrier)) =
+  have hRange : Set.range (iComplement ∘ rootsInComplement) =
       iComplement '' RCompl := by
     apply Set.Subset.antisymm
     · rintro z ⟨i, rfl⟩
-      refine ⟨⟨P.roots i, hOuterRootOutside i⟩, ?_, rfl⟩
-      exact ⟨i, rfl⟩
+      refine ⟨rootsInComplement i, ?_, rfl⟩
+      exact ⟨i, (hRootsVal i).symm⟩
     · rintro z ⟨b, hb, rfl⟩
       obtain ⟨i, hi⟩ := hb
       refine ⟨i, ?_⟩
-      change iComplement
-          (⟨P.roots i, hOuterRootOutside i⟩ : Compl.Carrier) =
-        iComplement b
+      change iComplement (rootsInComplement i) = iComplement b
       congr 1
       apply Subtype.ext
-      exact hi
+      exact (hRootsVal i).trans hi
+  refine ⟨rootsInComplement, hRootsVal, ?_⟩
   rw [hRange]
   exact hImageClosed
 
