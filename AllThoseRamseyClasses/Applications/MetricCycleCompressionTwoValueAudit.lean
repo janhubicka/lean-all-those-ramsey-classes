@@ -39,7 +39,7 @@ theorem one_three_fourValues :
     rcases hd with rfl | rfl <;>
     rcases hx with rfl | rfl
   all_goals
-    norm_num [Triangle] at hax hcx
+    norm_num [Triangle] at *
   all_goals
     first
     | exact ⟨1, by simp, by norm_num [Triangle], by norm_num [Triangle]⟩
