@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWholeMaskProfileSparseWitness2019
+
+#print axioms AllThoseRamseyClasses.Published.functionalWholeMask2019_canonical_UClosed
+#print axioms AllThoseRamseyClasses.Published.functionalWholeMask2019_exactWeakRank_iff
+#print axioms AllThoseRamseyClasses.Published.functionalWholeMask2019_profile_sparse_witness
