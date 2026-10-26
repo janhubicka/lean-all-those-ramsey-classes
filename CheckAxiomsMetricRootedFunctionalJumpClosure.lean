@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricRootedFunctionalJumpClosure
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricRootedPartialFunction_preserves_jumpClosureLaw
