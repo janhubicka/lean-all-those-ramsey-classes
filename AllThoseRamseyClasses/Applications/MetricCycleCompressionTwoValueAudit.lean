@@ -42,8 +42,8 @@ theorem one_three_fourValues :
     first
     | exact ⟨1, by simp, by norm_num [Triangle], by norm_num [Triangle]⟩
     | exact ⟨3, by simp, by norm_num [Triangle], by norm_num [Triangle]⟩
-    | norm_num [Triangle] at hax
-    | norm_num [Triangle] at hcx
+    | exact False.elim (by norm_num [Triangle] at hax)
+    | exact False.elim (by norm_num [Triangle] at hcx)
 
 /-- The actual triangle of edge lengths (1,1,3) is not a
 real metric triangle, even though all three edge lengths
