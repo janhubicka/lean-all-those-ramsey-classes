@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FunctionalNestedProfileReassociation
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFunctionalDiagram_of_nestedReassociation
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalDiagram_replaceInner
