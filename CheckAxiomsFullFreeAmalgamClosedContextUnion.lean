@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamClosedContextUnion
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_closed_union_of_closed_sides
