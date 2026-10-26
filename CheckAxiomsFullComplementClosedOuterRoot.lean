@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullComplementClosedOuterRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalEmbedding_preimage_closed
+#print axioms AllThoseRamseyClasses.Lifts.functionalEmbedding_image_closed
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterRoot_closed_under_fullComplementTransport
