@@ -1,3 +1,6 @@
 import AllThoseRamseyClasses.Lifts.GlobalFlipContextOutsideSupport
 
 #print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_contextOutside_support_card_eq
+#print axioms AllThoseRamseyClasses.Lifts.finiteSourceSupport_card_split
+#print axioms AllThoseRamseyClasses.Lifts.finiteSourceSupport_strict_inside_of_outside_eq
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_contextLocal_support_lt_of_global
