@@ -32,8 +32,7 @@ theorem one_three_fourValues :
     FourValues ({(1 : ℝ), 3} : Set ℝ) := by
   intro a ha b hb c hc d hd hex
   obtain ⟨x, hx, hax, hcx⟩ := hex
-  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at
-    ha hb hc hd hx
+  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at ha hb hc hd hx
   rcases ha with rfl | rfl <;>
     rcases hb with rfl | rfl <;>
     rcases hc with rfl | rfl <;>
