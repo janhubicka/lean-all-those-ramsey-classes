@@ -9,13 +9,13 @@ fibres on its image. Consequently both preimages and images of
 function-closed vertex sets are closed. Mere weak positive
 homomorphisms do not have this property in the reverse direction.
 
-When an actual original source piece d is replaced through the
-global canonical lift, its full closed complementary side is
-embedded unchanged into the new forbidden source. An outer
-minimal-separator root R disjoint from d's selected nonroot
-component is function-closed in that complement, hence its
-transported ordered-root range remains FUNCTION-CLOSED in
-the replacement forbidden source.
+When an actual source piece is replaced through the full canonical
+lift, its old closed complement is embedded unchanged. If an old
+minimal-separator root is contained in that complement, the
+transported ordered root range remains FUNCTION-CLOSED in the
+replacement forbidden source. The proof is phrased generically
+using two full embeddings of the SAME complement, which avoids
+unnecessary dependence on the specific free-amalgam carrier.
 
 This is stronger than equality of the outer root's target
 coordinates (#631): the preserved root is still a genuine
@@ -29,7 +29,7 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u v w
+universe u v w z
 variable {L : Language.{u}}
 
 /-- Inverse images of function-closed sets along FULL functional
@@ -68,61 +68,48 @@ theorem functionalEmbedding_image_closed
   rcases hImage with ⟨z, hz, rfl⟩
   exact ⟨z, hS F pre (fun i => (hpre i).1) hz, rfl⟩
 
-/-- For any genuine source piece P and inner geometric piece d,
-if the complete ordered outer root lies outside d's selected
-nonroot component, then EVERY full native functional embedding
-of d's old closed complement into an arbitrary replacement
-source transports that entire old root to a FUNCTION-CLOSED set.
+/-- Transport a genuine old minimal-separator root across two
+FULL embeddings of a common native complement.
 
-This statement needs no target EHN map and applies to the actual
-complement embedding yielded by a B-to-A global source flip. -/
-theorem geometricOuterRoot_closed_in_fullComplementReplacement
-    {V : Type v} {W : Type w}
+The tuple `roots` lists the COMPLETE old separator root through
+the original complement embedding. This ensures the preimage
+of the closed old root is precisely the range of that tuple;
+its image under the NEW full complement embedding is therefore
+still closed in the replacement source. No claim of geometric
+separator minimality in the replacement is made. -/
+theorem geometricOuterRoot_closed_under_fullComplementTransport
+    {V : Type v} {C : Type w} {W : Type z}
     (Source : Structure L V)
-    {n m : ℕ}
+    {n : ℕ}
     (P : GeometricFunctionalPieceData Source n)
-    (d : GeometricFunctionalPieceData Source m)
+    (Complement : Structure L C)
+    (oldComplement : Structure.Embedding Complement Source)
     (New : Structure L W)
-    (iComplement : Structure.Embedding
-      (geometricGlobalComplementChart Source d).str New)
-    (hOuterRootOutside : ∀ i : Fin n,
-      P.roots i ∉ functionalComponentFrom Source
-        (Set.range d.roots) d.left) :
-    ∃ rootsInComplement : Fin n →
-        (geometricGlobalComplementChart Source d).Carrier,
-      (∀ i : Fin n, (rootsInComplement i).1 = P.roots i) ∧
-      New.IsClosed (Set.range (iComplement ∘ rootsInComplement)) := by
-  let Compl := geometricGlobalComplementChart Source d
-  let rootsInComplement : Fin n → Compl.Carrier :=
-    fun i => ⟨P.roots i, hOuterRootOutside i⟩
-  have hRootsVal : ∀ i : Fin n, (rootsInComplement i).1 = P.roots i :=
-    fun _ => rfl
-  let oldCompl : Structure.Embedding Compl.str Source :=
-    functionalComponentComplementEmbedding Source
-      (Set.range d.roots) d.minimal.1 d.left
+    (newComplement : Structure.Embedding Complement New)
+    (roots : Fin n → C)
+    (hOldRoots : ∀ i : Fin n,
+      oldComplement (roots i) = P.roots i) :
+    New.IsClosed (Set.range (newComplement ∘ roots)) := by
   let R : Set V := Set.range P.roots
-  let RCompl : Set Compl.Carrier := oldCompl ⁻¹' R
-  have hRComplClosed : Compl.str.IsClosed RCompl :=
+  let RCompl : Set C := oldComplement ⁻¹' R
+  have hOldClosed : Complement.IsClosed RCompl :=
     functionalEmbedding_preimage_closed
-      Compl.str Source oldCompl R P.minimal.1
-  have hImageClosed : New.IsClosed (iComplement '' RCompl) :=
+      Complement Source oldComplement R P.minimal.1
+  have hNewClosed : New.IsClosed (newComplement '' RCompl) :=
     functionalEmbedding_image_closed
-      Compl.str New iComplement RCompl hRComplClosed
-  have hRange : Set.range (iComplement ∘ rootsInComplement) =
-      iComplement '' RCompl := by
+      Complement New newComplement RCompl hOldClosed
+  have hRange : Set.range (newComplement ∘ roots) =
+      newComplement '' RCompl := by
     apply Set.Subset.antisymm
     · rintro z ⟨i, rfl⟩
-      refine ⟨rootsInComplement i, ?_, rfl⟩
-      exact ⟨i, (hRootsVal i).symm⟩
-    · rintro z ⟨b, hb, rfl⟩
-      obtain ⟨i, hi⟩ := hb
+      refine ⟨roots i, ?_, rfl⟩
+      exact ⟨i, (hOldRoots i).symm⟩
+    · rintro z ⟨c, ⟨i, hi⟩, rfl⟩
       refine ⟨i, ?_⟩
-      change iComplement (rootsInComplement i) = iComplement b
-      congr 1
-      apply Subtype.ext
-      exact (hRootsVal i).trans hi
-  refine ⟨rootsInComplement, hRootsVal, ?_⟩
+      have hEq : roots i = c :=
+        oldComplement.injective ((hOldRoots i).trans hi)
+      exact congrArg newComplement hEq
   rw [hRange]
-  exact hImageClosed
+  exact hNewClosed
 
 end AllThoseRamseyClasses.Lifts
