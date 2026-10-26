@@ -1,3 +1,4 @@
 import AllThoseRamseyClasses.Lifts.SingletonOldRootOppositePiece
 
 #print axioms AllThoseRamseyClasses.Lifts.minimalMixedSingletonOldRoot_oppositeComponent_oneSided
+#print axioms AllThoseRamseyClasses.Lifts.singletonOldRoot_capturedLeft_disjoint_opposite
