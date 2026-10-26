@@ -143,28 +143,31 @@ theorem finiteSourceSupport_card_split
       Nat.card {v : V // v ∉ Context ∧ f v ∈ BOnly} := by
   classical
   letI : Fintype V := Fintype.ofFinite V
-  let split :
+  let supportSplit :
       {v : V // f v ∈ BOnly} ≃
         ({v : V // v ∈ Context ∧ f v ∈ BOnly} ⊕
-         {v : V // v ∉ Context ∧ f v ∈ BOnly}) where
-    toFun := fun z =>
-      if hz : z.1 ∈ Context then
-        Sum.inl ⟨z.1, hz, z.2⟩
-      else
-        Sum.inr ⟨z.1, hz, z.2⟩
-    invFun := fun z =>
-      match z with
-      | .inl a => ⟨a.1, a.2.2⟩
-      | .inr b => ⟨b.1, b.2.2⟩
-    left_inv := by
-      intro z
-      by_cases hz : z.1 ∈ Context <;> simp [hz]
-    right_inv := by
-      intro z
-      cases z with
-      | inl a => simp [a.2.1]
-      | inr b => simp [b.2.1]
-  have hCard := Fintype.card_congr split
+         {v : V // v ∉ Context ∧ f v ∈ BOnly}) :=
+    { toFun := fun z =>
+        if hz : z.1 ∈ Context then
+          Sum.inl (⟨z.1, ⟨hz, z.2⟩⟩ :
+            {v : V // v ∈ Context ∧ f v ∈ BOnly})
+        else
+          Sum.inr (⟨z.1, ⟨hz, z.2⟩⟩ :
+            {v : V // v ∉ Context ∧ f v ∈ BOnly})
+      invFun := fun z =>
+        match z with
+        | Sum.inl a => ⟨a.1, a.2.2⟩
+        | Sum.inr b => ⟨b.1, b.2.2⟩
+      left_inv := by
+        intro z
+        apply Subtype.ext
+        by_cases hz : z.1 ∈ Context <;> simp [hz]
+      right_inv := by
+        intro z
+        cases z with
+        | inl a => simp [a.2.1]
+        | inr b => simp [b.2.1] }
+  have hCard := Fintype.card_congr supportSplit
   simpa only [Nat.card_eq_fintype_card, Fintype.card_sum] using hCard
 
 /-- If TOTAL source support strictly drops while the support OUTSIDE
