@@ -110,7 +110,7 @@ theorem geometricInnerSubpiece_strict_localRightSupport_of_global
       Nat.card {v : V // f v ∈ BOnly}) :
     Nat.card {w : W //
       w ∈ (iQ '' (Set.univ : Set Q.Carrier) ∪
-        iE '' oldOuterContextInInnerComplement Old P d) ∧
+        iE '' (oldOuterContextInInnerComplement Old P d)) ∧
       g w ∈ BOnly} <
     Nat.card {v : V //
       v ∈ geometricPieceVertices Old P ∧ f v ∈ BOnly} := by
@@ -129,7 +129,7 @@ theorem geometricInnerSubpiece_strict_localRightSupport_of_global
       (oldOuterContextInInnerComplement Old P d)
       (oldOuterContext_contains_innerRoot Old P d hInnerRoot)
       f g BOnly
-      (by intro b; simpa only using hSameComplement b)
+      (by intro b; change g (iE b) = f b.1; exact hSameComplement b)
       hGlobalDrop
   have hOldContextEq :=
     geometricInnerSubpiece_oldOuterContext_eq
