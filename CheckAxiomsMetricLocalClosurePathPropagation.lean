@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricLocalClosurePathPropagation
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_locally_coherent_path
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_metric_short_walk
