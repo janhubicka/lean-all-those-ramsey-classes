@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricLocalClosureCoherence
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_close
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_map_of_exact_value
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_local_completion
