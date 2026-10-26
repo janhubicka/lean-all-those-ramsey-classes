@@ -32,7 +32,7 @@ theorem metric_empty_allowed_distances_subsingleton
   intro x y
   by_contra hne
   have hFalse : d x y ∈ (∅ : Set ℝ) := hd.values x y hne
-  exact Set.not_mem_empty _ hFalse
+  simpa using hFalse
 
 /-- A two-point carrier cannot be an S-metric when S is empty.
 In particular, two independent singleton metrics cannot have
@@ -43,6 +43,6 @@ theorem metric_empty_allowed_distances_no_two_vertices
   intro hd
   have hFalse : d false true ∈ (∅ : Set ℝ) :=
     hd.values false true (by decide)
-  exact Set.not_mem_empty _ hFalse
+  simpa using hFalse
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
