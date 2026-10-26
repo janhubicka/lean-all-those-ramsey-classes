@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Applications.MetricEmptyRootFullFunctionalStrongAP
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separatedSum_finiteS_functionalStrongAmalgam_exists
