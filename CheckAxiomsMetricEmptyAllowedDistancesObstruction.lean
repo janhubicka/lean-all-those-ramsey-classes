@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricEmptyAllowedDistancesObstruction
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metric_empty_allowed_distances_subsingleton
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metric_empty_allowed_distances_no_two_vertices
