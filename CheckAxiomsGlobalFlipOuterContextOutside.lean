@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipOuterContextOutside
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_fullLeft_contextOutside_iff
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterContext_outside_iff_oldComplementOutside
