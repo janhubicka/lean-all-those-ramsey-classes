@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.GlobalFlipOuterRootPreservation
 import AllThoseRamseyClasses.Lifts.CommonLiftFlipStrictSupport
+import AllThoseRamseyClasses.Lifts.GlobalRightToLeftStrictSupport
 
 /-!
 # One literal B-to-A forbidden-source replacement with strict support drop
