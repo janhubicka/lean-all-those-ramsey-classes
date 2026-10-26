@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricEmptyRootFunctionalClosure
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separatedSumPartialFunction_jumpClosureLaw
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separatedSumPartialFunction_left
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.separatedSumPartialFunction_right
