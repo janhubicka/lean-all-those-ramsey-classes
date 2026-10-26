@@ -1045,3 +1045,97 @@ only the repository's lexical admission scanner rejecting
 the natural-language verb "admit" in a Lean comment.
 The comment was reworded and fresh full CI is pending.
 The numbered manuscript remains frozen.
+
+
+## 26 October: contextual B-flips, closed outer pieces, and local support
+
+The original Section 3 Claim 2 argument flips B-only proper sub-pieces
+*inside* a minimum mixed piece, rather than replacing the full
+forbidden source solely to minimize B support. An arbitrary full-source
+strict B-support drop does NOT by itself establish the local induction:
+the replacement must retain the outer piece, its complete root,
+and its incompatibility class. All source counting must use ACTUAL
+source vertices, not distinct images of a noninjective EHN map.
+
+### Merged and full-CI verified
+
+* [#636](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/636):
+  for ONE literal forbidden B→A replacement source/map, simultaneously
+  provide full preservation of the unchanged inner source complement,
+  injective transport of the old outer ordered roots, unchanged
+  TARGET coordinates of those roots, and strict GLOBAL B-exclusive
+  SOURCE support decrease
+* [#637](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/637):
+  images and preimages of native function-closed sets along FULL
+  functional embeddings are closed; transported old outer roots
+  remain function-closed in the new source, with full old fibres
+* [#638](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/638):
+  the union of two genuinely function-closed subsets of a full
+  native free-amalgam's sides is function-closed when both contain
+  the WHOLE shared root
+
+### New conditional contextual modules (CI pending)
+
+* [#641](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/641):
+  given an old outer piece P containing the entire inner root U,
+  the inverse image of P in the unchanged complement E is closed
+  and contains U. Hence the new contextual set
+  \`Q' ∪ (E∩P)\` is NATIVE function-closed after an actual
+  full source replacement, and contains the transported outer roots
+* [#642](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/642):
+  the vertices OUTSIDE this transported context are EXACTLY
+  unchanged complement vertices outside P. The proof uses actual
+  free-amalgam carrier coverage and overlap, never an image quotient
+* [#643](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/643):
+  construct actual bijections of old/new outside-context
+  B-exclusive SOURCE supports with the same unchanged E-support;
+  finite source counts outside the context agree. A standard
+  disjoint support partition then shows GLOBAL strict B-support
+  decrease implies LOCAL strict B-support decrease
+* [#644](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/644):
+  if the inner geometric piece is LITERALLY contained in the old
+  outer piece P, prove the old context decomposition equals the
+  whole old piece, and specialize #643 to conclude strict LOCAL
+  B-source-support descent inside the transported new outer context
+
+Each module has separate active proof roots and \`#print axioms\`
+endpoints. **Do not count #641–#644 as Lean verified until their
+individual full builds and axiom/admission checks pass.** They form
+a stacked dependency chain; merge in order once green.
+
+### Exact remaining mathematical problem
+
+The new transported context is closed and has the old root
+coordinates, and local B-support can now be made strictly smaller
+**conditional on the actual replacement**. This does NOT prove it
+is a genuine source-attached geometric piece of the new forbidden
+structure. The missing obligations are:
+
+1. recover a connected selected component and prove the old
+   transported root is an inclusion-MINIMAL FUNCTION-CLOSED
+   separator in the new forbidden source;
+2. prove congruence of the COMPLETE global rooted
+   incompatibility/Myhill--Nerode profile when an equivalent
+   inner piece is replaced inside an outer piece, against
+   ALL compatible rooted tests, including function fibres;
+3. then justify iterating the B→A flip on the selected outer
+   piece until no B-exclusive component remains, while preserving
+   the original-global distinct-root and maximal-lift hypotheses.
+
+The proof text of the frozen \`ramsey.tex\` still does not explicitly
+separate these contextual invariants. The above items should be
+recorded as TODOs/review notes rather than silently editing the
+black-text manuscript or claiming a counterexample to the theorem.
+
+### Parallel functional 2019 construction
+
+[#639](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/639)
+and [#640](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/640)
+are now FULL-CI verified and merged. They instantiate the checked
+two-pass 2019 generated-closure profile method on genuinely partial
+whole-mask function presentations and transfer the full
+generated common-root boundary to actual native partial-function
+closedness. Their conclusion remains an INTERMEDIATE relational
+sparse witness; the final faithful partial-function decoding and
+Ramsey-arrow transport are separate obligations. The updated pinned
+\`partite-construction\` revision passed the full Lean CI.
