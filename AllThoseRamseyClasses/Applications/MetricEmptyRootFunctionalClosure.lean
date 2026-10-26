@@ -81,16 +81,12 @@ theorem separatedSumPartialFunction_jumpClosureLaw
             rcases hClass y hy with hEq | ⟨hBefore, hDist, hVal⟩
             · exact Or.inl (congrArg Sum.inl hEq)
             · refine Or.inr ⟨?_, hDist, ?_⟩
-              · have hle :
-                    @LE.le (U ⊕ V)
-                      (separatedSumLinearOrder (U := U) (V := V)).toLE
-                      (.inl y) (.inl c) :=
-                  (separatedSumLinearOrder_inl_le_inl_iff y c).mpr
-                    (le_of_lt hBefore)
-                have hne : (Sum.inl y : U ⊕ V) ≠ .inl c := by
-                  intro h
-                  exact (ne_of_lt hBefore) (Sum.inl.inj h)
-                exact lt_of_le_of_ne hle hne
+              · change
+                  @LT.lt (Lex (U ⊕ V))
+                    (separatedSumLexOrder (U := U) (V := V)).toLT
+                    (toLex (Sum.inl y : U ⊕ V))
+                    (toLex (Sum.inl c : U ⊕ V))
+                exact Sum.Lex.inl_lt_inl_iff.mpr hBefore
               · simp [separatedSumPartialFunction, hVal]
         | inr y =>
             change m ≤ j at hy
@@ -109,16 +105,12 @@ theorem separatedSumPartialFunction_jumpClosureLaw
             rcases hClass y hy with hEq | ⟨hBefore, hDist, hVal⟩
             · exact Or.inl (congrArg Sum.inr hEq)
             · refine Or.inr ⟨?_, hDist, ?_⟩
-              · have hle :
-                    @LE.le (U ⊕ V)
-                      (separatedSumLinearOrder (U := U) (V := V)).toLE
-                      (.inr y) (.inr c) :=
-                  (separatedSumLinearOrder_inr_le_inr_iff y c).mpr
-                    (le_of_lt hBefore)
-                have hne : (Sum.inr y : U ⊕ V) ≠ .inr c := by
-                  intro h
-                  exact (ne_of_lt hBefore) (Sum.inr.inj h)
-                exact lt_of_le_of_ne hle hne
+              · change
+                  @LT.lt (Lex (U ⊕ V))
+                    (separatedSumLexOrder (U := U) (V := V)).toLT
+                    (toLex (Sum.inr y : U ⊕ V))
+                    (toLex (Sum.inr c : U ⊕ V))
+                exact Sum.Lex.inr_lt_inr_iff.mpr hBefore
               · simp [separatedSumPartialFunction, hVal]
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
