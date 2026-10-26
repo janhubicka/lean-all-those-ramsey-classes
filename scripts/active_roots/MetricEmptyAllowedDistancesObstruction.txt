@@ -1,0 +1,1 @@
+AllThoseRamseyClasses.Applications.MetricEmptyAllowedDistancesObstruction
