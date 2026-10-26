@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWholeMaskProfileBoundary2019
+
+#print axioms AllThoseRamseyClasses.Published.functionalWholeMask2019_common_weak_root_functional_boundary
