@@ -55,7 +55,7 @@ theorem geometricInnerSubpiece_oldOuterContext_eq
         (Set.univ : Set (geometricGlobalFunctionalChart Old d).ext.Carrier)) ∪
       (functionalComponentComplementEmbedding Old
         (Set.range d.roots) d.minimal.1 d.left) ''
-        (oldOuterContextInInnerComplement Old P d)) =
+        (oldOuterContextInInnerComplement Old P d) =
       geometricPieceVertices Old P := by
   apply Set.Subset.antisymm
   · intro z hz
