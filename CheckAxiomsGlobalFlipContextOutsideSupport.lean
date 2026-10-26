@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFlipContextOutsideSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_contextOutside_support_card_eq
