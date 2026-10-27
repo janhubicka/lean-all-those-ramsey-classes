@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateGaifman
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightPrivate_gaifmanAdjacent_iff
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightOutsideContext_adj_iff
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightOutsideContext_reach_iff
