@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeneralOldRootSplitObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_escapingOpposite_splitsOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_escapingOpposite_forcesOldRootWidthTwo
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_oppositeComponent_localized_of_noOldRootSplit
