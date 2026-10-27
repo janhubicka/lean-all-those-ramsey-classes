@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricCycleCompressionTwoValueAudit
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.one_three_fourValues
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.one_three_nonmetric_triangle
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.one_three_cardinality_less_than_triangle
