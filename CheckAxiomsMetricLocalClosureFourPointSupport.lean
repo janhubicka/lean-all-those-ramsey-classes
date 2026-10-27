@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricLocalClosureFourPointSupport
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_supported_local_completion
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricClosureRepresentative_eq_of_four_point_completion
