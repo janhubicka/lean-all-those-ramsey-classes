@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019ProfileSparseWitness
+
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_weakRank
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_profile_sparse_witness
