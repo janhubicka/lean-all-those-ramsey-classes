@@ -158,4 +158,120 @@ theorem minimalMixedCapturedEntireOldRoot_oppositeComponent_oneSided
       geometricPieceVertices Source P.data := hPieceProper
   exact ⟨hFullProper, hRightProper, hNoLeft⟩
 
+/-- Under the same arbitrary-old-width FULL root-capture
+condition, the now-proved genuine proper B-only source
+sub-piece can be flipped by the ORIGINAL full canonical
+lift into the left target side.
+
+The new actual finite forbidden source has a weak EHN map
+into the same target with strictly fewer ORIGINAL
+right-exclusive SOURCE vertices. Only the chosen new
+piece's ordered target-root images are assumed injective.
+No global target-map injection or singleton old-root
+hypothesis occurs.
+
+This is a complete conditional general-width one-step
+Claim 2 flip. The condition that all old root vertices
+are captured on one side remains the unproved bridge in
+the arbitrary-width uncovered-boundary case. -/
+theorem minimalMixedCapturedEntireOldRoot_hasProperRightFlip
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (w : ForbiddenEHNWitness F Target)
+    (P : MixedGeometricPiece w.source
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget)
+      (weakFreeLeftPart (sL := iLeft) (iL := jLeft) w.toTarget)
+      (weakFreeRightPart
+        (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget))
+    (hMinP : ∀ D : MixedGeometricPiece w.source
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget)
+      (weakFreeLeftPart (sL := iLeft) (iL := jLeft) w.toTarget)
+      (weakFreeRightPart
+        (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget),
+      P.nonrootCount ≤ D.nonrootCount)
+    {m : ℕ}
+    (Q : GeometricFunctionalPieceData w.source m)
+    (hQpositive : 0 < m)
+    (hAllOldRootsCapturedLeft :
+      Set.range P.data.roots ⊆
+        functionalComponentFrom w.source (Set.range Q.roots) Q.left)
+    (hQrootS : Set.range Q.roots ⊆
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget)
+    (hQrootInsideP :
+      Set.range Q.roots ⊆ geometricPieceVertices w.source P.data)
+    (hQleftOld :
+      Q.left.1 ∈ functionalComponentFrom w.source
+        (Set.range P.data.roots) P.data.left)
+    (hQrightOld :
+      Q.right.1 ∈ functionalComponentFrom w.source
+        (Set.range P.data.roots) P.data.left)
+    (hQrightB : Q.right.1 ∈
+      weakFreeRightPart
+        (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget)
+    (hNewRootImagesInjective :
+      Function.Injective (fun i : Fin m => w.toTarget (Q.roots i))) :
+    ∃ Qright : GeometricFunctionalPieceData w.source m,
+      geometricPieceVertices w.source Qright ⊂
+        geometricPieceVertices w.source P.data ∧
+      (∀ z : w.Carrier,
+        z ∈ functionalComponentFrom w.source
+          (Set.range Qright.roots) Qright.left →
+        z ∉ weakFreeLeftPart
+          (sL := iLeft) (iL := jLeft) w.toTarget) ∧
+      ∃ (V' : Type) (New : Structure L V'),
+        F New ∧
+        ∃ flip : V' → UT,
+          New.IsEHNHomomorphismEmbedding Target flip ∧
+          Nat.card {v : V' //
+            flip v ∈ fullFreeRightExclusiveTarget iRight jRight} <
+          Nat.card {v : w.Carrier //
+            w.toTarget v ∈ fullFreeRightExclusiveTarget
+              iRight jRight} := by
+  let Qright : GeometricFunctionalPieceData w.source m := {
+    roots := Q.roots
+    roots_injective := Q.roots_injective
+    left := Q.right
+    right := Q.left
+    minimal := minimalClosedSeparator_swap
+      w.source (Set.range Q.roots) Q.left Q.right Q.minimal
+  }
+  let S : Set w.Carrier :=
+    weakFreeRootPart (sL := iLeft) (iL := jLeft) w.toTarget
+  let AOnly : Set w.Carrier :=
+    weakFreeLeftPart (sL := iLeft) (iL := jLeft) w.toTarget
+  let BOnly : Set w.Carrier :=
+    weakFreeRightPart
+      (sL := iLeft) (iL := jLeft) (iR := jRight) w.toTarget
+  letI : Finite w.Carrier := w.finiteCarrier
+  obtain ⟨hProper, _hProperComp, hNoLeft⟩ :=
+    minimalMixedCapturedEntireOldRoot_oppositeComponent_oneSided
+      w.source S AOnly BOnly P hMinP Q hQpositive
+      hAllOldRootsCapturedLeft hQrootS hQrootInsideP
+      hQleftOld hQrightOld hQrightB
+  have hQrightComp :
+      Qright.left.1 ∈ functionalComponentFrom w.source
+        (Set.range Qright.roots) Qright.left :=
+    functionalComponentFrom_root w.source
+      (Set.range Qright.roots) Qright.left
+  obtain ⟨V', New, hNew, flip, hFlip, hStrict⟩ :=
+    geometricGlobalCommonFullLiftFlip_strict_rightSupport
+      F hFiniteF w.source w.finiteCarrier w.forbidden
+      Qright hQpositive Target w.toTarget w.homEmbedding
+      Left Right jLeft jRight X iLeft iRight
+      hFree hCommon hQrootS hNoLeft hNewRootImagesInjective
+      Qright.left.1 hQrightComp hQrightB
+  exact ⟨Qright, hProper, hNoLeft,
+    V', New, hNew, flip, hFlip, hStrict⟩
+
+
 end AllThoseRamseyClasses.Lifts
