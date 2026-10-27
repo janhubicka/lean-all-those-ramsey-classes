@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullEmbeddingGeneratedClosure
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalEmbedding_functionClosure_image
+#print axioms AllThoseRamseyClasses.Lifts.functionalEmbedding_mem_functionClosure_image_iff
+#print axioms AllThoseRamseyClasses.Lifts.functionalEmbedding_generatedBoundary_image
