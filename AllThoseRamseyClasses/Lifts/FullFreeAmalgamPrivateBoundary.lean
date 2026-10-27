@@ -63,7 +63,7 @@ theorem fullFreeAmalgam_rightPrivate_neighborhood_eq_image
     have hEdge' : GaifmanAdjacent Whole.graph (iR c) z := by
       rw [hcMap]
       exact hEdge
-    obtain ⟨_hne, sym, xs, j, k, htuple, hj, hk⟩ := hEdge'
+    obtain ⟨hne, sym, xs, j, k, htuple, hj, hk⟩ := hEdge'
     rcases functionalFreeAmalgam_graphTuple_side
         hFree sym xs htuple with hLeft | hRight
     · obtain ⟨a, ha⟩ := hLeft j
@@ -74,8 +74,9 @@ theorem fullFreeAmalgam_rightPrivate_neighborhood_eq_image
       have hzMap : z = iR b := hk.symm.trans hb
       have hWholeEdge :
           GaifmanAdjacent Whole.graph (iR c) (iR b) := by
-        rw [← hzMap]
-        exact hEdge'
+        refine ⟨?_, sym, xs, j, k, htuple, hj, hk.trans hzMap⟩
+        intro hEq
+        exact hne (hEq.trans hzMap.symm)
       have hRightEdge : GaifmanAdjacent Right.graph c b :=
         (fullFreeAmalgam_rightPrivate_gaifmanAdjacent_iff
           hFree c b hcPrivate).mp hWholeEdge
