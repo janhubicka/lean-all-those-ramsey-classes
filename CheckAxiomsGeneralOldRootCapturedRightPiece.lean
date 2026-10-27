@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeneralOldRootCapturedRightPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedCapturedEntireOldRoot_oppositeComponent_oneSided
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedCapturedEntireOldRoot_hasProperRightFlip
