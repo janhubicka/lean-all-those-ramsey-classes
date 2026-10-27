@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.SingletonOldRootOppositePiece
 import AllThoseRamseyClasses.Lifts.GlobalRightToLeftStrictSupport
+import AllThoseRamseyClasses.Lifts.ForbiddenWeakWitnessMinimization
 
 /-!
 # Arbitrary-width old-root capture gives a proper B-only opposite sub-piece
