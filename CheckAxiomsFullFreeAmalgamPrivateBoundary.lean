@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightPrivate_neighborhood_eq_image
