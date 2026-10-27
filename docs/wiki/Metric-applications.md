@@ -849,30 +849,93 @@ It is a **standalone English proof plan**, not a Lean validation of
 the compatible convex order. It explicitly replaces the invalid
 idea of ordering all private vertices by one global root-cut key.
 
+## 27 October: full functional strong-amalgamation components
+
+The full **finite nonempty-root ordered-functional strong
+amalgamation** has now been proved in
+[PR #645](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/645)
+(complete main build and allowed-axiom audit
+[40401430039](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/40401430039)).
+Exported theorem:
+`MetricSaturation.metricRooted_finiteS_functionalStrongAmalgam_exists`
+in `MetricFiniteFunctionalStrongAmalgam.lean`.
+
+It constructs the ACTUAL identified-base finite S-metric,
+its full paper-block-convex order, all Option-valued
+partial functions F_j, every genuine proper-jump
+designated-last/undefined closure law, induced restrictions
+(including undefinedness) to BOTH original sides, and
+exact strong overlap. The source hypotheses require two
+valid functional structures, a **nonempty** common base
+embedded isometrically and in order, and exact root
+function-value equality:
+`fU(j,iU(a))=Option.map(iU)(fA(j,a))`, and likewise on V.
+This is a closed-root strong-amalgamation theorem, not
+a proof that arbitrary weak substructures have completions.
+
+**Empty common root, nonempty S.**
+The disjoint sum distance at `max S` preserves the
+paper's convex order (#349/#516). PR
+[#647](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/647)
+(full CI 40399508890) verifies the COMPLETE
+`MetricJumpClosureLaw` for each F_j in the disjoint-sum
+functional language, preserving both original partial
+functions. The one-theorem packaging is PR
+[#652](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/652);
+treat it as pending until full CI succeeds.
+
+**S empty.**
+[PR #648](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/648)
+(CI 40400708995) proves that an S-metric on the empty
+allowed positive distance set has at most one vertex:
+a strong amalgam of two distinct singleton copies
+over the empty root is impossible. This does not
+challenge the trivial Ramsey property of the class.
+The corresponding local correction to the printed
+auxiliary strong-amalgamation statement is proposed
+in manuscript author-review PR #145.
+
 ## Remaining metric Ramsey work
 
-The scalar reduction does not by itself construct a Ramsey witness
-or a class-level completion. The **finite canonical lifted metric**,
-duplicate-free closure carrier, inserted convex order, ordered
-isometric embeddings, exact nested closure-function tables, and
-uniqueness of canonical extension have already been proved in the
-modules referenced above. The remaining target is the class-level
-strong amalgamation and **exact weak local completion** of the
-completed ordered-functional metric class, followed by the
-finite metric Ramsey arrow and finite-to-arbitrary-distance transfer.
-The complete finite-root metric pushout and exact root-overlap
-are proved; the compatible **jump-convex** root order, all F_j
-closure-function assignments on arbitrary auxiliary amalgamation
-sources, and the exact weak local-completion cutoff remain open.
-For finite S, the paper's
-block-convexity is identified with jump-threshold convexity and
-transports across finite capped subsets. Infinite-S blocks may
-lack maxima, so the infinite-S interpretation remains separate.
+The major unfinished application obligation is the
+**exact original weak local-completion property**
+in the printed `lem:finite4value2`, including its
+quantification over weak induced subsets, the uniform
+cutoff `2|S|(|J_S|+1)`, and proof that an
+unimportant short path in the incomplete candidate has
+one common F_j closure. None of these follow merely from
+strong amalgamation of already valid, closed structures.
 
-The finite semigroup-generation theorem in #244 has already passed
-the full CI gates, and the manuscript's nonprinting markers have
-been updated. The candidate **printed proof replacement** is a separate
-author-review change; neither the full `prop:Smetric` Ramsey-arrow
-transfer nor `thm:Smetric` is yet completely certified.
-See the manuscript's proof-difference ledger for the distinction
-between alternative verified constructions and the exact printed proof.
+The preceding cycle-compression lemma
+`lem:Sequivalence` contains a concrete endpoint issue.
+With S={1,3}, the four-values property holds and the
+triangle with edge lengths (1,1,3) is nonmetric,
+but its three vertices exceed the printed bound |S|=2.
+The proposed smallest upper-bound repair is
+`max(3,|S|)`; the rest of the cycle/path-replacement
+argument and its effect on the numerical local
+cutoff still need independent proof. The candidate
+manuscript correction is PR #164 and the focused Lean
+regression is #650, under audit.
+
+A new local-completion line of work is
+[PR #653](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/653),
+which checks closure-representative coherence on a j-short
+edge, and its reflection through an injective local
+completion preserving exact partial function values.
+It does not yet prove whole-path closure propagation or
+the exact weak-subset cutoff.
+
+Finite canonical lifted metric/embeddings and the
+finite capped distance-extension theorem (#244/#342)
+remain verified. But the full finite S-metric Ramsey
+arrow and finite-to-infinite S transfer in
+`prop:Smetric` remain unverified. Infinite-S maximal
+blocks require a separate exact source-definition
+audit, and mathematical prose repairs #132/#135/#136/#139/
+#145/#164 are author-review PRs, not silently merged.
+
+Consult the [manuscript proof-difference ledger](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/APPLICATIONS-PRINTED-PROOF-DIFFERENCES-2026-10-20.md)
+for the precise distinction between verified statements,
+alternative proofs, still-open printed steps and proposed
+localized corrections.
