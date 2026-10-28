@@ -123,7 +123,6 @@ theorem metricTwoOneStepJumpOrbits_card_le
     ((metricOneStepJumpOrbit J f x) ∪
       (metricOneStepJumpOrbit J f y)).card ≤
         2 * (J.card + 1) := by
-  classical
   have hu := Finset.card_union_le
     (metricOneStepJumpOrbit J f x)
     (metricOneStepJumpOrbit J f y)
