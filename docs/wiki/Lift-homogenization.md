@@ -1426,3 +1426,50 @@ a genuine connected MINIMAL-separator piece and that replacing
 its inner sub-piece preserves its COMPLETE all-test rooted
 incompatibility profile. Without this, local support decrease
 cannot yet be iterated to finish the printed Claim 2.
+
+
+### Connected-source binary partial-function image obstruction
+
+A small, genuinely PARTIAL SINGLE-VALUED example shows why
+"homomorphism-embedding image" does not automatically mean
+"function-closed substructure of the target", even for a
+CONNECTED finite forbidden source.
+
+Take language with an undirected binary relation E and one
+partial binary function h. Let A be the path
+\`0--1--2\`, with h nowhere defined. Let D extend this
+path by a fourth vertex 3, leave all old E-relations
+unchanged, and define only \`h_D(0,2)=3\`.
+The inclusion \`f:A→D\` preserves all defined source
+functions (vacuously), and every irreducible full source
+substructure is a singleton or one of the two edges.
+No such irreducible source substructure contains BOTH 0
+and 2. Thus f is a homomorphism-embedding, fully induced
+on every irreducible source test. Nevertheless, the raw
+range \`{0,1,2}\` is NOT closed in D, because the defined
+target value \`h_D(0,2)=3\` lies outside it.
+
+This is NOT a counterexample to the original Section 3
+lift theorem: no regular HE-image-closed forbidden FAMILY
+with the relevant maximal common canonical lift has been
+constructed. It is a precise counterexample to the
+UNQUALIFIED intermediate inference that arbitrary weak
+EHN maps have function-closed target image, even from
+finite connected sources. In particular "take the
+homomorphic image and regard it as a full target
+substructure" needs a genuine extra argument.
+
+The example is an **English adversarial check**, not yet
+a Lean-certified concrete finite model. Pending #697,
+#699 and #700 target the mathematically valid replacement:
+one-generator closure and irreducible input-tuple coverage
+imply raw image closedness; only THEN does a surjective
+EHN induced-image factorization give a full embedded
+forbidden image. A lexicographic minimum on left-source
+support and source cardinality should permit injectivity
+within this closed-image setting, but that finite
+tie-breaker is not yet formally proved.
+
+The published \`ramsey.tex\` remains frozen. This note
+documents a missing justification in a proof step, not
+a refutation of any published main theorem.
