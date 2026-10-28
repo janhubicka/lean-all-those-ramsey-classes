@@ -1,0 +1,9 @@
+# The genuine partial-function Ramsey arrow is constructed by the verified 2019 two-pass method
+
+28 October 2026. Stacked proof on #678 (strong B-covered 2019 sparse witness), #680 (whole-mask part-labelled source specialization) and partite-construction #516 (complete target decoding and true Ramsey-arrow transfer). The checked two-pass 2019 theorem constructs final U-closed tagged C, a corrected map to the original tagged control, exact finite weak-test K-completions, a tagged Ramsey arrow, and full canonical-B coverage of closed U-irreducible final tests.
+
+Under positive primitive arity, B-coverage gives a unique part map on every final target vertex (including isolated vertices), semantically consistent entire function values and an Option(Set) decoder preserving defined-empty versus undefined. The output fibres are transversal. The full OLD relational A- and B-copies become same-vertex, genuinely full, part-preserving functional embeddings. The checked arrow-transfer lemma therefore converts the tag-language Ramsey arrow into an actual `PartPreservingArrow A B D` on the decoded partial target D.
+
+This **constructs the genuine functional Ramsey arrow without any extra native maximal-mixed hard-root functional B-tree condition**. The target B-copy coverage is not an oracle: it is the existing output of the verified second closed partite pass, now preserved by #678.
+
+Remaining outside this theorem: the first input arrow from a genuine functional C0, handled separately in PR #670; and the original-functional completion-class bridge which must interpret each exact weak test K-completion and control map as a map into a genuinely partial functional structure. The result deliberately retains the relational weak K certificates instead of claiming that their targets already decode.
