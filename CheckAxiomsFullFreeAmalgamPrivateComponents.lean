@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateComponents
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightOutsideContext_component_eq
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_replacement_privateComponent_pair
