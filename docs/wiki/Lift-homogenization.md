@@ -1074,7 +1074,7 @@ source vertices, not distinct images of a noninjective EHN map.
   native free-amalgam's sides is function-closed when both contain
   the WHOLE shared root
 
-### New conditional contextual modules (CI pending)
+### Verified contextual modules (merged after full CI)
 
 * [#641](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/641):
   given an old outer piece P containing the entire inner root U,
@@ -1099,9 +1099,9 @@ source vertices, not distinct images of a noninjective EHN map.
   B-source-support descent inside the transported new outer context
 
 Each module has separate active proof roots and \`#print axioms\`
-endpoints. **Do not count #641–#644 as Lean verified until their
-individual full builds and axiom/admission checks pass.** They form
-a stacked dependency chain; merge in order once green.
+endpoints. **PRs #641–#644 are merged and full-CI verified.**
+They form a checked contextual closure, exterior, and local-support chain;
+they do not by themselves establish the actual outer geometric piece.
 
 ### Exact remaining mathematical problem
 
@@ -1139,3 +1139,101 @@ closedness. Their conclusion remains an INTERMEDIATE relational
 sparse witness; the final faithful partial-function decoding and
 Ramsey-arrow transport are separate obligations. The updated pinned
 \`partite-construction\` revision passed the full Lean CI.
+
+
+## 28 October checkpoint: boundary exactness, nested diagrams and split roots
+
+The following lift formalizations are **merged with successful Lean CI**:
+
+* [#646](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/646):
+  one SAME forbidden B→A canonical source replacement now has a
+  STRICT LOCAL right-exclusive SOURCE-support decrease inside
+  the transported outer context of a genuinely nested old piece;
+  this is not merely a combination of unrelated existential
+  replacement witnesses.
+* [#649](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/649):
+  exact native functional reassociation of nested free-amalgam
+  diagrams permits an equivalent inner piece to be substituted
+  while preserving existence of a forbidden diagram.
+* [#651](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/651):
+  the transported root-containing CLOSED outer context inherits
+  a genuine full native functional free-amalgam decomposition
+  as an induced substructure, with exact side preimages.
+* [#660](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/660):
+  the exact private-side exterior Gaifman graph and its
+  reachability paths are preserved through an inner replacement.
+* [#661](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/661):
+  full native embeddings commute EXACTLY with generated
+  functional closure, including whole partial-function fibres.
+* [#662](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/662):
+  the FULL external Gaifman neighborhood of a private retained
+  component is the embedded image of its original neighborhood.
+* [#664](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/664):
+  for arbitrary-width original mixed-piece roots, capture of the
+  ENTIRE old root by one side of an auxiliary new piece yields
+  a genuine proper B-only opposite sub-piece and a conditional
+  literal B→A source flip.
+* [#665](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/665):
+  the failure of this localization, when the new opposite
+  component escapes, produces TWO DISTINCT old root vertices
+  captured into opposite components. Thus the residual
+  old-root-splitting configuration has width at least two.
+
+**New PRs committed, awaiting full independent Lean CI:**
+
+* [#667](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/667)
+  composes #661 with #662 to preserve the ENTIRE generated
+  boundary \`Cl(N(C))\` of each private retained source component,
+  not just immediate graph neighbors. It identifies the SAME
+  boundary on the common full retained side of two replacements.
+* [#669](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/669)
+  upgrades the nested all-test equivalence: assuming forbidden
+  FAMILY invariance under onto full embeddings, two SPECIFIED
+  actual freely amalgamated forbidden source diagrams with
+  equivalent inner pieces have equivalent forbidden membership.
+  Reassociation extends it to a chosen nested source diagram
+  on each side of a replacement. The nested diagram premises
+  are explicit rather than silently inferred from closure.
+* [#672](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/672)
+  strengthens #660 to exact equality of WHOLE exterior Gaifman
+  component vertex sets, not merely equality of paths.
+* [#674](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/674)
+  provides a further arbitrary-width root-splitting-free case:
+  if the old root survives the new cut and remains connected
+  after deleting it, capturing one old root vertex captures
+  the whole root. In particular a disjoint source Gaifman-clique
+  root admits the #664 B-only sub-piece conclusion.
+
+These four new PRs must NOT be labelled as verified before
+their complete Lean build/axiom/admission audits succeed.
+
+### Remaining open obligations before claiming the original lift theorem
+
+1. The **inside** of a transported outer context must again be a
+   genuine source-attached GEOMETRIC PIECE: show that the complete
+   transported old root remains an inclusion-minimal function-closed
+   separator, that its selected nonroot region forms the required
+   connected component, and that any required complementary
+   components remain correctly attached.
+2. Prove outer-piece congruence of **ALL** rooted forbidden
+   incompatibility tests, not only source closedness or one nested
+   test diagram. The exact nested reassociation interface helps,
+   but arbitrary tests must be represented by the appropriate
+   full native nested decompositions.
+3. Resolve the genuine **multiple-old-root split** isolated by
+   #665, where different old root vertices lie in opposite
+   components of the new auxiliary separator. Clique/disjointness
+   or one-sided full-root-capture lemmas do not cover this case.
+4. Finish the unrestricted weak EHN root-image COLLISION step
+   without silently replacing a potentially noninjective map
+   by an unjustified induced target image.
+5. Finally use the verified strict LOCAL B-source-support drop
+   to carry out the complete Claim 2 iteration, conclude general
+   shadow-avoidance and derive the Section 3 strong-amalgamation
+   and Ramsey theorems from the printed regular HE-image-closed
+   forbidden-family hypotheses.
+
+This checkpoint is a precise progress/audit record only. No
+numbered statement or black-text proof in the frozen manuscript
+has been changed. A conditional theorem or verified special case
+is not a validation of the unrestricted lemma.
