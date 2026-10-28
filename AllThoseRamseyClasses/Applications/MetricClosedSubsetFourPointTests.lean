@@ -90,7 +90,7 @@ theorem metricFourPointLocalTest_of_closedSubsetCompletion
         | none => simp [h]
         | some z =>
             simp only [h, Option.map_some]
-            exact (hi z).symm
+            exact congrArg (fun v : V => (some v : Option V)) (hi z).symm
   refine ⟨V, o, dV, fV, i, hdV, hLaw, ?_, ?_, ?_, ?_⟩
   · intro x hx y hy hxy
     have hxC : x ∈ C := hSupport hx
