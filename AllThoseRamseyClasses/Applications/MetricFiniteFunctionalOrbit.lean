@@ -92,6 +92,7 @@ theorem metricOneStepJumpOrbit_closed
     (hiz : f i y = some z) :
     z ∈ metricOneStepJumpOrbit J f x := by
   classical
+  letI : DecidableEq V := Classical.decEq V
   unfold metricOneStepJumpOrbit at hy
   rcases Finset.mem_insert.mp hy with hRoot | hOther
   · subst y
