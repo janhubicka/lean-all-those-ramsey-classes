@@ -41,12 +41,23 @@ noncomputable def metricPrintedLocalCutoff
 /-- At most four original candidate vertices are needed
 to test equality of two F_j closure representatives. -/
 theorem metricFourPointRawSupport_card_le_four
-    {A : Type u}
+    {A : Type u} [DecidableEq A]
     (fA : A → Option A) (a b : A) :
     ({a, b, metricClosureRepresentative fA a,
        metricClosureRepresentative fA b} : Finset A).card ≤ 4 := by
-  classical
-  exact Finset.card_le_four
+  have hA := Finset.card_insert_le a
+    (insert b (insert (metricClosureRepresentative fA a)
+      ({metricClosureRepresentative fA b} : Finset A)))
+  have hB := Finset.card_insert_le b
+    (insert (metricClosureRepresentative fA a)
+      ({metricClosureRepresentative fA b} : Finset A))
+  have hC := Finset.card_insert_le (metricClosureRepresentative fA a)
+    ({metricClosureRepresentative fA b} : Finset A)
+  have hD :
+      ({metricClosureRepresentative fA b} : Finset A).card = 1 := by simp
+  change (insert a (insert b (insert (metricClosureRepresentative fA a)
+    ({metricClosureRepresentative fA b} : Finset A)))).card ≤ 4
+  omega
 
 /-- A genuine proper jump of finite S witnesses at least
 two DISTINCT allowed distances: j itself and something
@@ -96,7 +107,7 @@ theorem metricPrintedLocalCutoff_ge_four_of_jump
 the numerical source cutoff. No closed-hull cardinal
 bound or local completion is asserted here. -/
 theorem metricFourPointRawSupport_card_le_printedCutoff
-    {A : Type u}
+    {A : Type u} [DecidableEq A]
     (S : Set ℝ) (hfin : S.Finite)
     (fA : A → Option A) (a b : A)
     {j : ℝ} (hj : Jump S j) :
