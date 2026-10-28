@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricFourPointCutoffArithmetic
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricFiniteS_card_two_of_proper_jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricPrintedLocalCutoff_ge_four_of_jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricFourPointRawSupport_card_le_printedCutoff
