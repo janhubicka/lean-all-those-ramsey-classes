@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricClosedSubsetFourPointTests
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricFourPointLocalTest_of_closedSubsetCompletion
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricShortPath_longEdge_obstruction_of_closedSubsetCompletions
