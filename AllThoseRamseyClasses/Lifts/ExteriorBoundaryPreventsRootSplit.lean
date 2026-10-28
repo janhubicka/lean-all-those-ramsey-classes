@@ -60,6 +60,7 @@ theorem gaifmanComponent_subset_after_disjointCut
       ⟨d.1, (Set.disjoint_left.mp hDisjoint)
         (componentFrom_root A R d)⟩
     componentFrom A R d ⊆ componentFrom A U dU := by
+  dsimp only
   let D : Set V := componentFrom A R d
   have hAvoid : ∀ z : V, z ∈ D → z ∉ U := by
     intro z hz
@@ -160,7 +161,11 @@ theorem geometricOldRoot_survivors_capturedLeft_of_innerRoot
   have hUclosed : Source.IsClosed U := Q.minimal.1
   have hRootSubset :
       R ⊆ U ∪ componentFrom Source.graph U dU := by
-    rw [← geometricPiece_right_boundary_closure Source P]
+    have hBoundary :
+        Source.functionClosure
+          (gaifmanNeighborhood Source.graph D) = R :=
+      geometricPiece_right_boundary_closure Source P
+    rw [← hBoundary]
     exact generatedBoundary_subset_cut_union_component
       Source U D hUclosed dU hDsub
   obtain ⟨r, hrOld, hrLeft⟩ := hCaptured
