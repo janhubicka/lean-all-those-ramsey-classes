@@ -1237,3 +1237,102 @@ This checkpoint is a precise progress/audit record only. No
 numbered statement or black-text proof in the frozen manuscript
 has been changed. A conditional theorem or verified special case
 is not a validation of the unrestricted lemma.
+
+
+## 28 October continuation — interior auxiliary cuts and exterior boundary
+
+The last four PRs listed as pending in the previous checkpoint
+([#667](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/667),
+[#669](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/669),
+[#672](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/672),
+[#674](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/674))
+are now **merged after complete Lean CI**. The earlier pending labels
+are historical, not current validation states.
+
+A source-only argument substantially sharpens the arbitrary-width
+root-split analysis:
+
+* Let P=(R,C) be a genuine old minimal-function-closed-separator
+  piece, and D the **opposite** old component. The checked
+  Proposition prop:sep gives R=Cl(N(D)), equality of the COMPLETE
+  generated boundary, not merely the one-step Gaifman neighbors.
+* If a new genuine auxiliary piece Q has root U **contained in the
+  entire old piece R∪C**, D is disjoint from U and remains connected
+  in a single component D_U of Source minus U.
+* The set U∪D_U is function-closed; N(D) is contained in it, so
+  R=Cl(N(D))⊆U∪D_U. If one surviving old-root vertex belongs
+  to Q.left, it follows that **all surviving old-root vertices
+  belong to Q.left**, while vertices of R∩U are deleted. No
+  old-root vertex can lie in Q.right. This rules out precisely
+  the split configuration isolated by #665, without assuming
+  singleton, clique or irreducible old roots.
+* The previously checked escape-implies-old-root-capture lemma
+  then places all of Q.right inside C. At a smallest mixed P,
+  this selected right component is strictly smaller and therefore
+  B-only (otherwise it contradicts minimum mixed nonroot size).
+  This gives a true proper B-only source sub-piece; the already
+  checked original full-lift right-to-left flip supplies an actual
+  forbidden replacement when the NEW ordered target-root images
+  are injective.
+
+**New pending verification:**
+
+* [#676](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/676)
+  formalizes this exterior-boundary no-split lemma and opposite
+  localization. Its first CI run uncovered two Lean elaboration
+  errors (implicit let-binder and pattern rewriting); corrections
+  are committed and fresh CI is pending.
+* [#677](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/677)
+  composes #676 with the verified minimum mixed-piece counting
+  and original right-to-left flip, obtaining an arbitrary-width
+  proper B-only sub-piece and actual strict B-source-support
+  decrease **under explicit interior-root capture and injective
+  NEW target-root image hypotheses**.
+* [#681](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/681)
+  independently constructs a genuinely minimal closed separator
+  U **inside S∩P** for any two vertices of C separated by the
+  larger closed common-root cut S. With an original source path,
+  its root has positive width. Thus **the interior-root
+  existence condition is accessible directly from verified
+  source cut restriction**, without the printed F' detour.
+
+The proposed bridge from these lemmas to the source-geometric
+portion of Claim 2 is now explicit:
+
+1. For a smallest mixed old piece P choose A-exclusive and
+   B-exclusive vertices a,b in C. The actual full seam-preimage
+   S separates them. Apply #681 to select an auxiliary piece Q
+   separating them with U⊆S∩P.
+2. Under an injective image of U, original Claim 1 forbids
+   Q.left from being A-only. Hence Q.left is mixed. Minimum
+   mixed-piece size rules out Q.left being a proper subcomponent
+   of C. The checked escape lemma then forces Q.left to capture
+   an old-root vertex.
+3. Apply #676 to rule out old-root splitting, and #677 to obtain
+   a **proper B-only** opposite piece and perform a literal
+   right-to-left flip.
+
+This is an **unverified composition / proof programme**, not
+yet an exported Lean theorem. In particular it uses a
+NEW-root-image-injectivity hypothesis not known for arbitrary
+noninjective forbidden EHN maps. The sequence of contextual flips
+still needs to preserve the outer minimal-separator geometry and
+its ALL-test rooted incompatibility profile before the strict
+local B-support drop yields the full Claim 2 contradiction.
+
+### Independent source-only countercheck
+
+I exhaustively checked the no-split/localization implication
+on simple graphs with at most five vertices (1,704 qualifying
+old/new piece configurations), with no counterexample.
+An old-root-split counterexample WITHOUT U⊆P occurs on the
+five-vertex graph with edges
+(0,3), (0,4), (1,2), (1,4), (2,3):
+old R={0,1}, selected C={2,3}, opposite D={4};
+new U={2,4}, Q.left={1}, Q.right={0,3}.
+This shows why the interior-root condition matters. The graph
+check is adversarial evidence, not Lean certification for
+arbitrary partial-functional structures.
+
+No numbered mathematical prose or black-text theorem in frozen
+\`ramsey.tex\` has been changed.
