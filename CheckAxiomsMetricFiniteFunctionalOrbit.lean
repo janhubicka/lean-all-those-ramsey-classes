@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Applications.MetricFiniteFunctionalOrbit
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricOneStepJumpOrbit_card_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricOneStepJumpOrbit_closed
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricTwoOneStepJumpOrbits_card_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricTwoOneStepJumpOrbits_closed
