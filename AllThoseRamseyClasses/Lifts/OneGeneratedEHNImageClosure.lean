@@ -196,7 +196,7 @@ theorem ehn_range_isClosed_of_unaryFunctions
     intro j
     have hji : j = i := Fin.ext (by omega)
     subst j
-    rw [hx]
+    rw [← hx]
     exact B.subset_functionClosure ({f x} : Set W) (by simp)
 
 end AllThoseRamseyClasses.Lifts
