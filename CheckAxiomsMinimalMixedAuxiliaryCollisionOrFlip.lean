@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimalMixedAuxiliaryCollisionOrFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftMixedPiece_auxiliaryCollision_or_properRightFlip

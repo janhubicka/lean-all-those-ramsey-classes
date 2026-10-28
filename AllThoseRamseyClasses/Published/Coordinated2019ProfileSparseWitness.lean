@@ -33,10 +33,10 @@ open StructuralRamsey.RelStructure
 universe u v
 variable {L : RelLanguage.{u}}
 
-/-- Construct the exact sparse witness above the SAME original Ramsey
+/-- Construct the exact sparse witness with FULL B-COPY COVERAGE above the SAME original Ramsey
 control, for EVERY preselected weak-vertex cutoff n. All geometric,
 closure, and boundary data are built by the proved profile/tag route. -/
-theorem coordinated2019_profile_sparse_witness
+theorem coordinated2019_profile_sparse_witness_with_B_coverage
     {K : StructureClass.{u,v} (L := L)}
     {rules : ClosureDescription L}
     {UA VB P0 : Type v} [Finite UA] [Finite VB] [Finite P0]
@@ -47,7 +47,16 @@ theorem coordinated2019_profile_sparse_witness
     (hKIrr : ∀ {X : Type v} (E : RelStructure L X), K E → E.Irreducible)
     (n : ℕ) (κ : Type) [Fintype κ] [Nonempty κ]
     (hArrow0 : StructuralRamsey.Arrow A B C0 κ) :
-    HasInducedClosed2019SparseWitness K rules A B C0 n κ := by
+    ∃ (Z : Type v) (_ : Finite Z) (C : RelStructure L Z),
+      IsUClosed rules C ∧
+      (∃ f : Z → P0, IsInducedClosedUHomomorphismEmbedding rules C C0 f) ∧
+      (∀ {T : Type v} (Test : RelStructure L T),
+        IsUClosed rules Test → IsUIrreducible rules Test →
+        Embedding Test C → Nonempty (Embedding Test B)) ∧
+      (∀ S : Finset Z, S.card ≤ n →
+        HasInducedClosedUKCompletion K rules
+          (C.induce (↑S : Set Z))) ∧
+      StructuralRamsey.Arrow A B C κ := by
   classical
   obtain ⟨VD, hVD, D, hArrowD, hDClosed, hDPart, _hDCover⟩ :=
     StructuralRamsey.Partite.Induced.closed_ramsey_unrestricted
@@ -136,7 +145,35 @@ theorem coordinated2019_profile_sparse_witness
         hBK hHer hKIrr hSCover fE hOrdOld
     exact ⟨XE, hXE, E, hKE, hKIrr E hKE, fE, hEMap⟩
   exact ⟨VQ, hVQ, Qold, hQOldClosed, ⟨D.part ∘ (p ∘ Q.part), hQC0⟩,
-    hKCover, hWeak, hOriginalArrow⟩
+    hQOldCover, hWeak, hOriginalArrow⟩
+
+/-- The original unstrengthened public witness is a projection
+of the ACTUAL constructed witness retaining full canonical B-copy
+coverage. The stronger certificate is essential for decoding the
+final genuinely partial function target, but no old theorem API
+or original local-completion hypothesis is strengthened. -/
+theorem coordinated2019_profile_sparse_witness
+    {K : StructureClass.{u,v} (L := L)}
+    {rules : ClosureDescription L}
+    {UA VB P0 : Type v} [Finite UA] [Finite VB] [Finite P0]
+    (A : RelStructure L UA) (B : RelStructure L VB) (C0 : RelStructure L P0)
+    (hA : IsUClosed rules A) (hB : IsUClosed rules B) (hBK : K B)
+    (hClosed : ∀ {X : Type v} (E : RelStructure L X), K E → IsUClosed rules E)
+    (hHer : ClosedUHereditary K rules) (hStrong : HasFiniteStrongAmalgamation K)
+    (hKIrr : ∀ {X : Type v} (E : RelStructure L X), K E → E.Irreducible)
+    (n : ℕ) (κ : Type) [Fintype κ] [Nonempty κ]
+    (hArrow0 : StructuralRamsey.Arrow A B C0 κ) :
+    HasInducedClosed2019SparseWitness K rules A B C0 n κ := by
+  classical
+  obtain ⟨Z, hZ, C, hClosedC, hProjection, hCover,
+    hWeak, hArrow⟩ :=
+    coordinated2019_profile_sparse_witness_with_B_coverage
+      A B C0 hA hB hBK hClosed hHer hStrong hKIrr n κ hArrow0
+  have hKCover : CorrectedUIrreduciblesIn K rules C :=
+    ClosedUIrreduciblesIn.toCorrectedInduced
+      (ClosedUIrreduciblesIn.of_copy_coverage hHer B hBK C hCover)
+  exact ⟨Z, hZ, C, hClosedC, hProjection,
+    hKCover, hWeak, hArrow⟩
 
 /-- The unrestricted coordinated corrected 2019 Ramsey theorem.
 

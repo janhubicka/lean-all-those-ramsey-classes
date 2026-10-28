@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricLocalCompositionTests
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpComposition_normalform_of_fourPointCompletion
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpComposition_normalform_of_localTest

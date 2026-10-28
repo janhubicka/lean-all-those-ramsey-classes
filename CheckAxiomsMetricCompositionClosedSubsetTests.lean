@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricCompositionClosedSubsetTests
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricFourPointCompositionLocalTest_of_closedSubset
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCandidateComposition_normalform_of_closedSubsetTests

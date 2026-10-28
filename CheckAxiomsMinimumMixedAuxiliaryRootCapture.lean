@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimumMixedAuxiliaryRootCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.minimumMixed_auxiliaryLeft_oneSided_or_oldRootCapture

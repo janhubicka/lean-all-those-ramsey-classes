@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimalLeftWitnessAutomaticRightFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftForbiddenWitness_strictRightReplacement_of_rootInjOn
