@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019FromPartiteArrow
+
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_arrow_of_functional
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_profile_sparse_from_functional_arrow
