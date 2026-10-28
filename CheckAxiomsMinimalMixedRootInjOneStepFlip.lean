@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.MinimalMixedRootInjOneStepFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftMixedPiece_hasProperRightFlip_of_rootInjOn
