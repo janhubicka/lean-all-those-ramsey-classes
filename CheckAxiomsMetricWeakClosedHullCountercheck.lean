@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricWeakClosedHullCountercheck
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.threePointWeakChain_forces_closed_card_ge_three
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.weakThreePointChain_no_closed_hull_of_card_le_two
