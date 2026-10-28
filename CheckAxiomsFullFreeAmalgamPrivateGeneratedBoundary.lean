@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateGeneratedBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_private_generatedBoundary_eq_image
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_private_component_generatedBoundary_eq_image
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_replacement_privateBoundary_pair
