@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNClosedRangeFactorization
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_codRestrict_functionClosed
+#print axioms AllThoseRamseyClasses.Lifts.ehn_closedRange_surjectiveInducedFactor
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFullInducedEHNImage_of_closedRange
