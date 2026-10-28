@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019FinalCoveredArrow
+
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_final_functional_arrow_of_tagged
