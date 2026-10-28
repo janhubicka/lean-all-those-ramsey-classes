@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Applications.MetricJumpClosureComposition
+import AllThoseRamseyClasses.Applications.MetricLocalClosureCoherence
 
 /-!
 # Transfer the F_j composition normal form through local four-point tests
