@@ -169,10 +169,23 @@ theorem metricFourPointCompositionLocalTest_of_rawInducedCompletion
   have hKX : metricCandidateRawRestrictedValue P fA k x = fA k x :=
     metricCandidateRawRestrictedValue_of_rep_mem P fA k x hrep
   refine ⟨V, o, dV, fV, i, hdV, hLaw, ?_, ?_, ?_, ?_⟩
-  · simpa [hP] using hInj
-  · simpa [hJ] using hExact j x hx
-  · simpa [hKY] using hExact k y hy
-  · simpa [hKX] using hExact k x hx
+  · rw [← hP]
+    exact hInj
+  · calc
+      fV j (i x) =
+          Option.map i (metricCandidateRawRestrictedValue P fA j x) :=
+        hExact j x hx
+      _ = Option.map i (fA j x) := congrArg (Option.map i) hJ
+  · calc
+      fV k (i y) =
+          Option.map i (metricCandidateRawRestrictedValue P fA k y) :=
+        hExact k y hy
+      _ = Option.map i (fA k y) := congrArg (Option.map i) hKY
+  · calc
+      fV k (i x) =
+          Option.map i (metricCandidateRawRestrictedValue P fA k x) :=
+        hExact k x hx
+      _ = Option.map i (fA k x) := congrArg (Option.map i) hKX
 
 /-- Under raw four-point Option-preserving local completions,
 all defined two-step source compositions satisfy the valid
