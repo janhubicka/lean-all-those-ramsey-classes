@@ -146,8 +146,7 @@ theorem metricCandidateDirectOrbit_mem_finite_iff
           exact Or.inl hxy.symm
       | some v =>
           have hvy : v = y := by simpa [hfj] using hval
-          subst y
-          exact Or.inr ⟨j, hj, hfj⟩
+          exact Or.inr ⟨j, hj, hfj.trans (congrArg some hvy)⟩
 
 /-- Even for completely arbitrary partial source functions,
 the RAW direct orbit of one seed has at most |J|+1 vertices.
