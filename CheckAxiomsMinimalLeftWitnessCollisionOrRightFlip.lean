@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.MinimalLeftWitnessCollisionOrRightFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_rootCollision_or_strictRightReplacement
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_strictRightReplacement_of_piecewiseTestCover
