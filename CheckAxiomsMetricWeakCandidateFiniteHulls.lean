@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricWeakCandidateFiniteHulls
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCandidateFinsetClosed_union
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCandidateFiniteHull_list_exists
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCandidateFiniteHull_four_exists
