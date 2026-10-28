@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.InteriorAuxiliaryProperRightFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedInteriorRootCapture_oppositeComponent_oneSided
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedInteriorRootCapture_hasProperRightFlip
