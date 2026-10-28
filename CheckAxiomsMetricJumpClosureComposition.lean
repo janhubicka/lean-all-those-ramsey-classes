@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricJumpClosureComposition
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_some_goes_to_last
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricJumpClosureLaw_defined_composition_normalform
