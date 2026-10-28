@@ -84,8 +84,8 @@ theorem metricJumpComposition_normalform_of_fourPointCompletion
           z ∈ ({x, y, z, metricClosureRepresentative (fA k) x} :
             Set A) := by simp
       have hwz : w = z := hInj hw hz hiw
-      subst w
-      exact ⟨hjk, hSourceDirect⟩
+      refine ⟨hjk, ?_⟩
+      simpa [hSourceDirect, hwz]
 
 /-- Each F_j composition test may use an independent ordered
 target S-metric, a different total map on the candidate,
