@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.InteriorMinimalClosedSeparatorSelection
+
+#print axioms AllThoseRamseyClasses.Lifts.finite_geometricPiece_selectInteriorMinimalClosedSeparator
+#print axioms AllThoseRamseyClasses.Lifts.finite_geometricPiece_selectPositiveInteriorCut
