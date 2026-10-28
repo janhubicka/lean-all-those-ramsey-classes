@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ActualNestedFunctionalProfileCongruence
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenActualFreeDiagram_iff_of_profile_equiv
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNestedActualSource_iff_of_inner_profile_equiv
