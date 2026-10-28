@@ -92,27 +92,23 @@ theorem metricOneStepJumpOrbit_closed
     (hiz : f i y = some z) :
     z ∈ metricOneStepJumpOrbit J f x := by
   classical
-  have hy' :
-      y = x ∨ y ∈ J.image (fun j => (f j x).getD x) := by
-    simpa only [metricOneStepJumpOrbit, Finset.mem_insert] using hy
-  rcases hy' with hRoot | hOther
+  unfold metricOneStepJumpOrbit at hy
+  rcases Finset.mem_insert.mp hy with hRoot | hOther
   · subst y
     exact metricOneStepJumpOrbit_mem_of_some J f x i hi z hiz
-  · obtain ⟨j, hj, hjval⟩ := Finset.mem_image.mp hOther
+  · obtain ⟨j, hj, rfl⟩ := Finset.mem_image.mp hOther
     cases hfj : f j x with
     | none =>
-        have hxy : x = y := by
-          simpa [hfj] using hjval
-        subst y
-        exact metricOneStepJumpOrbit_mem_of_some J f x i hi z hiz
+        have hDirect : f i x = some z := by
+          simpa [hfj] using hiz
+        exact metricOneStepJumpOrbit_mem_of_some J f x i hi z hDirect
     | some v =>
-        have hvy : v = y := by
-          simpa [hfj] using hjval
-        subst y
+        have hSecond : f i v = some z := by
+          simpa [hfj] using hiz
         have hNormal : f i x = some z :=
           (metricJumpClosureLaw_defined_composition_normalform
             hpos hd f hLaw j i (hJump j hj) (hJump i hi)
-            x v z hfj hiz).2
+            x v z hfj hSecond).2
         exact metricOneStepJumpOrbit_mem_of_some J f x i hi z hNormal
 
 /-- The union of two function-closed seed orbits has at most
@@ -120,7 +116,7 @@ theorem metricOneStepJumpOrbit_closed
 This is the numerical functional-closure factor in the
 candidate bound of the printed metric application. -/
 theorem metricTwoOneStepJumpOrbits_card_le
-    {V : Type u}
+    {V : Type u} [DecidableEq V]
     (J : Finset ℝ)
     (f : ℝ → V → Option V)
     (x y : V) :
