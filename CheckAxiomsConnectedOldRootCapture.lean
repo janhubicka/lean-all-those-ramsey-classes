@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.ConnectedOldRootCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricOldRoot_capturedAll_of_connectedOutsideNewRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricOldRoot_capturedAll_of_cliqueDisjoint
+#print axioms AllThoseRamseyClasses.Lifts.minimalMixedCliqueOldRoot_oppositeComponent_oneSided
