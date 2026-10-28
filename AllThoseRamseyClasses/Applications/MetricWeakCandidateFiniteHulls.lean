@@ -40,7 +40,7 @@ def MetricCandidateFinsetClosed
 is again function-closed; no additional amalgamation
 property or metric assumption is needed. -/
 theorem metricCandidateFinsetClosed_union
-    {A : Type u}
+    {A : Type u} [DecidableEq A]
     (J : Finset ℝ) (f : ℝ → A → Option A)
     (C D : Finset A)
     (hC : MetricCandidateFinsetClosed J f C)
@@ -77,7 +77,7 @@ theorem metricCandidateFiniteHull_list_exists
         cases hx
       · simp
       · intro j hj y hy z hyz
-        exact False.elim (Finset.not_mem_empty y hy)
+        simp at hy
   | cons x xs ih =>
       obtain ⟨C, hCover, hBound, hClosed⟩ := ih
       obtain ⟨D, hx, hSingle, hDClosed⟩ :=
@@ -90,9 +90,14 @@ theorem metricCandidateFiniteHull_list_exists
           exact Finset.mem_union.mpr (Or.inl hx)
         · exact Finset.mem_union.mpr
             (Or.inr (hCover y hrest))
-      · have hUnion := Finset.card_union_le D C
-        simp only [List.length_cons]
-        omega
+      · calc
+          (D ∪ C).card ≤ D.card + C.card :=
+            Finset.card_union_le D C
+          _ ≤ (J.card + 1) + xs.length * (J.card + 1) :=
+            Nat.add_le_add hSingle hBound
+          _ = (xs.length + 1) * (J.card + 1) := by
+            simp only [add_mul, one_mul]
+            omega
       · exact metricCandidateFinsetClosed_union
           J f D C hDClosed hClosed
 
