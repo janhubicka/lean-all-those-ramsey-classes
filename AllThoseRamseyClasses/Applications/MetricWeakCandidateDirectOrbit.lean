@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Applications.MetricJumpClosureComposition
+import Mathlib.Tactic
 
 /-!
 # Algebraic one-step closure in a weak partial-function candidate
@@ -113,5 +114,99 @@ theorem metricCandidateDirectOrbit_least_closed_of_normalform
   · intro C hx hClosed
     exact metricCandidateDirectOrbit_subset_closed
       J f C x hx hClosed
+
+/-- For a FINITE set of jump levels the direct candidate orbit
+is represented exactly, not just bounded above, by the finite
+set containing the seed and all defined one-step images.
+Undefined values contribute only a duplicate of the seed. -/
+theorem metricCandidateDirectOrbit_mem_finite_iff
+    {A : Type u}
+    (J : Finset ℝ) (f : ℝ → A → Option A)
+    (x y : A) :
+    y ∈ metricCandidateDirectOrbit (↑J : Set ℝ) f x ↔
+      y ∈ (insert x (J.image (fun j => (f j x).getD x)) :
+        Finset A) := by
+  classical
+  constructor
+  · intro hy
+    change y = x ∨
+      ∃ j : ℝ, j ∈ (↑J : Set ℝ) ∧ f j x = some y at hy
+    rcases hy with hRoot | ⟨j, hj, hxy⟩
+    · subst y
+      exact Finset.mem_insert_self _ _
+    · apply Finset.mem_insert_of_mem
+      exact Finset.mem_image.mpr
+        ⟨j, hj, by simp [hxy]⟩
+  · intro hy
+    rcases Finset.mem_insert.mp hy with hRoot | hOther
+    · exact Or.inl hRoot
+    · obtain ⟨j, hj, hval⟩ := Finset.mem_image.mp hOther
+      cases hfj : f j x with
+      | none =>
+          have hxy : x = y := by simpa [hfj] using hval
+          exact Or.inl hxy.symm
+      | some v =>
+          have hvy : v = y := by simpa [hfj] using hval
+          subst y
+          exact Or.inr ⟨j, hj, hfj⟩
+
+/-- Even for completely arbitrary partial source functions,
+the RAW direct orbit of one seed has at most |J|+1 vertices.
+Unlike the next theorem, this does not assert it is closed. -/
+theorem metricCandidateDirectOrbit_finite_card_le
+    {A : Type u}
+    (J : Finset ℝ) (f : ℝ → A → Option A)
+    (x : A) :
+    (insert x (J.image (fun j => (f j x).getD x)) :
+      Finset A).card ≤ J.card + 1 := by
+  classical
+  calc
+    (insert x (J.image (fun j => (f j x).getD x)) :
+      Finset A).card ≤
+        (J.image (fun j => (f j x).getD x)).card + 1 :=
+      Finset.card_insert_le _ _
+    _ ≤ J.card + 1 :=
+      Nat.add_le_add_right (Finset.card_image_le) 1
+
+/-- A weak candidate satisfying the two-step composition normal
+form has an ACTUAL function-closed finite subset containing x
+of size at most |J|+1. No metric structure on A is required.
+This is the precise quantitative algebraic conclusion needed
+before analyzing the paper's U-closed local test hypotheses. -/
+theorem metricCandidateFiniteOrbit_closed_small_of_normalform
+    {A : Type u}
+    (J : Finset ℝ) (f : ℝ → A → Option A)
+    (hNormal : ∀ j ∈ J, ∀ k ∈ J,
+      ∀ x y z : A, f j x = some y → f k y = some z →
+        f k x = some z)
+    (x : A) :
+    ∃ C : Finset A,
+      x ∈ C ∧ C.card ≤ J.card + 1 ∧
+      (∀ k ∈ J, ∀ y ∈ C, ∀ z : A,
+        f k y = some z → z ∈ C) := by
+  classical
+  let C : Finset A :=
+    insert x (J.image (fun j => (f j x).getD x))
+  refine ⟨C, ?_, ?_, ?_⟩
+  · exact Finset.mem_insert_self _ _
+  · exact metricCandidateDirectOrbit_finite_card_le J f x
+  · intro k hk y hy z hky
+    have hSet : y ∈ metricCandidateDirectOrbit
+        (↑J : Set ℝ) f x :=
+      (metricCandidateDirectOrbit_mem_finite_iff
+        J f x y).mpr hy
+    have hNormalSet : ∀ j ∈ (↑J : Set ℝ),
+        ∀ t ∈ (↑J : Set ℝ), ∀ a b c : A,
+        f j a = some b → f t b = some c →
+          f t a = some c := by
+      intro j hj t ht a b c hab hbc
+      exact hNormal j hj t ht a b c hab hbc
+    have hResult : z ∈ metricCandidateDirectOrbit
+        (↑J : Set ℝ) f x :=
+      metricCandidateDirectOrbit_closed_of_normalform
+        (↑J : Set ℝ) f hNormalSet x y z
+        hSet k hk hky
+    exact (metricCandidateDirectOrbit_mem_finite_iff
+      J f x z).mp hResult
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
