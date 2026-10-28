@@ -72,8 +72,11 @@ theorem fullFreeAmalgam_rightOutsideContext_component_eq
         ReachOutside Right.graph SR x (e.symm w) := by
       apply (fullFreeAmalgam_rightOutsideContext_reach_iff
         hFree SR hRootR x (e.symm w)).mp
-      have he : e (e.symm w) = w := e.apply_symm_apply w
-      simpa only [he] using hz.2
+      have hWhole :
+          ReachOutside Whole.graph K (e x) (e (e.symm w)) := by
+        rw [e.apply_symm_apply w]
+        exact hz.2
+      exact hWhole
     have hValue : iR (e.symm w).1 = z := by
       have he := congrArg Subtype.val (e.apply_symm_apply w)
       change iR (e.symm w).1 = z at he
