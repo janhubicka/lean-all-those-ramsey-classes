@@ -120,13 +120,12 @@ is represented exactly, not just bounded above, by the finite
 set containing the seed and all defined one-step images.
 Undefined values contribute only a duplicate of the seed. -/
 theorem metricCandidateDirectOrbit_mem_finite_iff
-    {A : Type u}
+    {A : Type u} [DecidableEq A]
     (J : Finset ℝ) (f : ℝ → A → Option A)
     (x y : A) :
     y ∈ metricCandidateDirectOrbit (↑J : Set ℝ) f x ↔
       y ∈ (insert x (J.image (fun j => (f j x).getD x)) :
         Finset A) := by
-  classical
   constructor
   · intro hy
     change y = x ∨
@@ -154,12 +153,11 @@ theorem metricCandidateDirectOrbit_mem_finite_iff
 the RAW direct orbit of one seed has at most |J|+1 vertices.
 Unlike the next theorem, this does not assert it is closed. -/
 theorem metricCandidateDirectOrbit_finite_card_le
-    {A : Type u}
+    {A : Type u} [DecidableEq A]
     (J : Finset ℝ) (f : ℝ → A → Option A)
     (x : A) :
     (insert x (J.image (fun j => (f j x).getD x)) :
       Finset A).card ≤ J.card + 1 := by
-  classical
   calc
     (insert x (J.image (fun j => (f j x).getD x)) :
       Finset A).card ≤
