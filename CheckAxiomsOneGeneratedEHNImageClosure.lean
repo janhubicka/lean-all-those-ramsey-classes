@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.OneGeneratedEHNImageClosure
+
+#print axioms AllThoseRamseyClasses.Lifts.oneGeneratedFullStructure_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.sourceOnePointClosedHull_irreducible
+#print axioms AllThoseRamseyClasses.Lifts.ehn_target_singleton_closure_subset_source_image
+#print axioms AllThoseRamseyClasses.Lifts.ehn_range_isClosed_of_oneGeneratorInputCoverage
+#print axioms AllThoseRamseyClasses.Lifts.ehn_range_isClosed_of_unaryFunctions
