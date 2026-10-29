@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricCorrectedCycleSupportCount
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCycleQuotientShape_exposed_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCycleExposed_le_two_card_of_jump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricCycleActualSupport_fits_printed_cutoff_of_jump
