@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricPlateauProperJump
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.cappedPositivePower_product
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedPlateau_has_properJump
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedPlateau_has_properJump_of_fourValues
