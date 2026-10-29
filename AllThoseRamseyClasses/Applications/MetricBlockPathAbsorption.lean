@@ -79,4 +79,70 @@ theorem roundedBadClosingEdge_persists_of_absorbed_bound
     hpos ha hAbs replacement hReplacement]
   exact hBad
 
+/-- Every rounded step increases (or preserves) an allowed
+prefix: the rounded value is at least its previous value.
+This lemma does not assume associativity. -/
+theorem roundedFoldl_start_le
+    {S : Set ℝ} (hpos : Positive S)
+    (hS : WellDefined S)
+    {a : ℝ} (ha : a ∈ S)
+    (edges : List ℝ)
+    (hEdges : ∀ e ∈ edges, e ∈ S) :
+    a ≤ edges.foldl (distanceSum S) a := by
+  induction edges generalizing a with
+  | nil => simp
+  | cons e es ih =>
+      have he : e ∈ S := hEdges e (by simp)
+      have hTail : ∀ t ∈ es, t ∈ S := by
+        intro t ht
+        exact hEdges t (by simp [ht])
+      calc
+        a ≤ distanceSum S a e :=
+          left_le_distanceSum ha (hpos e he).le
+        _ ≤ es.foldl (distanceSum S) (distanceSum S a e) :=
+          ih (hS a ha e he) hTail
+
+/-- In a constant-prefix ('unimportant') path, EACH individual
+edge is absorbed by the original prefix. No assumption about
+which block its edge lengths occupy is used here. Together
+with the separate plateau-to-proper-jump theorem this provides
+the missing source step before block-bounded replacement. -/
+theorem roundedFoldl_plateau_absorbs_each_edge
+    {S : Set ℝ} (hpos : Positive S)
+    (hS : WellDefined S)
+    {a : ℝ} (ha : a ∈ S)
+    (edges : List ℝ) :
+    (∀ e ∈ edges, e ∈ S) →
+    edges.foldl (distanceSum S) a = a →
+    ∀ e ∈ edges, distanceSum S a e = a := by
+  induction edges with
+  | nil =>
+      intro _ _ e he
+      simp at he
+  | cons e es ih =>
+      intro hEdges hFinal
+      have he : e ∈ S := hEdges e (by simp)
+      have hTail : ∀ t ∈ es, t ∈ S := by
+        intro t ht
+        exact hEdges t (by simp [ht])
+      have hmono : distanceSum S a e ≤
+          es.foldl (distanceSum S) (distanceSum S a e) :=
+        roundedFoldl_start_le hpos hS (hS a ha e he) es hTail
+      have hStart : a ≤ distanceSum S a e :=
+        left_le_distanceSum ha (hpos e he).le
+      have hStep : distanceSum S a e = a := by
+        apply le_antisymm ?_ hStart
+        calc
+          distanceSum S a e ≤
+              es.foldl (distanceSum S) (distanceSum S a e) := hmono
+          _ = a := by simpa only [List.foldl_cons] using hFinal
+      have hRest : es.foldl (distanceSum S) a = a := by
+        simpa only [List.foldl_cons, hStep] using hFinal
+      have hTailAbs := ih hTail hRest
+      intro t ht
+      rcases List.mem_cons.mp ht with hte | ht
+      · subst t
+        exact hStep
+      · exact hTailAbs t ht
+
 end AllThoseRamseyClasses.Applications.MetricSaturation
