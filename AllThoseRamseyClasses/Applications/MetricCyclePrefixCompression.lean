@@ -109,7 +109,8 @@ theorem prefixLevelsBelow_card_strict
   have hCard := Finset.card_le_card hInsert
   have hCardInsert : (insert a B).card = B.card + 1 :=
     Finset.card_insert_of_notMem haNotB
-  omega
+  rw [hCardInsert] at hCard
+  exact hCard
 
 /-- The closing-edge value d is *not* one of the available
 rounded prefix levels strictly below d, so their total count
@@ -134,7 +135,8 @@ theorem prefixLevelsBelow_card_add_one_le_card
   have hCard := Finset.card_le_card hInsert
   have hCardInsert : (insert d A).card = A.card + 1 :=
     Finset.card_insert_of_notMem hdNotA
-  omega
+  rw [hCardInsert] at hCard
+  exact hCard
 
 /-- Every retained rising edge consumes one allowed strict prefix
 level below d. Includes an empty original tail and duplicate
