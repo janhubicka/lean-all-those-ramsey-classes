@@ -146,7 +146,7 @@ theorem roundedPlateau_has_properJump
       distanceSum S a (distanceSum S j j) =
           distanceSum S (distanceSum S a j) j :=
         (hassoc a ha j hjS j hjS).symm
-      _ = distanceSum S a j := by rw [hjAbs]
+      _ = distanceSum S a j := by simp only [hjAbs]
       _ = a := hjAbs
   have hjjLe : distanceSum S j j ≤ d := by
     calc
