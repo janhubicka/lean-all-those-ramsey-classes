@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricNativeOneGeneratedUHulls
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.nativeOneGenerated_UHull_isClosed
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.nativeOneGenerated_UHull_closed_irreducible
