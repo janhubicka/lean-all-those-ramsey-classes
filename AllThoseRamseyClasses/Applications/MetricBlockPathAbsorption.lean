@@ -36,9 +36,12 @@ theorem roundedAbsorbs_of_le
     (heq : e ≤ q)
     (hAbs : distanceSum S a q = a) :
     distanceSum S a e = a := by
-  have hmono : distanceSum S a e ≤ distanceSum S a q :=
-    distanceSum_mono_right ha (hpos e he).le heq
-  exact le_antisymm (hmono.trans_eq hAbs)
+  have hmono : distanceSum S a e ≤ a := by
+    calc
+      distanceSum S a e ≤ distanceSum S a q :=
+        distanceSum_mono_right ha (hpos e he).le heq
+      _ = a := hAbs
+  exact le_antisymm hmono
     (left_le_distanceSum ha (hpos e he).le)
 
 /-- No associativity is needed: every step along a bounded
