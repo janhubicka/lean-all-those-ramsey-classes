@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019LocalProtectedCompletion
+
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_exactWeak_local_canonical_protected
