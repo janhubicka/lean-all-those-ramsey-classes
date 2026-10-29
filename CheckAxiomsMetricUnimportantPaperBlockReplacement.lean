@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Applications.MetricUnimportantPaperBlockReplacement
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricUnimportantPaperBlock_replacement
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.metricUnimportantPaperBlock_replacement_finite
