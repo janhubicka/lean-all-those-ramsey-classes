@@ -58,16 +58,16 @@ theorem metricCycleExposed_le_two_card_of_jump
     hfin.toFinset.card q p
     (metricFiniteS_card_two_of_proper_jump hfin hj) hShape
 
-/-- If the actual original support has at most q+p vertices
-and the addition of all named F_j closures uses at most |J| extra
-vertices per original one, the full test fits the ORIGINAL
-2|S|(|J|+1) cutoff, in either quotient shape.
+/-- A source-faithful conditional bound for ANY finite distance set
+with at least TWO allowed distances, regardless of whether there are
+proper jumps. This covers the no-jump case, where |J|=0, as well.
 
-This is a conditional counting certificate, NOT a derivation
-of the source's closure laws or of its exact local completion. -/
-theorem metricCycleActualSupport_fits_printed_cutoff_of_jump
+The ordinary quotient shape and the exceptional single-path
+triangle are explicit hypotheses. Closure-count and support-count
+premises are NOT deduced from the printed weak local tests. -/
+theorem metricCycleActualSupport_fits_printed_cutoff_of_two_distances
     (S : Set ℝ) (hfin : S.Finite)
-    {j : ℝ} (hj : Jump S j)
+    (hTwo : 2 ≤ hfin.toFinset.card)
     (q p originalVertices testedVertices : ℕ)
     (hShape : MetricCycleQuotientShape hfin.toFinset.card q p)
     (hOriginal : originalVertices ≤ q + p)
@@ -75,8 +75,8 @@ theorem metricCycleActualSupport_fits_printed_cutoff_of_jump
       originalVertices * ((finiteJumpThresholdList S hfin).length + 1)) :
     testedVertices ≤ metricPrintedLocalCutoff S hfin := by
   have hCoefficient : originalVertices ≤ 2 * hfin.toFinset.card :=
-    hOriginal.trans (metricCycleExposed_le_two_card_of_jump
-      S hfin hj q p hShape)
+    hOriginal.trans (metricCycleQuotientShape_exposed_le
+      hfin.toFinset.card q p hTwo hShape)
   calc
     testedVertices ≤
         originalVertices * ((finiteJumpThresholdList S hfin).length + 1) :=
@@ -87,5 +87,22 @@ theorem metricCycleActualSupport_fits_printed_cutoff_of_jump
         ((finiteJumpThresholdList S hfin).length + 1) hCoefficient
     _ = metricPrintedLocalCutoff S hfin := by
       rfl
+
+/-- The preceding bound specialized to the presence of a proper
+jump. This is the version used to compare with #704's corrected
+vertex-count theorem. The stronger two-distance theorem also
+covers finite distance sets having no proper jump. -/
+theorem metricCycleActualSupport_fits_printed_cutoff_of_jump
+    (S : Set ℝ) (hfin : S.Finite)
+    {j : ℝ} (hj : Jump S j)
+    (q p originalVertices testedVertices : ℕ)
+    (hShape : MetricCycleQuotientShape hfin.toFinset.card q p)
+    (hOriginal : originalVertices ≤ q + p)
+    (hTest : testedVertices ≤
+      originalVertices * ((finiteJumpThresholdList S hfin).length + 1)) :
+    testedVertices ≤ metricPrintedLocalCutoff S hfin :=
+  metricCycleActualSupport_fits_printed_cutoff_of_two_distances
+    S hfin (metricFiniteS_card_two_of_proper_jump hfin hj)
+    q p originalVertices testedVertices hShape hOriginal hTest
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
