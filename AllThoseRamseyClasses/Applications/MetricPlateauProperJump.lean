@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Applications.MetricJumpThresholds
+import AllThoseRamseyClasses.Applications.MetricFiniteBlockMaximal
 import Mathlib.Tactic
 
 /-!
@@ -204,5 +204,35 @@ theorem roundedPlateau_finiteEdges_commonJump
   refine ⟨j, hj, ?_, hja, habs⟩
   intro e he
   exact (Finset.le_max' edges e he).trans hbj
+
+/-- The FULL paper block containing an absorbed edge lies BELOW
+one common absorbed proper jump. This uses the verified no-jump
+subset signature theorem: no block may straddle a proper jump.
+It is stronger than merely finding a jump above the original edge:
+EVERY possible replacement edge bounded by the same paper block
+is now below an absorbed threshold. -/
+theorem roundedPlateau_paperBlock_bound_absorbed
+    {S B : Set ℝ}
+    (hfin : S.Finite)
+    (hpos : Positive S) (hS : WellDefined S)
+    (hassoc : AssociativeOn S)
+    (hBlock : PaperBlock S B)
+    {a b d : ℝ}
+    (ha : a ∈ S) (hd : d ∈ S)
+    (had : a < d)
+    (hb : b ∈ B)
+    (hAbs : distanceSum S a b = a) :
+    ∃ j : ℝ, Jump S j ∧
+      (∀ t ∈ B, t ≤ j) ∧ j ≤ a ∧
+      distanceSum S a j = a := by
+  obtain ⟨j, hj, hbj, hja, habs⟩ :=
+    roundedPlateau_has_properJump hpos hS hassoc
+      ha (hBlock.1 hb) hd had hAbs
+  refine ⟨j, hj, ?_, hja, habs⟩
+  intro t ht
+  have hSame : SameJumpSignature S b t :=
+    noGap_subset_sameJumpSignature hpos hS
+      (hfin.subset hBlock.1) hBlock.1 hBlock.2.2.1 hb ht
+  exact (hSame j hj).mp hbj
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
