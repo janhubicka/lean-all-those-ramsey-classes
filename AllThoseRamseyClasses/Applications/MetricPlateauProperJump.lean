@@ -73,7 +73,7 @@ theorem roundedPlateau_has_properJump
     {a b d : ℝ}
     (ha : a ∈ S) (hb : b ∈ S) (hd : d ∈ S)
     (had : a < d) (hAbs : distanceSum S a b = a) :
-    ∃ j : ℝ, Jump S j ∧ b ≤ j ∧ j ≤ a := by
+    ∃ j : ℝ, Jump S j ∧ b ≤ j ∧ j ≤ a ∧ distanceSum S a j = a := by
   have hb_le_a : b ≤ a := by
     calc
       b ≤ distanceSum S b a :=
@@ -168,7 +168,7 @@ theorem roundedPlateau_has_properJump
         cappedPositivePower_product hpos hS hassoc hd hb hbd N N
       _ = j := hStableTail
   exact ⟨j, ⟨hjS, ⟨d, hd, lt_of_le_of_lt hjLe had⟩, hjIdem⟩,
-    hbPow N, hjLe⟩
+    hbPow N, hjLe, hjAbs⟩
 
 /-- Specialize to the actual four-values premise of the manuscript. -/
 theorem roundedPlateau_has_properJump_of_fourValues
@@ -177,9 +177,32 @@ theorem roundedPlateau_has_properJump_of_fourValues
     {a b d : ℝ}
     (ha : a ∈ S) (hb : b ∈ S) (hd : d ∈ S)
     (had : a < d) (hAbs : distanceSum S a b = a) :
-    ∃ j : ℝ, Jump S j ∧ b ≤ j ∧ j ≤ a :=
+    ∃ j : ℝ, Jump S j ∧ b ≤ j ∧ j ≤ a ∧ distanceSum S a j = a :=
   roundedPlateau_has_properJump hpos hS
     (associativeOn_of_fourValues hpos hS h4)
     ha hb hd had hAbs
+
+/-- An entire finite nonempty family of edges absorbed by the same
+prefix has ONE proper jump at least as large as each edge, and
+still absorbed by that prefix. Choose its largest original edge;
+no a priori finite closed hull or block construction is assumed. -/
+theorem roundedPlateau_finiteEdges_commonJump
+    {S : Set ℝ} (hpos : Positive S)
+    (hS : WellDefined S) (hassoc : AssociativeOn S)
+    {a d : ℝ} (ha : a ∈ S) (hd : d ∈ S) (had : a < d)
+    (edges : Finset ℝ) (hne : edges.Nonempty)
+    (hEdges : ∀ e ∈ edges, e ∈ S ∧ distanceSum S a e = a) :
+    ∃ j : ℝ, Jump S j ∧
+      (∀ e ∈ edges, e ≤ j) ∧ j ≤ a ∧
+      distanceSum S a j = a := by
+  classical
+  let b : ℝ := edges.max' hne
+  have hb : b ∈ edges := Finset.max'_mem edges hne
+  obtain ⟨j, hj, hbj, hja, habs⟩ :=
+    roundedPlateau_has_properJump hpos hS hassoc
+      ha (hEdges b hb).1 hd had (hEdges b hb).2
+  refine ⟨j, hj, ?_, hja, habs⟩
+  intro e he
+  exact (Finset.le_max' edges e he).trans hbj
 
 end AllThoseRamseyClasses.Applications.MetricSaturation
