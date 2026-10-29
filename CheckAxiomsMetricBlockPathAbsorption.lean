@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricBlockPathAbsorption
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedAbsorbs_of_le
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedFoldl_eq_of_absorbed_bound
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedBadClosingEdge_persists_of_absorbed_bound
