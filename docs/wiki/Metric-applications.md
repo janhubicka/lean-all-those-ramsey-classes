@@ -949,21 +949,29 @@ local-completion implication, not ordered-functional strong
 amalgamation for two *valid* metric structures (which is now proved
 by #645 with its full source hypotheses).
 
-The corrected 2019 hypothesis (4b) requires **closed
-U-irreducible induced pieces** of an **arbitrary weak candidate**
-to lie in K. It does **not** assert the whole weak candidate is
-U-closed. In particular, the new merged application theorems
-have to be read with their actual hypotheses:
+**Correction to the initial 29 October review:** Definition 2.17(4)
+**explicitly assumes the entire candidate C is U-closed**. Its
+membership clause (4b) covers closed U-irreducible induced pieces,
+while the small ORIGINAL induced tests in (4c) need not themselves
+be U-closed. Thus #702's ambient U-closed premise is already
+available in the corrected 2019 local-completion setup; what remains
+is the source-faithful comparison to the concrete metric application
+(which invokes the older locally finite subclass theorem).
+The new merged results have these exact scopes:
 
 - [#702](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/702)
   (CI 40782830791) proves singleton U-hull membership under
-  corrected (4b) **assuming ambient U-closedness**.
+  corrected (4b), **using exactly the global U-closedness
+  premise already in Definition 2.17(4)**.
 - [#703](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/703)
   (CI 40783329155) proves canonical native-function
   singleton U-hulls are closed under original functions;
   in the singleton-valued representation they also yield
   intrinsically U-closed, U-irreducible induced tests.
-  This is **not** a theorem for arbitrary weak metric sources.
+  This is a theorem for canonical native encodings; it does
+  **not** identify arbitrary metric application structures
+  with that encoding or derive the Option composition law
+  from K-membership.
 - [#698](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/698)
   (CI 40781694981) proves abstract one-generated partial unary
   closure irreducibility, without identifying it with all
@@ -996,9 +1004,10 @@ distinct shapes** needed to preserve the original cutoff,
 rather than simply doubling max(3,|S|). A dedicated
 conditional source-count formalization is
 [PR #705](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/705)
-(**pending full CI at this checkpoint**). Its geometric
-quotient-shape and actual function-closure prerequisites
-remain explicit, not established.
+(**full CI 40805840587, merged**). It also covers all finite S
+with at least two distances, whether or not there are proper jumps.
+Its geometric quotient-shape and actual function-closure
+prerequisites remain explicit, not established.
 
 The source-faithfulness audit is recorded beside nonprinting
 validation TODOs in the manuscript, merged as
@@ -1008,10 +1017,18 @@ corrected (4c) tests every original induced subset of size
 **at most** n, whereas the printed metric proof informally
 mentions `n`-element tests.
 
-**Still needed:** derive original-source F_j closure propagation
-from the exact weak tests without assuming global closedness or
-strict Option-preserving completions; prove the complete corrected
-cycle-compression and arbitrary replacement statement; and
-construct the final completion of the original weak candidate.
+The conditional canonical source assembly is now
+[PR #707](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/707)
+(pending CI): it discharges the function-output-closedness
+premise of #702 using #703, with **K-piece ⇒ original F_j
+normal form** still explicit.
+
+**Still needed:** establish the exact metric K-to-F_j dictionary
+and relate the older printed locally finite subclass assumptions
+to the revised U-closed source, then derive the original-source
+closure propagation without assuming strict Option-preserving
+(4c) completions; prove the corrected cycle compression and all
+block-bounded replacements; and construct the final completion
+of the actual metric weak candidate.
 Only after those steps should `lem:finite4value2`, `prop:Smetric`
 or `thm:Smetric` be marked fully verified.
