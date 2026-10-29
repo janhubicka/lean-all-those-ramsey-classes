@@ -939,3 +939,79 @@ Consult the [manuscript proof-difference ledger](https://github.com/janhubicka/A
 for the precise distinction between verified statements,
 alternative proofs, still-open printed steps and proposed
 localized corrections.
+
+
+## 29 October: original weak-candidate source audit and corrected cycle support
+
+The public API still does **not** export the finite S-metric Ramsey
+application. The unresolved step is precisely the printed weak
+local-completion implication, not ordered-functional strong
+amalgamation for two *valid* metric structures (which is now proved
+by #645 with its full source hypotheses).
+
+The corrected 2019 hypothesis (4b) requires **closed
+U-irreducible induced pieces** of an **arbitrary weak candidate**
+to lie in K. It does **not** assert the whole weak candidate is
+U-closed. In particular, the new merged application theorems
+have to be read with their actual hypotheses:
+
+- [#702](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/702)
+  (CI 40782830791) proves singleton U-hull membership under
+  corrected (4b) **assuming ambient U-closedness**.
+- [#703](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/703)
+  (CI 40783329155) proves canonical native-function
+  singleton U-hulls are closed under original functions;
+  in the singleton-valued representation they also yield
+  intrinsically U-closed, U-irreducible induced tests.
+  This is **not** a theorem for arbitrary weak metric sources.
+- [#698](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/698)
+  (CI 40781694981) proves abstract one-generated partial unary
+  closure irreducibility, without identifying it with all
+  corrected (4b) tests.
+- [#696](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/696)
+  (CI 40782666080) derives source composition laws from
+  **explicit exact Option-preserving** raw four-point completions;
+  no implication from the 2019 weak (4c) tests is silently assumed.
+- [#690](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/690)
+  (CI 40780569228) proves that such source composition identities
+  give m-seed closed hulls of cardinal at most m(|J|+1).
+  This is noncircular but **conditional**.
+
+The printed `lem:Sequivalence` states q≤|S| compressed-cycle
+vertices, contradicted by the Lean-verified nonmetric triangle
+over S={1,3} (#650). The proposed replacement q≤max(3,|S|)
+remains an *author-review* edit in
+[manuscript PR #164](https://github.com/janhubicka/All-those-Ramsey-classes/pull/164).
+Merged [#704](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/704)
+(CI 40783544231) proves that the corrected **quotient vertex**
+bound is numerically compatible with the original
+2|S|(|J|+1) cutoff when S has a proper jump.
+
+The actual printed local test retains both original endpoints
+of each collapsed path. With q quotient vertices and p collapsed
+paths, it therefore exposes at most q+p originals. In the ordinary
+case q≤|S| and p≤q; in the exceptional triangle case q=3
+and p=1, so q+p=4≤2|S| for |S|≥2. These are the **two
+distinct shapes** needed to preserve the original cutoff,
+rather than simply doubling max(3,|S|). A dedicated
+conditional source-count formalization is
+[PR #705](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/705)
+(**pending full CI at this checkpoint**). Its geometric
+quotient-shape and actual function-closure prerequisites
+remain explicit, not established.
+
+The source-faithfulness audit is recorded beside nonprinting
+validation TODOs in the manuscript, merged as
+[manuscript PR #173](https://github.com/janhubicka/All-those-Ramsey-classes/pull/173).
+The numbered prose remains frozen. It also notes that
+corrected (4c) tests every original induced subset of size
+**at most** n, whereas the printed metric proof informally
+mentions `n`-element tests.
+
+**Still needed:** derive original-source F_j closure propagation
+from the exact weak tests without assuming global closedness or
+strict Option-preserving completions; prove the complete corrected
+cycle-compression and arbitrary replacement statement; and
+construct the final completion of the original weak candidate.
+Only after those steps should `lem:finite4value2`, `prop:Smetric`
+or `thm:Smetric` be marked fully verified.
