@@ -100,10 +100,18 @@ theorem fullFreeAmalgam_outerOldRoot_minimal_iff_oppositeBoundary
       Whole (iR '' T)
       (fullFunctionalEmbedding_outsideCut iR T x) y hMin).2
   · intro hInteriorBoundary
+    have hExteriorBoundaryWhole :
+        Whole.functionClosure
+          (gaifmanNeighborhood Whole.graph
+            (componentFrom Whole.graph (iR '' T)
+              (fullFunctionalEmbedding_outsideCut iR T x))) =
+            iR '' T := by
+      rw [hExterior.1]
+      exact hExterior.2
     exact minimalClosedSeparator_of_bothBoundaries_eq
       Whole (iR '' T) hClosed
       (fullFunctionalEmbedding_outsideCut iR T x) y hSep
-      hExterior.2 hInteriorBoundary
+      hExteriorBoundaryWhole hInteriorBoundary
 
 /-- If an actual finite new source additionally has one opposite
 component with the same generated boundary as its preserved
