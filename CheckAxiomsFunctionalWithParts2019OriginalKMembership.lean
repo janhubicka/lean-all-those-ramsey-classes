@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019OriginalKMembership
+
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019Class_reflect_mem
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019Class_mem_iff
+#print axioms AllThoseRamseyClasses.Published.genuine2019_exactWeak_originalClass_completion
