@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019Class_strongAmalgamation
