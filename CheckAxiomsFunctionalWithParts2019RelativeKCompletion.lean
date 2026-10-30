@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeKCompletion
+
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019_KCompletion_iff_relative
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019_localCompletion_iff_relative
