@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamExteriorOldRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalEmbedding_gaifmanEdge_map
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalEmbedding_reachOutside_map
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_exteriorComponent_preserved_at_oldRoot
