@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKIso
+
+#print axioms AllThoseRamseyClasses.Published.canonicalGenuineTagged2019Class_isomorphismClosed
