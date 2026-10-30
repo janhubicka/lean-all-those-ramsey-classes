@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RamseyDescent
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_ramsey_of_canonicalTagged_ramsey
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_ramsey_of_canonicalCoordinated2019
