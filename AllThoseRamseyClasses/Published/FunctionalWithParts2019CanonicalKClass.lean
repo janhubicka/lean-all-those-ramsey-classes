@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKCompletion
 import PartiteConstruction.Functional.WholeMaskClosednessDictionary2019
 import PartiteConstruction.Functional.WholeMaskCanonicalClosedInduce2019
+import PartiteConstruction.Functional.WholeMaskClosedBoundaryTransversal2019
 
 /-!
 # A genuine partite functional class in the canonical 2019 relational language
