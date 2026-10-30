@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKCompletion
+
+#print axioms AllThoseRamseyClasses.Published.functional2019_exactWeak_K_completion_of_canonical_targets
