@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamOuterOldRootCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_outerOldRoot_minimal_iff_oppositeBoundary
+#print axioms AllThoseRamseyClasses.Lifts.finite_outerOldRoot_hasGeometricPiece_of_oppositeBoundary
