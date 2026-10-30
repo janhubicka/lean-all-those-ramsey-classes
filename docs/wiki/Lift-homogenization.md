@@ -1581,3 +1581,59 @@ The frozen numbered \`ramsey.tex\` has NOT been rewritten.
 These mathematical issues and differences from the printed
 proof should be represented by validation TODO markers
 pending authorial decisions, not silently corrected prose.
+
+
+### 30 October follow-up: incomparable inner/outer cuts and unary test coverage
+
+[#697](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/697)
+has now passed full Lean CI and been MERGED (commit \`5826a37b\`).
+The one-generated full-functional irreducibility and unary raw EHN
+image-closedness statements are hence certified. This special case
+does NOT imply the original unrestricted arbitrary-arity
+injectivization claim.
+
+Two further non-circular geometric developments remain in CI:
+
+* [#722](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/722):
+  stacked on #720, avoids FALSE nested-cut monotonicity.
+  If D' is an actual selected component outside an inner root U
+  and is disjoint from an OLDER closed root T (with no U/T
+  inclusion assumption), D' remains in ONE component C' after
+  deleting T. Together with U=Cl(N(D')) and #720,
+  \`D' ∪ (U\T) ⊆ C'\`: all surviving inner-root vertices
+  attach to the same outside-T component. This is one of the
+  needed INNER component connectivity bridges after a flip
+* [#723](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/723):
+  any NONEMPTY source whose native function symbols have
+  arity at most one satisfies the exact full-irreducible
+  source INPUT-TUPLE COVER criterion from verified #700.
+  Every zero-/one-input tuple is covered by the complete
+  one-generated full-functional closed hull, irreducible by
+  merged #697. This prepares the genuinely unary special
+  case of #719/#721 without postulating arbitrary-arity
+  tuple coverage
+
+The first half of outer geometric preservation is merged
+(#701): exterior component and its COMPLETE generated boundary
+survive even if old outer T does not contain inner gluing U.
+The second half is being reduced through #720/#722: the
+inserted inner component and all surviving root vertices
+lie in a common outer-T component. A remaining exact
+**path-rerouting obligation** must connect all retained old
+interior vertices of P\D to that component using the common
+inner seam U. Once this component is recovered, its complete
+generated boundary must be shown to equal T; #718 then
+provides the exact minimal-separator theorem and a genuine
+new geometric chart. The complete ALL-TEST incompatibility
+profile must also be transported via contextual
+free-amalgam reassociation (#649/#651).
+
+None of #718–#723 is yet counted full-CI verified in
+this checkpoint unless its final independent build/axiom
+checks have been explicitly confirmed. They do not imply
+the general 2019 lift theorem without the two outstanding
+root-collision and contextual profile steps.
+
+The numbered \`ramsey.tex\` source remains frozen. The
+TODOs above are mathematical proof obligations, not
+editorially approved textual corrections.
