@@ -112,7 +112,7 @@ theorem canonicalGenuineTagged2019Class_isomorphismClosed
   obtain ⟨hFinite, B, partB, hHB, hTrB, hEq⟩ := hK
   letI : Finite V := hFinite
   letI : Finite U := Finite.of_injective j.toFun j.injective
-  rw [hEq] at j
+  cases hEq
   let e : U ≃ V := Equiv.ofBijective j.toFun ⟨j.injective, hSurj⟩
   let A : PartialSetStructure L U := partialPullback B e
   let partA : U → Parts := partB ∘ e
