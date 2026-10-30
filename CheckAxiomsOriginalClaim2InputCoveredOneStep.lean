@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.OriginalClaim2InputCoveredOneStep
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveLeftMinimizer_and_strictRightReplacement
