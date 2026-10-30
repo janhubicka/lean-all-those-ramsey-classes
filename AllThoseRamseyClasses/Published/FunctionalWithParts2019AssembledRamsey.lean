@@ -69,7 +69,9 @@ theorem genuinePartite2019_ramsey_of_original_class_data
       ∃ n : ℕ, GenuinePartiteTagged2019LocalCompletionAt
         H B C0 n) :
     GenuinePartite2019FiniteRamsey H := by
-  let K := canonicalGenuineTagged2019Class H
+  let K : StructureClass.{max u v,w}
+      (L := (L.withParts Parts).wholeMaskTagLanguage Parts) :=
+    canonicalGenuineTagged2019Class H
   let rules := (L.withParts Parts).wholeMaskClosureRules Parts
   have hInd : InducedClosed2019MultiamalgamationClass R K rules := {
     subset := hSub
