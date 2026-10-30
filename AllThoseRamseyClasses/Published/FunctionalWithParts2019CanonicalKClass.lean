@@ -118,7 +118,7 @@ theorem canonicalGenuineTagged2019Class_inducedClosedHereditary
   let partS : S → Parts := part ∘ Subtype.val
   have hHS : H A_S partS := hHer A part hHA S hS
   have hTrS : FibreTransversal A_S partS :=
-    hTr.induceClosed A part S hS
+    FibreTransversal.induceClosed A part hTr S hS
   let incl : PartialSetStructure.Embedding
       (A_S.withParts partS) (A.withParts part) :=
     (A.closedInclusion S hS).withParts partS part (fun _ => rfl)
