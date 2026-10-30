@@ -48,7 +48,7 @@ variable {L : Language.{u}}
 /-- An arbitrary finite forbidden EHN witness can be replaced by
 a genuine injective forbidden witness into the SAME target without
 increasing source support on ANY fixed target region, provided
-all complete native function-input tuples of its source admit
+all complete native function-input tuples of its source have
 a full irreducible source test, and the forbidden family is
 closed under actual SURJECTIVE EHN images.
 
@@ -131,7 +131,7 @@ theorem forbiddenEHNWitness_injectiveReplacement_of_inputTests
   exact hSupportCount
 
 /-- **Minimal-support injectivization, with no image shortcut.**
-When EVERY forbidden source admits the same genuine irreducible
+When EVERY forbidden source has the same genuine irreducible
 function-input test cover, one of the actual global source-support
 minimizers is an INJECTIVE forbidden EHN witness into Target.
 
