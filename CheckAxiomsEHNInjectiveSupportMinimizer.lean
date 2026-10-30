@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNInjectiveSupportMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_injectiveReplacement_of_inputTests
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveMinimalForbiddenEHNWitness_of_inputTests
