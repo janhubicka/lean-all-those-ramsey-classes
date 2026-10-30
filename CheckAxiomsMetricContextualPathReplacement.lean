@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Applications.MetricContextualPathReplacement
+
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.foldl_replace_middle_in_context
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedPlateau_replace_middle
+#print axioms AllThoseRamseyClasses.Applications.MetricSaturation.roundedPlateau_replace_middle_preserves_bad
