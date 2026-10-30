@@ -1473,3 +1473,111 @@ tie-breaker is not yet formally proved.
 The published \`ramsey.tex\` remains frozen. This note
 documents a missing justification in a proof step, not
 a refutation of any published main theorem.
+
+
+## 30 October — closed-image injectivization and outer-root restoration
+
+This checkpoint supersedes older "pending" labels for #699/#700/#701.
+All THREE have now passed complete Lean CI and are MERGED:
+
+* [#699](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/699):
+  an EHN source map with a **function-closed raw range** factors
+  SURJECTIVELY into the full native induced target range. The
+  inclusion of that induced range into Target is a full embedding.
+  The forbidden range belongs to an EHN-image-closed family, when
+  that closure is stated for actual surjective EHN maps
+* [#700](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/700):
+  if every complete native source function-input tuple is covered
+  by a genuine FULL irreducible source test, EHN target ranges
+  are automatically function-closed (for arbitrary function arity).
+  Such covering is NOT automatic for the general printed family
+* [#701](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/701):
+  after a true full native inner replacement, a genuinely private
+  EXTERIOR component of the unchanged complement and its COMPLETE
+  generated root boundary both survive literally, even when the
+  old outer root does NOT contain the inner gluing seam
+
+### New CI-pending precise proof bridges
+
+* [#697](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/697):
+  repairs one-generated irreducibility, including the source
+  singleton hull and the nonempty unary-function special case.
+  An earlier CI had Lean elaboration errors; an updated build
+  and axiom audit remain pending
+* [#718](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/718):
+  using verified #701 and both directions of Proposition
+  \`prop:sep\`, proves an EXACT "if and only if" criterion:
+  a transported old root iE(T) still minimally separates the
+  preserved exterior component and an opposite new vertex y
+  precisely when the new y-component has complete generated
+  boundary iE(T). For finite source it then constructs an
+  ACTUAL native geometric piece with the transported old root.
+  **The interior boundary equality remains a premise**
+* [#719](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/719):
+  combines verified #699/#700 with the original finite
+  support-minimization theorem. Under surjective EHN-image
+  closure of F and irreducible input-test coverage of each
+  F-source, every forbidden witness has an injective full
+  induced-image replacement with NO GREATER source-support
+  count in any given target region; therefore an actually
+  LEFT-support-minimal witness can be chosen injective.
+  A support-subtype surjection supplies the cardinal inequality,
+  so no unwarranted lexicographic/infinite tie-breaker is needed
+* [#720](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/720):
+  a purely SOURCE-functional connectivity observation:
+  for closed T and D inside one component C of Source minus T,
+  \`Cl(N(D)) ⊆ T∪C\`. Thus if an actual inner piece has
+  full generated root U=Cl(N(D)), EVERY root vertex in
+  U-minus-T belongs to the same outside-T component C.
+  This treats generated outputs not directly adjacent to D,
+  including nullary-function values
+* [#721](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/721):
+  stacked on #719, combines a safely injective LEFT-support
+  minimizer with the verified arbitrary-width collision-or-flip
+  theorem #694. Root collisions are excluded, so the SAME
+  left-minimal witness admits an actual strict RIGHT-support
+  B-to-A forbidden replacement. **Not a contradiction to LEFT
+  minimality:** the replacement may have MORE left support
+
+All five PRs are UNVERIFIED until their complete independent
+Lean builds and \`#print axioms\` checks succeed. Merge parent
+#719 before retargeting #721; do not merge the failing/pending
+#697 or #718 merely because their mathematical statements look
+reasonable.
+
+### What still blocks the unrestricted 2019 lift theorem
+
+There are two conceptually independent remaining tasks:
+
+1. **General collision removal or repair.** The printed claim
+   "HE-image closure makes f injective" is now rigorously justified
+   only under extra TRUE source coverage / closed-image conditions.
+   Connectedness, regularity and arbitrary-arity HE-image closure
+   have NOT been shown to imply such closedness. A previously
+   audited connected binary-partial-function example demonstrates
+   that raw EHN images may indeed fail to be closed
+2. **Contextual Claim 2 iteration.** The actual B-to-A flip,
+   unchanged full complement, old outer-root coordinates,
+   source-closed outer context, full outer induced free-amalgam
+   diagram, and strict LOCAL B-support descent are all
+   separately CI-verified. But it is STILL necessary to recover
+   an actual CONNECTED outer component, prove the old root is
+   a minimal function-closed separator in the new forbidden
+   source, and transfer its ENTIRE all-test rooted
+   incompatibility/Myhill--Nerode profile under the inner
+   replacement. #718 isolates the missing opposite-boundary
+   equality. The retained outer piece's minimality cannot be
+   inferred solely from a closed context or global support drop
+
+A useful structural attack is to derive the new INSIDE component
+from the retained exterior paths and the fact that an inserted
+geometric piece has whole generated root \`U=Cl(N(D'))\`.
+For every older closed cut T, #720 shows the conditional
+attachment \`U\T⊆component(New\T,D')\`, which may allow
+the full inner component and its complete boundary to be
+recovered. This remains a proof target, not a certified result.
+
+The frozen numbered \`ramsey.tex\` has NOT been rewritten.
+These mathematical issues and differences from the printed
+proof should be represented by validation TODO markers
+pending authorial decisions, not silently corrected prose.
