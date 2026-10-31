@@ -205,4 +205,56 @@ theorem fullFreeAmalgam_retainedInterior_has_newRootPath
   refine ⟨r, ⟨rIndex, hrIndex⟩, ?_⟩
   simpa only [hLastEq] using hNewPath
 
+/-- If every surviving inner-root vertex is already attached to a
+specified new outer-T component, then EVERY old outer-interior vertex
+outside the removed inner component that was reachable from it through
+Old\\T is now in that same new outer-T component. All paths used are
+genuine native full-functional source paths.
+
+This deliberately packages the root-attachment fact separately:
+for a selected new geometric inner piece it follows from the
+verified `minimalInnerPiece_survivesOuterCut_withWholeGeneratedRoot`,
+once the actual new-piece and old-cut data are identified. -/
+theorem fullFreeAmalgam_retainedInterior_attaches_to_newOuterComponent
+    {H E B W W' : Type v}
+    {Root : Structure L H}
+    {Inner : Structure L E}
+    {Complement : Structure L B}
+    {Old : Structure L W}
+    {New : Structure L W'}
+    {sInner : Structure.Embedding Root Inner}
+    {sComp : Structure.Embedding Root Complement}
+    {iInner : Structure.Embedding Inner Old}
+    {iComp : Structure.Embedding Complement Old}
+    (hFree : Structure.IsFreeAmalgam sInner sComp iInner iComp)
+    (jComp : Structure.Embedding Complement New)
+    (T : Set B)
+    (d : {w : W // w ∉ iComp '' Set.range sComp})
+    (hPrivateInD :
+      ∀ e : E, e ∉ Set.range sInner →
+        iInner e ∈ componentFrom Old.graph
+          (iComp '' Set.range sComp) d)
+    (x : {w : W // w ∉ iComp '' T})
+    (hx : x.1 ∈ componentFrom Old.graph
+      (iComp '' Set.range sComp) d)
+    (zNew : {w : W' // w ∉ jComp '' T})
+    (hRootAttach :
+      ∀ r : {b : B // b ∉ T},
+        r.1 ∈ Set.range sComp →
+        jComp r.1 ∈ componentFrom New.graph (jComp '' T) zNew)
+    (y : {b : B // b ∉ T})
+    (hyRetained :
+      iComp y.1 ∉ componentFrom Old.graph
+        (iComp '' Set.range sComp) d)
+    (hOldReach : ReachOutside Old.graph (iComp '' T)
+      x (fullFunctionalEmbedding_outsideCut iComp T y)) :
+    jComp y.1 ∈ componentFrom New.graph (jComp '' T) zNew := by
+  obtain ⟨r, hrRoot, hFromRoot⟩ :=
+    fullFreeAmalgam_retainedInterior_has_newRootPath
+      hFree jComp T d hPrivateInD
+      x hx y hyRetained hOldReach
+  obtain ⟨_, hToRoot⟩ := hRootAttach r hrRoot
+  exact ⟨(fullFunctionalEmbedding_outsideCut jComp T y).2,
+    hToRoot.trans hFromRoot⟩
+
 end AllThoseRamseyClasses.Lifts
