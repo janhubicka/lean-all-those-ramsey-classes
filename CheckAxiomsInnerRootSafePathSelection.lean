@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.InnerRootSafePathSelection
+
+#print axioms AllThoseRamseyClasses.Lifts.reachOutside_from_innerComponent_safeRootPath_or_inComponent
+#print axioms AllThoseRamseyClasses.Lifts.reachOutside_retainedVertex_safeRootPath
