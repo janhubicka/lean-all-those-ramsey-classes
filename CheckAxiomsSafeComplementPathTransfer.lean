@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SafeComplementPathTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_safeComplementEdge_reflect
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_safeComplementPath_transfer
