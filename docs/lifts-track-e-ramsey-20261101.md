@@ -27,6 +27,13 @@ This workstream must not change the frozen numbered `ramsey.tex`.
 
 ## New Track E endpoints
 
+0. `finiteNamedTraceAmbient_freeAmalgamation` and
+   `finiteNamedTraceAmbient_orderedRamsey`: unconditional all-arity EHN
+   theorem for the **ambient all-structures** class in the finite-family
+   extended functional language, including nullary function arities.
+   This yields the actual finite ordered Ramsey control `C0`. It does **not**
+   assert that `C0` belongs to the trace age.
+
 1. `functionalArrow_of_BCopywiseCompletion` (generic functional
    language): if a finite Ramsey control has `A -> (B)^1_k`, and a
    vertex map into a target is an actual FULL `Structure.Embedding` on
@@ -50,14 +57,14 @@ has been introduced intentionally. Keep checks in
 
 ## Adversarial proof obligations still open
 
-**E1. Ambient ordered control.** Fix two finite *ordered* trace-age
-members `A*` and `B*` and a nonempty finite colour set. Apply the
-all-arity functional EHN Ramsey theorem to the class of **all finite
-ordered functional structures in the expanded finite-family language**.
-Check the free-amalgamation-class instance used for that invocation,
-including nullary functions, complete output-value fibres and any
-nullary added tag predicates. The resulting control `C0` is not
-assumed to belong to the trace age.
+**E1. Ambient ordered control — proved in Lean (CI pending).** Fix two
+finite *ordered* trace-age members `A*` and `B*` and a nonempty finite
+colour set. The all-arity functional EHN theorem applied to the class of
+**all functional structures in the expanded finite-family language**
+gives a finite `C0` with the required ordered arrow. The actual
+free-amalgamation-class instance is proved by both trivial total-class
+fields, and the EHN theorem handles nullary functions and all complete
+output fibres. `C0` need not belong to the trace age.
 
 **E2. Genuine local-completion bound.** After `B*` and `C0` are
 fixed, choose `n(B*, C0)` *before* constructing a sparse Ramsey
@@ -100,5 +107,5 @@ universal premise that restates Ramsey.
 
 **Review gate:** full all-module Lean CI; named `#print axioms` checks;
 no-admissions/source-integrity scripts; review exact theorem signatures
-for hidden restated Ramsey premises. CI passing these new implications
+for hidden restated Ramsey premises. CI passing the new implications and the ambient-control theorem
 does not make E2–E4 completed.
