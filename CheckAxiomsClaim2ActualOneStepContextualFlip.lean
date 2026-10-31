@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2ActualOneStepContextualFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
