@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019ClosedWeakRelativeMap
+
+#print axioms AllThoseRamseyClasses.Published.genuine2019_closedWeak_fullEmbedding_to_relativeMap
