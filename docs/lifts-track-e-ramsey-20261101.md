@@ -90,6 +90,26 @@ types. Its conclusion is a finite ordered Ramsey witness with a
 **verified** finite age member, not a target defined merely by a
 universal premise that restates Ramsey.
 
+### Why the completion premise must be local
+
+Even in ordinary graph language, forbidding triangles shows why a
+copywise completion cannot be promised for *every* ambient control:
+take `B` to be an edge and `C` a triangle. A single map that is a
+**full embedding on each of the three edge copies** cannot identify
+any two triangle vertices, and it therefore sends the triangle to
+a triangle. No triangle-free target can satisfy this. The ordered
+and added-tag version inherits this native obstruction whenever
+those B-copy profiles are compatible. Thus E2 needs an actual
+sparsening step which excludes small forbidden configurations.
+Strong amalgamation of *allowed* members does not complete an
+arbitrary forbidden ambient structure.
+
+The existing finite-profile maximization gives only finiteness of
+the set of rooted tag observations. It does **not** furnish a bound
+on the size of a maximizing witness or a local-completion theorem.
+In particular, a finite canonical witness with extra outputs need
+not have a uniformly bounded full functional closure.
+
 ## Things that must NOT be inferred
 
 * The age's **strong amalgamation** does not make it a functional
