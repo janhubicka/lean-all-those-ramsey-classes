@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.InnerComponentOuterCutTransport
+
+#print axioms AllThoseRamseyClasses.Lifts.innerComponent_subset_outerComponent_of_disjoint
+#print axioms AllThoseRamseyClasses.Lifts.minimalInnerPiece_survivesOuterCut_withWholeGeneratedRoot
