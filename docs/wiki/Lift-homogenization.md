@@ -1637,3 +1637,45 @@ root-collision and contextual profile steps.
 The numbered \`ramsey.tex\` source remains frozen. The
 TODOs above are mathematical proof obligations, not
 editorially approved textual corrections.
+
+## 31 October 2026 — adversarial source-contract audit
+
+This checkpoint **supersedes the historical pending-CI status** attached to
+#718--#723 in the 30 October entry. Those PRs are now merged, as are the
+earlier true conditional geometry and injective-image steps. Their complete
+statements must nevertheless remain distinguished from the unrestricted
+printed theorem:
+
+- [#719](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/719)
+  and [#721](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/721)
+  prove a genuine injective LEFT-support-minimal witness and strict RIGHT
+  support replacement **under irreducible complete function-input-test
+  coverage**. The printed arbitrary-arity family hypotheses do not supply
+  this condition.
+- [#718](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/718)
+  proves the exact old-root recovery criterion **assuming** opposite
+  interior generated boundary equality. [#720](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/720)
+  and [#722](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/722)
+  establish new inner-component/root transport, not the full missing
+  opposite boundary equality.
+- `ActualNestedFunctionalProfileCongruence.lean` verifies contextual
+  profile equivalence **given** both full native nested free diagrams. The
+  actual replacement still needs to supply those diagrams, restore the
+  old geometric outer piece and prove local B-support termination.
+- `GlobalMaximalTraceConditionalStrongAmalgamation.lean` proves
+  actual strong amalgamation only under its explicit
+  `GlobalCanonicalShadowFreeAmalgamation` hypothesis. It is not a proof
+  of the original unrestricted Section 3 strong-amalgamation lemma.
+
+The reviewed [source-contract audit](../lifts-adversarial-audit-20261031.md)
+lists exact Lean declarations, proof gaps and correspondence with
+manuscript TODO entries ATRC-068--070. PR #736 removes **only** 13
+transitively redundant inventory markers; all proof modules are retained.
+The new static contract regression test supplements but does not replace
+the full Lean build and kernel axiom checks. The latest branch CI must pass
+before treating this cleanup as integrated.
+
+**Current unresolved mathematical target:** true two-root contextual
+source geometry and all-test profile transport under iterated flips,
+together with an unrestricted treatment of colliding EHN root images.
+The numbered mathematical manuscript text remains frozen.
