@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNUnaryInputTestCover
+
+#print axioms AllThoseRamseyClasses.Lifts.functionInputTuplesCoveredByIrreducibleTests_of_unary
