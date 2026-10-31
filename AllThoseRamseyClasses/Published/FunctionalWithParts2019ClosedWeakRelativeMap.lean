@@ -87,11 +87,24 @@ theorem genuine2019_closedWeak_fullEmbedding_to_relativeMap
           rw [hOldEq]
       _ = (wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S :=
         wholeMaskTagExpansion_induce_eq (withPartsWholeMaskOld A partA) S
+  let eTagged := (PartPreservingEmbedding.encode e).wholeMaskTag
   let eOld : RelStructure.Embedding
       ((wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S)
-      (wholeMaskTagExpansion (withPartsWholeMaskOld Target partTarget)) := by
-    rw [← hTagEq]
-    exact (PartPreservingEmbedding.encode e).wholeMaskTag
+      (wholeMaskTagExpansion (withPartsWholeMaskOld Target partTarget)) := {
+    toFun := e.1.toFun
+    injective := e.1.injective
+    map_rel_iff := by
+      intro R xs
+      have hMap := eTagged.map_rel_iff R xs
+      change
+        (wholeMaskTagExpansion (withPartsWholeMaskOld Target partTarget)).rel
+          R (e.1.toFun ∘ xs) ↔
+        (wholeMaskTagExpansion
+          (withPartsWholeMaskOld (A.induceClosed S hClosedS) partS)).rel
+          R xs at hMap
+      rw [hTagEq] at hMap
+      exact hMap
+  }
   have hMap : IsClosedUHomomorphismEmbedding
       ((L.withParts Parts).wholeMaskClosureRules Parts)
       ((wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S)
