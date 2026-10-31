@@ -112,6 +112,6 @@ theorem genuine2019_closedWeak_fullEmbedding_to_relativeMap
       e.1.toFun :=
     eOld.isClosedUHomomorphismEmbedding
       ((L.withParts Parts).wholeMaskClosureRules Parts)
-  exact hMap.toInducedClosed
+  exact IsClosedUHomomorphismEmbedding.toInducedClosed hMap
 
 end AllThoseRamseyClasses.Published
