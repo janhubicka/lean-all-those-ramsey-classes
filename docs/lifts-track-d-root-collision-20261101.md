@@ -75,6 +75,26 @@ in arbitrary targets*; it does not supply a counterexample to a full
 free amalgam of compatible maximal canonical lifts, and therefore
 does not refute the printed strong-amalgamation conclusion.
 
+## New conditional Lean bridge for the printed contract
+
+`Lifts/EHNPrintedTupleImageClosure.lean` provides
+`HasTupleSurjectiveForbiddenImageClosure`, whose conclusion is
+`ContainsFullForbiddenSubstructure` rather than `F Dst`.
+
+Theorems
+`fullForbiddenSubstructure_of_closedTupleSurjectiveEHNRange` and
+`injectiveForbiddenWitness_of_closedTupleSurjectiveEHNRange` correctly
+compose the full forbidden substructure of an actual closed induced
+range into the ambient target. Their **explicit** `hTuple` argument
+must certify original-partial tuple-surjectivity onto that *actual*
+induced range. This is not derived from ordinary EHN, from raw
+vertex surjectivity, or from the source function-input cover.
+This file is pending complete CI and axiom audit.
+
+The bridge is intentionally a native EHN analogue: a separate bridge
+to the exact original-partial homomorphism-embedding predicate and
+defined-but-empty domain semantics remains open.
+
 ## Track D proof gates (not discharged)
 
 1. **Faithful hypothesis:** encode the printed domain-token
