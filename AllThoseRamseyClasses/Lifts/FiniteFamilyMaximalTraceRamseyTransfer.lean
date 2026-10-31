@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Lifts.FunctionalCopywiseRamseyTransfer
-import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceStrongAmalgamation
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceAge
 
 /-!
 # Track E: exact Ramsey-transfer obligation for maximal finite-family traces
