@@ -1,6 +1,6 @@
 # Lift Section / Track C — Iterated Claim 2 (1 November 2026)
 
-**Status: finite abstract iteration proved in a new Lean module; the concrete contextual successor and exit lemmas remain OPEN.** Do not treat the section's strong-amalgamation/Ramsey theorem as validated.
+**Status: finite abstract iteration and a simultaneous actual-diagram contextual package added in Lean; concrete geometric/profile successor and terminal exit remain OPEN.** Do not treat the section's strong-amalgamation/Ramsey theorem as validated.
 
 Track A, at integration base `380804cceffe82e43023c0a3afe3c4e3946b3eec`, has supplied the genuine source geometry. PRs #737 and #738 are already on `main`. This track is separate from (A) construction of outer geometry, (B) all-test profile transport, and (D) noninjective root images.
 
@@ -14,6 +14,8 @@ Track A, at integration base `380804cceffe82e43023c0a3afe3c4e3946b3eec`, has sup
 
 These are genuine Lean theorems about arbitrary states and finite support descent, **not yet instantiated** for the actual geometric flip relation. Their kernel/axiom status must be confirmed by exact-head CI.
 
+**Concrete package:** `Lifts/Claim2ContextualFlipPackage.lean` combines, for ONE specified new full native functional source and ONE pair of old/new target maps, function-closedness of the transported outer context, injective transport of the original ordered root, exact equality of its target coordinates, and strict local B-source-count decrease. It deliberately assumes the genuine inner piece is contained in the old outer piece and that the SAME replacement has the certified global B-count drop. This does not yet prove that the transported context is itself a geometric minimal-separator piece or preserves all rooted tests.
+
 ## Existing concrete one-step input
 
 - `GlobalFlipOuterRootStrictSupport.lean`: one *actual* new forbidden source and map have a strict global B-source drop and unchanged exterior/root target coordinates.
@@ -25,7 +27,7 @@ These are genuine Lean theorems about arbitrary states and finite support descen
 
 ## Remaining proof obligations for Track C
 
-**C1: actual successor API (open).** Package *one and the same* actual native B-to-A flip with (i) the chosen old outer piece, (ii) its transported function-closed context, (iii) its ordered root tuple, (iv) the unchanged complement, (v) full nested diagram witnesses, and (vi) strict local B-source count decrease. The two strict-count lemmas must not be applied to different existential replacements.
+**C1: actual successor API (partially implemented).** The new `geometricInnerSubpiece_closed_fixedRoot_strictLocalRightSupport` theorem packages four certificates for the SAME already supplied diagram, with no unrelated existential choices. Still required: package *one and the same* actual native B-to-A flip with (i) the chosen old outer piece, (ii) its transported function-closed context, (iii) its ordered root tuple, (iv) the unchanged complement, (v) full nested diagram witnesses, and (vi) strict local B-source count decrease. The two strict-count lemmas must not be applied to different existential replacements.
 
 **C2: genuine outer piece after one step (open; dependent on Track A).** Prove the transported context has the required selected connected component and **inclusion-minimal function-closed separating root**, not just closedness or equality of a selected set. Carry the *original* root and full native incidences. The replacement must still supply a geometric piece inside the forbidden source rather than an artificial weak-image quotient.
 
