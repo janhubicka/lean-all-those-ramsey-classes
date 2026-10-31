@@ -119,4 +119,65 @@ theorem finiteNamedTraceCopywiseCompletion_of_embedding
   intro b
   exact ⟨e.comp b, by intro x; rfl⟩
 
+/-- An ORDERED B-copywise completion, the form used with the
+all-arity functional Evans--Hubička--Nešetřil Ramsey theorem.
+It supplies a new external linear order on the completed carrier
+as well as the finite maximal-trace member.
+
+The map need only be a full ORDERED embedding on each B-copy;
+the ambient C is not assumed to be a member of the trace age. -/
+def FiniteNamedOrderedTraceCopywiseCompletion
+    (Family : FiniteNamedFunctionalSources.{u,0} L)
+    {VB VC : Type} [LinearOrder VB] [LinearOrder VC]
+    (B : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VB)
+    (C : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VC) : Prop :=
+  ∃ (VD : Type) (o : LinearOrder VD)
+    (D : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VD),
+    IsFiniteNamedMaximalTrace Family D ∧
+    ∃ (f : VC → VD),
+      ∀ b : Structure.Embedding B.withLinearOrder C.withLinearOrder,
+        ∃ bD : Structure.Embedding B.withLinearOrder
+            (@Structure.withLinearOrder _ VD D o.toLT),
+          ∀ x : VB, bD x = f (b x)
+
+/-- The genuine ordered Ramsey-arrow endgame for Track E.
+The ambient finite ordered arrow and its copywise completion are
+both explicit hypotheses. In particular this is NOT the full
+ordered Ramsey property of the maximal-trace age: constructing
+such completions is the outstanding local-finiteness theorem. -/
+theorem finiteNamedOrderedTraceArrow_of_copywiseCompletion
+    (Family : FiniteNamedFunctionalSources.{u,0} L)
+    {VA VB VC : Type}
+    [LinearOrder VA] [LinearOrder VB] [LinearOrder VC]
+    {A : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VA}
+    {B : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VB}
+    {C : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VC}
+    {κ : Type v} [Nonempty κ]
+    (hArrow : Structure.Arrow A.withLinearOrder B.withLinearOrder
+      C.withLinearOrder κ)
+    (hCompletion :
+      FiniteNamedOrderedTraceCopywiseCompletion Family B C) :
+    ∃ (VD : Type) (_ : Finite VD) (o : LinearOrder VD)
+      (D : Structure
+        (functionalLiftLanguageBig L Family.ComponentTag
+          (fun tag => tag.width Family)) VD),
+      IsFiniteNamedMaximalTrace Family D ∧
+      Structure.Arrow A.withLinearOrder B.withLinearOrder
+        (@Structure.withLinearOrder _ VD D o.toLT) κ := by
+  obtain ⟨VD, o, D, hD, f, hf⟩ := hCompletion
+  exact ⟨VD, hD.1, o, D, hD,
+    functionalArrow_of_BCopywiseCompletion hArrow hf⟩
+
 end AllThoseRamseyClasses.Lifts
