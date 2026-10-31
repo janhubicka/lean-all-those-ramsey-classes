@@ -53,25 +53,40 @@ theorem genuine2019_closedWeak_fullEmbedding_to_relativeMap
       (wholeMaskTagExpansion (withPartsWholeMaskOld Target partTarget))
       e.1.toFun := by
   classical
-  have hClosedPlus : (A.withParts partA).IsClosed S :=
-    (A.withParts_isClosed_iff partA S).mpr hClosedS
-  have hPlusEq :
-      (A.induceClosed S hClosedS).withParts (partA ∘ Subtype.val) =
-        (A.withParts partA).induceClosed S hClosedPlus := rfl
+  let partS : S → Parts := partA ∘ Subtype.val
+  let inclusionPlus : PartialSetStructure.Embedding
+      ((A.induceClosed S hClosedS).withParts partS)
+      (A.withParts partA) :=
+    (A.closedInclusion S hClosedS).withParts partS partA
+      (fun _ => rfl)
+  let inclusionOld : RelStructure.Embedding
+      (withPartsWholeMaskOld (A.induceClosed S hClosedS) partS)
+      (withPartsWholeMaskOld A partA) :=
+    inclusionPlus.wholeMaskPatternGraph partS partA
+      (fun _ => rfl)
+  have hOldEq :
+      withPartsWholeMaskOld (A.induceClosed S hClosedS) partS =
+        (withPartsWholeMaskOld A partA).induce S := by
+    apply RelStructure.rel_injective
+    funext R xs
+    have hRel := inclusionOld.map_rel_iff R xs
+    change (withPartsWholeMaskOld A partA).rel R
+        (Subtype.val ∘ xs) ↔
+      (withPartsWholeMaskOld (A.induceClosed S hClosedS) partS).rel
+        R xs at hRel
+    exact propext hRel.symm
   have hTagEq :
       wholeMaskTagExpansion
         (withPartsWholeMaskOld (A.induceClosed S hClosedS)
           (partA ∘ Subtype.val)) =
       (wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S := by
-    change wholeMaskTagExpansion
-      (((A.induceClosed S hClosedS).withParts
-        (partA ∘ Subtype.val)).wholeMaskPatternGraph
-          (partA ∘ Subtype.val)) =
-      (wholeMaskTagExpansion ((A.withParts partA).wholeMaskPatternGraph
-        partA)).induce S
-    rw [hPlusEq]
-    exact (A.withParts partA).wholeMaskTagExpansion_induceClosed_eq_induce
-      partA S hClosedPlus
+    calc
+      wholeMaskTagExpansion
+          (withPartsWholeMaskOld (A.induceClosed S hClosedS) partS) =
+        wholeMaskTagExpansion ((withPartsWholeMaskOld A partA).induce S) := by
+          rw [hOldEq]
+      _ = (wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S :=
+        wholeMaskTagExpansion_induce_eq (withPartsWholeMaskOld A partA) S
   let eOld : RelStructure.Embedding
       ((wholeMaskTagExpansion (withPartsWholeMaskOld A partA)).induce S)
       (wholeMaskTagExpansion (withPartsWholeMaskOld Target partTarget)) := by
