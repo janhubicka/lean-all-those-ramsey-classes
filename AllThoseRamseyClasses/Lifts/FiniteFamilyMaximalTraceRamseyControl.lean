@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceRamseyTransfer
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceAge
 import PartiteConstruction.Ramsey.FreeAmalgamationFunctionsAllArity
 
 /-!
