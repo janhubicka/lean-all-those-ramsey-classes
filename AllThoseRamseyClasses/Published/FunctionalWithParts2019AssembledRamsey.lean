@@ -89,7 +89,8 @@ theorem genuinePartite2019_ramsey_of_original_class_data
   }
   let hClass : IsCoordinated2019MultiamalgamationClass R K rules :=
     ⟨hInd, hIso⟩
-  exact genuinePartite2019_ramsey_of_canonicalCoordinated2019
-    H R hR hRIrred hClass
+  apply genuinePartite2019_ramsey_of_canonicalCoordinated2019
+    (L := L) (Parts := Parts) H R hR hRIrred
+  exact hClass
 
 end AllThoseRamseyClasses.Published
