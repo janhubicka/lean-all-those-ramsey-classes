@@ -50,6 +50,8 @@ jobs:
           lake build AllThoseRamseyClasses "${modules[@]}"
       - name: Audit import graph and source integrity
         run: python3 scripts/audit_library.py
+      - name: Audit conditional Section 3 theorem contracts
+        run: python3 scripts/audit_lift_contracts.py
       - name: Check theorem axioms
         run: |
           set -euo pipefail

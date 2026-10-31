@@ -68,6 +68,7 @@ ACTIVE = {
 # keep-list, while avoiding a Git conflict in this script whenever two
 # independent research PRs add new application theorems.
 ROOT_MARKERS = BASE / "scripts" / "active_roots"
+MARKED_ROOTS = set()
 for marker_path in sorted(ROOT_MARKERS.glob("*.txt")):
     entries = [line.strip() for line in
                marker_path.read_text(encoding="utf-8").splitlines()
@@ -82,6 +83,7 @@ for marker_path in sorted(ROOT_MARKERS.glob("*.txt")):
     if name in ACTIVE:
         raise SystemExit(f"Root is already protected elsewhere: {name}")
     ACTIVE.add(name)
+    MARKED_ROOTS.add(name)
 
 missing = sorted(ACTIVE - sources.keys())
 if missing:
@@ -110,6 +112,24 @@ parser.add_argument("--plan", action="store_true")
 parser.add_argument("--verify", action="store_true")
 args = parser.parse_args()
 if args.plan or not args.verify:
+    # A marker for a module imported from ANOTHER protected root
+    # is redundant even when that module itself remains essential.
+    # Show concrete witnesses; do not mistake a redundant marker
+    # for permission to remove its Lean source or axiom endpoint.
+    redundant_markers = {}
+    for root in sorted(ACTIVE):
+        seen, pending = set(), [root]
+        while pending:
+            m = pending.pop()
+            if m in seen:
+                continue
+            seen.add(m)
+            if m in MARKED_ROOTS and m != root:
+                redundant_markers.setdefault(m, root)
+            pending.extend(graph[m])
+    print(f"REDUNDANT transitive root markers: {len(redundant_markers)}")
+    for name, via in sorted(redundant_markers.items()):
+        print(f"REDUNDANT_MARKER {name} via {via}")
     print(f"KEEP Lean modules: {len(retained)}")
     print(f"REMOVE retired Lean modules: {len(retired)}")
     print(f"KEEP axiom audits: {len(kept_checks)}")
