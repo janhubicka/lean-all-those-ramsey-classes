@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeneratedInnerRootOuterCutAttachment
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalBoundaryClosure_subset_cutUnionComponent
+#print axioms AllThoseRamseyClasses.Lifts.generatedInnerRoot_outsideClosedOuterCut_attaches
+#print axioms AllThoseRamseyClasses.Lifts.minimalInnerRoot_outsideClosedOuterCut_attaches
