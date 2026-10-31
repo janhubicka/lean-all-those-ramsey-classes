@@ -17,9 +17,14 @@ delete files. The default and `--plan` options print the proposed cleanup.
 
 New PRs should add their own marker rather than editing the shared historical
 `ACTIVE` set. Independent features then do not contend over the same
-inventory file during GitHub squash merges. If a feature is retired, delete
-its marker and dead source in the same reviewed cleanup PR; Git history
-preserves the old experiments. No compatibility wrappers are required.
+inventory file during GitHub squash merges. If a feature is retired, delete its marker and demonstrably unused source
+in the same reviewed cleanup PR; Git history preserves earlier experiments.
+A marker may also become **transitively redundant** when a newer protected
+root imports its module. Remove the redundant marker alone in that case,
+NEVER the imported Lean proof. Run `scripts/cleanup_inventory.py --plan`
+for a witness ("REDUNDANT_MARKER ... via ..."). The repository still
+compiles all Lean modules and audits their named theorems. No compatibility
+wrappers are required.
 
 Existing roots may remain in the historical static set; they need not be
 mass-migrated merely to use this mechanism. The
