@@ -223,4 +223,52 @@ theorem fullFreeAmalgam_nestedContext_namedFullDiagram
   exact ⟨hK, sRsmall, jL, jR, hContextFree,
     hjLval, hjRval, hsRval⟩
 
+
+/-- Apply the named native diagram to the ACTUAL transported geometric
+outer context in Section 3 Claim 2.  The replacement source may have
+different vertices inside Q; the retained part is exactly the old
+full functional complement restricted to the old outer piece.
+
+This builds a full source diagram on the true contextual carrier,
+without assuming a transported geometric minimal separator or
+any profile-equivalence conclusion. -/
+theorem geometricOuterContext_has_namedFullDiagram
+    {V W : Type}
+    (Old : Structure L V)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Old n)
+    (d : GeometricFunctionalPieceData Old m)
+    (hInnerRoot : ∀ i : Fin m,
+      d.roots i ∈ geometricPieceVertices Old P)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old d).root)
+    (New : Structure L W)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old d).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old d).rootEmbedding iQ iE) :
+    let E := geometricGlobalComplementChart Old d
+    let SR := oldOuterContextInInnerComplement Old P d
+    let hSR : E.str.IsClosed SR :=
+      oldOuterContextInInnerComplement_isClosed Old P d
+    let K : Set W :=
+      iQ '' (Set.univ : Set Q.Carrier) ∪ iE '' SR
+    ∃ (hK : New.IsClosed K)
+      (sE : Structure.Embedding
+        (geometricGlobalFunctionalChart Old d).root
+        (E.str.induce SR hSR))
+      (jQ : Structure.Embedding Q.str (New.induce K hK))
+      (jE : Structure.Embedding (E.str.induce SR hSR)
+        (New.induce K hK)),
+      Structure.IsFreeAmalgam Q.rootEmbedding sE jQ jE ∧
+      (∀ q : Q.Carrier, (jQ q).1 = iQ q) ∧
+      (∀ e : SR, (jE e).1 = iE e.1) ∧
+      (∀ r : Fin m, (sE r).1 = E.rootEmbedding r) := by
+  exact fullFreeAmalgam_nestedContext_namedFullDiagram
+    hFree (oldOuterContextInInnerComplement Old P d)
+    (oldOuterContextInInnerComplement_isClosed Old P d)
+    (oldOuterContext_contains_innerRoot Old P d hInnerRoot)
+
 end AllThoseRamseyClasses.Lifts
