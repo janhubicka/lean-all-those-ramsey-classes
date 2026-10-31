@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019GlobalProtectedControl
+
+#print axioms AllThoseRamseyClasses.Published.genuine2019_global_protected_canonical_copy
+#print axioms AllThoseRamseyClasses.Published.genuine2019_global_control_and_protected_functional_copies
