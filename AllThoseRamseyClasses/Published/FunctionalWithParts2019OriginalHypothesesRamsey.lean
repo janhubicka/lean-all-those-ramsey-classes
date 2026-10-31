@@ -62,7 +62,10 @@ theorem genuinePartite2019_ramsey_of_original_functional_hypotheses
   have hIsoK : IsomorphismClosed2019
       (canonicalGenuineTagged2019Class H) :=
     canonicalGenuineTagged2019Class_isomorphismClosed H hIso
-  exact genuinePartite2019_ramsey_of_original_class_data
-    H R hR hRIrred hSub hPos hHer hStrong hIsoK hLocal
+  apply genuinePartite2019_ramsey_of_original_class_data
+    (L := L) (Parts := Parts)
+    H R hR hRIrred hSub hPos hHer hStrong
+  · exact hIsoK
+  · exact hLocal
 
 end AllThoseRamseyClasses.Published
