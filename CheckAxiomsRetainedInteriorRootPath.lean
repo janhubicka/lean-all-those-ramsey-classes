@@ -2,3 +2,4 @@ import AllThoseRamseyClasses.Lifts.RetainedInteriorRootPath
 
 #print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_outside_innerComponent_in_complement
 #print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_retainedInterior_has_newRootPath
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_retainedInterior_attaches_to_newOuterComponent
