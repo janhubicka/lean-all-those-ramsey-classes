@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.PrivateInternalGeneratedBoundaryReflection
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_privateInternalBoundary_of_wholeBoundary
