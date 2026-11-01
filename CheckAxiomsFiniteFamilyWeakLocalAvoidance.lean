@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyWeakLocalAvoidance
+
+#print axioms AllThoseRamseyClasses.Lifts.ehnHomomorphismEmbedding_codRestrictWeak
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_of_weakSmallCompletions
