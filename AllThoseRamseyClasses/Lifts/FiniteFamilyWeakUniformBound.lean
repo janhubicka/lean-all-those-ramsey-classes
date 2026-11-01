@@ -37,6 +37,7 @@ forbidden sources. If the finite family is empty, the bound is 0. -/
 noncomputable def finiteNamedMaxForbiddenSize
     (Family : FiniteNamedFunctionalSources.{u,0} L) : ℕ := by
   classical
+  letI : Finite Family.Index := Family.finiteIndex
   letI : Fintype Family.Index := Fintype.ofFinite Family.Index
   exact Finset.univ.sup (fun i : Family.Index =>
     Nat.card (Family.Carrier i))
@@ -49,6 +50,7 @@ theorem finiteNamedSource_card_le_maxForbiddenSize
     Nat.card (Family.Carrier i) ≤
       finiteNamedMaxForbiddenSize Family := by
   classical
+  letI : Finite Family.Index := Family.finiteIndex
   letI : Fintype Family.Index := Fintype.ofFinite Family.Index
   unfold finiteNamedMaxForbiddenSize
   exact Finset.le_sup (Finset.mem_univ i)
