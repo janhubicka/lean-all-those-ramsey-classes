@@ -31,6 +31,23 @@ open StructuralRamsey.Structure
 universe u v
 variable {L : Language.{u}} {V : Type v}
 
+/-- A genuine native minimal closed separator is unchanged by
+replacing the literal root SET and the two endpoint subtype proofs
+by equal ones. The generic set variables avoid illicit dependent
+elimination on two differently enumerated set-builder expressions. -/
+theorem minimalClosedSeparator_transport_equalRootSet
+    (A : Structure L V)
+    {R S : Set V} (hRS : R = S)
+    (x y : {v : V // v ∉ R})
+    (x' y' : {v : V // v ∉ S})
+    (hX : x.1 = x'.1) (hY : y.1 = y'.1)
+    (hMin : IsMinimalClosedSeparator A R x y) :
+    IsMinimalClosedSeparator A S x' y' := by
+  cases hRS
+  have hxEq : x = x' := Subtype.ext hX
+  have hyEq : y = y' := Subtype.ext hY
+  simpa only [← hxEq, ← hyEq] using hMin
+
 /-- Replace the enumeration of a genuine minimal closed
 separator by any other injective root tuple with exactly the
 same range. The resulting data remain a genuine source-geometric
@@ -56,11 +73,9 @@ theorem geometricPiece_reenumerate_sameClosedCut
   let right : {v : V // v ∉ Set.range newRoots} :=
     ⟨d.right.1, by simpa only [hSameCut] using d.right.2⟩
   have hMinimal :
-      IsMinimalClosedSeparator A (Set.range newRoots) left right := by
-    cases hSameCut
-    have hLeft : left = d.left := Subtype.ext rfl
-    have hRight : right = d.right := Subtype.ext rfl
-    simpa only [hLeft, hRight] using d.minimal
+      IsMinimalClosedSeparator A (Set.range newRoots) left right :=
+    minimalClosedSeparator_transport_equalRootSet A
+      hSameCut.symm d.left d.right left right rfl rfl d.minimal
   let e : GeometricFunctionalPieceData A n := {
     roots := newRoots
     roots_injective := hInjective
@@ -155,7 +170,7 @@ theorem geometricOuterOrderedRoot_retainedComplement_range
       iE (⟨P.roots i, hOuterRootOutside i⟩ :
         (geometricGlobalComplementChart Old d).Carrier)) =
       iE '' {b : (geometricGlobalComplementChart Old d).Carrier |
-        b.1 ∈ Set.range P.roots} := by
+        b.1 ∈ (Set.range P.roots)} := by
   constructor
   · intro i j hij
     apply P.roots_injective
