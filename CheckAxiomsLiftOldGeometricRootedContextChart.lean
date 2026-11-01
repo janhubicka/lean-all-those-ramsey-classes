@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.OldGeometricRootedContextChart
+
+#check AllThoseRamseyClasses.Lifts.geometricOldOuterContext_exactRootedChart
+#print axioms AllThoseRamseyClasses.Lifts.geometricOldOuterContext_exactRootedChart
