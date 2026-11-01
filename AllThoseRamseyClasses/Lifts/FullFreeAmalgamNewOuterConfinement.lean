@@ -110,10 +110,10 @@ theorem fullFreeAmalgam_newOuterComponent_confined_to_old
         exact Or.inl hxNew
     | @tail a b hpre hedge ih =>
         rcases hFree.covers b.1 with ⟨e, he⟩ | ⟨bR, hbMap⟩
-        · exact Or.inl ⟨e, he⟩
+        · exact Or.inl ⟨e, he.symm⟩
         · have hbNotT : bR ∉ T := by
             intro hbT
-            exact b.2 ⟨bR, hbT, hbMap⟩
+            exact b.2 ⟨bR, hbT, hbMap.symm⟩
           by_cases hbRoot : bR ∈ Set.range sComp
           · obtain ⟨r, hr⟩ := hbRoot
             have hrNotT : sComp r ∉ T := by
@@ -122,10 +122,10 @@ theorem fullFreeAmalgam_newOuterComponent_confined_to_old
             have hOld : iComp bR ∈ C := by
               rw [← hr]
               exact hRootOld r hrNotT
-            exact Or.inr ⟨bR, hbMap, hOld⟩
+            exact Or.inr ⟨bR, hbMap.symm, hOld⟩
           · have hReverse :
                 GaifmanAdjacent New.graph (jComp bR) a.1 := by
-              rw [hbMap]
+              rw [← hbMap]
               exact GaifmanAdjacent.symm hedge
             obtain ⟨aR, haMap⟩ :=
               fullFreeAmalgam_rightPrivate_neighbor_in_right
@@ -140,14 +140,14 @@ theorem fullFreeAmalgam_newOuterComponent_confined_to_old
                 have hrNotT : sComp r ∉ T := by
                   intro hrT
                   exact haNotT (hr ▸ hrT)
-                rw [← hr]
+                rw [hr]
                 exact hRootOld r hrNotT
               · have hEqual : aR' = aR :=
                   jComp.injective (haRight.trans haMap.symm)
                 simpa only [hEqual] using haC
             have hNewEdge :
                 GaifmanAdjacent New.graph (jComp bR) (jComp aR) := by
-              rw [hbMap, haMap]
+              rw [← hbMap, haMap]
               exact GaifmanAdjacent.symm hedge
             have hRightEdge : GaifmanAdjacent Complement.graph aR bR :=
               GaifmanAdjacent.symm
@@ -163,7 +163,7 @@ theorem fullFreeAmalgam_newOuterComponent_confined_to_old
             have hOldB : iComp bR ∈ C :=
               componentFrom_step Old.graph (iComp '' T)
                 xOld haOld hbOldNotCut hOldEdge
-            exact Or.inr ⟨bR, hbMap, hOldB⟩
+            exact Or.inr ⟨bR, hbMap.symm, hOldB⟩
   exact hStay yNew hReach
 
 /-- A right-PRIVATE endpoint of the new outer-cut component really
