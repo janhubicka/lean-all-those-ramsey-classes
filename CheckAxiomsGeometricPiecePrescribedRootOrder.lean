@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricPiecePrescribedRootOrder
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_reenumerate_sameClosedCut
