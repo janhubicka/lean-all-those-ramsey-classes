@@ -98,7 +98,9 @@ theorem geometricOuterContext_profile_equiv_after_innerReplacement
         ({ Carrier := OldK, str := Old.induce OldK hOldK,
            rootEmbedding := oldRoot } : FunctionalRootExtension RootOuter)
         ({ Carrier := NewK, str := New.induce NewK hNewK,
-           rootEmbedding := newRoot } : FunctionalRootExtension RootOuter) := by
+           rootEmbedding := newRoot } : FunctionalRootExtension RootOuter) ∧
+      (∀ r : R, (oldRoot r).1 = iOldE ((rT r).1)) ∧
+      (∀ r : R, (newRoot r).1 = iE ((rT r).1)) := by
   classical
   let E := geometricGlobalComplementChart Old d
   let S := oldOuterContextInInnerComplement Old P d
@@ -118,11 +120,11 @@ theorem geometricOuterContext_profile_equiv_after_innerReplacement
   have hRootInS : ∀ r : Fin m, E.rootEmbedding r ∈ S :=
     oldOuterContext_contains_innerRoot Old P d hInnerRoot
   obtain ⟨hOldK, oldS, jOldQ, jOldT,
-      hOldCtx, _hOldQval, _hOldTval, hOldSval⟩ :=
+      hOldCtx, _hOldQval, hOldTval, hOldSval⟩ :=
     fullFreeAmalgam_nestedContext_namedFullDiagram
       hOldFree S hS hRootInS
   obtain ⟨hNewK, newS, jNewQ, jNewT,
-      hNewCtx, _hNewQval, _hNewTval, hNewSval⟩ :=
+      hNewCtx, _hNewQval, hNewTval, hNewSval⟩ :=
     fullFreeAmalgam_nestedContext_namedFullDiagram
       hFree S hS hRootInS
   have hSameS : oldS = newS := by
@@ -145,7 +147,11 @@ theorem geometricOuterContext_profile_equiv_after_innerReplacement
           FunctionalRootExtension RootOuter) :=
     functionalActualContext_profile_equiv_of_inner_equiv
       F hOldCtx hNewCtx' rT hEq
-  exact ⟨hOldK, hNewK,
-    jOldT.comp rT, jNewT.comp rT, hProfiles⟩
+  refine ⟨hOldK, hNewK,
+    jOldT.comp rT, jNewT.comp rT, hProfiles, ?_, ?_⟩
+  · intro r
+    exact hOldTval (rT r)
+  · intro r
+    exact hNewTval (rT r)
 
 end AllThoseRamseyClasses.Lifts
