@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalBarWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamed_exists_maximalBar_fromWitness
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_exists_markedBar
