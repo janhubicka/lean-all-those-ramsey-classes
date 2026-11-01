@@ -117,6 +117,7 @@ theorem finiteNamedTraceCopywiseCompletion_of_commonWitness
   let dId : Structure.Embedding D D := Structure.Embedding.id D
   obtain ⟨VM, M, hFinM, hAvoidM, eDM, hMaxD⟩ :=
     finiteNamed_exists_finite_maximal_extension Family dId hAvoidD
+  letI : Finite VM := hFinM
   let rootD : Structure.Embedding D M := eDM.comp dId
   have hMember :
       IsFiniteNamedMaximalTrace Family
@@ -178,6 +179,7 @@ theorem finiteNamedOrderedTraceCopywiseCompletion_of_commonWitness
   let dId : Structure.Embedding D D := Structure.Embedding.id D
   obtain ⟨VM, M, hFinM, hAvoidM, eDM, hMaxD⟩ :=
     finiteNamed_exists_finite_maximal_extension Family dId hAvoidD
+  letI : Finite VM := hFinM
   let rootD : Structure.Embedding D M := eDM.comp dId
   have hMember :
       IsFiniteNamedMaximalTrace Family
