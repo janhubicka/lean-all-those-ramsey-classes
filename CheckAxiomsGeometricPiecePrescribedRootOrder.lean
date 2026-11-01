@@ -2,3 +2,4 @@ import AllThoseRamseyClasses.Lifts.GeometricPiecePrescribedRootOrder
 
 #print axioms AllThoseRamseyClasses.Lifts.geometricPiece_reenumerate_sameClosedCut
 #print axioms AllThoseRamseyClasses.Lifts.finite_outerOldRoot_hasGeometricPiece_withPrescribedRoots
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterOrderedRoot_retainedComplement_range
