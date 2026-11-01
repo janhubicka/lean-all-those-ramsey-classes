@@ -46,7 +46,8 @@ def ContainsFullForbiddenSubstructure
 /-- An explicit paper-shaped image-closure clause.
 
 We specify the original-partial function-domain version of
-tuple-surjectivity, plus vertex surjectivity. The EHN predicate
+tuple-surjectivity, with NO vertex-surjectivity premise.
+The EHN predicate
 here is the native full-on-irreducible-tests representation;
 a separate semantics bridge is needed if using exactly the
 paper's IsOriginalPartialHomomorphismEmbedding instead.
@@ -59,7 +60,6 @@ def HasTupleSurjectiveForbiddenImageClosure
     (Src : Structure L X) (Dst : Structure L Y) (q : X → Y),
     F Src →
     Src.IsEHNHomomorphismEmbedding Dst q →
-    Function.Surjective q →
     OriginalPartialTupleSurjective Src Dst q →
     ContainsFullForbiddenSubstructure F Dst
 
@@ -89,7 +89,7 @@ theorem fullForbiddenSubstructure_of_closedTupleSurjectiveEHNRange
   obtain ⟨hqEHN, hqSurj⟩ :=
     ehn_closedRange_surjectiveInducedFactor Src Target f hf hClosed
   obtain ⟨Z, P, hP, ⟨e⟩⟩ :=
-    hImage Src Q q hForbidden hqEHN hqSurj hTuple
+    hImage Src Q q hForbidden hqEHN hTuple
   exact ⟨Z, P, hP, ⟨(Target.inclusion S hClosed).comp e⟩⟩
 
 /-- With finite forbidden sources, the same faithful image-closure
