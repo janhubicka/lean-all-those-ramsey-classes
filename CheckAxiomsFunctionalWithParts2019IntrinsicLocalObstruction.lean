@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019IntrinsicLocalObstruction
+
+#print axioms AllThoseRamseyClasses.Published.allUndefinedUnaryH_has_intrinsicWeakCompletion
+#print axioms AllThoseRamseyClasses.Published.allUndefinedUnaryH_no_ambientRelativeCompletion
+#print axioms AllThoseRamseyClasses.Published.allUndefinedUnaryH_intrinsic_not_ambient
