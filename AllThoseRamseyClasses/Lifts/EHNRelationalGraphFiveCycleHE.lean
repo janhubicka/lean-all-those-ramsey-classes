@@ -61,7 +61,8 @@ private def tern2 : Fin (language.graph.arity (.inl true)) :=
 private theorem edgeIndex_cases
     (i : Fin (language.graph.arity (.inl false))) :
     i = edge0 ∨ i = edge1 := by
-  have hi : i.val < 2 := by simpa only [edgeArity] using i.isLt
+  have hi : i.val < 2 :=
+    Eq.mp (congrArg (fun n : ℕ => i.val < n) edgeArity) i.isLt
   have h : i.val = 0 ∨ i.val = 1 := by omega
   rcases h with h | h
   · exact Or.inl (Fin.ext h)
