@@ -34,7 +34,7 @@ theorem functionalRootedIso_rootRange_image
   ext z
   constructor
   · rintro ⟨v, ⟨i, rfl⟩, rfl⟩
-    exact ⟨i, e.roots i⟩
+    exact ⟨i, (e.roots i).symm⟩
   · rintro ⟨i, rfl⟩
     exact ⟨P.root i, ⟨i, rfl⟩, e.roots i⟩
 
