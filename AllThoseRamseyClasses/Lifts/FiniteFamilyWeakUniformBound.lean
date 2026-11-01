@@ -53,7 +53,10 @@ theorem finiteNamedSource_card_le_maxForbiddenSize
   letI : Finite Family.Index := Family.finiteIndex
   letI : Fintype Family.Index := Fintype.ofFinite Family.Index
   unfold finiteNamedMaxForbiddenSize
-  exact Finset.le_sup (Finset.mem_univ i)
+  exact Finset.le_sup
+    (s := (Finset.univ : Finset Family.Index))
+    (f := fun j : Family.Index => Nat.card (Family.Carrier j))
+    (b := i) (Finset.mem_univ i)
 
 /-- Exact-weak local completion condition with one EXPLICIT numeric
 test cutoff depending only on the finite forbidden family. The
