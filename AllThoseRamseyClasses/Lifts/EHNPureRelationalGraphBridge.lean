@@ -77,7 +77,8 @@ theorem graph_irreducible_of_nativeIrreducible_noFunctions
     toFun := fun z => ⟨z.1, z.2.1⟩
     injective := by
       intro x y h
-      exact Subtype.ext (congrArg Subtype.val h)
+      apply Subtype.ext
+      exact congrArg (fun z => (z : LS).1) h
     map_rel_iff := fun _ _ => Iff.rfl
     map_func := by
       intro F
@@ -87,7 +88,8 @@ theorem graph_irreducible_of_nativeIrreducible_noFunctions
     toFun := fun z => ⟨z.1, z.2.2⟩
     injective := by
       intro x y h
-      exact Subtype.ext (congrArg Subtype.val h)
+      apply Subtype.ext
+      exact congrArg (fun z => (z : RS).1) h
     map_rel_iff := fun _ _ => Iff.rfl
     map_func := by
       intro F
@@ -172,8 +174,10 @@ theorem nativeEHN_of_relationalGraphHE_noFunctions
       intro F
       exact isEmptyElim F
     let gNative : Structure.Embedding E B :=
-      g.ofGraphClosed hClosed
-    exact ⟨gNative, hg⟩
+      Structure.Embedding.ofGraphClosed g hClosed
+    refine ⟨gNative, ?_⟩
+    intro x
+    exact hg x
 
 end AllThoseRamseyClasses.Lifts
 
