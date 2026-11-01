@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.RootCollisionFiveCycleRegression
+
+#print axioms AllThoseRamseyClasses.Lifts.weakColor_root_collision
+#print axioms AllThoseRamseyClasses.Lifts.weakColor_not_injective
+#print axioms AllThoseRamseyClasses.Lifts.no_injective_five_cycle_map
+#print axioms AllThoseRamseyClasses.Lifts.no_full_empty_ternary_triangle_map
