@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceRamseyTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceArrow_of_copywiseCompletion
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceCopywiseCompletion_of_embedding
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedOrderedTraceArrow_of_copywiseCompletion
