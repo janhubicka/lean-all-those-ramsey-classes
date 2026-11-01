@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyWeakUniformBound
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedSource_card_le_maxForbiddenSize
+#print axioms AllThoseRamseyClasses.Lifts.FiniteNamedUniformWeakCompletions.to_sourceSmall
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_of_uniformWeakCompletions
