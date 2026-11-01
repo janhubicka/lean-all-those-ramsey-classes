@@ -111,7 +111,7 @@ theorem forbiddenOuterFunctionalDiagram_to_nestedTest
       (jP '' (Set.univ : Set P) ∪ jMid '' SL) hK) :=
     kT.comp iTsmall
   let Ext : Structure L
-      (jP '' (Set.univ : Set P) ∪ jMid '' SL) :=
+      (↥(jP '' (Set.univ : Set P) ∪ jMid '' SL)) :=
     Whole.induce _ hK
   let eExt : Structure.Embedding Ext Whole :=
     Structure.inclusion Whole _ hK
