@@ -145,7 +145,7 @@ candidate, in addition to the printed image-closure clause.
 Neither coverage assumption follows automatically from mere
 connectedness/regularity of the forbidden family. The actual
 maximal-lift setting may eventually justify the relation coverage
-or admit an alternative collision-tolerant argument. -/
+or develop an alternative collision-tolerant argument. -/
 theorem exists_injectiveMinimalForbiddenEHNWitness_of_printedClosure_and_covers
     (F : ∀ {X : Type}, Structure L X → Prop)
     (hFiniteF : ∀ {X : Type} (Src : Structure L X),
