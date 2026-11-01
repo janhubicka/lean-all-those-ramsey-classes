@@ -120,7 +120,7 @@ theorem geometricGlobalRightFlip_outerContextProfile_strictLocalRightSupport
               (newRoot i).1 =
                 iE (⟨P.roots i, hOuterRootOutside i⟩ :
                   (geometricGlobalComplementChart Forbidden d).Carrier) ∧
-              flip (newRoot i).1 = f (P.roots i)) ∧
+              flip ((newRoot i).1) = f (P.roots i)) ∧
             Nat.card {w : V' //
               w ∈ (iQ '' (Set.univ : Set Q.Carrier) ∪
                 iE '' (oldOuterContextInInnerComplement Forbidden P d)) ∧
