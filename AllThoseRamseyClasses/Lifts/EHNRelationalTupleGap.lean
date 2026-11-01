@@ -36,7 +36,7 @@ open StructuralRamsey.Structure
 open AllThoseRamseyClasses.Lifts.RootCollisionFiveCycle
 
 /-- Binary symmetric graph edges and an independent ternary relation. -/
-def language : Language where
+abbrev language : Language where
   RelSymbol := Bool
   FuncSymbol := Empty
   relArity
@@ -44,19 +44,19 @@ def language : Language where
     | true => 3
   funcArity f := nomatch f
 
-def cycle5 : Structure language (Fin 5) where
+abbrev cycle5 : Structure language (Fin 5) where
   rel
     | false, xs => cycle5Edge (xs 0) (xs 1)
     | true, _ => False
   func f := nomatch f
 
-def triangleEmptyTernary : Structure language (Fin 3) where
+abbrev triangleEmptyTernary : Structure language (Fin 3) where
   rel
     | false, xs => triangleEdge (xs 0) (xs 1)
     | true, _ => False
   func f := nomatch f
 
-def triangleExtraTernary : Structure language (Fin 3) where
+abbrev triangleExtraTernary : Structure language (Fin 3) where
   rel
     | false, xs => triangleEdge (xs 0) (xs 1)
     | true, xs => extraTernary (xs 0) (xs 1) (xs 2)
