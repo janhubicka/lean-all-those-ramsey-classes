@@ -44,6 +44,31 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
+/-- Transporting a full embedding across equality of its complete
+source root structures changes no underlying vertex coordinate.
+The source structures are variables here, so equality elimination
+does not try to identify two computed geometric-root expressions. -/
+private theorem castFullRootEmbedding_apply
+    {R W : Type} {A B : Structure L R}
+    {Target : Structure L W} (h : A = B)
+    (e : Structure.Embedding B Target) (r : R) :
+    (h.symm ▸ e) r = e r := by
+  cases h
+  rfl
+
+/-- A full functional rooted extension transported across equality
+of the complete root structures has literally the same carrier,
+functional structure, and original rooted vertex coordinates. -/
+private theorem castFullRootExtension_eq_explicit
+    {R : Type} {A B : Structure L R}
+    (h : A = B) (P : FunctionalRootExtension B) :
+    (h.symm ▸ P) =
+      ({ Carrier := P.Carrier, str := P.str,
+         rootEmbedding := h.symm ▸ P.rootEmbedding } :
+        FunctionalRootExtension A) := by
+  cases h
+  rfl
+
 /-- The *actual global* canonical-lift symbol of the old outer
 geometric piece is preserved when the newly transported source
 context has been certified to be exactly one NEW geometric
@@ -126,9 +151,15 @@ theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
   have hRootedProfile :
       (functionalDiagramPieceSetoid OldChart.root F).r
         OldChart.ext (hRootStructure.symm ▸ NewChart.ext) := by
-    cases hRootStructure
+    let geomRoot : Structure.Embedding
+        OldChart.root NewChart.ext.str :=
+      hRootStructure.symm ▸ NewChart.ext.rootEmbedding
+    have hGeomRootVal (i : Fin n) :
+        geomRoot i = NewChart.ext.rootEmbedding i :=
+      castFullRootEmbedding_apply
+        hRootStructure NewChart.ext.rootEmbedding i
     have hNewSameRoot (i : Fin n) :
-        (newRoot i).1 = (NewChart.ext.rootEmbedding i).1 := by
+        (newRoot i).1 = (geomRoot i).1 := by
       calc
         (newRoot i).1 =
             iE (⟨P.roots i, hOuterRootOutside i⟩ :
@@ -136,18 +167,30 @@ theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
                 hNewRootCoords i
         _ = Pnew.roots i := (hRootCoords i).symm
         _ = (NewChart.ext.rootEmbedding i).1 := rfl
+        _ = (geomRoot i).1 := congrArg Subtype.val (hGeomRootVal i).symm
     have hActualNewGeom :
         (functionalDiagramPieceSetoid OldChart.root F).r
           ({ Carrier := K, str := New.induce K hK,
              rootEmbedding := newRoot } :
                 FunctionalRootExtension OldChart.root)
-          NewChart.ext := by
+          ({ Carrier := NewChart.ext.Carrier,
+             str := NewChart.ext.str,
+             rootEmbedding := geomRoot } :
+                FunctionalRootExtension OldChart.root) := by
       exact equalClosedCarrier_rootedProfiles_equiv
         New K (geometricPieceVertices New Pnew)
         hK hGeomClosed hExactContext
-        OldChart.root newRoot NewChart.ext.rootEmbedding
+        OldChart.root newRoot geomRoot
         hNewSameRoot F
-    exact hOldNewProfile.trans hActualNewGeom
+    have hCastExt :
+        ({ Carrier := NewChart.ext.Carrier,
+           str := NewChart.ext.str,
+           rootEmbedding := geomRoot } :
+            FunctionalRootExtension OldChart.root) =
+        (hRootStructure.symm ▸ NewChart.ext) :=
+      (castFullRootExtension_eq_explicit
+        hRootStructure NewChart.ext).symm
+    exact hOldNewProfile.trans (hCastExt ▸ hActualNewGeom)
   let PoldSelected : SelectedFunctionalChart F n :=
     geometricGlobalSelectedChart F Old
       (inferInstance : Finite V) hFOld P
