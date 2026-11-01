@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.Claim2TerminalLeftSupportAccounting
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteSourceSupport_terminalLeftDrop_of_outsideEq
+#print axioms AllThoseRamseyClasses.Lifts.claim2_outsideLeftCount_eq_of_reachable
+#print axioms AllThoseRamseyClasses.Lifts.claim2_exists_terminal_with_constant_outsideLeft
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenEHNWitness_no_terminalLeftClearingFlip
