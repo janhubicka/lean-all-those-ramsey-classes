@@ -86,12 +86,18 @@ theorem geometricGlobalSource_retainedInterior_has_newRootPath
     intro e he
     have hh :=
       geometricGlobalSource_innerPrivate_in_selectedComponent A d e he
-    simpa only [hU, inner] using hh
+    change e.1 ∈ componentFrom A.graph U inner
+    rw [hU]
+    exact hh
   have hxU : x.1 ∈ componentFrom A.graph U inner := by
-    simpa only [hU, inner] using hx
+    change x.1 ∈ componentFrom A.graph U inner
+    rw [hU]
+    exact hx
   have hyU :
       oldComp y.1 ∉ componentFrom A.graph U inner := by
-    simpa only [hU, inner] using hyRetained
+    change oldComp y.1 ∉ componentFrom A.graph U inner
+    rw [hU]
+    exact hyRetained
   exact fullFreeAmalgam_retainedInterior_has_newRootPath
     (geometricGlobalSource_freeDiagram A d)
     jComp T inner hPrivate x hxU y hyU hOldPath
