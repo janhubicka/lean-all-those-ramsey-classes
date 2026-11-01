@@ -14,7 +14,7 @@ Every injection from a linearly ordered root U into a finite
 target V can be made strictly increasing by CHOOSING a linear order
 on V. This construction records, for image vertices, the unique
 root coordinate and uses an arbitrary finite index only as a
-tie-breaker. Non-image vertices receive no root coordinate.
+tie-breaker. Non-image vertices receive the bottom root coordinate.
 
 This lemma does not use a function, relation, forbidden family,
 finite expansion fibre, or Ramsey theorem. It is the precise
@@ -36,9 +36,9 @@ universe u v
 carrier admits an order on the carrier making it strictly increasing.
 The source carrier itself may be empty or infinite.
 
-We use the lexicographic key (optional root position, arbitrary
+We use the lexicographic key (root position with a bottom value, arbitrary
 finite target index); the second coordinate makes the key injective
-even when the optional root position is absent. -/
+even when the root position is absent. -/
 theorem exists_finiteLinearOrder_extending_injection
     {U : Type u} {V : Type v}
     [LinearOrder U] [Finite V]
@@ -48,24 +48,25 @@ theorem exists_finiteLinearOrder_extending_injection
         @LT.lt V o.toLT (f x) (f y) := by
   classical
   let eV : V ≃ Fin (Nat.card V) := Finite.equivFin V
-  let label : V → Option U :=
+  let label : V → WithBot U :=
     fun y => if h : ∃ x : U, f x = y then
-      some (Classical.choose h) else none
-  let code : V → Option U ×ₗ Fin (Nat.card V) :=
+      (Classical.choose h : WithBot U) else ⊥
+  let code : V → WithBot U ×ₗ Fin (Nat.card V) :=
     fun y => toLex (label y, eV y)
   have hcode : Function.Injective code := by
     intro x y hxy
     apply eV.injective
-    exact congrArg (fun t : Option U ×ₗ Fin (Nat.card V) =>
+    exact congrArg (fun t : WithBot U ×ₗ Fin (Nat.card V) =>
       (ofLex t).2) hxy
   let o : LinearOrder V := LinearOrder.lift' code hcode
   refine ⟨o, ?_⟩
-  have hlabel (x : U) : label (f x) = some x := by
+  have hlabel (x : U) : label (f x) = (x : WithBot U) := by
     change (if h : ∃ z : U, f z = f x then
-      some (Classical.choose h) else none) = some x
+      (Classical.choose h : WithBot U) else ⊥) = (x : WithBot U)
     have hx : ∃ z : U, f z = f x := ⟨x, rfl⟩
     rw [dif_pos hx]
-    exact congrArg some (hf (Classical.choose_spec hx))
+    exact congrArg (fun z : U => (z : WithBot U))
+      (hf (Classical.choose_spec hx))
   intro x y hxy
   change code (f x) < code (f y)
   apply Prod.Lex.toLex_lt_toLex.mpr
