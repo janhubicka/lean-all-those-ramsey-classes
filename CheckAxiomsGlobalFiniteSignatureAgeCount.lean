@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteSignatureAgeCount
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNativeStructures_onFiniteCarrier
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_finite_onFiniteCarrier
