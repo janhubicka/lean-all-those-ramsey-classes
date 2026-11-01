@@ -200,6 +200,5 @@ theorem geometricFlip_globalPieceSymbol_of_exactOppositeBoundaries
     · intro i
       exact (congrFun hPnewRoot i).trans (hRootCoordinates i)
     · exact hPnewCarrier.symm
-    · exact hn
 
 end AllThoseRamseyClasses.Lifts
