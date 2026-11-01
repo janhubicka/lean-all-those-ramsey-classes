@@ -74,9 +74,9 @@ theorem fullFreeAmalgam_outside_innerComponent_in_complement
           ((hFree.overlap (sInner r) (sComp r)).mpr
             ⟨r, rfl, rfl⟩).symm
         _ = iInner e := congrArg iInner hr
-        _ = w := hew
+        _ = w := hew.symm
     · exact False.elim (hw (hew ▸ hPrivateInD e heRoot))
-  · exact ⟨b, hbw⟩
+  · exact ⟨b, hbw.symm⟩
 
 /-- Source-geometric first-root attachment under a LITERAL full
 functional inner replacement.
