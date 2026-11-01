@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamOuterGeneratedBoundaryCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_outerGeneratedBoundary_eq_of_retained_and_root
