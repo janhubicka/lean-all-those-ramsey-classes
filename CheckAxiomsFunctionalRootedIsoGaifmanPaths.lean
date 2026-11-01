@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FunctionalRootedIsoGaifmanPaths
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_gaifmanAdjacent_map
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_reachOutside_map
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_component_image_subset
