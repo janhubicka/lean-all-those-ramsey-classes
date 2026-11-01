@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricOuterRootRetainedFullEmbedding
+
+#check AllThoseRamseyClasses.Lifts.geometricOuterRoot_embedsFully_in_retainedComplement
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterRoot_embedsFully_in_retainedComplement
