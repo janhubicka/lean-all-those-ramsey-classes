@@ -60,25 +60,14 @@ theorem geometricGlobalSource_innerPrivate_in_selectedComponent
     (e : (geometricGlobalFunctionalChart A d).ext.Carrier)
     (he : e ∉ Set.range
       (geometricGlobalFunctionalChart A d).ext.rootEmbedding) :
-    (functionalComponentEmbedding A (Set.range d.roots)
-        d.minimal.1 d.left) e ∈
-      componentFrom A.graph
-        ((functionalComponentComplementEmbedding A (Set.range d.roots)
-            d.minimal.1 d.left) ''
-          Set.range (geometricGlobalComplementChart A d).rootEmbedding)
-        (by
-          have hRoot := geometricGlobalSource_innerRoot_range_eq A d
-          exact ⟨d.left.1, by simpa only [hRoot] using d.left.2⟩) := by
-  have hComponent :
-      e.1 ∈ componentFrom A.graph (Set.range d.roots) d.left := by
-    rcases e.2 with hRoot | hD
-    · rcases hRoot with ⟨i, hi⟩
-      exfalso
-      apply he
-      refine ⟨i, ?_⟩
-      apply Subtype.ext
-      exact hi.symm
-    · exact hD
-  simpa only [geometricGlobalSource_innerRoot_range_eq] using hComponent
+    e.1 ∈ componentFrom A.graph (Set.range d.roots) d.left := by
+  rcases e.2 with hRoot | hD
+  · rcases hRoot with ⟨i, hi⟩
+    exfalso
+    apply he
+    refine ⟨i, ?_⟩
+    apply Subtype.ext
+    exact hi.symm
+  · exact hD
 
 end AllThoseRamseyClasses.Lifts
