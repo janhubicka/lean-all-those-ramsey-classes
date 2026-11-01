@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateOuterComponentIff
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_leftPrivate_neighbor_in_left
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_innerComponent_avoids_rightPrivate
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_privateOuterComponent_iff
