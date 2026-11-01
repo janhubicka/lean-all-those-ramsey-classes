@@ -122,7 +122,7 @@ theorem finite_outerOldRoot_hasGeometricPiece_withPrescribedRoots
       (hSameRoot.trans hRoots.symm)
   refine ⟨e, hERoots, hECut.trans hRoots,
     hELeft.trans hLeft, hERight.trans hRight, ?_⟩
-  have hBoundaryE := geometricPiece_left_boundary_closure Whole e
-  simpa only [hECut, hRoots] using hBoundaryE
+  exact (geometricPiece_left_boundary_closure Whole e).trans
+    (hECut.trans hRoots)
 
 end AllThoseRamseyClasses.Lifts
