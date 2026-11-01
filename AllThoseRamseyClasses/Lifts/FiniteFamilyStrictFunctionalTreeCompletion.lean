@@ -109,9 +109,9 @@ theorem finiteNamedMaximalTraceAge_strictTree_copywiseCompletion
         (fun tag => tag.width Family)) VB)
     (hB : IsFiniteNamedMaximalTrace Family B)
     (hIrred : B.Irreducible)
-    (T : Structure
+    {T : Structure
       (functionalLiftLanguageBig L Family.ComponentTag
-        (fun tag => tag.width Family)) WT)
+        (fun tag => tag.width Family)) WT}
     (hTree : Structure.TreeAmalgam B WT T) :
     ∃ (VT : Type)
       (Target : Structure
