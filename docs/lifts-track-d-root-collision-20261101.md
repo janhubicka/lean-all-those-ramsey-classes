@@ -97,9 +97,12 @@ induced range. This is not derived from ordinary EHN, from raw
 vertex surjectivity, or from the source function-input cover.
 This file is pending complete CI and axiom audit.
 
-The bridge is intentionally a native EHN analogue: a separate bridge
-to the exact original-partial homomorphism-embedding predicate and
-defined-but-empty domain semantics remains open.
+The family-level bridge now uses the **exact original-partial
+homomorphism-embedding predicate**. The pinned dependency already
+proves `originalPartialHE_iff_EHN` under the native nonempty-value
+partial encoding, and the application uses `toOriginalPartial`
+explicitly. Only **independently defined empty-valued set-function
+domains** would require a richer domain-token representation.
 
 ## 1 November continuation — stronger positive reductions
 
@@ -143,20 +146,24 @@ required both. The corrected declaration now requires **only**
 produces surjectivity for its particular map, and the support
 selection proof uses it legitimately.
 
-**Remaining fidelity caveats:** native EHN versus the manuscript's
-original partial HE predicate still needs an exact bridge;
-defined-but-empty set-valued function domains need explicit tokens
-if represented in the original language; and 'contains a full
-forbidden copy' agrees with literal forbidden family membership
-only with the usual isomorphism-closure convention. No change to
+**Remaining fidelity caveats:** the native EHN/original partial HE
+bridge is already proved as `originalPartialHE_iff_EHN` upstream
+and now explicitly used in the family-level hypothesis. Defined-but-empty
+set-valued function domains need explicit tokens if represented
+in the original language; and 'contains a full forbidden copy'
+agrees with literal forbidden-family membership only with the
+usual isomorphism-closure convention. No change to
 the frozen numbered manuscript is justified yet.
 
 ## Track D proof gates (not discharged)
 
-1. **Faithful hypothesis:** encode the printed domain-token
-   tuple-surjective HE-image closure with an *embedded forbidden
-   substructure* conclusion, without substituting the stronger
-   `hImageClosed`.
+1. **Faithful hypothesis:** the original-partial HE predicate,
+   tuple-surjective (not necessarily vertex-surjective) image
+   contract and *embedded forbidden substructure* conclusion are
+   now coded, using the existing `originalPartialHE_iff_EHN`
+   equivalence. Verify remaining literal domain-token and
+   isomorphism-convention differences without substituting the
+   stronger `hImageClosed`.
 2. **Finite regression bridge:** prove the explicit finite example
    satisfies the genuine relational/native EHN API, and formalize
    the image-closure property of `{C3,C5}`; currently only its
