@@ -147,13 +147,13 @@ theorem weakColor_graphHomomorphismEmbedding :
         change triangleEdge (weakColor (xs edge0))
           (weakColor (xs edge1)) at hTarget
         change cycle5Edge (xs edge0) (xs edge1)
-        have hDiff : xs 0 ≠ xs 1 := by
+        have hDiff : xs edge0 ≠ xs edge1 := by
           intro h
           have hCol : weakColor (xs edge0) ≠ weakColor (xs edge1) :=
             hTarget
           exact hCol (congrArg weakColor h)
         exact cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs edge0) (xs edge1) (hxs 0) (hxs 1) hDiff
+          S hS (xs edge0) (xs edge1) (hxs edge0) (hxs edge1) hDiff
       | true =>
         change extraTernary (weakColor (xs tern0))
           (weakColor (xs tern1)) (weakColor (xs tern2)) at hTarget
@@ -163,27 +163,27 @@ theorem weakColor_graphHomomorphismEmbedding :
               (weakColor (xs tern1))
               (weakColor (xs tern2)) := hTarget
         obtain ⟨h0, h1, h2⟩ := hExtra
-        have h01 : xs 0 ≠ xs 1 := by
+        have h01 : xs tern0 ≠ xs tern1 := by
           intro h
           have hc : (0 : Fin 3) = 1 :=
             h0.symm.trans ((congrArg weakColor h).trans h1)
           exact (by decide : (0 : Fin 3) ≠ 1) hc
-        have h12 : xs 1 ≠ xs 2 := by
+        have h12 : xs tern1 ≠ xs tern2 := by
           intro h
           have hc : (1 : Fin 3) = 2 :=
             h1.symm.trans ((congrArg weakColor h).trans h2)
           exact (by decide : (1 : Fin 3) ≠ 2) hc
-        have h20 : xs 2 ≠ xs 0 := by
+        have h20 : xs tern2 ≠ xs tern0 := by
           intro h
           have hc : (2 : Fin 3) = 0 :=
             h2.symm.trans ((congrArg weakColor h).trans h0)
           exact (by decide : (2 : Fin 3) ≠ 0) hc
         have e01 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs tern0) (xs tern1) (hxs 0) (hxs 1) h01
+          S hS (xs tern0) (xs tern1) (hxs tern0) (hxs tern1) h01
         have e12 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs tern1) (xs tern2) (hxs 1) (hxs 2) h12
+          S hS (xs tern1) (xs tern2) (hxs tern1) (hxs tern2) h12
         have e20 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs tern2) (xs tern0) (hxs 2) (hxs 0) h20
+          S hS (xs tern2) (xs tern0) (hxs tern2) (hxs tern0) h20
         exact False.elim
           (cycle5_no_triangle (xs tern0) (xs tern1) (xs tern2)
             ⟨e01, e12, e20⟩)
