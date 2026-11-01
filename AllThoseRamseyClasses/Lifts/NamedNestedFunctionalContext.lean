@@ -271,4 +271,45 @@ theorem geometricOuterContext_has_namedFullDiagram
     (oldOuterContextInInnerComplement_isClosed Old P d)
     (oldOuterContext_contains_innerRoot Old P d hInnerRoot)
 
+
+
+/-- Symmetric named diagram: retain a closed part of the LEFT side
+containing the full root and ALL of the RIGHT side. This is the
+structural form used to attach an arbitrary outer test to the
+retained old complement. Native functional fibres are still exact.
+
+The context set is written with the full Right image first, so
+that the existing named-right-subset theorem can be reused via
+the certified swap of genuine free-amalgam diagrams. -/
+theorem fullFreeAmalgam_nestedContext_namedLeftDiagram
+    {H A B W : Type v}
+    {Root : Structure L H}
+    {Left : Structure L A}
+    {Right : Structure L B}
+    {Whole : Structure L W}
+    {sL : Structure.Embedding Root Left}
+    {sR : Structure.Embedding Root Right}
+    {iL : Structure.Embedding Left Whole}
+    {iR : Structure.Embedding Right Whole}
+    (hFree : Structure.IsFreeAmalgam sL sR iL iR)
+    (SL : Set A)
+    (hSLClosed : Left.IsClosed SL)
+    (hRootL : ∀ r : H, sL r ∈ SL) :
+    let K : Set W := iR '' (Set.univ : Set B) ∪ iL '' SL
+    ∃ (hK : Whole.IsClosed K)
+      (sLsmall : Structure.Embedding Root (Left.induce SL hSLClosed))
+      (jL : Structure.Embedding (Left.induce SL hSLClosed)
+        (Whole.induce K hK))
+      (jR : Structure.Embedding Right (Whole.induce K hK)),
+      Structure.IsFreeAmalgam sLsmall sR jL jR ∧
+      (∀ a : SL, (jL a).1 = iL a.1) ∧
+      (∀ b : B, (jR b).1 = iR b) ∧
+      (∀ r : H, (sLsmall r).1 = sL r) := by
+  obtain ⟨hK, sLsmall, jR, jL, hFreeSmall,
+      hRval, hLval, hSval⟩ :=
+    fullFreeAmalgam_nestedContext_namedFullDiagram
+      hFree.swap SL hSLClosed hRootL
+  exact ⟨hK, sLsmall, jL, jR, hFreeSmall.swap,
+    hLval, hRval, hSval⟩
+
 end AllThoseRamseyClasses.Lifts
