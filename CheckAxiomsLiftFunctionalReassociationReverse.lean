@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.FunctionalNestedReassociationReverse
+
+-- Track B: converse of full native nested source reassociation.
+-- All relation and complete native function fibres are checked.
+#check AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_reverse
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_reverse
+
+#check AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_iff
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_iff
