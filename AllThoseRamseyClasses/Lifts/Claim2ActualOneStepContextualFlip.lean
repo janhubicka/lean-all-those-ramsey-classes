@@ -18,6 +18,10 @@ the contextual package, combining in one statement:
   exact original target coordinates; and
 * a strict decrease in B-exclusive SOURCE count INSIDE that context.
 
+The strengthened theorem also exports the *actual replacement* Q's
+full canonical-gluing equivalence class; the original API is retained
+as a backwards-compatible corollary.
+
 This does not assert that the new closed context is a geometric
 minimal-separator piece, nor that its complete rooted all-test
 incompatibility profile equals the original. It is an actual
@@ -43,7 +47,7 @@ There is no global injectivity assumption on the weak source
 map; only the inner separating root's target coordinates must be
 injective. The new context is closed but is NOT declared to be
 a new minimal-separator piece or to preserve its full profile. -/
-theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
+theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport_withInnerProfile
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
     {V UX UA UB UT : Type}
@@ -86,6 +90,9 @@ theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
     ∃ (V' : Type) (New : Structure L V'), F New ∧
       ∃ (Q : FunctionalRootExtension
           (geometricGlobalFunctionalChart Forbidden d).root)
+        (hInnerProfile : (functionalRootPieceSetoid
+          (geometricGlobalFunctionalChart Forbidden d).root F).r
+            (geometricGlobalFunctionalChart Forbidden d).ext Q)
         (iQ : Structure.Embedding Q.str New)
         (iE : Structure.Embedding
           (geometricGlobalComplementChart Forbidden d).str New),
@@ -118,7 +125,7 @@ theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
             f v ∈ fullFreeRightExclusiveTarget iRight jRight} := by
   classical
   let Compl := geometricGlobalComplementChart Forbidden d
-  obtain ⟨Q, _hEquivalent, g, _hg,
+  obtain ⟨Q, hEquivalent, g, _hg,
       V', New, hNew, iQ, iE, hNewFree,
       flip, hFlip, hQImage, hEImage⟩ :=
     geometricGlobalCommonFullLiftFlip_rightToLeft
@@ -192,6 +199,96 @@ theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
       Q New iQ iE hNewFree f flip
       (fullFreeRightExclusiveTarget iRight jRight)
       hEImage hStrictGlobal
+  exact ⟨V', New, hNew, Q, hEquivalent, iQ, iE, hNewFree,
+    flip, hFlip, hClosed, hRootInjective, hRootFixed, hLocalDrop⟩
+
+
+/-- Backwards-compatible form of the genuine contextual flip.
+The strengthened theorem above exposes the FULL inner canonical
+profile witness used by the very same forbidden-source replacement.
+All pre-existing outputs and assumptions remain unchanged. -/
+theorem geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    {V UX UA UB UT : Type}
+    (Forbidden : Structure L V)
+    (hFinite : Finite V) (hForbidden : F Forbidden)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Forbidden n)
+    (d : GeometricFunctionalPieceData Forbidden m)
+    (hm : 0 < m)
+    (hInnerInside :
+      geometricPieceVertices Forbidden d ⊆
+        geometricPieceVertices Forbidden P)
+    (hOuterRootOutside : ∀ i : Fin n,
+      P.roots i ∉ functionalComponentFrom Forbidden
+        (Set.range d.roots) d.left)
+    (Target : Structure L UT)
+    (f : V → UT)
+    (hf : Forbidden.IsEHNHomomorphismEmbedding Target f)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (hInnerRoots : Set.range d.roots ⊆
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+    (hInnerNoLeft : ∀ z : V,
+      z ∈ functionalComponentFrom Forbidden
+        (Set.range d.roots) d.left →
+      z ∉ weakFreeLeftPart (sL := iLeft) (iL := jLeft) f)
+    (hInnerRootInjective : Function.Injective
+      (fun i : Fin m => f (d.roots i)))
+    (oldVertex : V)
+    (hvComponent : oldVertex ∈
+      functionalComponentFrom Forbidden (Set.range d.roots) d.left)
+    (hvRight : oldVertex ∈ weakFreeRightPart
+      (sL := iLeft) (iL := jLeft) (iR := jRight) f) :
+    ∃ (V' : Type) (New : Structure L V'), F New ∧
+      ∃ (Q : FunctionalRootExtension
+          (geometricGlobalFunctionalChart Forbidden d).root)
+        (iQ : Structure.Embedding Q.str New)
+        (iE : Structure.Embedding
+          (geometricGlobalComplementChart Forbidden d).str New),
+        Structure.IsFreeAmalgam Q.rootEmbedding
+          (geometricGlobalComplementChart Forbidden d).rootEmbedding
+          iQ iE ∧
+        ∃ flip : V' → UT,
+          New.IsEHNHomomorphismEmbedding Target flip ∧
+          New.IsClosed
+            (iQ '' (Set.univ : Set Q.Carrier) ∪
+              iE '' (oldOuterContextInInnerComplement Forbidden P d)) ∧
+          Function.Injective
+            (fun i : Fin n =>
+              iE (⟨P.roots i, hOuterRootOutside i⟩ :
+                (geometricGlobalComplementChart Forbidden d).Carrier)) ∧
+          (∀ i : Fin n,
+            iE (⟨P.roots i, hOuterRootOutside i⟩ :
+              (geometricGlobalComplementChart Forbidden d).Carrier) ∈
+              (iQ '' (Set.univ : Set Q.Carrier) ∪
+                iE '' (oldOuterContextInInnerComplement Forbidden P d)) ∧
+            flip (iE (⟨P.roots i, hOuterRootOutside i⟩ :
+              (geometricGlobalComplementChart Forbidden d).Carrier)) =
+                f (P.roots i)) ∧
+          Nat.card {w : V' //
+            w ∈ (iQ '' (Set.univ : Set Q.Carrier) ∪
+              iE '' (oldOuterContextInInnerComplement Forbidden P d)) ∧
+            flip w ∈ fullFreeRightExclusiveTarget iRight jRight} <
+          Nat.card {v : V //
+            v ∈ geometricPieceVertices Forbidden P ∧
+            f v ∈ fullFreeRightExclusiveTarget iRight jRight} := by
+  obtain ⟨V', New, hNew, Q, _hInnerProfile, iQ, iE, hNewFree,
+      flip, hFlip, hClosed, hRootInjective, hRootFixed, hLocalDrop⟩ :=
+    geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport_withInnerProfile
+      F hFiniteF Forbidden hFinite hForbidden
+      P d hm hInnerInside hOuterRootOutside
+      Target f hf Left Right jLeft jRight
+      X iLeft iRight hFree hCommon
+      hInnerRoots hInnerNoLeft hInnerRootInjective
+      oldVertex hvComponent hvRight
   exact ⟨V', New, hNew, Q, iQ, iE, hNewFree,
     flip, hFlip, hClosed, hRootInjective, hRootFixed, hLocalDrop⟩
 
