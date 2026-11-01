@@ -78,7 +78,7 @@ theorem actualPrefixAbsorptionMask_strictCount
       · simp [actualPrefixAbsorptionMask, risingPrefixEdges,
           prefixStrictEdgeCount, h, ih]
       · simp [actualPrefixAbsorptionMask, risingPrefixEdges,
-          prefixStrictEdgeCount, h, ih]
+          prefixStrictEdgeCount, h, ih, Nat.add_comm]
 
 /-- Maximal absorbed runs of the REAL S-prefix classification,
 not an arbitrarily chosen mask, are bounded by the number
