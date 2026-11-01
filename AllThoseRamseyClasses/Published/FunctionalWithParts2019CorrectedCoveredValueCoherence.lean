@@ -96,8 +96,8 @@ theorem genuineTagged2019_correctedCovered_uniqueCompleteValues
   have hUniqueHull :
       HasUniqueWholeMaskValues (wholeMaskTagReduct (C.induce Hull)) := by
     rw [hCanonical]
-    exact (Target.withParts partTarget).wholeMaskPatternGraph_hasUniqueValues
-      partTarget hTransPlus
+    exact StructuralRamsey.RelStructure.PartialSetStructure.wholeMaskPatternGraph_hasUniqueValues
+      (Target.withParts partTarget) partTarget hTransPlus
   have hxHull (i : Fin ((L.withParts Parts).funcArity F)) :
       x i ∈ Hull :=
     subset_UClosureHull rules C S ⟨i, rfl⟩
@@ -153,8 +153,12 @@ theorem genuineTagged2019_correctedCovered_uniqueCompleteValues
         refine ⟨tupleHull (Fin.natAdd k j), ⟨j, rfl⟩, rfl⟩
       · rintro ⟨a, ⟨j, hj⟩, hy⟩
         refine ⟨j, ?_⟩
-        change a.1 = _ at hy
-        exact hj ▸ hy
+        change a.1 = y at hy
+        calc
+          tuple (Fin.natAdd k j) =
+              (tupleHull (Fin.natAdd k j)).1 := rfl
+          _ = a.1 := congrArg Subtype.val hj
+          _ = y := hy
     exact ⟨QHull, hValueHull, hQImage⟩
 
   obtain ⟨UH, hUH, hUImage⟩ :=
