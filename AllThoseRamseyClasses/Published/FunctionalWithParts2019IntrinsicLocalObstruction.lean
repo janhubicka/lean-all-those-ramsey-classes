@@ -1,5 +1,5 @@
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeKCompletion
-import PartiteConstruction.Functional.WholeMaskWeakRelativeCompletionObstruction2019
+import PartiteConstruction.Functional.WholeMaskWeakDomainUnaryExample2019
 import PartiteConstruction.Functional.PartialSetFunctionsPartPredicates2019
 
 /-!
@@ -51,6 +51,45 @@ private def unaryAmbientTaggedTest :
   (wholeMaskTagExpansion
     (withPartsWholeMaskOld weakDomainUnaryToy (fun x : Fin 2 => x))).induce unaryS
 
+/-- The singleton weak source has a full original partial-function
+embedding into the singleton undefined structure. This repeats the
+finite calculation using only the pinned partite-construction API. -/
+private noncomputable def weakSingletonIntoUndefined :
+    PartialSetStructure.Embedding
+      (wholeWeakInduce weakDomainUnaryToy unaryS)
+      undefinedExample where
+  toFun := fun _ => ()
+  injective := by
+    intro x y _
+    apply Subtype.ext
+    exact (Set.mem_singleton_iff.mp x.2).trans
+      (Set.mem_singleton_iff.mp y.2).symm
+  map_rel_iff := by
+    intro R
+    exact Empty.elim R
+  map_func := by
+    intro F xs
+    cases F
+    have hx : (xs (0 : Fin 1)).1 = (0 : Fin 2) :=
+      Set.mem_singleton_iff.mp (xs (0 : Fin 1)).2
+    have hValue :
+        weakDomainUnaryToy.func () (Subtype.val ∘ xs) =
+        some ({(1 : Fin 2)} : Set (Fin 2)) := by
+      change (if (xs (0 : Fin 1)).1 = 0
+        then some ({(1 : Fin 2)} : Set (Fin 2))
+        else none) = _
+      simp [hx]
+    change
+      (wholeWeakValue unaryS
+        (weakDomainUnaryToy.func () (Subtype.val ∘ xs))).map
+          (StructuralRamsey.Structure.imageSet (fun _ => ())) =
+        none
+    rw [hValue]
+    rw [wholeWeakValue_of_not_subset unaryS
+      ({(1 : Fin 2)} : Set (Fin 2))
+      weakDomainUnaryToy_lost]
+    rfl
+
 /-- Intrinsically, the original whole-weak restriction to S={0}
 has a genuine FULL part-preserving completion in the class H. -/
 theorem allUndefinedUnaryH_has_intrinsicWeakCompletion :
@@ -68,7 +107,7 @@ theorem allUndefinedUnaryH_has_intrinsicWeakCompletion :
     rfl
   · intro F xs U hValue y hy z hz hp
     cases hValue
-  · refine ⟨weakDomainUnaryToy_fullWeakToUndefined, ?_⟩
+  · refine ⟨weakSingletonIntoUndefined, ?_⟩
     intro x
     exact (Set.mem_singleton_iff.mp x.2).symm
 
