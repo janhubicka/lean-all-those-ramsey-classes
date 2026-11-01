@@ -75,15 +75,15 @@ theorem nullaryUnitStructures_noCommonFullTarget
           (nullaryFalseUnitStructure L) Target), True := by
   rintro ⟨VT, Target, eTrue, eFalse, _⟩
   let xs : Fin (L.relArity R) → Unit := fun _ => ()
+  let ys : Fin (L.relArity R) → VT :=
+    fun i => Fin.elim0 (Fin.cast hZero i)
   have hAgreement :
       (nullaryTrueUnitStructure L R).rel R xs ↔
       (nullaryFalseUnitStructure L).rel R xs := by
     have hTrue :=
-      fullEmbedding_reflects_nullary_relation eTrue R hZero xs
-        (fun _ => ())
+      fullEmbedding_reflects_nullary_relation eTrue R hZero xs ys
     have hFalse :=
-      fullEmbedding_reflects_nullary_relation eFalse R hZero xs
-        (fun _ => ())
+      fullEmbedding_reflects_nullary_relation eFalse R hZero xs ys
     exact hTrue.trans hFalse.symm
   have hPositive :
       (nullaryTrueUnitStructure L R).rel R xs := by
