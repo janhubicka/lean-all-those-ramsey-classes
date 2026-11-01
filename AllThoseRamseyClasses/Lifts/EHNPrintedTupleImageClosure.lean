@@ -47,10 +47,12 @@ def ContainsFullForbiddenSubstructure
 
 We specify the original-partial function-domain version of
 tuple-surjectivity, with NO vertex-surjectivity premise.
-The EHN predicate
-here is the native full-on-irreducible-tests representation;
-a separate semantics bridge is needed if using exactly the
-paper's IsOriginalPartialHomomorphismEmbedding instead.
+The map predicate here is the ORIGINAL 2019 partial-function
+homomorphism-embedding. On the current nonempty-fibre encoding,
+`originalPartialHE_iff_EHN` is already proved in the pinned dependency;
+thus we convert the native EHN range factor using `toOriginalPartial`.
+The separately defined empty-valued set-function-domain convention
+would require an extended native representation.
 
 Critically, the conclusion is CONTAINS a full forbidden
 substructure, not that the entire image is forbidden. -/
@@ -59,7 +61,7 @@ def HasTupleSurjectiveForbiddenImageClosure
   ∀ {X Y : Type}
     (Src : Structure L X) (Dst : Structure L Y) (q : X → Y),
     F Src →
-    Src.IsEHNHomomorphismEmbedding Dst q →
+    IsOriginalPartialHomomorphismEmbedding Src Dst q →
     OriginalPartialTupleSurjective Src Dst q →
     ContainsFullForbiddenSubstructure F Dst
 
@@ -89,7 +91,7 @@ theorem fullForbiddenSubstructure_of_closedTupleSurjectiveEHNRange
   obtain ⟨hqEHN, hqSurj⟩ :=
     ehn_closedRange_surjectiveInducedFactor Src Target f hf hClosed
   obtain ⟨Z, P, hP, ⟨e⟩⟩ :=
-    hImage Src Q q hForbidden hqEHN hTuple
+    hImage Src Q q hForbidden hqEHN.toOriginalPartial hTuple
   exact ⟨Z, P, hP, ⟨(Target.inclusion S hClosed).comp e⟩⟩
 
 /-- With finite forbidden sources, the same faithful image-closure
