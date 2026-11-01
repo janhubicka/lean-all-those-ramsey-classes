@@ -122,9 +122,9 @@ theorem finiteNamedMaximalTraceAge_strictTree_copywiseCompletion
         FunctionalCopywiseCompletion B T Target f := by
   classical
   induction hTree with
-  | copy j hsurj =>
-      let inv : Structure.Embedding T B :=
-        (Structure.Embedding.id T).factorThroughRange j
+  | @copy Wcopy Tcopy j hsurj =>
+      let inv : Structure.Embedding Tcopy B :=
+        (Structure.Embedding.id Tcopy).factorThroughRange j
           (fun t => by
             obtain ⟨b, hb⟩ := hsurj t
             exact ⟨b, hb.symm⟩)
