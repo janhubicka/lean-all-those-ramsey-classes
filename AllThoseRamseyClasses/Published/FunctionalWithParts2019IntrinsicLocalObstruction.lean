@@ -154,8 +154,10 @@ theorem allUndefinedUnaryH_no_ambientRelativeCompletion :
       f hOld (ULift.up ()) xs hSourceDefined
   obtain ⟨U, hU⟩ := hTargetDefined
   change Target.func () (f ∘ xs) = some U at hU
-  rw [hH (f ∘ xs)] at hU
-  cases hU
+  have hNone : Target.func () (f ∘ xs) = none := hH (f ∘ xs)
+  have hImpossible : (none : Option (Set X)) = some U :=
+    hNone.symm.trans hU
+  cases hImpossible
 
 /-- Existential counterexample for a SINGLE exact weak local test.
 No same-target hypothesis is hidden: the second component excludes
