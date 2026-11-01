@@ -92,3 +92,63 @@ in progress when audited.
 **Editorial contract:** the numbered `ramsey.tex` is frozen.
 The matching separate manuscript `validation-todos.tex` receives new
 review-only TODOs. No theorem label is promoted to green here.
+
+
+## 1 November 2026 — Track B revalidation (new results; original audit retained)
+
+The original 31 October description is a *historical baseline*. Its
+source-level contextual-profile gap is now substantially closed:
+
+- Merged [#741](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/741)
+  constructs the **named full native** old/new contextual diagrams,
+  their full original-side embeddings, and the outer-to-nested
+  forbidden-test decomposition. Merged [#746](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/746)
+  proves inverse full functional reassociation and nested all-test
+  invariance. Both are CI/axiom-audited.
+- Merged [#750](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/750)
+  proves `functionalActualContext_profile_equiv_of_inner_equiv`:
+  replacing a profile-equivalent inner full root extension inside
+  **chosen actual full functional** amalgams preserves all forbidden
+  tests at any outer full root embedded in the retained side.
+  No nesting of cuts, isomorphism closure of the forbidden family,
+  or weak-map injection is assumed.
+- Merged [#752](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/752)
+  embeds the **full old outer root** in the retained complement
+  under exact root survival; merged [#754](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/754)
+  identifies the OLD contextual vertex set with the actual old
+  geometric outer piece, assuming the complete inner component
+  and root are inside that piece.
+- Merged [#753](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/753)
+  constructs the ACTUAL old/new induced functional contexts and
+  their entire all-test profile equivalence with exact root
+  coordinates. Merged [#758](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/758)
+  identifies the profiles of equal closed induced carriers through
+  an onto full rooted isomorphism.
+- Merged, fully CI-checked [#767](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/767)
+  proves `geometricOriginalPiece_profile_equiv_transportContext`.
+  Under inclusion of the entire selected inner piece in the old outer
+  geometric piece, outer-root survival, inner all-test equivalence
+  and a literal full new source amalgam, the **genuine original
+  geometric piece** and the **actual new closed source context**
+  have exactly the same complete forbidden test profile and ordered
+  full root coordinates. The merge commit changed only the new
+  theorem, its axiom test and its protected active root.
+
+**What is still open:** The new closed context is NOT automatically a
+single component adjoining a minimal separating closed root. Prove the
+whole new opposite component, the equality of its **complete
+function-generated neighbourhood boundary** with the old full root,
+and that the context equals that component plus the root. Even then,
+identifying the resulting global quotient symbol must compare the
+entire ordered *functional root structures*, not just the tuple.
+Draft [#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776)
+and [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781)
+study those algebraic root/global-index bridges; **neither is counted
+verified until full CI passes**.
+
+This finishes **Track B's actual contextual incompatibility-profile
+congruence**, not the unrestricted paper's Claim 2, root-injectivity
+repair, terminating B-only-source flip sequence, shadow avoidance or
+the strong-amalgamation conclusion. Original numbered manuscript prose
+remains frozen; the separate ATRC-069 review-only TODO records the
+remaining boundary obligation.
