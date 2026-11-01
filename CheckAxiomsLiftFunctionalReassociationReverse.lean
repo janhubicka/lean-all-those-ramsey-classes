@@ -4,3 +4,6 @@ import AllThoseRamseyClasses.Lifts.FunctionalNestedReassociationReverse
 -- All relation and complete native function fibres are checked.
 #check AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_reverse
 #print axioms AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_reverse
+
+#check AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_iff
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_reassociate_right_iff
