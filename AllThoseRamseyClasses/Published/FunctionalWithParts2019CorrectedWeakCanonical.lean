@@ -65,7 +65,7 @@ theorem genuineTagged2019_correctedCovered_weakIrred_canonicalTarget
     injective := by
       intro x y h
       apply Subtype.ext
-      exact congrArg Subtype.val h
+      exact congrArg (fun z : Hull => z.1) h
     map_rel_iff := fun _ _ => Iff.rfl
   }
   refine ⟨Hull, hFinite, Target, partTarget, hTargetH, hTargetTr, ?_⟩
