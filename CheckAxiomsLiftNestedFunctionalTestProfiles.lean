@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.NestedFunctionalTestProfiles
+
+-- Universal two-stage profile congruence; every outer test, no
+-- assumed forbidden status for the test.
+#check AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTestDiagram
+#check AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTestDiagram_iff_of_inner_equiv
+#check AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTestProfile_eq_of_inner_equiv
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTestDiagram_iff_of_inner_equiv
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTestProfile_eq_of_inner_equiv
