@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalNullaryMaximalTraceJEPObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.globalFiniteMaximalTrace_core_implies_nativeJEP
+#print axioms AllThoseRamseyClasses.Lifts.emptyGlobalForbiddenFamily_regular
+#print axioms AllThoseRamseyClasses.Lifts.emptyForbidden_globalMaximalTraceCore_notJEP_of_nullaryRelation
