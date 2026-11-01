@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNWeakImageForbiddenLocalTransport
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenWeakImage_injectiveReplacement_of_localTransport
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveMinimalForbiddenEHNWitness_of_weakImageLocalTransport
