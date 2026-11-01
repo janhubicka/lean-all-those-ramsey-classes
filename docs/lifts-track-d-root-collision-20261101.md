@@ -16,16 +16,19 @@ The verified `EHNInjectiveSupportMinimizer.lean` uses:
 
 The printed lift proof assumes instead:
 
-> for a **tuple-surjective** homomorphism-embedding from a forbidden
-> structure onto `H`, `H` **contains a full induced forbidden
-> substructure**.
+> for **every tuple-surjective** homomorphism-embedding from a forbidden
+> structure into `H` (whether or not vertex-surjective), `H`
+> **contains a full induced forbidden substructure**.
 
-The first is **strictly stronger** than the printed assumption in two
-independent respects: tuple-surjectivity is not inferred from vertex
-surjectivity, and closure under *whole images belonging to F* is
-stronger than *image contains a full forbidden member*. Also, in the
-native functional representation, closure of the vertex range under
-function values does not imply tuple-surjectivity for old relations.
+These hypotheses are **not logically comparable without further
+assumptions**. The existing Lean `hImageClosed` has a much stronger
+*conclusion* (whole target forbidden), but it only quantifies over
+vertex-surjective maps, whereas the printed clause covers all
+tuple-surjective maps without requiring vertex-surjectivity.
+Tuple-surjectivity is not inferred from vertex surjectivity; conversely
+tuple-surjectivity need not imply vertex surjectivity. Moreover,
+closure of the vertex range under native function values does not
+imply tuple-surjectivity for old relations.
 
 Consequences:
 
@@ -80,6 +83,9 @@ does not refute the printed strong-amalgamation conclusion.
 `Lifts/EHNPrintedTupleImageClosure.lean` provides
 `HasTupleSurjectiveForbiddenImageClosure`, whose conclusion is
 `ContainsFullForbiddenSubstructure` rather than `F Dst`.
+The family-level contract now exactly omits vertex-surjectivity, as
+in the original printed definition. The conditional range-factor
+proof obtains vertex-surjectivity independently when necessary.
 
 Theorems
 `fullForbiddenSubstructure_of_closedTupleSurjectiveEHNRange` and
@@ -94,6 +100,56 @@ This file is pending complete CI and axiom audit.
 The bridge is intentionally a native EHN analogue: a separate bridge
 to the exact original-partial homomorphism-embedding predicate and
 defined-but-empty domain semantics remains open.
+
+## 1 November continuation — stronger positive reductions
+
+**Previously completed CI:** the original two-file Track D checkpoint at
+commit `f4c4d02a` passed all of build, source-integrity, conditional
+contract, named-axiom and admission checks (run 41266217233).
+The following **additional** modules are new and require a fresh full CI:
+
+1. `EHNRelationalTupleGap.lean` defines a native structure language
+   with binary graph and ternary relations but no functions. It proves
+   the C5-to-triangle weak colouring is surjective on vertices,
+   positive-preserving, function-closed on its range and has vacuous
+   source input-test coverage. The extra target ternary tuple proves
+   it is NOT tuple-surjective even onto the true induced closed
+   range; also no native full C3/C5 embedding exists. The universal
+   native EHN-test condition and family closure remain open.
+2. `EHNPrintedTupleSupportMinimizer.lean` strengthens the conditional
+   image result to preserve the original **source support count**:
+   if the actual induced range is closed and tuple-surjective,
+   the printed 'contains forbidden' conclusion furnishes an injective
+   forbidden witness with no greater source support. An injective
+   selector of preimages of the FULL forbidden substructure supplies
+   the cardinal bound. A global support-minimizer corollary keeps
+   its uniform extra range hypotheses explicit.
+3. `EHNInputCoverFunctionFibre.lean` establishes that source
+   irreducible function-input test coverage makes a weak EHN map
+   preserve **entire function fibres at all source inputs**, not
+   merely close the target image. Consequently the function-domain
+   part of original partial tuple-surjectivity is automatic on the
+   actual induced range; only `SourceRelationTuplesCoveredOnRange`
+   remains as an additional tuple-image premise. The resulting
+   conditional injective minimum uses the actual printed family
+   closure with a separate relation-coverage hypothesis.
+
+**Critical contract correction.** The manuscript explicitly
+distinguishes vertex-surjectivity from tuple-surjectivity. The initial
+`HasTupleSurjectiveForbiddenImageClosure` declaration incorrectly
+required both. The corrected declaration now requires **only**
+`OriginalPartialTupleSurjective` and EHN, without
+`Function.Surjective q`. The separate closed-range factorization
+produces surjectivity for its particular map, and the support
+selection proof uses it legitimately.
+
+**Remaining fidelity caveats:** native EHN versus the manuscript's
+original partial HE predicate still needs an exact bridge;
+defined-but-empty set-valued function domains need explicit tokens
+if represented in the original language; and 'contains a full
+forbidden copy' agrees with literal forbidden family membership
+only with the usual isomorphism-closure convention. No change to
+the frozen numbered manuscript is justified yet.
 
 ## Track D proof gates (not discharged)
 
@@ -130,8 +186,9 @@ defined-but-empty domain semantics remains open.
   weak image and original-partial HE quotient; no full inclusion
   into target.
 
-**Validation:** The new finite-regression module and this audit
-note are submitted as a draft PR. Until its actual CI/build results
-are checked, the new declarations are *unverified*. There are no
-new manuscript `VERIFIED` markers in this branch. Corresponding
+**Validation:** Original Track D endpoint through `f4c4d02a` is
+CI/kernel-audited. New additions and the corrected family-level
+hypothesis remain under full CI; until its successful completion they
+are **not** counted as kernel-certified. No new numbered manuscript
+`VERIFIED` marker is claimed. Corresponding
 manuscript TODO: ATRC-068 (root collision/injective image).
