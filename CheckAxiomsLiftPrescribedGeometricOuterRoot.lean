@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.PrescribedGeometricOuterRoot
+
+#check AllThoseRamseyClasses.Lifts.geometricPiece_of_prescribedRoot_and_exactBoundaries
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_of_prescribedRoot_and_exactBoundaries
