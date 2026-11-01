@@ -103,7 +103,7 @@ theorem fullFreeAmalgam_innerComponent_avoids_rightPrivate
             refine ⟨sComp r, ⟨r, rfl⟩, ?_⟩
             calc
               iComp (sComp r) = iInner (sInner r) := hEq.symm
-              _ = iInner e := congrArg iInner hr.symm
+              _ = iInner e := congrArg iInner hr
           exact a.2 (he ▸ heU)
         have hEdge : GaifmanAdjacent Old.graph (iInner e) c.1 := by
           rw [he]
