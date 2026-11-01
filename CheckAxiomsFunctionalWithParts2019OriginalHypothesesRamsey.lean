@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019OriginalHypothesesRamsey
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_ramsey_of_original_functional_hypotheses
