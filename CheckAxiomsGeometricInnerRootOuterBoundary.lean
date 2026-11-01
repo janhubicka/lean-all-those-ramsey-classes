@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GeometricInnerRootOuterBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerRoot_outsideOlderCut_inComponent
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerRoot_insideOlderCut_generatedByOuterBoundary
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerRoot_partition_acrossOlderClosedCut
