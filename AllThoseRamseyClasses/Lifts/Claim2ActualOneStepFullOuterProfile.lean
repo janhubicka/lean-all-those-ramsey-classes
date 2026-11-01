@@ -106,9 +106,9 @@ theorem geometricGlobalRightFlip_outerContextProfile_strictLocalRightSupport
             (functionalDiagramPieceSetoid
                 (geometricGlobalFunctionalChart Forbidden P).root F).r
               (geometricGlobalFunctionalChart Forbidden P).ext
-              ({ Carrier :=
-                  (iQ '' (Set.univ : Set Q.Carrier) ∪
-                    iE '' (oldOuterContextInInnerComplement Forbidden P d)),
+              ({ Carrier := {w : V' //
+                    w ∈ (iQ '' (Set.univ : Set Q.Carrier) ∪
+                      iE '' (oldOuterContextInInnerComplement Forbidden P d))},
                  str := New.induce
                   (iQ '' (Set.univ : Set Q.Carrier) ∪
                     iE '' (oldOuterContextInInnerComplement Forbidden P d))
