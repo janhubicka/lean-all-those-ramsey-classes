@@ -77,7 +77,7 @@ subsets imply equality of their COMPLETE forbidden diagram
 profiles. Even if the induced closedness proofs differ, all old
 relations and whole function fibres agree by full isomorphism. -/
 theorem equalClosedCarrier_rootedProfiles_equiv
-    {V R : Type v}
+    {V R : Type}
     (A : Structure L V)
     (S T : Set V)
     (hS : A.IsClosed S) (hT : A.IsClosed T)
