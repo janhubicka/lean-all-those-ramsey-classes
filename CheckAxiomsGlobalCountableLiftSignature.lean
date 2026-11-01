@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalCountableLiftSignature
+
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceSymbol_countable_of_regular
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceLanguage_relSymbols_countable
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceLanguage_funcSymbols_countable
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceLanguage_countable_of_finiteOld
