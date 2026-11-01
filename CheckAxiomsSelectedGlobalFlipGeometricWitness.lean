@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SelectedGlobalFlipGeometricWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedGlobalCanonicalDiagramFlip_geometricWitness
