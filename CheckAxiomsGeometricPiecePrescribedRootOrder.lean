@@ -1,3 +1,4 @@
 import AllThoseRamseyClasses.Lifts.GeometricPiecePrescribedRootOrder
 
 #print axioms AllThoseRamseyClasses.Lifts.geometricPiece_reenumerate_sameClosedCut
+#print axioms AllThoseRamseyClasses.Lifts.finite_outerOldRoot_hasGeometricPiece_withPrescribedRoots
