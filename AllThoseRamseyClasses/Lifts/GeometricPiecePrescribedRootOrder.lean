@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GeometricFunctionalPieces
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamOuterOldRootCriterion
 
 /-!
 # Track C: recover the prescribed original order of a transported geometric root
@@ -65,5 +65,64 @@ theorem geometricPiece_reenumerate_sameClosedCut
     minimal := hMinimal
   }
   exact ⟨e, rfl, hSameCut, rfl, rfl⟩
+
+/-- Specialize the verified opposite-generated-boundary criterion to
+the EXACT old ordered root tuple, rather than accepting the arbitrary
+finite enumeration returned by the existential chart constructor.
+
+This statement is conditional only on the same opposite boundary
+already isolated by Track A. It makes the ordered-root part of
+Track C's source-geometric handoff available with NO additional
+root permutation or weakened (un-ordered) canonical relation. -/
+theorem finite_outerOldRoot_hasGeometricPiece_withPrescribedRoots
+    {H E F W : Type v} [Finite W]
+    {Root : Structure L H}
+    {Left : Structure L E}
+    {Right : Structure L F}
+    {Whole : Structure L W}
+    {sL : Structure.Embedding Root Left}
+    {sR : Structure.Embedding Root Right}
+    {iL : Structure.Embedding Left Whole}
+    {iR : Structure.Embedding Right Whole}
+    (hFree : Structure.IsFreeAmalgam sL sR iL iR)
+    (T : Set F) (hTclosed : Right.IsClosed T)
+    (x : {b : F // b ∉ T})
+    (hPrivate :
+      componentFrom Right.graph T x ⊆ {b : F | b ∉ Set.range sR})
+    (hExteriorBoundary :
+      Right.functionClosure
+        (gaifmanNeighborhood Right.graph
+          (componentFrom Right.graph T x)) = T)
+    (y : {w : W // w ∉ iR '' T})
+    (hyOpposite :
+      y.1 ∉ iR '' componentFrom Right.graph T x)
+    (hInteriorBoundary :
+      Whole.functionClosure
+        (gaifmanNeighborhood Whole.graph
+          (componentFrom Whole.graph (iR '' T) y)) = iR '' T)
+    {n : ℕ}
+    (newRoots : Fin n → W)
+    (hRootInjective : Function.Injective newRoots)
+    (hSameRoot : Set.range newRoots = iR '' T) :
+    ∃ d : GeometricFunctionalPieceData Whole n,
+      d.roots = newRoots ∧
+      Set.range d.roots = iR '' T ∧
+      d.left.1 = iR x.1 ∧ d.right.1 = y.1 ∧
+      Whole.functionClosure
+        (gaifmanNeighborhood Whole.graph
+          (componentFrom Whole.graph (Set.range d.roots) d.left)) =
+            iR '' T := by
+  obtain ⟨m, d, hRoots, hLeft, hRight, _hBoundary⟩ :=
+    finite_outerOldRoot_hasGeometricPiece_of_oppositeBoundary
+      hFree T hTclosed x hPrivate hExteriorBoundary y
+      hyOpposite hInteriorBoundary
+  obtain ⟨e, hERoots, hECut, hELeft, hERight⟩ :=
+    geometricPiece_reenumerate_sameClosedCut
+      Whole d newRoots hRootInjective
+      (hSameRoot.trans hRoots.symm)
+  refine ⟨e, hERoots, hECut.trans hRoots,
+    hELeft.trans hLeft, hERight.trans hRight, ?_⟩
+  have hBoundaryE := geometricPiece_left_boundary_closure Whole e
+  simpa only [hECut, hRoots] using hBoundaryE
 
 end AllThoseRamseyClasses.Lifts
