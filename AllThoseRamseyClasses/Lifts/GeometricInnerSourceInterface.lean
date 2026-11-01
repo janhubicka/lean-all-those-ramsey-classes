@@ -67,7 +67,7 @@ theorem geometricGlobalSource_innerPrivate_in_selectedComponent
     apply he
     refine ⟨i, ?_⟩
     apply Subtype.ext
-    exact hi.symm
+    exact hi
   · exact hD
 
 end AllThoseRamseyClasses.Lifts
