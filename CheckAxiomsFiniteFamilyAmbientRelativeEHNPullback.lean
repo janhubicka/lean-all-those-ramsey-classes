@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyAmbientRelativeEHNPullback
+
+#print axioms AllThoseRamseyClasses.Lifts.ambientRelativeWeakHE_comp_EHNProjection
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedAmbientRelativeWeakCompletions_of_EHNProjection
