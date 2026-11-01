@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFunctionalFreeAmalgamSwap
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFunctionalFreeAmalgam_swap
