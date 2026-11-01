@@ -35,6 +35,38 @@ open StructuralRamsey
 open StructuralRamsey.Structure
 open AllThoseRamseyClasses.Lifts.RootCollisionFiveCycle
 
+/-! Explicit tuple indices avoid fragile typeclass synthesis of
+    Fin (language.graph.arity (.inl R)) in the nested graph language. -/
+private theorem edgeArity :
+    language.graph.arity (.inl false) = 2 := by decide
+
+private theorem ternaryArity :
+    language.graph.arity (.inl true) = 3 := by decide
+
+private def edge0 : Fin (language.graph.arity (.inl false)) :=
+  ⟨0, by rw [edgeArity]; decide⟩
+
+private def edge1 : Fin (language.graph.arity (.inl false)) :=
+  ⟨1, by rw [edgeArity]; decide⟩
+
+private def tern0 : Fin (language.graph.arity (.inl true)) :=
+  ⟨0, by rw [ternaryArity]; decide⟩
+
+private def tern1 : Fin (language.graph.arity (.inl true)) :=
+  ⟨1, by rw [ternaryArity]; decide⟩
+
+private def tern2 : Fin (language.graph.arity (.inl true)) :=
+  ⟨2, by rw [ternaryArity]; decide⟩
+
+private theorem edgeIndex_cases
+    (i : Fin (language.graph.arity (.inl false))) :
+    i = edge0 ∨ i = edge1 := by
+  have hi : i.val < 2 := by simpa only [edgeArity] using i.isLt
+  have h : i.val = 0 ∨ i.val = 1 := by omega
+  rcases h with h | h
+  · exact Or.inl (Fin.ext h)
+  · exact Or.inr (Fin.ext h)
+
 /-- On a source irreducible RELATIONAL graph test, any two
 distinct vertices must be adjacent in the five-cycle. The
 ternary source relation is empty and there are no functions. -/
@@ -53,20 +85,27 @@ theorem cycle5_adjacent_of_graphTestIrreducible
   | inl R =>
     cases R with
     | false =>
-      have hed : cycle5Edge (z 0).1 (z 1).1 := hrel
-      fin_cases i
-      · fin_cases j
-        · exact False.elim (hab (ha.symm.trans hb))
-        · have h0 : (z 0).1 = x := congrArg Subtype.val ha
-          have h1 : (z 1).1 = y := congrArg Subtype.val hb
-          simpa only [h0, h1] using hed
-      · fin_cases j
-        · have h0 : (z 0).1 = y := congrArg Subtype.val hb
-          have h1 : (z 1).1 = x := congrArg Subtype.val ha
-          have hs : cycle5Edge (z 1).1 (z 0).1 := by
-            simpa only [cycle5Edge, or_comm] using hed
-          simpa only [h0, h1] using hs
-        · exact False.elim (hab (ha.symm.trans hb))
+      have hed : cycle5Edge (z edge0).1 (z edge1).1 := by
+        change cycle5Edge (z edge0).1 (z edge1).1 at hrel
+        exact hrel
+      rcases edgeIndex_cases i with hi | hi <;>
+        rcases edgeIndex_cases j with hj | hj
+      · have hij : i = j := hi.trans hj.symm
+        exact False.elim (hab (ha.symm.trans (hij ▸ hb)))
+      · have h0 : (z edge0).1 = x := by
+          exact congrArg Subtype.val (hi ▸ ha)
+        have h1 : (z edge1).1 = y := by
+          exact congrArg Subtype.val (hj ▸ hb)
+        simpa only [h0, h1] using hed
+      · have h0 : (z edge0).1 = y := by
+          exact congrArg Subtype.val (hj ▸ hb)
+        have h1 : (z edge1).1 = x := by
+          exact congrArg Subtype.val (hi ▸ ha)
+        have hs : cycle5Edge (z edge1).1 (z edge0).1 := by
+          simpa only [cycle5Edge, or_comm] using hed
+        simpa only [h0, h1] using hs
+      · have hij : i = j := hi.trans hj.symm
+        exact False.elim (hab (ha.symm.trans (hij ▸ hb)))
     | true =>
       exact False.elim hrel
   | inr F =>
@@ -85,7 +124,10 @@ theorem weakColor_graphHomomorphismEmbedding :
     | inl R =>
       cases R with
       | false =>
-        exact weakColor_preserves_edges (xs 0) (xs 1) hrel
+        change cycle5Edge (xs edge0) (xs edge1) at hrel
+        change triangleEdge (weakColor (xs edge0))
+          (weakColor (xs edge1))
+        exact weakColor_preserves_edges (xs edge0) (xs edge1) hrel
       | true =>
         exact False.elim hrel
     | inr F =>
@@ -102,19 +144,24 @@ theorem weakColor_graphHomomorphismEmbedding :
     | inl R =>
       cases R with
       | false =>
+        change triangleEdge (weakColor (xs edge0))
+          (weakColor (xs edge1)) at hTarget
+        change cycle5Edge (xs edge0) (xs edge1)
         have hDiff : xs 0 ≠ xs 1 := by
           intro h
-          have hCol : weakColor (xs 0) ≠ weakColor (xs 1) :=
+          have hCol : weakColor (xs edge0) ≠ weakColor (xs edge1) :=
             hTarget
           exact hCol (congrArg weakColor h)
         exact cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs 0) (xs 1) (hxs 0) (hxs 1) hDiff
+          S hS (xs edge0) (xs edge1) (hxs 0) (hxs 1) hDiff
       | true =>
+        change extraTernary (weakColor (xs tern0))
+          (weakColor (xs tern1)) (weakColor (xs tern2)) at hTarget
         have hExtra :
             extraTernary
-              (weakColor (xs 0))
-              (weakColor (xs 1))
-              (weakColor (xs 2)) := hTarget
+              (weakColor (xs tern0))
+              (weakColor (xs tern1))
+              (weakColor (xs tern2)) := hTarget
         obtain ⟨h0, h1, h2⟩ := hExtra
         have h01 : xs 0 ≠ xs 1 := by
           intro h
@@ -132,13 +179,13 @@ theorem weakColor_graphHomomorphismEmbedding :
             h2.symm.trans ((congrArg weakColor h).trans h0)
           exact (by decide : (2 : Fin 3) ≠ 0) hc
         have e01 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs 0) (xs 1) (hxs 0) (hxs 1) h01
+          S hS (xs tern0) (xs tern1) (hxs 0) (hxs 1) h01
         have e12 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs 1) (xs 2) (hxs 1) (hxs 2) h12
+          S hS (xs tern1) (xs tern2) (hxs 1) (hxs 2) h12
         have e20 := cycle5_adjacent_of_graphTestIrreducible
-          S hS (xs 2) (xs 0) (hxs 2) (hxs 0) h20
+          S hS (xs tern2) (xs tern0) (hxs 2) (hxs 0) h20
         exact False.elim
-          (cycle5_no_triangle (xs 0) (xs 1) (xs 2)
+          (cycle5_no_triangle (xs tern0) (xs tern1) (xs tern2)
             ⟨e01, e12, e20⟩)
     | inr F =>
       exact Empty.elim F
