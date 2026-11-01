@@ -72,7 +72,7 @@ theorem forbiddenEHNWitness_injectiveReplacement_of_printedTupleRange
     ehn_closedRange_surjectiveInducedFactor
       w.source Target w.toTarget w.homEmbedding hClosed
   obtain ⟨Z, P, hP, ⟨e⟩⟩ :=
-    hImage w.source Q q w.forbidden hqData.1 hqData.2 hTuple
+    hImage w.source Q q w.forbidden hqData.1 hTuple
   letI : Finite Z := hFiniteF P hP
   let emb : Structure.Embedding P Target :=
     (Target.inclusion S hClosed).comp e
