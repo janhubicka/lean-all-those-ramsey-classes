@@ -61,9 +61,7 @@ def functionalRootedIso_outsideRoot
     apply x.2
     refine ⟨i, ?_⟩
     apply e.equiv.injective
-    calc
-      e.equiv (P.root i) = Q.root i := e.roots i
-      _ = e.equiv x.1 := hi⟩
+    exact (e.roots i).trans hi⟩
 
 /-- All actual source paths avoiding the root transport through
 the full rooted graph/function isomorphism, including zero-length
