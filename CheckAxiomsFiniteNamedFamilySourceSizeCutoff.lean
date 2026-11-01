@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteNamedFamilySourceSizeCutoff
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedSource_card_le_totalCutoff
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedFamily_has_finite_test_cutoff
