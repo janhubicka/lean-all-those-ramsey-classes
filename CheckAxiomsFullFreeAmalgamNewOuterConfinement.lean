@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamNewOuterConfinement
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightPrivate_neighbor_in_right
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_newOuterComponent_confined_to_old
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_newOuterRightPrivate_inside_oldComponent
