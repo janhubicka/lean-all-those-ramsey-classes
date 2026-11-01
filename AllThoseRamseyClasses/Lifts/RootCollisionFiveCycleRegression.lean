@@ -51,6 +51,20 @@ def weakColor (a : Fin 5) : Fin 3 :=
   else if a = 1 ∨ a = 3 then 1
   else 2
 
+/-- Concrete computable decision procedures for the three finite
+relations used in the exhaustive regression certificates. -/
+instance (a b : Fin 5) : Decidable (cycle5Edge a b) := by
+  unfold cycle5Edge
+  infer_instance
+
+instance (a b : Fin 3) : Decidable (triangleEdge a b) := by
+  unfold triangleEdge
+  infer_instance
+
+instance (a b c : Fin 3) : Decidable (extraTernary a b c) := by
+  unfold extraTernary
+  infer_instance
+
 /-- Source edges are preserved by the weak map. -/
 theorem weakColor_preserves_edges :
     ∀ a b : Fin 5, cycle5Edge a b →
