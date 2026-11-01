@@ -169,8 +169,9 @@ theorem geometricOuterOrderedRoot_retainedComplement_range
     Set.range (fun i : Fin n =>
       iE (⟨P.roots i, hOuterRootOutside i⟩ :
         (geometricGlobalComplementChart Old d).Carrier)) =
-      iE '' {b : (geometricGlobalComplementChart Old d).Carrier |
-        b.1 ∈ (Set.range P.roots)} := by
+      {w : NewV |
+        ∃ (b : (geometricGlobalComplementChart Old d).Carrier)
+          (i : Fin n), b.1 = P.roots i ∧ iE b = w} := by
   constructor
   · intro i j hij
     apply P.roots_injective
@@ -184,12 +185,11 @@ theorem geometricOuterOrderedRoot_retainedComplement_range
   · ext w
     constructor
     · rintro ⟨i, rfl⟩
-      exact ⟨⟨P.roots i, hOuterRootOutside i⟩,
-        ⟨i, rfl⟩, rfl⟩
-    · rintro ⟨b, ⟨i, hi⟩, rfl⟩
+      exact ⟨⟨P.roots i, hOuterRootOutside i⟩, i, rfl, rfl⟩
+    · rintro ⟨b, i, hbi, rfl⟩
       refine ⟨i, ?_⟩
       apply congrArg iE
       apply Subtype.ext
-      exact hi
+      exact hbi.symm
 
 end AllThoseRamseyClasses.Lifts
