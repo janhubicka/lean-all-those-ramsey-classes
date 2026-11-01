@@ -1679,3 +1679,54 @@ before treating this cleanup as integrated.
 source geometry and all-test profile transport under iterated flips,
 together with an unrestricted treatment of colliding EHN root images.
 The numbered mathematical manuscript text remains frozen.
+
+
+## 1 November 2026 — CI-verified Track B contextual profile theorem
+
+This update supersedes ONLY the pending *contextual profile*
+part of the 31 October checkpoint; it does not edit or retroactively
+reinterpret the historical audit.
+
+**Exact Lean endpoints on main:**
+
+| Full native functional obligation | Merged proof |
+| --- | --- |
+| Named actual full induced contexts, exact side coordinates, and outer-to-nested test construction | [#741](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/741) |
+| Full converse reassociation, two-stage all-test congruence and rooted onto-isomorphism transport | [#746](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/746) |
+| Complete contextual profile for chosen literal inner replacements under an arbitrary fully embedded outer root | [#750](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/750) |
+| Full original outer-root embedding through the retained complement | [#752](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/752) |
+| Actual old/new induced-context profile and exact ordered root coordinates | [#753](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/753) |
+| Exact old nested-context carrier = original geometric outer-piece carrier | [#754](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/754) |
+| Equal function-closed carriers yield identical full rooted profiles | [#758](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/758) |
+| **Actual original geometric outer piece** and **new transported source context** have the same ALL-test profile under explicit containment, survival, and literal full-gluing hypotheses | [#767](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/767) |
+
+All eight PRs passed the full-library Lean build, individual
+`#print axioms`, repository-wide permitted-axiom checks,
+source-contract and no-admissions checks. The theorem
+`geometricOriginalPiece_profile_equiv_transportContext`
+does **not** require global injectivity of a weak source-to-target
+homomorphism or forbidden-family isomorphism closure. It preserves
+all native set-valued function fibres; the two cuts need not be
+nested. The selected inner piece's entire component and full root
+MUST lie in the old outer piece, and the old outer root MUST survive
+in the full retained complement.
+
+**Critical outstanding geometric statement:** the new transported
+context must be proved to be the closed old root plus exactly ONE
+new outside-root component, and that component's entire generated
+Gaifman-neighbourhood boundary must equal the old root. Without
+this, the context is not known to be a genuine 2019 forbidden piece,
+regardless of its verified profile.
+
+Further separate obligations: proper B-only local SOURCE-count
+descent, a final A-only contradiction, root-image collisions, and
+the unrestricted global maximal-lift shadow-avoidance theorem.
+The algebraic full-root chart equality and actual global quotient
+index bridge are being separately investigated in draft
+[#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776)
+and [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781).
+Both remain **unverified** until their respective complete CI passes.
+
+The manuscript's numbered `ramsey.tex` remains frozen; ATRC-069
+in the separate validation notes remains open/orange for the
+new-source minimal-separator geometry.
