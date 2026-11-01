@@ -79,7 +79,7 @@ theorem ehnHomomorphismEmbedding_codRestrictWeak
 literal weak induced vertex sets S of a native candidate D.
 
 The bound is stated WITHOUT choosing a maximum source size:
-S must admit a surjection from the carrier of some particular
+S must receive a surjection from the carrier of some particular
 forbidden source. For finite carriers this is equivalent to
 |S| <= |F_i|, including empty and colliding source images.
 
