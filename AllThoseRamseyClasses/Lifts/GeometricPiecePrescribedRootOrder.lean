@@ -57,7 +57,10 @@ theorem geometricPiece_reenumerate_sameClosedCut
     ⟨d.right.1, by simpa only [hSameCut] using d.right.2⟩
   have hMinimal :
       IsMinimalClosedSeparator A (Set.range newRoots) left right := by
-    simpa only [hSameCut] using d.minimal
+    cases hSameCut
+    have hLeft : left = d.left := Subtype.ext rfl
+    have hRight : right = d.right := Subtype.ext rfl
+    simpa only [hLeft, hRight] using d.minimal
   let e : GeometricFunctionalPieceData A n := {
     roots := newRoots
     roots_injective := hInjective
@@ -151,9 +154,8 @@ theorem geometricOuterOrderedRoot_retainedComplement_range
     Set.range (fun i : Fin n =>
       iE (⟨P.roots i, hOuterRootOutside i⟩ :
         (geometricGlobalComplementChart Old d).Carrier)) =
-      iE '' ((fun b :
-        (geometricGlobalComplementChart Old d).Carrier => b.1) ⁻¹'
-          Set.range P.roots) := by
+      iE '' {b : (geometricGlobalComplementChart Old d).Carrier |
+        b.1 ∈ Set.range P.roots} := by
   constructor
   · intro i j hij
     apply P.roots_injective
