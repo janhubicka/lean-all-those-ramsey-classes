@@ -97,6 +97,68 @@ theorem finiteSourceSupport_terminalLeftDrop_of_outsideEq
     finiteSourceSupport_card_split g FinalContext AOnly
   omega
 
+/-- The concrete source-geometric ONE-STEP exterior-support
+invariant for ANY chosen target region, including the original
+LEFT-exclusive region. The old outer context is the ACTUAL
+geometric piece P; the new context is all of the replacement
+inner piece together with precisely the retained complement
+vertices which belonged to P.
+
+The equality counts SOURCE vertices and refers to the SAME full
+native replacement source, the SAME two maps, and exactly the
+complete complement whose target map is unchanged. It does not
+require a new geometric-piece recognition, outer profile
+preservation or global weak-target-map injectivity. -/
+theorem geometricInnerSubpiece_outsideSupport_card_eq
+    {V W UT : Type}
+    [Finite V] [Finite W]
+    (Old : Structure L V)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Old n)
+    (d : GeometricFunctionalPieceData Old m)
+    (hInnerInside :
+      geometricPieceVertices Old d ⊆ geometricPieceVertices Old P)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old d).root)
+    (New : Structure L W)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old d).str New)
+    (hNewFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old d).rootEmbedding iQ iE)
+    (f : V → UT) (g : W → UT)
+    (TargetSet : Set UT)
+    (hSameComplement :
+      ∀ b : (geometricGlobalComplementChart Old d).Carrier,
+        g (iE b) = f b.1) :
+    Nat.card {w : W //
+      w ∉ (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old P d)) ∧
+      g w ∈ TargetSet} =
+    Nat.card {v : V //
+      v ∉ geometricPieceVertices Old P ∧ f v ∈ TargetSet} := by
+  let E := geometricGlobalComplementChart Old d
+  letI : Finite E.Carrier :=
+    Finite.of_injective (fun b : E.Carrier => b.1)
+      (by intro a b hab; exact Subtype.ext hab)
+  have hRootInP : ∀ i : Fin m,
+      d.roots i ∈ geometricPieceVertices Old P := by
+    intro i
+    exact hInnerInside (Or.inl ⟨i, rfl⟩)
+  have hOutside :=
+    fullFreeAmalgam_contextOutside_support_card_eq
+      (geometricGlobalSource_freeDiagram Old d)
+      hNewFree
+      (oldOuterContextInInnerComplement Old P d)
+      (oldOuterContext_contains_innerRoot Old P d hRootInP)
+      f g TargetSet hSameComplement
+  have hOldCarrier :=
+    geometricInnerSubpiece_oldOuterContext_eq
+      Old P d hInnerInside
+  rw [← hOldCarrier]
+  exact hOutside
+
 /-- The outside-A count is invariant along ANY FINITE sequence
 of genuine contextual steps, if it is invariant for each step.
 The state may package different finite native source carrier types;
