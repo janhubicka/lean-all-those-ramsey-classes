@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricInnerSourceInterface
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_innerRoot_range_eq
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_innerPrivate_in_selectedComponent
