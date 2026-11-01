@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricRetainedInteriorPath
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_retainedInterior_has_newRootPath
