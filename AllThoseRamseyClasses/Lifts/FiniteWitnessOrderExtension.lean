@@ -50,7 +50,7 @@ theorem exists_finiteLinearOrder_extending_injection
   let eV : V ≃ Fin (Nat.card V) := Finite.equivFin V
   let label : V → WithBot U :=
     fun y => if h : ∃ x : U, f x = y then
-      (Classical.choose h : WithBot U) else ⊥
+      (↑(Classical.choose h : U) : WithBot U) else ⊥
   let code : V → WithBot U ×ₗ Fin (Nat.card V) :=
     fun y => toLex (label y, eV y)
   have hcode : Function.Injective code := by
@@ -62,7 +62,7 @@ theorem exists_finiteLinearOrder_extending_injection
   refine ⟨o, ?_⟩
   have hlabel (x : U) : label (f x) = (x : WithBot U) := by
     change (if h : ∃ z : U, f z = f x then
-      (Classical.choose h : WithBot U) else ⊥) = (x : WithBot U)
+      (↑(Classical.choose h : U) : WithBot U) else ⊥) = (x : WithBot U)
     have hx : ∃ z : U, f z = f x := ⟨x, rfl⟩
     rw [dif_pos hx]
     exact congrArg (fun z : U => (z : WithBot U))
