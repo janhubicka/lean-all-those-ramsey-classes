@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalCountableTraceRepresentatives
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalStructureRelabelEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_exists_finRepresentative
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_countable_finRepresentatives
+#print axioms AllThoseRamseyClasses.Lifts.globalMaximalTraceAge_countableIsoCover
