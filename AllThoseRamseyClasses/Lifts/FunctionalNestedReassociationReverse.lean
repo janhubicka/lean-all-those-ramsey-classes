@@ -220,4 +220,42 @@ theorem fullFunctionalFreeAmalgam_reassociate_right_reverse
         rw [kP.map_func Fn pargs] at hmem
         exact hmem
 
+
+/-- A fully compatible nested native functional diagram can be
+reassociated in BOTH directions, with neither separating root
+required to contain the other. The statement includes the exact
+functional source semantics, not a graph-encoding surrogate. -/
+theorem fullFunctionalFreeAmalgam_reassociate_right_iff
+    {S M T C R P E X : Type v}
+    {Start : Structure L S}
+    {Mstr : Structure L M} {Tstr : Structure L T}
+    {Mid : Structure L C}
+    {Root : Structure L R} {Piece : Structure L P}
+    {Ext : Structure L E} {Out : Structure L X}
+    {sM : Structure.Embedding Start Mstr}
+    {sT : Structure.Embedding Start Tstr}
+    {iM : Structure.Embedding Mstr Mid}
+    {iT : Structure.Embedding Tstr Mid}
+    {rT : Structure.Embedding Root Tstr}
+    {rP : Structure.Embedding Root Piece}
+    {jT : Structure.Embedding Tstr Ext}
+    {jP : Structure.Embedding Piece Ext}
+    {kMid : Structure.Embedding Mid Out}
+    {kP : Structure.Embedding Piece Out}
+    (hMid : Structure.IsFreeAmalgam sM sT iM iT)
+    (hExt : Structure.IsFreeAmalgam rT rP jT jP)
+    (eExt : Structure.Embedding Ext Out)
+    (heT : ∀ t : T, eExt (jT t) = kMid (iT t))
+    (heP : ∀ p : P, eExt (jP p) = kP p) :
+    Structure.IsFreeAmalgam (iT.comp rT) rP kMid kP ↔
+      Structure.IsFreeAmalgam
+        sM (jT.comp sT) (kMid.comp iM) eExt := by
+  constructor
+  · intro hOut
+    exact Structure.IsFreeAmalgam.reassociate_right
+      hMid hExt hOut eExt heT heP
+  · intro hRe
+    exact fullFunctionalFreeAmalgam_reassociate_right_reverse
+      hMid hExt eExt heT heP hRe
+
 end AllThoseRamseyClasses.Lifts
