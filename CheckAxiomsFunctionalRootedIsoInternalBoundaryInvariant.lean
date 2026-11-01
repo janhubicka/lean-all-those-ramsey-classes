@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FunctionalRootedIsoInternalBoundaryInvariant
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_rootRange_image
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_internalBoundary_forward
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_internalBoundary_iff
