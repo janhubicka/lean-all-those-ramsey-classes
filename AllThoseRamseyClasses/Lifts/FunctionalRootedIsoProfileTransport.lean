@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.FreeAmalgamSideIso
 import AllThoseRamseyClasses.Lifts.FunctionalDiagramFlip
+import AllThoseRamseyClasses.Lifts.FreeAmalgamDiagramUniqueness
 
 /-!
 # Native forbidden test profiles are invariant under rooted FULL isomorphism
@@ -83,5 +84,47 @@ theorem functionalDiagramPiece_equiv_of_ontoRootIso
   intro Test
   exact forbiddenFunctionalDiagram_iff_of_ontoRootIso
     Root F P P' e he hroot Test
+
+
+/-- Two ACTUAL native free amalgams of the same M and T sides over
+the same Start have exactly the same R-rooted incompatibility profile
+for EVERY full outer root embedded in T. The chosen source carriers
+and the location of the outer root are allowed to differ.
+
+The canonical onto FULL isomorphism of the two amalgam diagrams
+identifies their entire T sides, hence their R-root coordinates.
+No forbidden-family isomorphism-closure axiom is required. -/
+theorem functionalDiagramPiece_equiv_of_sameTwoSideContext
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {S M T C C' R : Type}
+    {Start : Structure L S}
+    {Mstr : Structure L M} {Tstr : Structure L T}
+    {Old : Structure L C} {New : Structure L C'}
+    {Root : Structure L R}
+    {sM : Structure.Embedding Start Mstr}
+    {sT : Structure.Embedding Start Tstr}
+    {iM : Structure.Embedding Mstr Old}
+    {iT : Structure.Embedding Tstr Old}
+    {jM : Structure.Embedding Mstr New}
+    {jT : Structure.Embedding Tstr New}
+    (hOld : Structure.IsFreeAmalgam sM sT iM iT)
+    (hNew : Structure.IsFreeAmalgam sM sT jM jT)
+    (rT : Structure.Embedding Root Tstr) :
+    (functionalDiagramPieceSetoid Root F).r
+      ({ Carrier := C, str := Old,
+         rootEmbedding := iT.comp rT } : FunctionalRootExtension Root)
+      ({ Carrier := C', str := New,
+         rootEmbedding := jT.comp rT } : FunctionalRootExtension Root) := by
+  obtain ⟨e, heSurj, _heM, heT⟩ :=
+    freeAmalgamDiagram_unique hOld hNew
+  apply functionalDiagramPiece_equiv_of_ontoRootIso
+    Root F
+    ({ Carrier := C, str := Old,
+       rootEmbedding := iT.comp rT } : FunctionalRootExtension Root)
+    ({ Carrier := C', str := New,
+       rootEmbedding := jT.comp rT } : FunctionalRootExtension Root)
+    e heSurj
+  intro r
+  exact heT (rT r)
 
 end AllThoseRamseyClasses.Lifts
