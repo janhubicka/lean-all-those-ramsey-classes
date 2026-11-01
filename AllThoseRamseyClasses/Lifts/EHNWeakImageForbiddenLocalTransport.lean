@@ -99,25 +99,25 @@ theorem forbiddenWeakImage_injectiveReplacement_of_localTransport
     toTarget := g
     homEmbedding := hTransport P hP e
   }
-  let section (z : Z) : w.Carrier :=
+  let pickPreimage (z : Z) : w.Carrier :=
     Classical.choose (hqSurj (e z))
-  have hSection (z : Z) : q (section z) = e z :=
+  have hSection (z : Z) : q (pickPreimage z) = e z :=
     Classical.choose_spec (hqSurj (e z))
-  have hSectionInj : Function.Injective section := by
+  have hSectionInj : Function.Injective pickPreimage := by
     intro z z' h
     apply e.injective
     calc
-      e z = q (section z) := (hSection z).symm
-      _ = q (section z') := congrArg q h
+      e z = q (pickPreimage z) := (hSection z).symm
+      _ = q (pickPreimage z') := congrArg q h
       _ = e z' := hSection z'
   have hSupportEq (z : Z) :
-      w.toTarget (section z) = v.toTarget z := by
-    change (q (section z)).1 = (e z).1
+      w.toTarget (pickPreimage z) = v.toTarget z := by
+    change (q (pickPreimage z)).1 = (e z).1
     exact congrArg Subtype.val (hSection z)
   let supportMap :
       {z : Z // v.toTarget z ∈ AOnly} →
       {x : w.Carrier // w.toTarget x ∈ AOnly} :=
-    fun z => ⟨section z.1, by
+    fun z => ⟨pickPreimage z.1, by
       rw [hSupportEq]
       exact z.2⟩
   have hSupportInj : Function.Injective supportMap := by
