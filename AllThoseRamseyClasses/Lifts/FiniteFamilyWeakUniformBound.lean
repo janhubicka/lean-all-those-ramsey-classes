@@ -99,6 +99,6 @@ theorem avoidsFiniteNamedEHN_of_uniformWeakCompletions
     (h : FiniteNamedUniformWeakCompletions Family D) :
     AvoidsFiniteNamedEHN Family D :=
   avoidsFiniteNamedEHN_of_weakSmallCompletions
-    Family D (h.to_sourceSmall Family)
+    Family D (FiniteNamedUniformWeakCompletions.to_sourceSmall Family h)
 
 end AllThoseRamseyClasses.Lifts
