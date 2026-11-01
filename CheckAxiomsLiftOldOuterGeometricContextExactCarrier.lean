@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.OldOuterGeometricContextExactCarrier
+
+#check AllThoseRamseyClasses.Lifts.geometricOldOuterContext_eq_outerPieceVertices
+#print axioms AllThoseRamseyClasses.Lifts.geometricOldOuterContext_eq_outerPieceVertices
