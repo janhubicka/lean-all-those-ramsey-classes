@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricNewInnerRootBoundaryContribution
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricNewInnerRoot_in_outerGeneratedBoundary
