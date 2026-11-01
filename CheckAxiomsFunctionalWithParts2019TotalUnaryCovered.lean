@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019TotalUnaryCovered
+
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_tagged_in_K
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_tagged_UClosed
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_tagged_correctedCovered
