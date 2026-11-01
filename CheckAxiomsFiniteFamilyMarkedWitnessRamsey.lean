@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMarkedWitnessRamsey
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMarkedWitnessRamsey_of_nativeAvoidance
