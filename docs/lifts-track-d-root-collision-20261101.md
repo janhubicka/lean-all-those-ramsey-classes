@@ -155,6 +155,42 @@ agrees with literal forbidden-family membership only with the
 usual isomorphism-closure convention. No change to
 the frozen numbered manuscript is justified yet.
 
+## New independent weak-image route (continuation)
+
+`EHNWeakImageForbiddenLocalTransport.lean` now separates another route
+from the earlier **full induced closed range** route.
+
+* `originalPartialHE_weakImage_quotient_data` already gives an
+  **original-partial HE** `q : Source → Q` onto the source-generated
+  weak-image quotient, **tuple-surjective** (and incidentally
+  vertex-surjective). The *printed* `HasTupleSurjectiveForbiddenImageClosure`
+  therefore applies directly to `Q` with NO closed-range,
+  function-input coverage, or additional tuple-coverage premise.
+* The actual closure conclusion is a FULL forbidden copy `P ↪ Q`.
+  Its composition with the weak inclusion `Q → Target` is
+  injective and positive, but NOT automatically an EHN map.
+* The specifically named `ForbiddenFullWeakImagePiecesTransport`
+  is the separate hypothesis that ALL full forbidden copies of
+  this particular `Q` **do** transport as EHN maps into the
+  original target. The conditional theorem constructs an actual
+  injective forbidden target witness and proves its original
+  A-only **source support never increases**. A global
+  support-minimizer corollary uses the same local transport
+  condition for all witnesses.
+
+This is a more local possible route for the original maximal
+common-lift argument: it asks for EHN reflection only on
+**forbidden substructures of the generated quotient**, not a
+full embedding of the entire weak quotient and not tuple coverage
+of the *full induced range*. That local reflection is still
+NOT proved from the printed original hypotheses or from root
+maximality. The earlier C5/T target specifically demonstrates
+why it can fail for arbitrary targets.
+
+The new lemma is **submitted to CI, not yet kernel-certified**.
+Do not claim it proves unrestricted injectivization; it exposes
+the remaining local full-test reflection obligation.
+
 ## Track D proof gates (not discharged)
 
 1. **Faithful hypothesis:** the original-partial HE predicate,
