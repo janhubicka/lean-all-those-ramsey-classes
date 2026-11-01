@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019TotalUnaryRelativeGap
+
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_ambientRelative_H_completion
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_relative_but_no_full_intrinsic_H_completion
