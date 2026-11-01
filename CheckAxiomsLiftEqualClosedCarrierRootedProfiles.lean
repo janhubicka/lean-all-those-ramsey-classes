@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.EqualClosedCarrierRootedProfiles
+
+#check AllThoseRamseyClasses.Lifts.equalClosedCarrier_hasFullInducedIso
+#check AllThoseRamseyClasses.Lifts.equalClosedCarrier_rootedProfiles_equiv
+
+#print axioms AllThoseRamseyClasses.Lifts.equalClosedCarrier_hasFullInducedIso
+#print axioms AllThoseRamseyClasses.Lifts.equalClosedCarrier_rootedProfiles_equiv
