@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeneratedSubcomponentBoundaryLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.generatedSubcomponentBoundary_inter_cut_subset_componentBoundary
