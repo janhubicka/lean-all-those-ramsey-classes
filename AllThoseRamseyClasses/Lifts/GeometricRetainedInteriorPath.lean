@@ -28,6 +28,20 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}} {V W : Type} {n : ℕ}
 
+/-- Equality of source closed cuts identifies their complete Gaifman
+components when the underlying chosen root vertex is the same.
+This avoids rewriting a dependent subtype-valued root directly. -/
+theorem sourceGaifmanComponent_eq_of_cut_eq
+    (A : Structure L V) {S T : Set V}
+    (hST : S = T)
+    (x : {v : V // v ∉ S}) (y : {v : V // v ∉ T})
+    (hxy : x.1 = y.1) :
+    componentFrom A.graph S x = componentFrom A.graph T y := by
+  cases hST
+  have h : x = y := Subtype.ext hxy
+  cases h
+  rfl
+
 /-- Every retained old outer-interior vertex connected to the
 genuine selected geometric inner component outside an arbitrary
 older cut has a path in the replacement source from a surviving
@@ -76,6 +90,10 @@ theorem geometricGlobalSource_retainedInterior_has_newRootPath
   let inner : {w : V // w ∉ U} := ⟨d.left.1, by
     rw [hU]
     exact d.left.2⟩
+  have hSameComponent :
+      componentFrom A.graph U inner =
+        componentFrom A.graph (Set.range d.roots) d.left :=
+    sourceGaifmanComponent_eq_of_cut_eq A hU inner d.left rfl
   have hPrivate :
       ∀ e : (geometricGlobalFunctionalChart A d).ext.Carrier,
         e ∉ Set.range
@@ -87,14 +105,17 @@ theorem geometricGlobalSource_retainedInterior_has_newRootPath
     have hh :=
       geometricGlobalSource_innerPrivate_in_selectedComponent A d e he
     change e.1 ∈ componentFrom A.graph U inner
-    simpa [U, inner, geometricGlobalSource_innerRoot_range_eq A d] using hh
+    rw [hSameComponent]
+    exact hh
   have hxU : x.1 ∈ componentFrom A.graph U inner := by
     change x.1 ∈ componentFrom A.graph U inner
-    simpa [U, inner, geometricGlobalSource_innerRoot_range_eq A d] using hx
+    rw [hSameComponent]
+    exact hx
   have hyU :
       oldComp y.1 ∉ componentFrom A.graph U inner := by
     change oldComp y.1 ∉ componentFrom A.graph U inner
-    simpa [U, inner, geometricGlobalSource_innerRoot_range_eq A d] using hyRetained
+    rw [hSameComponent]
+    exact hyRetained
   exact fullFreeAmalgam_retainedInterior_has_newRootPath
     (geometricGlobalSource_freeDiagram A d)
     jComp T inner hPrivate x hxU y hyU hOldPath
