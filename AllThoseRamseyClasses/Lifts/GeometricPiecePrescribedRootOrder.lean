@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.FullFreeAmalgamOuterOldRootCriterion
+import AllThoseRamseyClasses.Lifts.GeometricGlobalFreeDiagram
 
 /-!
 # Track C: recover the prescribed original order of a transported geometric root
@@ -124,5 +125,54 @@ theorem finite_outerOldRoot_hasGeometricPiece_withPrescribedRoots
     hELeft.trans hLeft, hERight.trans hRight, ?_⟩
   exact (geometricPiece_left_boundary_closure Whole e).trans
     (hECut.trans hRoots)
+
+/-- The *original ordered outer root*, transported through the
+complete retained complement under a FULL embedding, has exactly
+the expected image root SET and is still injective.
+
+This replaces a guessed new enumeration by the actual coordinates
+provided by the contextual flip. It is purely source-side and
+independent of the weak forbidden target map. -/
+theorem geometricOuterOrderedRoot_retainedComplement_range
+    {OldV NewV : Type v}
+    (Old : Structure L OldV)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Old n)
+    (d : GeometricFunctionalPieceData Old m)
+    (hOuterRootOutside : ∀ i : Fin n,
+      P.roots i ∉ functionalComponentFrom Old
+        (Set.range d.roots) d.left)
+    (New : Structure L NewV)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old d).str New) :
+    Function.Injective (fun i : Fin n =>
+      iE (⟨P.roots i, hOuterRootOutside i⟩ :
+        (geometricGlobalComplementChart Old d).Carrier)) ∧
+    Set.range (fun i : Fin n =>
+      iE (⟨P.roots i, hOuterRootOutside i⟩ :
+        (geometricGlobalComplementChart Old d).Carrier)) =
+      iE '' ((fun b :
+        (geometricGlobalComplementChart Old d).Carrier => b.1) ⁻¹'
+          Set.range P.roots) := by
+  constructor
+  · intro i j hij
+    apply P.roots_injective
+    have hCoord :
+        (⟨P.roots i, hOuterRootOutside i⟩ :
+          (geometricGlobalComplementChart Old d).Carrier) =
+        (⟨P.roots j, hOuterRootOutside j⟩ :
+          (geometricGlobalComplementChart Old d).Carrier) :=
+      iE.injective hij
+    exact congrArg Subtype.val hCoord
+  · ext w
+    constructor
+    · rintro ⟨i, rfl⟩
+      exact ⟨⟨P.roots i, hOuterRootOutside i⟩,
+        ⟨i, rfl⟩, rfl⟩
+    · rintro ⟨b, ⟨i, hi⟩, rfl⟩
+      refine ⟨i, ?_⟩
+      apply congrArg iE
+      apply Subtype.ext
+      exact hi
 
 end AllThoseRamseyClasses.Lifts
