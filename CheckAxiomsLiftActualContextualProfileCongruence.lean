@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.ActualContextualProfileCongruence
+
+-- Actual source, EVERY outer-root test, no nesting of full roots,
+-- and no forbidden-family isomorphism closure premise.
+#check AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTest_to_outerActual
+#check AllThoseRamseyClasses.Lifts.forbiddenOuterActual_iff_nestedFunctionalTest
+#check AllThoseRamseyClasses.Lifts.functionalActualContext_profile_equiv_of_inner_equiv
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNestedFunctionalTest_to_outerActual
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenOuterActual_iff_nestedFunctionalTest
+#print axioms AllThoseRamseyClasses.Lifts.functionalActualContext_profile_equiv_of_inner_equiv
