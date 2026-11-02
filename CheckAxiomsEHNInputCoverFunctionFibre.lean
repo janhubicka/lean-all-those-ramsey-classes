@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNInputCoverFunctionFibre
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_fullFunctionFibre_of_inputTests
+#print axioms AllThoseRamseyClasses.Lifts.ehn_actualInducedRange_tupleSurjective_of_inputTests_and_relationCover
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveMinimalForbiddenEHNWitness_of_printedClosure_and_covers

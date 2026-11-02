@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.EHNFiveCycleImageFamilyConnected
+
+#print axioms AllThoseRamseyClasses.Lifts.weakGaifmanReach_map
+#print axioms AllThoseRamseyClasses.Lifts.weakSurjectiveImage_connectedNonempty
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5Edge_gaifman
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5_reachable_from_zero
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5_connectedNonempty
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.fiveCycleImageFamily_connectedNonempty

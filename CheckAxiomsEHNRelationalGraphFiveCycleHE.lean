@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNRelationalGraphFiveCycleHE
+
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5_adjacent_of_graphTestIrreducible
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.weakColor_graphHomomorphismEmbedding
