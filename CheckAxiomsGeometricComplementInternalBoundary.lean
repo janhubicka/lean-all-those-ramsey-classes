@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricComplementInternalBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalComplement_internalBoundary_eq_root
