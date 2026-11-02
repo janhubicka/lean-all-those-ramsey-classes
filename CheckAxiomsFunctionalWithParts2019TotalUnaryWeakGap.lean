@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019TotalUnaryWeakGap
+
+#print axioms AllThoseRamseyClasses.Published.totalUnaryPartiteH_closedHereditary
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_singleton_weak_undefined
+#print axioms AllThoseRamseyClasses.Published.totalUnaryToy_singleton_no_full_H_completion

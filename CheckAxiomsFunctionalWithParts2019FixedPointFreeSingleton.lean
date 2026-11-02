@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019FixedPointFreeSingleton
+
+#print axioms AllThoseRamseyClasses.Published.fixedPointFreeUnaryPartiteH_nonempty
+#print axioms AllThoseRamseyClasses.Published.fixedPointFreeUnaryPartiteH_closedHereditary
+#print axioms AllThoseRamseyClasses.Published.fixedPointFreeUnaryPartiteH_noWeakSingleton
+#print axioms AllThoseRamseyClasses.Published.fixedPointFreeUnary_fullWeakLocalAtOne
+
+#print axioms AllThoseRamseyClasses.Published.fixedPointFreeSwap_tagged_in_K

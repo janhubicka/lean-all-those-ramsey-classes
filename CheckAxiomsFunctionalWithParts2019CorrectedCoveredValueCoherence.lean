@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedCoveredValueCoherence
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_correctedCovered_uniqueCompleteValues
