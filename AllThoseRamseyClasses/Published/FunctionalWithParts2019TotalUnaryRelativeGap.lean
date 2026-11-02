@@ -120,4 +120,60 @@ theorem totalUnaryToy_relative_but_no_full_intrinsic_H_completion :
   exact totalUnaryToy_singleton_no_full_H_completion
     Target partTarget hTotal
 
+/-- Stronger than the singleton case: EVERY exact ambient-induced
+weak vertex set of the canonical total-unary two-point source has a
+genuine H-relative completion into the SAME two-point target.
+The full tagged inclusion is a corrected U-homomorphism-embedding.
+Neither the test carrier nor its part labels are enlarged. -/
+theorem totalUnaryToy_every_ambientRelative_H_completion
+    (S : Set (Fin 2)) :
+    HasGenuinePartiteTagged2019RelativeCompletion totalUnaryPartiteH
+      ((wholeMaskTagExpansion
+        (withPartsWholeMaskOld totalUnaryToy
+          (fun x : Fin 2 => x))).induce S) := by
+  let C := wholeMaskTagExpansion
+    (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))
+  let f : S → Fin 2 := Subtype.val
+  have hEmbedding : RelStructure.Embedding (C.induce S) C :=
+    inclusion C S
+  have hProtected : IsInducedClosedUHomomorphismEmbedding
+      ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2))
+      (C.induce S) C f :=
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      (hEmbedding.isClosedUHomomorphismEmbedding
+        ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2)))
+  exact ⟨Fin 2, inferInstance, totalUnaryToy,
+    (fun x : Fin 2 => x),
+    totalUnaryToy_mem, totalUnaryToy_transversal,
+    tagged_irreducible, f, hProtected⟩
+
+/-- An exact finite class-relative counterexample to a tempting
+pointwise strengthening of the local-axiom transfer: every ambient
+induced weak test has an H-valued 2019 completion, while the one
+intrinsic weak singleton cannot FULLY embed in any member of H.
+
+This demonstrates a failure of the ALL-TESTS premise conversion, not
+of the outer local-finiteness implication, whose consequent can
+still hold even when its antecedent is stronger. -/
+theorem totalUnaryToy_all_ambient_but_not_all_full_intrinsic :
+    (∀ S : Set (Fin 2),
+      HasGenuinePartiteTagged2019RelativeCompletion
+        totalUnaryPartiteH
+        ((wholeMaskTagExpansion
+          (withPartsWholeMaskOld totalUnaryToy
+            (fun x : Fin 2 => x))).induce S)) ∧
+    ¬ (∀ S : Set (Fin 2),
+      ∃ (X : Type) (_ : Finite X)
+        (Target : PartialSetStructure exampleLanguage X)
+        (partTarget : X → Fin 2),
+        totalUnaryPartiteH Target partTarget ∧
+        Nonempty (PartialSetStructure.Embedding
+          (wholeWeakInduce totalUnaryToy S) Target)) := by
+  refine ⟨totalUnaryToy_every_ambientRelative_H_completion, ?_⟩
+  intro hAll
+  let S : Set (Fin 2) := {(0 : Fin 2)}
+  obtain ⟨X, hFinite, Target, partTarget, hH, hFull⟩ := hAll S
+  exact totalUnaryToy_singleton_no_full_H_completion
+    Target partTarget hH hFull
+
 end AllThoseRamseyClasses.Published
