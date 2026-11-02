@@ -96,7 +96,15 @@ theorem ambientRelativeWeakHE_pullback_fullEmbedding
         ext z
         constructor
         · rintro ⟨y, hy, rfl⟩
-          exact ⟨j y, hy, rfl⟩
+          have hDval :
+              j y ∈ (D.weakInduce T).func F (j ∘ xs) := by
+            have hNative :
+                e y.1 ∈ D.func F
+                  (e ∘ (Subtype.val ∘ xs)) := by
+              rw [← e.map_func F (Subtype.val ∘ xs)]
+              exact ⟨y.1, hy, rfl⟩
+            exact hNative
+          exact ⟨j y, hDval, rfl⟩
         · rintro ⟨y, hy, rfl⟩
           have hNative :
               y.1 ∈ D.func F (e ∘ (Subtype.val ∘ xs)) := hy
