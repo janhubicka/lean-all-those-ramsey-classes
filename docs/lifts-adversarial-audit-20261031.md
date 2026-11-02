@@ -141,10 +141,19 @@ function-generated neighbourhood boundary** with the old full root,
 and that the context equals that component plus the root. Even then,
 identifying the resulting global quotient symbol must compare the
 entire ordered *functional root structures*, not just the tuple.
-Draft [#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776)
+Merged, fully axiom-audited [#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776)
 and [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781)
-study those algebraic root/global-index bridges; **neither is counted
-verified until full CI passes**.
+now prove the complete native functional root-structure identity
+under identical FULL root maps and the true selected GLOBAL quotient
+index transfer under identical all-test fixed-root profiles. Merged
+[#788](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/788)
+recovers a genuine geometric piece with the PRESCRIBED ordered old
+root when both generated boundary equations and the exact
+single-component context identity are supplied. Draft [#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+and stacked [#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796)
+are the final conditional global-symbol compositions; their full
+CI must pass before they are declared validated. Neither supplies
+the still-open arbitrary nested-flip opposite-boundary geometry.
 
 This finishes **Track B's actual contextual incompatibility-profile
 congruence**, not the unrestricted paper's Claim 2, root-injectivity
