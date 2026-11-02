@@ -36,17 +36,33 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- Full joint embedding of the original hereditary maximal-trace
-age forces FULL joint embedding of the underlying native class K.
-This is a converse to the earlier JEP transfer, under regularity
-and genuine native full-embedding heredity of K. -/
-theorem globalFiniteMaximalTrace_core_implies_nativeJEP
+/-- The EXACT standalone joint-embedding property of the original
+finite hereditary maximal-trace age. Neither HP nor strong AP is
+included here. This keeps the nullary counterexample targeted at
+JOINT EMBEDDING itself, rather than failure of a larger conjunction. -/
+def GlobalFiniteMaximalTraceAgeJEP
+    (F K : ∀ {W : Type}, Structure L W → Prop) : Prop :=
+  ∀ {VY VZ : Type}
+    (Y : Structure (globalFunctionalPieceLanguage F) VY)
+    (Z : Structure (globalFunctionalPieceLanguage F) VZ),
+    IsGlobalFiniteMaximalTrace F K Y →
+    IsGlobalFiniteMaximalTrace F K Z →
+    ∃ (VT : Type)
+      (T : Structure (globalFunctionalPieceLanguage F) VT),
+      IsGlobalFiniteMaximalTrace F K T ∧
+      ∃ (_jY : Structure.Embedding Y T)
+        (_jZ : Structure.Embedding Z T), True
+
+/-- The genuine maximal-trace JEP already forces native JEP under
+regularity and native full-embedding heredity. Strong AP is neither
+a hypothesis nor used in this proof. -/
+theorem globalFiniteMaximalTrace_jep_implies_nativeJEP
     (F K : ∀ {W : Type}, Structure L W → Prop)
     (hRegular : GlobalFunctionalPieceRegular F)
     (hHereditary : ∀ {UA UB : Type}
       {A : Structure L UA} {B : Structure L UB},
       Structure.Embedding A B → K B → K A)
-    (hCore : GlobalFiniteMaximalTraceAmalgamationCore F K) :
+    (hJEP : GlobalFiniteMaximalTraceAgeJEP F K) :
     GlobalNativeFiniteJEP K := by
   intro UA UB A B hFinA hFinB hKA hKB
   letI : Finite UA := hFinA
@@ -58,7 +74,7 @@ theorem globalFiniteMaximalTrace_core_implies_nativeJEP
     globalFiniteMaximalTraceAge_exists_above
       F K hRegular B hKB
   obtain ⟨UT, T, hT, jY, jZ, _⟩ :=
-    hCore.jointEmbedding Y Z hY hZ
+    hJEP Y Z hY hZ
   let C : Structure L UT :=
     functionalShadowBig L
       (GlobalFunctionalPieceSymbol F)
@@ -77,6 +93,38 @@ theorem globalFiniteMaximalTrace_core_implies_nativeJEP
       (GlobalFunctionalPieceSymbol F)
       (globalFunctionalPieceArity F) jZ
   exact ⟨UT, C, hT.1, hKC, eA, eB, True.intro⟩
+
+/-- The exact original maximal-trace JEP is EQUIVALENT to the
+full native JEP of K, under global regularity and full heredity of K.
+The reverse implication is the previously verified JEP transfer.
+No shadow-free amalgamation or Claim 2 is required. -/
+theorem globalFiniteMaximalTraceAge_JEP_iff_nativeJEP
+    (F K : ∀ {W : Type}, Structure L W → Prop)
+    (hRegular : GlobalFunctionalPieceRegular F)
+    (hHereditary : ∀ {UA UB : Type}
+      {A : Structure L UA} {B : Structure L UB},
+      Structure.Embedding A B → K B → K A) :
+    GlobalFiniteMaximalTraceAgeJEP F K ↔
+      GlobalNativeFiniteJEP K := by
+  constructor
+  · exact globalFiniteMaximalTrace_jep_implies_nativeJEP
+      F K hRegular hHereditary
+  · intro hNative VY VZ Y Z hY hZ
+    exact globalFiniteMaximalTraceAge_JEP_of_nativeJEP
+      F K hRegular hNative Y Z hY hZ
+
+/-- The earlier stronger bundled-core consequence remains available,
+but now transparently factors through only its JEP field. -/
+theorem globalFiniteMaximalTrace_core_implies_nativeJEP
+    (F K : ∀ {W : Type}, Structure L W → Prop)
+    (hRegular : GlobalFunctionalPieceRegular F)
+    (hHereditary : ∀ {UA UB : Type}
+      {A : Structure L UA} {B : Structure L UB},
+      Structure.Embedding A B → K B → K A)
+    (hCore : GlobalFiniteMaximalTraceAmalgamationCore F K) :
+    GlobalNativeFiniteJEP K :=
+  globalFiniteMaximalTrace_jep_implies_nativeJEP
+    F K hRegular hHereditary hCore.jointEmbedding
 
 /-- The truly EMPTY forbidden family has NO selected geometric
 pieces: each such piece would contain a forbidden witness, whose
@@ -97,15 +145,40 @@ theorem emptyGlobalForbiddenFamily_regular
       exact hF⟩
   infer_instance
 
-/-- With one genuine old NULLARY relation symbol, the ACTUAL
-hereditary regular original maximal global-lift age for the
-empty forbidden family is NOT a finite-age amalgamation core:
-even its joint-embedding axiom fails under FULL embeddings.
+/-- For a regular empty forbidden family, ONE old nullary
+relation obstructs JOINT EMBEDDING of the actual original global
+maximal-trace age. The conclusion concerns the JEP itself, not
+a bundled conjunction involving hereditary or strong AP.
 
-The empty family is explicitly proved regular above; this
-counterexample does not hide regularity as an extra hypothesis.
-It isolates the language-arity convention of the printed theorem,
-not an issue with the corrected 2019 relational Ramsey theorem. -/
+The proof uses the full native JEP equivalence and a literal finite
+counterexample. It applies only if arity-zero symbols are admitted
+by the language convention. -/
+theorem emptyForbidden_globalMaximalTraceAgeJEP_fails_of_nullaryRelation
+    (L : Language.{u}) (R : L.RelSymbol)
+    (hZero : L.relArity R = 0) :
+    ¬ GlobalFiniteMaximalTraceAgeJEP
+      (emptyGlobalForbiddenFamily L)
+      (fun {W : Type} (A : Structure L W) =>
+        AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A) := by
+  intro hJEP
+  have hNative :
+      GlobalNativeFiniteJEP
+        (fun {W : Type} (A : Structure L W) =>
+          AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A) :=
+    globalFiniteMaximalTrace_jep_implies_nativeJEP
+      (emptyGlobalForbiddenFamily L)
+      (fun {W : Type} (A : Structure L W) =>
+        AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A)
+      (emptyGlobalForbiddenFamily_regular L)
+      (fun e hB =>
+        avoidsGlobalFunctionalEHN_of_embedding
+          (emptyGlobalForbiddenFamily L) e hB)
+      hJEP
+  exact (emptyForbidden_nativeJEP_fails_of_nullaryRelation
+    L R hZero) hNative
+
+/-- The bundled HP/JEP/strong-AP age core fails as an immediate
+corollary of the stronger standalone JEP obstruction above. -/
 theorem emptyForbidden_globalMaximalTraceCore_notJEP_of_nullaryRelation
     (L : Language.{u}) (R : L.RelSymbol)
     (hZero : L.relArity R = 0) :
@@ -114,20 +187,7 @@ theorem emptyForbidden_globalMaximalTraceCore_notJEP_of_nullaryRelation
       (fun {W : Type} (A : Structure L W) =>
         AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A) := by
   intro hCore
-  have hNative :
-      GlobalNativeFiniteJEP
-        (fun {W : Type} (A : Structure L W) =>
-          AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A) :=
-    globalFiniteMaximalTrace_core_implies_nativeJEP
-      (emptyGlobalForbiddenFamily L)
-      (fun {W : Type} (A : Structure L W) =>
-        AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A)
-      (emptyGlobalForbiddenFamily_regular L)
-      (fun e hB =>
-        avoidsGlobalFunctionalEHN_of_embedding
-          (emptyGlobalForbiddenFamily L) e hB)
-      hCore
-  exact (emptyForbidden_nativeJEP_fails_of_nullaryRelation
-    L R hZero) hNative
+  exact (emptyForbidden_globalMaximalTraceAgeJEP_fails_of_nullaryRelation
+    L R hZero) hCore.jointEmbedding
 
 end AllThoseRamseyClasses.Lifts
