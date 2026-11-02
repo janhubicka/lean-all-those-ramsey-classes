@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.InsertedPrivateComponentBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_insertedPrivateComponent_exactBoundary
