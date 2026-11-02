@@ -61,6 +61,29 @@ theorem fixedPointFreeUnaryPartiteH_nonempty :
   · exact ⟨1, by decide, rfl⟩
   · exact ⟨0, by decide, rfl⟩
 
+/-- The genuinely partial two-point swap is an ACTUAL member of
+the canonical finite tagged K(H) class. Choosing each point as its
+own part makes fibre transversality immediate, even though the
+fixed-point-free property itself does not require distinct parts. -/
+theorem fixedPointFreeSwap_tagged_in_K :
+    canonicalGenuineTagged2019Class fixedPointFreeUnaryPartiteH
+      (wholeMaskTagExpansion
+        (withPartsWholeMaskOld fixedPointFreeSwap
+          (fun x : Fin 2 => x))) := by
+  have hH : fixedPointFreeUnaryPartiteH fixedPointFreeSwap
+      (fun x : Fin 2 => x) := by
+    intro x
+    fin_cases x
+    · exact ⟨1, by decide, rfl⟩
+    · exact ⟨0, by decide, rfl⟩
+  have hTr : FibreTransversal fixedPointFreeSwap
+      (fun x : Fin 2 => x) := by
+    intro F xs U hValue y hy z hz hSame
+    exact hSame
+  exact canonicalGenuineTagged2019Class_mem
+    fixedPointFreeUnaryPartiteH fixedPointFreeSwap
+    (fun x : Fin 2 => x) hH hTr
+
 /-- The fixed-point-free unary condition is preserved by every
 genuinely FUNCTION-CLOSED restriction. The successor of each chosen
 vertex remains inside the closed carrier, and the same singleton
