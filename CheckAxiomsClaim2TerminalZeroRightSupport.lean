@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2TerminalZeroRightSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_noRight_of_zeroLocalRightSupport
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalMinimizer_contradicted_by_zeroTerminalBSupport
