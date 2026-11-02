@@ -123,6 +123,6 @@ theorem intrinsicFullWeakLocalCompletionAt_one_of_noSingletons
   let f : X → W := fun x => isEmptyElim x
   refine ⟨W, hB.1, B, hB, f, ?_⟩
   intro e
-  exact ⟨Embedding.id B, fun b => isEmptyElim (e b)⟩
+  exact ⟨RelStructure.Embedding.id B, fun b => isEmptyElim (e b)⟩
 
 end AllThoseRamseyClasses.Published
