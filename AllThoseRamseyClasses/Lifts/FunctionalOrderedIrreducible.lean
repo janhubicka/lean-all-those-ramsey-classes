@@ -51,8 +51,7 @@ theorem functionalWithLinearOrder_irreducible
   by_cases hLeft : ∀ x : V, ∃ a : E, e x = iE a
   · exact Or.inl hLeft
   · right
-    push_neg at hLeft
-    obtain ⟨x₀, hx₀⟩ := hLeft
+    obtain ⟨x₀, hx₀⟩ := Classical.not_forall.mp hLeft
     have inRight (x : V) (hOrder : x₀ < x) :
         ∃ b : F, e x = iF b := by
       have hRel :
@@ -66,8 +65,7 @@ theorem functionalWithLinearOrder_irreducible
       rcases (hFree.rel_iff (.inr ()) ![e x₀, e x]).mp hRel with
         ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
       · exfalso
-        apply hx₀
-        exact ⟨xs 0, by
+        exact hx₀ ⟨xs 0, by
           have h0 := congrFun hxs (0 : Fin 2)
           simpa using h0⟩
       · exact ⟨xs 1, by
@@ -86,8 +84,7 @@ theorem functionalWithLinearOrder_irreducible
       rcases (hFree.rel_iff (.inr ()) ![e x, e x₀]).mp hRel with
         ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
       · exfalso
-        apply hx₀
-        exact ⟨xs 1, by
+        exact hx₀ ⟨xs 1, by
           have h1 := congrFun hxs (1 : Fin 2)
           simpa using h1⟩
       · exact ⟨xs 0, by
@@ -99,7 +96,7 @@ theorem functionalWithLinearOrder_irreducible
     · subst x
       rcases hFree.covers (e x₀) with ⟨a, ha⟩ | hRight
       · exfalso
-        exact hx₀ ⟨a, ha.symm⟩
+        exact hx₀ ⟨a, ha⟩
       · exact hRight
     · exact inRight_rev x hgt
 
