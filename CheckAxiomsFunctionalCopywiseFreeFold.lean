@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FunctionalCopywiseFreeFold
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalCompatibleFold_left
+#print axioms AllThoseRamseyClasses.Lifts.functionalCompatibleFold_right
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalCopywiseCompletion.fold_free
