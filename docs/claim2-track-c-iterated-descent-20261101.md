@@ -1,6 +1,6 @@
 # Lift Section / Track C — Iterated Claim 2 (1 November 2026)
 
-**Status: abstract finite iteration and a same-witness actual forbidden-source one-step contextual flip added in Lean; post-flip geometric/profile preservation and terminal exit remain OPEN.** Do not treat the section's strong-amalgamation/Ramsey theorem as validated.
+**Status: finite abstract iteration, an actual one-step contextual B-flip, and (subject to this PR's exact-head CI) full all-test profile transfer for its SAME transported context. Post-flip geometric-piece recognition and the terminal exit remain OPEN.** Do not treat the section's strong-amalgamation/Ramsey theorem as validated.
 
 Track A, at integration base `380804cceffe82e43023c0a3afe3c4e3946b3eec`, has supplied the genuine source geometry. PRs #737 and #738 are already on `main`. This track is separate from (A) construction of outer geometry, (B) all-test profile transport, and (D) noninjective root images.
 
@@ -27,13 +27,16 @@ These are genuine Lean theorems about arbitrary states and finite support descen
 - `GlobalFlipLocalRightSupport.lean`: under a genuine **inner subpiece**, the same map has a **strict local** B-only SOURCE count drop.
 - `ActualNestedFunctionalProfileCongruence.lean`: forbidden-family membership transfers in specified nested full diagrams; this does not by itself give equality of **all rooted outer incompatibility tests**.
 
+
+**Track C + B integration (1 November):** `Claim2ActualOneStepFullOuterProfile.lean` combines the actual strict local B-support flip with the merged `geometricOriginalPiece_profile_equiv_transportContext` result. The new helper `geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport_withInnerProfile` exposes exactly the Q selected by the *same* successful B-to-A replacement, and the original theorem remains as a compatibility corollary. Convert Q's canonical full-root gluing-equivalence via `functionalDiagramPiece_equiv_iff_glue`; no isomorphism-closure hypothesis or weak-target-map injectivity is added. The result preserves **every rooted forbidden test** of the original outer piece and the same source-support descent, but its output remains a CLOSED CONTEXT, not a certified geometric minimal-separator piece. Full Lean CI and allowed-axiom sweep pending.
+
 ## Remaining proof obligations for Track C
 
 **C1: actual successor API (partially implemented).** The package `geometricInnerSubpiece_closed_fixedRoot_strictLocalRightSupport` combines four certificates for one specified replacement. The new `geometricGlobalRightFlip_outerContextClosed_strictLocalRightSupport` applies it to ONE actual full-lift B-to-A forbidden-source replacement, with strict local B-only source decrease and original-root transport for that SAME witness. Still required: identify this transported context as a genuine minimal-separator geometric outer piece, prove appropriate nested diagrams for arbitrary attached tests, and construct a *reusable* successor valid at every iteration. The two strict-count lemmas must never be applied to different existential replacements.
 
 **C2: genuine outer piece after one step (open; dependent on Track A).** Prove the transported context has the required selected connected component and **inclusion-minimal function-closed separating root**, not just closedness or equality of a selected set. Carry the *original* root and full native incidences. The replacement must still supply a geometric piece inside the forbidden source rather than an artificial weak-image quotient.
 
-**C3: full all-test profile (open; dependent on Track B).** Prove preservation of the **entire** rooted incompatibility profile under each concrete replacement, by nested source-diagram reassociation and inverse reassociation for arbitrary attached root tests. A single use of `F New` or the trace of one test is insufficient.
+**C3: full all-test profile (one-step theorem added; pending this PR's Lean CI).** The actual B-to-A replacement now comes with all-test profile equivalence between the old genuine outer piece and the specific new function-closed transported context. No single-test shortcut or independent existential witness is used. **Remaining:** after Track A recognizes that context as a genuine geometric piece, transport the all-test equivalence to its canonical geometric root chart; then make the next step's existence conditions and terminal exit precise.
 
 **C4: descent and terminal exit (conditional theorem now in Lean; concrete instantiation open).** Define valid states with source, map, geometric piece, original root/profile/exterior invariants, and rank
 `Nat.card {v : sourceCarrier // v ∈ outerPiece ∧ map v ∈ BExclusiveTarget}`.
