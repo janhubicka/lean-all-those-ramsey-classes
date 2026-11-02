@@ -1721,11 +1721,22 @@ regardless of its verified profile.
 Further separate obligations: proper B-only local SOURCE-count
 descent, a final A-only contradiction, root-image collisions, and
 the unrestricted global maximal-lift shadow-avoidance theorem.
-The algebraic full-root chart equality and actual global quotient
-index bridge are being separately investigated in draft
-[#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776)
-and [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781).
-Both remain **unverified** until their respective complete CI passes.
+The full root-structure equality [#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776),
+genuine selected global quotient equality [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781),
+and geometric piece construction with exact old root order
+[#788](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/788)
+have since passed complete Lean/axiom audits and **merged**.
+Draft [#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+combines those with the actual old-to-new context profile theorem
+to derive equality of the published GLOBAL piece symbol, provided
+a genuine new geometric piece has been identified with the exact
+transported context and original root. Stacked draft
+[#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796)
+constructs that geometric piece from the explicit two complete
+generated boundaries, separated components and exact context
+carrier equality. Both drafts are **unverified** until their final
+full CI succeeds. These source-geometry premises still need to
+be established in Track A for the unrestricted Claim 2.
 
 The manuscript's numbered `ramsey.tex` remains frozen; ATRC-069
 in the separate validation notes remains open/orange for the
