@@ -173,8 +173,7 @@ theorem geometricGlobalTerminalFlip_clearsLeft_and_preservesExterior
     weakGeometricPiece_factor_left_if_no_right
       hTargetFree f hf d hRootInSeam hNoRight
   have hpLeft' :
-      (geometricGlobalFunctionalChart Forbidden d).ext.str
-        .IsEHNHomomorphismEmbedding Left pLeft := hpLeft
+      (geometricGlobalFunctionalChart Forbidden d).ext.str.IsEHNHomomorphismEmbedding Left pLeft := hpLeft
   have hPieceMap' : ∀ z :
       (geometricGlobalFunctionalChart Forbidden d).ext.Carrier,
       jLeft (pLeft z) = f z.1 := hPieceMap
