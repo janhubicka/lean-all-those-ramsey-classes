@@ -61,6 +61,40 @@ theorem fixedPointFreeUnaryPartiteH_nonempty :
   · exact ⟨1, by decide, rfl⟩
   · exact ⟨0, by decide, rfl⟩
 
+/-- The fixed-point-free unary condition is preserved by every
+genuinely FUNCTION-CLOSED restriction. The successor of each chosen
+vertex remains inside the closed carrier, and the same singleton
+function value survives with its defined domain bit. -/
+theorem fixedPointFreeUnaryPartiteH_closedHereditary :
+    GenuinePartiteClosedHereditary2019
+      fixedPointFreeUnaryPartiteH := by
+  intro X hFinite A part hMem S hClosed z
+  obtain ⟨y, hy, hVal⟩ := hMem z.1
+  have hyS : y ∈ S :=
+    hClosed () (fun _ : Fin 1 => z.1) ({y} : Set X)
+      (fun _ => z.2) hVal (by simp)
+  let yS : S := ⟨y, hyS⟩
+  refine ⟨yS, ?_, ?_⟩
+  · intro hEq
+    exact hy (congrArg Subtype.val hEq)
+  · change (A.func () (fun _ : Fin 1 => z.1)).map
+        (fun T => {u : S | u.1 ∈ T}) =
+        some ({yS} : Set S)
+    rw [hVal]
+    change some ({u : S | u.1 ∈ ({y} : Set X)}) =
+      some ({yS} : Set S)
+    congr 1
+    ext u
+    constructor
+    · intro hu
+      apply Subtype.ext
+      exact Set.mem_singleton_iff.mp hu
+    · intro hu
+      have heq : u = yS := Set.mem_singleton_iff.mp hu
+      change u.1 ∈ ({y} : Set X)
+      rw [heq]
+      simp [yS]
+
 /-- NO full genuinely partial-function embedding of ANY whole-weak
 singleton into a fixed-point-free unary H-member exists, even if the
 source is an arbitrary partial structure. The proof explicitly
