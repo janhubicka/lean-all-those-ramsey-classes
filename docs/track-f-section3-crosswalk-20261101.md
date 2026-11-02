@@ -47,7 +47,7 @@ and **not** the auxiliary folded/all-components finite-family lift.
    The same issue applies to incompatible nullary function fibres.
    Either the language convention excludes such symbols, or the
    printed JEP line needs a compatibility qualification. This is
-   the independent **ATRC-072** audit issue, not a flaw in the
+   the independent **ATRC-073** audit issue, not a flaw in the
    positive-arity JEP theorem.
 
 ## Track separation
@@ -62,13 +62,14 @@ and **not** the auxiliary folded/all-components finite-family lift.
   `mainthm` or `thm:main` green until the dependencies are discharged.
 
 **Manuscript policy:** `ramsey.tex` is frozen. Review-only TODO
-entries `ATRC-068`--`ATRC-071` remain open; `ATRC-072`
+entries `ATRC-068`--`ATRC-071` remain open; `ATRC-073`
 identifies the separate nullary JEP issue. This file does not silently
 edit the original numbered prose.
 
-**Verification policy:** `CheckAxiomsGlobalOriginalSection3ClassAssembly.lean`
-and `scripts/active_roots/GlobalOriginalSection3ClassAssembly.txt` protect
-the new Track F declarations. Treat them as *proposed* until the PR's
-full all-module Lean/axiom/admission CI succeeds; a named-axiom check
-certifies the theorem INCLUDING its hypotheses and is never a proof
-that its assumptions hold.
+**Verification checkpoint:** Track F class-assembly PR #742 was merged after
+complete Lean CI 41254444596 (all modules, permitted axioms, admission
+scan and source integrity). Its declared hypotheses remain essential.
+The independent nullary native-JEP counterexample is proposed in PR #775;
+until that PR passes full CI, its Lean theorem remains UNVERIFIED.
+The matching review-only manuscript TODO is ATRC-073 (PR #191);
+ATRC-072 is owned by Track E and must not be reused.
