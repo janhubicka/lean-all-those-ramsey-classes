@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalShadowArrowTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalStructureArrow_shadowColor_oneType
