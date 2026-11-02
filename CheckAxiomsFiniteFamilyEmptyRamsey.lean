@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyEmptyRamsey
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedEmptyFamily_allFiniteTraces
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedEmptyFamily_orderedRamsey
