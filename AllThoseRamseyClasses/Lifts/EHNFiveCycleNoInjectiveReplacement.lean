@@ -89,7 +89,9 @@ theorem fiveCycleImageFamily_graphIrreducible_of_injectiveEHN
     change triangleEdge (g (f a)) (g (f b)) at hTarget
     exact hTarget
   intro u v hne
-  have hDistinctColours : g u ≠ g v := hInj.ne hne
+  have hDistinctColours : g u ≠ g v := by
+    intro h
+    exact hne (hInj h)
   obtain ⟨a, b, hab, hga, hgb⟩ :=
     cycle5_properThreeColouring_coversAllEdges
       (fun z => g (f z)) hProper (g u) (g v) hDistinctColours
@@ -157,6 +159,7 @@ theorem fiveCycleImageFamily_counterexample_to_blanketInjectivization :
       (L := language) fiveCycleImageFamily ∧
     (∀ {X : Type} (P : Structure language X),
       fiveCycleImageFamily P → Finite X) ∧
+    fiveCycleImageFamily cycle5 ∧
     cycle5.IsEHNHomomorphismEmbedding
       triangleExtraTernary weakColor ∧
     ¬ Function.Injective weakColor ∧
@@ -168,6 +171,7 @@ theorem fiveCycleImageFamily_counterexample_to_blanketInjectivization :
   exact ⟨fiveCycleImageFamily_printedImageClosed,
     fiveCycleImageFamily_connectedNonempty,
     fun P hP => finite_of_fiveCycleImageFamily P hP,
+    cycle5_mem_imageFamily,
     weakColor_nativeEHN,
     weakColor_not_injective,
     fun P g hP hg => fiveCycleImageFamily_noInjectiveEHN
