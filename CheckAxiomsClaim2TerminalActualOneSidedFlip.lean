@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2TerminalActualOneSidedFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_fullLeftOutside_support_card_eq
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalTerminalFlip_clearsLeft_and_preservesExterior
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalMinimizer_contradicted_by_terminal_BFreePiece
