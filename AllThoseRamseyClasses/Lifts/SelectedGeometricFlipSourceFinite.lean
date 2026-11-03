@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.SelectedGlobalFlipGeometricWitness
 import AllThoseRamseyClasses.Lifts.GeometricGlobalFreeDiagram
+import AllThoseRamseyClasses.Lifts.GeometricFlipGlobalSymbolFromBoundaries
 
 /-!
 # Actual canonical source flips have finite carriers
@@ -124,5 +125,91 @@ theorem finiteSource_of_selectedGeometricFlip
   letI : Finite (geometricGlobalComplementChart Old d).Carrier :=
     inferInstance
   exact fullFunctionalFreeAmalgam_carrier_finite hFree
+
+
+/-- The GLOBAL old-outer-symbol theorem applies to an ACTUAL
+genuinely selected replacement even if its source carrier was
+returned existentially without a Finite instance: finite old source
+and finite selected Q plus literal full-native amalgamation suffice.
+
+The exact new outer geometry is still supplied explicitly. The
+conclusion packages the DERIVED finite-source certificate along
+with the genuine selected new geometric piece and the unchanged
+global 2019 canonical relation symbol. -/
+theorem selectedGeometricFlip_globalSymbol_of_exactBoundaries
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {V W : Type} [Finite V]
+    (Old : Structure L V) (hFOld : F Old)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Old n)
+    (d : GeometricFunctionalPieceData Old m)
+    (hInnerRoot : ∀ i : Fin m,
+      d.roots i ∈ geometricPieceVertices Old P)
+    (hInnerComponent :
+      functionalComponentFrom Old (Set.range d.roots) d.left ⊆
+        geometricPieceVertices Old P)
+    (hOuterRootOutside : ∀ i : Fin n,
+      P.roots i ∉ functionalComponentFrom Old
+        (Set.range d.roots) d.left)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old d).root)
+    (hSelected :
+      (FunctionalRootExtension.toEnumeratedRootedPattern
+        (geometricGlobalFunctionalChart Old d).root
+        (Equiv.refl (Fin m)) Q) ∈
+          forbiddenGeometricFunctionalPieces F m)
+    (hEq : (functionalDiagramPieceSetoid
+      (geometricGlobalFunctionalChart Old d).root F).r
+        (geometricGlobalFunctionalChart Old d).ext Q)
+    (New : Structure L W) (hFNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old d).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old d).rootEmbedding
+      iQ iE)
+    (roots : Fin n → W)
+    (hRootCoordinates : ∀ i : Fin n,
+      roots i =
+        iE (⟨P.roots i, hOuterRootOutside i⟩ :
+          (geometricGlobalComplementChart Old d).Carrier))
+    (x y : {w : W // w ∉ Set.range roots})
+    (hSeparated : ¬ ReachOutside New.graph (Set.range roots) x y)
+    (hLeftBoundary :
+      New.functionClosure
+        (gaifmanNeighborhood New.graph
+          (componentFrom New.graph (Set.range roots) x)) =
+          Set.range roots)
+    (hRightBoundary :
+      New.functionClosure
+        (gaifmanNeighborhood New.graph
+          (componentFrom New.graph (Set.range roots) y)) =
+          Set.range roots)
+    (hExactContext :
+      (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old P d)) =
+        Set.range roots ∪
+          componentFrom New.graph (Set.range roots) x)
+    (hn : 0 < n) :
+    ∃ (hFiniteNew : Finite W)
+      (Pnew : GeometricFunctionalPieceData New n),
+      (∀ i : Fin n, Pnew.roots i =
+        iE (⟨P.roots i, hOuterRootOutside i⟩ :
+          (geometricGlobalComplementChart Old d).Carrier)) ∧
+      geometricGlobalPieceSymbol F Old
+        (inferInstance : Finite V) hFOld P hn =
+      geometricGlobalPieceSymbol F New hFiniteNew hFNew Pnew hn := by
+  let hFiniteNew : Finite W :=
+    finiteSource_of_selectedGeometricFlip
+      F Old d Q hSelected New iQ iE hFree
+  letI : Finite W := hFiniteNew
+  obtain ⟨Pnew, hPnewRoot, hSymbol⟩ :=
+    geometricFlip_globalPieceSymbol_of_exactOppositeBoundaries
+      F Old hFOld P d hInnerRoot hInnerComponent
+      hOuterRootOutside Q hEq New hFNew iQ iE hFree
+      roots hRootCoordinates x y hSeparated
+      hLeftBoundary hRightBoundary hExactContext hn
+  exact ⟨hFiniteNew, Pnew, hPnewRoot, hSymbol⟩
 
 end AllThoseRamseyClasses.Lifts
