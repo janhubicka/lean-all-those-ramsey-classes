@@ -56,7 +56,8 @@ theorem functionalWithLinearOrder_irreducible
       · exact hgt
       · simp
       · simp
-  exact irreducible_of_graph_irreducible
-    B.withLinearOrder hGraph
+  intro H E F C Dsrc Esrc Fsrc Csrc sE sF iE iF hFree e
+  exact (irreducible_of_graph_irreducible
+    B.withLinearOrder hGraph) hFree e
 
 end AllThoseRamseyClasses.Lifts
