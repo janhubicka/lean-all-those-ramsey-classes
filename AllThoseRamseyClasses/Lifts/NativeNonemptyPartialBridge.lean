@@ -50,8 +50,9 @@ noncomputable def nativeToNonemptyPartial
     {V : Type v} (A : Structure L V) :
     PartialSetStructure L V where
   rel := A.rel
-  func F xs :=
-    if h : (A.func F xs).Nonempty then
+  func F xs := by
+    classical
+    exact if h : (A.func F xs).Nonempty then
       some (A.func F xs)
     else none
 
@@ -112,12 +113,17 @@ theorem collapseDomain_nativeToNonemptyPartial
     {V : Type v} (A : Structure L V) :
     PartialSetStructure.collapseDomain
       (nativeToNonemptyPartial A) = A := by
+  classical
   cases A with
   | mk rel func =>
+    change
+      (Structure.mk rel
+        (fun F xs =>
+          (if h : (func F xs).Nonempty then
+            some (func F xs) else none).getD ∅)) =
+      (Structure.mk rel func : Structure L V)
     congr 1
     funext F xs
-    change (if h : (func F xs).Nonempty then
-      some (func F xs) else none).getD ∅ = func F xs
     by_cases h : (func F xs).Nonempty
     · simp [h]
     · have hEmpty : func F xs = ∅ :=
