@@ -135,8 +135,7 @@ theorem geometricFlip_preserves_outerGlobalRelation_in_target
         (.inr (geometricGlobalPieceSymbol F Old
           (inferInstance : Finite V) hFOld P hn))
         (fun i : Fin n => flip (Pnew.roots i)) := by
-    rw [hGlobalSymbol]
-    exact hNewRelation
+    simpa only [hGlobalSymbol] using hNewRelation
   have hTargetCoordinates :
       (fun i : Fin n => flip (Pnew.roots i)) =
         (fun i : Fin n => flip (roots i)) := by
