@@ -91,4 +91,46 @@ theorem finiteRootCutRank_on_root
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
   exact hf.lt_iff_lt
 
+/-- Every root-cut count is bounded by the number of
+root vertices, regardless of the target vertex or whether
+the root map is injective. This justifies putting any
+extra amalgam vertices after the final root gap. -/
+theorem finiteRootCutRank_le_card
+    {X : Type u} {Y : Type v}
+    [Fintype X] [LinearOrder Y]
+    (f : X → Y) (y : Y) :
+    finiteRootCutRank f y ≤ Fintype.card X := by
+  classical
+  unfold finiteRootCutRank
+  simpa using Finset.card_le_card
+    (Finset.filter_subset (fun x : X => f x < y) Finset.univ)
+
+/-- If y lies below the image of root vertex x, its
+cut rank cannot exceed the intrinsic rank of x. -/
+theorem finiteRootCutRank_le_rootRank_of_below
+    {X : Type u} {Y : Type v}
+    [Fintype X] [LinearOrder X] [LinearOrder Y]
+    (f : X → Y) (hf : StrictMono f)
+    (x : X) (y : Y) (h : y < f x) :
+    finiteRootCutRank f y ≤
+      StructuralRamsey.Rooted.orderRank X x := by
+  calc
+    finiteRootCutRank f y ≤ finiteRootCutRank f (f x) :=
+      finiteRootCutRank_mono f (le_of_lt h)
+    _ = StructuralRamsey.Rooted.orderRank X x :=
+      finiteRootCutRank_on_root f hf x
+
+/-- After passing a root vertex x the cut rank strictly
+exceeds x's root order rank, even if the later vertex
+is not itself in the shared root. -/
+theorem finiteRootCutRank_gt_rootRank_of_above
+    {X : Type u} {Y : Type v}
+    [Fintype X] [LinearOrder X] [LinearOrder Y]
+    (f : X → Y) (hf : StrictMono f)
+    (x : X) (y : Y) (h : f x < y) :
+    StructuralRamsey.Rooted.orderRank X x <
+      finiteRootCutRank f y := by
+  rw [← finiteRootCutRank_on_root f hf x]
+  exact finiteRootCutRank_strict_after_root f x y h
+
 end AllThoseRamseyClasses.Lifts
