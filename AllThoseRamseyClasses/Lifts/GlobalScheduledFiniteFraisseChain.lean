@@ -215,4 +215,41 @@ noncomputable def globalOriginalFiniteTraceChainStep
       F hInput representatives diagrams n)
     (representatives n) (diagrams n)
 
+/-- The concrete chain satisfies the ENTIRE finite demand contract
+at every successor stage: all listed representative objects embed
+fully in its next member, and every listed extension diagram is
+realized over EVERY full copy of its root in the current member.
+
+This is the exact invariant needed for a later fair diagonal
+schedule. It does not claim saturation of root copies that first
+appear inside the new target, nor the infinite extension property
+before construction of a direct limit. -/
+theorem globalOriginalFiniteTraceChainStep_spec
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hInput : GlobalOriginalFiniteFraisseInput F)
+    (representatives : ℕ → List (GlobalOriginalFiniteTraceRepresentatives F))
+    (diagrams : ℕ → List (GlobalOriginalFiniteTraceDiagram F))
+    (n : ℕ) :
+    (∀ P : GlobalOriginalFiniteTraceRepresentatives F,
+      P ∈ representatives n →
+        ∃ (_jP : Structure.Embedding P.2.1
+          (globalOriginalFiniteTraceChain F hInput
+            representatives diagrams (n + 1)).model), True) ∧
+    (∀ d : GlobalOriginalFiniteTraceDiagram F,
+      d ∈ diagrams n →
+      ∀ f : Structure.Embedding d.1.2.1
+          (globalOriginalFiniteTraceChain F hInput
+            representatives diagrams n).model,
+        ∃ (jB : Structure.Embedding d.2.1.2.1
+          (globalOriginalFiniteTraceChain F hInput
+            representatives diagrams (n + 1)).model),
+          ∀ a, jB (d.2.2 a) =
+            globalOriginalFiniteTraceChainStep F hInput
+              representatives diagrams n (f a)) := by
+  exact globalOriginalFiniteTraceNextEmbedding_spec
+    F hInput
+    (globalOriginalFiniteTraceChain
+      F hInput representatives diagrams n)
+    (representatives n) (diagrams n)
+
 end AllThoseRamseyClasses.Lifts
