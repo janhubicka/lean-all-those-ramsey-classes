@@ -109,13 +109,17 @@ theorem cycle5Edge_gaifman
     exact hNoLoop x h
   let t : Fin (language.graph.arity (.inl false)) → Fin 5 :=
     fun i => if i = c5Edge0 then x else y
+  have ht0 : t c5Edge0 = x := by
+    simp [t]
+  have ht1 : t c5Edge1 = y := by
+    change (if c5Edge1 = c5Edge0 then x else y) = y
+    exact if_neg c5Edge10
   have hRel : cycle5.graph.rel (.inl false) t := by
     change cycle5Edge (t c5Edge0) (t c5Edge1)
-    simpa [t, c5Edge10] using h
-  refine ⟨hxy, .inl false, t, c5Edge0, c5Edge1,
-    hRel, ?_, ?_⟩
-  · simp [t]
-  · simp [t, c5Edge10]
+    rw [ht0, ht1]
+    exact h
+  exact ⟨hxy, .inl false, t, c5Edge0, c5Edge1,
+    hRel, ht0, ht1⟩
 
 private theorem cycle5Reach_symm
     {x y : Fin 5}
