@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteAmalgamOrderKey
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_last
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_injective
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamLinearOrder
