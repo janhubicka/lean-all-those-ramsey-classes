@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 import re
+from lean_source import lean_imports
 
 BASE = Path(__file__).resolve().parents[1]
 paths = list((BASE / "AllThoseRamseyClasses").rglob("*.lean"))
@@ -17,8 +18,7 @@ paths += [BASE / "AllThoseRamseyClasses.lean"]
 sources = {p.relative_to(BASE).with_suffix("").as_posix().replace("/", "."): p
            for p in paths}
 checks = {p.stem: p for p in BASE.glob("CheckAxioms*.lean")}
-rx = re.compile(r"(?m)^\s*import\s+([A-Za-z0-9_.]+)\s*$")
-graph = {name: [dep for dep in rx.findall(path.read_text(encoding="utf-8"))
+graph = {name: [dep for dep in lean_imports(path.read_text(encoding="utf-8"))
                 if dep in sources] for name, path in sources.items()}
 
 ACTIVE = {
@@ -101,7 +101,7 @@ for name, path in checks.items():
     if name in {"CheckAxioms", "CheckAxiomsPublicAPI", "CheckAxiomsApplicationsAPI"}:
         kept_checks.add(name)
         continue
-    imports = rx.findall(path.read_text(encoding="utf-8"))
+    imports = lean_imports(path.read_text(encoding="utf-8"))
     local = [dep for dep in imports if
              dep == "AllThoseRamseyClasses" or dep.startswith("AllThoseRamseyClasses.")]
     if not local or all(dep in retained for dep in local):
