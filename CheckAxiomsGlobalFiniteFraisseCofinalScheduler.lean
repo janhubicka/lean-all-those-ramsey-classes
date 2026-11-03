@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteFraisseCofinalScheduler
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteFraisseInput_jointEmbedFiniteRepresentatives
