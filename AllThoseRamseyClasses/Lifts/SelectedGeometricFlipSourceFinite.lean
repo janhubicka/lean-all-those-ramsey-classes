@@ -122,11 +122,11 @@ theorem finiteSource_of_selectedGeometricFlip
   letI : Finite Q.Carrier :=
     finiteCarrier_of_selectedFunctionalRootExtension F
       (geometricGlobalFunctionalChart Old d).root Q hQ
-  letI : Finite (geometricGlobalComplementChart Old d).Carrier :=
-    Finite.of_injective
-      (fun b : (geometricGlobalComplementChart Old d).Carrier =>
-        (b : V))
-      Subtype.val_injective
+  letI : Finite (geometricGlobalComplementChart Old d).Carrier := by
+    change Finite
+      {v : V // v ∉
+        functionalComponentFrom Old (Set.range d.roots) d.left}
+    infer_instance
   exact fullFunctionalFreeAmalgam_carrier_finite hFree
 
 
