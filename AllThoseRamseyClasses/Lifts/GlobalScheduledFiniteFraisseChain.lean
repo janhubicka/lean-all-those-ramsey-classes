@@ -80,7 +80,7 @@ theorem globalOriginalFiniteTraceStage_existsNext
       (∀ d : GlobalOriginalFiniteTraceDiagram F,
         d ∈ diagrams →
         ∀ f : Structure.Embedding d.1.2.1 X.model,
-          ∃ (jB : Structure.Embedding d.2.1.1 T.model),
+          ∃ (jB : Structure.Embedding d.2.1.2.1 T.model),
             ∀ a, jB (d.2.2 a) = jX (f a)) := by
   obtain ⟨VT, T, hT, jX, hReps, hDiagrams⟩ :=
     globalOriginalFiniteFraisseInput_realizeCofinalAndDiagrams
@@ -122,7 +122,7 @@ theorem globalOriginalFiniteTraceNextStage_spec
       (∀ d : GlobalOriginalFiniteTraceDiagram F,
         d ∈ diagrams →
         ∀ f : Structure.Embedding d.1.2.1 X.model,
-          ∃ (jB : Structure.Embedding d.2.1.1
+          ∃ (jB : Structure.Embedding d.2.1.2.1
             (globalOriginalFiniteTraceNextStage
               F hInput X representatives diagrams).model),
             ∀ a, jB (d.2.2 a) = jX (f a)) :=
@@ -162,7 +162,7 @@ theorem globalOriginalFiniteTraceNextEmbedding_spec
     (∀ d : GlobalOriginalFiniteTraceDiagram F,
       d ∈ diagrams →
       ∀ f : Structure.Embedding d.1.2.1 X.model,
-        ∃ (jB : Structure.Embedding d.2.1.1
+        ∃ (jB : Structure.Embedding d.2.1.2.1
           (globalOriginalFiniteTraceNextStage
             F hInput X representatives diagrams).model),
           ∀ a, jB (d.2.2 a) =
