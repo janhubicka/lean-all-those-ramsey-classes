@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedGeometricOuterExteriorPrivate
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_outerExterior_avoids_innerPiece
