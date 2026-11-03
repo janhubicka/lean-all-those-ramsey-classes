@@ -130,12 +130,39 @@ theorem geometricFlip_preserves_outerGlobalRelation_in_target
     geometricGlobalCanonicalRelation_of_weak
       F New (inferInstance : Finite W) hFNew
       Pnew hn Target flip hFlipWeak hNewInj
+  let OldSelected : SelectedFunctionalChart F n :=
+    geometricGlobalSelectedChart F Old
+      (inferInstance : Finite V) hFOld P
+  let NewSelected : SelectedFunctionalChart F n :=
+    geometricGlobalSelectedChart F New
+      (inferInstance : Finite W) hFNew Pnew
+  have hClass :
+      (Quotient.mk (globalFunctionalPieceSetoid F n) OldSelected :
+        GlobalFunctionalPieceClass F n) =
+      Quotient.mk (globalFunctionalPieceSetoid F n) NewSelected := by
+    have hPair :
+        (⟨⟨n, hn⟩, Quotient.mk (globalFunctionalPieceSetoid F n)
+          OldSelected⟩ : GlobalFunctionalPieceSymbol F) =
+        (⟨⟨n, hn⟩, Quotient.mk (globalFunctionalPieceSetoid F n)
+          NewSelected⟩ : GlobalFunctionalPieceSymbol F) := by
+      exact hGlobalSymbol
+    exact eq_of_heq ((Sigma.mk.inj_iff.mp hPair).2)
   have hOriginalRelation :
       (globalFunctionalCanonicalLift F Target).rel
         (.inr (geometricGlobalPieceSymbol F Old
           (inferInstance : Finite V) hFOld P hn))
         (fun i : Fin n => flip (Pnew.roots i)) := by
-    simpa only [hGlobalSymbol] using hNewRelation
+    obtain ⟨hChosenInj, Chosen, hChosenClass, hChosenReal⟩ :=
+      (globalFunctionalCanonicalRelation_iff F Target
+        (geometricGlobalPieceSymbol F New
+          (inferInstance : Finite W) hFNew Pnew hn)
+        (fun i : Fin n => flip (Pnew.roots i))).mp hNewRelation
+    apply (globalFunctionalCanonicalRelation_iff F Target
+      (geometricGlobalPieceSymbol F Old
+        (inferInstance : Finite V) hFOld P hn)
+      (fun i : Fin n => flip (Pnew.roots i))).mpr
+    refine ⟨hChosenInj, Chosen, ?_, hChosenReal⟩
+    exact hChosenClass.trans hClass.symm
   have hTargetCoordinates :
       (fun i : Fin n => flip (Pnew.roots i)) =
         (fun i : Fin n => flip (roots i)) := by
