@@ -61,7 +61,7 @@ theorem globalOriginalFiniteFraisseInput_realizeFiniteDiagrams
         ∀ (d : GlobalOriginalFiniteTraceDiagram F),
           d ∈ diagrams →
           ∀ f : Structure.Embedding d.1.2.1 X,
-            ∃ (jB : Structure.Embedding d.2.1.1 T),
+            ∃ (jB : Structure.Embedding d.2.1.2.1 T),
               ∀ a, jB (d.2.2 a) = jX (f a) := by
   classical
   induction diagrams with
@@ -73,7 +73,7 @@ theorem globalOriginalFiniteFraisseInput_realizeFiniteDiagrams
       obtain ⟨VY, Y, hY, jX, hTail⟩ := ih
       obtain ⟨VT, T, hT, jY, hD⟩ :=
         globalOriginalMaximalTraceAge_realizeAllRootCopies
-          F hInput d.1.2.1 d.2.1.1 Y d.2.1.2 hY d.2.2
+          F hInput d.1.2.1 d.2.1.2.1 Y d.2.1.2.2 hY d.2.2
       refine ⟨VT, T, hT, jY.comp jX, ?_⟩
       intro e he f
       rcases List.mem_cons.mp he with hEq | hIn
@@ -120,7 +120,7 @@ theorem globalOriginalFiniteFraisseInput_realizeCofinalAndDiagrams
         (∀ (d : GlobalOriginalFiniteTraceDiagram F),
           d ∈ diagrams →
           ∀ f : Structure.Embedding d.1.2.1 X,
-            ∃ (jB : Structure.Embedding d.2.1.1 T),
+            ∃ (jB : Structure.Embedding d.2.1.2.1 T),
               ∀ a, jB (d.2.2 a) = jX (f a)) := by
   classical
   obtain ⟨VY, Y, hY, jX, hReps⟩ :=
