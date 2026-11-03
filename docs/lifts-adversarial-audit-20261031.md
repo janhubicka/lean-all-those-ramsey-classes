@@ -161,3 +161,43 @@ repair, terminating B-only-source flip sequence, shadow avoidance or
 the strong-amalgamation conclusion. Original numbered manuscript prose
 remains frozen; the separate ATRC-069 review-only TODO records the
 remaining boundary obligation.
+
+
+## 3 November 2026 — completed conditional GLOBAL symbol endgame
+
+Fully CI-verified, merged [#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+proves `geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext`:
+if an actual finite forbidden-source inner replacement preserves the
+original ordered outer root and its new context is literally the vertex
+set of a NEW genuine geometric minimal-separator piece, the two selected
+pieces determine the **same original 2019 GLOBAL piece symbol**.
+The proof compares complete functional root structures, ALL native
+incompatibility tests, and the actual global quotient; no weak target
+map is assumed injective.
+
+Merged, fully audited [#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796)
+proves `geometricFlip_globalPieceSymbol_of_exactOppositeBoundaries`:
+it CONSTRUCTS that new geometric piece on the original Fin n root
+when there are two separated new outside-old-root components,
+the **complete function-generated boundary of each is the old root**,
+and the transported context equals that root plus one entire
+component. It also derives full root closedness and source injectivity
+from the original complement's native full embedding, rather than
+postulating those separately.
+
+**Unresolved for unrestricted Claim 2:** The hypotheses identifying the
+actual new outer component, the opposite entire generated boundary,
+and the exact context carrier are not supplied automatically by the
+algebraic endgame. Track A owns their proof in the actual nested
+source flip; Track C must still provide the terminating B-only
+source-support descent and final A-minimality contradiction. There
+is also the separate issue of colliding target root images (ATRC-068).
+
+Draft [#819](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/819)
+studies the resulting ORIGINAL global outer-piece relation in the
+actual weak-image target, keeping target-root injectivity explicit.
+Draft [#827](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/827)
+derives finiteness of selected literal new source flips from their
+genuine finite forbidden witnesses. Both are UNVERIFIED until final
+CI/axiom checks succeed. The frozen numbered manuscript has not
+been rewritten; review TODOs remain open for the missing hypotheses.
