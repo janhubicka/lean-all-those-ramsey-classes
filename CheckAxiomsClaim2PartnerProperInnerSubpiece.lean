@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PartnerProperInnerSubpiece
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_properInnerOneSided_of_boundaryPartner
