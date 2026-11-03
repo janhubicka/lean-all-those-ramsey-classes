@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalSection3FraisseInput
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteFraisseInput_of_shadowFree
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteFraisseInput_irreducible

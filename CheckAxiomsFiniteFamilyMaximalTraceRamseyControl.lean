@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceRamseyControl
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceAmbient_freeAmalgamation
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceAmbient_orderedRamsey

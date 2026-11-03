@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyCanonicalMarkedWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTrace_into_foldedWitness
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTrace_into_foldedWitness_ordered

@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.PrivateRootComponentExact
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightPrivateRoot_component_eq

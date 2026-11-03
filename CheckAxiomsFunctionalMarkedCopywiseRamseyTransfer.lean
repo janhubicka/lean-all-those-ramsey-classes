@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FunctionalMarkedCopywiseRamseyTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalArrow_of_markedBCopywiseCompletion
+#print axioms AllThoseRamseyClasses.Lifts.functionalArrow_of_markedBCopywiseCompletion_self

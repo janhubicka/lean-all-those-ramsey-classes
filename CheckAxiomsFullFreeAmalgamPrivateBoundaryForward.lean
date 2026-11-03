@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamPrivateBoundaryForward
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_rightPrivateOldBoundary_neighbour_survives

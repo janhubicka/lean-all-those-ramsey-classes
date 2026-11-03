@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.AllRetainedOuterComponentIff
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_allRetainedOuterComponent_iff

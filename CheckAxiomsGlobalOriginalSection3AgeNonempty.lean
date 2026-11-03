@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalSection3AgeNonempty
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeEmpty_avoids_connectedForbiddenSources
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalMaximalTraceAge_nonempty

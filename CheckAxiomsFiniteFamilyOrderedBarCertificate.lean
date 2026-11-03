@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyOrderedBarCertificate
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTrace_exists_orderedBarWithProfile

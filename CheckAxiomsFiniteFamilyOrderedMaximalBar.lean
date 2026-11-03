@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyOrderedMaximalBar
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_exists_orderedMarkedBar

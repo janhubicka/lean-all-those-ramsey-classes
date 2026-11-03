@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2IteratedContextualDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_exists_terminal_of_strict_localB_descent
+#print axioms AllThoseRamseyClasses.Lifts.claim2_exists_terminal_preserving_outer_invariants
+#print axioms AllThoseRamseyClasses.Lifts.claim2_no_valid_initial_of_terminal_exit

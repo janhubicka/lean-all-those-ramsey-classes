@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.FunctionalRootedIsoGeneratedBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_gaifmanNeighborhood_image
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_generatedBoundary_image
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_component_image_eq
+#print axioms AllThoseRamseyClasses.Lifts.functionalRootedIso_componentGeneratedBoundary_image

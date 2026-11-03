@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceWitnessCompletion
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceEmbedding_of_commonWitness
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedTraceCopywiseCompletion_of_commonWitness
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedOrderedTraceCopywiseCompletion_of_commonWitness

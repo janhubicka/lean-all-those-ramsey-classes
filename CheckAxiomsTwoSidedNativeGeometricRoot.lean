@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.TwoSidedNativeGeometricRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_twoPrivateBoundaries_hasGeometricPiece

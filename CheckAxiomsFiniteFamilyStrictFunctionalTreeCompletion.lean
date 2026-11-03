@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyStrictFunctionalTreeCompletion
+
+#print axioms AllThoseRamseyClasses.Lifts.FunctionalCopywiseCompletion.on_strictRoot
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_strictTree_copywiseCompletion

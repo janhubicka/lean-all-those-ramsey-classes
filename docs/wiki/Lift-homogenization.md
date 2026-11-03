@@ -1679,3 +1679,100 @@ before treating this cleanup as integrated.
 source geometry and all-test profile transport under iterated flips,
 together with an unrestricted treatment of colliding EHN root images.
 The numbered mathematical manuscript text remains frozen.
+
+
+## 1 November 2026 — CI-verified Track B contextual profile theorem
+
+This update supersedes ONLY the pending *contextual profile*
+part of the 31 October checkpoint; it does not edit or retroactively
+reinterpret the historical audit.
+
+**Exact Lean endpoints on main:**
+
+| Full native functional obligation | Merged proof |
+| --- | --- |
+| Named actual full induced contexts, exact side coordinates, and outer-to-nested test construction | [#741](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/741) |
+| Full converse reassociation, two-stage all-test congruence and rooted onto-isomorphism transport | [#746](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/746) |
+| Complete contextual profile for chosen literal inner replacements under an arbitrary fully embedded outer root | [#750](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/750) |
+| Full original outer-root embedding through the retained complement | [#752](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/752) |
+| Actual old/new induced-context profile and exact ordered root coordinates | [#753](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/753) |
+| Exact old nested-context carrier = original geometric outer-piece carrier | [#754](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/754) |
+| Equal function-closed carriers yield identical full rooted profiles | [#758](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/758) |
+| **Actual original geometric outer piece** and **new transported source context** have the same ALL-test profile under explicit containment, survival, and literal full-gluing hypotheses | [#767](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/767) |
+
+All eight PRs passed the full-library Lean build, individual
+`#print axioms`, repository-wide permitted-axiom checks,
+source-contract and no-admissions checks. The theorem
+`geometricOriginalPiece_profile_equiv_transportContext`
+does **not** require global injectivity of a weak source-to-target
+homomorphism or forbidden-family isomorphism closure. It preserves
+all native set-valued function fibres; the two cuts need not be
+nested. The selected inner piece's entire component and full root
+MUST lie in the old outer piece, and the old outer root MUST survive
+in the full retained complement.
+
+**Critical outstanding geometric statement:** the new transported
+context must be proved to be the closed old root plus exactly ONE
+new outside-root component, and that component's entire generated
+Gaifman-neighbourhood boundary must equal the old root. Without
+this, the context is not known to be a genuine 2019 forbidden piece,
+regardless of its verified profile.
+
+Further separate obligations: proper B-only local SOURCE-count
+descent, a final A-only contradiction, root-image collisions, and
+the unrestricted global maximal-lift shadow-avoidance theorem.
+The full root-structure equality [#776](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/776),
+genuine selected global quotient equality [#781](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/781),
+and geometric piece construction with exact old root order
+[#788](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/788)
+have since passed complete Lean/axiom audits and **merged**.
+Draft [#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+combines those with the actual old-to-new context profile theorem
+to derive equality of the published GLOBAL piece symbol, provided
+a genuine new geometric piece has been identified with the exact
+transported context and original root. Stacked draft
+[#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796)
+constructs that geometric piece from the explicit two complete
+generated boundaries, separated components and exact context
+carrier equality. Both drafts are **unverified** until their final
+full CI succeeds. These source-geometry premises still need to
+be established in Track A for the unrestricted Claim 2.
+
+The manuscript's numbered `ramsey.tex` remains frozen; ATRC-069
+in the separate validation notes remains open/orange for the
+new-source minimal-separator geometry.
+
+
+## 3 November 2026 — Track B GLOBAL piece-symbol endgame is verified
+
+Full all-module Lean CI, individual axiom checks, and source-contract
+audits passed for merged
+[#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+and [#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796).
+The corresponding exported theorems are
+`geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext`
+and `geometricFlip_globalPieceSymbol_of_exactOppositeBoundaries`.
+
+This goes beyond all-test contextual profile equality: it establishes
+**literal equality of the ORIGINAL GLOBAL canonical lift piece-symbol
+indices** after an actual native functional inner source replacement.
+The new source piece is constructed with the SAME ordered outer root,
+given the exact full functional source geometry: two separated
+components, both complete function-generated root boundary equalities,
+and exact identification of the transported closed context with
+the old root plus one whole component. A mere closed context is NOT
+enough. The theorem does NOT establish those geometric premises.
+
+New draft work: [#819](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/819)
+provides the target-level old relation in a weak EHN flip target,
+but must assume injectivity of the old outer-root target tuple;
+[#827](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/827)
+derives new-source finiteness from selected geometric witnesses.
+Both are pending full CI and are not yet certified.
+
+**The original paper's Claim 2 remains open.** The remaining
+mathematical tasks are actual nested-flip opposite-component
+geometry (Track A), finite local SOURCE-support descent/final
+contradiction (Track C), and the separate weak root-image collision
+and global shadow-avoidance questions. ATRC-069 and ATRC-070
+remain open/orange. The numbered manuscript prose is still frozen.

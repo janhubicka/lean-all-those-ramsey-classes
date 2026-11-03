@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteNamedUniformAmbientRelativeLocality
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_iff_uniformAmbientRelativeWeakCompletions
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_of_uniformAmbientRelativeWeakCompletions

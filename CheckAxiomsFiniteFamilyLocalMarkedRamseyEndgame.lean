@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyLocalMarkedRamseyEndgame
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMarkedWitnessRamsey_of_localCompletions

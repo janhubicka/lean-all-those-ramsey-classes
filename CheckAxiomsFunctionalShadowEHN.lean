@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FunctionalShadowEHN
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalShadowBig_freeAmalgam
+#print axioms AllThoseRamseyClasses.Lifts.functionalLift_irreducible_of_shadow
+#print axioms AllThoseRamseyClasses.Lifts.functionalEHN_shadowBig

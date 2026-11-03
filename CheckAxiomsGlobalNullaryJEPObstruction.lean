@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalNullaryJEPObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.fullEmbedding_reflects_nullary_relation
+#print axioms AllThoseRamseyClasses.Lifts.nullaryUnitStructures_noCommonFullTarget
+#print axioms AllThoseRamseyClasses.Lifts.emptyForbidden_nativeJEP_fails_of_nullaryRelation
