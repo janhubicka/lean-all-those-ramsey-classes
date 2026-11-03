@@ -107,8 +107,14 @@ theorem fiveCycleImageFamily_graphIrreducible_of_injectiveEHN
   let tuple : Fin (language.graph.arity (.inl false)) → X :=
     fun i => if i.val = 0 then f a else f b
   have hGraphRel : P.graph.rel (.inl false) tuple := by
+    have hTupleEq : f ∘ sourceTuple = tuple := by
+      funext i
+      change f (if i.val = 0 then a else b) =
+        (if i.val = 0 then f a else f b)
+      split_ifs <;> rfl
     change P.rel false tuple
-    simpa [tuple, sourceTuple, Function.comp_def] using hPRel
+    rw [← hTupleEq]
+    exact hPRel
   have hAt0 : tuple pEdge0 = u := by
     simpa [tuple, pEdge0] using hfa
   have hAt1 : tuple pEdge1 = v := by
