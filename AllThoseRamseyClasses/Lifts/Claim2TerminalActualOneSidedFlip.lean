@@ -2,6 +2,7 @@ import AllThoseRamseyClasses.Lifts.Claim2TerminalLeftSupportAccounting
 import AllThoseRamseyClasses.Lifts.GeometricPieceSideDichotomy
 import AllThoseRamseyClasses.Lifts.GeometricCommonRootCoordinates
 import AllThoseRamseyClasses.Lifts.CommonFullGlobalPieceFlip
+import AllThoseRamseyClasses.Lifts.CommonLiftFlipStrictSupport
 
 /-!
 # Claim 2: ACTUAL terminal A-to-B piece flip preserving exterior A-support
