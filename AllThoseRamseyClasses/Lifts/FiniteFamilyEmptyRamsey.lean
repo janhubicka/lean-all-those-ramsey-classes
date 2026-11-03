@@ -50,7 +50,7 @@ theorem finiteNamedEmptyFamily_allFiniteTraces
   let idW : Structure.Embedding W W := Structure.Embedding.id W
   have hAvoid : AvoidsFiniteNamedEHN Family W := by
     intro i f
-    exact isEmptyElim i
+    exact False.elim (isEmptyElim i : False)
   have hMax : FiniteNamedCanonicalMaximalAlong Family
       (fun {U : Type} (E : Structure L U) =>
         FiniteNamedFiniteForbiddenFree Family E) idW := by
