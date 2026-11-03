@@ -1,3 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceAge
 import AllThoseRamseyClasses.Lifts.FunctionalShadowEHN
 import AllThoseRamseyClasses.Lifts.FiniteFamilyAmbientRelativeEHNPullback
 import AllThoseRamseyClasses.Lifts.FiniteNamedUniformAmbientRelativeLocality
