@@ -96,9 +96,8 @@ theorem genuineEHNStage_closed_iff_canonical2019TagInduce_UClosed
         IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts)
           ((genuineEHNStageCanonical2019Tag T).induce S) := by
     simpa only [genuineEHNStageCanonical2019Tag, withPartsWholeMaskOld, A]
-      using (A.withParts T.system.part)
-        .isClosed_iff_wholeMaskTaggedInduce_isUClosed
-          T.system.part hPlus hTrPlus S
+      using (A.withParts T.system.part).isClosed_iff_wholeMaskTaggedInduce_isUClosed
+        T.system.part hPlus hTrPlus S
   calc
     T.system.toStructure.IsClosed S ↔ A.IsClosed S :=
       (T.system.toStructure.toNonemptyPartial_isClosed_iff S).symm
