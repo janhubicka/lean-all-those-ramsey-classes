@@ -57,18 +57,14 @@ theorem functionalWithLinearOrder_irreducible
       have hRel :
           Csrc.rel (.inr ()) ![e x₀, e x] := by
         have he := (e.map_rel_iff (.inr ()) ![x₀, x]).mpr hOrder
-        have hargs : e ∘ ![x₀, x] = ![e x₀, e x] := by
-          funext k
-          fin_cases k <;> rfl
-        rw [hargs] at he
-        exact he
+        simpa using he
       rcases (hFree.rel_iff (.inr ()) ![e x₀, e x]).mp hRel with
         ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
       · exfalso
-        exact hx₀ ⟨xs 0, by
+        exact hx₀ ⟨xs (0 : Fin 2), by
           have h0 := congrFun hxs (0 : Fin 2)
           simpa using h0⟩
-      · exact ⟨xs 1, by
+      · exact ⟨xs (1 : Fin 2), by
           have h1 := congrFun hxs (1 : Fin 2)
           simpa using h1⟩
     have inRight_rev (x : V) (hOrder : x < x₀) :
@@ -76,18 +72,14 @@ theorem functionalWithLinearOrder_irreducible
       have hRel :
           Csrc.rel (.inr ()) ![e x, e x₀] := by
         have he := (e.map_rel_iff (.inr ()) ![x, x₀]).mpr hOrder
-        have hargs : e ∘ ![x, x₀] = ![e x, e x₀] := by
-          funext k
-          fin_cases k <;> rfl
-        rw [hargs] at he
-        exact he
+        simpa using he
       rcases (hFree.rel_iff (.inr ()) ![e x, e x₀]).mp hRel with
         ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
       · exfalso
-        exact hx₀ ⟨xs 1, by
+        exact hx₀ ⟨xs (1 : Fin 2), by
           have h1 := congrFun hxs (1 : Fin 2)
           simpa using h1⟩
-      · exact ⟨xs 0, by
+      · exact ⟨xs (0 : Fin 2), by
           have h0 := congrFun hxs (0 : Fin 2)
           simpa using h0⟩
     intro x
