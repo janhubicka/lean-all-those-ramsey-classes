@@ -1,32 +1,26 @@
+import PartiteConstruction.Functional.DirectWeakIteration
 import PartiteConstruction.Structure.Order
-import PartiteConstruction.Structure.FreeAmalgam
 
 /-!
-# Track E: every FULLY ordered functional structure is irreducible
+# Track E: all fully ordered function structures are irreducible
 
-The native finite-family enlarged witness Bbar need not be
-irreducible in its original relation/function signature. In
-particular, this is false already for a two-point edgeless
-structure in the empty forbidden family.
+Adding a distinguished strict total order to an arbitrary
+relation/set-valued-function structure makes the FULL ordered
+structure irreducible, regardless of native irreducibility.
 
-However, the FULLY ordered expansion Bbar.withLinearOrder
-is always irreducible in the genuine functional language
-which includes the distinguished strict total order relation.
+The proof is deliberately short: its RELATIONAL FUNCTION-GRAPH
+encoding is irreducible, since every two distinct vertices
+occur together in a positive order tuple (in one direction).
+The separately verified full-functional graph-to-native
+irreducibility lemma then gives the required *genuine
+functional free-amalgamation* irreducibility, not a
+false conversion of weak function-graph embeddings into
+full functional embeddings.
 
-Indeed, if an embedded copy of Bbar crossed a full functional
-free amalgam from the two sides, choose one image vertex
-outside the first side. Every other image vertex is comparable
-with it via the embedded total order, and every such ordered
-relation must lie entirely in one source side. It therefore
-also lies on the second side; the whole copy is localized
-there. This uses only full relation reflection and the
-actual free amalgam's relation-iff law.
-
-This handles arbitrary old relations and SET-VALUED functions,
-including nullary input arities; it is NOT a replacement for
-the still required strong amalgamation of ordered age members.
-That ordered-amalgamation/order-completion bridge remains a
-separate structural obligation.
+This establishes the source Base irreducibility needed by
+strict ordered Bbar-tree completion. It does NOT establish
+ordered strong amalgamation of the maximal-trace class
+or the remaining mixed weak-test rank increment.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
@@ -37,65 +31,32 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- A FULL strict linear ordering makes any functional
-structure irreducible with respect to full functional
-free amalgamation (regardless of its native irreducibility).
+/-- For every native functional signature (including nullary,
+partial and multivalued functions) and every genuine total
+external linear order, the FULL ordered expansion is irreducible
+for the full-functional free-amalgamation predicate.
 
-The finite carrier and native function arities are unrestricted.
-Only the completeness of the newly added order relation is used. -/
+Only the added order tuples are used: the original function
+fibres remain untouched. -/
 theorem functionalWithLinearOrder_irreducible
     {V : Type} [LinearOrder V] (B : Structure L V) :
     B.withLinearOrder.Irreducible := by
-  intro H E F C Dsrc Esrc Fsrc Csrc sE sF iE iF hFree e
-  classical
-  by_cases hLeft : ∀ x : V, ∃ a : E, e x = iE a
-  · exact Or.inl hLeft
-  · right
-    obtain ⟨x₀, hx₀⟩ := Classical.not_forall.mp hLeft
-    have inRight (x : V) (hOrder : x₀ < x) :
-        ∃ b : F, e x = iF b := by
-      have hRel :
-          Csrc.rel (.inr ()) ![e x₀, e x] := by
-        have he := (e.map_rel_iff (.inr ()) ![x₀, x]).mpr hOrder
-        have hargs : e ∘ ![x₀, x] = ![e x₀, e x] := by
-          funext k
-          fin_cases k <;> rfl
-        exact Eq.mp (congrArg (Csrc.rel (.inr ())) hargs) he
-      rcases (hFree.rel_iff (.inr ()) ![e x₀, e x]).mp hRel with
-        ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
-      · exfalso
-        exact hx₀ ⟨xs (0 : Fin 2), by
-          have h0 := congrFun hxs (0 : Fin 2)
-          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h0⟩
-      · exact ⟨xs (1 : Fin 2), by
-          have h1 := congrFun hxs (1 : Fin 2)
-          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h1⟩
-    have inRight_rev (x : V) (hOrder : x < x₀) :
-        ∃ b : F, e x = iF b := by
-      have hRel :
-          Csrc.rel (.inr ()) ![e x, e x₀] := by
-        have he := (e.map_rel_iff (.inr ()) ![x, x₀]).mpr hOrder
-        have hargs : e ∘ ![x, x₀] = ![e x, e x₀] := by
-          funext k
-          fin_cases k <;> rfl
-        exact Eq.mp (congrArg (Csrc.rel (.inr ())) hargs) he
-      rcases (hFree.rel_iff (.inr ()) ![e x, e x₀]).mp hRel with
-        ⟨xs, _, hxs⟩ | ⟨xs, _, hxs⟩
-      · exfalso
-        exact hx₀ ⟨xs (1 : Fin 2), by
-          have h1 := congrFun hxs (1 : Fin 2)
-          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h1⟩
-      · exact ⟨xs (0 : Fin 2), by
-          have h0 := congrFun hxs (0 : Fin 2)
-          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h0⟩
-    intro x
-    rcases lt_trichotomy x₀ x with hlt | heq | hgt
-    · exact inRight x hlt
-    · subst x
-      rcases hFree.covers (e x₀) with ⟨a, ha⟩ | hRight
-      · exfalso
-        exact hx₀ ⟨a, ha⟩
-      · exact hRight
-    · exact inRight_rev x hgt
+  have hGraph : B.withLinearOrder.graph.Irreducible := by
+    intro x y hxy
+    rcases lt_or_gt_of_ne hxy with hlt | hgt
+    · refine ⟨(.inl (.inr ())),
+        ![x, y], (0 : Fin 2), (1 : Fin 2),
+        ?_, ?_, ?_⟩
+      · exact hlt
+      · simp
+      · simp
+    · refine ⟨(.inl (.inr ())),
+        ![y, x], (1 : Fin 2), (0 : Fin 2),
+        ?_, ?_, ?_⟩
+      · exact hgt
+      · simp
+      · simp
+  exact irreducible_of_graph_irreducible
+    B.withLinearOrder hGraph
 
 end AllThoseRamseyClasses.Lifts
