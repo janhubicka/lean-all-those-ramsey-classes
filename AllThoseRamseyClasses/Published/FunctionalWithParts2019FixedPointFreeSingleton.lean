@@ -29,6 +29,7 @@ namespace AllThoseRamseyClasses.Published
 
 open StructuralRamsey
 open StructuralRamsey.PartialSetStructure
+open StructuralRamsey.RelStructure
 
 /-- Finite source structures whose genuine unary function is
 everywhere defined with a single output DISTINCT from its input. -/
@@ -138,8 +139,7 @@ theorem fixedPointFreeUnaryPartiteH_noWeakSingleton :
     rfl
   have hTarget : Target.func () (e.toFun ∘ xs) =
       some ({y} : Set X) := by
-    rw [hInput]
-    exact hY
+    exact (congrArg (Target.func ()) hInput).trans hY
   have hMap := e.map_func () xs
   rw [hTarget] at hMap
   cases hSource : (wholeWeakInduce A S).func () xs with
