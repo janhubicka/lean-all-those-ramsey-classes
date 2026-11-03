@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.FiniteOrderRootCuts
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_mono
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_strict_after_root
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_on_root
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_le_card
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_le_rootRank_of_below
+#print axioms AllThoseRamseyClasses.Lifts.finiteRootCutRank_gt_rootRank_of_above
