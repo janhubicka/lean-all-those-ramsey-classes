@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyAmbientRelativeHeredity
+
+#print axioms AllThoseRamseyClasses.Lifts.ambientRelativeWeakHE_pullback_fullEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedAmbientRelativeWeakCompletions_of_embedding
