@@ -183,7 +183,10 @@ theorem emptyForbidden_globalOriginalFiniteFraisseInput_fails_nullary
     (hZero : L.relArity R = 0) :
     ¬ GlobalOriginalFiniteFraisseInput (emptyGlobalForbiddenFamily L) := by
   intro hInput
-  have hJEP :=
+  have hJEP :
+      GlobalNativeFiniteJEP
+        (fun {W : Type} (A : Structure L W) =>
+          AvoidsGlobalFunctionalEHN (emptyGlobalForbiddenFamily L) A) :=
     globalOriginalFiniteFraisseInput_implies_nativeJEP
       (emptyGlobalForbiddenFamily L)
       (emptyGlobalForbiddenFamily_regular L) hInput
