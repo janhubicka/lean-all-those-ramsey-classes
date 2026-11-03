@@ -66,10 +66,10 @@ theorem functionalWithLinearOrder_irreducible
       · exfalso
         exact hx₀ ⟨xs (0 : Fin 2), by
           have h0 := congrFun hxs (0 : Fin 2)
-          simpa only [Function.comp_apply] using h0⟩
+          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h0⟩
       · exact ⟨xs (1 : Fin 2), by
           have h1 := congrFun hxs (1 : Fin 2)
-          simpa only [Function.comp_apply] using h1⟩
+          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h1⟩
     have inRight_rev (x : V) (hOrder : x < x₀) :
         ∃ b : F, e x = iF b := by
       have hRel :
@@ -84,10 +84,10 @@ theorem functionalWithLinearOrder_irreducible
       · exfalso
         exact hx₀ ⟨xs (1 : Fin 2), by
           have h1 := congrFun hxs (1 : Fin 2)
-          simpa only [Function.comp_apply] using h1⟩
+          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h1⟩
       · exact ⟨xs (0 : Fin 2), by
           have h0 := congrFun hxs (0 : Fin 2)
-          simpa only [Function.comp_apply] using h0⟩
+          simpa [Function.comp_apply, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one] using h0⟩
     intro x
     rcases lt_trichotomy x₀ x with hlt | heq | hgt
     · exact inRight x hlt
