@@ -85,7 +85,7 @@ theorem cycle5_properThreeColouring_surjective :
     ∀ f : Fin 5 → Fin 3,
       (∀ a b, cycle5Edge a b → f a ≠ f b) →
       Function.Surjective f := by
-  decide
+  decide +kernel
 
 /-- The forbidden family is closed under tuple-surjective
 original-partial homomorphism-embedding images in EXACTLY the
@@ -146,6 +146,7 @@ theorem fiveCycleImageFamily_noFullMember_in_triangleExtraTernary :
         (L := language) fiveCycleImageFamily
         triangleExtraTernary := by
   rintro ⟨X, P, hP, ⟨e⟩⟩
+  have hForbidden : fiveCycleImageFamily P := hP
   obtain ⟨f, _, hfHE, _⟩ := hP
   have hProper :
       ∀ a b : Fin 5, cycle5Edge a b → e (f a) ≠ e (f b) := by
@@ -173,7 +174,7 @@ theorem fiveCycleImageFamily_noFullMember_in_triangleExtraTernary :
     exact ⟨hx0, hx1, hx2⟩
   have hInP : P.rel true xs :=
     (e.map_rel_iff true xs).mp hTarget
-  exact (fiveCycleImageFamily_ternary_empty hP xs) hInP
+  exact (fiveCycleImageFamily_ternary_empty hForbidden xs) hInP
 
 /-- With the previously established NATIVE EHN witness,
 this finite image-closed family refutes arbitrary-target
