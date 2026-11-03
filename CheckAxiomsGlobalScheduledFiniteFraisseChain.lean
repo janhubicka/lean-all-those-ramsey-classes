@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalScheduledFiniteFraisseChain
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceStage_existsNext
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceNextStage_spec
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceNextEmbedding_spec
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainStep
