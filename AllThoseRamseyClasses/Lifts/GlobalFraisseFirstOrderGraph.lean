@@ -55,7 +55,7 @@ def firstOrderRelGraphStructure
     {R : RelLanguage.{u}} {V : Type v}
     (A : RelStructure R V) :
     (firstOrderRelGraphLanguage R).Structure V where
-  funMap := fun {_} f _ => isEmptyElim f
+  funMap := fun {_} f _ => nomatch f.down
   RelMap := fun {_} s xs =>
     A.rel s.1 (fun i => xs (Fin.cast s.2 i))
 
@@ -79,8 +79,8 @@ instance firstOrderRelGraph_isRelational
     (R : RelLanguage.{u}) :
     (firstOrderRelGraphLanguage R).IsRelational := by
   intro n
-  change IsEmpty ULift.{u} Empty
-  infer_instance
+  change IsEmpty (ULift.{u} Empty)
+  exact ⟨fun x => nomatch x.down⟩
 
 /-- If the original relation-symbol type is countable, its
 arity-indexed first-order relation language is countable.
@@ -94,7 +94,7 @@ theorem firstOrderRelGraph_symbols_countable
     infer_instance
   letI (n : ℕ) :
       Countable ((firstOrderRelGraphLanguage R).Functions n) := by
-    change Countable ULift.{u} Empty
+    change Countable (ULift.{u} Empty)
     infer_instance
   infer_instance
 
