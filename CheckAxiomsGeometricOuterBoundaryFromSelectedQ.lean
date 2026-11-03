@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricOuterBoundaryFromSelectedQ
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSource_outerBoundary_from_selectedReplacement
