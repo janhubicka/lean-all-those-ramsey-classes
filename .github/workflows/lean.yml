@@ -23,6 +23,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Free runner disk for Lean caches
+        run: |
+          set -euo pipefail
+          df -h .
+          # Neither Android, .NET nor CodeQL are needed for Lean/Mathlib.
+          # The full Lake cache plus the Lean toolchain can otherwise
+          # exhaust the standard hosted runner before Lean is installed.
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/hostedtoolcache/CodeQL /usr/local/share/powershell
+          df -h .
       - name: Cache Lean toolchain
         uses: actions/cache@v5
         with:
