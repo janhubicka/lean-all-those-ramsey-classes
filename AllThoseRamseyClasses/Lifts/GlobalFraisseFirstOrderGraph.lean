@@ -45,7 +45,7 @@ universe u v
 The resulting first-order language has NO total function symbols. -/
 def firstOrderRelGraphLanguage
     (R : RelLanguage.{u}) : FirstOrder.Language.{u,u} where
-  Functions := fun _ => Empty.{u}
+  Functions := fun _ => ULift.{u} Empty
   Relations := fun n => {s : R.Symbol // R.arity s = n}
 
 /-- Exact interpretation of a StructuralRamsey relational structure
@@ -79,7 +79,7 @@ instance firstOrderRelGraph_isRelational
     (R : RelLanguage.{u}) :
     (firstOrderRelGraphLanguage R).IsRelational := by
   intro n
-  change IsEmpty Empty.{u}
+  change IsEmpty ULift.{u} Empty
   infer_instance
 
 /-- If the original relation-symbol type is countable, its
@@ -94,7 +94,7 @@ theorem firstOrderRelGraph_symbols_countable
     infer_instance
   letI (n : ℕ) :
       Countable ((firstOrderRelGraphLanguage R).Functions n) := by
-    change Countable Empty.{u}
+    change Countable ULift.{u} Empty
     infer_instance
   infer_instance
 
