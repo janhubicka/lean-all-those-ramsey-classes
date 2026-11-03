@@ -128,4 +128,39 @@ theorem firstOrderNativeGraphEmbedding_closed
     A.ClosedMap B (firstOrderNativeGraphEmbedding e) := by
   exact e.isHomomorphism.closedMap
 
+/-- An ordinary first-order graph embedding lifts to a genuine
+FULL native set-valued functional embedding with the SAME vertex
+map if and only if every target output over an image input tuple
+belongs to the image of the entire original function fibre.
+
+This characterizes exactly the missing hypothesis when moving
+between Mathlib relational directed limits and the native
+function-closed age: relational reflection alone is insufficient. -/
+theorem firstOrderNativeGraphEmbedding_existsFull_iff_closed
+    {L : Language.{u}}
+    {V : Type v} {W : Type w}
+    {A : Structure L V} {B : Structure L W}
+    (e : @FirstOrder.Language.Embedding
+      (firstOrderRelGraphLanguage L.graph) V W
+      (firstOrderNativeGraphStructure A)
+      (firstOrderNativeGraphStructure B)) :
+    (∃ f : Structure.Embedding A B,
+      ∀ x : V, f x = e x) ↔ A.ClosedMap B e := by
+  constructor
+  · rintro ⟨f, hf⟩
+    have hFull : A.ClosedMap B f :=
+      f.isHomomorphism.closedMap
+    intro F xs y hy
+    have hxs : (f ∘ xs) = (e ∘ xs) := by
+      funext i
+      exact hf (xs i)
+    have hy' : y ∈ B.func F (f ∘ xs) := by
+      rw [hxs]
+      exact hy
+    obtain ⟨z, hz, hzy⟩ := hFull F xs y hy'
+    exact ⟨z, hz, (hf z).symm.trans hzy⟩
+  · intro hClosed
+    exact ⟨firstOrderNativeGraphEmbedding_toFull e hClosed,
+      fun _ => rfl⟩
+
 end AllThoseRamseyClasses.Lifts
