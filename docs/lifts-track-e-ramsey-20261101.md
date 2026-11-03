@@ -1,5 +1,72 @@
 # Track E — finite-family folded maximal-trace Ramsey validation
 
+**Current checkpoint — 3 November 2026.** This section supersedes
+earlier CI-pending descriptions below (retained as a chronological
+proof record). The **full finite-family ordered maximal-trace Ramsey
+theorem remains open**. The original 2019 arbitrary regular-family
+distinct-root theorem remains a separate, still unresolved claim.
+
+**Fully CI-certified and merged:**
+- #743: unrestricted ordered ambient functional Ramsey control and
+  exact full-functional copywise transfer;
+- #757: common native maximizing-witness to full maximal-trace
+  copywise completion, preserving all function fibres and both
+  tag-predicate truth values;
+- #764: marked B-within-Bbar Ramsey transfer and actual native-avoidance
+  to finite age-member ordered Ramsey endgame;
+- #768/#770/#773: order extension, exact native/expanded marked witness
+  embeddings, and an enlarged bar witness which itself belongs to the
+  actual hereditary maximal-trace age;
+- #769/#772/#784: ambient-relative exact weak-test locality **iff**
+  and fixed finite forbidden-source vertex cutoff;
+- #779: actual ordered Ramsey target from an expanded sparse control
+  with an arrow and ambient-relative bounded weak completions;
+- **#774**, merged `8979d55c`: copywise completion of **strict**
+  full-functional trees of copies of an **irreducible** age member
+  using genuine expanded-age strong AP, with no false free AP;
+- **#803/#806/#808**: respectively exact ambient-relative weak-test
+  inheritance along full native embeddings, backward inheritance
+  along noninjective EHN native projections, and faithful EHN descent
+  from extra-tagged structures to their native shadows. The
+  projected image is ALWAYS the original weak vertex image, not
+  a function-closure hull.
+
+**Open independent proof checks (do not mark verified):**
+- #813: irreducibility of fully ordered functional structures,
+  repairing tuple-transport elaboration; the older duplicate #789
+  was closed unmerged;
+- #816: an unconditional genuine ordered Ramsey theorem for the
+  empty named forbidden-family boundary case, after repairing
+  dependent empty-index elimination;
+- #820: one ordered maximal bar chosen together with its complete
+  native maximal-profile certificates, avoiding witness mismatch;
+- #823: direct combined native weak-locality transfer for an
+  expanded EHN partite-stage projection;
+- #835: common-root cut-rank lemmas for extending TWO compatible
+  finite orders across the genuine strong-amalgam target.
+
+**Exact remaining E2 obstruction:** construct a finite expanded
+sparse Ramsey control with an ordered `A -> (Bbar)_k` arrow AND
+finite forbidden-free **ambient-relative completions** of all
+literal weak native subsets up to the fixed finite-source cutoff.
+The small-image EHN pullbacks are certified, but the mixed,
+maximal-rank nonclosed selected-support **rank increment** is not.
+The target's selected Bbar-copies must remain genuine full
+functional copies and be ordered compatibly.
+
+**Additional independent order obstacle:** #774 applies to a
+strict tree whose base is irreducible. A freely ordered Bbar is
+expected to be irreducible in the order-extended language (#813),
+but applying the strong-AP tree completion to that language also
+requires ordered strong AP. A concrete, adversarially checked
+root-cut lexicographic order construction is written in
+`docs/lifts-track-e-ordered-strong-ap-20261103.md` (merged #833);
+the full corresponding Lean order-amalgamation theorem is not
+yet verified. Neither this order issue nor strict-tree completion
+alone solves the weak mixed-rank sparsening problem.
+
+---
+
 **Audit date:** 1 November 2026. **Scope:** the alternative finite named
 all-closed-component folded-root lift with repeated root images, not the
 original regular infinite-family / distinct-root lifting theorem of
