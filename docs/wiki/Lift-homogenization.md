@@ -1741,3 +1741,38 @@ be established in Track A for the unrestricted Claim 2.
 The manuscript's numbered `ramsey.tex` remains frozen; ATRC-069
 in the separate validation notes remains open/orange for the
 new-source minimal-separator geometry.
+
+
+## 3 November 2026 — Track B GLOBAL piece-symbol endgame is verified
+
+Full all-module Lean CI, individual axiom checks, and source-contract
+audits passed for merged
+[#795](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/795)
+and [#796](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/796).
+The corresponding exported theorems are
+`geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext`
+and `geometricFlip_globalPieceSymbol_of_exactOppositeBoundaries`.
+
+This goes beyond all-test contextual profile equality: it establishes
+**literal equality of the ORIGINAL GLOBAL canonical lift piece-symbol
+indices** after an actual native functional inner source replacement.
+The new source piece is constructed with the SAME ordered outer root,
+given the exact full functional source geometry: two separated
+components, both complete function-generated root boundary equalities,
+and exact identification of the transported closed context with
+the old root plus one whole component. A mere closed context is NOT
+enough. The theorem does NOT establish those geometric premises.
+
+New draft work: [#819](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/819)
+provides the target-level old relation in a weak EHN flip target,
+but must assume injectivity of the old outer-root target tuple;
+[#827](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/827)
+derives new-source finiteness from selected geometric witnesses.
+Both are pending full CI and are not yet certified.
+
+**The original paper's Claim 2 remains open.** The remaining
+mathematical tasks are actual nested-flip opposite-component
+geometry (Track A), finite local SOURCE-support descent/final
+contradiction (Track C), and the separate weak root-image collision
+and global shadow-avoidance questions. ATRC-069 and ATRC-070
+remain open/orange. The numbered manuscript prose is still frozen.
