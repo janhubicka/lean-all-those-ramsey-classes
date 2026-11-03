@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyExpandedEHNLocality
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedLocalCompletions_of_expandedEHNProjection
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedShadow_avoids_of_expandedEHNProjection
