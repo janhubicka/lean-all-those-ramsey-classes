@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.NativeNonemptyPartialBridge
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartial_defined_iff
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartialEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.collapseDomain_nativeToNonemptyPartial
