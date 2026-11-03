@@ -5,3 +5,4 @@ import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderEmbeddingBridge
 #print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding
 #print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_toFull
 #print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_closed
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_existsFull_iff_closed
