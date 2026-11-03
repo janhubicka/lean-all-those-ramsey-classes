@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Lifts.Claim2InnerBoundaryOuterLocalization
 import AllThoseRamseyClasses.Lifts.ExactOppositeBoundarySeparator
 import AllThoseRamseyClasses.Lifts.WeakMinimalGeometricChart
+import AllThoseRamseyClasses.Lifts.PositiveGeometricRootFromConnectedPath
 
 /-!
 # Track C: exact partner-or-smaller-root dichotomy inside any geometric outer piece
@@ -128,5 +129,69 @@ theorem geometricInnerBoundary_partner_or_smallerRoot
       exact hTInside (hUT (by simpa only [hRoot] using hz))
     exact ⟨m, d, by simpa only [hRoot] using hProper,
       hRootInside, hLeft, hRight, hRoot⟩
+
+/-- In a source whose two selected opposing vertices are joined
+by a genuine Gaifman path, the strictly smaller root of the
+uncovered-boundary alternative is automatically NONEMPTY.
+
+This guarantees positive root arity for the original-2019
+global canonical piece relation in the root-shrinking case.
+No intermediate A-support minimality or global weak-image
+injectivity is introduced. -/
+theorem geometricInnerBoundary_partner_or_positiveSmallerRoot
+    [Finite V]
+    (A : Structure L V)
+    {n : ℕ} (P : GeometricFunctionalPieceData A n)
+    (S : Set V) (hSclosed : A.IsClosed S)
+    (hOuterRootInS : Set.range P.roots ⊆ S)
+    (x : {v : V // v ∉ S})
+    (hxOuter : x.1 ∈ functionalComponentFrom A
+      (Set.range P.roots) P.left)
+    (T : Set V)
+    (hT : T = A.functionClosure
+      (gaifmanNeighborhood A.graph
+        (componentFrom A.graph S x)))
+    (hTS : T ⊆ S)
+    (y : {v : V // v ∉ T})
+    (hSeparated : ¬ ReachOutside A.graph T
+      (outsideCutMap hTS x) y)
+    (hConnected : ReachOutside A.graph (∅ : Set V)
+      (⟨x.1, by simp⟩ : {v : V // v ∉ ∅})
+      (⟨y.1, by simp⟩ : {v : V // v ∉ ∅})) :
+    (A.functionClosure
+       (gaifmanNeighborhood A.graph
+         (componentFrom A.graph T y)) = T) ∨
+    (∃ (m : ℕ) (d : GeometricFunctionalPieceData A m),
+      0 < m ∧
+      Set.range d.roots ⊂ T ∧
+      Set.range d.roots ⊆ S ∩ geometricPieceVertices A P ∧
+      d.left.1 = x.1 ∧ d.right.1 = y.1 ∧
+      Set.range d.roots =
+        A.functionClosure
+          (gaifmanNeighborhood A.graph
+            (componentFrom A.graph T y))) := by
+  rcases geometricInnerBoundary_partner_or_smallerRoot
+      A P S hSclosed hOuterRootInS x hxOuter
+      T hT hTS y hSeparated with
+    hPartner | ⟨m, d, hProper, hRootInside, hLeft, hRight, hRoot⟩
+  · exact Or.inl hPartner
+  · right
+    have hConnectedD : ReachOutside A.graph (∅ : Set V)
+        (⟨d.left.1, by simp⟩ : {v : V // v ∉ ∅})
+        (⟨d.right.1, by simp⟩ : {v : V // v ∉ ∅}) := by
+      simpa only [hLeft, hRight] using hConnected
+    have hNonempty : (Set.range d.roots).Nonempty :=
+      minimalClosedSeparator_nonempty_of_emptyCut_path
+        A (Set.range d.roots) d.left d.right d.minimal
+        hConnectedD
+    obtain ⟨z, hz⟩ := hNonempty
+    obtain ⟨i, _hi⟩ := hz
+    have hm : 0 < m := by
+      cases m with
+      | zero => exact Fin.elim0 i
+      | succ k => exact Nat.zero_lt_succ k
+    exact ⟨m, d, hm, hProper, hRootInside,
+      hLeft, hRight, hRoot⟩
+
 
 end AllThoseRamseyClasses.Lifts
