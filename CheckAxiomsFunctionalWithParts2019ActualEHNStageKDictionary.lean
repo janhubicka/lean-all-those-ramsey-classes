@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019ActualEHNStageKDictionary
+
+-- Track B: same-carrier canonical H/K class correspondence for genuine EHN stages.
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStageCanonical2019Tag
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStageCanonical2019Tag_mem_iff
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_closed_iff_canonical2019TagInduce_UClosed
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_inducedCanonicalK_mem_iff_closed
