@@ -73,8 +73,9 @@ theorem totalUnaryPartiteH_closedHereditary :
     (A.func () (Subtype.val ∘ xs)).map
       (fun T => {y : S | y.1 ∈ T}) =
       some {y : S | y.1 ∈ U}
-  rw [hU]
-  rfl
+  exact congrArg
+    (fun v : Option (Set X) =>
+      v.map (fun T => {y : S | y.1 ∈ T})) hU
 
 private theorem totalUnaryToy_value :
     totalUnaryToy.func () (fun _ : Fin 1 => (0 : Fin 2)) =
@@ -114,7 +115,8 @@ theorem totalUnaryToy_singleton_no_full_H_completion
     rw [hWeakNone] at he
     simpa only [Option.map_none] using he.symm
   obtain ⟨U, hU⟩ := hH (e.toFun ∘ xs)
-  rw [hNone] at hU
-  cases hU
+  have hImpossible : (none : Option (Set X)) = some U :=
+    hNone.symm.trans hU
+  cases hImpossible
 
 end AllThoseRamseyClasses.Published
