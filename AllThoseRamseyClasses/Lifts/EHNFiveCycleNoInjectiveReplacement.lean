@@ -52,7 +52,7 @@ theorem cycle5_properThreeColouring_coversAllEdges :
       ∀ u v : Fin 3, u ≠ v →
         ∃ a b : Fin 5,
           cycle5Edge a b ∧ c a = u ∧ c b = v := by
-  decide
+  decide +kernel
 
 private def pEdge0 :
     Fin (language.graph.arity (.inl false)) := ⟨0, by decide⟩
