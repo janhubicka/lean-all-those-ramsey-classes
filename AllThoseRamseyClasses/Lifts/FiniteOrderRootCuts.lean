@@ -59,6 +59,7 @@ theorem finiteRootCutRank_strict_after_root
     (f : X → Y) (x : X) (y : Y)
     (hxy : f x < y) :
     finiteRootCutRank f (f x) < finiteRootCutRank f y := by
+  classical
   unfold finiteRootCutRank
   apply Finset.card_lt_card
   apply Finset.ssubset_iff.mpr
