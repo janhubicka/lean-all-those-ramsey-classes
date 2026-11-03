@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalCountableFraisseExtensionDiagrams
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceDiagrams_countable
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTrace_fixedRootEmbeddings_finite
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceStageRequests_countable
