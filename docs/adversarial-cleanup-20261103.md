@@ -41,7 +41,11 @@ section.
    had a comment/string masker, but maintained separate parsing logic.
    Both scripts now share that masker and recognise multiple modules per
    `import` directive. Unsupported import syntax fails closed.
-5. A separately protected root marker is unnecessary if its Lean module
+5. The Section 3 source-contract checker also previously matched raw text;
+   a conditional-hypothesis token in a source comment could satisfy its
+   assertion without occurring in the theorem type. It now masks comments
+   and strings before comparing contract signatures.
+6. A separately protected root marker is unnecessary if its Lean module
    is imported by another retained protected root. The cleanup removes
    selected directly/transitively redundant markers but **does not delete**
    their Lean source, proof certificates, or mathematical statements.
@@ -49,7 +53,7 @@ section.
 
 ## Changes and safeguards
 
-- Extracted the existing nested-comment/string scanner to
+- Hardened the conditional Section 3 contract audit against comment-forged hypotheses.\n- Extracted the existing nested-comment/string scanner to
   `scripts/lean_source.py`, removing duplication in audit and inventory
   code.
 - Added tests for nested comments, line comments, strings, escaped quotes,

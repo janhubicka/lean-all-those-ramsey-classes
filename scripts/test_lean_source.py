@@ -37,6 +37,17 @@ class LeanSourceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             executable_text('def s := "unfinished')
 
+    def test_comment_cannot_forge_contract_hypothesis(self):
+        header = (
+            "theorem claimed\n"
+            "  -- (hFreeK : GlobalCanonicalShadowFreeAmalgamation F K)\n"
+            "  (hActual : True) : True := by\n"
+        )
+        self.assertNotIn(
+            "hFreeK : GlobalCanonicalShadowFreeAmalgamation",
+            executable_text(header),
+        )
+
     def test_unrecognised_import_syntax_rejected(self):
         with self.assertRaises(ValueError):
             imports_from_code("import Valid.Module (Invalid)")
