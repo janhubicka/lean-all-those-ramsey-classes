@@ -26,7 +26,7 @@ open StructuralRamsey
 open StructuralRamsey.RelStructure
 open StructuralRamsey.PartialSetStructure
 
-private def inputPattern :
+private abbrev inputPattern :
     Language.FunctionInputPattern (exampleLanguage.withParts (Fin 2)) where
   symbol := ULift.up ()
   rootSize := 1
@@ -35,11 +35,11 @@ private def inputPattern :
     intro i
     exact ⟨0, Subsingleton.elim (0 : Fin 1) i⟩
 
-private def outputMask : Language.CompleteOutputParts (Fin 2) :=
+private abbrev outputMask : Language.CompleteOutputParts (Fin 2) :=
   ⟨⟨(1 : Fin 3), (fun _ : Fin 1 => (1 : Fin 2))⟩,
    by intro i j _; exact Subsingleton.elim i j⟩
 
-private def edgeTuple : Fin (inputPattern.rootSize + outputMask.size) → Fin 2 :=
+private abbrev edgeTuple : Fin (inputPattern.rootSize + outputMask.size) → Fin 2 :=
   Fin.append (fun _ : Fin 1 => (0 : Fin 2))
     (fun _ : Fin 1 => (1 : Fin 2))
 
@@ -85,19 +85,18 @@ theorem totalUnaryToy_ambientRelative_H_completion :
           (fun x : Fin 2 => x))).induce weakS) := by
   let C := wholeMaskTagExpansion
     (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))
-  let f : weakS → Fin 2 := Subtype.val
   have hEmbedding : RelStructure.Embedding (C.induce weakS) C :=
     inclusion C weakS
   have hProtected : IsInducedClosedUHomomorphismEmbedding
       ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2))
-      (C.induce weakS) C f :=
+      (C.induce weakS) C hEmbedding.toFun :=
     IsClosedUHomomorphismEmbedding.toInducedClosed
       (hEmbedding.isClosedUHomomorphismEmbedding
         ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2)))
   exact ⟨Fin 2, inferInstance, totalUnaryToy,
     (fun x : Fin 2 => x),
     totalUnaryToy_mem, totalUnaryToy_transversal,
-    tagged_irreducible, f, hProtected⟩
+    tagged_irreducible, hEmbedding.toFun, hProtected⟩
 
 /-- Class-relative exact separation with NO target-choice loophole:
 the AMBIENT weak test can be completed in H, and the INTRINSIC
@@ -133,19 +132,18 @@ theorem totalUnaryToy_every_ambientRelative_H_completion
           (fun x : Fin 2 => x))).induce S) := by
   let C := wholeMaskTagExpansion
     (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))
-  let f : S → Fin 2 := Subtype.val
   have hEmbedding : RelStructure.Embedding (C.induce S) C :=
     inclusion C S
   have hProtected : IsInducedClosedUHomomorphismEmbedding
       ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2))
-      (C.induce S) C f :=
+      (C.induce S) C hEmbedding.toFun :=
     IsClosedUHomomorphismEmbedding.toInducedClosed
       (hEmbedding.isClosedUHomomorphismEmbedding
         ((exampleLanguage.withParts (Fin 2)).wholeMaskClosureRules (Fin 2)))
   exact ⟨Fin 2, inferInstance, totalUnaryToy,
     (fun x : Fin 2 => x),
     totalUnaryToy_mem, totalUnaryToy_transversal,
-    tagged_irreducible, f, hProtected⟩
+    tagged_irreducible, hEmbedding.toFun, hProtected⟩
 
 /-- An exact finite class-relative counterexample to a tempting
 pointwise strengthening of the local-axiom transfer: every ambient
