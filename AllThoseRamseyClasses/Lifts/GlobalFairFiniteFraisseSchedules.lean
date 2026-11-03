@@ -41,7 +41,7 @@ noncomputable def countablePrefixList
     (α : Type v) [Countable α] (n : ℕ) : List α := by
   classical
   letI : Encodable α := Encodable.ofCountable α
-  exact (List.range (n + 1)).filterMap (Encodable.decode α)
+  exact (List.range (n + 1)).filterMap (Encodable.decode (α := α))
 
 /-- Every element of a countable type is listed at EVERY stage
 after its code, not just at one particular stage. This is the
@@ -55,7 +55,7 @@ theorem countablePrefixList_eventually_mem
   letI : Encodable α := Encodable.ofCountable α
   refine ⟨Encodable.encode a, ?_⟩
   intro n hn
-  change a ∈ (List.range (n + 1)).filterMap (Encodable.decode α)
+  change a ∈ (List.range (n + 1)).filterMap (Encodable.decode (α := α))
   apply (List.mem_filterMap).2
   refine ⟨Encodable.encode a, ?_, ?_⟩
   · exact List.mem_range.mpr (Nat.lt_succ_of_le hn)
