@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019WeakConventions
+
+#print axioms AllThoseRamseyClasses.Published.weakValue_clipped_vs_whole_of_partial_survival
+#print axioms AllThoseRamseyClasses.Published.weakValue_eq_wholeWeakValue_of_subsingleton
+#print axioms AllThoseRamseyClasses.Published.weakValue_eq_wholeWeakValue_of_singleValued
