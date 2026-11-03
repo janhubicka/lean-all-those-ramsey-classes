@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2InnerBoundaryOuterLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_subcomponent_generatedBoundary_inside
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_innerComponent_subset_outerComponent
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_innerComponent_generatedBoundary_insideCut
