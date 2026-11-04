@@ -47,7 +47,7 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u v
+universe u
 variable {L : Language.{u}}
 
 /-- Arbitrary genuine FULL native functional source diagrams with
@@ -58,8 +58,8 @@ profile on ANY outer full root in a closed complement context.
 This is about genuine induced closed CONTEXTS, not an assertion
 that either context is a selected geometric minimal separator. -/
 theorem fullFreeAmalgam_closedContext_allTestProfile_equiv
-    (F : ∀ {Z : Type v}, Structure L Z → Prop)
-    {H A A' E V W R : Type v}
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {H A A' E V W R : Type}
     {Start : Structure L H}
     {OldInner : Structure L A}
     {NewInner : Structure L A'}
