@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKClosedHeredity
+
+#print axioms StructuralRamsey.Structure.toNonemptyPartial_induceClosed_eq
+#print axioms AllThoseRamseyClasses.Published.NativeKClosedHereditary2019
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_closedHereditary
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_nativeKHereditary_inducedK_iff_closed
