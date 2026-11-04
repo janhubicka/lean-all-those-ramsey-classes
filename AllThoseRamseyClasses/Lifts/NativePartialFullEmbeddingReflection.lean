@@ -12,7 +12,7 @@ embedding lifts to a full embedding in this independent-domain
 Option(Set) representation.
 
 Conversely, if the faithful partial representations of two
-native structures admit a FULL partial embedding, the same
+native structures have a FULL partial embedding, the same
 vertex map is already a FULL original native embedding.
 This is not merely a positive graph homomorphism: target
 function-domain reflection, complete output-fibre equality,
