@@ -93,9 +93,7 @@ theorem geometricInnerBoundary_partner_or_smallerRoot
   have hCsame :
       componentFrom A.graph T xT =
         componentFrom A.graph S x := by
-    change componentFrom A.graph T (outsideCutMap hTS x) =
-      componentFrom A.graph S x
-    rw [hT]
+    cases hT
     exact componentBoundaryClosure_preserves_exact_component
       A S hSclosed x
   have hFullX :
