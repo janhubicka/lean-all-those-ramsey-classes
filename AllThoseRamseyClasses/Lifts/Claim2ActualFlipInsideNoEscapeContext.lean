@@ -160,7 +160,8 @@ theorem claim2_actualRightFlip_in_closedNoEscapeContext
       rcases hz with hzInner | hzE
       · obtain ⟨a, _ha, rfl⟩ := hzInner
         exact hInnerInside a.2
-      · exact hzE.2.1.2 ▸ hzE.2.1.1
+      · obtain ⟨b, hbSR, rfl⟩ := hzE
+        exact hbSR
     · intro z hz
       rcases hOldFree.covers z with ⟨a, ha⟩ | ⟨b, hb⟩
       · exact Or.inl ⟨a, Set.mem_univ _, ha.symm⟩
