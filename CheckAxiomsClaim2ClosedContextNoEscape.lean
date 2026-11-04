@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2ClosedContextNoEscape
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_noEscapeOutsideContainingSeam
+#print axioms AllThoseRamseyClasses.Lifts.functionalNoEscape_wholeComponent_insideContext
+#print axioms AllThoseRamseyClasses.Lifts.functionalNoEscape_component_generatedBoundary_inside
