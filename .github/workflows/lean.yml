@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Test shared Lean source scanner
+        run: python3 -m unittest discover -s scripts -p 'test_lean_source.py'
       - name: Review retired-module plan
         run: python3 scripts/cleanup_inventory.py --verify
   build:

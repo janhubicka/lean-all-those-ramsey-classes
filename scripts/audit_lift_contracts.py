@@ -9,6 +9,7 @@ a new proof audit and an intentional update to this file.
 """
 from pathlib import Path
 import re
+from lean_source import executable_text
 
 ROOT = Path(__file__).resolve().parents[1]
 LIFTS = ROOT / "AllThoseRamseyClasses" / "Lifts"
@@ -38,7 +39,7 @@ CONTRACTS = [
 
 for module, theorem, tokens in CONTRACTS:
     path = LIFTS / (module + ".lean")
-    source = path.read_text(encoding="utf-8")
+    source = executable_text(path.read_text(encoding="utf-8"))
     match = re.search(r"(?m)^theorem\s+" + re.escape(theorem) + r"\b", source)
     if match is None:
         raise SystemExit(f"MISSING lift theorem: {module}.{theorem}")

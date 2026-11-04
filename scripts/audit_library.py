@@ -12,6 +12,7 @@ dead: research/audit modules and their counterexamples are intentionally kept.
 from collections import defaultdict
 from pathlib import Path
 import re
+from lean_source import executable_text, imports_from_code
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE_ROOT = ROOT / "AllThoseRamseyClasses"
@@ -22,61 +23,8 @@ FILES = {
 FILES["AllThoseRamseyClasses"] = ROOT / "AllThoseRamseyClasses.lean"
 for p in sorted(ROOT.glob("CheckAxioms*.lean")):
     FILES[p.stem] = p
-IMPORT = re.compile(r"(?m)^\s*import\s+([A-Za-z][A-Za-z0-9_.]*)\s*$")
 UNTRUSTED = re.compile(r"\b(?:sorry|sorryAx|admit)\b|\b(?:axiom|constant)\s+[A-Za-z_]")
 errors = []
-
-
-def executable_text(source: str) -> str:
-    """Remove nested Lean comments and string contents, preserving line breaks."""
-    out = []
-    i = depth = 0
-    in_string = False
-    while i < len(source):
-        c = source[i]
-        if depth:
-            if source.startswith("/-", i):
-                depth += 1
-                out.extend("  ")
-                i += 2
-            elif source.startswith("-/", i):
-                depth -= 1
-                out.extend("  ")
-                i += 2
-            else:
-                out.append("\n" if c == "\n" else " ")
-                i += 1
-        elif in_string:
-            if c == "\\" and i + 1 < len(source):
-                out.extend("  ")
-                i += 2
-            elif c == '"':
-                in_string = False
-                out.append(" ")
-                i += 1
-            else:
-                out.append("\n" if c == "\n" else " ")
-                i += 1
-        elif source.startswith("--", i):
-            e = source.find("\n", i)
-            if e < 0:
-                e = len(source)
-            out.extend(" " * (e - i))
-            i = e
-        elif source.startswith("/-", i):
-            depth = 1
-            out.extend("  ")
-            i += 2
-        elif c == '"':
-            in_string = True
-            out.append(" ")
-            i += 1
-        else:
-            out.append(c)
-            i += 1
-    if depth or in_string:
-        raise ValueError("unclosed Lean comment or string")
-    return "".join(out)
 
 
 GRAPH = {}
@@ -84,6 +32,7 @@ for module, path in sorted(FILES.items()):
     src = path.read_text(encoding="utf-8")
     try:
         code = executable_text(src)
+        imports = imports_from_code(code)
     except ValueError as exc:
         errors.append(f"{path.relative_to(ROOT)}: {exc}")
         continue
@@ -93,7 +42,7 @@ for module, path in sorted(FILES.items()):
             f"local proof admission or axiom {hit.group(0)!r}"
         )
     local = []
-    for name in IMPORT.findall(code):
+    for name in imports:
         if name == "AllThoseRamseyClasses" or name.startswith("AllThoseRamseyClasses."):
             if name not in FILES:
                 errors.append(f"{path.relative_to(ROOT)}: missing local import {name}")
