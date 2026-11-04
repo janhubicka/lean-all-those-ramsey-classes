@@ -189,7 +189,7 @@ noncomputable def globalOriginalFiniteTraceChain
         globalOriginalFiniteTraceNextStage
           F hInput S (representatives i) (diagrams i)) n
 
-/-- Consecutive stages of the concrete scheduled chain admit
+/-- Consecutive stages of the concrete scheduled chain have
 ACTUAL FULL functional/lifted embeddings. No future-stage
 inclusion is assumed in the definition of the chain. -/
 noncomputable def globalOriginalFiniteTraceChainStep
