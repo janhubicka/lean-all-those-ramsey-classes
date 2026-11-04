@@ -3,6 +3,7 @@ import AllThoseRamseyClasses.Lifts.GlobalRightToLeftPieceFlip
 import AllThoseRamseyClasses.Lifts.GlobalFlipContextOutsideSupport
 import AllThoseRamseyClasses.Lifts.FullComplementClosedOuterRoot
 import AllThoseRamseyClasses.Lifts.CommonLiftFlipStrictSupport
+import AllThoseRamseyClasses.Lifts.GlobalRightToLeftStrictSupport
 import AllThoseRamseyClasses.Lifts.GeometricGlobalFreeDiagram
 
 /-!
@@ -165,8 +166,10 @@ theorem claim2_actualRightFlip_in_closedNoEscapeContext
     · intro z hz
       rcases hOldFree.covers z with ⟨a, ha⟩ | ⟨b, hb⟩
       · exact Or.inl ⟨a, Set.mem_univ _, ha.symm⟩
-      · exact Or.inr ⟨b, (by simpa only [SR] using
-          (show iOldE b ∈ K from hb ▸ hz)), hb.symm⟩
+      · have hbSR : b ∈ SR := by
+          change iOldE b ∈ K
+          exact hb ▸ hz
+        exact Or.inr ⟨b, hbSR, hb.symm⟩
   obtain ⟨Q, _hEq, g, _hg,
     W, New, hNew, iQ, iE, hNewFree,
     flip, hFlip, hQImage, hEImage⟩ :=
