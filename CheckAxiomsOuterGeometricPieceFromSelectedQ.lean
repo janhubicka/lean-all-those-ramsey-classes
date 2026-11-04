@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.OuterGeometricPieceFromSelectedQ
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_outerGeometricPiece_from_selectedInnerBoundary
