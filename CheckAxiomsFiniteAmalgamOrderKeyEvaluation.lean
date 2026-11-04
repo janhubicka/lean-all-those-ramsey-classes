@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.FiniteAmalgamOrderKeyEvaluation
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_on_root
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_on_Y_private
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_on_Z_private
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamOrderKey_on_extra
