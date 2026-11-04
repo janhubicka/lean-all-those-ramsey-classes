@@ -131,7 +131,7 @@ theorem fullFreeAmalgam_transportedContext_eq_root_union_component
     · rcases hNew.covers z with ⟨e, hez⟩ | ⟨b, hbz⟩
       · exact Or.inl ⟨e, Set.mem_univ _, hez.symm⟩
       · have hbNew : iNewComp b ∈ NewC := by
-          rw [← hbz] at hzNew
+          rw [hbz] at hzNew
           exact hzNew
         have hbNotT : b ∉ T := by
           intro hbT
