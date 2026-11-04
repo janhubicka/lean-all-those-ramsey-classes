@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.LiteralSelectedReplacementNewGeometricPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.literalSelectedReplacement_has_newGeometricPiece
