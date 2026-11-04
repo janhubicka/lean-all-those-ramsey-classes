@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilyOrderedStrongAmalgamation
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedMaximalTraceAge_orderedStrongAmalgamation
