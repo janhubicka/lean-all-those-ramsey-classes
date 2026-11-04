@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.FullComplementClosedOuterRoot
 import AllThoseRamseyClasses.Lifts.GeometricGlobalFreeDiagram
+import PartiteConstruction.Functional.WeakOperations
 
 /-!
 # Track C: arbitrary closed contextual roots factor through the unchanged inner complement
