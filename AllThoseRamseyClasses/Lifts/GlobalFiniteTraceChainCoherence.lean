@@ -49,9 +49,39 @@ theorem globalOriginalFiniteTraceChainLE_comp
     globalOriginalFiniteTraceChainLE
       F hInput representatives diagrams m k
       (le_trans hmn hnk) := by
-  apply Structure.Embedding.ext
-  intro x
-  simp [globalOriginalFiniteTraceChainLE,
-    Nat.leRecOn_trans hmn hnk]
+  induction k, hnk using Nat.le_induction with
+  | base =>
+      apply Structure.Embedding.ext
+      intro x
+      simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_self]
+  | succ k hnk ih =>
+      calc
+        (globalOriginalFiniteTraceChainLE
+          F hInput representatives diagrams n (k + 1)
+          (Nat.le_succ_of_le hnk)).comp
+          (globalOriginalFiniteTraceChainLE
+            F hInput representatives diagrams m n hmn) =
+        (globalOriginalFiniteTraceChainStep
+          F hInput representatives diagrams k).comp
+          ((globalOriginalFiniteTraceChainLE
+            F hInput representatives diagrams n k hnk).comp
+            (globalOriginalFiniteTraceChainLE
+              F hInput representatives diagrams m n hmn)) := by
+                apply Structure.Embedding.ext
+                intro x
+                simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_succ,
+                  Structure.Embedding.comp_apply]
+        _ = (globalOriginalFiniteTraceChainStep
+          F hInput representatives diagrams k).comp
+          (globalOriginalFiniteTraceChainLE
+            F hInput representatives diagrams m k
+            (le_trans hmn hnk)) := by rw [ih]
+        _ = globalOriginalFiniteTraceChainLE
+          F hInput representatives diagrams m (k + 1)
+          (le_trans hmn (Nat.le_succ_of_le hnk)) := by
+                apply Structure.Embedding.ext
+                intro x
+                simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_succ,
+                  Structure.Embedding.comp_apply]
 
 end AllThoseRamseyClasses.Lifts
