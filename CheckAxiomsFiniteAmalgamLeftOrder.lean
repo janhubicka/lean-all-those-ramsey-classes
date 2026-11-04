@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FiniteAmalgamLeftOrder
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamLinearOrder_left_strictMono
