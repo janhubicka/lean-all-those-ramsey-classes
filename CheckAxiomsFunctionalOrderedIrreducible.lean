@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FunctionalOrderedIrreducible
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalWithLinearOrder_irreducible
