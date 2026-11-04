@@ -93,4 +93,35 @@ theorem weakValue_eq_wholeWeakValue_of_singleValued
       exact weakValue_eq_wholeWeakValue_of_subsingleton
         S U (hValue U hv)
 
+/-- For a genuine partial function structure whose every defined
+output contains AT MOST ONE point, clipped and all-or-none weak
+restrictions agree on EVERY operation and EVERY exact subset S.
+
+This is the function-level exact matching needed for the published
+single-valued case. The relations of the two weak structures also
+coincide by definition, independently of this hypothesis. -/
+theorem weakInduce_func_eq_wholeWeakInduce_of_singleValued
+    {L : Language} (A : PartialSetStructure L V)
+    (hSingle : ∀ F xs U, A.func F xs = some U →
+      ∀ x ∈ U, ∀ y ∈ U, x = y)
+    (S : Set V) (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → S) :
+    (weakInduce A S).func F xs =
+      (wholeWeakInduce A S).func F xs := by
+  change weakValue S (A.func F (Subtype.val ∘ xs)) =
+    wholeWeakValue S (A.func F (Subtype.val ∘ xs))
+  exact weakValue_eq_wholeWeakValue_of_singleValued S
+    (A.func F (Subtype.val ∘ xs))
+    (fun U hU => hSingle F (Subtype.val ∘ xs) U hU)
+
+/-- Relation records are exactly identical under clipped and
+whole-fibre weak induction without any assumption on functions. -/
+theorem weakInduce_rel_iff_wholeWeakInduce
+    {L : Language} (A : PartialSetStructure L V)
+    (S : Set V) (R : L.RelSymbol)
+    (xs : Fin (L.relArity R) → S) :
+    (weakInduce A S).rel R xs ↔
+      (wholeWeakInduce A S).rel R xs := by
+  rfl
+
 end AllThoseRamseyClasses.Published
