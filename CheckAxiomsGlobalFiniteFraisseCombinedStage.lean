@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteFraisseCombinedStage
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteFraisseInput_realizeFiniteDiagrams
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteFraisseInput_realizeCofinalAndDiagrams
