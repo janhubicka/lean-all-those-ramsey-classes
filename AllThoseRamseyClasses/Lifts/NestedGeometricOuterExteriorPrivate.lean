@@ -76,4 +76,82 @@ theorem nestedGeometric_outerExterior_avoids_innerPiece
     have hzC : z ∈ C := hInnerInOuter hzD
     exact (Set.disjoint_left.mp hDistinct) hzC hzExterior
 
+
+/-- In a genuine nested pair of geometric source pieces, the ENTIRE
+inner ordered root belongs to the older selected outer piece, even
+when the two closed separators are incomparable.
+
+The nontrivial case is an inner root vertex outside the older
+closed cut; its membership in the older component follows from
+the verified full generated-boundary attachment theorem. -/
+theorem nestedGeometric_innerRoot_in_outerPiece
+    (A : Structure L V)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData A n)
+    (outer : GeometricFunctionalPieceData A m)
+    (hInnerInOuter :
+      componentFrom A.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom A.graph (Set.range outer.roots) outer.left)
+    (i : Fin n) :
+    inner.roots i ∈ geometricPieceVertices A outer := by
+  have hAttached :
+      Set.range inner.roots \ Set.range outer.roots ⊆
+        componentFrom A.graph (Set.range outer.roots) outer.left :=
+    geometricInnerRoot_outsideOlderCut_inComponent
+      A inner (Set.range outer.roots) outer.minimal.1
+      outer.left hInnerInOuter
+  change inner.roots i ∈
+    Set.range outer.roots ∪
+      componentFrom A.graph (Set.range outer.roots) outer.left
+  by_cases hi : inner.roots i ∈ Set.range outer.roots
+  · exact Or.inl hi
+  · exact Or.inr (hAttached ⟨⟨i, rfl⟩, hi⟩)
+
+/-- Every coordinate of the older outer closed separator survives
+in the true complementary side when an inner selected component is
+contained in the older selected component. This discharges exactly
+the explicit root-survival premise of the full outer-context
+profile and root-embedding transfer theorems. -/
+theorem nestedGeometric_outerRoot_avoids_innerComponent
+    (A : Structure L V)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData A n)
+    (outer : GeometricFunctionalPieceData A m)
+    (hInnerInOuter :
+      componentFrom A.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom A.graph (Set.range outer.roots) outer.left)
+    (i : Fin m) :
+    outer.roots i ∉
+      functionalComponentFrom A (Set.range inner.roots) inner.left := by
+  intro hi
+  have hInOuter :
+      outer.roots i ∈
+        componentFrom A.graph (Set.range outer.roots) outer.left :=
+    hInnerInOuter hi
+  exact hInOuter.1 ⟨i, rfl⟩
+
+/-- Genuine nesting of the selected components already ensures
+containment of the FULL function-closed inner piece, not only its
+private component. The inner generated root needs not lie inside
+the older root. -/
+theorem nestedGeometric_innerPiece_subset_outerPiece
+    (A : Structure L V)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData A n)
+    (outer : GeometricFunctionalPieceData A m)
+    (hInnerInOuter :
+      componentFrom A.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom A.graph (Set.range outer.roots) outer.left) :
+    geometricPieceVertices A inner ⊆
+      geometricPieceVertices A outer := by
+  intro v hv
+  change v ∈ Set.range inner.roots ∪
+    componentFrom A.graph (Set.range inner.roots) inner.left at hv
+  change v ∈ Set.range outer.roots ∪
+    componentFrom A.graph (Set.range outer.roots) outer.left
+  rcases hv with ⟨i, rfl⟩ | hvD
+  · exact nestedGeometric_innerRoot_in_outerPiece
+      A inner outer hInnerInOuter i
+  · exact Or.inr (hInnerInOuter hvD)
+
 end AllThoseRamseyClasses.Lifts
