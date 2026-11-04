@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankNoEscapeComponent
+
+#print axioms AllThoseRamseyClasses.Lifts.positiveLocalRightSupport_noEscape_hasInnerComponent
