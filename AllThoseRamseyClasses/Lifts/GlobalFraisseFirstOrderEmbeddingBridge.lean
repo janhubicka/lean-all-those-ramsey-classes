@@ -56,17 +56,17 @@ def firstOrderRelGraphEmbedding
     firstOrderRelGraphStructure B
   exact {
     toFun := e
-  inj' := e.injective
-  map_fun' := by
-    intro n f xs
-    exact nomatch f.down
-  map_rel' := by
-    intro n s xs
-    change B.rel s.1
-      (e ∘ (fun i => xs (Fin.cast s.2 i))) ↔
-      A.rel s.1 (fun i => xs (Fin.cast s.2 i))
-    exact e.map_rel_iff s.1
-      (fun i => xs (Fin.cast s.2 i))
+    inj' := e.injective
+    map_fun' := by
+      intro n f xs
+      exact nomatch f.down
+    map_rel' := by
+      intro n s xs
+      change B.rel s.1
+        (e ∘ (fun i => xs (Fin.cast s.2 i))) ↔
+        A.rel s.1 (fun i => xs (Fin.cast s.2 i))
+      exact e.map_rel_iff s.1
+        (fun i => xs (Fin.cast s.2 i))
   }
 
 /-- Recover the genuine relational embedding of the exact
@@ -87,14 +87,14 @@ def firstOrderRelGraphEmbedding_toRel
     firstOrderRelGraphStructure B
   exact {
     toFun := e
-  injective := e.injective
-  map_rel_iff := by
-    intro s xs
-    have h := e.map_rel
-      (⟨s, rfl⟩ :
-        (firstOrderRelGraphLanguage R).Relations (R.arity s)) xs
-    change B.rel s (e ∘ xs) ↔ A.rel s xs at h
-    exact h
+    injective := e.injective
+    map_rel_iff := by
+      intro s xs
+      have h := e.map_rel
+        (⟨s, rfl⟩ :
+          (firstOrderRelGraphLanguage R).Relations (R.arity s)) xs
+      change B.rel s (e ∘ xs) ↔ A.rel s xs at h
+      exact h
   }
 
 /-- A native FULL set-valued functional embedding induces an
