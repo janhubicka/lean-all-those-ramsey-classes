@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoEscapePositiveRankBoundaryAlternative
+
+#print axioms AllThoseRamseyClasses.Lifts.noEscapeComponent_partner_or_smallerPositiveRoot
+#print axioms AllThoseRamseyClasses.Lifts.positiveLocalRightRank_noEscape_partner_or_smallerRoot
