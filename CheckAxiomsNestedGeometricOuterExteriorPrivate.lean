@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.NestedGeometricOuterExteriorPrivate
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_outerExterior_avoids_innerPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_innerRoot_in_outerPiece
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_outerRoot_avoids_innerComponent
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_innerPiece_subset_outerPiece
