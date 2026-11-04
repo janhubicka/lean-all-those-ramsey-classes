@@ -4,3 +4,5 @@ import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKClosedHered
 #print axioms AllThoseRamseyClasses.Published.NativeKClosedHereditary2019
 #print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_closedHereditary
 #print axioms AllThoseRamseyClasses.Published.genuineEHNStage_nativeKHereditary_inducedK_iff_closed
+
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_closedHereditary_iff
