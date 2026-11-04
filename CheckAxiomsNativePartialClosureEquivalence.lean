@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NativePartialClosureEquivalence
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartial_isClosed_iff
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartial_no_definedEmpty
