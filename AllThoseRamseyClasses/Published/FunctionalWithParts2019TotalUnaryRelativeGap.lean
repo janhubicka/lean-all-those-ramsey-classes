@@ -84,16 +84,38 @@ private theorem tagged_edge :
   ext x
   simp
 
+/-- Fully typed input and output indices avoid asking numeral typeclass
+synthesis to unfold a dependent OLD relation-arity expression. -/
+private def inputIndex : Fin inputPattern.rootSize :=
+  ⟨0, by change 0 < 1; omega⟩
+
+private def outputIndex : Fin outputMask.size :=
+  ⟨0, by change 0 < 1; omega⟩
+
 private theorem tagged_irreducible :
     (wholeMaskTagExpansion
       (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))).Irreducible := by
+  have hInput :
+      edgeTuple (Fin.castAdd outputMask.size inputIndex) =
+        (0 : Fin 2) := by
+    simp only [edgeTuple, Fin.append_left]
+  have hOutput :
+      edgeTuple (Fin.natAdd inputPattern.rootSize outputIndex) =
+        (1 : Fin 2) := by
+    simp only [edgeTuple, Fin.append_right]
   intro x y hxy
   fin_cases x <;> fin_cases y
   · exact (hxy rfl).elim
   · exact ⟨.inl (.inr (.inr (inputPattern,outputMask))),
-      edgeTuple, 0, 1, tagged_edge, rfl, rfl⟩
+      edgeTuple,
+      Fin.castAdd outputMask.size inputIndex,
+      Fin.natAdd inputPattern.rootSize outputIndex,
+      tagged_edge, hInput, hOutput⟩
   · exact ⟨.inl (.inr (.inr (inputPattern,outputMask))),
-      edgeTuple, 1, 0, tagged_edge, rfl, rfl⟩
+      edgeTuple,
+      Fin.natAdd inputPattern.rootSize outputIndex,
+      Fin.castAdd outputMask.size inputIndex,
+      tagged_edge, hOutput, hInput⟩
   · exact (hxy rfl).elim
 
 private def weakS : Set (Fin 2) := {(0 : Fin 2)}
