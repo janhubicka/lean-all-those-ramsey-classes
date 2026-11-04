@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteAmalgamBothOrders
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteAmalgamLinearOrder_right_strictMono
+#print axioms AllThoseRamseyClasses.Lifts.exists_finiteAmalgamLinearOrder_extending_both
