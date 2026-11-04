@@ -59,7 +59,7 @@ theorem countablePrefixList_eventually_mem
   apply (List.mem_filterMap).2
   refine ⟨Encodable.encode a, ?_, ?_⟩
   · exact List.mem_range.mpr (Nat.lt_succ_of_le hn)
-  · exact Encodable.decode_encode a
+  · exact Encodable.encodek a
 
 /-- At each finite stage list finitely many ACTUAL original
 maximal-trace age representatives, encoded from the countable
