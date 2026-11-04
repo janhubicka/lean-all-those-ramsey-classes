@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ClosedContextRootInComplement
+
+#print axioms AllThoseRamseyClasses.Lifts.closedContextRoot_factorsFully_into_innerComplement
+#print axioms AllThoseRamseyClasses.Lifts.closedContextRoot_factorsFully_of_seamDisjointInner
