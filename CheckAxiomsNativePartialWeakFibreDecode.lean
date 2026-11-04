@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NativePartialWeakFibreDecode
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartial_weakRel_iff
+#print axioms AllThoseRamseyClasses.Lifts.nativeToNonemptyPartial_weakFibre_eq
