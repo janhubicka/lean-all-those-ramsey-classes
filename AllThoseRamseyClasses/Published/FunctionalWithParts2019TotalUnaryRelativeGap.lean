@@ -47,8 +47,33 @@ private abbrev outputMask : Language.CompleteOutputParts (Fin 2) :=
      omega⟩
 
 private abbrev edgeTuple : Fin (inputPattern.rootSize + outputMask.size) → Fin 2 :=
-  Fin.append (fun _ : Fin 1 => (0 : Fin 2))
-    (fun _ : Fin 1 => (1 : Fin 2))
+  fun i => if i.val = 0 then 0 else 1
+
+/-- Fully typed input and output indices avoid numeral inference in
+the dependent arity of the OLD relation. -/
+private def inputIndex : Fin inputPattern.rootSize :=
+  ⟨0, by change 0 < 1; omega⟩
+
+private def outputIndex : Fin outputMask.size :=
+  ⟨0, by change 0 < 1; omega⟩
+
+private theorem edge_input (i : Fin inputPattern.rootSize) :
+    edgeTuple (Fin.castAdd outputMask.size i) = (0 : Fin 2) := by
+  have hi : i.val = 0 := by
+    have hlt : i.val < 1 := by simpa [inputPattern] using i.isLt
+    omega
+  change (if i.val = 0 then (0 : Fin 2) else 1) = 0
+  simp [hi]
+
+private theorem edge_output (j : Fin outputMask.size) :
+    edgeTuple (Fin.natAdd inputPattern.rootSize j) = (1 : Fin 2) := by
+  have hpos : (Fin.natAdd inputPattern.rootSize j).val ≠ 0 := by
+    change inputPattern.rootSize + j.val ≠ 0
+    have hm : inputPattern.rootSize = 1 := rfl
+    omega
+  change (if (Fin.natAdd inputPattern.rootSize j).val = 0
+    then (0 : Fin 2) else 1) = 1
+  simp [hpos]
 
 /-- A complete OLD value tuple connects both distinct vertices 0 and
 1, so the two-point original tagged H-member is irreducible. -/
@@ -73,36 +98,49 @@ private theorem tagged_edge :
     (∀ j : Fin outputMask.size,
       (fun x : Fin 2 => x) (edgeTuple (Fin.natAdd inputPattern.rootSize j)) =
         outputMask.label j)
-  simp only [edgeTuple, Fin.append_left, Fin.append_right]
-  change
-    Function.Injective (fun _ : Fin 1 => (0 : Fin 2)) ∧
-    some ({(1 : Fin 2)} : Set (Fin 2)) =
-      some (Set.range (fun _ : Fin 1 => (1 : Fin 2))) ∧
-    (∀ _ : Fin 1, (1 : Fin 2) = (1 : Fin 2))
-  refine ⟨fun i j _ => Subsingleton.elim i j, ?_, fun _ => rfl⟩
-  congr 1
-  ext x
-  simp
-
-/-- Fully typed input and output indices avoid asking numeral typeclass
-synthesis to unfold a dependent OLD relation-arity expression. -/
-private def inputIndex : Fin inputPattern.rootSize :=
-  ⟨0, by change 0 < 1; omega⟩
-
-private def outputIndex : Fin outputMask.size :=
-  ⟨0, by change 0 < 1; omega⟩
+  constructor
+  · intro i j _
+    apply Fin.ext
+    have hi : i.val < 1 := by simpa [inputPattern] using i.isLt
+    have hj : j.val < 1 := by simpa [inputPattern] using j.isLt
+    omega
+  constructor
+  · have hArgs :
+        ((fun i : Fin inputPattern.rootSize =>
+          edgeTuple (Fin.castAdd outputMask.size i)) ∘ inputPattern.argMap) =
+          (fun _ : Fin ((exampleLanguage.withParts (Fin 2)).funcArity
+            inputPattern.symbol) => (0 : Fin 2)) := by
+        funext i
+        exact edge_input (inputPattern.argMap i)
+    have hSet : Set.range
+        (fun j : Fin outputMask.size =>
+          edgeTuple (Fin.natAdd inputPattern.rootSize j)) =
+        ({(1 : Fin 2)} : Set (Fin 2)) := by
+      ext y
+      constructor
+      · rintro ⟨j, rfl⟩
+        exact Set.mem_singleton_iff.mpr (edge_output j)
+      · intro hy
+        have hy1 : y = 1 := Set.mem_singleton_iff.mp hy
+        refine ⟨outputIndex, ?_⟩
+        exact (edge_output outputIndex).trans hy1.symm
+    rw [hArgs, hSet]
+    change totalUnaryToy.func () (fun _ : Fin 1 => (0 : Fin 2)) =
+      some ({(1 : Fin 2)} : Set (Fin 2))
+    rfl
+  · intro j
+    change edgeTuple (Fin.natAdd inputPattern.rootSize j) = (1 : Fin 2)
+    exact edge_output j
 
 private theorem tagged_irreducible :
     (wholeMaskTagExpansion
       (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))).Irreducible := by
   have hInput :
       edgeTuple (Fin.castAdd outputMask.size inputIndex) =
-        (0 : Fin 2) := by
-    simp only [edgeTuple, Fin.append_left]
+        (0 : Fin 2) := edge_input inputIndex
   have hOutput :
       edgeTuple (Fin.natAdd inputPattern.rootSize outputIndex) =
-        (1 : Fin 2) := by
-    simp only [edgeTuple, Fin.append_right]
+        (1 : Fin 2) := edge_output outputIndex
   intro x y hxy
   fin_cases x <;> fin_cases y
   · exact (hxy rfl).elim
