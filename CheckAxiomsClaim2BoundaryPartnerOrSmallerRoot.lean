@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2BoundaryPartnerOrSmallerRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerBoundary_partner_or_smallerRoot
+#print axioms AllThoseRamseyClasses.Lifts.geometricInnerBoundary_partner_or_positiveSmallerRoot
