@@ -73,6 +73,8 @@ theorem fullFreeAmalgam_privateExterior_internalBoundary_reflection
           (componentFrom Whole.graph (iComp '' T)
             (fullFunctionalEmbedding_outsideCut iComp T x))) =
       iComp '' T) :
+    (componentFrom Complement.graph T x ⊆
+      {b : B | b ∉ Set.range sComp}) ∧
     Complement.functionClosure
       (gaifmanNeighborhood Complement.graph
         (componentFrom Complement.graph T x)) = T := by
@@ -157,6 +159,7 @@ theorem fullFreeAmalgam_privateExterior_internalBoundary_reflection
       iComp '' T at hWholeBoundary
     rw [hComponents] at hWholeBoundary
     exact hGenerated.symm.trans hWholeBoundary
+  refine ⟨hCompPrivate, ?_⟩
   apply Set.Subset.antisymm
   · intro b hb
     have hbImage : iComp b ∈
@@ -197,10 +200,13 @@ theorem nestedGeometric_originalExterior_internalBoundary_eq_outerRoot
       functionalComponentComplementEmbedding Old
         (Set.range inner.roots) inner.minimal.1 inner.left
     let T : Set Comp.Carrier := iComp ⁻¹' Set.range outer.roots
-    ∃ x : {b : Comp.Carrier // b ∉ T},
-      Comp.str.functionClosure
-        (gaifmanNeighborhood Comp.str.graph
-          (componentFrom Comp.str.graph T x)) = T := by
+    Comp.str.IsClosed T ∧
+      ∃ x : {b : Comp.Carrier // b ∉ T},
+        (componentFrom Comp.str.graph T x ⊆
+          {b : Comp.Carrier | b ∉ Set.range Comp.rootEmbedding}) ∧
+        Comp.str.functionClosure
+          (gaifmanNeighborhood Comp.str.graph
+            (componentFrom Comp.str.graph T x)) = T := by
   let Comp := geometricGlobalComplementChart Old inner
   let iComp : Structure.Embedding Comp.str Old :=
     functionalComponentComplementEmbedding Old
@@ -212,6 +218,9 @@ theorem nestedGeometric_originalExterior_internalBoundary_eq_outerRoot
         functionalComponentFrom Old (Set.range inner.roots) inner.left :=
     nestedGeometric_outerRoot_avoids_innerComponent
       Old inner outer hNested
+  have hTclosed : Comp.str.IsClosed T :=
+    functionalEmbedding_preimage_closed
+      Comp.str Old iComp (Set.range outer.roots) outer.minimal.1
   have hTRange : iComp '' T = Set.range outer.roots := by
     apply Set.Subset.antisymm
     · rintro w ⟨b, hb, rfl⟩
@@ -263,13 +272,10 @@ theorem nestedGeometric_originalExterior_internalBoundary_eq_outerRoot
         iComp '' T := by
     rw [hSame, hTRange]
     exact geometricPiece_right_boundary_closure Old outer
-  have hCompBoundary :
-      Comp.str.functionClosure
-        (gaifmanNeighborhood Comp.str.graph
-          (componentFrom Comp.str.graph T x)) = T :=
+  obtain ⟨hCompPrivate, hCompBoundary⟩ :=
     fullFreeAmalgam_privateExterior_internalBoundary_reflection
       (geometricGlobalSource_freeDiagram Old inner)
       T x hWholePrivate hWholeBoundary
-  exact ⟨x, hCompBoundary⟩
+  exact ⟨hTclosed, x, hCompPrivate, hCompBoundary⟩
 
 end AllThoseRamseyClasses.Lifts
