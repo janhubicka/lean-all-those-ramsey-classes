@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NestedGeometricExteriorInternalBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_privateExterior_internalBoundary_reflection
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_originalExterior_internalBoundary_eq_outerRoot
