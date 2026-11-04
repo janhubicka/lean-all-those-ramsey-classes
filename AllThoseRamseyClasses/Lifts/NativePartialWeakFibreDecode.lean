@@ -88,7 +88,7 @@ theorem nativeToNonemptyPartial_weakFibre_eq
         · intro hy
           exact (hMeet ⟨y.1, ⟨hy, y.2⟩⟩).elim
         · intro hy
-          exact (False.elim (Set.not_mem_empty y hy))
+          simp at hy
       simp [PartialSetStructure.weakValue, hU, hMeet, hMissing]
   · have hEmpty : U = ∅ :=
       Set.not_nonempty_iff_eq_empty.mp hU
