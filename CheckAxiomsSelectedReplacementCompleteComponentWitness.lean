@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SelectedReplacementCompleteComponentWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedReplacementPiece_completeComponentWitness
