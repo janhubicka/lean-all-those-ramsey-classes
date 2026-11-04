@@ -199,7 +199,7 @@ theorem geometricBOnlyFlip_context_retains_AExclusiveAnchor
     rcases hOldFree.covers v with ⟨a, haEq⟩ | ⟨b, hbEq⟩
     · exact Or.inl ⟨a, Set.mem_univ _, haEq.symm⟩
     · exact Or.inr ⟨b,
-        (by change iOldE b ∈ K; rw [hbEq]; exact hvK),
+        (by change iOldE b ∈ K; exact hbEq ▸ hvK),
         hbEq.symm⟩
   exact fullReplacement_context_retains_positiveSourceSupport
     iOldL iOldE iQ iE SR f g
