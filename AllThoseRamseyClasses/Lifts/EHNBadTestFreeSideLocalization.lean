@@ -83,6 +83,65 @@ theorem irreducibleWeakMap_liesInOneFullFreeSide
         (Set.range f) ⟨x, rfl⟩⟩
     exact hR z
 
+/-- Cancellation of a full target-side embedding for an
+arbitrary merely WEAK source map whose underlying vertex image
+lies in that side. The result is an actual weak map into the
+side, not an asserted full embedding or EHN extension. -/
+theorem weakHomomorphism_factor_fullSide
+    {UV UA UT : Type}
+    {E : Structure L UV}
+    {Side : Structure L UA} {Target : Structure L UT}
+    {f : UV → UT}
+    (hf : E.IsWeakHomomorphism Target f)
+    (j : Structure.Embedding Side Target)
+    (hContained : ∀ x : UV, ∃ a : UA, f x = j a) :
+    ∃ g : UV → UA,
+      E.IsWeakHomomorphism Side g ∧
+      ∀ x : UV, j (g x) = f x := by
+  classical
+  let g : UV → UA := fun x => Classical.choose (hContained x)
+  have hFactor : f = j ∘ g := by
+    funext x
+    exact Classical.choose_spec (hContained x)
+  have hWeakComp : E.IsWeakHomomorphism Target (j ∘ g) := by
+    rw [← hFactor]
+    exact hf
+  exact ⟨g, j.cancel_weak hWeakComp,
+    fun x => (Classical.choose_spec (hContained x)).symm⟩
+
+/-- Strengthened positive full-free-amalgam theorem: an
+irreducible source with a merely weak map into a genuine full
+free amalgam actually factors AS A WEAK MAP through one full
+side. This remains correct with colliding vertices and arbitrary
+native function incidences. No EHN/full source-map claim is made. -/
+theorem irreducibleWeakMap_factorsThroughOneFullFreeSide
+    {UV UX UA UB UT : Type}
+    (E : Structure L UV)
+    (hIrr : E.Irreducible)
+    (Root : Structure L UX)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (Target : Structure L UT)
+    (sL : Structure.Embedding Root Left)
+    (sR : Structure.Embedding Root Right)
+    (jL : Structure.Embedding Left Target)
+    (jR : Structure.Embedding Right Target)
+    (hFree : Structure.IsFreeAmalgam sL sR jL jR)
+    (f : UV → UT)
+    (hf : E.IsWeakHomomorphism Target f) :
+    (∃ g : UV → UA,
+      E.IsWeakHomomorphism Left g ∧
+      ∀ x : UV, jL (g x) = f x) ∨
+    (∃ g : UV → UB,
+      E.IsWeakHomomorphism Right g ∧
+      ∀ x : UV, jR (g x) = f x) := by
+  rcases irreducibleWeakMap_liesInOneFullFreeSide
+      E hIrr Root Left Right Target
+      sL sR jL jR hFree f hf with hLeft | hRight
+  · exact Or.inl (weakHomomorphism_factor_fullSide
+      hf jL hLeft)
+  · exact Or.inr (weakHomomorphism_factor_fullSide
+      hf jR hRight)
+
 /-- A genuine native irreducible test of ANY full quotient-copy
 P ↪ weakImage(w) must have its weak inclusion image contained
 in one actual full target side. Importantly, this is only
