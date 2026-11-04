@@ -158,13 +158,13 @@ theorem genuineTagged2019_correctedCovered_decoder_defined_iff_OLD_domain
   constructor
   · rintro ⟨U, hSome⟩
     have hValue : HasWholeMaskValue E F x U :=
-      (E.wholeMaskPartialDecode_func_some_iff F x hUnique U).mp hSome
+      (E.wholeMaskPartialDecode_func_some_iff F x (hUnique F x) U).mp hSome
     exact hValid.domain_of_value E F x U hValue
   · intro hDom
     obtain ⟨U, hValue⟩ :=
       genuineTagged2019_correctedCovered_domain_has_wholeMaskValue
         H C hClosed hCovered hPos F x hDom
     refine ⟨U, ?_⟩
-    exact (E.wholeMaskPartialDecode_func_some_iff F x hUnique U).mpr hValue
+    exact (E.wholeMaskPartialDecode_func_some_iff F x (hUnique F x) U).mpr hValue
 
 end AllThoseRamseyClasses.Published
