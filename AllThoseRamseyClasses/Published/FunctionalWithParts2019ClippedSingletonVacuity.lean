@@ -123,6 +123,9 @@ theorem fixedPointFreeUnary_clippedAllSmall_forces_empty
   refine ⟨fun x => ?_⟩
   obtain ⟨X, hFinite, Target, partTarget, hH, hEmb⟩ :=
     hSmall {x} (by simp)
+  have hSame : (↑({x} : Finset V) : Set V) = ({x} : Set V) := by
+    simp
+  rw [hSame] at hEmb
   exact (fixedPointFreeUnary_noClippedWeakSingleton
     A x Target partTarget hH) hEmb
 
