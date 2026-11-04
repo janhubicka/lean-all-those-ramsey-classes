@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNPureRelationalGraphBridge
+
+#print axioms AllThoseRamseyClasses.Lifts.graph_irreducible_of_nativeIrreducible_noFunctions
+#print axioms AllThoseRamseyClasses.Lifts.nativeEHN_of_relationalGraphHE_noFunctions
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.weakColor_nativeEHN
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.nativeEHN_with_colliding_root

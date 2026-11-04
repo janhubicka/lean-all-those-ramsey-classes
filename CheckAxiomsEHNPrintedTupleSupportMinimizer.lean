@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedTupleSupportMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_injectiveReplacement_of_printedTupleRange
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveMinimalForbiddenEHNWitness_of_printedTupleRanges

@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedTupleImageClosure
+
+#print axioms AllThoseRamseyClasses.Lifts.fullForbiddenSubstructure_of_closedTupleSurjectiveEHNRange
+#print axioms AllThoseRamseyClasses.Lifts.injectiveForbiddenWitness_of_closedTupleSurjectiveEHNRange
