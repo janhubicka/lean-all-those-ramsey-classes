@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricFlipOuterTargetRelation
+
+#check AllThoseRamseyClasses.Lifts.geometricFlip_preserves_outerGlobalRelation_in_target
+#print axioms AllThoseRamseyClasses.Lifts.geometricFlip_preserves_outerGlobalRelation_in_target
