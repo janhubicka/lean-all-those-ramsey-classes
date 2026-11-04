@@ -30,14 +30,21 @@ private abbrev inputPattern :
     Language.FunctionInputPattern (exampleLanguage.withParts (Fin 2)) where
   symbol := ULift.up ()
   rootSize := 1
-  argMap := fun _ => 0
+  argMap := by
+    change Fin 1 → Fin 1
+    exact id
   onto := by
-    intro i
-    exact ⟨0, Subsingleton.elim (0 : Fin 1) i⟩
+    change Function.Surjective (id : Fin 1 → Fin 1)
+    exact Function.surjective_id
 
 private abbrev outputMask : Language.CompleteOutputParts (Fin 2) :=
   ⟨⟨(1 : Fin 3), (fun _ : Fin 1 => (1 : Fin 2))⟩,
-   by intro i j _; exact Subsingleton.elim i j⟩
+   by
+     intro i j _
+     apply Fin.ext
+     have hi : i.val < 1 := by simpa using i.isLt
+     have hj : j.val < 1 := by simpa using j.isLt
+     omega⟩
 
 private abbrev edgeTuple : Fin (inputPattern.rootSize + outputMask.size) → Fin 2 :=
   Fin.append (fun _ : Fin 1 => (0 : Fin 2))
@@ -50,10 +57,28 @@ private theorem tagged_edge :
       (withPartsWholeMaskOld totalUnaryToy (fun x : Fin 2 => x))).rel
       (.inl (.inr (.inr (inputPattern,outputMask)))) edgeTuple := by
   change
+    ((totalUnaryToy.withParts (fun x : Fin 2 => x)).wholeMaskPatternGraph
+      (fun x : Fin 2 => x)).rel
+      (.inr (.inr (inputPattern, outputMask))) edgeTuple
+  change
+    Function.Injective
+      (fun i : Fin inputPattern.rootSize =>
+        edgeTuple (Fin.castAdd outputMask.size i)) ∧
+    (totalUnaryToy.withParts (fun x : Fin 2 => x)).func inputPattern.symbol
+      ((fun i : Fin inputPattern.rootSize =>
+        edgeTuple (Fin.castAdd outputMask.size i)) ∘ inputPattern.argMap) =
+      some (Set.range
+        (fun j : Fin outputMask.size =>
+          edgeTuple (Fin.natAdd inputPattern.rootSize j))) ∧
+    (∀ j : Fin outputMask.size,
+      (fun x : Fin 2 => x) (edgeTuple (Fin.natAdd inputPattern.rootSize j)) =
+        outputMask.label j)
+  simp only [edgeTuple, Fin.append_left, Fin.append_right]
+  change
     Function.Injective (fun _ : Fin 1 => (0 : Fin 2)) ∧
     some ({(1 : Fin 2)} : Set (Fin 2)) =
       some (Set.range (fun _ : Fin 1 => (1 : Fin 2))) ∧
-    (∀ j : Fin 1, (1 : Fin 2) = (1 : Fin 2))
+    (∀ _ : Fin 1, (1 : Fin 2) = (1 : Fin 2))
   refine ⟨fun i j _ => Subsingleton.elim i j, ?_, fun _ => rfl⟩
   congr 1
   ext x
