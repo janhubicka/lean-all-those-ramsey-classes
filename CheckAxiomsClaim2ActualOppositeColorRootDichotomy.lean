@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ActualOppositeColorRootDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveLocalRightSupport_hasComponentVertex
+#print axioms AllThoseRamseyClasses.Lifts.claim2_actualOppositeColors_partner_or_positiveSmallerRoot
