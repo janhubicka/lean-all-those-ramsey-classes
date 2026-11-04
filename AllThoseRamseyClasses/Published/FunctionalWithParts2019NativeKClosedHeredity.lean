@@ -134,6 +134,54 @@ theorem nativeKFaithfulH_closedHereditary
   refine ⟨BS, hKBS, ?_, rfl⟩
   exact (B.toStructure.toNonemptyPartial_induceClosed_eq S hNative).symm
 
+
+/-- EXACT equivalence of native closed heredity and genuine 2019
+closed heredity of the faithful class image H_K.
+
+The backward direction uses that faithfully represented native
+systems are determined by their Option(Set) representations:
+`toNonemptyPartial.collapseDomain` is literally the identity on
+native structures, so a genuine H_K witness for a CLOSED induced
+source yields K membership for the EXACT corresponding native
+closed restriction. No isomorphism-closure assumption is needed,
+since the two native structures are equal on the same subtype S. -/
+theorem nativeKFaithfulH_closedHereditary_iff
+    (K : Structure.StructureClass (L := L)) :
+    NativeKClosedHereditary2019 (Parts := Parts) K ↔
+      GenuinePartiteClosedHereditary2019
+        (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
+  constructor
+  · exact nativeKFaithfulH_closedHereditary K
+  · intro hHer X hX B hKB S hS
+    have hPartialClosed :
+        B.toStructure.toNonemptyPartial.IsClosed S :=
+      (B.toStructure.toNonemptyPartial_isClosed_iff S).mpr hS
+    have hH :
+        nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K
+          ((B.toStructure.toNonemptyPartial).induceClosed S hPartialClosed)
+          (B.part ∘ Subtype.val) :=
+      hHer B.toStructure.toNonemptyPartial B.part
+        ⟨B, hKB, rfl, rfl⟩ S hPartialClosed
+    obtain ⟨C, hKC, hEqPartial, _⟩ := hH
+    have hPartialEq :
+        (B.induce S hS).toStructure.toNonemptyPartial =
+          C.toStructure.toNonemptyPartial := by
+      calc
+        (B.induce S hS).toStructure.toNonemptyPartial =
+            (B.toStructure.toNonemptyPartial).induceClosed
+              S hPartialClosed :=
+          B.toStructure.toNonemptyPartial_induceClosed_eq S hS
+        _ = C.toStructure.toNonemptyPartial := hEqPartial
+    have hNativeEq :
+        (B.induce S hS).toStructure = C.toStructure := by
+      have hCollapse :=
+        congrArg PartialSetStructure.collapseDomain hPartialEq
+      simpa only [Structure.toNonemptyPartial_collapseDomain]
+        using hCollapse
+    rw [hNativeEq]
+    exact hKC
+
+
 /-- A genuinely native-closed-hereditary class K therefore has
 the 2019 closed-test H/K image correspondence for EVERY actual EHN
 Stage T in K, without taking an unrelated H-membership axiom and
