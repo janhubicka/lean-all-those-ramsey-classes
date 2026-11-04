@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankBoundaryDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRightCount_partner_or_smallerPositiveRoot
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRightCount_collision_or_flippablePartner_or_smallerRoot
