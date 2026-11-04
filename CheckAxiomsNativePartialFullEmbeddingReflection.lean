@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NativePartialFullEmbeddingReflection
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeFullEmbedding_of_partialEncodingEmbedding
+#print axioms AllThoseRamseyClasses.Lifts.nativeFullEmbedding_of_partialEncodingEmbedding_apply
