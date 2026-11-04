@@ -35,7 +35,7 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u v w
+universe u v
 variable {L : Language.{u}}
 
 /-- Every genuine native EHN homomorphism-embedding
@@ -47,7 +47,7 @@ complete target fibres. No reflection of undefined
 inputs, injectivity or preservation of spurious
 weakly clipped function data is required. -/
 theorem nativeEHN_toNonemptyPartial_originalHom
-    {VA : Type v} {VB : Type w}
+    {VA VB : Type v}
     {A : Structure L VA} {B : Structure L VB}
     {p : VA → VB}
     (hp : A.IsEHNHomomorphismEmbedding B p) :
