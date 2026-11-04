@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SelectedReplacementInternalGeneratedRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedReplacementPiece_has_internalGeneratedRoot
