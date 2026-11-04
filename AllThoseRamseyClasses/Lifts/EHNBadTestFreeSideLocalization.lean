@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.EHNWeakImageBadIrreducibleTest
 import PartiteConstruction.Structure.GeneratedWeakHomImage
+import PartiteConstruction.Functional.WeakOperations
 
 /-!
 # Track D: localize nonliftable irreducible weak-image tests to a full amalgam side
