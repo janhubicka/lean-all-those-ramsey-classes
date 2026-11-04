@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteTraceChainCoherence
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE_comp
