@@ -49,8 +49,13 @@ def firstOrderRelGraphEmbedding
     @FirstOrder.Language.Embedding
       (firstOrderRelGraphLanguage R) V W
       (firstOrderRelGraphStructure A)
-      (firstOrderRelGraphStructure B) where
-  toFun := e
+      (firstOrderRelGraphStructure B) := by
+  letI : (firstOrderRelGraphLanguage R).Structure V :=
+    firstOrderRelGraphStructure A
+  letI : (firstOrderRelGraphLanguage R).Structure W :=
+    firstOrderRelGraphStructure B
+  exact {
+    toFun := e
   inj' := e.injective
   map_fun' := by
     intro n f xs
@@ -62,6 +67,7 @@ def firstOrderRelGraphEmbedding
       A.rel s.1 (fun i => xs (Fin.cast s.2 i))
     exact e.map_rel_iff s.1
       (fun i => xs (Fin.cast s.2 i))
+  }
 
 /-- Recover the genuine relational embedding of the exact
 graph language from any first-order relational embedding,
@@ -74,8 +80,13 @@ def firstOrderRelGraphEmbedding_toRel
       (firstOrderRelGraphLanguage R) V W
       (firstOrderRelGraphStructure A)
       (firstOrderRelGraphStructure B)) :
-    RelStructure.Embedding A B where
-  toFun := e
+    RelStructure.Embedding A B := by
+  letI : (firstOrderRelGraphLanguage R).Structure V :=
+    firstOrderRelGraphStructure A
+  letI : (firstOrderRelGraphLanguage R).Structure W :=
+    firstOrderRelGraphStructure B
+  exact {
+    toFun := e
   injective := e.injective
   map_rel_iff := by
     intro s xs
@@ -84,6 +95,7 @@ def firstOrderRelGraphEmbedding_toRel
         (firstOrderRelGraphLanguage R).Relations (R.arity s)) xs
     change B.rel s (e ∘ xs) ↔ A.rel s xs at h
     exact h
+  }
 
 /-- A native FULL set-valued functional embedding induces an
 ordinary first-order embedding of its exact complete graph
@@ -126,6 +138,7 @@ theorem firstOrderNativeGraphEmbedding_closed
     {A : Structure L V} {B : Structure L W}
     (e : Structure.Embedding A B) :
     A.ClosedMap B (firstOrderNativeGraphEmbedding e) := by
+  change A.ClosedMap B e
   exact e.isHomomorphism.closedMap
 
 /-- An ordinary first-order graph embedding lifts to a genuine
