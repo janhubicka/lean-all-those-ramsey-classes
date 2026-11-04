@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoEscapeProperOneSidedSubpiece
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalNoEscape_properOneSidedGeometricSubpiece_of_partner
