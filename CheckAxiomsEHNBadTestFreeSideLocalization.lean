@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNBadTestFreeSideLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.irreducibleWeakMap_liesInOneFullFreeSide
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenWeakImageIrreducibleTest_liesInOneFullFreeSide
+#print axioms AllThoseRamseyClasses.Lifts.badForbiddenWeakImageTest_hasSideInternalReflectionFailure
