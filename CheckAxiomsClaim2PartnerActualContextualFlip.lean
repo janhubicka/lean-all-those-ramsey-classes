@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PartnerActualContextualFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_actualContextualRightFlip_of_boundaryPartner
