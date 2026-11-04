@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullFreeAmalgamOuterContextCarrier
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_nestedOuterContext_carrier_eq
