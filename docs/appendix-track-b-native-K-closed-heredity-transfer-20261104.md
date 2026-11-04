@@ -22,6 +22,20 @@ Under this hypothesis, `nativeKFaithfulH_closedHereditary` proves that the faith
 
 Consequently `genuineEHNStage_nativeKHereditary_inducedK_iff_closed` can use the verified PR #851 exact K_H closed induced test iff, now under an explicit NATIVE K closed heredity assumption rather than an unexplained H_K hereditary hypothesis.
 
+## Reverse direction: an exact equivalence of hereditary properties
+
+The additional theorem `nativeKFaithfulH_closedHereditary_iff` establishes both directions:
+
+```
+NativeKClosedHereditary2019 K
+  ↔ GenuinePartiteClosedHereditary2019
+       (nativeKFaithfulGenuinePartiteH2019 K)
+```
+
+For the converse, let B be a genuine native K partite system and S a genuinely function-closed subset. H_K closed heredity yields an H_K witness C for the exact Option(Set) `induceClosed` of `B.toNonemptyPartial` on S. The first theorem identifies this exactly with `(B.induce S).toNonemptyPartial`. Taking `collapseDomain` on both sides returns **literally equal native structures**, because the faithful native conversion satisfies `toNonemptyPartial_collapseDomain`. Thus K membership transports to the actual native `B.induce S`, with no isomorphism-invariance assumption and no modification of parts or carriers.
+
+This is the sharp class-property transfer, conditional only on the stated property itself; it does not prove native K possesses that property. Named axiom check added, pending CI.
+
 ## Scope and limits
 
 - Source-side native K-membership, genuine H_K membership and canonical tagged K_H membership have now been given explicit interfaces, not conflated. There is no assumption that all arbitrary defined-empty Option(Set) structures arise from native systems.
