@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NativeEHNPartialHom
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeEHN_toNonemptyPartial_originalHom
