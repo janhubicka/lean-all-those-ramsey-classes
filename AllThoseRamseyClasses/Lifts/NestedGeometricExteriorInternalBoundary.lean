@@ -117,8 +117,7 @@ theorem fullFreeAmalgam_privateExterior_internalBoundary_reflection
             GaifmanAdjacent Complement.graph b.1 c :=
           (fullFreeAmalgam_rightPrivate_gaifmanAdjacent_iff
             hFree b.1 c hbPrivate).mp (by
-              rw [← hcEq]
-              exact hEdge)
+              simpa only [hcEq] using hEdge)
         exact ⟨⟨c, hcNotT⟩, hcEq.symm, hpB.tail hEdgeComp⟩
   have hComponents : CWhole = iComp '' CComp := by
     apply Set.Subset.antisymm
