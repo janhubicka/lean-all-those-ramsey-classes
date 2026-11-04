@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoEscapeFullAmalgamTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_noEscape_preserved_under_innerReplacement
