@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.InsertedComponentOuterCutAttachment
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_insertedComponent_outerCut_attaches
