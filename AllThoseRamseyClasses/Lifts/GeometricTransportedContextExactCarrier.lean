@@ -237,7 +237,7 @@ theorem geometricTransportedContext_eq_root_union_newComponent
     _ = iNewE '' T ∪
           componentFrom New.graph (iNewE '' T) xNew := hContext
     _ = Set.range roots ∪
-          componentFrom New.graph (Set.range roots) x := by
-            rw [hNewRootImage, hComponentEq]
+          componentFrom New.graph (Set.range roots) x :=
+            congrArg₂ (· ∪ ·) hNewRootImage hComponentEq
 
 end AllThoseRamseyClasses.Lifts
