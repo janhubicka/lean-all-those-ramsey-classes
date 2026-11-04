@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2GenericClosedContextAllTestProfile
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_closedContext_allTestProfile_equiv
