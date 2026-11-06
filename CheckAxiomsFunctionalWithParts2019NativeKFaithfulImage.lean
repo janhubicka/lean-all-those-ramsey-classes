@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKFaithfulImage
+
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulGenuinePartiteH2019
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_nativeKFaithfulH_mem
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_nativeKCanonicalTagged_mem
+#print axioms AllThoseRamseyClasses.Published.genuineEHNStage_nativeKImage_inducedK_mem_iff_closed
