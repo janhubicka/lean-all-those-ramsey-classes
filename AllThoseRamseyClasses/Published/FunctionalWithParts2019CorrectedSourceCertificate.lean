@@ -177,4 +177,42 @@ theorem genuineTagged2019_exactRelative_to_native_of_correctedCovered
   (genuineTagged2019_sourceCertificate_of_correctedCovered
     H C hClosed hCovered hPos).exact_relative_to_native S hRelative
 
+/-- A genuinely partial ORIGINAL-language decoder has transversal
+function values whenever (4b) and U-closedness hold. This does not
+presuppose an actual H-member global target. -/
+theorem genuineTagged2019_originalDecoded_transversal_of_correctedCovered
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity) :
+    FibreTransversal (wholeMaskOriginalDecode C)
+      (genuineTagged2019_correctedCoveredPart
+        H C hClosed hCovered) :=
+  (genuineTagged2019_sourceCertificate_of_correctedCovered
+    H C hClosed hCovered hPos).original_fibres_transversal
+
+/-- Exact original-function domain iff ambient OLD activation, even
+for a genuinely defined empty value. This is a global source law;
+it is NOT inherited unchanged by nonclosed whole-weak restrictions. -/
+theorem genuineTagged2019_originalDecoded_defined_iff_OLD_of_correctedCovered
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (F : L.FuncSymbol) (xs : Fin (L.funcArity F) → V) :
+    (wholeMaskOriginalDecode C).Defined F xs ↔
+      HasWholeMaskDomain (wholeMaskTagReduct C) (ULift.up F) xs :=
+  (genuineTagged2019_sourceCertificate_of_correctedCovered
+    H C hClosed hCovered hPos).original_defined_iff_OLD F xs
+
 end AllThoseRamseyClasses.Published
