@@ -93,7 +93,7 @@ open StructuralRamsey.PartialSetStructure
 
 universe u v
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
-variable {K : Structure.StructureClass (L := L)}
+variable {K : Structure.StructureClass.{u,v} (L := L)}
 
 /-- Precisely the native heredity condition needed by the faithful
 2019 H_K image: full native partite systems in K remain in K under
@@ -103,7 +103,7 @@ This is not implied by arbitrary Stage membership; it is an explicit
 class property to verify in concrete applications. It does not
 require weak test carriers to be closed. -/
 def NativeKClosedHereditary2019
-    (K : Structure.StructureClass (L := L)) : Prop :=
+    (K : Structure.StructureClass.{u,v} (L := L)) : Prop :=
   ∀ {X : Type v} [Finite X]
     (B : FunctionalPartite.System L Parts X),
     K B.toStructure →
@@ -119,7 +119,7 @@ and uses the literal commutation theorem above; it does not
 assume that every arbitrary Option(Set) partial function arose
 from the native `Structure` representation. -/
 theorem nativeKFaithfulH_closedHereditary
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : NativeKClosedHereditary2019 (Parts := Parts) K) :
     GenuinePartiteClosedHereditary2019
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
@@ -146,7 +146,7 @@ source yields K membership for the EXACT corresponding native
 closed restriction. No isomorphism-closure assumption is needed,
 since the two native structures are equal on the same subtype S. -/
 theorem nativeKFaithfulH_closedHereditary_iff
-    (K : Structure.StructureClass (L := L)) :
+    (K : Structure.StructureClass.{u,v} (L := L)) :
     NativeKClosedHereditary2019 (Parts := Parts) K ↔
       GenuinePartiteClosedHereditary2019
         (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
@@ -189,7 +189,7 @@ FreeAmalgamationClass, applied to the genuine full native inclusion
 of a function-closed induced partite system. No additional native
 K heredity axiom is required for the verified EHN application. -/
 theorem nativeKClosedHereditary_of_freeAmalgamationClass
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hFree : Structure.FreeAmalgamationClass K) :
     NativeKClosedHereditary2019 (Parts := Parts) K := by
   intro X hX B hB S hS
@@ -202,7 +202,7 @@ original-2019 closed heredity for the EXACT faithful Option(Set)
 class H_K. The equality of closed native and genuine partial
 restrictions is used by the preceding two-way transfer. -/
 theorem nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hFree : Structure.FreeAmalgamationClass K) :
     GenuinePartiteClosedHereditary2019
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) :=
