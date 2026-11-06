@@ -164,4 +164,56 @@ theorem genuineTagged2019_originalDecoded_closed_iff_Usubstructure
     (genuineTagged2019_correctedCovered_closed_iff_Usubstructure
       H C hClosed hCovered hPos Q)
 
+/-- The function-language version of the 2019 induced-closed repair:
+on an arbitrary EXACT vertex subset Q of a U-closed, corrected-(4b)
+candidate C, genuine decoded function-closedness is equivalent to
+the induced tagged structure C|Q itself being U-CLOSED.
+
+There is no requirement that Q be U-irreducible, or that C be an H
+member. No closure hull of Q is substituted and no new vertices
+are added. This is the exact bridge to the published U-closed
+substructure convention for genuine functions. -/
+theorem genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (Q : Set V) :
+    (wholeMaskOriginalDecode C).IsClosed Q ↔
+      IsUClosed
+        ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce Q) := by
+  exact (genuineTagged2019_originalDecoded_closed_iff_Usubstructure
+      H C hClosed hCovered hPos Q).trans
+    (hClosed.induce_iff_USubstructure Q).symm
+
+/-- Equality of the same EXACT closure predicate on all subsets:
+a genuine functional subset is a substructure precisely when
+its tagged induced OLD image is an admissible U-closed test.
+This statement has the appropriate local-finiteness quantifiers:
+it does NOT range over arbitrary nonclosed intrinsic weak tests. -/
+theorem genuineTagged2019_correctedCovered_closedSets_equal
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity) :
+    {Q : Set V | (wholeMaskOriginalDecode C).IsClosed Q} =
+      {Q : Set V |
+        IsUClosed
+          ((L.withParts Parts).wholeMaskClosureRules Parts)
+          (C.induce Q)} := by
+  ext Q
+  exact genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
+    H C hClosed hCovered hPos Q
+
 end AllThoseRamseyClasses.Published
