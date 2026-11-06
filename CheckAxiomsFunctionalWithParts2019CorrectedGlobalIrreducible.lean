@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedGlobalIrreducible
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_globalK_of_correctedCovered_UIrreducible
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_globalK_of_correctedCovered_irreducible
