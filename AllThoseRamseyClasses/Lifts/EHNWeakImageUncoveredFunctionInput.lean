@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.EHNWeakSideFullReflectionDefect
 import AllThoseRamseyClasses.Lifts.EHNInputTestCoverageClosedRange
+import AllThoseRamseyClasses.Lifts.EHNInputCoverFunctionFibre
 import Mathlib.Tactic
 
 /-!
@@ -529,5 +530,50 @@ theorem badForbiddenWeakImageTest_hasExtraRelation_of_unaryFunctions
           w.source Target w.toTarget w.homEmbedding
           hArity E (e.comp h) Right jR g hgCoords
           G xs z hValue hMissing)
+
+
+/-- Positive special case of the printed image-injectivization
+step: for a language with NO relation symbols and only nullary
+or unary native set-valued function symbols, every source
+function-input tuple automatically has a full irreducible
+test. Thus there can be no extra native function output in
+the full induced image, and there are no relation tuples
+requiring coverage. The original tuple-surjective forbidden
+image-closure axiom then yields an ACTUAL injective forbidden
+EHN witness attaining a global minimum of source support
+in any chosen target region.
+
+This is an unconditional language-restricted injectivization
+theorem, NOT a proof of the whole 2019 strong-amalgamation
+or Ramsey theorem (the geometric flip/Claim 2 is separate). -/
+theorem exists_injectiveMinimalForbiddenEHNWitness_of_unaryFunctions_noRelations
+    (F : ∀ {X : Type}, Structure L X → Prop)
+    (hFiniteF : ∀ {X : Type} (Src : Structure L X),
+      F Src → Finite X)
+    (hImage : HasTupleSurjectiveForbiddenImageClosure F)
+    [IsEmpty L.RelSymbol]
+    (hArity : ∀ G : L.FuncSymbol, L.funcArity G ≤ 1)
+    {UT : Type} (Target : Structure L UT)
+    (AOnly : Set UT)
+    (hExists : Nonempty (ForbiddenEHNWitness F Target)) :
+    ∃ v : ForbiddenEHNWitness F Target,
+      Function.Injective v.toTarget ∧
+      ∀ w : ForbiddenEHNWitness F Target,
+        v.sourceSupportCount AOnly ≤ w.sourceSupportCount AOnly := by
+  have hInputCover :
+      ∀ {V : Type} (Src : Structure L V),
+        F Src → FunctionInputTuplesCoveredByIrreducibleTests Src := by
+    intro V Src _
+    exact functionInputTuplesCovered_of_allFuncArity_le_one
+      Src hArity
+  have hRelationCover :
+      ∀ w : ForbiddenEHNWitness F Target,
+        SourceRelationTuplesCoveredOnRange
+          w.source Target w.toTarget := by
+    intro w R
+    exact isEmptyElim R
+  exact exists_injectiveMinimalForbiddenEHNWitness_of_printedClosure_and_covers
+    F hFiniteF hImage hInputCover
+    Target AOnly hRelationCover hExists
 
 end AllThoseRamseyClasses.Lifts
