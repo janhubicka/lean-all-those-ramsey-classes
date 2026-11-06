@@ -460,4 +460,74 @@ theorem badForbiddenWeakImageTest_hasRelationOrUncoveredFunctionInput
         E (e.comp h) Right jR g hgCoords
         F0 xs z hSideValue hMissing ys hInputCoords
 
+
+/-- Genuine free-amalgam corollary for nullary/unary native
+functional languages: a bad forbidden full weak-image test
+has only an EXTRA RELATION tuple in one full target side.
+The function-fibre surplus case is eliminated WITHOUT a
+separate global source input-test cover hypothesis.
+
+No claim is made that the remaining relation-surplus
+alternative is impossible under maximal common lifts. -/
+theorem badForbiddenWeakImageTest_hasExtraRelation_of_unaryFunctions
+    (F : ∀ {X : Type}, Structure L X → Prop)
+    (hArity : ∀ G : L.FuncSymbol, L.funcArity G ≤ 1)
+    {UX UA UB UT : Type}
+    (Root : Structure L UX)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (Target : Structure L UT)
+    (sL : Structure.Embedding Root Left)
+    (sR : Structure.Embedding Root Right)
+    (jL : Structure.Embedding Left Target)
+    (jR : Structure.Embedding Right Target)
+    (hFree : Structure.IsFreeAmalgam sL sR jL jR)
+    (w : ForbiddenEHNWitness F Target)
+    (hBad : HasForbiddenWeakImageBadIrreducibleTest F Target w) :
+    ∃ (Z : Type) (P : Structure L Z),
+      F P ∧
+      ∃ (e : Structure.Embedding P
+        (Structure.weakImage w.source Target w.toTarget))
+        (U : Type) (E : Structure L U),
+        E.Irreducible ∧
+        ∃ (h : Structure.Embedding E P),
+          (¬ ∃ k : Structure.Embedding E w.source,
+            ∀ x : U,
+              Structure.weakImage.quotientMap
+                (f := w.toTarget) (k x) = e (h x)) ∧
+          ((∃ g : U → UA,
+             E.IsWeakHomomorphism Left g ∧
+             (∀ x : U, jL (g x) = (e (h x)).1) ∧
+             ∃ (R : L.RelSymbol)
+               (xs : Fin (L.relArity R) → U),
+               Left.rel R (g ∘ xs) ∧ ¬ E.rel R xs) ∨
+           (∃ g : U → UB,
+             E.IsWeakHomomorphism Right g ∧
+             (∀ x : U, jR (g x) = (e (h x)).1) ∧
+             ∃ (R : L.RelSymbol)
+               (xs : Fin (L.relArity R) → U),
+               Right.rel R (g ∘ xs) ∧ ¬ E.rel R xs)) := by
+  obtain ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, hSide⟩ :=
+    badForbiddenWeakImageTest_hasSideReflectionDefect
+      F Root Left Right Target sL sR jL jR hFree w hBad
+  refine ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, ?_⟩
+  rcases hSide with
+      ⟨g, hgWeak, hgCoords, hSurplus⟩ |
+      ⟨g, hgWeak, hgCoords, hSurplus⟩
+  · rcases hSurplus with hRelation | hFunction
+    · exact Or.inl ⟨g, hgWeak, hgCoords, hRelation⟩
+    · obtain ⟨G, xs, z, hValue, hMissing⟩ := hFunction
+      exact False.elim
+        (weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
+          w.source Target w.toTarget w.homEmbedding
+          hArity E (e.comp h) Left jL g hgCoords
+          G xs z hValue hMissing)
+  · rcases hSurplus with hRelation | hFunction
+    · exact Or.inr ⟨g, hgWeak, hgCoords, hRelation⟩
+    · obtain ⟨G, xs, z, hValue, hMissing⟩ := hFunction
+      exact False.elim
+        (weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
+          w.source Target w.toTarget w.homEmbedding
+          hArity E (e.comp h) Right jR g hgCoords
+          G xs z hValue hMissing)
+
 end AllThoseRamseyClasses.Lifts
