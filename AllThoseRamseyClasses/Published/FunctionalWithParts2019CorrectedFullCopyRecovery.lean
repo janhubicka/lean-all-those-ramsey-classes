@@ -122,4 +122,48 @@ theorem genuineTagged2019_fullCopy_from_correctedCovered_apply
       H C hClosed hCovered hPos A partA hTrA f).1.toFun x = f x :=
   rfl
 
+/-- The same recovery is directly usable for ANY full canonical
+TAGGED copy of A inside C. No intrinsic-weak lifting hypothesis
+is inserted: the tagged embedding is an explicit input datum. -/
+noncomputable def genuineTagged2019_fullCopy_from_tagged_of_correctedCovered
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (A : PartialSetStructure L T) [Finite T]
+    (partA : T → Parts) (hTrA : FibreTransversal A partA)
+    (f : RelStructure.Embedding
+      (wholeMaskTagExpansion (withPartsWholeMaskOld A partA)) C) :
+    PartPreservingEmbedding A partA (wholeMaskOriginalDecode C)
+      (genuineTagged2019_correctedCoveredPart
+        H C hClosed hCovered) :=
+  genuineTagged2019_fullCopy_from_correctedCovered
+    H C hClosed hCovered hPos A partA hTrA f.wholeMaskTagReduct
+
+/-- The tagged-copy recovery is pointwise the identity on the
+supplied original relational embedding map. -/
+theorem genuineTagged2019_fullCopy_from_tagged_of_correctedCovered_apply
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (A : PartialSetStructure L T) [Finite T]
+    (partA : T → Parts) (hTrA : FibreTransversal A partA)
+    (f : RelStructure.Embedding
+      (wholeMaskTagExpansion (withPartsWholeMaskOld A partA)) C)
+    (x : T) :
+    (genuineTagged2019_fullCopy_from_tagged_of_correctedCovered
+      H C hClosed hCovered hPos A partA hTrA f).1.toFun x = f x :=
+  rfl
+
 end AllThoseRamseyClasses.Published
