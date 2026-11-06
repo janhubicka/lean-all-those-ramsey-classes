@@ -55,6 +55,12 @@ structure GenuineTagged2019SourceCertificate
     WholeMaskOutputPartsCompatible (wholeMaskTagReduct C) part
   decoded_fibres_transversal :
     FibreTransversal ((wholeMaskTagReduct C).wholeMaskPartialDecode) part
+  original_fibres_transversal :
+    FibreTransversal (wholeMaskOriginalDecode C) part
+  original_defined_iff_OLD :
+    ∀ (F : L.FuncSymbol) (xs : Fin (L.funcArity F) → V),
+      (wholeMaskOriginalDecode C).Defined F xs ↔
+        HasWholeMaskDomain (wholeMaskTagReduct C) (ULift.up F) xs
   exact_relative_to_native :
     ∀ (S : Set V),
       HasGenuinePartiteTagged2019RelativeCompletion H (C.induce S) →
@@ -118,6 +124,20 @@ theorem genuineTagged2019_sourceCertificate_of_correctedCovered
       ((wholeMaskTagReduct C).wholeMaskPartialDecode) part :=
     genuineTagged2019_correctedCovered_decoder_fibreTransversal
       H C hClosed hCovered hPos
+  have hOriginalTrans : FibreTransversal
+      (wholeMaskOriginalDecode C) part := by
+    intro F xs U hValue y hy z hz hSame
+    exact hTrans (ULift.up F) xs U hValue y hy z hz hSame
+  have hOriginalDefined :
+      ∀ (F : L.FuncSymbol) (xs : Fin (L.funcArity F) → V),
+        (wholeMaskOriginalDecode C).Defined F xs ↔
+          HasWholeMaskDomain (wholeMaskTagReduct C) (ULift.up F) xs := by
+    intro F xs
+    change
+      (wholeMaskTagReduct C).wholeMaskPartialDecode.Defined
+        (ULift.up F) xs ↔
+        HasWholeMaskDomain (wholeMaskTagReduct C) (ULift.up F) xs
+    exact hDefined (ULift.up F) xs
   refine
     { part_holds := hPart
       part_unique := hUniquePart
@@ -128,6 +148,8 @@ theorem genuineTagged2019_sourceCertificate_of_correctedCovered
       decoder_defined_iff_OLD := hDefined
       outputs_match_parts := hParts
       decoded_fibres_transversal := hTrans
+      original_fibres_transversal := hOriginalTrans
+      original_defined_iff_OLD := hOriginalDefined
       exact_relative_to_native := ?_ }
   intro S hRelative
   exact relative_implies_intrinsicWeakCanonicalProtected_of_unique
