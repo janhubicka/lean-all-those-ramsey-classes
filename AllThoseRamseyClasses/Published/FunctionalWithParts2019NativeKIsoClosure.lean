@@ -56,7 +56,7 @@ The native `FreeAmalgamationClass.hereditary` is the ONLY
 native K-class hypothesis, and no surjectivity of the full
 embedding is actually needed. -/
 theorem nativeKFaithfulH_isomorphismClosed_of_free
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : Structure.FreeAmalgamationClass K) :
     GenuinePartiteIsomorphismClosed2019
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
@@ -162,7 +162,7 @@ The source class is precisely H_K of faithful native
 part-transversal systems; the locally finite
 ambient-relative completion axiom remains separate. -/
 theorem nativeKCanonicalTagged2019_isomorphismClosed_of_free
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : Structure.FreeAmalgamationClass K) :
     IsomorphismClosed2019
       (canonicalGenuineTagged2019Class
