@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.OuterContextCarrierFromSelectedInnerComponent
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_outerContext_eq_of_selectedComponent
