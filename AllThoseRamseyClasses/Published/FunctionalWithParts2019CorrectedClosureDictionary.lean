@@ -216,4 +216,41 @@ theorem genuineTagged2019_correctedCovered_closedSets_equal
   exact genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
     H C hClosed hCovered hPos Q
 
+/-- Exact finite-cutoff test-carrier transfer. Under corrected (4b),
+a predicate on Finset-indexed **genuinely function-closed**
+substructures of size at most n is tested on EXACTLY the same carriers
+as the corresponding predicate on induced U-closed tagged structures.
+
+The integer n is UNCHANGED, including n=0. The predicate `Passes`
+can express an actual H-completion obligation once its functional
+and relational definitions have been separately related; this lemma
+does not silently equate those completion predicates. -/
+theorem genuineTagged2019_smallClosedTestCarriers_iff
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (n : ℕ) (Passes : Finset V → Prop) :
+    (∀ S : Finset V, S.card ≤ n →
+      (wholeMaskOriginalDecode C).IsClosed (↑S : Set V) →
+      Passes S) ↔
+    (∀ S : Finset V, S.card ≤ n →
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce (↑S : Set V)) →
+      Passes S) := by
+  constructor
+  · intro h S hSize hUClosed
+    exact h S hSize
+      ((genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
+        H C hClosed hCovered hPos (↑S : Set V)).mpr hUClosed)
+  · intro h S hSize hFunctionalClosed
+    exact h S hSize
+      ((genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
+        H C hClosed hCovered hPos (↑S : Set V)).mp hFunctionalClosed)
+
 end AllThoseRamseyClasses.Published
