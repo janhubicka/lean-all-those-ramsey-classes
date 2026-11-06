@@ -46,7 +46,7 @@ K-systems with the EXACT source-root overlap and complete full
 embeddings. K-membership is for the native functional structures;
 the output system retains its genuine transversal parts. -/
 def NativeKPartiteStrongAmalgamation2019
-    (K : Structure.StructureClass (L := L)) : Prop :=
+    (K : Structure.StructureClass.{u,v} (L := L)) : Prop :=
   ∀ {X Y Z : Type v} [Finite X] [Finite Y] [Finite Z]
     (Root : FunctionalPartite.System L Parts X)
     (Left : FunctionalPartite.System L Parts Y)
@@ -74,7 +74,7 @@ follows from the actual `unit_isFreeAmalgam.overlap` field.
 No artificial part quotient, temporary multivalued state or
 extra intrinsic weak source is introduced. -/
 theorem nativeKPartiteStrongAmalgamation_of_free
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : Structure.FreeAmalgamationClass K) :
     NativeKPartiteStrongAmalgamation2019 (Parts := Parts) K := by
   classical
