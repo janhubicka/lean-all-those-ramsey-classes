@@ -31,6 +31,26 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
+/-- A direct transition to stage n+1 is exactly the
+full successor map after the transition to stage n. -/
+theorem globalOriginalFiniteTraceChainLE_succ
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hInput : GlobalOriginalFiniteFraisseInput F)
+    (representatives : ℕ → List (GlobalOriginalFiniteTraceRepresentatives F))
+    (diagrams : ℕ → List (GlobalOriginalFiniteTraceDiagram F))
+    (m n : ℕ) (h : m ≤ n) :
+    globalOriginalFiniteTraceChainLE
+      F hInput representatives diagrams m (n + 1)
+      (Nat.le_succ_of_le h) =
+    (globalOriginalFiniteTraceChainStep
+      F hInput representatives diagrams n).comp
+      (globalOriginalFiniteTraceChainLE
+        F hInput representatives diagrams m n h) := by
+  apply Structure.Embedding.ext
+  intro x
+  simp [globalOriginalFiniteTraceChainLE,
+    Nat.leRecOn_succ, Structure.Embedding.comp_apply]
+
 /-- The chosen full embedding from stage m to stage k is
 the composition of the maps m → n and n → k whenever
 m ≤ n ≤ k. This uses genuine full embedding composition
@@ -51,10 +71,15 @@ theorem globalOriginalFiniteTraceChainLE_comp
       (le_trans hmn hnk) := by
   induction k, hnk using Nat.le_induction with
   | base =>
+      rw [globalOriginalFiniteTraceChainLE_self]
       apply Structure.Embedding.ext
       intro x
       rfl
   | succ k hnk ih =>
+      rw [globalOriginalFiniteTraceChainLE_succ
+        F hInput representatives diagrams n k hnk]
+      rw [globalOriginalFiniteTraceChainLE_succ
+        F hInput representatives diagrams m k (le_trans hmn hnk)]
       apply Structure.Embedding.ext
       intro x
       have hpoint :=
@@ -64,18 +89,6 @@ theorem globalOriginalFiniteTraceChainLE_comp
               F hInput representatives diagrams m).model
             (globalOriginalFiniteTraceChain
               F hInput representatives diagrams k).model => e x) ih
-      change
-        (globalOriginalFiniteTraceChainStep
-          F hInput representatives diagrams k)
-          ((globalOriginalFiniteTraceChainLE
-            F hInput representatives diagrams n k hnk)
-            ((globalOriginalFiniteTraceChainLE
-              F hInput representatives diagrams m n hmn) x)) =
-        (globalOriginalFiniteTraceChainStep
-          F hInput representatives diagrams k)
-          ((globalOriginalFiniteTraceChainLE
-            F hInput representatives diagrams m k
-            (le_trans hmn hnk)) x)
       exact congrArg
         (globalOriginalFiniteTraceChainStep
           F hInput representatives diagrams k) hpoint
