@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedDefinedEmpty
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_correctedCovered_definedEmpty_has_completeGraph

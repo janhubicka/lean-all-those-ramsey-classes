@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeWeakDirection
+
+#print axioms AllThoseRamseyClasses.Published.relative_implies_intrinsicWeakPositive_of_unique

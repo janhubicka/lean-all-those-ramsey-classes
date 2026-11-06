@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedOutputParts
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_correctedCovered_outputPartsCompatible
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_correctedCovered_decoder_fibreTransversal

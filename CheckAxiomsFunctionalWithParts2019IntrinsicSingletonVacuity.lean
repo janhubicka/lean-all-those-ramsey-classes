@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019IntrinsicSingletonVacuity
+
+#print axioms AllThoseRamseyClasses.Published.fullWeakAllSmall_forces_empty
+#print axioms AllThoseRamseyClasses.Published.intrinsicFullWeakLocalCompletionAt_one_of_noSingletons
