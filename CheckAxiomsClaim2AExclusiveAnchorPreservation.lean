@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2AExclusiveAnchorPreservation
+
+#print axioms AllThoseRamseyClasses.Lifts.fullReplacement_context_retains_positiveSourceSupport
+#print axioms AllThoseRamseyClasses.Lifts.geometricBOnlyInnerPiece_noAExclusiveSource
+#print axioms AllThoseRamseyClasses.Lifts.geometricBOnlyFlip_context_retains_AExclusiveAnchor
