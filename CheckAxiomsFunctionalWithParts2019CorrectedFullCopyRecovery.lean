@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedFullCopyRecovery
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_fullCopy_from_correctedCovered
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_fullCopy_from_correctedCovered_apply
