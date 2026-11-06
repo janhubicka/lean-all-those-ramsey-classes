@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.EHNWeakSideFullReflectionDefect
 import AllThoseRamseyClasses.Lifts.EHNInputTestCoverageClosedRange
+import Mathlib.Tactic
 
 /-!
 # Track D: a function-fibre defect identifies an uncovered original input tuple
@@ -237,6 +238,137 @@ theorem weakImageFullTest_sideExtraFunction_forcesSourceInputDecomposition
     (weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
       A B f hf E e Side j g hCoords
       F xs z hSideValue hNotSourceTestValue ys hInputCoords)
+
+/-- A full native structure with at most ONE carrier vertex
+is irreducible: any genuine free amalgam covering its full
+embedded image must put the whole image on one side. This
+works with arbitrary nullary operations and relations. -/
+theorem nativeIrreducible_of_subsingletonCarrier
+    {V : Type} [Subsingleton V]
+    (A : Structure L V) : A.Irreducible := by
+  intro H E F C Dsrc Esrc Fsrc Csrc sE sF iE iF hFree e
+  by_cases hNonempty : Nonempty V
+  · obtain ⟨v⟩ := hNonempty
+    rcases hFree.covers (e v) with hLeft | hRight
+    · obtain ⟨a, ha⟩ := hLeft
+      left
+      intro x
+      refine ⟨a, ?_⟩
+      have hx : x = v := Subsingleton.elim x v
+      rw [hx]
+      exact ha
+    · obtain ⟨b, hb⟩ := hRight
+      right
+      intro x
+      refine ⟨b, ?_⟩
+      have hx : x = v := Subsingleton.elim x v
+      rw [hx]
+      exact hb
+  · left
+    intro x
+    exact False.elim (hNonempty ⟨x⟩)
+
+/-- Every native function-input tuple of length 0 or 1
+automatically belongs to a FULL irreducible source test.
+
+Its true function-closed generated hull is irreducible: it is
+the closed hull of a WEAK image of the empty-incidence
+structure on at most one vertex. This uses the pinned
+generated-weak-image irreducibility theorem, not a
+relational clique approximation or an assumption that
+the input tuple is function-defined. -/
+theorem functionInputCovered_of_arity_le_one
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hArity : L.funcArity F ≤ 1) :
+    FunctionInputCoveredByFullIrreducibleTest A F ys := by
+  classical
+  letI : Subsingleton (Fin (L.funcArity F)) := ⟨by
+    intro i j
+    apply Fin.ext
+    have hi := i.isLt
+    have hj := j.isLt
+    omega⟩
+  let Discrete : Structure L (Fin (L.funcArity F)) := {
+    rel := fun _ _ => False
+    func := fun _ _ => ∅
+  }
+  have hDiscrete : Discrete.Irreducible :=
+    nativeIrreducible_of_subsingletonCarrier Discrete
+  have hWeak : Discrete.IsWeakHomomorphism A ys := by
+    constructor
+    · intro R xs hRel
+      exact False.elim hRel
+    · intro G xs y hy
+      exact False.elim hy
+  have hHull :
+      (A.induce (A.functionClosure (Set.range ys))
+        (A.functionClosure_isClosed (Set.range ys))).Irreducible :=
+    hDiscrete.functionClosure_weakImage hWeak
+  let S : Set V := A.functionClosure (Set.range ys)
+  have hS : A.IsClosed S :=
+    A.functionClosure_isClosed (Set.range ys)
+  let E : Structure L S := A.induce S hS
+  let inc : Structure.Embedding E A :=
+    A.inclusion S hS
+  let inputs : Fin (L.funcArity F) → S :=
+    fun i => ⟨ys i,
+      A.subset_functionClosure (Set.range ys) ⟨i, rfl⟩⟩
+  exact ⟨S, E, hHull, inc, inputs, fun _ => rfl⟩
+
+/-- In a language whose native function symbols are all nullary
+or unary, EVERY original-source function-input tuple has
+a FULL irreducible test; the global input-test cover used
+elsewhere in Track D becomes a theorem, not an assumption. -/
+theorem functionInputTuplesCovered_of_allFuncArity_le_one
+    {V : Type} (A : Structure L V)
+    (hArity : ∀ F : L.FuncSymbol, L.funcArity F ≤ 1) :
+    FunctionInputTuplesCoveredByIrreducibleTests A := by
+  intro F ys
+  exact functionInputCovered_of_arity_le_one
+    A F ys (hArity F)
+
+/-- In the nullary/unary native-function case, a FULL test of
+the source-generated quotient cannot have an EXTRA target-side
+function value at its prescribed weak coordinates. This
+eliminates that branch of the general Track D bad-test
+dichotomy without a global source-cover hypothesis. -/
+theorem weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
+    {V W U US : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (hArity : ∀ F : L.FuncSymbol, L.funcArity F ≤ 1)
+    (E : Structure L U)
+    (e : Structure.Embedding E (Structure.weakImage A B f))
+    (Side : Structure L US)
+    (j : Structure.Embedding Side B)
+    (g : U → US)
+    (hCoords : ∀ x : U, j (g x) = (e x).1)
+    (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → U)
+    (z : US)
+    (hSideValue : z ∈ Side.func F (g ∘ xs))
+    (hNotSourceTestValue : z ∉ imageSet g (E.func F xs)) :
+    False := by
+  classical
+  let q : V → Set.range f :=
+    Structure.weakImage.quotientMap (f := f)
+  have hSurj : Function.Surjective q :=
+    Structure.weakImage.quotientMap_surjective (f := f)
+  let ys : Fin (L.funcArity F) → V :=
+    fun i => Classical.choose (hSurj (e (xs i)))
+  have hInputs : ∀ i, f (ys i) = (e (xs i)).1 := by
+    intro i
+    exact congrArg Subtype.val
+      (Classical.choose_spec (hSurj (e (xs i))))
+  have hUncovered :=
+    weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
+      A B f hf E e Side j g hCoords
+      F xs z hSideValue hNotSourceTestValue ys hInputs
+  exact hUncovered
+    (functionInputCovered_of_arity_le_one A F ys (hArity F))
 
 /-- A bad FULL quotient test in an actual full target free
 amalgam therefore yields a SIDE relation surplus, OR a
