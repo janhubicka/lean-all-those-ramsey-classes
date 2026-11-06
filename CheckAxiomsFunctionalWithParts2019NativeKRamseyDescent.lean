@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKRamseyDescent
+
+#print axioms AllThoseRamseyClasses.Published.nativePartiteFaithfulPartialEmbeddingEquiv
+#print axioms AllThoseRamseyClasses.Published.nativePartiteArrow_iff_faithfulPartial
+#print axioms AllThoseRamseyClasses.Published.NativeKFinitePartiteRamsey2019
+#print axioms AllThoseRamseyClasses.Published.nativeKFinitePartiteRamsey_of_faithful
