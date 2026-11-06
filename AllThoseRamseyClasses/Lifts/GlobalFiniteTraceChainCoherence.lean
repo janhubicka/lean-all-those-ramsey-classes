@@ -45,24 +45,7 @@ theorem globalOriginalFiniteTraceChainLE_succ
     (globalOriginalFiniteTraceChainStep
       F hInput representatives diagrams n).comp
       (globalOriginalFiniteTraceChainLE
-        F hInput representatives diagrams m n h) := by
-  change
-    Nat.leRecOn (Nat.le_succ_of_le h)
-      (@fun k g =>
-        (globalOriginalFiniteTraceChainStep
-          F hInput representatives diagrams k).comp g)
-      (Structure.Embedding.id
-        (globalOriginalFiniteTraceChain
-          F hInput representatives diagrams m).model) =
-    (globalOriginalFiniteTraceChainStep
-      F hInput representatives diagrams n).comp
-      (Nat.leRecOn h
-        (@fun k g =>
-          (globalOriginalFiniteTraceChainStep
-            F hInput representatives diagrams k).comp g)
-        (Structure.Embedding.id
-          (globalOriginalFiniteTraceChain
-            F hInput representatives diagrams m).model))
+        F hInput representatives diagrams m n h) := by  unfold globalOriginalFiniteTraceChainLE
   exact Nat.leRecOn_succ h _
 
 /-- The chosen full embedding from stage m to stage k is
