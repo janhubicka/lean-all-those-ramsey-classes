@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedSourceCertificate
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_sourceCertificate_of_correctedCovered
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_exactRelative_to_native_of_correctedCovered
