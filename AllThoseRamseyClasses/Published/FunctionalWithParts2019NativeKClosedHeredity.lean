@@ -206,8 +206,8 @@ theorem nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
     (hFree : Structure.FreeAmalgamationClass K) :
     GenuinePartiteClosedHereditary2019
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) :=
-  nativeKFaithfulH_closedHereditary K
-    (nativeKClosedHereditary_of_freeAmalgamationClass K hFree)
+  nativeKFaithfulH_closedHereditary (Parts := Parts) K
+    (nativeKClosedHereditary_of_freeAmalgamationClass (Parts := Parts) K hFree)
 
 /-- Exact 2019 tagged K_H membership among weak tests of an ACTUAL
 native EHN Stage, under the same free-amalgamation-class hypothesis
@@ -227,8 +227,8 @@ theorem genuineEHNStage_freeAmalgamation_inducedK_iff_closed
         ((genuineEHNStageCanonical2019Tag T).induce S) ↔
       T.system.toStructure.IsClosed S :=
   genuineEHNStage_nativeKImage_inducedK_mem_iff_closed
-    T (nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass K hFree)
-      hPos S
+    T (nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
+      (Parts := Parts) K hFree) hPos S
 
 
 /-- A genuinely native-closed-hereditary class K therefore has
