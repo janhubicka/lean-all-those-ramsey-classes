@@ -62,7 +62,7 @@ theorem geometricPiece_reorderRoot_and_swap
       d.left d.right d.minimal
   have hNewMin :
       IsMinimalClosedSeparator A (Set.range newRoots) x y := by
-    simpa only [hExactRoot] using hSwap
+    simpa only [x, y, hExactRoot] using hSwap
   let newPiece : GeometricFunctionalPieceData A m := {
     roots := newRoots
     roots_injective := hInjective
