@@ -6,3 +6,5 @@ import AllThoseRamseyClasses.Published.FunctionalWithParts2019CorrectedClosureDi
 
 #print axioms AllThoseRamseyClasses.Published.genuineTagged2019_originalDecoded_closed_iff_induced_UClosed
 #print axioms AllThoseRamseyClasses.Published.genuineTagged2019_correctedCovered_closedSets_equal
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_smallClosedTestCarriers_iff
