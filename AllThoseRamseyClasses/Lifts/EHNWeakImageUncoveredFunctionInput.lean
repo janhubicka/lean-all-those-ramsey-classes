@@ -155,6 +155,89 @@ theorem weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
       _ = j z := hvz
   exact hNotSourceTestValue ⟨u, hu, hgu⟩
 
+/-- If a particular original source function-input tuple
+is NOT contained in any full irreducible test, then its
+ACTUAL function-closed generated hull in the source cannot
+be irreducible. Otherwise the FULL inclusion of that
+hull into the source would itself protect the input tuple.
+
+This connects local weak-image fibre surplus to a genuinely
+REDUCIBLE native generated closed input structure. -/
+theorem uncoveredFunctionInput_generatedClosedHull_notIrreducible
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hUncovered :
+      ¬ FunctionInputCoveredByFullIrreducibleTest A F ys) :
+    ¬ (A.induce (A.functionClosure (Set.range ys))
+       (A.functionClosure_isClosed (Set.range ys))).Irreducible := by
+  intro hIrr
+  let S : Set V := A.functionClosure (Set.range ys)
+  have hS : A.IsClosed S :=
+    A.functionClosure_isClosed (Set.range ys)
+  let E : Structure L S := A.induce S hS
+  let inc : Structure.Embedding E A := A.inclusion S hS
+  let inputs : Fin (L.funcArity F) → S :=
+    fun i => ⟨ys i,
+      A.subset_functionClosure
+        (Set.range ys) ⟨i, rfl⟩⟩
+  apply hUncovered
+  exact ⟨S, E, hIrr, inc, inputs, fun _ => rfl⟩
+
+/-- The locally uncovered function-input tuple gives a GENUINE
+proper FULL native free decomposition of its generated
+function-closed hull. This is the actual free-amalgamation
+notion, not just graph disconnectedness or a missing clique. -/
+theorem uncoveredFunctionInput_generatedClosedHull_decomposes
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hUncovered :
+      ¬ FunctionInputCoveredByFullIrreducibleTest A F ys) :
+    Nonempty (ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range ys))
+        (A.functionClosure_isClosed (Set.range ys)))) := by
+  have hNotIrr :=
+    uncoveredFunctionInput_generatedClosedHull_notIrreducible
+      A F ys hUncovered
+  by_contra hNoDecomposition
+  exact hNotIrr
+    ((irreducible_iff_noProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range ys))
+        (A.functionClosure_isClosed (Set.range ys)))).mpr
+       hNoDecomposition)
+
+/-- A target-side function-fibre surplus of a FULL quotient
+test forces a proper native full free decomposition of the
+generated closed hull of EVERY original source input tuple
+with the indicated target coordinates. The hypothesis is
+only a single side value, not global input-test coverage. -/
+theorem weakImageFullTest_sideExtraFunction_forcesSourceInputDecomposition
+    {V W U US : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (E : Structure L U)
+    (e : Structure.Embedding E (Structure.weakImage A B f))
+    (Side : Structure L US)
+    (j : Structure.Embedding Side B)
+    (g : U → US)
+    (hCoords : ∀ x : U, j (g x) = (e x).1)
+    (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → U)
+    (z : US)
+    (hSideValue : z ∈ Side.func F (g ∘ xs))
+    (hNotSourceTestValue : z ∉ imageSet g (E.func F xs))
+    (ys : Fin (L.funcArity F) → V)
+    (hInputCoords : ∀ i, f (ys i) = (e (xs i)).1) :
+    Nonempty (ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range ys))
+        (A.functionClosure_isClosed (Set.range ys)))) := by
+  exact uncoveredFunctionInput_generatedClosedHull_decomposes A F ys
+    (weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
+      A B f hf E e Side j g hCoords
+      F xs z hSideValue hNotSourceTestValue ys hInputCoords)
+
 /-- A bad FULL quotient test in an actual full target free
 amalgam therefore yields a SIDE relation surplus, OR a
 function-fibre surplus whose input coordinates have NO
