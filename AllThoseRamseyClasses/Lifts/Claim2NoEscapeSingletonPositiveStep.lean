@@ -10,7 +10,7 @@ The alternative contextual Claim 2 state need not carry a genuine
 OUTER minimal closed separator: a function-closed, no-escape K
 suffices for component and boundary localization.
 
-Let a finite CONNECTED forbidden source admit an actual weak EHN
+Let a finite CONNECTED forbidden source have an actual weak EHN
 map into a full native functional target amalgam. Assume:
 * K is closed and no-escape relative to the full shared seam S;
 * K contains a genuine A-exclusive SOURCE anchor a;
