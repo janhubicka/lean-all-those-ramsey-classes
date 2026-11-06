@@ -45,7 +45,8 @@ theorem globalOriginalFiniteTraceChainLE_succ
     (globalOriginalFiniteTraceChainStep
       F hInput representatives diagrams n).comp
       (globalOriginalFiniteTraceChainLE
-        F hInput representatives diagrams m n h) := by  unfold globalOriginalFiniteTraceChainLE
+        F hInput representatives diagrams m n h) := by
+  unfold globalOriginalFiniteTraceChainLE
   exact Nat.leRecOn_succ h _
 
 /-- The chosen full embedding from stage m to stage k is
