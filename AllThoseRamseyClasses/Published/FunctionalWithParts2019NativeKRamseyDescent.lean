@@ -193,4 +193,50 @@ theorem nativeKFinitePartiteRamsey_of_faithful
   refine ⟨W, hW, C, hKC, ?_⟩
   exact (nativePartiteArrow_iff_faithfulPartial A B C κ).mpr hArrow
 
+/-- Conditional NATIVE full-function partite Ramsey theorem obtained
+from the corrected verified 2019 two-pass profile construction:
+
+- every native finite transversal partite K-system is interpreted
+  faithfully, using exact original vertices/parts and full fibres;
+- K's genuine FreeAmalgamationClass axiom supplies the H_K
+  class heredity/strong-amalgamation/isomorphism conditions
+  through the preceding Track B bridges;
+- the ambient host R and the *global* corrected relative local
+  completion hypothesis are supplied as explicit independent
+  assumptions, with exactly the original 2019 cutoff;
+- the witness is decoded back to an ACTUAL native transversal
+  K-system and FULL part-preserving native Ramsey arrow.
+
+This theorem does NOT assert that the global relative local axiom
+follows from intrinsic weak completions. That is Track C's
+independent unresolved problem. -/
+theorem nativeKPartiteRamsey_of_corrected2019_relative_local_data
+    (K : Structure.StructureClass.{u,v} (L := L))
+    (hFree : Structure.FreeAmalgamationClass K)
+    (R : StructureClass.{max u v,v}
+      (L := (L.withParts Parts).wholeMaskTagLanguage Parts))
+    (hR : FiniteRamseyClass R)
+    (hRIrred : ∀ {X : Type v}
+      (E : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
+      R E → E.Irreducible)
+    (hSub : ∀ {X : Type v}
+      (E : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
+      canonicalGenuineTagged2019Class
+        (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) E → R E)
+    (hPos : L.PositiveFuncArity)
+    (hLocal : ∀ {X Y : Type v} [Finite X] [Finite Y]
+      (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X)
+      (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Y),
+      canonicalGenuineTagged2019Class
+        (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) B →
+      R C0 →
+      ∃ n : ℕ, GenuinePartiteTagged2019LocalCompletionAt
+        (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K)
+        B C0 n) :
+    NativeKFinitePartiteRamsey2019 (Parts := Parts) K :=
+  nativeKFinitePartiteRamsey_of_faithful K
+    (nativeKFaithful2019_ramsey_of_relative_local_data
+      (Parts := Parts) K hFree R hR hRIrred hSub hPos hLocal)
+
+
 end AllThoseRamseyClasses.Published
