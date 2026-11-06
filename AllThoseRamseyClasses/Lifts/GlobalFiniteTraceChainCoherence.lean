@@ -46,10 +46,24 @@ theorem globalOriginalFiniteTraceChainLE_succ
       F hInput representatives diagrams n).comp
       (globalOriginalFiniteTraceChainLE
         F hInput representatives diagrams m n h) := by
-  apply Structure.Embedding.ext
-  intro x
-  simp [globalOriginalFiniteTraceChainLE,
-    Nat.leRecOn_succ, Structure.Embedding.comp_apply]
+  change
+    Nat.leRecOn (Nat.le_succ_of_le h)
+      (@fun k g =>
+        (globalOriginalFiniteTraceChainStep
+          F hInput representatives diagrams k).comp g)
+      (Structure.Embedding.id
+        (globalOriginalFiniteTraceChain
+          F hInput representatives diagrams m).model) =
+    (globalOriginalFiniteTraceChainStep
+      F hInput representatives diagrams n).comp
+      (Nat.leRecOn h
+        (@fun k g =>
+          (globalOriginalFiniteTraceChainStep
+            F hInput representatives diagrams k).comp g)
+        (Structure.Embedding.id
+          (globalOriginalFiniteTraceChain
+            F hInput representatives diagrams m).model))
+  exact Nat.leRecOn_succ h _
 
 /-- The chosen full embedding from stage m to stage k is
 the composition of the maps m → n and n → k whenever
