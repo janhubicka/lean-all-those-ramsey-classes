@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKAssembledRamsey
+
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithful2019_ramsey_of_relative_local_data
