@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.EHNWeakSideFullReflectionDefect
+
+#print axioms AllThoseRamseyClasses.Lifts.WeakMapFullReflectionDefect
+#print axioms AllThoseRamseyClasses.Lifts.WeakMapFullReflectionSurplus
+#print axioms AllThoseRamseyClasses.Lifts.injectiveWeakMap_noFullEmbedding_exposesSurplus
+#print axioms AllThoseRamseyClasses.Lifts.weakMap_noFullEmbedding_exposesReflectionDefect
+#print axioms AllThoseRamseyClasses.Lifts.badForbiddenWeakImageTest_hasSideReflectionDefect
