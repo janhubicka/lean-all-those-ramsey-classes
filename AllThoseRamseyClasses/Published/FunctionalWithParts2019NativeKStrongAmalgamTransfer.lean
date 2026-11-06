@@ -114,12 +114,24 @@ theorem nativeKFaithfulH_strongAmalgamation
   subst partRoot
   subst partLeft
   subst partRight
-  let eL : Structure.Embedding RootN.toStructure LeftN.toStructure := by
-    simpa only [Structure.toNonemptyPartial_collapseDomain] using
-      sL.1.toCollapsedNative
-  let eR : Structure.Embedding RootN.toStructure RightN.toStructure := by
-    simpa only [Structure.toNonemptyPartial_collapseDomain] using
-      sR.1.toCollapsedNative
+  let eL : Structure.Embedding RootN.toStructure LeftN.toStructure := {
+    toFun := sL.1.toFun
+    injective := sL.1.injective
+    map_rel_iff := sL.1.map_rel_iff
+    map_func := by
+      intro F xs
+      have h := (sL.1.toCollapsedNative).map_func F xs
+      simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+  }
+  let eR : Structure.Embedding RootN.toStructure RightN.toStructure := {
+    toFun := sR.1.toFun
+    injective := sR.1.injective
+    map_rel_iff := sR.1.map_rel_iff
+    map_func := by
+      intro F xs
+      have h := (sR.1.toCollapsedNative).map_func F xs
+      simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+  }
   let nL : FunctionalPartite.Embedding RootN LeftN := {
     toEmbedding := eL
     map_part := by
