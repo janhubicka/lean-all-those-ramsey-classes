@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GeometricNestedActualContextCarrier
+
+#print axioms AllThoseRamseyClasses.Lifts.functionalAllPrivate_component_reroot
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_actualTransportContext_eq_outerComponent
