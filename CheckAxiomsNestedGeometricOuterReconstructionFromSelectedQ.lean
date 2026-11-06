@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedGeometricOuterReconstructionFromSelectedQ
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_outerPiece_after_fullSelectedReplacement
