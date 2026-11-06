@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteTraceChainAllStages
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE_self
