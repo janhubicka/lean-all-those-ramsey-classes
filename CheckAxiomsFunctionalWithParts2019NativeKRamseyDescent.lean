@@ -4,3 +4,5 @@ import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKRamseyDesce
 #print axioms AllThoseRamseyClasses.Published.nativePartiteArrow_iff_faithfulPartial
 #print axioms AllThoseRamseyClasses.Published.NativeKFinitePartiteRamsey2019
 #print axioms AllThoseRamseyClasses.Published.nativeKFinitePartiteRamsey_of_faithful
+
+#print axioms AllThoseRamseyClasses.Published.nativeKPartiteRamsey_of_corrected2019_relative_local_data
