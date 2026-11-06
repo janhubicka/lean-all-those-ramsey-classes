@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SelectedReplacementAllPrivateConnected
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedPiece_allPrivate_connected
+#print axioms AllThoseRamseyClasses.Lifts.selectedReplacementPiece_allPrivate_connected

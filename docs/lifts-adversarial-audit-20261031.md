@@ -201,3 +201,86 @@ derives finiteness of selected literal new source flips from their
 genuine finite forbidden witnesses. Both are UNVERIFIED until final
 CI/axiom checks succeed. The frozen numbered manuscript has not
 been rewritten; review TODOs remain open for the missing hypotheses.
+
+
+## 4 November 2026 — genuine nested Track A proof chain (CI boundary)
+
+The October audit above is a historical record. The following original
+native source-geometry results are now **merged with successful CI**:
+
+- [#805](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/805):
+  the exact genuinely selected canonical replacement Q has a private
+  connected component generating the entire full functional root.
+- [#811](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/811):
+  the same literal replacement source has a genuine inner geometric
+  minimal-separator piece.
+- [#822](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/822),
+  [#826](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/826),
+  [#830](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/830)
+  and [#834](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/834):
+  source-native incomparable-cut attachment, complete older opposite
+  boundary and conditional new older minimal-separator reconstruction.
+- [#839](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/839):
+  in the actual nested original geometric source, the opposite older
+  exterior avoids the entire inner gluing root and selected component.
+  Its latest version also derives full inner-piece containment and
+  survival of the complete older root coordinates.
+- [#862](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/862):
+  merged 4 November after successful CI; under *one* actual component
+  nesting premise, the genuine original outer piece has the same
+  all-test rooted forbidden diagram profile as the actual transported
+  closed context, with the correct ordered old root coordinates.
+
+**New draft, not yet kernel-validated:** The source-side next steps are
+split into exact proof obligations, rather than silently packaged into
+a purported unrestricted result.
+
+1. [#866](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/866)
+   reflects the preserved opposite older exterior's exact entire
+   generated boundary back into the unchanged full native complement.
+   It also derives the closed preimage of the older root and privacy
+   of the complete complementary exterior component. Its first CI
+   uncovered a tactic rewrite-direction error; the repair was pushed
+   and a new CI run queued.
+2. [#876](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/876),
+   stacked on #866, combines that exterior with the separately proven
+   new Q-side older boundary to construct an actual new older
+   geometric minimal-separator piece. The only extra new-side
+   hypothesis is a Q-private component with its complete generated
+   inner root (which #805 supplies for a genuinely selected Q).
+3. [#879](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/879),
+   stacked on #876, uses the genuinely selected canonical Q witness,
+   merged source-finiteness result #827 and literal F-membership of
+   New to remove that Q-boundary and new-source-finiteness hypothesis.
+   It packages the resulting new older piece as an actual forbidden
+   geometric piece.
+4. [#881](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/881),
+   independent of the boundary chain, proves that **all** Q-private
+   vertices lie in one root-complement component. The previously
+   proved complete generated root equation for *some* Q-component
+   does not imply this for arbitrary rooted extensions; the actual
+   geometrically selected source and its FULL rooted isomorphism do.
+
+**Remaining Track A bridge (do not mark validated):**
+Prove the exact equality of vertex sets
+
+  NewContext = transportedOlderRoot ∪
+    component(New minus transportedOlderRoot, selectedInsertedQVertex)
+
+for the **actual** selected Q and literal retained complement.
+This requires transferring every retained private old-context vertex
+through the two full free-amalgam diagrams (the merged #793 membership
+equivalence), attaching all Q-private vertices (the #881 component
+lemma), and treating surviving inner-root vertices that may lie
+outside the older root. The new geometric piece must have the
+**correct selected orientation** (inner new component, not the
+opposite retained exterior), and its entire ordered native functional
+root must agree with the rooted closed context before #795/#796
+transfers the GLOBAL canonical piece symbol.
+
+Do not infer this carrier identity merely from generated-boundary
+equalities. Do not confuse source vertices with potentially colliding
+weak target-map images. Root collision and the positive-local-B-support
+successor / terminating support descent are still separate obligations.
+The numbered 2019 manuscript remains frozen; this ledger is
+review-only documentation.
