@@ -89,8 +89,8 @@ the Stage does not imply heredity or local completion. Neither the
 native test nor its tagged counterpart is replaced by a hull. -/
 theorem genuineEHNStage_nativeKImage_inducedK_mem_iff_closed
     (T : FunctionalPartite.EHN.Stage K D)
-    (hHer : GenuinePartiteClosedHereditary2019
-      (nativeKFaithfulGenuinePartiteH2019 K))
+    (hHer : GenuinePartiteClosedHereditary2019 (Parts := Parts)
+      (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K))
     (hPos : L.PositiveFuncArity)
     (S : Set T.Carrier) :
     canonicalGenuineTagged2019Class
