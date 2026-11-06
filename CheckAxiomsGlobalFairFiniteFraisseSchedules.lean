@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairFiniteFraisseSchedules
+
+#print axioms AllThoseRamseyClasses.Lifts.countablePrefixList_eventually_mem
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalRepresentativePrefix_eventually_mem
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalExtensionDiagramPrefix_eventually_mem
