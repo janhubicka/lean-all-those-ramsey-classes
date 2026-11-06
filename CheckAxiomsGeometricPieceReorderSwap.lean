@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricPieceReorderSwap
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_reorderRoot_and_swap
