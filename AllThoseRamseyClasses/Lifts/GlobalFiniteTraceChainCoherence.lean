@@ -53,35 +53,31 @@ theorem globalOriginalFiniteTraceChainLE_comp
   | base =>
       apply Structure.Embedding.ext
       intro x
-      simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_self]
+      rfl
   | succ k hnk ih =>
-      calc
-        (globalOriginalFiniteTraceChainLE
-          F hInput representatives diagrams n (k + 1)
-          (Nat.le_succ_of_le hnk)).comp
-          (globalOriginalFiniteTraceChainLE
-            F hInput representatives diagrams m n hmn) =
+      apply Structure.Embedding.ext
+      intro x
+      have hpoint :=
+        congrArg
+          (fun e : Structure.Embedding
+            (globalOriginalFiniteTraceChain
+              F hInput representatives diagrams m).model
+            (globalOriginalFiniteTraceChain
+              F hInput representatives diagrams k).model => e x) ih
+      change
         (globalOriginalFiniteTraceChainStep
-          F hInput representatives diagrams k).comp
+          F hInput representatives diagrams k)
           ((globalOriginalFiniteTraceChainLE
-            F hInput representatives diagrams n k hnk).comp
-            (globalOriginalFiniteTraceChainLE
-              F hInput representatives diagrams m n hmn)) := by
-                apply Structure.Embedding.ext
-                intro x
-                simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_succ,
-                  Structure.Embedding.comp_apply]
-        _ = (globalOriginalFiniteTraceChainStep
-          F hInput representatives diagrams k).comp
-          (globalOriginalFiniteTraceChainLE
+            F hInput representatives diagrams n k hnk)
+            ((globalOriginalFiniteTraceChainLE
+              F hInput representatives diagrams m n hmn) x)) =
+        (globalOriginalFiniteTraceChainStep
+          F hInput representatives diagrams k)
+          ((globalOriginalFiniteTraceChainLE
             F hInput representatives diagrams m k
-            (le_trans hmn hnk)) := by rw [ih]
-        _ = globalOriginalFiniteTraceChainLE
-          F hInput representatives diagrams m (k + 1)
-          (le_trans hmn (Nat.le_succ_of_le hnk)) := by
-                apply Structure.Embedding.ext
-                intro x
-                simp [globalOriginalFiniteTraceChainLE, Nat.leRecOn_succ,
-                  Structure.Embedding.comp_apply]
+            (le_trans hmn hnk)) x)
+      exact congrArg
+        (globalOriginalFiniteTraceChainStep
+          F hInput representatives diagrams k) hpoint
 
 end AllThoseRamseyClasses.Lifts
