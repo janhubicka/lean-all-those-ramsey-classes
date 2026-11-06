@@ -29,6 +29,22 @@ open StructuralRamsey.Structure
 universe u v
 variable {L : Language.{u}} {V : Type v}
 
+/-- Minimal closed separation transports across equality of the complete cut,
+with the two chosen outside-root vertices identified by their underlying
+source vertices. The subtype proof fields are propositionally irrelevant. -/
+private theorem minimalSeparator_transport_equalCut
+    (A : Structure L V) {R S : Set V}
+    (h : S = R)
+    (x : {v : V // v ∉ R}) (y : {v : V // v ∉ R})
+    (x' : {v : V // v ∉ S}) (y' : {v : V // v ∉ S})
+    (hx : x'.1 = x.1) (hy : y'.1 = y.1)
+    (hmin : IsMinimalClosedSeparator A R x y) :
+    IsMinimalClosedSeparator A S x' y' := by
+  subst S
+  have hx' : x' = x := Subtype.ext hx
+  have hy' : y' = y := Subtype.ext hy
+  simpa only [hx', hy'] using hmin
+
 /-- An ACTUAL geometric functional piece may be re-enumerated
 by the prescribed original root tuple and reoriented towards its
 opposite component, with no change to the full closed separator.
@@ -61,10 +77,9 @@ theorem geometricPiece_reorderRoot_and_swap
     minimalClosedSeparator_swap A (Set.range d.roots)
       d.left d.right d.minimal
   have hNewMin :
-      IsMinimalClosedSeparator A (Set.range newRoots) x y := by
-    rw [hExactRoot]
-    change IsMinimalClosedSeparator A (Set.range d.roots) d.right d.left
-    exact hSwap
+      IsMinimalClosedSeparator A (Set.range newRoots) x y :=
+    minimalSeparator_transport_equalCut
+      A hExactRoot d.right d.left x y rfl rfl hSwap
   let newPiece : GeometricFunctionalPieceData A m := {
     roots := newRoots
     roots_injective := hInjective
