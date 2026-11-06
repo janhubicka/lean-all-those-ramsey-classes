@@ -182,6 +182,55 @@ theorem nativeKFaithfulH_closedHereditary_iff
     exact hKC
 
 
+
+/-- Native free amalgamation classes are automatically native-closed
+hereditary: this is the HEREDITARY field of the actual functional
+FreeAmalgamationClass, applied to the genuine full native inclusion
+of a function-closed induced partite system. No additional native
+K heredity axiom is required for the verified EHN application. -/
+theorem nativeKClosedHereditary_of_freeAmalgamationClass
+    (K : Structure.StructureClass (L := L))
+    (hFree : Structure.FreeAmalgamationClass K) :
+    NativeKClosedHereditary2019 (Parts := Parts) K := by
+  intro X hX B hB S hS
+  exact hFree.hereditary hB
+    (Structure.inclusion B.toStructure S hS)
+
+/-- The verified native functional FreeAmalgamationClass axioms,
+including its actual hereditary field, entail genuine
+original-2019 closed heredity for the EXACT faithful Option(Set)
+class H_K. The equality of closed native and genuine partial
+restrictions is used by the preceding two-way transfer. -/
+theorem nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
+    (K : Structure.StructureClass (L := L))
+    (hFree : Structure.FreeAmalgamationClass K) :
+    GenuinePartiteClosedHereditary2019
+      (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) :=
+  nativeKFaithfulH_closedHereditary K
+    (nativeKClosedHereditary_of_freeAmalgamationClass K hFree)
+
+/-- Exact 2019 tagged K_H membership among weak tests of an ACTUAL
+native EHN Stage, under the same free-amalgamation-class hypothesis
+ALREADY used by the verified native EHN attachment construction.
+
+The tagged ambient test on S belongs to K_H iff S is genuinely
+native function-closed. The proof does not need an external H
+membership or extra class-heredity assumption. -/
+theorem genuineEHNStage_freeAmalgamation_inducedK_iff_closed
+    {D : Structure L Parts}
+    (T : FunctionalPartite.EHN.Stage K D)
+    (hFree : Structure.FreeAmalgamationClass K)
+    (hPos : L.PositiveFuncArity)
+    (S : Set T.Carrier) :
+    canonicalGenuineTagged2019Class
+        (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K)
+        ((genuineEHNStageCanonical2019Tag T).induce S) ↔
+      T.system.toStructure.IsClosed S :=
+  genuineEHNStage_nativeKImage_inducedK_mem_iff_closed
+    T (nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass K hFree)
+      hPos S
+
+
 /-- A genuinely native-closed-hereditary class K therefore has
 the 2019 closed-test H/K image correspondence for EVERY actual EHN
 Stage T in K, without taking an unrelated H-membership axiom and
