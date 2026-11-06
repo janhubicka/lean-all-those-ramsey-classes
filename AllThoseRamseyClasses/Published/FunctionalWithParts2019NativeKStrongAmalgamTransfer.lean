@@ -96,7 +96,7 @@ The native witness preserves part labels and exact overlap;
 the new genuine target is just its faithful native
 Option(Set) encoding. -/
 theorem nativeKFaithfulH_strongAmalgamation
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hStrong : NativeKPartiteStrongAmalgamation2019
       (Parts := Parts) K) :
     GenuinePartiteStrongAmalgamation2019
@@ -175,7 +175,7 @@ for the strong-amalgamation hypothesis of the 2019 faithful H_K
 partial-function class. The target is a REAL transversal
 functional K-amalgam, not a repaired semi-closed weak source. -/
 theorem nativeKFaithfulH_strongAmalgamation_of_free
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : Structure.FreeAmalgamationClass K) :
     GenuinePartiteStrongAmalgamation2019
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) :=
@@ -191,7 +191,7 @@ This DISCHARGES the 2019 canonical K_H strong property
 independently of the remaining ambient-relative local
 completion axiom and the unrelated strict mixed-root targets. -/
 theorem nativeKCanonicalTagged2019_strongAmalgamation_of_free
-    (K : Structure.StructureClass (L := L))
+    (K : Structure.StructureClass.{u,v} (L := L))
     (hK : Structure.FreeAmalgamationClass K) :
     HasFiniteStrongAmalgamation
       (canonicalGenuineTagged2019Class
