@@ -15,6 +15,10 @@ The corrected verified 2019 two-pass theorem ultimately yields `GenuinePartite20
 
 The theorem is a decoder only. It does NOT prove its antecedent, the global ambient relative local completion axiom (Track C), or an ambient irreducible Ramsey host R for the canonical complete-mask tagged K_H image.
 
+## Single conditional native Ramsey endpoint
+
+The additional `nativeKPartiteRamsey_of_corrected2019_relative_local_data` directly composes the assembled genuine H_K Ramsey theorem from stacked PR #911 with the exact native partite Ramsey decoder. Its CONCLUSION is the literal `NativeKFinitePartiteRamsey2019 K` property in the native set-valued function language. The antecedent still explicitly includes: (i) the native `Structure.FreeAmalgamationClass K`; (ii) a relational irreducible finite Ramsey host R containing the canonical tagged class; (iii) positive function arities; and (iv) the entire corrected global fixed-cutoff ambient-relative local completion premise. The latter is NOT claimed to follow from a native EHN source stage or from intrinsic weak tests. The result is therefore a faithful conditional transfer, not an unconditional solution of the corrected survey Appendix.
+
 ## Validation/integration gate
 
 New Lean source, dedicated active root, named axiom checks, and no modification of existing code. The dependencies form the current chain PR #890, #904, #905, #906, #911, then this final native decoder. None of the newly stacked declarations is green until its exact-head full Lean CI, all-project import graph audit, and named axiom audit pass. Only then may they be merged in the dependency order. No frozen survey text, author TODOs, or dependency pin is modified.
