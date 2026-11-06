@@ -95,6 +95,36 @@ theorem weakMap_noFullEmbedding_exposesReflectionDefect
   }
   exact hNoFull ⟨e, fun _ => rfl⟩
 
+/-- Once a weak map is INJECTIVE on its source vertices,
+the only possible failure of full reflection is a target-only
+old relation tuple or a target-only function-fibre value. -/
+def WeakMapFullReflectionSurplus
+    {V W : Type} (A : Structure L V) (B : Structure L W)
+    (f : V → W) : Prop :=
+  (∃ (R : L.RelSymbol) (xs : Fin (L.relArity R) → V),
+    B.rel R (f ∘ xs) ∧ ¬ A.rel R xs) ∨
+  (∃ (F : L.FuncSymbol) (xs : Fin (L.funcArity F) → V)
+      (z : W),
+    z ∈ B.func F (f ∘ xs) ∧
+      z ∉ imageSet f (A.func F xs))
+
+/-- For injective weak maps, the collision branch of the
+generic full-reflection trichotomy is impossible. -/
+theorem injectiveWeakMap_noFullEmbedding_exposesSurplus
+    {V W : Type} (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsWeakHomomorphism B f)
+    (hInjective : Function.Injective f)
+    (hNoFull : ¬ ∃ e : Structure.Embedding A B,
+      ∀ x : V, e x = f x) :
+    WeakMapFullReflectionSurplus A B f := by
+  rcases weakMap_noFullEmbedding_exposesReflectionDefect
+      A B f hf hNoFull with hCollision | hRelation | hFunction
+  · obtain ⟨x, y, hne, hxy⟩ := hCollision
+    exact False.elim (hne (hInjective hxy))
+  · exact Or.inl hRelation
+  · exact Or.inr hFunction
+
 /-- For an actual bad irreducible forbidden-copy test in the
 generated weak quotient of a forbidden EHN witness into a
 genuine full native free amalgam, the defect is SIDE-LOCAL.
@@ -107,9 +137,16 @@ This retains:
 - and the actual weak side-map with exactly the prescribed
   target coordinates.
 
-The side-map has one of the three explicit reflection defects.
-No source or target injectivity is inferred from vertex
-containment, and the whole quotient is never treated as full. -/
+The full embeddings E ↪ P ↪ Q and the injective subtype inclusion
+Q ↪ Target make the prescribed target coordinate map on E
+INJECTIVE, even when the ORIGINAL forbidden-source witness
+is noninjective. Any side factorization has the same images and
+is therefore injective too.
+
+Hence the side-map has only TWO possible full-reflection defects:
+an extra target relation tuple, or an extra target function-fibre
+value. The collision branch is impossible for this specific
+quotient-derived test. The whole quotient is never treated as full. -/
 theorem badForbiddenWeakImageTest_hasSideReflectionDefect
     (F : ∀ {X : Type}, Structure L X → Prop)
     {UX UA UB UT : Type}
@@ -137,11 +174,11 @@ theorem badForbiddenWeakImageTest_hasSideReflectionDefect
           ((∃ g : U → UA,
              E.IsWeakHomomorphism Left g ∧
              (∀ x : U, jL (g x) = (e (h x)).1) ∧
-             WeakMapFullReflectionDefect E Left g) ∨
+             WeakMapFullReflectionSurplus E Left g) ∨
            (∃ g : U → UB,
              E.IsWeakHomomorphism Right g ∧
              (∀ x : U, jR (g x) = (e (h x)).1) ∧
-             WeakMapFullReflectionDefect E Right g)) := by
+             WeakMapFullReflectionSurplus E Right g)) := by
   obtain ⟨Z, P, hP, e, U, E, hIrr, h, hNoTarget, hNoLift, hSide⟩ :=
     badForbiddenWeakImageTest_hasSideInternalReflectionFailure
       F Root Left Right Target sL sR jL jR hFree w hBad
@@ -153,6 +190,12 @@ theorem badForbiddenWeakImageTest_hasSideReflectionDefect
       (fun x => (e (h x)).1) :=
     (Structure.weakImage.inclusion_weak w.homEmbedding.1).comp
       hWeakQ
+  have hPrescribedInjective :
+      Function.Injective (fun x : U => (e (h x)).1) := by
+    intro x y heq
+    apply h.injective
+    apply e.injective
+    exact Subtype.ext heq
   refine ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, ?_⟩
   rcases hSide with ⟨hL, hNoL⟩ | ⟨hR, hNoR⟩
   · left
@@ -164,9 +207,16 @@ theorem badForbiddenWeakImageTest_hasSideReflectionDefect
       apply hNoL
       exact ⟨k, fun x =>
         (congrArg jL (hk x)).trans (hgCoords x)⟩
+    have hgInjective : Function.Injective g := by
+      intro x y heq
+      apply hPrescribedInjective
+      calc
+        (e (h x)).1 = jL (g x) := (hgCoords x).symm
+        _ = jL (g y) := congrArg jL heq
+        _ = (e (h y)).1 := hgCoords y
     exact ⟨g, hgWeak, hgCoords,
-      weakMap_noFullEmbedding_exposesReflectionDefect
-        E Left g hgWeak hNoEmbed⟩
+      injectiveWeakMap_noFullEmbedding_exposesSurplus
+        E Left g hgWeak hgInjective hNoEmbed⟩
   · right
     obtain ⟨g, hgWeak, hgCoords⟩ :=
       weakHomomorphism_factor_fullSide hWeakTarget jR hR
@@ -176,8 +226,15 @@ theorem badForbiddenWeakImageTest_hasSideReflectionDefect
       apply hNoR
       exact ⟨k, fun x =>
         (congrArg jR (hk x)).trans (hgCoords x)⟩
+    have hgInjective : Function.Injective g := by
+      intro x y heq
+      apply hPrescribedInjective
+      calc
+        (e (h x)).1 = jR (g x) := (hgCoords x).symm
+        _ = jR (g y) := congrArg jR heq
+        _ = (e (h y)).1 := hgCoords y
     exact ⟨g, hgWeak, hgCoords,
-      weakMap_noFullEmbedding_exposesReflectionDefect
-        E Right g hgWeak hNoEmbed⟩
+      injectiveWeakMap_noFullEmbedding_exposesSurplus
+        E Right g hgWeak hgInjective hNoEmbed⟩
 
 end AllThoseRamseyClasses.Lifts
