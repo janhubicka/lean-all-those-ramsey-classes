@@ -36,6 +36,31 @@ For the converse, let B be a genuine native K partite system and S a genuinely f
 
 This is the sharp class-property transfer, conditional only on the stated property itself; it does not prove native K possesses that property. Named axiom check added, pending CI.
 
+## No extra native heredity axiom for the free-amalgamation application
+
+The actual functional `Structure.FreeAmalgamationClass K` interface
+already has `hereditary`: whenever `K B` and there is a FULL native
+functional embedding `A ↪ B`, then `K A`. For a genuinely
+function-closed S, `Structure.inclusion B.toStructure S hS` is
+precisely such a full embedding. Thus the Track B
+`NativeKClosedHereditary2019 K` condition is not an independent
+assumption for the native EHN theorem.
+
+Three named Lean endpoints formalize this reduction:
+
+- `nativeKClosedHereditary_of_freeAmalgamationClass` uses
+  `hFree.hereditary` and the LITERAL native closed inclusion;
+- `nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass`
+  transfers it to the faithful original genuine H_K class;
+- `genuineEHNStage_freeAmalgamation_inducedK_iff_closed`
+  characterizes canonical tagged K_H membership among induced
+  ambient tests of an ACTUAL EHN Stage under precisely the native
+  FreeAmalgamationClass hypothesis already used by the construction.
+
+This does not derive the unrelated 2019 H_K strong-amalgamation
+or relative-local-completion hypotheses, which require independent
+checks. No claim is made for a nonclosed weak test.
+
 ## Scope and limits
 
 - Source-side native K-membership, genuine H_K membership and canonical tagged K_H membership have now been given explicit interfaces, not conflated. There is no assumption that all arbitrary defined-empty Option(Set) structures arise from native systems.
