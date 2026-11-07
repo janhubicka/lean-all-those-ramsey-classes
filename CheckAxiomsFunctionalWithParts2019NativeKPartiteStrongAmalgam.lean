@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKPartiteStrongAmalgam
+
+#print axioms AllThoseRamseyClasses.Published.NativeKPartiteStrongAmalgamation2019
+#print axioms AllThoseRamseyClasses.Published.nativeKPartiteStrongAmalgamation_of_free
