@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKStrongAmalgamTransfer
+
+#print axioms StructuralRamsey.PartialSetStructure.Embedding.toCollapsedNative
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_strongAmalgamation
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_strongAmalgamation_of_free
+#print axioms AllThoseRamseyClasses.Published.nativeKCanonicalTagged2019_strongAmalgamation_of_free
