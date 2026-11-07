@@ -1,5 +1,4 @@
 import AllThoseRamseyClasses.Lifts.NestedCanonicalSelectedOuterContextCarrier
-import AllThoseRamseyClasses.Lifts.Claim2ActualOneStepContextualFlip
 
 /-!
 # Exact local B-source support rank on one ACTUAL new outer-cut component
