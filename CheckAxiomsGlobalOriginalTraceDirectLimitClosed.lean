@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceDirectLimitClosed
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderLimitIncl_comp
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderLimitIncl_closedMap

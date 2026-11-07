@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalFiniteTraceChainFibreStability
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE_closedMap
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE_fibre_iff
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceChainLE_rel_iff
