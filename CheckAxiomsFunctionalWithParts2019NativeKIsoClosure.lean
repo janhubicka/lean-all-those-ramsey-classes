@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019NativeKIsoClosure
+
+#print axioms AllThoseRamseyClasses.Published.nativeKFaithfulH_isomorphismClosed_of_free
+#print axioms AllThoseRamseyClasses.Published.nativeKCanonicalTagged2019_isomorphismClosed_of_free
