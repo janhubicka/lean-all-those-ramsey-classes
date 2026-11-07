@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceFirstOrderDirectLimit
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceStageFirstOrder_directedSystem
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderLimitModel
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderLimitIncl
