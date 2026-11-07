@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Lifts.EHNWeakSideFullReflectionDefect
 import AllThoseRamseyClasses.Lifts.EHNInputTestCoverageClosedRange
 import AllThoseRamseyClasses.Lifts.EHNInputCoverFunctionFibre
+import AllThoseRamseyClasses.Lifts.EHNWeakImageFullFunctionFibre
 import Mathlib.Tactic
 
 /-!
@@ -509,23 +510,12 @@ theorem weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
     (hSideValue : z ∈ Side.func F (g ∘ xs))
     (hNotSourceTestValue : z ∉ imageSet g (E.func F xs)) :
     False := by
-  classical
-  let q : V → Set.range f :=
-    Structure.weakImage.quotientMap (f := f)
-  have hSurj : Function.Surjective q :=
-    Structure.weakImage.quotientMap_surjective (f := f)
-  let ys : Fin (L.funcArity F) → V :=
-    fun i => Classical.choose (hSurj (e (xs i)))
-  have hInputs : ∀ i, f (ys i) = (e (xs i)).1 := by
-    intro i
-    exact congrArg Subtype.val
-      (Classical.choose_spec (hSurj (e (xs i))))
-  have hUncovered :=
-    weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
-      A B f hf E e Side j g hCoords
-      F xs z hSideValue hNotSourceTestValue ys hInputs
-  exact hUncovered
-    (functionInputCovered_of_arity_le_one A F ys (hArity F))
+  exact
+    (weakImageFullCopy_side_noExtraFunctionFibres_of_sourceInputTests
+      A B f hf
+      (functionInputTuplesCovered_of_allFuncArity_le_one A hArity)
+      E e Side j g hCoords)
+      ⟨F, xs, z, hSideValue, hNotSourceTestValue⟩
 
 /-- A bad FULL quotient test in an actual full target free
 amalgam therefore yields a SIDE relation surplus, OR a
@@ -673,30 +663,10 @@ theorem badForbiddenWeakImageTest_hasExtraRelation_of_unaryFunctions
              ∃ (R : L.RelSymbol)
                (xs : Fin (L.relArity R) → U),
                Right.rel R (g ∘ xs) ∧ ¬ E.rel R xs)) := by
-  obtain ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, hSide⟩ :=
-    badForbiddenWeakImageTest_hasSideReflectionDefect
-      F Root Left Right Target sL sR jL jR hFree w hBad
-  refine ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, ?_⟩
-  rcases hSide with
-      ⟨g, hgWeak, hgCoords, hSurplus⟩ |
-      ⟨g, hgWeak, hgCoords, hSurplus⟩
-  · rcases hSurplus with hRelation | hFunction
-    · exact Or.inl ⟨g, hgWeak, hgCoords, hRelation⟩
-    · obtain ⟨G, xs, z, hValue, hMissing⟩ := hFunction
-      exact False.elim
-        (weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
-          w.source Target w.toTarget w.homEmbedding
-          hArity E (e.comp h) Left jL g hgCoords
-          G xs z hValue hMissing)
-  · rcases hSurplus with hRelation | hFunction
-    · exact Or.inr ⟨g, hgWeak, hgCoords, hRelation⟩
-    · obtain ⟨G, xs, z, hValue, hMissing⟩ := hFunction
-      exact False.elim
-        (weakImageFullTest_sideExtraFunction_impossible_of_unaryFunctions
-          w.source Target w.toTarget w.homEmbedding
-          hArity E (e.comp h) Right jR g hgCoords
-          G xs z hValue hMissing)
-
+  exact badForbiddenWeakImageTest_hasSideExtraRelation_of_sourceInputTests
+    F Root Left Right Target sL sR jL jR hFree
+    w (functionInputTuplesCovered_of_allFuncArity_le_one
+      w.source hArity) hBad
 
 /-- Positive special case of the printed image-injectivization
 step: for a language with NO relation symbols and only nullary
