@@ -132,7 +132,8 @@ theorem selectedNestedFlip_strictLocalRank_on_actualOuterComponent
       Nat.card {v : V //
         v ∈ geometricPieceVertices Old outer ∧
         f v ∈ BOnly} := by
-    simpa only [← hCarrier] using hStrictContext
+    rw [← hCarrier]
+    exact hStrictContext
   exact ⟨dQ, xNew, hxQ, hCarrier, hRank⟩
 
 end AllThoseRamseyClasses.Lifts
