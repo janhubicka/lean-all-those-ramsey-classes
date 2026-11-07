@@ -55,11 +55,13 @@ noncomputable def globalOriginalTraceStageMap
     (diagrams : ℕ → List (GlobalOriginalFiniteTraceDiagram F))
     (m n : ℕ) (h : m ≤ n) :
     GlobalOriginalTraceStageVertex
-      F hInput representatives diagrams m →
+      F hInput representatives diagrams m ↪
     GlobalOriginalTraceStageVertex
-      F hInput representatives diagrams n :=
-  globalOriginalFiniteTraceChainLE
+      F hInput representatives diagrams n where
+  toFun := globalOriginalFiniteTraceChainLE
     F hInput representatives diagrams m n h
+  inj' := (globalOriginalFiniteTraceChainLE
+    F hInput representatives diagrams m n h).injective
 
 /-- Actual coherence, identity, and composition of the vertex
 transition system. The proof uses genuine full embedding
@@ -140,6 +142,8 @@ theorem globalOriginalTraceDirectLimitIncl_injective
       (globalOriginalTraceDirectLimitIncl
         F hInput representatives diagrams n) := by
   apply DirectLimit.mk_injective
+    (f := fun i j hij => globalOriginalTraceStageMap
+      F hInput representatives diagrams i j hij)
   intro i j hij
   exact (globalOriginalFiniteTraceChainLE
     F hInput representatives diagrams i j hij).injective
