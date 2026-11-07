@@ -81,6 +81,7 @@ namespace AllThoseRamseyClasses.Published
 open StructuralRamsey
 open StructuralRamsey.Structure
 open StructuralRamsey.PartialSetStructure
+open StructuralRamsey.RelStructure
 
 universe u v
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
@@ -121,7 +122,8 @@ theorem nativeKFaithfulH_strongAmalgamation
     map_func := by
       intro F xs
       have h := (sL.1.toCollapsedNative).map_func F xs
-      simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+      simpa only [Structure.toNonemptyPartial_collapseDomain,
+        PartialSetStructure.Embedding.toCollapsedNative] using h
   }
   let eR : Structure.Embedding RootN.toStructure RightN.toStructure := {
     toFun := sR.1.toFun
@@ -130,7 +132,8 @@ theorem nativeKFaithfulH_strongAmalgamation
     map_func := by
       intro F xs
       have h := (sR.1.toCollapsedNative).map_func F xs
-      simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+      simpa only [Structure.toNonemptyPartial_collapseDomain,
+        PartialSetStructure.Embedding.toCollapsedNative] using h
   }
   let nL : FunctionalPartite.Embedding RootN LeftN := {
     toEmbedding := eL
