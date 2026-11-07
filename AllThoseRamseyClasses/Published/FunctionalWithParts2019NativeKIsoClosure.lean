@@ -111,7 +111,8 @@ theorem nativeKFaithfulH_isomorphismClosed_of_free
     map_func := by
       intro F xs
       have h := (f.1.toCollapsedNative).map_func F xs
-      simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+      simpa only [Structure.toNonemptyPartial_collapseDomain,
+        PartialSetStructure.Embedding.toCollapsedNative] using h
   }
   have hKA : K A.collapseDomain := hK.hereditary hBN eNative
   let AN : FunctionalPartite.System L Parts U := {
