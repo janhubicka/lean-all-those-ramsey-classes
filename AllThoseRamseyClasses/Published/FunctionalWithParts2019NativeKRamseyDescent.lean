@@ -63,7 +63,8 @@ noncomputable def nativePartiteFaithfulPartialEmbeddingEquiv
       map_func := by
         intro F xs
         have h := (e.1.toCollapsedNative).map_func F xs
-        simpa only [Structure.toNonemptyPartial_collapseDomain] using h
+        simpa only [Structure.toNonemptyPartial_collapseDomain,
+          PartialSetStructure.Embedding.toCollapsedNative] using h
     }
     map_part := e.2
   }
