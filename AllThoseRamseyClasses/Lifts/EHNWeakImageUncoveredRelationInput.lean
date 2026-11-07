@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.EHNWeakSideFullReflectionDefect
 import AllThoseRamseyClasses.Lifts.EHNInputTestCoverageClosedRange
+import AllThoseRamseyClasses.Lifts.EHNInputCoverFunctionFibre
 
 /-!
 # Track D: extra target relations expose uncovered source input tuples
@@ -204,5 +205,86 @@ theorem weakImageFullTest_sideExtraRelation_forcesSourceInputDecomposition
     (weakImageFullTest_sideExtraRelation_forcesUncoveredSourceInput
       A B f hf E e Side j g hCoords R xs
       hSide hMissing ys hInputCoords)
+
+
+/-- ALL old relation-input tuples in a source are covered
+by full irreducible source tests. This hypothesis concerns
+all tuples, including those where the relation is FALSE;
+it is not implied by mere connectedness of the source.
+
+This is the precise relation-side analogue of
+`FunctionInputTuplesCoveredByIrreducibleTests`. -/
+def RelationInputTuplesCoveredByIrreducibleTests
+    {V : Type} (A : Structure L V) : Prop :=
+  ∀ (R : L.RelSymbol) (xs : Fin (L.relArity R) → V),
+    RelationInputCoveredByFullIrreducibleTest A R xs
+
+/-- Full irreducible source-test coverage for each OLD
+relation-input tuple implies relation-tuple surjectivity
+onto the actual full target image under an EHN map.
+
+Target relation tuples whose coordinates lie in the image
+are reflected at any chosen preimage input tuple, and so
+have a positive original-source witness. -/
+theorem ehn_sourceRelationTuplesCoveredOnRange_of_inputTests
+    {V W : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (hCover : RelationInputTuplesCoveredByIrreducibleTests A) :
+    SourceRelationTuplesCoveredOnRange A B f := by
+  classical
+  intro R zs hRange hTarget
+  let xs : Fin (L.relArity R) → V :=
+    fun i => Classical.choose (hRange i)
+  have hArgs : zs = f ∘ xs := by
+    funext i
+    exact (Classical.choose_spec (hRange i)).symm
+  have hPositive : A.rel R xs := by
+    apply ehn_localRelationInputCover_reflectsTargetPositive
+      A B f hf R xs (hCover R xs)
+    rw [← hArgs]
+    exact hTarget
+  exact ⟨xs, hPositive, hArgs⟩
+
+/-- A clean CONDITIONAL positive injectivization theorem
+in the exact printed 2019 tuple-image semantics:
+if every forbidden source has FULL irreducible input-test
+coverage for BOTH its native function and relation symbols,
+then source-support minimum forbidden EHN witnesses can
+be made injective, even with arbitrary native arities.
+
+The two cover hypotheses are explicit. Neither follows
+from connectedness/regularity of the forbidden family. -/
+theorem exists_injectiveMinimalForbiddenEHNWitness_of_bothInputCovers
+    (F : ∀ {X : Type}, Structure L X → Prop)
+    (hFiniteF : ∀ {X : Type} (Src : Structure L X),
+      F Src → Finite X)
+    (hImage : HasTupleSurjectiveForbiddenImageClosure F)
+    (hFunctionInputCover :
+      ∀ {V : Type} (Src : Structure L V),
+        F Src → FunctionInputTuplesCoveredByIrreducibleTests Src)
+    (hRelationInputCover :
+      ∀ {V : Type} (Src : Structure L V),
+        F Src → RelationInputTuplesCoveredByIrreducibleTests Src)
+    {UT : Type} (Target : Structure L UT)
+    (AOnly : Set UT)
+    (hExists : Nonempty (ForbiddenEHNWitness F Target)) :
+    ∃ v : ForbiddenEHNWitness F Target,
+      Function.Injective v.toTarget ∧
+      ∀ w : ForbiddenEHNWitness F Target,
+        v.sourceSupportCount AOnly ≤
+          w.sourceSupportCount AOnly := by
+  have hRelationCover :
+      ∀ w : ForbiddenEHNWitness F Target,
+        SourceRelationTuplesCoveredOnRange
+          w.source Target w.toTarget := by
+    intro w
+    exact ehn_sourceRelationTuplesCoveredOnRange_of_inputTests
+      w.source Target w.toTarget w.homEmbedding
+      (hRelationInputCover w.source w.forbidden)
+  exact exists_injectiveMinimalForbiddenEHNWitness_of_printedClosure_and_covers
+    F hFiniteF hImage hFunctionInputCover
+    Target AOnly hRelationCover hExists
 
 end AllThoseRamseyClasses.Lifts
