@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceDirectLimitCarrier
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceStage_directedSystem
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceDirectLimitIncl_injective
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceDirectLimitIncl_comp
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceDirectLimitCarrier_countable
