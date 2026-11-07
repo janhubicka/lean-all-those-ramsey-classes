@@ -554,8 +554,9 @@ theorem badForbiddenWeakImageTest_hasRelationOrUncoveredFunctionInput
                 z ∉ imageSet g (E.func F0 xs) ∧
                 ∀ ys : Fin (L.funcArity F0) → w.Carrier,
                   (∀ i, w.toTarget (ys i) = (e (h (xs i))).1) →
-                  ¬ FunctionInputCoveredByFullIrreducibleTest
-                    w.source F0 ys))) ∨
+                  (¬ FunctionInputCoveredByFullIrreducibleTest
+                     w.source F0 ys) ∧
+                  w.source.func F0 ys = ∅))) ∨
            (∃ (g : U → UB),
              E.IsWeakHomomorphism Right g ∧
              (∀ x : U, jR (g x) = (e (h x)).1) ∧
@@ -567,8 +568,9 @@ theorem badForbiddenWeakImageTest_hasRelationOrUncoveredFunctionInput
                 z ∉ imageSet g (E.func F0 xs) ∧
                 ∀ ys : Fin (L.funcArity F0) → w.Carrier,
                   (∀ i, w.toTarget (ys i) = (e (h (xs i))).1) →
-                  ¬ FunctionInputCoveredByFullIrreducibleTest
-                    w.source F0 ys)))) := by
+                  (¬ FunctionInputCoveredByFullIrreducibleTest
+                     w.source F0 ys) ∧
+                  w.source.func F0 ys = ∅)))) := by
   obtain ⟨Z, P, hP, e, U, E, hIrr, h, hNoLift, hSide⟩ :=
     badForbiddenWeakImageTest_hasSideReflectionDefect
       F Root Left Right Target sL sR jL jR hFree w hBad
@@ -583,10 +585,14 @@ theorem badForbiddenWeakImageTest_hasRelationOrUncoveredFunctionInput
     · obtain ⟨F0, xs, z, hSideValue, hMissing⟩ := hFunction
       refine Or.inr ⟨F0, xs, z, hSideValue, hMissing, ?_⟩
       intro ys hInputCoords
-      exact weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
-        w.source Target w.toTarget w.homEmbedding
-        E (e.comp h) Left jL g hgCoords
-        F0 xs z hSideValue hMissing ys hInputCoords
+      have hUncovered :=
+        weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
+          w.source Target w.toTarget w.homEmbedding
+          E (e.comp h) Left jL g hgCoords
+          F0 xs z hSideValue hMissing ys hInputCoords
+      exact ⟨hUncovered,
+        uncoveredFunctionInput_sourceFibre_empty
+          w.source F0 ys hUncovered⟩
   · right
     refine ⟨g, hgWeak, hgCoords, ?_⟩
     rcases hSurplus with hRelation | hFunction
@@ -594,10 +600,14 @@ theorem badForbiddenWeakImageTest_hasRelationOrUncoveredFunctionInput
     · obtain ⟨F0, xs, z, hSideValue, hMissing⟩ := hFunction
       refine Or.inr ⟨F0, xs, z, hSideValue, hMissing, ?_⟩
       intro ys hInputCoords
-      exact weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
-        w.source Target w.toTarget w.homEmbedding
-        E (e.comp h) Right jR g hgCoords
-        F0 xs z hSideValue hMissing ys hInputCoords
+      have hUncovered :=
+        weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
+          w.source Target w.toTarget w.homEmbedding
+          E (e.comp h) Right jR g hgCoords
+          F0 xs z hSideValue hMissing ys hInputCoords
+      exact ⟨hUncovered,
+        uncoveredFunctionInput_sourceFibre_empty
+          w.source F0 ys hUncovered⟩
 
 
 /-- Genuine free-amalgam corollary for nullary/unary native
