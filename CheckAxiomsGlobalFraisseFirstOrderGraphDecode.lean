@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderGraphDecode
+
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderRelGraphDecode_encode_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderRelGraph_encode_decode_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_decode_encode_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_decode_encode_func_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_decode_encode_wholeFibre
