@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedGlobalSelectedOuterForbiddenPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_globalSelectedReplacement_has_outerForbiddenPiece
