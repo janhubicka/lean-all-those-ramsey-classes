@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedSelectedOuterTargetRelation
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerGlobalRelation_in_target
