@@ -18,11 +18,17 @@ Verified Track F finite-stage infrastructure:
 
 ## Current independent PRs and their exact limits
 
-- [#900](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/900) defines the generic quotient **carrier** of finite stage vertices. Its transition maps must use `Function.Embedding` or another `FunLike` type recognized by Mathlib's `DirectLimit`; plain functions do not satisfy that API requirement. This is an implementation-interface issue, not a weakening of the full native maps.
-- [#903](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/903) constructs Mathlib's genuine first-order direct limit of the full relation/function-graph encodings. It depends on the first-order graph embedding bridge and #900.
-- [#916](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/916) supplies a proposed exact inverse: interpret every graph-relation symbol as an original relation or whole set-valued function fibre and show encoding/decoding recovers all such tables on finite carriers. Its own full CI is required.
+**Updated 8 November 2026 — actual GitHub CI and merge status.**
 
-These drafts do **not** yet establish the full native-functional limit and must not be given green manuscript markers.
+- [#900](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/900) is **merged after full green CI**. The generic quotient carrier is countable; the transition maps use full-induced injective `Function.Embedding` arrows satisfying the required `FunLike` interface.
+- [#916](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/916) is **merged after full green CI**. The exact graph decoder recovers native old/new relation tables and whole set-valued function fibres, including nullaries.
+- [#903](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/903) proposes Mathlib's actual FIRST-ORDER directed limit of complete function-graph structures. It remains **draft/unverified**. Its earlier run failed because its historical branch did not contain the already merged first-order graph module; the missing exact main-branch source, axiom audit, and active root have now been copied into the branch, and a fresh CI is pending.
+- [#918](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/918) proposes decoding the entire first-order limit as a genuine native functional STRUCTURE, but not full embeddings; it remains draft/unverified, stacked on #903, with the same missing-source repair.
+- [#919](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/919) proposes the crucial exact function-CLOSEDNESS of every canonical finite stage in the decoded limit using the merged #901 no-new-output theorem. It remains draft/unverified, stacked on #918.
+- [#930](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/930) proposes the next theorem: reconstruct genuinely FULL native finite-stage embeddings from #919's closedness and the merged #848 full/closed graph bridge. It remains draft/unverified, stacked on #919.
+- [#928](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/928) proposes a concrete fair finite chain and a repeated extension-request invariant. [#931](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/931) proposes inversion of surjective FULL functional embeddings, and [#932](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/932) combines both to cover every finite age member. All three remain draft/unverified.
+
+**Important:** None of the pending PRs is to be treated as a Lean-verified theorem until its own current-head all-module, axiom, source-integrity, and admission checks pass. The genuine native limit's age equality, finite extension property, back-and-forth ultrahomogeneity, and unrestricted reducible-source shadow avoidance remain separate obligations.
 
 ## The missing closed-image theorem — fully explicit English proof
 
