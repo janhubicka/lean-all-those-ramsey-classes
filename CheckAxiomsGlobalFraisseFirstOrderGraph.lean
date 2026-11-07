@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderGraph
+
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderRelGraph_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderRelGraph_symbols_countable
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_func_iff
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_wholeFunctionFibre
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraph_symbols_countable
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderOriginalGlobalLift_symbols_countable
