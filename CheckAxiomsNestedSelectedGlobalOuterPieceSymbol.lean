@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedSelectedGlobalOuterPieceSymbol
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
