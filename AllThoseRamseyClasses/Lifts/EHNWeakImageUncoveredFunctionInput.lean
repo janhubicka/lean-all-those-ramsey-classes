@@ -404,6 +404,24 @@ theorem functionInputCovered_of_positiveSourceFunctionValue
       A F ys hDefined,
     inc, inputs, fun _ => rfl⟩
 
+/-- If every native function application in an actual
+source structure is DEFINED (has nonempty value fibre),
+then every function-input tuple has a full irreducible
+source test, regardless of the function arities.
+
+This follows from positive-incidence generated-hull
+irreducibility, not from any global injectivity or
+partial-operation reflection assumption. -/
+theorem functionInputTuplesCovered_of_allSourceFunctionsDefined
+    {V : Type} (A : Structure L V)
+    (hTotal : ∀ G : L.FuncSymbol,
+      ∀ xs : Fin (L.funcArity G) → V,
+        (A.func G xs).Nonempty) :
+    FunctionInputTuplesCoveredByIrreducibleTests A := by
+  intro G xs
+  exact functionInputCovered_of_positiveSourceFunctionValue
+    A G xs (hTotal G xs)
+
 /-- An original input tuple that is NOT protected by a full
 irreducible source test has EMPTY native function-value
 fibre at those precise arguments, for any function arity.
@@ -714,6 +732,54 @@ theorem exists_injectiveMinimalForbiddenEHNWitness_of_unaryFunctions_noRelations
     intro V Src _
     exact functionInputTuplesCovered_of_allFuncArity_le_one
       Src hArity
+  have hRelationCover :
+      ∀ w : ForbiddenEHNWitness F Target,
+        SourceRelationTuplesCoveredOnRange
+          w.source Target w.toTarget := by
+    intro w R
+    exact isEmptyElim R
+  exact exists_injectiveMinimalForbiddenEHNWitness_of_printedClosure_and_covers
+    F hFiniteF hImage hInputCover
+    Target AOnly hRelationCover hExists
+
+
+/-- Positive second special case of the literal printed
+image-normalization step. If there are NO native relation
+symbols and every member of the forbidden family has
+EVERY native set-valued function application defined
+(nonempty fibre), at ARBITRARY function arities, then
+the family-level printed tuple-surjective image closure
+guarantees a globally source-support-minimal INJECTIVE
+forbidden EHN witness whenever any forbidden EHN witness
+exists in the target.
+
+This is the total-function analogue of the nullary/unary
+partial-function theorem above. Neither result establishes
+the unrestricted Section 3 strong amalgamation or Claim 2. -/
+theorem exists_injectiveMinimalForbiddenEHNWitness_of_totalFunctions_noRelations
+    (F : ∀ {X : Type}, Structure L X → Prop)
+    (hFiniteF : ∀ {X : Type} (Src : Structure L X),
+      F Src → Finite X)
+    (hImage : HasTupleSurjectiveForbiddenImageClosure F)
+    [IsEmpty L.RelSymbol]
+    (hTotal : ∀ {V : Type} (Src : Structure L V),
+      F Src →
+      ∀ G : L.FuncSymbol,
+        ∀ xs : Fin (L.funcArity G) → V,
+          (Src.func G xs).Nonempty)
+    {UT : Type} (Target : Structure L UT)
+    (AOnly : Set UT)
+    (hExists : Nonempty (ForbiddenEHNWitness F Target)) :
+    ∃ v : ForbiddenEHNWitness F Target,
+      Function.Injective v.toTarget ∧
+      ∀ w : ForbiddenEHNWitness F Target,
+        v.sourceSupportCount AOnly ≤ w.sourceSupportCount AOnly := by
+  have hInputCover :
+      ∀ {V : Type} (Src : Structure L V),
+        F Src → FunctionInputTuplesCoveredByIrreducibleTests Src := by
+    intro V Src hSrc
+    exact functionInputTuplesCovered_of_allSourceFunctionsDefined
+      Src (hTotal Src hSrc)
   have hRelationCover :
       ∀ w : ForbiddenEHNWitness F Target,
         SourceRelationTuplesCoveredOnRange
