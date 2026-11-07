@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedCanonicalSelectedOuterContextCarrier
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedQ_outerContext_exactCarrier
