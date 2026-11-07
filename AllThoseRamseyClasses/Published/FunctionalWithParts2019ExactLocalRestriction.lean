@@ -37,7 +37,7 @@ open StructuralRamsey.PartialSetStructure
 
 universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
-variable {V : Type w}
+variable {V W Z : Type w}
 
 /-- Any genuine H-valued ambient OLD relative completion restricts
 from an exact induced T to an exact induced S⊆T, preserving the
@@ -113,13 +113,13 @@ We explicitly retain the 2019 control map, corrected (4b),
 irreducibility of C0, and SAME cutoff n. -/
 def GenuinePartiteTagged2019GeneratedHullLocalCompletionAt
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
-    (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
-    (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) W)
+    (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Z)
     (n : ℕ) : Prop :=
   ∀ {X : Type w} [Finite X]
     (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
     IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C →
-    (C0.Irreducible ∧ ∃ p : X → V,
+    (C0.Irreducible ∧ ∃ p : X → Z,
       IsInducedClosedUHomomorphismEmbedding
         ((L.withParts Parts).wholeMaskClosureRules Parts) C C0 p) →
     CorrectedUIrreduciblesIn
@@ -138,8 +138,8 @@ implication: original all-weak local completion implies the weaker
 hull-premise local completion property. -/
 theorem genuineTagged2019_generatedHullLocal_of_ambientLocal
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
-    (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
-    (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) W)
+    (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Z)
     (n : ℕ)
     (hLocal : GenuinePartiteTagged2019LocalCompletionAt H B C0 n) :
     GenuinePartiteTagged2019GeneratedHullLocalCompletionAt H B C0 n := by
