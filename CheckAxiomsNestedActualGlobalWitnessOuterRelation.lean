@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.NestedActualGlobalWitnessOuterRelation
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_actualGlobalWitness_preserves_outerRelation
