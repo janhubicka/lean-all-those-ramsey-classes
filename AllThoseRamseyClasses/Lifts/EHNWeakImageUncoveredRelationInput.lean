@@ -207,6 +207,77 @@ theorem weakImageFullTest_sideExtraRelation_forcesSourceInputDecomposition
       hSide hMissing ys hInputCoords)
 
 
+/-- In ANY full native decomposition of the generated
+function-closed hull of an arbitrary input tuple, the
+input coordinates CANNOT lie entirely in either proper side.
+
+If all inputs lay in the left side, its FULL range is
+function-closed and contains the generators, so it would
+contain the entire generated hull. That makes the left
+side surjective, contradicting properness. Likewise right.
+
+This is an exact native functional crossing statement for
+arbitrary index types, not a graph-only connectivity claim. -/
+theorem generatedClosedHull_properFreeDecomposition_inputsCross
+    {V X : Type}
+    (A : Structure L V)
+    (xs : X → V)
+    (d : ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range xs))
+        (A.functionClosure_isClosed (Set.range xs)))) :
+    (¬ ∀ i : X, ∃ a : d.Left,
+      Structure.closureLift A xs i = d.leftIn a) ∧
+    (¬ ∀ i : X, ∃ b : d.Right,
+      Structure.closureLift A xs i = d.rightIn b) := by
+  have hGenerate :
+      (A.induce (A.functionClosure (Set.range xs))
+        (A.functionClosure_isClosed (Set.range xs))).Generates
+          (Structure.closureLift A xs) :=
+    Structure.closureLift_generates A xs
+  constructor
+  · intro hAll
+    apply d.leftProper
+    intro z
+    apply hGenerate (Set.range d.leftIn)
+      d.leftIn.range_isClosed
+    intro i
+    obtain ⟨a, ha⟩ := hAll i
+    exact ⟨a, ha.symm⟩
+  · intro hAll
+    apply d.rightProper
+    intro z
+    apply hGenerate (Set.range d.rightIn)
+      d.rightIn.range_isClosed
+    intro i
+    obtain ⟨b, hb⟩ := hAll i
+    exact ⟨b, hb.symm⟩
+
+/-- An uncovered relation input therefore has an actual
+proper FULL decomposition of its generated closed hull
+whose two sides EACH fail to contain all input vertices.
+
+This supplies an explicit source-side crossing obstruction
+for the genuinely native 2019 separator/flip construction. -/
+theorem uncoveredRelationInput_hasCrossingFreeDecomposition
+    {V : Type} (A : Structure L V)
+    (R : L.RelSymbol)
+    (ys : Fin (L.relArity R) → V)
+    (hUncovered :
+      ¬ RelationInputCoveredByFullIrreducibleTest A R ys) :
+    ∃ d : ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range ys))
+        (A.functionClosure_isClosed (Set.range ys))),
+      (¬ ∀ i : Fin (L.relArity R), ∃ a : d.Left,
+        Structure.closureLift A ys i = d.leftIn a) ∧
+      (¬ ∀ i : Fin (L.relArity R), ∃ b : d.Right,
+        Structure.closureLift A ys i = d.rightIn b) := by
+  obtain ⟨d⟩ :=
+    uncoveredRelationInput_generatedHull_decomposes
+      A R ys hUncovered
+  exact ⟨d,
+    generatedClosedHull_properFreeDecomposition_inputsCross
+      A ys d⟩
+
 /-- ALL old relation-input tuples in a source are covered
 by full irreducible source tests. This hypothesis concerns
 all tuples, including those where the relation is FALSE;
