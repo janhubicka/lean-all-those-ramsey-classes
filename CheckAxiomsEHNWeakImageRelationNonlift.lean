@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNWeakImageRelationNonlift
+
+#print axioms AllThoseRamseyClasses.Lifts.weakImageFullTest_missingRelation_noSourcePositiveLift
+#print axioms AllThoseRamseyClasses.Lifts.weakImageFullTest_sideExtraRelation_noSourcePositiveLift
+#print axioms AllThoseRamseyClasses.Lifts.badForbiddenWeakImageTest_hasUnliftableSideRelation_of_inputTests
