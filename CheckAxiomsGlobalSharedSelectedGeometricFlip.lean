@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalSharedSelectedGeometricFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalSharedLiftFlip_selected
