@@ -475,6 +475,57 @@ theorem weakImageFullTest_sideExtraFunction_allSourceInputsUndefined
       A B f hf E e Side j g hCoords
       F xs z hSideValue hNotSourceTestValue ys hInputCoords)
 
+/-- A target-side EXTRA function value at a full
+generated-quotient test forces the corresponding original
+TEST function application itself to be UNDEFINED: its
+entire native source-test fibre is EMPTY.
+
+Indeed every positive test function value would have a
+positive original-source incidence in the generated
+quotient, but each original source input tuple with
+those coordinates was proved undefined. -/
+theorem weakImageFullTest_sideExtraFunction_testFibreEmpty
+    {V W U US : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (E : Structure L U)
+    (e : Structure.Embedding E (Structure.weakImage A B f))
+    (Side : Structure L US)
+    (j : Structure.Embedding Side B)
+    (g : U → US)
+    (hCoords : ∀ x : U, j (g x) = (e x).1)
+    (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → U)
+    (z : US)
+    (hSideValue : z ∈ Side.func F (g ∘ xs))
+    (hMissing : z ∉ imageSet g (E.func F xs)) :
+    E.func F xs = ∅ := by
+  ext out
+  constructor
+  · intro hPositive
+    have hQ :
+        e out ∈ (Structure.weakImage A B f).func F (e ∘ xs) := by
+      have hImg : e out ∈ imageSet e (E.func F xs) :=
+        ⟨out, hPositive, rfl⟩
+      rw [e.map_func F xs] at hImg
+      exact hImg
+    obtain ⟨ys, v, hv, hArgs, _⟩ := hQ
+    have hInputCoords :
+        ∀ i, f (ys i) = (e (xs i)).1 := by
+      intro i
+      exact (congrArg Subtype.val (hArgs i)).symm
+    have hEmpty :=
+      weakImageFullTest_sideExtraFunction_allSourceInputsUndefined
+        A B f hf E e Side j g hCoords
+        F xs z hSideValue hMissing ys hInputCoords
+    have hNot : v ∉ A.func F ys := by
+      rw [hEmpty]
+      exact Set.not_mem_empty v
+    exact False.elim (hNot hv)
+  · intro h
+    exact False.elim h
+
 /-- In a language whose native function symbols are all nullary
 or unary, EVERY original-source function-input tuple has
 a FULL irreducible test; the global input-test cover used
