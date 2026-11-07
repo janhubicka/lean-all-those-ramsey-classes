@@ -367,7 +367,7 @@ theorem functionGeneratedHull_irreducible_of_positiveInput
       e.preimage_isClosed (Set.range jL) jL.range_isClosed
     have hInputSide : ∀ i, e (inputs i) ∈ Set.range jL := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     exact hGen _ hClosed hInputSide
   · right
     have hClosed :
@@ -375,7 +375,7 @@ theorem functionGeneratedHull_irreducible_of_positiveInput
       e.preimage_isClosed (Set.range jR) jR.range_isClosed
     have hInputSide : ∀ i, e (inputs i) ∈ Set.range jR := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     exact hGen _ hClosed hInputSide
 
 /-- Every DEFINED original native function-input tuple,
