@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalActualFairFraisseChain
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairTraceChainStep
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairTraceChain_eventually_contains
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairTraceChain_eventually_extends
