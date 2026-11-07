@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairFraisseWholeAgeCofinality
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairTraceChain_eventually_contains_age_member
