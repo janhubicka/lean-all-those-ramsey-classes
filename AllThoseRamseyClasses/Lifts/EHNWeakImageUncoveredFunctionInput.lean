@@ -318,6 +318,144 @@ theorem functionInputCovered_of_arity_le_one
       A.subset_functionClosure (Set.range ys) ⟨i, rfl⟩⟩
   exact ⟨S, E, hHull, inc, inputs, fun _ => rfl⟩
 
+/-- For ANY native function arity, a genuinely POSITIVE
+source function application generates an irreducible
+function-closed full hull. In every full free decomposition
+of that hull, the positive F-incidence puts ALL input
+coordinates on one side; closure of that side then contains
+the entire input-generated hull.
+
+The statement is independent of relations, function-output
+multiplicity, finite carriers and any forbidden family. -/
+theorem functionGeneratedHull_irreducible_of_positiveInput
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hDefined : (A.func F ys).Nonempty) :
+    (A.induce (A.functionClosure (Set.range ys))
+      (A.functionClosure_isClosed (Set.range ys))).Irreducible := by
+  classical
+  let S : Set V := A.functionClosure (Set.range ys)
+  have hS : A.IsClosed S :=
+    A.functionClosure_isClosed (Set.range ys)
+  let H : Structure L S := A.induce S hS
+  let inputs : Fin (L.funcArity F) → S :=
+    Structure.closureLift A ys
+  have hGen : H.Generates inputs :=
+    Structure.closureLift_generates A ys
+  obtain ⟨v, hv⟩ := hDefined
+  have hInS : v ∈ S := hS F ys
+    (fun i => A.subset_functionClosure
+      (Set.range ys) ⟨i, rfl⟩) hv
+  let out : S := ⟨v, hInS⟩
+  have hHFn : out ∈ H.func F inputs := by
+    exact hv
+  intro UX UA UB UT Root Left Right Whole sL sR jL jR
+    hFree e
+  have hTarget :
+      e out ∈ Whole.func F (e ∘ inputs) := by
+    have hImg : e out ∈ imageSet e (H.func F inputs) :=
+      ⟨out, hHFn, rfl⟩
+    rw [e.map_func F inputs] at hImg
+    exact hImg
+  rcases (hFree.func_iff F (e ∘ inputs) (e out)).mp hTarget with
+      ⟨args, _, _, hArgs, _⟩ |
+      ⟨args, _, _, hArgs, _⟩
+  · left
+    have hClosed :
+        H.IsClosed {x : S | e x ∈ Set.range jL} :=
+      e.preimage_isClosed (Set.range jL) jL.range_isClosed
+    have hInputSide : ∀ i, e (inputs i) ∈ Set.range jL := by
+      intro i
+      exact ⟨args i, congrFun hArgs i⟩
+    exact hGen _ hClosed hInputSide
+  · right
+    have hClosed :
+        H.IsClosed {x : S | e x ∈ Set.range jR} :=
+      e.preimage_isClosed (Set.range jR) jR.range_isClosed
+    have hInputSide : ∀ i, e (inputs i) ∈ Set.range jR := by
+      intro i
+      exact ⟨args i, congrFun hArgs i⟩
+    exact hGen _ hClosed hInputSide
+
+/-- Every DEFINED original native function-input tuple,
+regardless of arity, belongs to the full irreducible
+source test consisting of its input-generated closed hull.
+
+Consequently a locally unprotected input tuple in the
+Track D weak-image fibre obstruction can only arise from
+an UNDEFINED original function application. -/
+theorem functionInputCovered_of_positiveSourceFunctionValue
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hDefined : (A.func F ys).Nonempty) :
+    FunctionInputCoveredByFullIrreducibleTest A F ys := by
+  let S : Set V := A.functionClosure (Set.range ys)
+  have hS : A.IsClosed S :=
+    A.functionClosure_isClosed (Set.range ys)
+  let H : Structure L S := A.induce S hS
+  let inc : Structure.Embedding H A :=
+    A.inclusion S hS
+  let inputs : Fin (L.funcArity F) → S :=
+    Structure.closureLift A ys
+  exact ⟨S, H,
+    functionGeneratedHull_irreducible_of_positiveInput
+      A F ys hDefined,
+    inc, inputs, fun _ => rfl⟩
+
+/-- An original input tuple that is NOT protected by a full
+irreducible source test has EMPTY native function-value
+fibre at those precise arguments, for any function arity.
+
+This is the exact partial-function definedness meaning of
+the local uncovered-input obstruction. -/
+theorem uncoveredFunctionInput_sourceFibre_empty
+    {V : Type} (A : Structure L V)
+    (F : L.FuncSymbol)
+    (ys : Fin (L.funcArity F) → V)
+    (hUncovered :
+      ¬ FunctionInputCoveredByFullIrreducibleTest A F ys) :
+    A.func F ys = ∅ := by
+  ext z
+  constructor
+  · intro hz
+    exact False.elim
+      (hUncovered
+        (functionInputCovered_of_positiveSourceFunctionValue
+          A F ys ⟨z, hz⟩))
+  · intro hz
+    exact False.elim hz
+
+/-- In the actual FULL weak quotient-test setting, an extra
+target side function value can occur ONLY when the original
+F application is UNDEFINED at EVERY source input tuple with
+those quotient coordinates. The source function fibre must
+be empty, not merely missing that particular target output. -/
+theorem weakImageFullTest_sideExtraFunction_allSourceInputsUndefined
+    {V W U US : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (E : Structure L U)
+    (e : Structure.Embedding E (Structure.weakImage A B f))
+    (Side : Structure L US)
+    (j : Structure.Embedding Side B)
+    (g : U → US)
+    (hCoords : ∀ x : U, j (g x) = (e x).1)
+    (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → U)
+    (z : US)
+    (hSideValue : z ∈ Side.func F (g ∘ xs))
+    (hNotSourceTestValue : z ∉ imageSet g (E.func F xs))
+    (ys : Fin (L.funcArity F) → V)
+    (hInputCoords : ∀ i, f (ys i) = (e (xs i)).1) :
+    A.func F ys = ∅ := by
+  exact uncoveredFunctionInput_sourceFibre_empty A F ys
+    (weakImageFullTest_sideExtraFunction_forcesUncoveredSourceInput
+      A B f hf E e Side j g hCoords
+      F xs z hSideValue hNotSourceTestValue ys hInputCoords)
+
 /-- In a language whose native function symbols are all nullary
 or unary, EVERY original-source function-input tuple has
 a FULL irreducible test; the global input-test cover used
