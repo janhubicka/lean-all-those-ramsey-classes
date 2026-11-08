@@ -176,4 +176,63 @@ theorem genuinePartite2019_relativeCompletion_glue_of_ambient
     DL DR pL pR hpL hpR q rL rR
     hRootL hRootR hDL hDR
 
+
+/-- Special case with no abstract projected boundary: if the common source
+root is already a canonical K(H)-member, two genuine H-relative completions
+of the two actual source sides automatically glue, with no separately
+chosen Q, DL, DR or root comparison maps.
+
+The common root's finite carrier and U-closedness follow from its
+canonical H-membership. The inclusions sL,sR are full embeddings, so
+the protected root test is automatically compatible across the two
+side completions. Relatively closed source side ranges are still
+essential and are stated explicitly. -/
+theorem genuinePartite2019_relativeCompletion_glue_over_H_root
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hKIrr : ∀ {X : Type w}
+      (D : RelStructure (taggedLanguage L Parts) X),
+      canonicalGenuineTagged2019Class H D → D.Irreducible)
+    {Root : RelStructure (taggedLanguage L Parts) RootV}
+    {Left : RelStructure (taggedLanguage L Parts) LeftV}
+    {Right : RelStructure (taggedLanguage L Parts) RightV}
+    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {sL : Embedding Root Left} {sR : Embedding Root Right}
+    {iL : Embedding Left Whole} {iR : Embedding Right Whole}
+    (hSrc : IsFreeAmalgam sL sR iL iR)
+    (hL : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      Whole (Set.range iL))
+    (hR : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      Whole (Set.range iR))
+    (hRootK : canonicalGenuineTagged2019Class H Root)
+    (hLeft : HasGenuinePartiteTagged2019RelativeCompletion H Left)
+    (hRight : HasGenuinePartiteTagged2019RelativeCompletion H Right) :
+    HasGenuinePartiteTagged2019RelativeCompletion H Whole := by
+  classical
+  letI : Finite RootV := hRootK.1
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  have hRootClosed : IsUClosed rules Root :=
+    canonicalGenuineTagged2019Class_closed H Root hRootK
+  have hIdL : IsInducedClosedUHomomorphismEmbedding
+      rules Left Left (_root_.id : LeftV → LeftV) :=
+    ((Embedding.id Left).isClosedUHomomorphismEmbedding
+      rules).toInducedClosed
+  have hIdR : IsInducedClosedUHomomorphismEmbedding
+      rules Right Right (_root_.id : RightV → RightV) :=
+    ((Embedding.id Right).isClosedUHomomorphismEmbedding
+      rules).toInducedClosed
+  exact genuinePartite2019_relativeCompletion_glue_projected_sides
+    H hStrong hKIrr hSrc hL hR
+    Root hRootK hRootClosed
+    Left Right
+    (_root_.id : LeftV → LeftV)
+    (_root_.id : RightV → RightV)
+    hIdL hIdR
+    (_root_.id : RootV → RootV) sL sR
+    (by intro d; rfl) (by intro d; rfl)
+    hLeft hRight
+
+
 end AllThoseRamseyClasses.Published
