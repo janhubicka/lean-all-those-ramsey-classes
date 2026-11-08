@@ -96,31 +96,44 @@ theorem genuineTagged2019_allSmallWeak_of_closedUSize
   exact (canonicalGenuineTagged2019_KCompletion_iff_relative
     H (C.induce (↑S : Set V))).mp hInduced
 
-/-- A candidate-level "all-weak-small" premise follows from the
-corresponding generator-bounded closed-test premise with NO shift
-in n and with no need to assume source (4b) or global H membership.
-Only U-closedness of the ambient tagged candidate is used here.
+/-- Candidate-level copywise conclusion from the familiar corrected
+2019 local class axiom and a *stronger* tested premise: all closed
+substructures of generator rank at most n have genuine H-relative
+completions. No extra target, rank shift, or change to the candidate
+C appears in the conclusion.
 
-Corrected (4b), irreducibility coverage and the original control
-map remain necessary elsewhere in the class-local Ramsey theorem;
-they are not silently supplied by this small-test lemma. -/
-theorem genuineTagged2019_smallWeakPremise_of_generatedClosedPremise
+This does NOT assert that the 2019 sparse witness automatically has
+the stronger closed-rank premise. This implication merely makes the
+admissible route explicit if a construction or an application can
+supply such a premise separately. -/
+theorem genuineTagged2019_copywise_of_local_and_closedUSize
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (B : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) W)
+    (C0 : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Z)
+    (n : ℕ)
+    (hLocal : GenuinePartiteTagged2019LocalCompletionAt H B C0 n)
     (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
     [Finite V]
     (hC : IsUClosed
       ((L.withParts Parts).wholeMaskClosureRules Parts) C)
-    (n : ℕ)
-    (hGeneratedClosed : ∀ (T : Set V) [Fintype T],
+    (hControl : C0.Irreducible ∧
+      ∃ p : V → Z,
+        IsInducedClosedUHomomorphismEmbedding
+          ((L.withParts Parts).wholeMaskClosureRules Parts)
+          C C0 p)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hRank : ∀ (T : Set V) [Fintype T],
       IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts)
         (C.induce T) →
       USize ((L.withParts Parts).wholeMaskClosureRules Parts)
         (C.induce T) ≤ n →
       HasGenuinePartiteTagged2019RelativeCompletion H (C.induce T)) :
-    ∀ S : Finset V, S.card ≤ n →
-      HasGenuinePartiteTagged2019RelativeCompletion
-        H (C.induce (↑S : Set V)) :=
-  genuineTagged2019_allSmallWeak_of_closedUSize
-    H C hC n hGeneratedClosed
+    HasCopywiseCompletion (canonicalGenuineTagged2019Class H) B C := by
+  apply hLocal C hC hControl hCovered
+  exact genuineTagged2019_allSmallWeak_of_closedUSize
+    H C hC n hRank
 
 end AllThoseRamseyClasses.Published
