@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEStandardFunctionalPartiteArrow
+
+#print axioms AllThoseRamseyClasses.Published.systemEmbedding_nativePartPreservingEquiv
+#print axioms AllThoseRamseyClasses.Published.systemEmbedding_nativePartPreserving_map_comp
+#print axioms AllThoseRamseyClasses.Published.nativePartPreservingArrow_iff_standardSystemArrow
