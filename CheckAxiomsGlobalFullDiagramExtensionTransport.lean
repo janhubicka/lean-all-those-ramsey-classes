@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFullDiagramExtensionTransport
+
+#print axioms AllThoseRamseyClasses.Lifts.fullExtensionWitness_transportFromSurjectiveSquare
