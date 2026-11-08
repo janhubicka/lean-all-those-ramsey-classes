@@ -80,6 +80,35 @@ theorem geometricOuterRootSeam_noEscape_of_targetCoordinates
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) flip)
       hNewSeam⟩
 
+/-- Injectivity of the ORIGINAL ordered outer root's weak TARGET
+image is preserved under the exact coordinate agreement of a
+genuine reconstructed outer geometric piece.
+
+The original root-target injection must be PROVED independently;
+it cannot be inferred from source-side injective root enumeration
+or a generic noninjective weak EHN source map. Once established,
+however, no repeated root-collision assumption is needed along
+the exact selected source flips of Track A/C. -/
+theorem geometricOuterRoot_imageInjective_of_targetCoordinates
+    {V W UT : Type}
+    (Old : Structure L V) (New : Structure L W)
+    {n : ℕ}
+    (outer : GeometricFunctionalPieceData Old n)
+    (newOuter : GeometricFunctionalPieceData New n)
+    (f : V → UT) (flip : W → UT)
+    (hTargetCoords : ∀ i : Fin n,
+      flip (newOuter.roots i) = f (outer.roots i))
+    (hOldRootImageInjective :
+      Function.Injective (fun i : Fin n => f (outer.roots i))) :
+    Function.Injective (fun i : Fin n => flip (newOuter.roots i)) := by
+  intro i j hij
+  apply hOldRootImageInjective
+  calc
+    f (outer.roots i) = flip (newOuter.roots i) :=
+      (hTargetCoords i).symm
+    _ = flip (newOuter.roots j) := hij
+    _ = f (outer.roots j) := hTargetCoords j
+
 /-- An A-exclusive SOURCE anchor in the old entire outer geometric
 piece survives the SAME genuine replacement of an A-free inner
 selected component. It remains a SOURCE vertex of the ACTUAL new
