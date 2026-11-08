@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019ClosedRankWeakTransfer
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_ambientSmall_of_closedRankSmall
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_closedRankLocal_of_ambientLocal
