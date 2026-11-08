@@ -11,6 +11,42 @@ Each certified module has an individual `CheckAxioms*.lean` endpoint
 and a reachable active root. The latest public API does not yet export
 an unrestricted Section 3 class theorem.
 
+## 8 November 2026 — Track A nested source geometry complete
+
+The **genuinely selected-Q nested source geometry** is now
+kernel-verified on the individual merged PR heads:
+[#899](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/899),
+[#909](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/909),
+[#913](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/913),
+[#927](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/927), and
+[#929](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/929).
+
+For an **actual finite full native functional forbidden source**, a
+genuinely selected equivalent inner replacement Q and a literal
+forbidden full free-amalgam New, the theorem
+`nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier`
+constructs a **genuine** new outer geometric piece with the original
+ordered root, equal complete original global piece symbol, and *exact*
+carrier equality with the transported context. The older
+`nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol`
+interface is unchanged. With the same Q and a strict B-exclusive
+SOURCE-rank context step, the native actual geometric-piece rank
+step in #929 is also verified.
+
+The historical duplicated geometric proof is consolidated in
+[Track A cleanup #964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964);
+that refactor requires its own exact-head CI, despite the underlying
+theorems already being validated independently. See the full
+[Track A closeout](../lifts-track-a-closure-20261108.md).
+
+**This closes the source-geometry track, not printed Claim 2**:
+Track C still needs a flippable successor in every positive-rank
+state, persistent exterior invariants and the terminal minimizer
+contradiction. Track D must resolve noninjective weak target root
+images (target relation theorems retain their injectivity premise);
+unconditional global shadow avoidance and strong amalgamation
+are also open. The numbered paper remains frozen.
+
 ## Verified structural checkpoints
 
 | Paper step | Compiled proof endpoint / relevant files | Validation evidence |
