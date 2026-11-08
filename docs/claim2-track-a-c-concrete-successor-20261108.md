@@ -103,3 +103,94 @@ root-injectivity assumptions. Concrete Track C successor with
 rank is in draft PR #929. The unrestricted printed Claim 2
 and strong-amalgamation endpoint are NOT yet validated. Do not
 re-add manuscript TODOs removed or commented out by collaborators.
+
+
+## 8 November continuation: new exterior-A support integration
+
+The first direct concrete geometric one-step statement (#929)
+has now been fully Lean-CI verified and merged, together with its
+support carrier preparation (#925) and same-Q global-symbol/carrier
+construction (#927). The new work below is **draft only**:
+
+- [#942](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/942)
+  specializes the already verified
+  \`geometricInnerSubpiece_outsideSupport_card_eq\` to the exact
+  **new geometric outer-piece** carrier. Thus for EVERY target
+  subset S, source support OUTSIDE the whole old and new pieces
+  has equal finite cardinality. An initial duplicated bijection
+  proof was removed in favor of the existing verified theorem;
+  the only new work is the exact geometric carrier rewrite.
+- [#945](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/945)
+  packages the source geometric piece, literal old ordered root,
+  unchanged weak-target root coordinates, original global
+  canonical symbol, STRICT local inside B-only SOURCE count
+  decrease, and exact unchanged exterior source counts for ALL
+  target subsets. This package takes ONE selected Q/new source
+  as input, so it cannot silently switch existential witnesses.
+- [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948)
+  applies this package to the already verified real same-Q
+  right-to-left common-full-lift source replacement (#922/#929).
+  It remains *conditional on a suitable inner flip*; no general
+  existence or final contradiction has been added.
+
+### Important terminal accounting — previously verified
+
+The existing \`Claim2TerminalLeftSupportAccounting.lean\` proves:
+- \`claim2_exists_terminal_with_constant_outsideLeft\`: a
+  strict local B-source count descent preserving outside A-count
+  reaches a terminal state whose outside A-count equals the
+  **original** outside A-count;
+- \`finiteSourceSupport_terminalLeftDrop_of_outsideEq\`: if the
+  initial outer piece contained an A-only SOURCE vertex and a
+  final replacement has **no** A-only source vertex in the
+  final context, while the exterior A-count is unchanged,
+  the TOTAL final A-only SOURCE support is strictly smaller
+  than the original;
+- \`minimalForbiddenEHNWitness_no_terminalLeftClearingFlip\`:
+  this strict total A-count drop directly contradicts the
+  genuine original A-support-minimizing forbidden witness.
+
+Consequently **no intermediate A-minimality is required**, even
+though intermediate B-to-A flips may increase A-only source
+support inside the current outer context. The essential
+still-unproved terminal hypothesis is the EXISTENCE OF A
+FINAL A-CLEARING FORBIDDEN SOURCE FLIP with unchanged exterior,
+not intermediate A-minimality or a trivial restatement of
+decreasing B-rank.
+
+### Precise remaining construction gates
+
+1. **State-wide positive B-rank successor:** #929 and draft #948
+   require a *specified genuine flippable inner geometric piece*
+   with positive inner root width, the correct one-sided source
+   component, root image injectivity, and full common lifted
+   witness. They do NOT derive such a piece merely from
+   \`localBCount > 0\`. The verified
+   \`positiveRank_noEscape_singletonBoundary_hasProperFlippablePiece\`
+   handles special singleton-boundary/no-escape states; the
+   arbitrary mixed higher-width root case remains.
+2. **Repeated applicability/no-escape:** a single source flip
+   with a valid new outer geometric piece and exact original
+   canonical symbol does not automatically preserve all
+   auxiliary no-escape conditions that select the next inner
+   piece. These must be included explicitly in the concrete
+   Step relation and proved after each replacement.
+3. **Final A-clearing terminal exit:** establish the existence
+   of a real final forbidden source map with zero A-only
+   source vertices INSIDE the terminal context. The verified
+   support-counting contradiction can then be applied, thanks
+   to exact preservation of exterior A-count. No final-exit
+   construction is currently implied by natural-number
+   termination alone.
+4. **Weak target root collisions:** global canonical piece
+   relations require distinct coordinates. The SOURCE root
+   tuple is injective, but its weak-target image may not be;
+   #909/#913 remain explicit about this. Track D must resolve
+   it from the real maximal common-lift/image hypothesis.
+
+**Validation rule:** Do not promote #942/#945/#948, the
+positive-rank step-existence claim, the terminal exit, or the
+unrestricted printed Claim 2 until exact-head kernel CI and
+statement-by-statement correspondence pass. Retain all prior
+collaborator-removed manuscript TODOs as removed. The numbered
+2019 manuscript remains untouched.
