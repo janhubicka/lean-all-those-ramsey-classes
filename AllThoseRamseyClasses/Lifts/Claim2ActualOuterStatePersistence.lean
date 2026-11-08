@@ -139,6 +139,6 @@ theorem geometricOuterAnchor_survives_selectedInnerFlip
     exact Or.inr ⟨b, hbContext, rfl⟩
   have hbSame : flip (iE b) = f a :=
     hSameComplement b
-  exact ⟨iE b, hbNew, hbSame, hbSame ▸ haA⟩
+  exact ⟨iE b, hbNew, hbSame, hbSame.symm ▸ haA⟩
 
 end AllThoseRamseyClasses.Lifts
