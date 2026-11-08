@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalFraisseDiagramRepresentatives
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFiniteTraceDiagram_represents_fullExtension
