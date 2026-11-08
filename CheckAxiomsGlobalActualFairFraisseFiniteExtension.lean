@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalActualFairFraisseFiniteExtension
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairTraceChain_extend_arbitraryFullAgeDiagram
