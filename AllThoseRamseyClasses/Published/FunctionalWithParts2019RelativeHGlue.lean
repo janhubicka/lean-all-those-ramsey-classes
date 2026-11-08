@@ -39,7 +39,7 @@ universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
 variable {RootV LeftV RightV WholeV BoundaryV DLv DRv : Type w}
 
-private abbrev taggedLanguage (L : Language.{u}) (Parts : Type v) :=
+private abbrev taggedLanguage (L : Language.{u}) (Parts : Type v) [Fintype Parts] :=
   ((L.withParts Parts).wholeMaskTagLanguage Parts)
 
 -- The target K(H) remains the exact canonical image of original
