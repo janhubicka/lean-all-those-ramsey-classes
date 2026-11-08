@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceLimitFiniteFullFactor
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceNativeLimit_finiteFullFactor
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceNativeLimit_finiteFullAge
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_finiteAge_iff
