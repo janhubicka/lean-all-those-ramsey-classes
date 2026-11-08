@@ -7,3 +7,5 @@ import AllThoseRamseyClasses.Published.FunctionalWithParts2019RankOneRelative
 
 #print axioms AllThoseRamseyClasses.Published.genuineTagged2019_closedUIrreducible_relativeCompletion
 #print axioms AllThoseRamseyClasses.Published.genuineTagged2019_irreducibleWeak_relativeCompletion
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_irreducibleSeedHull_in_K
