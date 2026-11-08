@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ActualOuterStatePersistence
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterRootSeam_noEscape_of_targetCoordinates
+#print axioms AllThoseRamseyClasses.Lifts.geometricOuterAnchor_survives_selectedInnerFlip
