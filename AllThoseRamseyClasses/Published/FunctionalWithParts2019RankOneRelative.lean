@@ -70,6 +70,35 @@ theorem genuinePartite2019_canonicalIrreducible_of_ambient
   intro X D hK
   exact hRIrred D (hSub D hK)
 
+/-- An ordinary irreducible exact OLD weak seed has a generated
+ambient U-hull that is LITERALLY in canonical K(H), by corrected
+(4b). This supplies an exact closed genuine H-boundary object
+for later gluing, even when the seed itself is nonclosed.
+
+No irreducibility of K(H) members is needed for membership here;
+that additional ambient hypothesis is used only to interpret
+the boundary as an eligible irreducible local completion TARGET. -/
+theorem genuineTagged2019_irreducibleSeedHull_in_K
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (S : Set V)
+    (hIrred : (C.induce S).Irreducible) :
+    canonicalGenuineTagged2019Class H
+      (C.induce
+        (UClosureHull
+          ((L.withParts Parts).wholeMaskClosureRules Parts) C S)) := by
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  exact hCovered
+    (UClosureHull rules C S)
+    (hClosed.induce_UClosureHull S)
+    (hClosed.irreducibleSeed_hull_isUIrreducible S hIrred)
+
 /-- More general CLOSED base: every U-closed and U-irreducible
 induced test of a corrected-(4b)-covered candidate C ALREADY
 belongs to the canonical class K(H), and therefore completes via
