@@ -1,5 +1,13 @@
 # Section 3 Claim 2, Track A: exact older context carrier in a native nested flip
 
+> **8 November status update:** The construction and its selected-Q
+> specialization were subsequently merged and passed exact-head Lean CI.
+> In particular the outer carrier and original ordered-root symbol
+> preservation are proved in #899 and strengthened by #927. This
+> document preserves the historical 4 November *draft* audit, not the
+> current status. See [Track A closeout](lifts-track-a-closure-20261108.md).
+
+
 **4 November 2026.** Validation document; the numbered original manuscript remains frozen.
 
 **Status:** This note records an actual Lean proof attempt, NOT a verified theorem
