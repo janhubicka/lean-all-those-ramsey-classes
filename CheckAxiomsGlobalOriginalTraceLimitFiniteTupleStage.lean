@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceLimitFiniteTupleStage
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderLimit_finiteTuple_commonStage
