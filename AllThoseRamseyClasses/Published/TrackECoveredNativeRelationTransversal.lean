@@ -92,7 +92,7 @@ theorem coveredNativeRelationTupleTransversal
         (.inl (.inl (.inl (ULift.up R)))) (g ∘ xsS) :=
     (g.map_rel_iff
       (.inl (.inl (.inl (ULift.up R)))) xsS).mpr hRelS
-  have hRelB : B.rel R (g ∘ xsS) := by
+  have hRelBtuple : B.rel R (g ∘ xsS) := by
     exact hRelBOLD
   let partD : X → Parts :=
     wholeMaskCoveredPart C B.toNonemptyPartial partB hClosed hCover
@@ -117,7 +117,7 @@ theorem coveredNativeRelationTupleTransversal
       _ = partD (xs j) := hPart
       _ = partB (g (xsS j)) := (hBpart j).symm
   have hImages : g (xsS i) = g (xsS j) :=
-    hRelB R (g ∘ xsS) hRelB i j hEqualParts
+    hRelB R (g ∘ xsS) hRelBtuple i j hEqualParts
   have hPreimages : xsS i = xsS j := g.injective hImages
   exact congrArg Subtype.val hPreimages
 
