@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019GeneratedClosedTests
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_allSmallWeak_of_closedUSize
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_copywise_of_local_and_closedUSize
