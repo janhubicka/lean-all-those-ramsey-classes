@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.ConnectedComponentBoundaryNonempty
+
+#print axioms AllThoseRamseyClasses.Lifts.componentFrom_neighborhood_nonempty_of_emptyCutReach
+#print axioms AllThoseRamseyClasses.Lifts.functionalComponent_generatedBoundary_nonempty_of_emptyCutReach
