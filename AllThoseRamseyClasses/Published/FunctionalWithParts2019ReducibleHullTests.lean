@@ -99,7 +99,8 @@ theorem genuineTagged2019_uIrredHull_has_relativeCompletion
       (C.induce S)
       (wholeMaskTagExpansion
         (withPartsWholeMaskOld Target targetPart)) hEmbedding.toFun :=
-    (hEmbedding.isClosedUHomomorphismEmbedding rules).toInducedClosed
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      (hEmbedding.isClosedUHomomorphismEmbedding rules)
   exact ⟨Hull, hFinite, Target, targetPart, hH, hTr,
     hIrredTarget, hEmbedding.toFun, hMap⟩
 
