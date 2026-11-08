@@ -86,16 +86,27 @@ theorem nativeKFaithful2019_ramsey_of_relative_local_data
         B C0 n) :
     GenuinePartite2019FiniteRamsey
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
-  let H : GenuinePartite2019Class (L := L) (Parts := Parts) :=
+  let H : GenuinePartite2019Class.{u,v,v}
+      (L := L) (Parts := Parts) :=
     nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K
-  exact genuinePartite2019_ramsey_of_original_class_data.{u,v,v}
-    (L := L) (Parts := Parts) H R hR hRIrred hSub hPos
-    (nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
-      (Parts := Parts) K hFree)
-    (nativeKFaithfulH_strongAmalgamation_of_free
-      (Parts := Parts) K hFree)
-    (nativeKCanonicalTagged2019_isomorphismClosed_of_free
-      (Parts := Parts) K hFree)
-    hLocal
+  have hHer : GenuinePartiteClosedHereditary2019 H :=
+    nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
+      (Parts := Parts) K hFree
+  have hStrong : GenuinePartiteStrongAmalgamation2019 H :=
+    nativeKFaithfulH_strongAmalgamation_of_free
+      (Parts := Parts) K hFree
+  have hIso : IsomorphismClosed2019
+      (canonicalGenuineTagged2019Class H) :=
+    nativeKCanonicalTagged2019_isomorphismClosed_of_free
+      (Parts := Parts) K hFree
+  apply genuinePartite2019_ramsey_of_original_class_data.{u,v,v}
+    (L := L) (Parts := Parts) H R hR
+  · exact hRIrred
+  · exact hSub
+  · exact hPos
+  · exact hHer
+  · exact hStrong
+  · exact hIso
+  · exact hLocal
 
 end AllThoseRamseyClasses.Published
