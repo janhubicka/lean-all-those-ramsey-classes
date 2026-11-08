@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2TerminalSingletonOuterRoot
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalMinimizer_contradicted_by_zeroTerminalSingletonRoot
