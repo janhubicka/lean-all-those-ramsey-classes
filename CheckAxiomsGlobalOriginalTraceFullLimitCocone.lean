@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceFullLimitCocone
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFullLimitIncl_comp
