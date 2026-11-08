@@ -81,7 +81,8 @@ theorem genuineTagged2019_weakIrred_has_relativeCompletion
         (C.induce S)
         (wholeMaskTagExpansion
           (withPartsWholeMaskOld Target partTarget)) e.toFun :=
-    (e.isClosedUHomomorphismEmbedding rules).toInducedClosed
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      (e.isClosedUHomomorphismEmbedding rules)
   exact ⟨X, hFinite, Target, partTarget, hH, hTrans,
     hTargetIrred, e.toFun, hMap⟩
 
