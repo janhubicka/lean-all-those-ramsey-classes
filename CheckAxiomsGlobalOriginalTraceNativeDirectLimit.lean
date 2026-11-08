@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceNativeDirectLimit
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceNativeDirectLimit_rel_iff
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceNativeDirectLimit_func_iff
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceNativeDirectLimit_wholeFibre
