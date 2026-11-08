@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GeometricFlipOuterExteriorSupport
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricFlip_actualOuterExterior_sourceSupport_card_eq
