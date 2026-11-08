@@ -135,6 +135,42 @@ theorem genuineTagged2019_closedRankOne_relativeCompletion
   exact genuineTagged2019_closedUIrreducible_relativeCompletion
     H hKIrred C hCovered T hTClosed hTIrred
 
+/-- Every ORDINARY irreducible exact weak OLD induced support
+has an H-relative completion already under corrected (4b), provided
+all canonical H members are ordinary irreducibles. This uses the
+full canonical embedding of the unchanged induced support into
+some genuine H target. No rank or closure assumption on S occurs. -/
+theorem genuineTagged2019_irreducibleWeak_relativeCompletion
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hKIrred : GenuinePartite2019CanonicalIrreducible H)
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (S : Set V) (hSIrred : (C.induce S).Irreducible) :
+    HasGenuinePartiteTagged2019RelativeCompletion H
+      (C.induce S) := by
+  classical
+  obtain ⟨X, hFinite, Target, targetPart, hH, hTr, ⟨e⟩⟩ :=
+    genuineTagged2019_correctedCovered_weakIrred_canonicalTarget
+      H C hClosed hCovered S hSIrred
+  letI : Finite X := hFinite
+  let D := wholeMaskTagExpansion (withPartsWholeMaskOld Target targetPart)
+  have hK : canonicalGenuineTagged2019Class H D :=
+    canonicalGenuineTagged2019Class_mem H Target targetPart hH hTr
+  have hIrred : D.Irreducible := hKIrred D hK
+  have he : IsInducedClosedUHomomorphismEmbedding
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      (C.induce S) D e.toFun :=
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      (e.isClosedUHomomorphismEmbedding
+        ((L.withParts Parts).wholeMaskClosureRules Parts))
+  exact ⟨X, hFinite, Target, targetPart, hH, hTr, hIrred,
+    e.toFun, he⟩
+
 /-- Stronger EXACT WEAK singleton base. Corrected (4b) and
 U-closedness of the ambient C, plus irreducibility of canonical
 H-members, force genuine H-relative completions of all
@@ -164,22 +200,8 @@ theorem genuineTagged2019_allWeakAtOne_relativeCompletion
     apply hxy
     apply Subtype.ext
     exact Finset.card_le_one.mp hSize x.1 x.2 y.1 y.2
-  obtain ⟨X, hFinite, Target, targetPart, hH, hTr, ⟨e⟩⟩ :=
-    genuineTagged2019_correctedCovered_weakIrred_canonicalTarget
-      H C hClosed hCovered SS hSingletonIrred
-  letI : Finite X := hFinite
-  let D := wholeMaskTagExpansion (withPartsWholeMaskOld Target targetPart)
-  have hK : canonicalGenuineTagged2019Class H D :=
-    canonicalGenuineTagged2019Class_mem H Target targetPart hH hTr
-  have hIrred : D.Irreducible := hKIrred D hK
-  have he : IsInducedClosedUHomomorphismEmbedding
-      ((L.withParts Parts).wholeMaskClosureRules Parts)
-      (C.induce SS) D e.toFun :=
-    IsClosedUHomomorphismEmbedding.toInducedClosed
-      (e.isClosedUHomomorphismEmbedding
-        ((L.withParts Parts).wholeMaskClosureRules Parts))
-  exact ⟨X, hFinite, Target, targetPart, hH, hTr, hIrred,
-    e.toFun, he⟩
+  exact genuineTagged2019_irreducibleWeak_relativeCompletion
+    H hKIrred C hClosed hCovered SS hSingletonIrred
 
 /-- Hence the cutoff-one all-weak-test premise of the corrected
 2019 local-completion axiom is AUTOMATIC from (4b) when canonical
