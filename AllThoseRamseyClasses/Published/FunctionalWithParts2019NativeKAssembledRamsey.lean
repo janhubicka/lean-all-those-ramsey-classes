@@ -88,8 +88,8 @@ theorem nativeKFaithful2019_ramsey_of_relative_local_data
       (nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K) := by
   let H : GenuinePartite2019Class (L := L) (Parts := Parts) :=
     nativeKFaithfulGenuinePartiteH2019 (Parts := Parts) K
-  exact genuinePartite2019_ramsey_of_original_class_data
-    H R hR hRIrred hSub hPos
+  exact genuinePartite2019_ramsey_of_original_class_data.{u,v,v}
+    (L := L) (Parts := Parts) H R hR hRIrred hSub hPos
     (nativeKFaithfulH_closedHereditary_of_freeAmalgamationClass
       (Parts := Parts) K hFree)
     (nativeKFaithfulH_strongAmalgamation_of_free
