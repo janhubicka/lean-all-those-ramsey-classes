@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalSurjectiveFullEmbeddingInverse
+
+#print axioms AllThoseRamseyClasses.Lifts.fullEmbeddingInverseOfSurjective
+#print axioms AllThoseRamseyClasses.Lifts.fullEmbeddingInverseOfSurjective_rightInverse
