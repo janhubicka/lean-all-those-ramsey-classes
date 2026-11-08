@@ -70,6 +70,43 @@ theorem genuinePartite2019_canonicalIrreducible_of_ambient
   intro X D hK
   exact hRIrred D (hSub D hK)
 
+/-- More general CLOSED base: every U-closed and U-irreducible
+induced test of a corrected-(4b)-covered candidate C ALREADY
+belongs to the canonical class K(H), and therefore completes via
+the identity map when canonical H-targets are ordinary irreducibles.
+No generator-rank bound is necessary at this stage. -/
+theorem genuineTagged2019_closedUIrreducible_relativeCompletion
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hKIrred : GenuinePartite2019CanonicalIrreducible H)
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (T : Set V) [Fintype T]
+    (hTClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce T))
+    (hTIrred :
+      IsUIrreducible ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce T)) :
+    HasGenuinePartiteTagged2019RelativeCompletion H
+      (C.induce T) := by
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  have hTK : canonicalGenuineTagged2019Class H (C.induce T) :=
+    hCovered T hTClosed hTIrred
+  have hOrdIrred : (C.induce T).Irreducible :=
+    hKIrred (C.induce T) hTK
+  let e : RelStructure.Embedding (C.induce T) (C.induce T) :=
+    RelStructure.Embedding.id (C.induce T)
+  have he : IsInducedClosedUHomomorphismEmbedding
+      rules (C.induce T) (C.induce T) e.toFun :=
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      (e.isClosedUHomomorphismEmbedding rules)
+  exact (canonicalGenuineTagged2019_KCompletion_iff_relative
+    H (C.induce T)).mp
+      ⟨T, inferInstance, C.induce T, hTK, hOrdIrred, e.toFun, he⟩
+
 /-- Rank-one CLOSED base. A corrected (4b) candidate's U-closed
 induced T with USize <=1 is itself a canonical H-member, because
 it is U-irreducible. It therefore has a genuine H-relative
@@ -92,22 +129,11 @@ theorem genuineTagged2019_closedRankOne_relativeCompletion
         (C.induce T) ≤ 1) :
     HasGenuinePartiteTagged2019RelativeCompletion H
       (C.induce T) := by
-  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
-  have hTIrred : IsUIrreducible rules (C.induce T) :=
+  have hTIrred : IsUIrreducible
+      ((L.withParts Parts).wholeMaskClosureRules Parts) (C.induce T) :=
     hTClosed.uIrreducible_of_USize_le_one hRank
-  have hTK : canonicalGenuineTagged2019Class H (C.induce T) :=
-    hCovered T hTClosed hTIrred
-  have hOrdIrred : (C.induce T).Irreducible :=
-    hKIrred (C.induce T) hTK
-  let e : RelStructure.Embedding (C.induce T) (C.induce T) :=
-    RelStructure.Embedding.id (C.induce T)
-  have he : IsInducedClosedUHomomorphismEmbedding
-      rules (C.induce T) (C.induce T) e.toFun :=
-    IsClosedUHomomorphismEmbedding.toInducedClosed
-      (e.isClosedUHomomorphismEmbedding rules)
-  exact (canonicalGenuineTagged2019_KCompletion_iff_relative
-    H (C.induce T)).mp
-      ⟨T, inferInstance, C.induce T, hTK, hOrdIrred, e.toFun, he⟩
+  exact genuineTagged2019_closedUIrreducible_relativeCompletion
+    H hKIrred C hCovered T hTClosed hTIrred
 
 /-- Stronger EXACT WEAK singleton base. Corrected (4b) and
 U-closedness of the ambient C, plus irreducibility of canonical
