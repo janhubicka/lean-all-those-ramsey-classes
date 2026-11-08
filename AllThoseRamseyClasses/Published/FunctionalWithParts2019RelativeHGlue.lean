@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKStrongAmalgamation
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKIso
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeKCompletion
 import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
 import PartiteConstruction.Ramsey.ClosureRelativeMapGlue
@@ -233,6 +234,64 @@ theorem genuinePartite2019_relativeCompletion_glue_over_H_root
     (_root_.id : RootV → RootV) sL sR
     (by intro d; rfl) (by intro d; rfl)
     hLeft hRight
+
+
+
+/-- Corrected (4b) yields a canonical H-root automatically when the
+common root embeds as a genuinely U-closed U-irreducible test in the
+ambient candidate C and the original H class is isomorphism-closed.
+The source's entire free-amalgam weak test itself need not be U-closed.
+
+This is the exact favourable mixed case: a protected irreducible
+boundary can be reused as the common canonical H-base for strong
+amalgamation. The residual obstruction is a *reducible* boundary with
+no such protected root membership, not the gluing operation itself. -/
+theorem genuinePartite2019_relativeCompletion_glue_over_protected_root
+    {CandV : Type w}
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hIso : GenuinePartiteIsomorphismClosed2019 H)
+    (hKIrr : ∀ {X : Type w}
+      (D : RelStructure (taggedLanguage L Parts) X),
+      canonicalGenuineTagged2019Class H D → D.Irreducible)
+    (Candidate : RelStructure (taggedLanguage L Parts) CandV)
+    (hCovered : CorrectedUIrreduciblesIn
+      (canonicalGenuineTagged2019Class H)
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Candidate)
+    {Root : RelStructure (taggedLanguage L Parts) RootV}
+    {Left : RelStructure (taggedLanguage L Parts) LeftV}
+    {Right : RelStructure (taggedLanguage L Parts) RightV}
+    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {sL : Embedding Root Left} {sR : Embedding Root Right}
+    {iL : Embedding Left Whole} {iR : Embedding Right Whole}
+    (hSrc : IsFreeAmalgam sL sR iL iR)
+    (eWhole : Embedding Whole Candidate)
+    (hL : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      Whole (Set.range iL))
+    (hR : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      Whole (Set.range iR))
+    (hRootClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Root)
+    (hRootIrred : IsUIrreducible
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Root)
+    (hLeft : HasGenuinePartiteTagged2019RelativeCompletion H Left)
+    (hRight : HasGenuinePartiteTagged2019RelativeCompletion H Right) :
+    HasGenuinePartiteTagged2019RelativeCompletion H Whole := by
+  let eRoot : Embedding Root Candidate :=
+    eWhole.comp (iL.comp sL)
+  have hKiso : IsomorphismClosed2019
+      (canonicalGenuineTagged2019Class H) :=
+    canonicalGenuineTagged2019Class_isomorphismClosed H hIso
+  have hCoverAbstract :
+      ClosedUIrreduciblesIn (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) Candidate :=
+    correctedInducedCoverage_toAbstract_2019 hKiso hCovered
+  have hRootK : canonicalGenuineTagged2019Class H Root :=
+    hCoverAbstract Root hRootClosed hRootIrred eRoot
+  exact genuinePartite2019_relativeCompletion_glue_over_H_root
+    H hStrong hKIrr hSrc hL hR hRootK hLeft hRight
 
 
 end AllThoseRamseyClasses.Published
