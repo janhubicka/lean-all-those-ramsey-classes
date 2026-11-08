@@ -62,7 +62,9 @@ theorem globalOriginalTraceFirstOrderLimitIncl_comp
         F hInput representatives diagrams m n hmn) x) =
     globalOriginalTraceFirstOrderLimitIncl
       F hInput representatives diagrams m x := by
-  simpa only [globalOriginalTraceFirstOrderLimitIncl] using
+  simpa only [globalOriginalTraceFirstOrderLimitIncl,
+      globalOriginalTraceStageFirstOrderMap,
+      firstOrderNativeGraphEmbedding, firstOrderRelGraphEmbedding] using
     (FirstOrder.Language.DirectLimit.of_f
       (L := GlobalOriginalTraceFirstOrderLanguage F)
       (G := fun i : ℕ => GlobalOriginalTraceStageVertex
