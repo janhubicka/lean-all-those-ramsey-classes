@@ -58,7 +58,7 @@ theorem genuineTagged2019_relativeCompletion_induce_of_subset
     injective := by
       intro x y hxy
       apply Subtype.ext
-      exact congrArg Subtype.val hxy
+      exact congrArg (fun z : T => z.1) hxy
     map_rel_iff := by
       intro R xs
       rfl
