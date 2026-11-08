@@ -1,5 +1,13 @@
 # Track A/C — concrete selected-Q successor and remaining Claim 2 gates
 
+> **Later 8 November status update:** PRs #925, #927, and #929 are
+> now merged after successful exact-head Lean CI. Their draft labels
+> below describe the earlier submission stage. The remaining
+> positive-rank existence, iteration/terminal proof and weak-map root
+> collision obligations remain open. See the
+> [Track A closeout](lifts-track-a-closure-20261108.md).
+
+
 **8 November 2026. Review-only validation ledger.** The numbered original
 2019 manuscript remains frozen. New PRs are not declared verified until
 exact-head compilation, active-root inventory, a permitted-axiom sweep,
