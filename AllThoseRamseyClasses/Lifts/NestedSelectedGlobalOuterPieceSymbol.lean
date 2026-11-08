@@ -28,10 +28,12 @@ new source, its true older separator, prescribed ordered root, correct
 new-Q-side orientation, exact full context carrier, and equality of
 the published global piece symbols.
 
-This is a draft integration subject to exact-head Lean CI and axiom
-audit. It does NOT establish the positive local B-only-source descent
-needed to finish the unrestricted printed Claim 2, nor does it resolve
-weak target-image root collisions or maximal-lift strong amalgamation.
+The main result retains the exact transported geometric outer carrier.
+The original global-symbol-only theorem is now its direct corollary,
+so the geometric proof is not duplicated in the local-rank module.
+The stronger interface and this consolidation require exact-head CI
+and axiom audit. The unrestricted printed Claim 2, weak target-image
+root collisions and maximal-lift strong amalgamation remain separate.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
@@ -42,15 +44,9 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}} {V W : Type}
 
-/-- A genuinely selected nested FULL native canonical replacement
-preserves the actual old outer global canonical piece symbol, using
-the exact original ordered outer root and selecting the new inserted
-Q-side component rather than the retained older exterior.
-
-The selected Q source certificate is indispensable: equivalent
-rooted incompatibility profiles alone do not imply whole-private-side
-connectivity. The map to an external weak EHN target is not used. -/
-theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
+/-- Return BOTH the global-symbol identity and the carrier equality
+for the SAME genuinely selected replacement and same new source. -/
+theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
     (F : ∀ {Z : Type}, Structure L Z → Prop)
     [Finite V]
     (Old : Structure L V) (hFOld : F Old)
@@ -90,7 +86,10 @@ theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
       geometricGlobalPieceSymbol F Old
           (inferInstance : Finite V) hFOld outer hm =
         geometricGlobalPieceSymbol F New
-          hFiniteNew hFNew newOuter hm := by
+          hFiniteNew hFNew newOuter hm ∧
+      (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old outer inner)) =
+          geometricPieceVertices New newOuter := by
   let hFiniteNew : Finite W :=
     finiteSource_of_selectedGeometricFlip
       F Old inner Q hSelected New iQ iE hFree
@@ -194,6 +193,61 @@ theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
       hInnerRoot hInnerComponent hOuterSurvive
       Q hEq New hFNew iQ iE hFree
       newOuter hRootCoordinates hExactContext hm
-  exact ⟨hFiniteNew, newOuter, hRootCoordinates, hSymbol⟩
+  exact ⟨hFiniteNew, newOuter, hRootCoordinates, hSymbol, hExactContext⟩
+
+/-- A genuinely selected nested FULL native canonical replacement
+preserves the actual old outer global canonical piece symbol, using
+the exact original ordered outer root and selecting the new inserted
+Q-side component rather than the retained older exterior.
+
+The selected Q source certificate is indispensable: equivalent
+rooted incompatibility profiles alone do not imply whole-private-side
+connectivity. The map to an external weak EHN target is not used. -/
+theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    [Finite V]
+    (Old : Structure L V) (hFOld : F Old)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData Old n)
+    (outer : GeometricFunctionalPieceData Old m)
+    (hNested :
+      componentFrom Old.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom Old.graph (Set.range outer.roots) outer.left)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (hSelected :
+      (FunctionalRootExtension.toEnumeratedRootedPattern
+        (geometricGlobalFunctionalChart Old inner).root
+        (Equiv.refl (Fin n)) Q) ∈
+          forbiddenGeometricFunctionalPieces F n)
+    (hEq : (functionalDiagramPieceSetoid
+      (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q)
+    (New : Structure L W) (hFNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (hm : 0 < m) :
+    ∃ (hFiniteNew : Finite W)
+      (newOuter : GeometricFunctionalPieceData New m),
+      (∀ i : Fin m,
+        newOuter.roots i =
+          iE (⟨outer.roots i,
+            nestedGeometric_outerRoot_avoids_innerComponent
+              Old inner outer hNested i⟩ :
+              (geometricGlobalComplementChart Old inner).Carrier)) ∧
+      geometricGlobalPieceSymbol F Old
+          (inferInstance : Finite V) hFOld outer hm =
+        geometricGlobalPieceSymbol F New
+          hFiniteNew hFNew newOuter hm := by
+  obtain ⟨hFiniteNew, newOuter, hRoots, hSymbol, _hCarrier⟩ :=
+    nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
+      F Old hFOld inner outer hNested
+      Q hSelected hEq New hFNew iQ iE hFree hm
+  exact ⟨hFiniteNew, newOuter, hRoots, hSymbol⟩
 
 end AllThoseRamseyClasses.Lifts
