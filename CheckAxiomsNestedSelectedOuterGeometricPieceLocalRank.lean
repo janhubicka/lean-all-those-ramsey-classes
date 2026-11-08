@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.NestedSelectedOuterGeometricPieceLocalRank
+
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_strictLocalRank_on_newGeometricPiece
