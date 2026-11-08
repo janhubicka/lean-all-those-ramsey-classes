@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeBoundaryGlue
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_relativeCompletion_glue_over_closed_H_root
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_bad_side_of_bad_free_relative
