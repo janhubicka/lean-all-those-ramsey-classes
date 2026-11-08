@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackESameCarrierSystemArrowBridge
+
+#print axioms AllThoseRamseyClasses.Published.sameCarrierFunctionalPartiteSystem
+#print axioms AllThoseRamseyClasses.Published.nativeArrow_iff_standardArrow_of_sameCarrierTransversal
