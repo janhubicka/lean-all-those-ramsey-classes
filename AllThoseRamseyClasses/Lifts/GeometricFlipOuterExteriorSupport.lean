@@ -1,5 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GlobalFlipContextOutsideSupport
-import AllThoseRamseyClasses.Lifts.OldOuterGeometricContextExactCarrier
+import AllThoseRamseyClasses.Lifts.Claim2TerminalLeftSupportAccounting
 
 /-!
 # Exterior SOURCE support is unchanged by an exact geometric outer flip
@@ -88,39 +87,19 @@ theorem geometricFlip_actualOuterExterior_sourceSupport_card_eq
     Nat.card {v : V //
       v ∉ geometricPieceVertices Old outer ∧
       f v ∈ TargetSet} := by
-  let E := geometricGlobalComplementChart Old inner
-  let iOldInner : Structure.Embedding
-      (geometricGlobalFunctionalChart Old inner).ext.str Old :=
-    functionalComponentEmbedding Old
-      (Set.range inner.roots) inner.minimal.1 inner.left
-  let iOldE : Structure.Embedding E.str Old :=
-    functionalComponentComplementEmbedding Old
-      (Set.range inner.roots) inner.minimal.1 inner.left
-  let S : Set E.Carrier :=
-    oldOuterContextInInnerComplement Old outer inner
-  letI : Finite E.Carrier :=
-    Finite.of_injective (fun b : E.Carrier => b.1)
-      (by intro a b hab; exact Subtype.ext hab)
-  have hOldContext :
-      iOldInner '' (Set.univ : Set
-        (geometricGlobalFunctionalChart Old inner).ext.Carrier) ∪
-        iOldE '' S =
-      geometricPieceVertices Old outer :=
-    geometricOldOuterContext_eq_outerPieceVertices
-      Old outer inner hInnerRoot hInnerComponent
-  have hNewContext :
-      (iQ '' (Set.univ : Set Q.Carrier) ∪ iE '' S) =
-      geometricPieceVertices New newOuter := hExactCarrier
-  have hRootS : ∀ r : Fin m, E.rootEmbedding r ∈ S :=
-    oldOuterContext_contains_innerRoot
-      Old outer inner hInnerRoot
-  have hAgree : ∀ b : E.Carrier, flip (iE b) = f (iOldE b) :=
-    hSameE
+  have hInnerInside :
+      geometricPieceVertices Old inner ⊆
+        geometricPieceVertices Old outer := by
+    intro v hv
+    rcases hv with hRoot | hComponent
+    · obtain ⟨i, hi⟩ := hRoot
+      exact hi ▸ hInnerRoot i
+    · exact hInnerComponent hComponent
   have hOutside :=
-    fullFreeAmalgam_contextOutside_support_card_eq
-      (geometricGlobalSource_freeDiagram Old inner)
-      hNewFree S hRootS f flip TargetSet hAgree
-  rw [hNewContext, hOldContext] at hOutside
+    geometricInnerSubpiece_outsideSupport_card_eq
+      Old outer inner hInnerInside Q New iQ iE hNewFree
+      f flip TargetSet hSameE
+  rw [hExactCarrier] at hOutside
   exact hOutside
 
 end AllThoseRamseyClasses.Lifts
