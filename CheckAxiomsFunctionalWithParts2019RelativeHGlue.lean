@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeHGlue
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_projected_sides
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_of_ambient
