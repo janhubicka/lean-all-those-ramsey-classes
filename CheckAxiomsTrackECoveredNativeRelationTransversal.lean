@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackECoveredNativeRelationTransversal
+
+#print axioms AllThoseRamseyClasses.Published.coveredNativeRelationTupleTransversal
