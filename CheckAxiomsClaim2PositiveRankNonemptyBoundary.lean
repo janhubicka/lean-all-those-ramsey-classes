@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankNonemptyBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.positiveLocalRightSupport_noEscape_has_nonemptyGeneratedBoundary
