@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackENativeFinalFibreTransversal
+
+#print axioms AllThoseRamseyClasses.Published.nativeFunctionFibreTransversal_iff_partial
+#print axioms AllThoseRamseyClasses.Published.nativeFunctionFibreTransversal_of_noDefinedEmpty
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_actual_native_sparse_witness_with_fibreTransversal
