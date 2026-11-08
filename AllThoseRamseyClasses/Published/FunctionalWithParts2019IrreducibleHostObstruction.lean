@@ -41,6 +41,15 @@ def emptyLanguage : Language.{0} where
   relArity := Empty.elim
   funcArity := Empty.elim
 
+/-- Every primitive function symbol has positive arity vacuously,
+because the source language has no function symbols. Thus the
+separate positive-arity premise of the corrected 2019 theorem
+does NOT eliminate this irreducible-host counterexample. -/
+theorem emptyLanguage_positiveFuncArity :
+    emptyLanguage.PositiveFuncArity := by
+  intro F
+  exact Empty.elim F
+
 /-- The native class of ALL structures in the empty language. -/
 def allNativeClass :
     Structure.StructureClass.{0,0} (L := emptyLanguage) :=
