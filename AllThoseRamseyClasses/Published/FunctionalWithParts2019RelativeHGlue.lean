@@ -218,12 +218,12 @@ theorem genuinePartite2019_relativeCompletion_glue_over_H_root
     canonicalGenuineTagged2019Class_closed H Root hRootK
   have hIdL : IsInducedClosedUHomomorphismEmbedding
       rules Left Left (_root_.id : LeftV → LeftV) :=
-    ((Embedding.id Left).isClosedUHomomorphismEmbedding
-      rules).toInducedClosed
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      ((Embedding.id Left).isClosedUHomomorphismEmbedding rules)
   have hIdR : IsInducedClosedUHomomorphismEmbedding
       rules Right Right (_root_.id : RightV → RightV) :=
-    ((Embedding.id Right).isClosedUHomomorphismEmbedding
-      rules).toInducedClosed
+    IsClosedUHomomorphismEmbedding.toInducedClosed
+      ((Embedding.id Right).isClosedUHomomorphismEmbedding rules)
   exact genuinePartite2019_relativeCompletion_glue_projected_sides
     H hStrong hKIrr hSrc hL hR
     Root hRootK hRootClosed
