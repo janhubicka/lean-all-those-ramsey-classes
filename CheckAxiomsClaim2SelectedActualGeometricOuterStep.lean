@@ -1,3 +1,4 @@
 import AllThoseRamseyClasses.Lifts.Claim2SelectedActualGeometricOuterStep
 
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExterior
 #print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport
