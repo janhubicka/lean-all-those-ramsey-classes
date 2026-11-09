@@ -4,6 +4,16 @@
 Section 3 lifting argument. The numbered `ramsey.tex` remains **frozen**;
 do not revive TODOs that collaborators removed or commented out.
 
+> **9 November postmerge update.** The first Track A proof deduplication
+> [#964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964)
+> is merged, with [successful exact-head Lean CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42485106398).
+> The strengthened same-Q concrete step with **all outside-outer-piece
+> SOURCE counts preserved for arbitrary target subsets** is separately
+> verified in [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948).
+> A new follow-up cleanup (9 November) makes that stronger concrete-step
+> theorem the unique source of the old step API; keep this refactor
+> conditional on *its own* exact-head CI, not on the prior theorem's CI.
+
 ## What is proved
 
 The `Track A` task is the **source-geometric** part of the nested flip.
@@ -54,6 +64,7 @@ lives in `Lifts/Claim2SelectedActualGeometricOuterStep.lean`.
 | [#921](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/921) and [#922](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/922) | Same selected Q returned with strict local B-source count | [42318953134](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42318953134) |
 | [#925](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/925), [#927](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/927) | Same-Q actual component rank and retained carrier in geometric piece | [42426181402](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42426181402) |
 | [#929](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/929) | Selected right-to-left actual source/outer-piece/rank step | [42426576246](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42426576246) |
+| [#942](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/942), [#945](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/945), [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948) | Exact exterior SOURCE support for any target subset, promoted to one concrete selected-Q successor | [42479535174](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42479535174) |
 
 The current cleanup moves the proof of the strengthened core theorem
 from the rank module into its natural geometry module. The original
@@ -87,3 +98,27 @@ the named `CheckAxiomsNestedSelectedGlobalOuterPieceSymbol.lean`,
 with the repository-wide permitted-axioms, no-admissions and active-root
 inventory checks. Review the public theorem signatures after the move;
 no theorem statement is intended to change.
+
+
+## 9 November — additional concrete-step proof consolidation
+
+The already verified `geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExterior`
+from #948 strictly strengthens the old concrete step (#929): it
+retains precisely the same actual selected Q, full forbidden native
+source, complement map, original ordered outer root, global piece
+symbol and strict B-only SOURCE-rank decrease, **and also** proves
+that for every subset `TargetSet` of the target, the number of
+SOURCE vertices outside the entire actual outer piece whose
+images lie in `TargetSet` is unchanged.
+
+The draft proof-cleanup branch relocates the stronger implementation
+into `Lifts/Claim2SelectedActualGeometricOuterStep.lean`, then
+defines the older theorem as its direct corollary. The former
+`Lifts/Claim2SelectedActualGeometricOuterStepExterior.lean`
+remains a backwards-compatible import. Both old and strong theorem
+signatures, plus the separate axiom checks, are retained. This is
+a **maintainability refactor only**, *not* a proof of existence
+of a positive-rank successor or the terminal Claim 2 contradiction.
+
+The exact new PR head must pass all repository CI gates before
+merging. No numbered manuscript text is changed.
