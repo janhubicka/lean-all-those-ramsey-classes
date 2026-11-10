@@ -68,12 +68,12 @@ theorem allNativeClass_freeAmalgamation :
 /-- Two distinct native vertices, both in the unique part and
 with no primitive relation or function symbols at all. -/
 def twoIsolatedNative :
-    FunctionalPartite.System emptyLanguage PUnit (Fin 2) where
+    FunctionalPartite.System emptyLanguage PUnit.{0} (Fin 2) where
   toStructure := {
     rel := fun R => Empty.elim R
     func := fun F => Empty.elim F
   }
-  part := fun _ => PUnit.unit
+  part := fun _ => PUnit.{0}.unit
   relTransversal := by
     intro R
     exact Empty.elim R
@@ -85,15 +85,15 @@ def twoIsolatedNative :
 of native part-labelled objects in the all-native class. -/
 def faithfulH :
     GenuinePartite2019Class.{0,0,0}
-      (L := emptyLanguage) (Parts := PUnit) :=
+      (L := emptyLanguage) (Parts := PUnit.{0}) :=
   nativeKFaithfulGenuinePartiteH2019
-    (Parts := PUnit) allNativeClass
+    (Parts := PUnit.{0}) allNativeClass
 
 /-- The literal canonical two-point tagged image, without adding
 an order, extra edges or fictitious function-domain incidences. -/
-def twoIsolatedTagged :
+noncomputable def twoIsolatedTagged :
     RelStructure
-      ((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit)
+      ((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0})
       (Fin 2) :=
   wholeMaskTagExpansion
     (withPartsWholeMaskOld
@@ -119,8 +119,8 @@ domain/output patterns and all positive-output closure tags are
 empty types. The only remaining tagged symbols are unary part
 predicates. -/
 theorem allTaggedSymbolsUnary
-    (R : ((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit).Symbol) :
-    ((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit).arity R = 1 := by
+    (R : ((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}).Symbol) :
+    ((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}).arity R = 1 := by
   cases R with
   | inl old =>
       cases old with
@@ -150,7 +150,7 @@ theorem twoIsolatedTagged_not_irreducible :
     hIrred (x := (0 : Fin 2)) (y := (1 : Fin 2)) hDistinct
   have hSubsingleton :
       Subsingleton
-        (Fin (((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit).arity R)) := by
+        (Fin (((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}).arity R)) := by
     rw [allTaggedSymbolsUnary R]
     infer_instance
   have hij : i = j := Subsingleton.elim i j
@@ -170,14 +170,14 @@ In particular the stronger native K free-amalgamation axioms alone
 do NOT furnish such a Ramsey host for the assembled 2019 theorem. -/
 theorem no_universally_irreducible_host
     (R : StructureClass.{0,0}
-      (L := (emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit))
+      (L := (emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}))
     (hSub : ∀ {X : Type}
       (E : RelStructure
-        ((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit) X),
+        ((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}) X),
       canonicalGenuineTagged2019Class faithfulH E → R E)
     (hRIrred : ∀ {X : Type}
       (E : RelStructure
-        ((emptyLanguage.withParts PUnit).wholeMaskTagLanguage PUnit) X),
+        ((emptyLanguage.withParts PUnit.{0}).wholeMaskTagLanguage PUnit.{0}) X),
       R E → E.Irreducible) : False :=
   twoIsolatedTagged_not_irreducible
     (hRIrred twoIsolatedTagged
