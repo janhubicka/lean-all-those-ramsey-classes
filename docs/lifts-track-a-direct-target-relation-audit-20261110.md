@@ -36,13 +36,14 @@ an additional conjunct which was redundant given the theorem's
 original hypotheses. A full Lean compilation of that proposal
 does not make it a new mathematical result.
 
-The current targeted cleanup replaces the approximately 50-line
-target-relation transport segment in
+Merged, exact-head CI-verified
+[#972](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/972)
+replaces the long target-relation transport segment in
 `Lifts/NestedActualGlobalWitnessOuterRelation.lean` by this
-one direct application. Its public theorem signature and
-source flip construction are unchanged. The historical nested
-geometric input is retained for backwards API compatibility,
-although the direct proof does not need it.
+direct application. The public theorem signature and actual
+selected-Q source flip are unchanged. The historical nested
+geometry input remains for API compatibility, although the
+direct old target relation does not require it.
 
 **Do not confuse this simplification with solving the real gaps.**
 The genuine Track A source-geometric preservation of the old
@@ -55,8 +56,10 @@ of a flippable B-only inner piece at each positive rank and the
 correct terminal minimizer contradiction. No numbered manuscript
 text is changed or previously removed TODO restored.
 
-**Regression gate:** new exact-head pinned Lean compilation,
-existing `CheckAxiomsNestedActualGlobalWitnessOuterRelation.lean`,
-permitted axioms, no admissions, source-contract audit, and
-active-root inventory. Historical refactor #964/#968 is
-already verified and merged, separately from this cleanup.
+**Regression gate passed:** exact-head
+[Lean CI run 42820020880](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42820020880),
+including pinned compilation, named
+`CheckAxiomsNestedActualGlobalWitnessOuterRelation.lean`,
+permitted axioms, no admissions, source-contract audit and
+active-root inventory. Refactors #964 and #968 were separately
+verified and merged.
