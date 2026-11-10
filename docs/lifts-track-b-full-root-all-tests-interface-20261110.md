@@ -84,3 +84,33 @@ inner flip whenever B-rank is positive, the no-escape/anchor persistence
 at arbitrary boundary widths, nor the terminal A-minimality exit.
 Its added `#print axioms` is in
 `CheckAxiomsNestedSelectedGlobalOuterPieceSymbol.lean`.
+
+## 10 November evening: same-source complete step interface (second PR)
+
+The new optional theorem
+`nestedGeometric_selectedFlip_fullSourceStepInvariants_withAllTests`
+strengthens the prior `nestedGeometric_selectedFlip_fullSourceStepInvariants`
+without changing its public signature or copying its source counting proof.
+It retains literally the SAME `Q`, `New`, `iQ`, `iE`, target maps
+`f`/`flip`, and the SAME resulting `newOuter` geometric witness.
+
+The theorem returns all of the prior source-step invariants:
+ordered old outer root coordinates, actual global symbol, exact
+outer-context carrier, unchanged target root tuple, strict decrease
+of the B-exclusive SOURCE vertex count inside the piece, and
+preservation of *all* exterior SOURCE counts indexed by any
+`TargetSet`. On this **same newOuter** it adds the complete
+old/new native root-structure equality and the fixed-root ALL-test
+forbidden diagram profile. The new proof factors through the
+already merged Track B export, using the existing exact carrier
+and ordered root coordinate equations.
+
+This is a one-step **conditional** invariant package. It does not
+construct a positive-rank B-only inner piece at every state, make the
+weak target root tuple injective, or supply the terminal A-only
+support contradiction. It also must not be read as an unrestricted
+proof of the original Section 3 strong amalgamation theorem.
+
+Exact-head Lean build, named axiom check, permitted-axiom inventory,
+source-contract and no-admissions scans are required before promotion.
+The numbered TeX manuscript and existing author-removed TODOs are untouched.
