@@ -69,18 +69,21 @@ private theorem castFullRootExtension_eq_explicit
   cases h
   rfl
 
-/-- The *actual global* canonical-lift symbol of the old outer
-geometric piece is preserved when the newly transported source
-context has been certified to be exactly one NEW geometric
-minimal-separator piece on the original ordered root.
+/-- The exact Track B interface for a *genuine selected outer geometric piece*:
+the ORIGINAL and NEW FULL native functional root structures coincide,
+and the original and new rooted pieces have equal forbidden diagram
+profiles against EVERY full rooted test.
 
-The geometric-piece and carrier-equality premises are the precise
-unproved Track A obligations. Everything else is native full
-functional gluing and rooted incompatibility profile transport. -/
-theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
+Unlike the global-symbol conclusion below, this statement has no
+finiteness, forbidden-source-membership, or positive-root-width premise.
+It still requires an actual full replacement source diagram, exact
+retained root coordinates, and equality of the transported context with
+a genuine new geometric piece; those geometric premises are NOT inferred
+from an arbitrary closed context. -/
+theorem geometricFlip_preserves_fullRoot_allTests_of_newGeometricContext
     (F : ∀ {Z : Type}, Structure L Z → Prop)
-    {V W : Type} [Finite V] [Finite W]
-    (Old : Structure L V) (hFOld : F Old)
+    {V W : Type}
+    (Old : Structure L V)
     {n m : ℕ}
     (P : GeometricFunctionalPieceData Old n)
     (d : GeometricFunctionalPieceData Old m)
@@ -97,7 +100,7 @@ theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
     (hEq : (functionalDiagramPieceSetoid
       (geometricGlobalFunctionalChart Old d).root F).r
         (geometricGlobalFunctionalChart Old d).ext Q)
-    (New : Structure L W) (hFNew : F New)
+    (New : Structure L W)
     (iQ : Structure.Embedding Q.str New)
     (iE : Structure.Embedding
       (geometricGlobalComplementChart Old d).str New)
@@ -112,12 +115,13 @@ theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
     (hExactContext :
       (iQ '' (Set.univ : Set Q.Carrier) ∪
         iE '' (oldOuterContextInInnerComplement Old P d)) =
-          geometricPieceVertices New Pnew)
-    (hn : 0 < n) :
-    geometricGlobalPieceSymbol F Old
-        (inferInstance : Finite V) hFOld P hn =
-      geometricGlobalPieceSymbol F New
-        (inferInstance : Finite W) hFNew Pnew hn := by
+          geometricPieceVertices New Pnew) :
+    ∃ hRoot : (geometricGlobalFunctionalChart Old P).root =
+        (geometricGlobalFunctionalChart New Pnew).root,
+      (functionalDiagramPieceSetoid
+          (geometricGlobalFunctionalChart Old P).root F).r
+        (geometricGlobalFunctionalChart Old P).ext
+        (hRoot.symm ▸ (geometricGlobalFunctionalChart New Pnew).ext) := by
   classical
   let OldChart := geometricGlobalFunctionalChart Old P
   let NewChart := geometricGlobalFunctionalChart New Pnew
@@ -191,6 +195,64 @@ theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
       (castFullRootExtension_eq_explicit
         hRootStructure NewChart.ext).symm
     exact hOldNewProfile.trans (hCastExt ▸ hActualNewGeom)
+  exact ⟨hRootStructure, hRootedProfile⟩
+
+/-- The *actual global* canonical-lift symbol of the old outer
+geometric piece is preserved when the newly transported source
+context has been certified to be exactly one NEW geometric
+minimal-separator piece on the original ordered root.
+
+The geometric-piece and carrier-equality premises are the precise
+unproved Track A obligations. Everything else is native full
+functional gluing and rooted incompatibility profile transport. -/
+theorem geometricFlip_preserves_globalPieceSymbol_of_newGeometricContext
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {V W : Type} [Finite V] [Finite W]
+    (Old : Structure L V) (hFOld : F Old)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Old n)
+    (d : GeometricFunctionalPieceData Old m)
+    (hInnerRoot : ∀ i : Fin m,
+      d.roots i ∈ geometricPieceVertices Old P)
+    (hInnerComponent :
+      functionalComponentFrom Old (Set.range d.roots) d.left ⊆
+        geometricPieceVertices Old P)
+    (hOuterRootOutside : ∀ i : Fin n,
+      P.roots i ∉ functionalComponentFrom Old
+        (Set.range d.roots) d.left)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old d).root)
+    (hEq : (functionalDiagramPieceSetoid
+      (geometricGlobalFunctionalChart Old d).root F).r
+        (geometricGlobalFunctionalChart Old d).ext Q)
+    (New : Structure L W) (hFNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old d).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old d).rootEmbedding iQ iE)
+    (Pnew : GeometricFunctionalPieceData New n)
+    (hRootCoords : ∀ i : Fin n,
+      Pnew.roots i =
+        iE (⟨P.roots i, hOuterRootOutside i⟩ :
+          (geometricGlobalComplementChart Old d).Carrier))
+    (hExactContext :
+      (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old P d)) =
+          geometricPieceVertices New Pnew)
+    (hn : 0 < n) :
+    geometricGlobalPieceSymbol F Old
+        (inferInstance : Finite V) hFOld P hn =
+      geometricGlobalPieceSymbol F New
+        (inferInstance : Finite W) hFNew Pnew hn := by
+  classical
+  let OldChart := geometricGlobalFunctionalChart Old P
+  let NewChart := geometricGlobalFunctionalChart New Pnew
+  obtain ⟨hRootStructure, hRootedProfile⟩ :=
+    geometricFlip_preserves_fullRoot_allTests_of_newGeometricContext
+      F Old P d hInnerRoot hInnerComponent hOuterRootOutside
+      Q hEq New iQ iE hFree Pnew hRootCoords hExactContext
   let PoldSelected : SelectedFunctionalChart F n :=
     geometricGlobalSelectedChart F Old
       (inferInstance : Finite V) hFOld P

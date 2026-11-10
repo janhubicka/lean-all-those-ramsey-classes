@@ -250,4 +250,80 @@ theorem nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
       Q hSelected hEq New hFNew iQ iE hFree hm
   exact ⟨hFiniteNew, newOuter, hRoots, hSymbol⟩
 
+
+/-- The **actual selected-Q** geometric replacement transports the entire
+FULL old functional root and its complete incompatibility profile against
+ALL old-rooted tests, not only the corresponding global quotient symbol.
+
+This is the concrete Track B-to-C profile invariant for the SAME new
+forbidden source and the SAME selected Q that appear in the geometric
+one-step theorem. Component nesting is genuine SOURCE nesting and does
+not require either closed cut to contain the other. -/
+theorem nestedGeometric_selectedFlip_preserves_outerFullRoot_allTests
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    [Finite V]
+    (Old : Structure L V) (hFOld : F Old)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData Old n)
+    (outer : GeometricFunctionalPieceData Old m)
+    (hNested :
+      componentFrom Old.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom Old.graph (Set.range outer.roots) outer.left)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (hSelected :
+      (FunctionalRootExtension.toEnumeratedRootedPattern
+        (geometricGlobalFunctionalChart Old inner).root
+        (Equiv.refl (Fin n)) Q) ∈
+          forbiddenGeometricFunctionalPieces F n)
+    (hEq : (functionalDiagramPieceSetoid
+      (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q)
+    (New : Structure L W) (hFNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (hm : 0 < m) :
+    ∃ (hFiniteNew : Finite W)
+      (newOuter : GeometricFunctionalPieceData New m)
+      (hRoot : (geometricGlobalFunctionalChart Old outer).root =
+        (geometricGlobalFunctionalChart New newOuter).root),
+      (∀ i : Fin m,
+        newOuter.roots i =
+          iE (⟨outer.roots i,
+            nestedGeometric_outerRoot_avoids_innerComponent
+              Old inner outer hNested i⟩ :
+              (geometricGlobalComplementChart Old inner).Carrier)) ∧
+      (functionalDiagramPieceSetoid
+        (geometricGlobalFunctionalChart Old outer).root F).r
+        (geometricGlobalFunctionalChart Old outer).ext
+        (hRoot.symm ▸
+          (geometricGlobalFunctionalChart New newOuter).ext) := by
+  obtain ⟨hFiniteNew, newOuter, hRoots, _hSymbol, hCarrier⟩ :=
+    nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
+      F Old hFOld inner outer hNested
+      Q hSelected hEq New hFNew iQ iE hFree hm
+  have hInnerRoot : ∀ i : Fin n,
+      inner.roots i ∈ geometricPieceVertices Old outer :=
+    nestedGeometric_innerRoot_in_outerPiece Old inner outer hNested
+  have hInnerComponent :
+      functionalComponentFrom Old (Set.range inner.roots) inner.left ⊆
+        geometricPieceVertices Old outer := by
+    intro v hv
+    exact Or.inr (hNested hv)
+  have hOuterAvoid : ∀ i : Fin m,
+      outer.roots i ∉ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left :=
+    nestedGeometric_outerRoot_avoids_innerComponent
+      Old inner outer hNested
+  obtain ⟨hRoot, hProfile⟩ :=
+    geometricFlip_preserves_fullRoot_allTests_of_newGeometricContext
+      F Old outer inner hInnerRoot hInnerComponent hOuterAvoid
+      Q hEq New iQ iE hFree newOuter hRoots hCarrier
+  exact ⟨hFiniteNew, newOuter, hRoot, hRoots, hProfile⟩
+
 end AllThoseRamseyClasses.Lifts
