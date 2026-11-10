@@ -2,3 +2,8 @@ import AllThoseRamseyClasses.Lifts.NestedSelectedGlobalOuterPieceSymbol
 
 #print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
 #print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol
+
+-- Original selected Q and genuine new geometric piece: FULL old-rooted
+-- functional tests (Track B invariant for the concrete Track C step).
+#check AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerFullRoot_allTests
+#print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_selectedFlip_preserves_outerFullRoot_allTests
