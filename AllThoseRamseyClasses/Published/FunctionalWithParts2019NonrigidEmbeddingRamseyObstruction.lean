@@ -90,7 +90,7 @@ theorem twoIsolated_no_fullEmbedding_RamseyArrow
       (if rank (f (1 : Fin 2)) < rank (f (0 : Fin 2))
         then (0 : Fin 2) else 1) := by
     simpa [χ, FunctionalPartite.Embedding.comp_apply,
-      FunctionalPartite.Embedding.id] using hColour
+      FunctionalPartite.Embedding.id, Structure.Embedding.id] using hColour
   have hDifferent : rank (f (0 : Fin 2)) ≠ rank (f (1 : Fin 2)) := by
     intro h
     have heq : f (0 : Fin 2) = f (1 : Fin 2) := rank.injective h
