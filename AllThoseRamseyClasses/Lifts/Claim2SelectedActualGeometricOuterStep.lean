@@ -122,6 +122,9 @@ theorem geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withEx
         newOuter.roots i =
           iE (⟨outer.roots i, hOuterRootOutside i⟩ :
             (geometricGlobalComplementChart Old inner).Carrier)) ∧
+      (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old outer inner)) =
+          geometricPieceVertices New newOuter ∧
       (∀ i : Fin n,
         flip (newOuter.roots i) = f (outer.roots i)) ∧
       geometricGlobalPieceSymbol F Old
@@ -181,7 +184,7 @@ theorem geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withEx
       F (geometricGlobalFunctionalChart Old inner).ext Q).mpr
       hInnerProfile
   obtain ⟨hFiniteNew, newOuter, hRoot, hRootCoords,
-      hSymbol, _hCarrier, hTargetCoords, hRank, hExterior,
+      hSymbol, hCarrier, hTargetCoords, hRank, hExterior,
       hProfile⟩ :=
     nestedGeometric_selectedFlip_fullSourceStepInvariants_withAllTests
       F Old hOld inner outer hNested Q hSelected hDiagram
@@ -197,7 +200,7 @@ theorem geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withEx
   exact ⟨V', New, hNew, Q, hSelected,
     iQ, iE, hNewFree, flip, hFlip,
     hFiniteNew, newOuter, hRoot, hEAgree,
-    hRootCoordsOriginal, hTargetCoords, hSymbol, hRank, hExterior,
+    hRootCoordsOriginal, hCarrier, hTargetCoords, hSymbol, hRank, hExterior,
     hProfile⟩
 
 /-- The concrete same-selected-Q B-to-A flip with an ACTUAL
@@ -290,7 +293,7 @@ theorem geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withEx
           f v ∈ TargetSet}) := by
   obtain ⟨V', New, hNew, Q, hSelected, iQ, iE, hNewFree,
       flip, hFlip, hFiniteNew, newOuter, _hRoot, hEAgree,
-      hRootCoords, hTargetCoords, hSymbol, hRank, hExterior,
+      hRootCoords, _hCarrier, hTargetCoords, hSymbol, hRank, hExterior,
       _hProfile⟩ :=
     geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExteriorAndAllTests
       F hFiniteF Old hFinite hOld outer inner hm hn
