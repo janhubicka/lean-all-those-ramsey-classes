@@ -53,6 +53,11 @@ target map that preserves the original older GLOBAL relation.
 
 The source is genuinely selected, and the only independent target
 injectivity premise concerns the *original older* outer root image.
+The original outer target relation follows directly from the input
+`Old.IsEHNHomomorphismEmbedding Target f` and this injection,
+independently of the replacement. The historical `hNested`
+parameter is retained for API compatibility, but is not needed
+by either the source replacement or this target relation.
 No arbitrary selected Q, selected geometry, profile-equivalence,
 or new-source existence hypothesis remains in this theorem statement. -/
 theorem nestedGeometric_actualGlobalWitness_preserves_outerRelation
