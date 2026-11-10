@@ -79,30 +79,30 @@ theorem twoIsolated_no_fullEmbedding_RamseyArrow
   let rank : X ≃ Fin (Fintype.card X) := Fintype.equivFin X
   let χ : FunctionalPartite.Embedding twoIsolatedNative C → Fin 2 :=
     fun e =>
-      if rank (e (0 : Fin 2)) < rank (e (1 : Fin 2)) then 0 else 1
+      if rank (e.toFun (0 : Fin 2)) < rank (e.toFun (1 : Fin 2)) then 0 else 1
   intro hArrow
   obtain ⟨f, hf⟩ := hArrow χ
   have hColour :=
     hf (FunctionalPartite.Embedding.id twoIsolatedNative) swapEmbedding
   have hEq :
-      (if rank (f (0 : Fin 2)) < rank (f (1 : Fin 2))
+      (if rank (f.toFun (0 : Fin 2)) < rank (f.toFun (1 : Fin 2))
         then (0 : Fin 2) else 1) =
-      (if rank (f (1 : Fin 2)) < rank (f (0 : Fin 2))
+      (if rank (f.toFun (1 : Fin 2)) < rank (f.toFun (0 : Fin 2))
         then (0 : Fin 2) else 1) := by
     simpa [χ, FunctionalPartite.Embedding.comp_apply,
       FunctionalPartite.Embedding.id, Structure.Embedding.id] using hColour
-  have hDifferent : rank (f (0 : Fin 2)) ≠ rank (f (1 : Fin 2)) := by
+  have hDifferent : rank (f.toFun (0 : Fin 2)) ≠ rank (f.toFun (1 : Fin 2)) := by
     intro h
-    have heq : f (0 : Fin 2) = f (1 : Fin 2) := rank.injective h
+    have heq : f.toFun (0 : Fin 2) = f.toFun (1 : Fin 2) := rank.injective h
     exact (by decide : (0 : Fin 2) ≠ 1)
       (f.toEmbedding.injective heq)
-  rcases lt_trichotomy (rank (f (0 : Fin 2)))
-      (rank (f (1 : Fin 2))) with hlt | heq | hgt
-  · have hnlt : ¬ rank (f (1 : Fin 2)) < rank (f (0 : Fin 2)) :=
+  rcases lt_trichotomy (rank (f.toFun (0 : Fin 2)))
+      (rank (f.toFun (1 : Fin 2))) with hlt | heq | hgt
+  · have hnlt : ¬ rank (f.toFun (1 : Fin 2)) < rank (f.toFun (0 : Fin 2)) :=
       not_lt.mpr (le_of_lt hlt)
     simp [hlt, hnlt] at hEq
   · exact hDifferent heq
-  · have hnlt : ¬ rank (f (0 : Fin 2)) < rank (f (1 : Fin 2)) :=
+  · have hnlt : ¬ rank (f.toFun (0 : Fin 2)) < rank (f.toFun (1 : Fin 2)) :=
       not_lt.mpr (le_of_lt hgt)
     simp [hnlt, hgt] at hEq
 
