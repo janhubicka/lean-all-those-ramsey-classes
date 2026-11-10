@@ -12,11 +12,11 @@ On the input side we have the ORIGINAL global canonical relation
 for the inner source piece, realized in a second witness B, and a
 genuine weak map of the old forbidden source into the target.
 The verified selected-global source-flip theorem extracts an actual
-geometrically selected replacement Q, its canonical-gluing
-incompatibility equivalence, and the literal new forbidden FULL
-functional free-amalgam source. The verified gluing/diagram bridge
-converts the returned canonical-gluing profile into precisely
-the diagram equivalence used by the nested outer-symbol theorem.
+geometrically selected replacement Q and a literal new forbidden
+FULL functional free-amalgam source, together with its weak map.
+The returned gluing-profile equivalence remains a valid certificate,
+but this theorem does not need to invoke the separate nested
+outer-symbol transport to prove its original-target relation.
 
 On the output side the new weak map agrees with the original map on
 EVERY unchanged complement vertex. The target relation at the
@@ -33,10 +33,10 @@ inner global tuple nor from weak EHN properties. This is the distinct
 Track D root-collision obligation. This theorem does not establish
 the terminating local B-source-support descent of Track C.
 
-The previous integration was independently Lean-validated; this
-shortening changes no theorem statement and requires a fresh exact-head
-CI and named #print axioms check. The genuinely nontrivial source-flip
-theorem remains `selectedGlobalCanonicalDiagramFlip_geometricWitness`.
+The direct-target-relation shortening (#972) was independently
+exact-head Lean CI-verified and merged without changing this theorem's
+statement. Its genuinely nontrivial source-flip construction still
+uses `selectedGlobalCanonicalDiagramFlip_geometricWitness`.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
