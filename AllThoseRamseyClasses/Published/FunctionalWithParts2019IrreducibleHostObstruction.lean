@@ -73,7 +73,7 @@ def twoIsolatedNative :
     rel := fun R => Empty.elim R
     func := fun F => Empty.elim F
   }
-  part := fun _ => PUnit.{1}.unit
+  part := fun _ => PUnit.unit
   relTransversal := by
     intro R
     exact Empty.elim R
