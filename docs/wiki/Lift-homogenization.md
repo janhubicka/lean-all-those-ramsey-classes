@@ -33,10 +33,18 @@ interface is unchanged. With the same Q and a strict B-exclusive
 SOURCE-rank context step, the native actual geometric-piece rank
 step in #929 is also verified.
 
-The historical duplicated geometric proof is consolidated in
-[Track A cleanup #964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964);
-that refactor requires its own exact-head CI, despite the underlying
-theorems already being validated independently. See the full
+The maintained code has subsequently undergone three independently
+CI-verified and merged cleanups: [#964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964)
+deduplicates the outer geometric carrier/symbol proof;
+[#968](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/968)
+makes the stronger same-Q step with preserved exterior SOURCE counts
+the unique proof of its weaker predecessor; and
+[#972](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/972)
+shortens the witness-level outer *target* relation using its already
+given original weak source and injective target-root tuple.
+Each PR passed full exact-head Lean CI, named axiom/no-admissions
+and inventory checks before merging. The existing proof statements
+and old module import paths are preserved. See the
 [Track A closeout](../lifts-track-a-closure-20261108.md).
 
 **This closes the source-geometry track, not printed Claim 2**:
