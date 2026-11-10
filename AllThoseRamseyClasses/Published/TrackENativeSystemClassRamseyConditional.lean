@@ -36,6 +36,7 @@ open StructuralRamsey.PartialSetStructure
 open StructuralRamsey.RelStructure
 open StructuralRamsey.FunctionalPartite
 open StructuralRamsey.Structure.TrackENativePartiteFinalArrow
+open StructuralRamsey.Structure.TrackENativePartialFullFaithfulness
 
 universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
