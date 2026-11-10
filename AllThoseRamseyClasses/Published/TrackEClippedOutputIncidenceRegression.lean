@@ -27,32 +27,24 @@ open StructuralRamsey
 open StructuralRamsey.Structure
 open StructuralRamsey.PartialSetStructure
 
-/-- One original binary relation and one unary set-valued function. -/
-def toyLanguage : Language where
-  RelSymbol := Unit
-  FuncSymbol := Unit
-  relArity := fun _ => 2
-  funcArity := fun _ => 1
+/-- Reuse the kernel-checked unary partial-function example language. -/
+abbrev toyLanguage : Language := PartialSetStructure.exampleLanguage
 
 /-- A genuinely partial source, with a two-valued unary fibre at 0. -/
 def sourcePartial : PartialSetStructure toyLanguage (Fin 3) where
-  rel
-    | (), xs => xs 0 ≠ xs 1
-  func
-    | (), xs =>
-        if xs 0 = (0 : Fin 3) then
-          some ({(1 : Fin 3), (2 : Fin 3)} : Set (Fin 3))
-        else none
+  rel := fun R => Empty.elim R
+  func := fun _ xs =>
+    if xs (0 : Fin 1) = (0 : Fin 3)
+    then some ({(1 : Fin 3), (2 : Fin 3)} : Set (Fin 3))
+    else none
 
 /-- A target whose output of part 1 is vertex 3 rather than vertex 1. -/
 def targetPartial : PartialSetStructure toyLanguage (Fin 4) where
-  rel
-    | (), xs => xs 0 ≠ xs 1
-  func
-    | (), xs =>
-        if xs 0 = (0 : Fin 4) then
-          some ({(2 : Fin 4), (3 : Fin 4)} : Set (Fin 4))
-        else none
+  rel := fun R => Empty.elim R
+  func := fun _ xs =>
+    if xs (0 : Fin 1) = (0 : Fin 4)
+    then some ({(2 : Fin 4), (3 : Fin 4)} : Set (Fin 4))
+    else none
 
 def sourceNative : Structure toyLanguage (Fin 3) :=
   sourcePartial.collapseDomain
