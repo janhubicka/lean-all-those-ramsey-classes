@@ -117,12 +117,34 @@ theorem nestedGeometric_selectedFlip_preserves_outerGlobalRelation_in_target
     geometricGlobalCanonicalRelation_of_weak
       F New hFiniteNew hFNew newOuter hm
       Target flip hFlipWeak hNewRootInjective
+  let OldSelected : SelectedFunctionalChart F m :=
+    geometricGlobalSelectedChart F Old
+      (inferInstance : Finite V) hFOld outer
+  let NewSelected : SelectedFunctionalChart F m :=
+    geometricGlobalSelectedChart F New
+      hFiniteNew hFNew newOuter
+  have hClass :
+      (Quotient.mk (globalFunctionalPieceSetoid F m) OldSelected :
+        GlobalFunctionalPieceClass F m) =
+      Quotient.mk (globalFunctionalPieceSetoid F m) NewSelected := by
+    have hPair :
+        (⟨⟨m, hm⟩, Quotient.mk (globalFunctionalPieceSetoid F m)
+          OldSelected⟩ : GlobalFunctionalPieceSymbol F) =
+        (⟨⟨m, hm⟩, Quotient.mk (globalFunctionalPieceSetoid F m)
+          NewSelected⟩ : GlobalFunctionalPieceSymbol F) := by
+      exact hSymbol
+    exact eq_of_heq ((Sigma.mk.inj_iff.mp hPair).2)
   have hOldRelation :
       (globalFunctionalCanonicalLift F Target).rel
         (.inr (geometricGlobalPieceSymbol F Old
           (inferInstance : Finite V) hFOld outer hm))
         (fun i : Fin m => flip (newOuter.roots i)) := by
-    rw [hSymbol]
+    change (globalFunctionalCanonicalLift F Target).rel
+      (.inr (⟨⟨m, hm⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F m) OldSelected⟩ :
+          GlobalFunctionalPieceSymbol F))
+      (fun i : Fin m => flip (newOuter.roots i))
+    rw [hClass]
     exact hNewRelation
   have hTuple :
       (fun i : Fin m => flip (newOuter.roots i)) =
