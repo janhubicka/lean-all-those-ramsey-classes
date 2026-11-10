@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedActualOuterRelation
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExterior_andOldRelation
