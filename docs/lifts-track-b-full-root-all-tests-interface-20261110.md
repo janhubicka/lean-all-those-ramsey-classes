@@ -64,3 +64,23 @@ the `ProfileFixed` invariant in the concrete Claim 2 successor-state
 interface. **Keep same-Q selection**, exact original full roots, actual
 geometric status, and exterior source counts together; do not assume
 the existence of a successor at every positive rank.
+
+## Concrete selected-source corollary (same actual Q)
+
+`nestedGeometric_selectedFlip_preserves_outerFullRoot_allTests`, in
+`NestedSelectedGlobalOuterPieceSymbol.lean`, combines the merged actual
+source-geometry theorem with the new generic export. For ONE genuine
+selected replacement `Q`, ONE new forbidden source `New`, and ONE
+source-side geometric nesting certificate, it **constructs** the new
+geometric outer piece together with original ordered root coordinates,
+complete native root-structure equality and all-test profile congruence.
+No new geometric hypothesis is assumed in this selected-source corollary.
+The old global symbol and exact context carrier are provided by the
+same checked construction; its previously public API remains intact.
+
+This is the precise `ProfileFixed` component needed for the Claim 2
+state-transition invariant. It does *not* supply the eligibility of an
+inner flip whenever B-rank is positive, the no-escape/anchor persistence
+at arbitrary boundary widths, nor the terminal A-minimality exit.
+Its added `#print axioms` is in
+`CheckAxiomsNestedSelectedGlobalOuterPieceSymbol.lean`.
