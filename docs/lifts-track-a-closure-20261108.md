@@ -4,15 +4,16 @@
 Section 3 lifting argument. The numbered `ramsey.tex` remains **frozen**;
 do not revive TODOs that collaborators removed or commented out.
 
-> **9 November postmerge update.** The first Track A proof deduplication
-> [#964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964)
-> is merged, with [successful exact-head Lean CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42485106398).
-> The strengthened same-Q concrete step with **all outside-outer-piece
-> SOURCE counts preserved for arbitrary target subsets** is separately
-> verified in [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948).
-> A new follow-up cleanup (9 November) makes that stronger concrete-step
-> theorem the unique source of the old step API; keep this refactor
-> conditional on *its own* exact-head CI, not on the prior theorem's CI.
+> **10 November verified-status update.** Track A source geometry
+> and its proof consolidation are merged after independent successful
+> exact-head Lean CI: [#964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964),
+> [#968](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/968)
+> and [#972](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/972).
+> The strengthened same-Q concrete step with exterior SOURCE counts
+> preserved for arbitrary target subsets is itself verified in
+> [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948).
+> Historical draft entries below describe the stages before those merges.
+> The unrestricted printed Claim 2 and strong AP are **not** validated.
 
 ## What is proved
 
