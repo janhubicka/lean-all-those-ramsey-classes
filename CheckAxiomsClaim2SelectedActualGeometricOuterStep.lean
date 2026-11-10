@@ -2,3 +2,8 @@ import AllThoseRamseyClasses.Lifts.Claim2SelectedActualGeometricOuterStep
 
 #print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExterior
 #print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport
+
+-- Concrete one-source selected-Q Claim 2 flip, with full functional
+-- old-root identity and all forbidden tests, plus exterior counts.
+#check AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExteriorAndAllTests
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExteriorAndAllTests
