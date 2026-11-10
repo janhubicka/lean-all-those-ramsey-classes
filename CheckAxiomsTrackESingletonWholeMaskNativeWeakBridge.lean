@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackESingletonWholeMaskNativeWeakBridge
+
+#print axioms AllThoseRamseyClasses.Published.ambientRelativeWeakHom_of_singletonWholePartial
+#print axioms AllThoseRamseyClasses.Published.splitOutputParts_ambientRelativeWeakHom_of_wholePartial
