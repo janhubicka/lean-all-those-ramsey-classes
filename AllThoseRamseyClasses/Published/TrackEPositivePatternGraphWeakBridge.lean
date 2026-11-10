@@ -38,8 +38,8 @@ open StructuralRamsey
 open StructuralRamsey.RelStructure
 open StructuralRamsey.Structure
 
-universe u v w
-variable {L : Language.{u}} {V : Type v} {W : Type w}
+universe u v
+variable {L : Language.{u}} {V W : Type v}
 
 /-- Only POSITIVE OLD pattern-graph preservation is needed to carry
 each decoded function output; the existing embedding version can be
