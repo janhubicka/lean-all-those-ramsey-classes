@@ -66,11 +66,12 @@ lives in `Lifts/Claim2SelectedActualGeometricOuterStep.lean`.
 | [#929](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/929) | Selected right-to-left actual source/outer-piece/rank step | [42426576246](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42426576246) |
 | [#942](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/942), [#945](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/945), [#948](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/948) | Exact exterior SOURCE support for any target subset, promoted to one concrete selected-Q successor | [42479535174](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42479535174) |
 
-The current cleanup moves the proof of the strengthened core theorem
-from the rank module into its natural geometry module. The original
-symbol-only theorem now follows by dropping one conjunct; no proof is
-weakened and no independent geometric proof is duplicated. **Verify
-this refactor at its own exact PR head before calling the cleanup green.**
+The original Track A geometric proof consolidation is **merged and
+exact-head CI-verified** as [#964](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/964)
+([Lean run 42485106398](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42485106398)).
+The stronger core theorem is defined once in its natural geometry
+module; the symbol-only public theorem is its direct corollary.
+No underlying proof or theorem statement is weakened.
 
 ## What Track A does NOT establish
 
@@ -111,17 +112,17 @@ that for every subset `TargetSet` of the target, the number of
 SOURCE vertices outside the entire actual outer piece whose
 images lie in `TargetSet` is unchanged.
 
-The draft proof-cleanup branch relocates the stronger implementation
-into `Lifts/Claim2SelectedActualGeometricOuterStep.lean`, then
-defines the older theorem as its direct corollary. The former
+The resulting cleanup is **merged and verified** in
+[#968](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/968)
+([Lean run 42664353844](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42664353844)).
+It relocates the stronger implementation into
+`Lifts/Claim2SelectedActualGeometricOuterStep.lean` and retains
+the older theorem as a direct corollary. The historical
 `Lifts/Claim2SelectedActualGeometricOuterStepExterior.lean`
-remains a backwards-compatible import. Both old and strong theorem
-signatures, plus the separate axiom checks, are retained. This is
-a **maintainability refactor only**, *not* a proof of existence
-of a positive-rank successor or the terminal Claim 2 contradiction.
-
-The exact new PR head must pass all repository CI gates before
-merging. No numbered manuscript text is changed.
+continues as a backwards-compatible import. Both signatures and
+separate axiom checks are retained. This was a **maintainability
+refactor**, not a proof of existence of a positive-rank successor
+or terminal Claim 2 contradiction. No numbered manuscript text changed.
 
 ## 10 November — adversarial shortening of the witness-level target conclusion
 
@@ -140,3 +141,33 @@ was closed unmerged for exactly this reason. Its extra conclusion
 was not a new result, even though it compiled. The essential
 Track A source-symbol preservation and Track C/D obstructions
 remain exactly as stated above.
+
+## 10 November — final validated Track A cleanup and boundaries
+
+[#972](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/972)
+is now **merged** following successful full exact-head
+[Lean CI run 42820020880](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42820020880).
+It preserves the witness-level theorem statement but replaces its
+unnecessary old-symbol target-relation transport with the direct
+`geometricGlobalCanonicalRelation_of_weak` application on the
+ORIGINAL forbidden source and old weak target map.
+The actual source-flip construction remains unchanged.
+
+This completes the originally assigned **Track A native source geometry
+and its cleanup**. It proves genuine source-piece reconstruction and
+preservation of the original indexed global piece **symbol** under a
+specified selected-Q replacement, with an exact ordered full root and
+native functional gluing tests. The later same-Q strict B-only SOURCE
+rank/exterior invariants are valid one-step certificates subject to
+the **explicit** hypotheses of an eligible selected inner piece.
+
+**It does not prove the unrestricted printed Section 3 Claim 2.**
+The still-independent obligations are Track C's eligible successor at
+every positive state and terminal minimizer contradiction, Track D's
+possible weak target-root collisions, and the full maximal-lift
+shadow avoidance / strong amalgamation conclusion.
+
+Historical intermediate draft labels elsewhere in this ledger remain
+as records of the proof development and must not be interpreted as
+the current merge or CI state. The numbered 2019 manuscript remains
+frozen; never restore TODOs removed by collaborators.
