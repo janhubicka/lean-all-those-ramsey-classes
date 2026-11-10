@@ -114,3 +114,31 @@ proof of the original Section 3 strong amalgamation theorem.
 Exact-head Lean build, named axiom check, permitted-axiom inventory,
 source-contract and no-admissions scans are required before promotion.
 The numbered TeX manuscript and existing author-removed TODOs are untouched.
+
+## Direct concrete selected-Q Claim 2 interface (stacked PR)
+
+The new strong theorem
+`geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExteriorAndAllTests`
+now exposes the full root-structure and ALL-test profile certificate
+**directly from the actual right-to-left source flip construction**.
+It requires exactly the former `...withExterior` assumptions: a finite
+forbidden old source, the positive inner/outer widths and nested
+source geometry, a common full lift target, an inner root mapped
+injectively into the weak target seam, an eligible B-only selected
+inner vertex, and the same opposite-part separation conditions.
+
+Its source is ONE selected replacement Q and ONE resulting geometric
+outer piece. It returns the full native all-test profile, literal
+root equality, global symbol equality, original target-root
+coordinates, strict local B-exclusive source-rank descent and all
+exterior source-support cardinalities.
+
+The old `geometricGlobalRightFlip_actualOuterPiece_strictLocalRightSupport_withExterior`
+is now a direct corollary, preserving the historical theorem signature.
+The actual source-flip proof is implemented **once**, not duplicated.
+
+No new positive-rank inner-piece selection or terminal A-minimality
+exit is claimed; Track D's target root collisions are untouched.
+The interface is intentionally conditional, and the original
+numbered manuscript remains frozen. Exact-head Lean/axioms/no-admissions
+and active-root audit must pass on this stacked change independently.
