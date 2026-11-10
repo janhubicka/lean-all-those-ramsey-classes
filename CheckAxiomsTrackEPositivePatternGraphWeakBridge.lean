@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEPositivePatternGraphWeakBridge
+
+#print axioms AllThoseRamseyClasses.Published.patternDecode_output_of_positive_patternGraph_hom
+#print axioms AllThoseRamseyClasses.Published.patternDecode_exactWeak_output_of_positive_taggedHom
+#print axioms AllThoseRamseyClasses.Published.patternDecode_exactWeak_weakHom_of_positive_taggedHom
