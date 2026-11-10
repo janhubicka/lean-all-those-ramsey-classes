@@ -63,7 +63,7 @@ theorem ambientRelativeWeakHom_of_nativeWeak_and_wholePartial
   have hSome :
       A.toNonemptyPartial.func F (Subtype.val ∘ xs) = some U := by
     change (if U.Nonempty then some U else none) = some U
-    simp [hNonempty]
+    exact if_pos hNonempty
   have hWholeVal :
       (PartialSetStructure.wholeWeakInduce A.toNonemptyPartial S).func
         F xs = some U_S := by
