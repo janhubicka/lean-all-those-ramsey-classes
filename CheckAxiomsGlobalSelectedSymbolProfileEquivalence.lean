@@ -1,0 +1,10 @@
+import AllThoseRamseyClasses.Lifts.GlobalSelectedSymbolProfileEquivalence
+
+-- The original GLOBAL 2019 symbol completely determines the entire
+-- selected functional root and all incompatible native diagram tests.
+#check AllThoseRamseyClasses.Lifts.selectedFunctionalChart_globalSymbol_eq_iff_rootEq_and_diagram
+#print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_globalSymbol_eq_iff_rootEq_and_diagram
+
+-- The same statement on ACTUAL selected geometric forbidden sources.
+#check AllThoseRamseyClasses.Lifts.geometricGlobalPieceSymbol_eq_iff_fullRoot_allTests
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalPieceSymbol_eq_iff_fullRoot_allTests
