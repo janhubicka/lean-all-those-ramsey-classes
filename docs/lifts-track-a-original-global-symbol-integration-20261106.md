@@ -1,12 +1,14 @@
 # Track A — genuine nested source flip and old GLOBAL canonical symbol
 
-> **8 November status update:** PR #899 and its prerequisite chain
-> are merged with successful Lean CI; #927 proves the stronger
-> carrier-retaining interface and #929 gives the same-selected-Q
-> geometric strict-source-rank endpoint. The draft discussion below is
-> historical. A proof-deduplication refactor is submitted separately
-> and must pass its own CI. See
-> [Track A closeout](lifts-track-a-closure-20261108.md).
+> **10 November verified-status update:** The source-side result #899,
+> its complete carrier strengthening #927, and the same-selected-Q
+> concrete strict-source-rank step #929 have passed exact-head Lean CI
+> and are merged. Deduplication PRs #964 and #968 and the direct
+> target-relation shortening #972 have also passed full CI and merged.
+> The **6 November draft ledger below is historical** and should not
+> be read as the present validation status. Track C's universal
+> successor/terminal proof and Track D's weak-target root collisions
+> remain open. See the [Track A closeout](lifts-track-a-closure-20261108.md).
 
 
 **6 November 2026 | DRAFT audit ledger | frozen numbered manuscript untouched**
