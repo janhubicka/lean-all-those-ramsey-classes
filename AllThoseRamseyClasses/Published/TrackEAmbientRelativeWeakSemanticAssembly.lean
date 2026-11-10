@@ -40,8 +40,8 @@ open StructuralRamsey
 open StructuralRamsey.Structure
 open StructuralRamsey.PartialSetStructure
 
-universe u v w
-variable {L : Language.{u}} {V : Type v} {W : Type w}
+universe u v
+variable {L : Language.{u}} {V W : Type v}
 
 /-- On the same native source, target, literal weak vertex set and map,
 the native positive weak law and the genuine-partial WHOLE-fibre
