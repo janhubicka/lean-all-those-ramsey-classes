@@ -129,7 +129,8 @@ inner vertex, and the same opposite-part separation conditions.
 
 Its source is ONE selected replacement Q and ONE resulting geometric
 outer piece. It returns the full native all-test profile, literal
-root equality, global symbol equality, original target-root
+root equality, the exact transported outer-context carrier,
+global symbol equality, original target-root
 coordinates, strict local B-exclusive source-rank descent and all
 exterior source-support cardinalities.
 
