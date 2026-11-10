@@ -84,13 +84,6 @@ theorem twoIsolated_no_fullEmbedding_RamseyArrow
   obtain ⟨f, hf⟩ := hArrow χ
   have hColour :=
     hf (FunctionalPartite.Embedding.id twoIsolatedNative) swapEmbedding
-  have hEq :
-      (if rank (f.toFun (0 : Fin 2)) < rank (f.toFun (1 : Fin 2))
-        then (0 : Fin 2) else 1) =
-      (if rank (f.toFun (1 : Fin 2)) < rank (f.toFun (0 : Fin 2))
-        then (0 : Fin 2) else 1) := by
-    simpa [χ, FunctionalPartite.Embedding.comp_apply,
-      FunctionalPartite.Embedding.id, Structure.Embedding.id] using hColour
   have hDifferent : rank (f.toFun (0 : Fin 2)) ≠ rank (f.toFun (1 : Fin 2)) := by
     intro h
     have heq : f.toFun (0 : Fin 2) = f.toFun (1 : Fin 2) := rank.injective h
@@ -100,11 +93,15 @@ theorem twoIsolated_no_fullEmbedding_RamseyArrow
       (rank (f.toFun (1 : Fin 2))) with hlt | heq | hgt
   · have hnlt : ¬ rank (f.toFun (1 : Fin 2)) < rank (f.toFun (0 : Fin 2)) :=
       not_lt.mpr (le_of_lt hlt)
-    simp [hlt, hnlt] at hEq
+    simp [χ, FunctionalPartite.Embedding.comp_apply,
+      FunctionalPartite.Embedding.id, Structure.Embedding.id,
+      hlt, hnlt] at hColour
   · exact hDifferent heq
   · have hnlt : ¬ rank (f.toFun (0 : Fin 2)) < rank (f.toFun (1 : Fin 2)) :=
       not_lt.mpr (le_of_lt hgt)
-    simp [hnlt, hgt] at hEq
+    simp [χ, FunctionalPartite.Embedding.comp_apply,
+      FunctionalPartite.Embedding.id, Structure.Embedding.id,
+      hnlt, hgt] at hColour
 
 /-- The class of **all** native empty-language structures is a genuine
 native free-amalgamation class (proved in the independent regression),
