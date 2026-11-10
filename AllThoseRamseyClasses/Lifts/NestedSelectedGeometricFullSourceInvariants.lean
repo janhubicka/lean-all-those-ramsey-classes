@@ -164,4 +164,118 @@ theorem nestedGeometric_selectedFlip_fullSourceStepInvariants
   exact ⟨hFiniteNew, newOuter, hRootCoords, hSymbol,
     hCarrier, hTargetRootCoords, hRank, hExterior⟩
 
+
+/-- Track B/C handoff on ONE ACTUAL selected-Q full native source flip:
+return every certified geometric, ordered-root, old global-symbol,
+strict local B-SOURCE rank and exterior SOURCE-count invariant AND
+the equal full functional root structure plus ALL-test diagram profile.
+
+The profile is for the SAME newOuter witness as the strict rank and
+exterior invariants; no independent geometric piece is selected.
+This is a conditional one-step package, NOT a positive-rank successor
+existence theorem or a terminal contradiction. -/
+theorem nestedGeometric_selectedFlip_fullSourceStepInvariants_withAllTests
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    [Finite V]
+    (Old : Structure L V) (hFOld : F Old)
+    {n m : ℕ}
+    (inner : GeometricFunctionalPieceData Old n)
+    (outer : GeometricFunctionalPieceData Old m)
+    (hNested :
+      componentFrom Old.graph (Set.range inner.roots) inner.left ⊆
+        componentFrom Old.graph (Set.range outer.roots) outer.left)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (hSelected :
+      (FunctionalRootExtension.toEnumeratedRootedPattern
+        (geometricGlobalFunctionalChart Old inner).root
+        (Equiv.refl (Fin n)) Q) ∈
+          forbiddenGeometricFunctionalPieces F n)
+    (hEq : (functionalDiagramPieceSetoid
+      (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q)
+    (New : Structure L W) (hFNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (hm : 0 < m)
+    (f : V → UT) (flip : W → UT)
+    (hSameE : ∀ b : (geometricGlobalComplementChart Old inner).Carrier,
+      flip (iE b) = f b.1)
+    (BOnly : Set UT)
+    (hStrictContext :
+      Nat.card {w : W //
+        w ∈ (iQ '' (Set.univ : Set Q.Carrier) ∪
+          iE '' (oldOuterContextInInnerComplement Old outer inner)) ∧
+        flip w ∈ BOnly} <
+      Nat.card {v : V //
+        v ∈ geometricPieceVertices Old outer ∧
+        f v ∈ BOnly}) :
+    ∃ (hFiniteNew : Finite W)
+      (newOuter : GeometricFunctionalPieceData New m)
+      (hRoot : (geometricGlobalFunctionalChart Old outer).root =
+        (geometricGlobalFunctionalChart New newOuter).root),
+      (∀ i : Fin m,
+        newOuter.roots i =
+          iE (⟨outer.roots i,
+            nestedGeometric_outerRoot_avoids_innerComponent
+              Old inner outer hNested i⟩ :
+              (geometricGlobalComplementChart Old inner).Carrier)) ∧
+      geometricGlobalPieceSymbol F Old
+          (inferInstance : Finite V) hFOld outer hm =
+        geometricGlobalPieceSymbol F New
+          hFiniteNew hFNew newOuter hm ∧
+      (iQ '' (Set.univ : Set Q.Carrier) ∪
+        iE '' (oldOuterContextInInnerComplement Old outer inner)) =
+          geometricPieceVertices New newOuter ∧
+      (∀ i : Fin m,
+        flip (newOuter.roots i) = f (outer.roots i)) ∧
+      Nat.card {w : W //
+          w ∈ geometricPieceVertices New newOuter ∧
+          flip w ∈ BOnly} <
+        Nat.card {v : V //
+          v ∈ geometricPieceVertices Old outer ∧
+          f v ∈ BOnly} ∧
+      (∀ TargetSet : Set UT,
+        Nat.card {w : W //
+          w ∉ geometricPieceVertices New newOuter ∧
+          flip w ∈ TargetSet} =
+        Nat.card {v : V //
+          v ∉ geometricPieceVertices Old outer ∧
+          f v ∈ TargetSet}) ∧
+      (functionalDiagramPieceSetoid
+        (geometricGlobalFunctionalChart Old outer).root F).r
+        (geometricGlobalFunctionalChart Old outer).ext
+        (hRoot.symm ▸
+          (geometricGlobalFunctionalChart New newOuter).ext) := by
+  obtain ⟨hFiniteNew, newOuter, hRoots, hSymbol,
+      hCarrier, hTarget, hRank, hExterior⟩ :=
+    nestedGeometric_selectedFlip_fullSourceStepInvariants
+      F Old hFOld inner outer hNested
+      Q hSelected hEq New hFNew iQ iE hFree hm
+      f flip hSameE BOnly hStrictContext
+  have hInnerRoot : ∀ i : Fin n,
+      inner.roots i ∈ geometricPieceVertices Old outer :=
+    nestedGeometric_innerRoot_in_outerPiece Old inner outer hNested
+  have hInnerComponent :
+      functionalComponentFrom Old (Set.range inner.roots) inner.left ⊆
+        geometricPieceVertices Old outer := by
+    intro v hv
+    exact Or.inr (hNested hv)
+  have hOuterRootOutside : ∀ i : Fin m,
+      outer.roots i ∉ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left :=
+    nestedGeometric_outerRoot_avoids_innerComponent
+      Old inner outer hNested
+  obtain ⟨hRoot, hProfile⟩ :=
+    geometricFlip_preserves_fullRoot_allTests_of_newGeometricContext
+      F Old outer inner hInnerRoot hInnerComponent hOuterRootOutside
+      Q hEq New iQ iE hFree newOuter hRoots hCarrier
+  exact ⟨hFiniteNew, newOuter, hRoot,
+    hRoots, hSymbol, hCarrier, hTarget, hRank, hExterior, hProfile⟩
+
 end AllThoseRamseyClasses.Lifts
