@@ -122,3 +122,21 @@ of a positive-rank successor or the terminal Claim 2 contradiction.
 
 The exact new PR head must pass all repository CI gates before
 merging. No numbered manuscript text is changed.
+
+## 10 November — adversarial shortening of the witness-level target conclusion
+
+The extra original outer TARGET relation in
+`nestedGeometric_actualGlobalWitness_preserves_outerRelation`
+was previously obtained through a second nested source-symbol
+transport argument. This is mathematically redundant: the INPUT
+old forbidden source, weak map `f`, and the theorem's already
+explicit outer target-root injectivity imply the relation directly
+by `geometricGlobalCanonicalRelation_of_weak`. A cleanup branch
+uses this direct proof and keeps the statement unchanged.
+[Detailed audit](lifts-track-a-direct-target-relation-audit-20261110.md).
+
+Draft [#969](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/969)
+was closed unmerged for exactly this reason. Its extra conclusion
+was not a new result, even though it compiled. The essential
+Track A source-symbol preservation and Track C/D obstructions
+remain exactly as stated above.
