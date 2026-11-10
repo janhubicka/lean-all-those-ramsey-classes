@@ -165,7 +165,8 @@ theorem nestedGeometric_selectedFlip_fullSourceStepInvariants
     hCarrier, hTargetRootCoords, hRank, hExterior⟩
 
 
-/-- Track B/C handoff on ONE ACTUAL selected-Q full native source flip:eturn every certified geometric, ordered-root, old global-symbol,
+/-- Track B/C handoff on ONE ACTUAL selected-Q full native source flip:
+return every certified geometric, ordered-root, old global-symbol,
 strict local B-SOURCE rank and exterior SOURCE-count invariant AND
 the equal full functional root structure plus ALL-test diagram profile.
 
