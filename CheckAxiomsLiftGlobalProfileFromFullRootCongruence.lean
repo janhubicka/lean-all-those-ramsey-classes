@@ -4,3 +4,8 @@ import AllThoseRamseyClasses.Lifts.GlobalProfileFromFullRootCongruence
 #check AllThoseRamseyClasses.Lifts.selectedFunctionalChart_global_class_eq_of_rootEq_and_diagram
 #print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_global_equiv_of_rootEq_and_diagram
 #print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_global_class_eq_of_rootEq_and_diagram
+
+-- Converse equivalence: selected global class equality entails the
+-- identical FULL native root and all fixed-root forbidden tests.
+#check AllThoseRamseyClasses.Lifts.selectedFunctionalChart_global_class_eq_iff_rootEq_and_diagram
+#print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_global_class_eq_iff_rootEq_and_diagram
