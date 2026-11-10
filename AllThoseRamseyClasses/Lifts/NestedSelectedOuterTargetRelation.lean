@@ -4,7 +4,7 @@ import AllThoseRamseyClasses.Lifts.GeometricFlipOuterTargetRelation
 /-!
 # The actual old GLOBAL outer canonical relation after a nested selected-Q flip
 
-The completed source-side proof (Track A #899, conditional on its CI)
+The exact-head CI-verified, merged source-side proof (Track A #899)
 restores the genuine older geometric piece with its original complete
 ordered Fin m root and proves equality of the *published* global
 canonical piece symbols.

@@ -22,8 +22,10 @@ The selected replacement Q needs two independent properties:
 the chosen private component generates the COMPLETE full inner
 root, and ALL Q-private vertices lie in that one component.
 The first holds for genuine canonical selected replacements by
-the merged selected-Q boundary proof; the second is addressed
-independently in #881 and is not inferred from the boundary.
+the merged selected-Q boundary proof; the second was independently
+proved and merged in #881, and is NOT inferred merely from a
+single generated-root boundary. This generic carrier lemma retains
+both hypotheses; the selected-Q wrapper discharges them.
 
 The conclusion is an EXACT equation of actual native source
 carrier sets:

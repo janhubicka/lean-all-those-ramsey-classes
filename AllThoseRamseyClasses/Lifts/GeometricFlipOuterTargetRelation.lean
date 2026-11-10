@@ -21,9 +21,11 @@ root tuple explicitly. It can later be supplied by an actual common-lift
 relation witness; it is not inferred from the weak map or from source
 closedness. There is no isomorphism-closure premise on the forbidden family.
 
-The geometric boundary and exact-component premises are precisely
-the still-open Track A obligations for an unrestricted nested flip.
-This theorem does not assert that they hold, nor Claim 2/strong AP.
+For this generic conditional theorem, the geometric boundary and
+exact-component equations remain explicit hypotheses. The later
+verified nested source reconstruction (Track A #899) supplies them
+for its genuinely selected-Q nested setting; this standalone lemma
+does not assert the unrestricted Claim 2 or strong amalgamation.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
