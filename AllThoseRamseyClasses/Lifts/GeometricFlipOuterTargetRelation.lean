@@ -152,17 +152,13 @@ theorem geometricFlip_preserves_outerGlobalRelation_in_target
         (.inr (geometricGlobalPieceSymbol F Old
           (inferInstance : Finite V) hFOld P hn))
         (fun i : Fin n => flip (Pnew.roots i)) := by
-    obtain ⟨hChosenInj, Chosen, hChosenClass, hChosenReal⟩ :=
-      (globalFunctionalCanonicalRelation_iff F Target
-        (geometricGlobalPieceSymbol F New
-          (inferInstance : Finite W) hFNew Pnew hn)
-        (fun i : Fin n => flip (Pnew.roots i))).mp hNewRelation
-    apply (globalFunctionalCanonicalRelation_iff F Target
-      (geometricGlobalPieceSymbol F Old
-        (inferInstance : Finite V) hFOld P hn)
-      (fun i : Fin n => flip (Pnew.roots i))).mpr
-    refine ⟨hChosenInj, Chosen, ?_, hChosenReal⟩
-    exact hChosenClass.trans hClass.symm
+    change (globalFunctionalCanonicalLift F Target).rel
+      (.inr (⟨⟨n, hn⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F n) OldSelected⟩ :
+          GlobalFunctionalPieceSymbol F))
+      (fun i : Fin n => flip (Pnew.roots i))
+    rw [hClass]
+    exact hNewRelation
   have hTargetCoordinates :
       (fun i : Fin n => flip (Pnew.roots i)) =
         (fun i : Fin n => flip (roots i)) := by
