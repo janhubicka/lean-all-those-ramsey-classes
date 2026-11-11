@@ -135,19 +135,11 @@ theorem noEscapeComponent_partner_or_smallerPositiveRoot
         (⟨d.left.1, by simp⟩ : {v : V // v ∉ ∅})
         (⟨d.right.1, by simp⟩ : {v : V // v ∉ ∅}) := by
       have hLeftVal : d.left.1 = x.1 := by
-        simpa only [outsideCutMap] using hLeft
+        change d.left.1 = x.1 at hLeft
+        exact hLeft
       have hRightVal : d.right.1 = y.1 := by
         simpa only [outsideCutMap] using hRight
-      have hLeftEmpty :
-          (⟨d.left.1, by simp⟩ : {v : V // v ∉ ∅}) =
-          (⟨x.1, by simp⟩ : {v : V // v ∉ ∅}) :=
-        Subtype.ext hLeftVal
-      have hRightEmpty :
-          (⟨d.right.1, by simp⟩ : {v : V // v ∉ ∅}) =
-          (⟨y.1, by simp⟩ : {v : V // v ∉ ∅}) :=
-        Subtype.ext hRightVal
-      rw [hLeftEmpty, hRightEmpty]
-      exact hConnected
+      simpa only [hLeftVal, hRightVal] using hConnected
     have hNonempty : (Set.range d.roots).Nonempty :=
       minimalClosedSeparator_nonempty_of_emptyCut_path
         Source (Set.range d.roots) d.left d.right
