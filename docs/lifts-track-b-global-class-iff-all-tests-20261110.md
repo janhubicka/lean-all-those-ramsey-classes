@@ -67,3 +67,27 @@ Do not declare this converse kernel-verified until its exact-head full
 Lean CI, named `#print axioms`, permitted-axiom inventory, source-integrity
 audit and no-admissions scan pass. The previous certified direction
 is unchanged.
+
+## Global-symbol and actual-source form (stacked companion)
+
+The direct interface for the **original positive-width** lift symbol is
+`selectedFunctionalChart_globalSymbol_eq_iff_rootEq_and_diagram` in
+`Lifts/GlobalSelectedSymbolProfileEquivalence.lean`. It converts equality
+of the two actual dependent `GlobalFunctionalPieceSymbol F` values into
+equality of the selected quotient classes by the exact dependent-Sigma
+pair injectivity theorem; the class iff above then yields the full root
+and all tests. Conversely, equal full roots plus all tests yield the
+exact SAME global symbol via the indexed-class congruence.
+
+`geometricGlobalPieceSymbol_eq_iff_fullRoot_allTests` specializes
+this to two genuine finite forbidden source geometric pieces of the SAME
+ordered positive width. This is exactly the form returned by the
+actual selected-Q Claim 2 flip endpoint. Thus when storing the original
+global symbol across a sequence, `ProfileFixed` is *provably derivable*
+at each genuine geometric state, not an extra mathematical invariant.
+
+The theorem concerns **source charts**, not target weak-map images.
+It neither enforces injectivity of the target outer-root tuple nor
+constructs a positive-rank successor or terminal A-minimizer exit.
+Named axiom checks and a protected root cover the new module.
+Verify the companion on its rebased exact head before treating the integrated theorem as validated.
