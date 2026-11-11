@@ -74,19 +74,19 @@ theorem globalOriginalActualFairNativeLimit_forth_stage_step
   let diagrams := globalOriginalExtensionDiagramPrefix F hInput
   obtain ⟨i, ys, hys⟩ :=
     globalOriginalActualFairNativeLimit_finiteFamily_fullStageCover
-      F hInput (fun (_ : PUnit) => x)
+      F hInput (fun (_ : Unit) => x)
   let n := max m i
   have hmn : m ≤ n := Nat.le_max_left m i
   have hin : i ≤ n := Nat.le_max_right m i
   let y :
       (globalOriginalActualFairTraceChain F hInput n).Carrier :=
     (globalOriginalFiniteTraceChainLE
-      F hInput representatives diagrams i n hin) (ys PUnit.unit)
+      F hInput representatives diagrams i n hin) (ys Unit.unit)
   have hCocone :
       (globalOriginalTraceFullLimitIncl
         F hInput representatives diagrams n) y =
       (globalOriginalTraceFullLimitIncl
-        F hInput representatives diagrams i) (ys PUnit.unit) := by
+        F hInput representatives diagrams i) (ys Unit.unit) := by
     have h :=
       globalOriginalTraceFullLimitIncl_comp
         F hInput representatives diagrams i n hin
@@ -95,12 +95,12 @@ theorem globalOriginalActualFairNativeLimit_forth_stage_step
         (fun e : Structure.Embedding
           (globalOriginalActualFairTraceChain F hInput i).model
           (globalOriginalActualFairNativeLimit F hInput) =>
-            e (ys PUnit.unit)) h
+            e (ys Unit.unit)) h
     exact ha
   have hy :
       (globalOriginalTraceFullLimitIncl
         F hInput representatives diagrams n) y = x :=
-    hCocone.trans (hys PUnit.unit)
+    hCocone.trans (hys Unit.unit)
   have hStage :
       IsGlobalFiniteMaximalTrace F
         (fun {W : Type} (C : Structure L W) =>
