@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEFullCopyPartitePullback
+
+#print axioms AllThoseRamseyClasses.Published.systemOnFullCopy
+#print axioms AllThoseRamseyClasses.Published.systemOnFullCopy_embedding
+#print axioms AllThoseRamseyClasses.Published.systemOnFullCopy_splitEmbedding
