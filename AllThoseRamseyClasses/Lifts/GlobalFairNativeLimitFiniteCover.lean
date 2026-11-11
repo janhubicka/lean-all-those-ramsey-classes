@@ -38,7 +38,9 @@ theorem globalOriginalActualFairNativeLimit_finiteFamily_fullStageCover
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hInput : GlobalOriginalFiniteFraisseInput F)
     {α : Type v} [Finite α]
-    (xs : α → (globalOriginalActualFairNativeLimit F hInput).Carrier) :
+    (xs : α → (GlobalOriginalTraceFirstOrderDirectLimit F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput))) :
     ∃ (n : ℕ)
       (ys : α → (globalOriginalActualFairTraceChain F hInput n).Carrier),
       ∀ a : α,
@@ -65,7 +67,9 @@ dependent union of genuinely finite chain-stage carriers. -/
 theorem globalOriginalActualFairNativeLimit_countable
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hInput : GlobalOriginalFiniteFraisseInput F) :
-    Countable (globalOriginalActualFairNativeLimit F hInput).Carrier := by
+    Countable (GlobalOriginalTraceFirstOrderDirectLimit F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput)) := by
   classical
   let representatives := globalOriginalRepresentativePrefix F hInput
   let diagrams := globalOriginalExtensionDiagramPrefix F hInput
