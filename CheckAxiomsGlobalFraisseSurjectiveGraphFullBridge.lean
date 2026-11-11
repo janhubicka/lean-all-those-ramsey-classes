@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalFraisseSurjectiveGraphFullBridge
+
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_closed_of_surjective
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_toFull_of_surjective
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphEmbedding_toFull_of_surjective_apply
