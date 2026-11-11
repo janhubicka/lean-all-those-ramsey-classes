@@ -47,16 +47,108 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}} {V UB UT : Type}
 
-/-- Extract an ACTUAL selected forbidden full-native source flip solely from the
-inner global canonical relation in B and the compatible old weak map.
+/-- The actual global-witness replacement, with its selected-Q certificates
+EXPORTED rather than discarded. It produces the original full-rooted
+piece-setoid equivalence, genuine geometric selection certificate,
+the Q-side weak map into B and agreement with the target on BOTH
+amalgam summands. The exact all-test forbidden-diagram certificate is
+derived from the root/gluing bridge (not separately assumed).
+These are the very witnesses returned by the verified
+`selectedGlobalCanonicalDiagramFlip_geometricWitness` theorem.
 
-This is the source construction behind the historical nested outer-relation
-theorem. It requires NO older outer piece, nested-component assumption,
-or injectivity of any older outer root tuple in the EHN target. In
-particular, the actual selected-source flip remains available when an
-older outer root image collides. Realizing the ORIGINAL global outer
-target relation still requires its own injectivity premise; this lemma
-does NOT solve Track D or unrestricted Claim 2. -/
+No outer geometric piece, outer root injection or nesting is assumed.
+The full fixed-root diagram equivalence is exported for subsequent
+nested contextual geometry; root collisions are not solved. -/
+theorem geometric_actualGlobalWitness_selectedFlip_withSelection
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    [Finite V]
+    (Old : Structure L V) (hFOld : F Old)
+    {n : ℕ}
+    (inner : GeometricFunctionalPieceData Old n)
+    (hn : 0 < n)
+    (Target : Structure L UT)
+    (f : V → UT) (hf : Old.IsEHNHomomorphismEmbedding Target f)
+    (B : Structure L UB)
+    (jB : Structure.Embedding B Target)
+    (xsB : Fin n → UB)
+    (hInnerGlobal :
+      (globalFunctionalCanonicalLift F B).rel
+        (.inr (geometricGlobalPieceSymbol F Old
+          (inferInstance : Finite V) hFOld inner hn)) xsB)
+    (hInnerCoordinates : ∀ i : Fin n,
+      jB (xsB i) = f (inner.roots i))
+    :
+    let T := geometricGlobalComplementChart Old inner
+    ∃ (Q : FunctionalRootExtension
+          (geometricGlobalFunctionalChart Old inner).root),
+      (functionalRootPieceSetoid
+        (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q ∧
+      (functionalDiagramPieceSetoid
+        (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q ∧
+      (FunctionalRootExtension.toEnumeratedRootedPattern
+        (geometricGlobalFunctionalChart Old inner).root
+        (Equiv.refl (Fin n)) Q) ∈ forbiddenGeometricFunctionalPieces F n ∧
+      ∃ (g : Q.Carrier → UB),
+        Q.str.IsEHNHomomorphismEmbedding B g ∧
+        (∀ i : Fin n, g (Q.rootEmbedding i) = xsB i) ∧
+        ∃ (W : Type) (New : Structure L W)
+          (iQ : Structure.Embedding Q.str New)
+          (iT : Structure.Embedding T.str New)
+          (flip : W → UT),
+          F New ∧
+          Structure.IsFreeAmalgam Q.rootEmbedding T.rootEmbedding iQ iT ∧
+          New.IsEHNHomomorphismEmbedding Target flip ∧
+          (∀ a : Q.Carrier, flip (iQ a) = jB (g a)) ∧
+          (∀ b : T.Carrier, flip (iT b) = f b.1) := by
+  let P : SelectedFunctionalChart F n :=
+    geometricGlobalSelectedChart F Old
+      (inferInstance : Finite V) hFOld inner
+  let T := geometricGlobalComplementChart Old inner
+  let iOldT : Structure.Embedding T.str Old :=
+    functionalComponentComplementEmbedding Old
+      (Set.range inner.roots) inner.minimal.1 inner.left
+  let pT : T.Carrier → UT := fun b => f b.1
+  have hpT : T.str.IsEHNHomomorphismEmbedding Target pT :=
+    hf.comp iOldT.isEHNHomomorphismEmbedding
+  have hOldDiagram :
+      forbiddenFunctionalDiagram P.1.root F P.1.ext T :=
+    geometricGlobalSource_has_forbidden_diagram F Old
+      (inferInstance : Finite V) hFOld inner
+  have hGlobalP :
+      (globalFunctionalCanonicalLift F B).rel
+        (.inr (globalPieceSymbolOf F P hn)) xsB := by
+    change (globalFunctionalCanonicalLift F B).rel
+      (.inr (geometricGlobalPieceSymbol F Old
+        (inferInstance : Finite V) hFOld inner hn)) xsB
+    exact hInnerGlobal
+  have hRootAgree : ∀ i : Fin n,
+      jB (xsB i) = pT (T.rootEmbedding i) := by
+    intro i
+    calc
+      jB (xsB i) = f (inner.roots i) := hInnerCoordinates i
+      _ = pT (T.rootEmbedding i) := rfl
+  obtain ⟨Q, hRootPieceEquiv, hSelected,
+      g, hg, hgRoots,
+      W, New, hFNew, iQ, iT, hFree,
+      flip, hFlip, hQMap, hTMap⟩ :=
+    selectedGlobalCanonicalDiagramFlip_geometricWitness
+      F P hn T hOldDiagram
+      B Target jB xsB hGlobalP pT hpT hRootAgree
+  have hDiagram :
+      (functionalDiagramPieceSetoid
+        (geometricGlobalFunctionalChart Old inner).root F).r
+        (geometricGlobalFunctionalChart Old inner).ext Q :=
+    (functionalDiagramPiece_equiv_iff_glue
+      (geometricGlobalFunctionalChart Old inner).root F
+      (geometricGlobalFunctionalChart Old inner).ext Q).mpr
+      hRootPieceEquiv
+  exact ⟨Q, hRootPieceEquiv, hDiagram, hSelected, g, hg, hgRoots,
+    W, New, iQ, iT, flip, hFNew, hFree, hFlip, hQMap, hTMap⟩
+
+/-- Project the full selected replacement certificate to the historical
+collision-tolerant source-flip interface, without an older outer piece. -/
 theorem geometric_actualGlobalWitness_selectedFlip
     (F : ∀ {Z : Type}, Structure L Z → Prop)
     [Finite V]
@@ -87,40 +179,11 @@ theorem geometric_actualGlobalWitness_selectedFlip
       Structure.IsFreeAmalgam Q.rootEmbedding T.rootEmbedding iQ iT ∧
       New.IsEHNHomomorphismEmbedding Target flip ∧
       (∀ b : T.Carrier, flip (iT b) = f b.1) := by
-  let P : SelectedFunctionalChart F n :=
-    geometricGlobalSelectedChart F Old
-      (inferInstance : Finite V) hFOld inner
-  let T := geometricGlobalComplementChart Old inner
-  let iOldT : Structure.Embedding T.str Old :=
-    functionalComponentComplementEmbedding Old
-      (Set.range inner.roots) inner.minimal.1 inner.left
-  let pT : T.Carrier → UT := fun b => f b.1
-  have hpT : T.str.IsEHNHomomorphismEmbedding Target pT :=
-    hf.comp iOldT.isEHNHomomorphismEmbedding
-  have hOldDiagram :
-      forbiddenFunctionalDiagram P.1.root F P.1.ext T :=
-    geometricGlobalSource_has_forbidden_diagram F Old
-      (inferInstance : Finite V) hFOld inner
-  have hGlobalP :
-      (globalFunctionalCanonicalLift F B).rel
-        (.inr (globalPieceSymbolOf F P hn)) xsB := by
-    change (globalFunctionalCanonicalLift F B).rel
-      (.inr (geometricGlobalPieceSymbol F Old
-        (inferInstance : Finite V) hFOld inner hn)) xsB
-    exact hInnerGlobal
-  have hRootAgree : ∀ i : Fin n,
-      jB (xsB i) = pT (T.rootEmbedding i) := by
-    intro i
-    calc
-      jB (xsB i) = f (inner.roots i) := hInnerCoordinates i
-      _ = pT (T.rootEmbedding i) := rfl
-  obtain ⟨Q, _hRootPieceEquiv, _hSelected,
-      _g, _hg, _hgRoots,
-      W, New, hFNew, iQ, iT, hFree,
-      flip, hFlip, _hQMap, hTMap⟩ :=
-    selectedGlobalCanonicalDiagramFlip_geometricWitness
-      F P hn T hOldDiagram
-      B Target jB xsB hGlobalP pT hpT hRootAgree
+  obtain ⟨Q, _hRootEq, _hDiagram, _hSelected, _g, _hg, _hgRoots,
+      W, New, iQ, iT, flip, hFNew, hFree, hFlip, _hQMap, hTMap⟩ :=
+    geometric_actualGlobalWitness_selectedFlip_withSelection
+      F Old hFOld inner hn
+      Target f hf B jB xsB hInnerGlobal hInnerCoordinates
   exact ⟨Q, W, New, iQ, iT, flip, hFNew, hFree, hFlip, hTMap⟩
 
 /-- A REAL original inner global canonical relation in the second
