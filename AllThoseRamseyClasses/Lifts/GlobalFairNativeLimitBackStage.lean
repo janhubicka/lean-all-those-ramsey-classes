@@ -168,6 +168,8 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
           AvoidsGlobalFunctionalEHN F C)
         (globalOriginalActualFairTraceChain F hInput (n + 1)).model :=
     (globalOriginalActualFairTraceChain F hInput (n + 1)).member
+  letI : Finite (globalOriginalActualFairTraceChain F hInput t).Carrier :=
+    (globalOriginalActualFairTraceChain F hInput t).member.1
   obtain ⟨g, hg⟩ :=
     globalOriginalActualFairNativeLimit_extend_fullAgeDiagram
       F hInput
