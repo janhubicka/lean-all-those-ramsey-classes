@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoSeamIncursionBoundaryPartner
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_noSeamIncursion_forces_matchingBoundary
