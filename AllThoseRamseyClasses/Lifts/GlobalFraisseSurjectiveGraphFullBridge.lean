@@ -48,6 +48,10 @@ theorem firstOrderNativeGraphEmbedding_closed_of_surjective
       (firstOrderNativeGraphStructure B))
     (he : Function.Surjective e) :
     A.ClosedMap B e := by
+  letI : (firstOrderRelGraphLanguage L.graph).Structure V :=
+    firstOrderNativeGraphStructure A
+  letI : (firstOrderRelGraphLanguage L.graph).Structure W :=
+    firstOrderNativeGraphStructure B
   intro S xs y hy
   obtain ⟨z, hz⟩ := he y
   have hTuple :
