@@ -70,7 +70,29 @@ noncomputable def globalOriginalTraceFullLimitIncl
   let c : RelStructure.ClosedEmbedding
       (globalOriginalFiniteTraceChain
         F hInput representatives diagrams n).model.graph R := {
-    toEmbedding := firstOrderRelGraphEmbedding_toRel e
+    -- The limit's first-order model is only propositionally the graph
+    -- encoding of its relational decoder, not definitionally identical.
+    -- Build the relational embedding against that decoder directly.
+    toEmbedding := {
+      toFun := e
+      injective := e.injective
+      map_rel_iff := by
+        intro S xs
+        change
+          (globalOriginalTraceFirstOrderLimitModel
+            F hInput representatives diagrams).RelMap
+              (⟨S, rfl⟩ :
+                (GlobalOriginalTraceFirstOrderLanguage F).Relations
+                  ((globalFunctionalPieceLanguage F).graph.arity S))
+              (e ∘ xs) ↔
+          (globalOriginalTraceStageFirstOrderModel
+            F hInput representatives diagrams n).RelMap
+              (⟨S, rfl⟩ :
+                (GlobalOriginalTraceFirstOrderLanguage F).Relations
+                  ((globalFunctionalPieceLanguage F).graph.arity S))
+              xs
+        exact e.map_rel _ xs
+    }
     closed := by
       intro S xs y hy
       have hyNative :
