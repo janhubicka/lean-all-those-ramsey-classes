@@ -155,7 +155,7 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
         (globalOriginalActualFairTraceChainStep F hInput n)
           ((globalOriginalFiniteTraceChainLE F hInput
             representatives diagrams m n hmn) a) := by
-              simpa only [Structure.Embedding.id] using hh a
+              simpa only [Structure.Embedding.id, id_eq] using hh a
       _ = (globalOriginalFiniteTraceChainLE F hInput
             representatives diagrams m (n + 1)
             (Nat.le_succ_of_le hmn)) a := by
