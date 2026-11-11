@@ -78,9 +78,17 @@ theorem globalOriginalActualFairNativeLimit_countable
         F hInput representatives diagrams n) :=
     (globalOriginalFiniteTraceChain
       F hInput representatives diagrams n).member.1
+  -- The underlying Mathlib directed-limit quotient is countable
+  -- because the dependent union of the finite stage carriers is.
+  -- Explicitly register the sigma countability instance rather than
+  -- relying on synthesis through the dependent first-order alias.
+  haveI hSigma :
+      Countable (Σ n : ℕ, GlobalOriginalTraceStageVertex
+        F hInput representatives diagrams n) := by
+    infer_instance
   change Countable
     (GlobalOriginalTraceFirstOrderDirectLimit
       F hInput representatives diagrams)
-  infer_instance
+  exact Quotient.countable
 
 end AllThoseRamseyClasses.Lifts
