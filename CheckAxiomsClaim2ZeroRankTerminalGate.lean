@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ZeroRankTerminalGate
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_exists_zeroB_terminal_with_constant_outsideLeft
+#print axioms AllThoseRamseyClasses.Lifts.claim2_no_valid_initial_of_positiveStep_and_zeroExit
