@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitTwoCopyAlignment
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_twoFullCopies_alignStage
