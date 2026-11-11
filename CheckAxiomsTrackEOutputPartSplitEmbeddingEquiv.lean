@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEOutputPartSplitEmbeddingEquiv
+
+#print axioms AllThoseRamseyClasses.Published.systemEmbedding_of_splitOutputParts
+#print axioms AllThoseRamseyClasses.Published.systemEmbedding_splitOutputPartsEquiv
+#print axioms AllThoseRamseyClasses.Published.systemEmbedding_splitOutputParts_map_comp
+#print axioms AllThoseRamseyClasses.Published.systemArrow_splitOutputParts_iff
