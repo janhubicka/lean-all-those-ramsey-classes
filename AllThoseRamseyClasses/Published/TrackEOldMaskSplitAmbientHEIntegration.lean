@@ -76,7 +76,6 @@ theorem nativeAmbientRelativeWeakHE_of_splitHE_and_oldMaskMap
     intro F xs hNonempty _hAll
     rw [nativeOutputPartMask_eq_of_oldDomainMap
       A B S f hDomain F xs hNonempty]
-    exact Set.Subset.rfl
   have hNativeWeak : IsAmbientRelativeWeakHomomorphism
       A.toStructure S B.toStructure f :=
     ambientRelativeWeakHom_of_splitOutputParts_and_noNewParts
