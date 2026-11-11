@@ -152,10 +152,16 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
           (Nat.le_succ_of_le hmn)) a := by
     rw [globalOriginalFiniteTraceChainLE_succ
       F hInput representatives diagrams m n hmn]
+    -- The transition equality is about FULL embeddings.  Unfold
+    -- the pointwise application of their composition explicitly
+    -- rather than asking simp to match composition under toFun.
+    change h (jit a) =
+      (globalOriginalFiniteTraceChainStep
+        F hInput representatives diagrams n)
+        ((globalOriginalFiniteTraceChainLE
+          F hInput representatives diagrams m n hmn) a)
     simpa only [globalOriginalActualFairTraceChainStep,
-      Structure.Embedding.comp, Structure.Embedding.id, id_eq,
-      Function.comp_apply]
-      using hh a
+      Structure.Embedding.id, id_eq] using hh a
   have hnAge :
       IsGlobalFiniteMaximalTrace F
         (fun {W : Type} (C : Structure L W) =>
