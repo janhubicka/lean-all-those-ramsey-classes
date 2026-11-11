@@ -153,7 +153,8 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
     rw [globalOriginalFiniteTraceChainLE_succ
       F hInput representatives diagrams m n hmn]
     simpa only [globalOriginalActualFairTraceChainStep,
-      Structure.Embedding.comp, Structure.Embedding.id, id_eq]
+      Structure.Embedding.comp, Structure.Embedding.id, id_eq,
+      Function.comp_apply]
       using hh a
   have hnAge :
       IsGlobalFiniteMaximalTrace F
