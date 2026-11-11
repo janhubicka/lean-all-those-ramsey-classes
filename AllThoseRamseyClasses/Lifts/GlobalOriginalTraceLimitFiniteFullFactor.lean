@@ -133,6 +133,7 @@ theorem globalOriginalTraceNativeLimit_finiteFullFactor
         rw [← j.map_func S xs] at hjw
         obtain ⟨a, ha, haw⟩ := hjw
         exact ⟨a, ha, u.injective ((hu a).trans haw)⟩
+  }
   exact ⟨n, e, hu⟩
 
 /-- Every FINITE FULL substructure of the actual decoded native
