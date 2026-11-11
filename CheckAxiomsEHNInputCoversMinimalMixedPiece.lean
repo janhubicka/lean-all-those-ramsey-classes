@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNInputCoversMinimalMixedPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_injectiveMinimalForbiddenWitness_with_minimalMixedPiece_of_inputCovers
