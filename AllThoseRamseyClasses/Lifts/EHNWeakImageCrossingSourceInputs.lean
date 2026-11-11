@@ -7,7 +7,7 @@ import AllThoseRamseyClasses.Lifts.EHNWeakImageUncoveredFunctionInput
 The previously checked local theorems quantify over every original source tuple
 at the quotient coordinates of a side surplus. This module supplies the missing
 EXISTENTIAL witness: each quotient coordinate is literally a member of the
-source map's range, so all finitely many coordinates admit simultaneous actual
+source map's range, so all finitely many coordinates have simultaneous actual
 source representatives, even when the source map has root collisions.
 
 For either a relation surplus or a function-fibre surplus, the representatives
