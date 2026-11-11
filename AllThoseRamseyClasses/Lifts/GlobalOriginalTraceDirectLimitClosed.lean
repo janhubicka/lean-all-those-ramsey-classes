@@ -62,16 +62,31 @@ theorem globalOriginalTraceFirstOrderLimitIncl_comp
         F hInput representatives diagrams m n hmn) x) =
     globalOriginalTraceFirstOrderLimitIncl
       F hInput representatives diagrams m x := by
-  simpa only [globalOriginalTraceFirstOrderLimitIncl,
-      globalOriginalTraceStageFirstOrderMap,
-      firstOrderNativeGraphEmbedding, firstOrderRelGraphEmbedding] using
-    (FirstOrder.Language.DirectLimit.of_f
-      (L := GlobalOriginalTraceFirstOrderLanguage F)
-      (G := fun i : ℕ => GlobalOriginalTraceStageVertex
+  -- State the cocone law with exactly the transition map used to
+  -- construct Mathlib's quotient.  In particular, do not simplify away
+  -- the first-order map's projection before applying `of_f`.
+  change
+    (FirstOrder.Language.DirectLimit.of
+      (GlobalOriginalTraceFirstOrderLanguage F) ℕ
+      (fun i : ℕ => GlobalOriginalTraceStageVertex
         F hInput representatives diagrams i)
-      (f := fun i j h => globalOriginalTraceStageFirstOrderMap
-        F hInput representatives diagrams i j h)
-      (hij := hmn) (x := x))
+      (fun i j h => globalOriginalTraceStageFirstOrderMap
+        F hInput representatives diagrams i j h) n)
+      ((globalOriginalTraceStageFirstOrderMap
+        F hInput representatives diagrams m n hmn) x) =
+    (FirstOrder.Language.DirectLimit.of
+      (GlobalOriginalTraceFirstOrderLanguage F) ℕ
+      (fun i : ℕ => GlobalOriginalTraceStageVertex
+        F hInput representatives diagrams i)
+      (fun i j h => globalOriginalTraceStageFirstOrderMap
+        F hInput representatives diagrams i j h) m) x
+  exact FirstOrder.Language.DirectLimit.of_f
+    (L := GlobalOriginalTraceFirstOrderLanguage F)
+    (G := fun i : ℕ => GlobalOriginalTraceStageVertex
+      F hInput representatives diagrams i)
+    (f := fun i j h => globalOriginalTraceStageFirstOrderMap
+      F hInput representatives diagrams i j h)
+    (hij := hmn) (x := x)
 
 /-- The canonical first-order graph embedding of EVERY
 original finite maximal-trace stage has genuinely
