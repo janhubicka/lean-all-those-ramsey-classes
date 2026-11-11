@@ -347,11 +347,13 @@ embedding automatically preserves complete set-valued function fibres.
 | Coherent FULL cocone | `GlobalOriginalTraceFullLimitCocone.lean`: `globalOriginalTraceFullLimitIncl_comp` |
 | Forward and reverse finite FULL age inclusion | `GlobalFairNativeLimitAgeCofinality.lean`, `GlobalOriginalTraceLimitFiniteFullFactor.lean`: `globalOriginalActualFairNativeLimit_finiteAge_iff` |
 | Finite FULL age-extension property of the fair native limit | `GlobalFairNativeLimitFiniteExtension.lean`: `globalOriginalActualFairNativeLimit_extend_fullAgeDiagram` |
+| Finite FULL stage covers and countability | `GlobalFairNativeLimitFiniteCover.lean`: `globalOriginalActualFairNativeLimit_finiteFamily_fullStageCover`, `globalOriginalActualFairNativeLimit_countable` |
 
 These modules were merged through PRs
 [#919](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/919),
 [#988](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/988)
-and [#990](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/990),
+[#990](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/990) and
+[#993](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/993),
 with exact-head all-module build, permitted-axiom, source-integrity and
 no-admissions checks.
 
@@ -363,8 +365,7 @@ equality and extension theorem do *not* by themselves prove the unconditional
 published Ramsey theorem. Nor do they already establish native
 ultrahomogeneity or an automorphism back-and-forth.
 
-The current separate back-and-forth development includes finite FULL stage
-cover and countability ([draft #993](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/993)),
+The current separate back-and-forth development includes
 forth/back extension ([draft #996](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/996),
 [draft #1000](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1000)),
 and the common two-sided step
