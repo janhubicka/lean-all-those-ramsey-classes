@@ -57,7 +57,9 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
     (f : Structure.Embedding
       (globalOriginalActualFairTraceChain F hInput m).model
       (globalOriginalActualFairNativeLimit F hInput))
-    (y : (globalOriginalActualFairNativeLimit F hInput).Carrier) :
+    (y : (GlobalOriginalTraceFirstOrderDirectLimit F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput))) :
     ∃ (N : ℕ) (hmN : m ≤ N)
       (g : Structure.Embedding
         (globalOriginalActualFairTraceChain F hInput N).model
