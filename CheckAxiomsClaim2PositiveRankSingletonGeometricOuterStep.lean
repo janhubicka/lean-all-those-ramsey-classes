@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankSingletonGeometricOuterStep
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRank_singletonBoundary_actualGeometricOuterStep
