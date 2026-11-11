@@ -107,6 +107,8 @@ theorem globalOriginalActualFairNativeLimit_forth_stage_step
           AvoidsGlobalFunctionalEHN F C)
         (globalOriginalActualFairTraceChain F hInput n).model :=
     (globalOriginalFiniteTraceChain F hInput representatives diagrams n).member
+  letI : Finite (globalOriginalActualFairTraceChain F hInput m).Carrier :=
+    (globalOriginalActualFairTraceChain F hInput m).member.1
   obtain ⟨g, hg⟩ :=
     globalOriginalActualFairNativeLimit_extend_fullAgeDiagram
       F hInput
