@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitFiniteExtension
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_extend_fullAgeDiagram
