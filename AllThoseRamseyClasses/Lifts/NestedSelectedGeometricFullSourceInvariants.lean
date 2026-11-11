@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.NestedSelectedOuterGeometricPieceLocalRank
 import AllThoseRamseyClasses.Lifts.GeometricFlipOuterExteriorSupport
+import AllThoseRamseyClasses.Lifts.GlobalSelectedSymbolProfileEquivalence
 
 /-!
 # One selected-Q nested source flip preserves ALL geometric step invariants
@@ -258,23 +259,14 @@ theorem nestedGeometric_selectedFlip_fullSourceStepInvariants_withAllTests
       F Old hFOld inner outer hNested
       Q hSelected hEq New hFNew iQ iE hFree hm
       f flip hSameE BOnly hStrictContext
-  have hInnerRoot : ∀ i : Fin n,
-      inner.roots i ∈ geometricPieceVertices Old outer :=
-    nestedGeometric_innerRoot_in_outerPiece Old inner outer hNested
-  have hInnerComponent :
-      functionalComponentFrom Old (Set.range inner.roots) inner.left ⊆
-        geometricPieceVertices Old outer := by
-    intro v hv
-    exact Or.inr (hNested hv)
-  have hOuterRootOutside : ∀ i : Fin m,
-      outer.roots i ∉ functionalComponentFrom Old
-        (Set.range inner.roots) inner.left :=
-    nestedGeometric_outerRoot_avoids_innerComponent
-      Old inner outer hNested
+  -- For genuinely selected forbidden source pieces, the preserved
+  -- ORIGINAL global symbol already determines the entire full root
+  -- structure and every native forbidden-diagram test. There is no
+  -- second compatibility calculation or independently chosen Q.
   obtain ⟨hRoot, hProfile⟩ :=
-    geometricFlip_preserves_fullRoot_allTests_of_newGeometricContext
-      F Old outer inner hInnerRoot hInnerComponent hOuterRootOutside
-      Q hEq New iQ iE hFree newOuter hRoots hCarrier
+    (geometricGlobalPieceSymbol_eq_iff_fullRoot_allTests
+      F Old (inferInstance : Finite V) hFOld
+      New hFiniteNew hFNew outer newOuter hm).mp hSymbol
   exact ⟨hFiniteNew, newOuter, hRoot,
     hRoots, hSymbol, hCarrier, hTarget, hRank, hExterior, hProfile⟩
 
