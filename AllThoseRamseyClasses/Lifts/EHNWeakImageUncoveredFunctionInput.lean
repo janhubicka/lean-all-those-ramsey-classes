@@ -369,7 +369,11 @@ theorem functionGeneratedHull_irreducible_of_positiveInput
     have hInputSide : ∀ i, e (inputs i) ∈ Set.range jL := by
       intro i
       exact ⟨args i, (congrFun hArgs i).symm⟩
-    exact hGen _ hClosed hInputSide
+    have hImage : ∀ x : S, e x ∈ Set.range jL :=
+      hGen _ hClosed hInputSide
+    intro x
+    obtain ⟨y, hy⟩ := hImage x
+    exact ⟨y, hy.symm⟩
   · right
     have hClosed :
         H.IsClosed {x : S | e x ∈ Set.range jR} :=
@@ -377,7 +381,11 @@ theorem functionGeneratedHull_irreducible_of_positiveInput
     have hInputSide : ∀ i, e (inputs i) ∈ Set.range jR := by
       intro i
       exact ⟨args i, (congrFun hArgs i).symm⟩
-    exact hGen _ hClosed hInputSide
+    have hImage : ∀ x : S, e x ∈ Set.range jR :=
+      hGen _ hClosed hInputSide
+    intro x
+    obtain ⟨y, hy⟩ := hImage x
+    exact ⟨y, hy.symm⟩
 
 /-- Every DEFINED original native function-input tuple,
 regardless of arity, belongs to the full irreducible
@@ -519,10 +527,7 @@ theorem weakImageFullTest_sideExtraFunction_testFibreEmpty
       weakImageFullTest_sideExtraFunction_allSourceInputsUndefined
         A B f hf E e Side j g hCoords
         F xs z hSideValue hMissing ys hInputCoords
-    have hNot : v ∉ A.func F ys := by
-      rw [hEmpty]
-      exact Set.not_mem_empty v
-    exact False.elim (hNot hv)
+    simp [hEmpty] at hv
   · intro h
     exact False.elim h
 
