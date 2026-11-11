@@ -83,7 +83,7 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
       (globalOriginalActualFairTraceChain F hInput m).model f
   obtain ⟨k, ys, hys⟩ :=
     globalOriginalActualFairNativeLimit_finiteFamily_fullStageCover
-      F hInput (fun (_ : PUnit) => y)
+      F hInput (fun (_ : Unit) => y)
   have hCanonical (r s : ℕ) (hrs : r ≤ s)
       (a : (globalOriginalActualFairTraceChain F hInput r).Carrier) :
       (globalOriginalTraceFullLimitIncl F hInput
@@ -119,7 +119,7 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
       _ = f a := hfi a
   let yt : (globalOriginalActualFairTraceChain F hInput t).Carrier :=
     (globalOriginalFiniteTraceChainLE
-      F hInput representatives diagrams k t hkt) (ys PUnit.unit)
+      F hInput representatives diagrams k t hkt) (ys Unit.unit)
   have hyt :
       (globalOriginalTraceFullLimitIncl
         F hInput representatives diagrams t) yt = y := by
@@ -127,9 +127,9 @@ theorem globalOriginalActualFairNativeLimit_back_stage_step
       (globalOriginalTraceFullLimitIncl F hInput
         representatives diagrams t) yt =
           (globalOriginalTraceFullLimitIncl F hInput
-            representatives diagrams k) (ys PUnit.unit) :=
-        hCanonical k t hkt (ys PUnit.unit)
-      _ = y := hys PUnit.unit
+            representatives diagrams k) (ys Unit.unit) :=
+        hCanonical k t hkt (ys Unit.unit)
+      _ = y := hys Unit.unit
   have htAge :
       IsGlobalFiniteMaximalTrace F
         (fun {W : Type} (C : Structure L W) =>
