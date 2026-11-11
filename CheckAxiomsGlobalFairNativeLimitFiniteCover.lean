@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitFiniteCover
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_finiteFamily_fullStageCover
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_countable
