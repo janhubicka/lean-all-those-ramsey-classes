@@ -50,7 +50,9 @@ theorem globalOriginalActualFairNativeLimit_forth_stage_step
     (f : Structure.Embedding
       (globalOriginalActualFairTraceChain F hInput m).model
       (globalOriginalActualFairNativeLimit F hInput))
-    (x : (globalOriginalActualFairNativeLimit F hInput).Carrier) :
+    (x : (GlobalOriginalTraceFirstOrderDirectLimit F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput))) :
     ∃ (n : ℕ) (hmn : m ≤ n)
       (y : (globalOriginalActualFairTraceChain F hInput n).Carrier)
       (g : Structure.Embedding
