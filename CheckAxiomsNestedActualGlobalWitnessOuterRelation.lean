@@ -1,3 +1,7 @@
 import AllThoseRamseyClasses.Lifts.NestedActualGlobalWitnessOuterRelation
 
+-- Actual selected replacement is independent of an outer root and
+-- therefore remains usable when that root's weak target images collide.
+#check AllThoseRamseyClasses.Lifts.geometric_actualGlobalWitness_selectedFlip
+#print axioms AllThoseRamseyClasses.Lifts.geometric_actualGlobalWitness_selectedFlip
 #print axioms AllThoseRamseyClasses.Lifts.nestedGeometric_actualGlobalWitness_preserves_outerRelation
