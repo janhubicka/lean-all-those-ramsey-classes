@@ -226,6 +226,7 @@ theorem genuineTagged2019_allWeakAtOne_relativeCompletion
   let SS : Set V := (↑S : Set V)
   have hSingletonIrred : (C.induce SS).Irreducible := by
     intro x y hxy
+    exfalso
     apply hxy
     apply Subtype.ext
     exact Finset.card_le_one.mp hSize x.1 x.2 y.1 y.2
