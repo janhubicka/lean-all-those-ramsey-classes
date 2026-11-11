@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalOriginalTraceFullLimitInclusions
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFullLimitIncl
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFullLimitIncl_apply
