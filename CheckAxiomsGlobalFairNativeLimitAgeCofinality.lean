@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitAgeCofinality
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_contains_fullAge
