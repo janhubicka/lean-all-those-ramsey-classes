@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEOutputPartSplitIrreducibility
+
+#print axioms AllThoseRamseyClasses.Published.joinOutputPartsEmbedding
+#print axioms AllThoseRamseyClasses.Published.originalToJoinedSplitEmbedding
+#print axioms AllThoseRamseyClasses.Published.joinOutputParts_freeAmalgam
+#print axioms AllThoseRamseyClasses.Published.nativeIrreducible_splitOutputParts
