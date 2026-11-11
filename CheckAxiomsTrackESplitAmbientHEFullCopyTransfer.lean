@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackESplitAmbientHEFullCopyTransfer
+
+#print axioms AllThoseRamseyClasses.Published.joinedSplitToOriginalEmbedding
+#print axioms AllThoseRamseyClasses.Published.nativeAmbientRelativeWeakHE_of_splitHE_and_nativeWeak
