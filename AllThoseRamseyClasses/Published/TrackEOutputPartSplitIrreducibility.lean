@@ -63,11 +63,16 @@ def joinOutputPartsEmbedding
     constructor
     · rintro ⟨a, ⟨q, ha⟩, rfl⟩
       refine ⟨q, ?_⟩
-      rw [← e.map_func (ULift.up F, q) xs]
-      exact ⟨a, ha, rfl⟩
+      have hInImage :
+          e a ∈ Structure.imageSet e
+            (X.func (ULift.up F, q) xs) := ⟨a, ha, rfl⟩
+      exact (e.map_func (ULift.up F, q) xs) ▸ hInImage
     · rintro ⟨q, hq⟩
-      rw [← e.map_func (ULift.up F, q) xs] at hq
-      obtain ⟨a, ha, rfl⟩ := hq
+      have hInImage :
+          y ∈ Structure.imageSet e
+            (X.func (ULift.up F, q) xs) :=
+        (e.map_func (ULift.up F, q) xs).symm ▸ hq
+      obtain ⟨a, ha, rfl⟩ := hInImage
       exact ⟨a, ⟨q, ha⟩, rfl⟩
 
 /-- The original native System fully embeds, with the identity vertex
