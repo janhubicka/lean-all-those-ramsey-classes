@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEDualEncodedAmbientRelativeWeakMap
+
+#print axioms AllThoseRamseyClasses.Published.ambientRelativeWeakHom_of_twoCanonicalPatternMaps
