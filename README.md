@@ -333,6 +333,45 @@ remaining example-specific proof obligations. The separate working
 manuscript maintains more detailed nonprinting validation markers. **Do not cite a
 verified component as if it were the final application Ramsey theorem.**
 
+## Conditional native Fraïssé construction (Track F)
+
+The `Lifts/` library also constructs the **actual decoded native functional
+direct limit** of the fair chain for the original maximal-trace lift. These
+verified results are independent of any claim that a first-order graph
+embedding automatically preserves complete set-valued function fibres.
+
+| Certified endpoint | Lean theorem / defining module |
+| --- | --- |
+| Finite-stage function-closed images | `GlobalOriginalTraceDirectLimitClosed.lean`: `globalOriginalTraceFirstOrderLimitIncl_closedMap` |
+| Genuine FULL stage embeddings | `GlobalOriginalTraceFullLimitInclusions.lean`: `globalOriginalTraceFullLimitIncl` |
+| Coherent FULL cocone | `GlobalOriginalTraceFullLimitCocone.lean`: `globalOriginalTraceFullLimitIncl_comp` |
+| Forward and reverse finite FULL age inclusion | `GlobalFairNativeLimitAgeCofinality.lean`, `GlobalOriginalTraceLimitFiniteFullFactor.lean`: `globalOriginalActualFairNativeLimit_finiteAge_iff` |
+| Finite FULL age-extension property of the fair native limit | `GlobalFairNativeLimitFiniteExtension.lean`: `globalOriginalActualFairNativeLimit_extend_fullAgeDiagram` |
+
+These modules were merged through PRs
+[#919](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/919),
+[#988](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/988)
+and [#990](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/990),
+with exact-head all-module build, permitted-axiom, source-integrity and
+no-admissions checks.
+
+**Hypothesis boundary:** each theorem is conditional on
+`GlobalOriginalFiniteFraisseInput F`. In the unrestricted reducible
+forbidden-source case this input retains the original unresolved global
+shadow-avoidance / Claim 2 obligation. The conditional native finite-age
+equality and extension theorem do *not* by themselves prove the unconditional
+published Ramsey theorem. Nor do they already establish native
+ultrahomogeneity or an automorphism back-and-forth.
+
+The current separate back-and-forth development includes finite FULL stage
+cover and countability ([draft #993](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/993)),
+forth/back extension ([draft #996](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/996),
+[draft #1000](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1000)),
+and the common two-sided step
+([draft #1007](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1007)).
+These **draft results are not part of the certified API** until their complete
+CI and required parent integration pass.
+
 ## Audit, reliability and historical status
 
 Each repository change is built by
