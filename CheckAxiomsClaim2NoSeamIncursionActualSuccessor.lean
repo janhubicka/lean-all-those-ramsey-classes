@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoSeamIncursionActualSuccessor
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalLeftWitness_noSeamIncursion_actualGeometricRightFlip
