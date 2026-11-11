@@ -194,3 +194,29 @@ unrestricted printed Claim 2 until exact-head kernel CI and
 statement-by-statement correspondence pass. Retain all prior
 collaborator-removed manuscript TODOs as removed. The numbered
 2019 manuscript remains untouched.
+
+
+## 11 November 2026 — formal conditional zero-rank endpoint
+
+Track C's theorem `claim2_exists_zeroB_terminal_with_constant_outsideLeft`
+records a proved **conditional** reduction. In any valid finite-source state
+relation whose steps strictly lower the local B-only SOURCE-vertex count and
+conserve A-only SOURCE-vertex count outside the entire actual outer piece,
+**if every positive-B-rank valid state has a genuine next step**, there is a
+reachable valid terminal state with B-rank zero and the original exterior
+A-only SOURCE count. The companion theorem
+`claim2_no_valid_initial_of_positiveStep_and_zeroExit` derives an actual
+contradiction if every such zero-rank state admits the already established
+original-minimizer A-clearing exit.
+
+Neither theorem constructs the positive-rank next step, proves the zero-exit
+premise for general roots, or eliminates weak EHN root-image collisions.
+In particular, the general mixed smaller-boundary-root alternative remains
+open: the newly selected component need not be B-only and its image roots
+need not be injective. A genuine Claim 2 completion must still instantiate
+both mathematical premises. Existing single-root and matching-partner
+instances are special cases, not general successor witnesses. Do not mark
+unrestricted strong amalgamation verified on this basis.
+
+The numbered 2019 manuscript remains frozen, including previously removed
+collaborator TODOs.
