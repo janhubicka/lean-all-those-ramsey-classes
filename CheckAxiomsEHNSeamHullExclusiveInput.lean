@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamHullExclusiveInput
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_sourceInputHull_commonRootOrExclusiveGenerator
+#print axioms AllThoseRamseyClasses.Lifts.ehn_positiveFunction_commonRootOrExclusiveSourceInput
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableRelation_commonSeamHullOrExclusiveInput
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableFunction_commonSeamHullOrExclusiveInput
