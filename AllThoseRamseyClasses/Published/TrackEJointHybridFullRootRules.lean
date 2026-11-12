@@ -42,7 +42,7 @@ variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
 HYBRID old relation, not one of the singleton split domains.
 Its input equality pattern is in the PART-PREDICATE expansion. -/
 def hybridOriginalMaskDomainSymbol
-    (p : FunctionInputPattern (L.withParts Parts))
+    (p : FunctionInputPattern L)
     (q : CompleteOutputParts Parts) :
     (L.splitMaskHybrid Parts).Symbol :=
   .inl (.inl (.inr (.inl (p, q))))
@@ -51,7 +51,7 @@ def hybridOriginalMaskDomainSymbol
 ENTIRE source fibre with its distinct output parts. It is not an
 individual incidence relation. -/
 def hybridOriginalMaskOutputSymbol
-    (p : FunctionInputPattern (L.withParts Parts))
+    (p : FunctionInputPattern L)
     (q : CompleteOutputParts Parts) :
     (L.splitMaskHybrid Parts).Symbol :=
   .inl (.inl (.inr (.inr (p, q))))
@@ -62,7 +62,7 @@ vertices, including all ORIGINAL masks, split incidences and
 vertex-part predicates already present within the root. -/
 structure OriginalMaskHybridRootPattern
     (L : Language.{u}) (Parts : Type v) [Fintype Parts] where
-  input : FunctionInputPattern (L.withParts Parts)
+  input : FunctionInputPattern L
   mask : CompleteOutputParts Parts
   rootPositive : 0 < input.rootSize
   outputPositive : 0 < mask.size
@@ -87,7 +87,7 @@ def splitMaskJointRootLanguage
 tag. The positivity/domain fields of the tag name are propositions. -/
 def OriginalMaskHybridRootRaw (L : Language.{u})
     (Parts : Type v) [Fintype Parts] :=
-  Σ (p : FunctionInputPattern (L.withParts Parts)),
+  Σ (p : FunctionInputPattern L),
     Σ (q : CompleteOutputParts Parts),
       RelStructure (L.splitMaskHybrid Parts) (Fin p.rootSize)
 
@@ -130,19 +130,6 @@ theorem SplitMaskFullRootPattern.toRaw_injective :
   cases b
   cases h
   rfl
-
-/-- Original part-predicate language remains finite. -/
-instance withParts_hybrid_rel_finite
-    [Finite L.RelSymbol] :
-    Finite (L.withParts Parts).RelSymbol := by
-  change Finite (ULift.{max u v, u} L.RelSymbol ⊕ Parts)
-  infer_instance
-
-instance withParts_hybrid_func_finite
-    [Finite L.FuncSymbol] :
-    Finite (L.withParts Parts).FuncSymbol := by
-  change Finite (ULift.{max u v, u} L.FuncSymbol)
-  infer_instance
 
 instance splitMaskFullRootRaw_finite
     [Finite L.RelSymbol] [Finite L.FuncSymbol] :
