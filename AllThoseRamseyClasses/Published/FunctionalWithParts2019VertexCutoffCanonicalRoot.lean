@@ -515,4 +515,120 @@ theorem genuineTagged2019_badWeak_closedCut_rootRank_ge_two
       hRank hLeftSmall hRightSmall
   exact hBad hWhole
 
+
+/-- At the printed n-VERTEX weak cutoff, a U-CLOSED Whole which is
+a free amalgam of U-CLOSED sides of ≤n vertices over an
+U-IRREDUCIBLE Root has an H-relative completion. Root
+closedness is automatic by the verified closed-root
+intersection theorem. Corrected (4b) makes that SAME
+root a canonical H-member, without a generating-rank
+assumption or enlargement of the weak source. -/
+theorem genuineTagged2019_weakVertexCutoff_glue_closed_UIrredRoot
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hIso : GenuinePartiteIsomorphismClosed2019 H)
+    (hKIrr : ∀ {Z : Type w}
+      (D : RelStructure (taggedLanguage L Parts) Z),
+      canonicalGenuineTagged2019Class H D → D.Irreducible)
+    (C : RelStructure (taggedLanguage L Parts) V)
+    [Finite V]
+    (hCovered : CorrectedUIrreduciblesIn
+      (canonicalGenuineTagged2019Class H)
+      ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (n : ℕ)
+    (hSmall : ∀ (T : Finset V), T.card ≤ n →
+      HasGenuinePartiteTagged2019RelativeCompletion H
+        (C.induce (↑T : Set V)))
+    {Root : RelStructure (taggedLanguage L Parts) RootV}
+    {Left : RelStructure (taggedLanguage L Parts) LeftV}
+    {Right : RelStructure (taggedLanguage L Parts) RightV}
+    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {sL : Embedding Root Left} {sR : Embedding Root Right}
+    {iL : Embedding Left Whole} {iR : Embedding Right Whole}
+    (hFree : IsFreeAmalgam sL sR iL iR)
+    (eWhole : Embedding Whole C)
+    (hWholeClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Whole)
+    (hLeftClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Left)
+    (hRightClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Right)
+    [Finite LeftV] [Finite RightV]
+    (hRootUIrred : IsUIrreducible
+      ((L.withParts Parts).wholeMaskClosureRules Parts) Root)
+    (hLeftSmall : Nat.card LeftV ≤ n)
+    (hRightSmall : Nat.card RightV ≤ n) :
+    HasGenuinePartiteTagged2019RelativeCompletion H Whole := by
+  classical
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  have hRootClosed : IsUClosed rules Root :=
+    hFree.root_isUClosed_of_closed_whole_and_sides
+      hWholeClosed hLeftClosed hRightClosed
+  have hRelLeft : IsUSubstructure rules Whole (Set.range iL) :=
+    iL.range_isUSubstructure hLeftClosed hWholeClosed
+  have hRelRight : IsUSubstructure rules Whole (Set.range iR) :=
+    iR.range_isUSubstructure hRightClosed hWholeClosed
+  have hLeft : HasGenuinePartiteTagged2019RelativeCompletion H Left :=
+    genuineTagged2019_embeddedWeakSmall_of_vertexCutoff
+      H C n hSmall Left (eWhole.comp iL) hLeftSmall
+  have hRight : HasGenuinePartiteTagged2019RelativeCompletion H Right :=
+    genuineTagged2019_embeddedWeakSmall_of_vertexCutoff
+      H C n hSmall Right (eWhole.comp iR) hRightSmall
+  exact genuinePartite2019_relativeCompletion_glue_over_protected_root
+    H hStrong hIso hKIrr C hCovered
+    hFree eWhole hRelLeft hRelRight
+    hRootClosed hRootUIrred hLeft hRight
+
+/-- Every eligible genuinely CLOSED small free cut of a bad weak
+test has a U-REDUCIBLE common Root, not merely USize ≥ 2.
+This is independent of a closed generator-rank completion
+invariant: the only quantitative premise is the original
+ambient n-VERTEX weak-test completion hypothesis. -/
+theorem genuineTagged2019_badWeak_closedCut_root_notUIrred
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hIso : GenuinePartiteIsomorphismClosed2019 H)
+    (hKIrr : ∀ {Z : Type w}
+      (D : RelStructure (taggedLanguage L Parts) Z),
+      canonicalGenuineTagged2019Class H D → D.Irreducible)
+    (C : RelStructure (taggedLanguage L Parts) V)
+    [Finite V]
+    (hCovered : CorrectedUIrreduciblesIn
+      (canonicalGenuineTagged2019Class H)
+      ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (n : ℕ)
+    (hSmall : ∀ (T : Finset V), T.card ≤ n →
+      HasGenuinePartiteTagged2019RelativeCompletion H
+        (C.induce (↑T : Set V)))
+    (S : Finset V)
+    (hBad : ¬ HasGenuinePartiteTagged2019RelativeCompletion
+      H (C.induce (↑S : Set V)))
+    (d : ProperFreeDecomposition (C.induce (↑S : Set V)))
+    (hWholeClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      (C.induce (↑S : Set V)))
+    (hLeftClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) d.left)
+    (hRightClosed : IsUClosed
+      ((L.withParts Parts).wholeMaskClosureRules Parts) d.right)
+    (hLeftSmall : Nat.card d.Left ≤ n)
+    (hRightSmall : Nat.card d.Right ≤ n) :
+    ¬ IsUIrreducible
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      d.common := by
+  classical
+  letI : Finite d.Left :=
+    Finite.of_injective d.leftIn d.leftIn.injective
+  letI : Finite d.Right :=
+    Finite.of_injective d.rightIn d.rightIn.injective
+  intro hRootUIrred
+  have hWhole : HasGenuinePartiteTagged2019RelativeCompletion
+      H (C.induce (↑S : Set V)) :=
+    genuineTagged2019_weakVertexCutoff_glue_closed_UIrredRoot
+      H hStrong hIso hKIrr C hCovered n hSmall
+      d.free (inclusion C (↑S : Set V))
+      hWholeClosed hLeftClosed hRightClosed
+      hRootUIrred hLeftSmall hRightSmall
+  exact hBad hWhole
+
 end AllThoseRamseyClasses.Published
