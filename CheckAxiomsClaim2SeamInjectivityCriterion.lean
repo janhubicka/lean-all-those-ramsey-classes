@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SeamInjectivityCriterion
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_seamInjective_of_noFreshSeam
