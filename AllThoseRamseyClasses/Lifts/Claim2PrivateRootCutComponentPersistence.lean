@@ -123,7 +123,8 @@ theorem fullFreeAmalgam_private_component_generatedBoundary_in_right_of_rootCut
     apply Set.Subset.antisymm
     · intro w hw
       obtain ⟨b, _hbPrivate, hbMap⟩ := hCinside hw
-      exact ⟨b, hbMap.symm ▸ hw, hbMap⟩
+      refine ⟨b, ?_, hbMap⟩
+      simpa only [hbMap] using hw
     · rintro w ⟨b, hbC, hbMap⟩
       exact hbMap ▸ hbC
   have hCEprivate : CE ⊆ {b : F | b ∉ SR} := by
