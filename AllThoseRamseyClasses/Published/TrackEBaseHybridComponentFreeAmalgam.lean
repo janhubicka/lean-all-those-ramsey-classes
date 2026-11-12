@@ -126,6 +126,10 @@ theorem baseHybrid_freeAmalgam_of_componentFree
           (∃ x : Fin 1 → VF,
             Right.part (x (0 : Fin 1)) = q ∧
               t = iR ∘ x)
+      haveI : Subsingleton
+          (Fin ((L.splitMaskHybrid Parts).arity (.inr (.inr q)))) := by
+        change Subsingleton (Fin 1)
+        infer_instance
       constructor
       · intro hq
         rcases hOld.covers (t (0 : Fin 1)) with
@@ -138,9 +142,7 @@ theorem baseHybrid_freeAmalgam_of_componentFree
                 congrArg Whole.part ha.symm
               _ = q := hq
           · funext k
-            have hk : k = (0 : Fin 1) := by
-              apply Fin.ext
-              omega
+            have hk : k = (0 : Fin 1) := Subsingleton.elim _ _
             subst k
             exact ha
         · refine Or.inr ⟨(fun _ : Fin 1 => b), ?_, ?_⟩
@@ -151,9 +153,7 @@ theorem baseHybrid_freeAmalgam_of_componentFree
                 congrArg Whole.part hb.symm
               _ = q := hq
           · funext k
-            have hk : k = (0 : Fin 1) := by
-              apply Fin.ext
-              omega
+            have hk : k = (0 : Fin 1) := Subsingleton.elim _ _
             subst k
             exact hb
       · rintro (⟨x, hx, rfl⟩ | ⟨x, hx, rfl⟩)
