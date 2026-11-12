@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderNativeDecodeEquiv
+import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderNativeDecodeIdentity
 import AllThoseRamseyClasses.Lifts.GlobalFraisseSurjectiveGraphFullBridge
 import AllThoseRamseyClasses.Lifts.GlobalSurjectiveFullEmbeddingInverse
 
@@ -15,7 +15,7 @@ on the quotient and its decoded native graph need not be
 definitionally the same. The verified identity-vertex
 FIRST-ORDER EQUIVALENCE between them resolves this mismatch.
 
-Conjugating e by that genuine model equivalence gives a
+Transporting e by that genuine model embedding gives a
 first-order embedding of the exact complete graph of N
 into itself. If e is SURJECTIVE, so is this conjugate.
 The already verified surjective graph-to-FULL theorem
@@ -43,7 +43,7 @@ universe u v
 
 /-- Conjugate a first-order self-embedding of an original
 complete function-graph model by the identity-on-vertices
-first-order equivalence with its decoded native graph. The
+first-order embedding with its decoded native graph. The
 result is a genuine embedding between the same native
 complete function-graph models. -/
 def firstOrderNativeGraphDecode_transport_selfEmbedding
@@ -55,7 +55,7 @@ def firstOrderNativeGraphDecode_transport_selfEmbedding
       (firstOrderRelGraphLanguage L.graph) V V
       (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
       (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h)) := by
-  let eqv := firstOrderNativeGraphDecode_id_equiv h
+  let bridge := firstOrderNativeGraphDecode_id_embedding h
   -- Even though both first-order models have carrier V,
   -- their structure instances are propositionally, NOT
   -- definitionally, equal. Do not use ordinary embedding
@@ -74,19 +74,19 @@ def firstOrderNativeGraphDecode_transport_selfEmbedding
       (firstOrderNativeGraphStructure
         (firstOrderNativeGraphDecode h)).RelMap rel xs
     have hLeft :=
-      @FirstOrder.Language.Equiv.map_rel'
+      @FirstOrder.Language.Embedding.map_rel'
         (firstOrderRelGraphLanguage L.graph) V V
         (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
-        h eqv n rel (e ∘ xs)
+        h bridge n rel (e ∘ xs)
     have hRight :=
-      @FirstOrder.Language.Equiv.map_rel'
+      @FirstOrder.Language.Embedding.map_rel'
         (firstOrderRelGraphLanguage L.graph) V V
         (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
-        h eqv n rel xs
+        h bridge n rel xs
     have hIdentity (ys : Fin n → V) :
-        eqv.toFun ∘ ys = ys := by
+        bridge.toFun ∘ ys = ys := by
       funext a
-      rfl
+      exact firstOrderNativeGraphDecode_id_embedding_apply h (ys a)
     rw [hIdentity] at hLeft hRight
     have hMap :=
       @FirstOrder.Language.Embedding.map_rel'
@@ -96,7 +96,7 @@ def firstOrderNativeGraphDecode_transport_selfEmbedding
 
 /-- The complete native-graph self-embedding has precisely
 the underlying vertex function of the original e:h↪h,
-because BOTH comparison maps are the literal identity. -/
+because the decoder comparison map is literally identity. -/
 theorem firstOrderNativeGraphDecode_transport_selfEmbedding_apply
     {L : Language.{u}} {V : Type v}
     (h : (firstOrderRelGraphLanguage L.graph).Structure V)
