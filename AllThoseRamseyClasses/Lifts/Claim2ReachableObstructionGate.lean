@@ -4,7 +4,7 @@ import AllThoseRamseyClasses.Lifts.Claim2TerminalLeftSupportAccounting
 # Track C: a finite descent must reach an explicit obstruction or zero exit
 
 The verified Claim 2 terminal theorem reaches rank zero IF all
-positive-rank valid states admit a successor. A more diagnostic
+positive-rank valid states have a successor. A more diagnostic
 alternative uses a *verified local trichotomy*: every positive-rank
 valid state either has an actual strict source step or exhibits
 a separate obstruction (for instance a smaller mixed root or a
