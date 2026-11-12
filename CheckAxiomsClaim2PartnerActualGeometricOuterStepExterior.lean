@@ -1,3 +1,4 @@
 import AllThoseRamseyClasses.Lifts.Claim2PartnerActualGeometricOuterStepExterior
 
 #print axioms AllThoseRamseyClasses.Lifts.claim2_actualGeometricRightFlip_of_boundaryPartner_withExterior
+#print axioms AllThoseRamseyClasses.Lifts.claim2_actualGeometricRightFlip_of_boundaryPartner_withExteriorAndAnchor
