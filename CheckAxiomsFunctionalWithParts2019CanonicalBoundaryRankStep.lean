@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalBoundaryRankStep
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_smallWeakCompletion_of_all_K_boundaries
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_badWeakSmall_has_noncanonical_root
