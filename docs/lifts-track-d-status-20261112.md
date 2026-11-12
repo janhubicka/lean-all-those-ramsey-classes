@@ -82,45 +82,136 @@ Lean build, named permitted-axiom checks, source-contract/integrity
 audits and no-admissions scan. The results are conditional exactly
 as stated; the module or PR must be consulted before using them.
 
-## In-flight additions, not counted as verified on main
+## Verified post-incidence improvements on main
 
-As of the 12 November checkpoint:
+These results have been **merged** following successful exact-head Lean
+build, named axiom, source-integrity, Section 3 contract and admission
+checks. None proves unrestricted original Section 3 strong AP.
 
-* [#1017](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1017)
-  proposes to replace the **actual separator-root collision** branch
-  of the support-minimal 2019 free-amalgam dichotomy by an explicit
-  proper native full free decomposition of the very same source
-  root-generated hull, where neither side contains all root generators.
-  This is a draft until its own exact-head checks pass.
+* [#1017](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1017):
+  a colliding genuine separator-root tuple forces an ACTUAL proper
+  FULL native free decomposition of the root-generated source hull,
+  with neither side containing every root generator. The hull is
+  not asserted to be a selected forbidden geometric piece.
+* [#1028](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1028):
+  ONE already source-support-minimal witness can be normalized
+  injectively if its own native function inputs have full irreducible
+  source tests and target OLD relations on its actual range have
+  positive source lifts. No all-forbidden-sources cover assumption.
+* [#1034](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1034):
+  a minimal witness has an uncovered crossed function input, a target
+  relation defect with crossed source inputs, OR an injective
+  support-minimal witness with a smallest genuine mixed piece.
+* [#1046](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1046):
+  sharpens the first branch to an ACTUAL target-only positive function
+  incidence with NO original positive lift at ANY matching source
+  input/output coordinates; keeps native function-value fibres and
+  original source support distinct from target-image counts.
+* [#1054](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1054):
+  every globally unliftable positive native function/OLD relation
+  target incidence in a genuine FULL free amalgam belongs to ONE
+  actual FULL side, while its original generated source input hull
+  has a proper FULL decomposition crossed by the generators.
+* [#1059](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1059):
+  upgrades the original minimal-witness trichotomy so BOTH kinds of
+  side-local positive incidence have NO positive original source
+  lift at ANY matching preimage tuple; the function case proves
+  that every matching original source input fibre is EMPTY.
+* [#1067](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1067):
+  absence of BOTH genuine side-local incidence defects is EQUIVALENT
+  to original-partial tuple coverage on the ACTUAL function-closed
+  induced image. On genuine EHN maps, defined-function DOMAIN
+  coverage is equivalent to COMPLETE value-fibre coverage:
+  one positive original application generates an irreducible full
+  source input hull, on which EHN is full. Its conditional
+  one-minimizer handoff yields an injective minimal forbidden witness
+  and smallest mixed piece when both defects are absent.
 
-* [#1028](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1028)
-  weakens #1004 to **ONE already support-minimal forbidden witness**:
-  its own full irreducible function-input test coverage and target
-  relation-tuple surjectivity on its actual range are sufficient to
-  construct an injective support-minimal replacement with a smallest
-  genuine mixed piece. The two conditions are still explicit.
-* [#1034](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1034)
-  is stacked on #1028. It proposes a three-way minimal-witness
-  obstruction under only the printed family hypotheses: an actual
-  uncovered source function input with a proper FULL generated-hull
-  decomposition **crossed by the input generators**, an actual
-  target-only positive relation at source image coordinates with
-  the same crossing native decomposition, or an injective
-  support-minimal witness and its smallest genuine mixed piece.
-  This is an exhaustive **reduction**, not exclusion of either
-  crossing-input alternative. Both #1028 and #1034 are drafts
-  until exact-head Lean CI and axiom/source audits pass.
+The exact original-partial encoding currently uses NONEMPTY native
+set-valued fibres for defined function domains. An independent
+defined-but-empty domain-token convention would need a separate
+representation. The source-generated weak quotient is not silently
+identified with the true full induced target image.
 
-* [#1046](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1046)
-  gives a sharper **actual target-incidence** three-way obstruction:
-  a genuinely positive target-only function output or relation tuple
-  at original source image coordinates, each with a crossed full
-  input-generated source hull, OR an injective minimal witness and
-  smallest mixed piece. The positive branch requires exact native
-  function-fibre and old-relation incidence reflection on the
-  actual induced image rather than universal source test coverage.
-  This is a new DRAFT, not yet Lean-verified, and does not exclude
-  either target-only positive incidence using maximality.
+## Current proof development — pending exact-head CI
+
+* [#1084](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1084):
+  draft source-hull EHN factorization. If all source input
+  generators map into one FULL target side, their ENTIRE native
+  function-closed generated source hull does, and the induced
+  hull factors EHN into that side with original coordinates.
+  When that side is `Forb_EHN(F)`, its preimage hull is itself
+  `Forb_EHN(F)`, even if reducible and properly free-decomposable.
+* [#1088](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1088):
+  stacked draft separation of an incidence into **common-seam-only
+  source input hull** versus **actual left/right-exclusive original
+  source input generator**. In the former case the entire hull EHN
+  factors into the FULL common root. For a positive native function
+  incidence, all-root inputs force its target output into that root
+  because the common root is function-closed. The latter case has a
+  genuine exclusive source input potentially useful as a flip anchor.
+
+These are drafts and are not counted as kernel-certified until
+their exact-head build, named permissible axioms, source-integrity
+and no-admissions checks complete and they are merged.
+
+## Adversarial strategy for the remaining maximal-lift step
+
+There are now two genuinely different configurations, not an
+unexplained global injectivization assertion:
+
+1. **Seam-only defect.** All original source incident inputs map into
+   the shared root; the native input-generated source hull EHN-factors
+   into that root. For functions the positive output is also in the
+   root. A complete ORIGINAL common global lift only identifies
+   canonical added relations on corresponding root tuples, and
+   the ORIGINAL added relation is false on NONINJECTIVE tuples.
+   A proof based on an added predicate at a collided root cannot
+   silently use positive root-relation realization.
+2. **Exclusive-input defect.** At least one ACTUAL source generator
+   maps into an exclusive side. This gives a plausible source-side
+   anchor for a support-decreasing flip, but the crossed input
+   hull is NOT automatically a genuinely selected minimal-closed-
+   separator forbidden subpiece; its precise root, private source
+   component, old-language structures, canonical global symbol and
+   source support change remain to be constructed.
+
+If the target side is `Forb_EHN(F)`, an EHN factorization of
+the whole source-generated hull shows that the hull is also
+`Forb_EHN(F)`; hence **side forbidden-freeness does not rule out
+the defect**. It is not legitimate to assume the hull contains
+a forbidden full/EHN witness or to use the quotient as a full
+embedding. A successful repair must build a genuine forbidden
+extension/selected source piece compatible with maximal global
+rooted profiles, or give a collision-tolerant source flip.
+
+### Two-vertex sanity check: forbidden-free crossed hulls really occur
+
+This is a **mathematical illustration, not a new Lean certificate or
+a counterexample to common-maximal-lift strong AP**. Work in the
+plain loopless graph language and forbid the triangle. Let `H`
+consist of two isolated vertices and let `S` consist of one edge
+on two vertices. The identity-on-vertices map `H → S` is a weak
+EHN homomorphism-embedding: the only nonempty irreducible full
+tests of `H` are singletons, and these embed fully into `S`.
+Both `H` and `S` are triangle-free. Nevertheless the target
+edge is a positive incidence with NO positive source edge lift;
+the two generators of `H` cross its genuine two-singleton full
+free decomposition.
+
+Thus the local configuration “unliftable target relation inside a
+forbidden-free full side + crossed, forbidden-free source-generated
+hull + an EHN factor into that side” is **consistent** with
+ordinary forbidden-freeness. To derive a contradiction in the
+ACTUAL Section 3 setting one must use the full forbidden source
+`w`, the real seam/geometry of its selected pieces and the complete
+common maximal canonical lift; these hypotheses do NOT occur in
+the two-vertex toy example.
+
+The original printed canonical added relations require injective
+root tuples; the separate folded-root construction does not
+automatically supply an ORIGINAL full common lift. Do not exchange
+those two lift predicates in an unrestricted theorem.
 
 ## Critical remaining proof obligation
 
