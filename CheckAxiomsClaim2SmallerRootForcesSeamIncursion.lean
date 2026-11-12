@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerRootForcesSeamIncursion
+
+#print axioms AllThoseRamseyClasses.Lifts.strictOppositeGeneratedBoundary_forces_xSideSeamIncursion
