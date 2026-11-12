@@ -258,6 +258,7 @@ def jointClosureRule (p : OriginalMaskHybridRootPattern L Parts) :
   rootPositive := p.rootPositive
   rootStrict := by
     change p.input.rootSize < p.input.rootSize + p.mask.size
+    have hPositive : 0 < p.mask.size := p.outputPositive
     omega
   root := splitMaskJointRootExpansion p.root
   rootIrreducible := by
