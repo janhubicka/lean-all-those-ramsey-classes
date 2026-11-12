@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridMaskSplitDomainCompatibility
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_maskSplitDomainCompatible
+#print axioms StructuralRamsey.RelStructure.HybridMaskSplitDomainCompatible.induce
