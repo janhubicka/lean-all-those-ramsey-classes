@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackENativeIrreducibleTaggedU
+
+#print axioms AllThoseRamseyClasses.Published.nativeIrreducible_canonicalSingletonTag_uIrreducible
