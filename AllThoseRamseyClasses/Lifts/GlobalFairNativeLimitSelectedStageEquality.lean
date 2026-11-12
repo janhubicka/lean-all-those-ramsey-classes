@@ -82,8 +82,10 @@ theorem globalOriginalFairNativeStrictSequence_allStageMap_initial
     (a : (globalOriginalActualFairTraceChain F hInput initial.1).Carrier) :
     globalOriginalFairNativeStrictSequence_allStageMap
       F hInput initial schedule initial.1 a = initial.2 a := by
-  simpa only [globalOriginalFairNativeStrictStageSequence_zero]
-    using globalOriginalFairNativeStrictSequence_allStageMap_selected
-      F hInput initial schedule 0 a
+  -- The chosen sequence at zero reduces definitionally to
+  -- `initial`. Avoid a simp rewrite that leaves the dependent
+  -- Sigma projections opaque.
+  exact globalOriginalFairNativeStrictSequence_allStageMap_selected
+    F hInput initial schedule 0 a
 
 end AllThoseRamseyClasses.Lifts
