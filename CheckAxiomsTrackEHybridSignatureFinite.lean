@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSignatureFinite
+
+#print axioms StructuralRamsey.Language.FunctionRootPattern.toRaw_injective
+#print axioms StructuralRamsey.Language.splitMaskHybrid_signature_finite
