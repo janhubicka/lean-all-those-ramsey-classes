@@ -120,7 +120,7 @@ theorem genuinePartite2019_relativeCompletion_glue_over_ambient_supports
     injective := by
       intro a b hab
       apply Subtype.ext
-      exact congrArg Subtype.val hab
+      exact congrArg (fun z : LeftSet => (z : CandV)) hab
     map_rel_iff := fun _ _ => Iff.rfl
   }
   let includeRight : Embedding (C.induce BaseSet) (C.induce RightSet) := {
@@ -128,7 +128,7 @@ theorem genuinePartite2019_relativeCompletion_glue_over_ambient_supports
     injective := by
       intro a b hab
       apply Subtype.ext
-      exact congrArg Subtype.val hab
+      exact congrArg (fun z : RightSet => (z : CandV)) hab
     map_rel_iff := fun _ _ => Iff.rfl
   }
   let rootMap : RootV → BaseSet :=
