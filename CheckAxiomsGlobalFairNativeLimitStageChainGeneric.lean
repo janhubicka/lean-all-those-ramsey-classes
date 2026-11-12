@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitStageChainGeneric
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageChain_coherent_of_stepSpec
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageChain_request_persists_of_stepSpec

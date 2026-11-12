@@ -11,6 +11,30 @@ Each certified module has an individual `CheckAxioms*.lean` endpoint
 and a reachable active root. The latest public API does not yet export
 an unrestricted Section 3 class theorem.
 
+## 12 November 2026 — Track D root collisions: current checkpoint
+
+The finite C₅/ternary injectivization counterexample is now a
+**kernel-checked theorem**, not just an English regression:
+`fiveCycleImageFamily_counterexample_to_blanketInjectivization`
+(`Lifts/EHNFiveCycleNoInjectiveReplacement.lean`). The printed
+tuple-surjective forbidden-image closure **does not** imply
+injectivization in arbitrary targets. It does not refute the
+strong-amalgamation statement for compatible maximal common lifts.
+
+The local root-collision, weak-image relation/function surplus
+analysis and native crossing source-hull certificates are merged
+(including [#912](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/912)
+and [#989](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/989)).
+The conditional injective-minimizer to actual smallest mixed-piece
+handoff under **explicit** full irreducible relation/function
+source-input covers is merged
+([#1004](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1004)).
+Those covers are not automatic from the printed hypotheses.
+The remaining maximal-common-lift collision repair and Track C
+descent are open. See the
+[12 November Track D audit](../lifts-track-d-status-20261112.md)
+for exact proof boundaries and draft follow-ups.
+
 ## 8 November 2026 — Track A nested source geometry complete
 
 The **genuinely selected-Q nested source geometry** is now
@@ -54,6 +78,49 @@ contradiction. Track D must resolve noninjective weak target root
 images (target relation theorems retain their injectivity premise);
 unconditional global shadow avoidance and strong amalgamation
 are also open. The numbered paper remains frozen.
+
+## 12 November 2026 — original-global source witness integration
+
+The substantive Track A nested *source geometry* remains complete.
+Subsequent verified, merged API integration now packages it with an ACTUAL
+original globally indexed inner witness, without adding a false
+outer target-root injectivity premise:
+
+- [#986](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/986)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42984642500))
+  factors `geometric_actualGlobalWitness_selectedFlip` away from the
+  older outer-piece hypothesis: its genuine forbidden free-amalgam
+  replacement and EHN target map depend on the compatible INNER global
+  relation, not on the older outer target tuple.
+- [#994](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/994)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42989896422))
+  exports the same selected Q, its genuine geometric membership,
+  complete fixed-root forbidden-diagram equivalence, Q-side weak map
+  to B, and agreement on the unchanged complement.
+- [#1006](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1006)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42990318236))
+  composes that witness with actual nested outer geometric
+  reconstruction: a new **genuine** forbidden outer source piece
+  retains the ORIGINAL GLOBAL outer symbol and ordered target-root
+  coordinates without an extra outer-image injection hypothesis.
+
+The new [draft #1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
+is a proposed strengthening retaining the exact new geometric outer
+carrier and the existing exterior SOURCE-cardinality conservation
+for every target subset, on that same selected-Q witness. **Do not
+mark it verified before its exact-head CI and axiom audit pass.**
+
+**Mathematical boundary.** An INNER global canonical relation is an
+assumption and entails injectivity of its inner root tuple. The source
+replacement still works when the unrelated OUTER target root tuple
+collides; but at a colliding outer tuple the ORIGINAL outer global
+target relation cannot hold because the global relation definition
+requires injective tuples. Hence this is source-symbol/coordinate
+preservation, **not** a repair of Track D weak-image collisions.
+Track C still needs an eligible inner witness in every positive-rank
+state and the terminal minimizer contradiction. Full Section 3 strong
+amalgamation remains open. No numbered 2019 manuscript text is
+changed and no removed collaborator TODO is restored.
 
 ## Verified structural checkpoints
 
@@ -142,14 +209,18 @@ This implication fails without further hypotheses.
 The generated quotient `F → Q` is a tuple-surjective original
 partial-function HE, but the inclusion `Q → D` can preserve
 positive incidences without being a full homomorphism-embedding.
-A small relational example with forbidden family
-`{C₅, K₃}` (empty ternary relation) and a triangle target
-with an additional ternary tuple also exhibits a genuinely
-minimal separating root with colliding images. See the separate
+The finite C₅/triangle obstruction uses graph and ternary
+relations: a weak colouring of C₅ into a triangle with an added
+ternary tuple collapses a genuine minimal-separator root. The
+Lean-verified printed-closure counterexample uses the ENTIRE
+tuple-surjective HE-image family generated by C₅, rather than
+identifying that family with the shorthand two graph structures. See the separate
 [manuscript review-only audit](https://github.com/janhubicka/All-those-Ramsey-classes/blob/main/validation-lifts-weakimage-20261016.tex).
-Those finite examples currently have detailed English audits,
-not Lean counterexample certificates. They concern the invalid
-proof shortcut, **not** a refutation of the main theorem.
+The finite C₅/ternary example now has a Lean theorem
+(`fiveCycleImageFamily_counterexample_to_blanketInjectivization`)
+checking the printed image closure, connectedness and absence of
+an injective replacement. It concerns the invalid proof shortcut,
+**not** a refutation of the main theorem.
 
 A repair must either derive suitable root-image injectivity from
 the **actual maximal-witness/free-amalgam configuration**, or develop

@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackENativeHEExactLiftCriterion
+
+#print axioms AllThoseRamseyClasses.Published.fibreTransversal_pullback_fullEmbedding
+#print axioms AllThoseRamseyClasses.Published.nativeOriginalPartialHE_of_taggedHE_and_exactCanonicalLifts

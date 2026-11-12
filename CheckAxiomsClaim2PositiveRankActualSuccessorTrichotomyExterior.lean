@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankActualSuccessorTrichotomyExterior
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRank_actualSuccessorWithExterior_or_smallerRoot_or_seamCollision

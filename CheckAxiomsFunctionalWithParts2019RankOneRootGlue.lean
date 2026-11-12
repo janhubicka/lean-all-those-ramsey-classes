@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RankOneRootGlue
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_over_rankOne_root
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_over_rankOne_root_of_ambient

@@ -172,3 +172,35 @@ Historical intermediate draft labels elsewhere in this ledger remain
 as records of the proof development and must not be interpreted as
 the current merge or CI state. The numbered 2019 manuscript remains
 frozen; never restore TODOs removed by collaborators.
+
+## 12 November — original-global source-witness interface (verified)
+
+Three independently exact-head CI-verified and merged additions supply
+a direct public interface from an ACTUAL original-inner global lift
+relation to a genuine selected forbidden functional source flip:
+
+- [#986](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/986)
+  separates the selected source flip from the unrelated old OUTER root
+  injection and original outer target-relation conclusion;
+- [#994](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/994)
+  retains the same Q, selected geometric certificate, exact full
+  forbidden-diagram tests, Q-side map and complement agreement;
+- [#1006](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1006)
+  combines the identical genuine source replacement with Track A's
+  nested outer geometric reconstruction. The actual outer source
+  piece has the original global indexed symbol and unchanged ordered
+  **target coordinates** without an OUTER target-root injection premise.
+
+Their exact-head Lean runs are
+[42984642500](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42984642500),
+[42989896422](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42989896422),
+and [42990318236](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42990318236),
+respectively. These are source-construction results, NOT a general
+target-image root-collision repair: the input INNER relation already
+implies inner-root injectivity. They do not prove an eligible
+positive-rank successor for all states or terminal Claim 2 contradiction.
+
+Pending [#1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
+additionally exports exact carrier and for-all-target-subsets exterior
+SOURCE counts from the SAME witness. Keep it draft until exact-head CI.
+The frozen numbered 2019 manuscript is untouched.
