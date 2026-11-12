@@ -174,6 +174,43 @@ theorem canonicalHybrid_activeSplitDomain_hasOriginalMask
   rw [← hParts]
   exact ⟨y, hy.1, hy.2⟩
 
+/-- Every active split primitive input domain has an actual
+complete ORIGINAL OLD output mask whose parts contain the split
+output-part label. This is the necessary reverse existence law,
+not implied by the forward mask-to-split compatibility alone. -/
+def HybridSplitDomainMaskCovered
+    {V : Type w}
+    (E : RelStructure (L.splitMaskHybrid Parts) V) : Prop :=
+  ∀ (p : Language.FunctionInputPattern L)
+    (q : Parts) (root : Fin p.rootSize → V),
+    E.rel (Language.hybridSplitDomainSymbol
+      (Language.splitMaskInputAtPart p q)) root →
+    ∃ m : Language.CompleteOutputParts Parts,
+      E.rel (Language.hybridOriginalMaskDomainSymbol p m) root ∧
+      q ∈ Set.range m.label
+
+/-- In a finite genuine partite System, the checked complete
+output-part tuple enumeration supplies the required original mask
+for every active split-domain predicate. -/
+theorem canonicalHybrid_splitDomainMaskCovered
+    {V : Type w} [Finite V]
+    (A : StructuralRamsey.FunctionalPartite.System L Parts V) :
+    HybridSplitDomainMaskCovered A.splitMaskHybrid := by
+  intro p q root hSplit
+  exact canonicalHybrid_activeSplitDomain_hasOriginalMask A p q root hSplit
+
+/-- The original active domain mask remains present under exact
+induced WEAK restriction, even if all of its output vertices lie
+outside the selected set. No function is recomputed. -/
+theorem HybridSplitDomainMaskCovered.induce
+    {V : Type w}
+    {E : RelStructure (L.splitMaskHybrid Parts) V}
+    (h : HybridSplitDomainMaskCovered E)
+    (S : Set V) :
+    HybridSplitDomainMaskCovered (E.induce S) := by
+  intro p q root hSplit
+  exact h p q (Subtype.val ∘ root) hSplit
+
 /-- The law passes to exact weak induced vertex subsets, even if
 the corresponding original output tuple leaves the weak set. -/
 theorem HybridMaskSplitDomainCompatible.induce
