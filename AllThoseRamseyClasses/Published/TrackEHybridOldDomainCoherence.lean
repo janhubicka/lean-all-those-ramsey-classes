@@ -67,8 +67,8 @@ theorem canonicalSplitMaskHybrid_originalDomainCoherent
     {V : Type w}
     (A : StructuralRamsey.FunctionalPartite.System L Parts V) :
     SplitMaskHybridOriginalDomainCoherent A.splitMaskHybrid := by
-  exact A.toStructure.toNonemptyPartial.wholeMaskPatternGraph_uniqueDomainSets
-    A.part
+  exact StructuralRamsey.RelStructure.PartialSetStructure.wholeMaskPatternGraph_uniqueDomainSets
+    A.toStructure.toNonemptyPartial A.part
 
 /-- The original active output-PART mask coherence law is exact-
 hereditary, including arbitrary nonclosed weak restrictions. -/
@@ -80,7 +80,7 @@ theorem SplitMaskHybridOriginalDomainCoherent.induce
     SplitMaskHybridOriginalDomainCoherent (E.induce S) := by
   change HasUniqueWholeMaskDomainSets
     ((splitMaskHybridOriginalOldReduct E).induce S)
-  exact h.induce S
+  exact HasUniqueWholeMaskDomainSets.induce h S
 
 end StructuralRamsey.RelStructure
 
