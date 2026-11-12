@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019SmallEmbeddedCompletion
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_embeddedWeakSmall_of_closedRank
