@@ -58,6 +58,7 @@ private theorem nativeHybrid_partialFibreTransversal
     {V : Type w}
     (A : FunctionalPartite.System L Parts V) :
     FibreTransversal A.toStructure.toNonemptyPartial A.part := by
+  classical
   intro F xs T hDefined y hy z hz heq
   have hFibre : A.func F xs = T := by
     change (if (A.func F xs).Nonempty then
