@@ -139,8 +139,8 @@ theorem baseHybrid_freeAmalgam_of_componentFree
               _ = q := hq
           · funext k
             have hk : k = (0 : Fin 1) := by
-              change (k : Fin 1) = (0 : Fin 1)
-              exact Subsingleton.elim _ _
+              apply Fin.ext
+              omega
             subst k
             exact ha
         · refine Or.inr ⟨(fun _ : Fin 1 => b), ?_, ?_⟩
@@ -152,8 +152,8 @@ theorem baseHybrid_freeAmalgam_of_componentFree
               _ = q := hq
           · funext k
             have hk : k = (0 : Fin 1) := by
-              change (k : Fin 1) = (0 : Fin 1)
-              exact Subsingleton.elim _ _
+              apply Fin.ext
+              omega
             subst k
             exact hb
       · rintro (⟨x, hx, rfl⟩ | ⟨x, hx, rfl⟩)
