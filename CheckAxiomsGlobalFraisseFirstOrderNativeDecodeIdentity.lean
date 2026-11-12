@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderNativeDecodeIdentity
+
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderRelGraphDecode_id_embedding
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphDecode_id_embedding
+#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphDecode_id_embedding_apply
