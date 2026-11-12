@@ -1,5 +1,12 @@
 # Lift Track D — root collisions and the exact image-closure contract (2026-11-01)
 
+> **Historical checkpoint (1 Nov).** Some “not yet formalized / pending CI”
+> remarks below describe that date, not current status. The up-to-date
+> [12 November Track D proof audit](lifts-track-d-status-20261112.md)
+> records the now Lean-verified C₅ counterexample, merged #912/#989/#1004,
+> and the remaining original maximal-lift collision obstruction.
+
+
 **Scope:** Section 3 of the 2019 *All those Ramsey classes* manuscript, in
 particular the first injectivization sentence of `lem:amalgamationstr` and
 the distinct-root requirement in the canonical lift. The numbered
