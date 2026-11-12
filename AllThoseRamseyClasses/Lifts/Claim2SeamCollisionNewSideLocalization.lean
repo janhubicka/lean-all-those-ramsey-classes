@@ -123,10 +123,10 @@ theorem fullNativeReplacement_newSeamCollision_hits_replacementOutsideComplement
       intro hyE
       exact hCannotBothE ⟨hxE, hyE⟩
     rcases hNewFree.covers y with ⟨q, hq⟩ | ⟨e, he⟩
-    · exact Or.inr ⟨⟨q, hq⟩, hyNotE⟩
-    · exact False.elim (hyNotE ⟨e, he⟩)
+    · exact Or.inr ⟨⟨q, hq.symm⟩, hyNotE⟩
+    · exact False.elim (hyNotE ⟨e, he.symm⟩)
   · rcases hNewFree.covers x with ⟨q, hq⟩ | ⟨e, he⟩
-    · exact Or.inl ⟨⟨q, hq⟩, hxE⟩
-    · exact False.elim (hxE ⟨e, he⟩)
+    · exact Or.inl ⟨⟨q, hq.symm⟩, hxE⟩
+    · exact False.elim (hxE ⟨e, he.symm⟩)
 
 end AllThoseRamseyClasses.Lifts
