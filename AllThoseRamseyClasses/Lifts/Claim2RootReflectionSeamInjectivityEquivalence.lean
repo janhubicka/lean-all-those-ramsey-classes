@@ -42,9 +42,8 @@ seam and a Q-root has exactly its prescribed Left-root image,
 then the Q-piece map cannot send a Q-nonroot into the Left root.
 No old-map property is required for this direction. -/
 theorem fullNativeReplacement_seamInjective_implies_QrootReflection
-    {R E Q W UA UT : Type}
+    {R Q W UA UT : Type}
     {Root : Structure L R}
-    {Complement : Structure L E}
     {Replacement : Structure L Q}
     {New : Structure L W}
     {Left : Structure L UA} {Target : Structure L UT}
