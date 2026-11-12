@@ -101,8 +101,35 @@ noncomputable def globalOriginalFairNativeStrictSequence_firstOrderStageMap
       (globalOriginalTraceStageFirstOrderModel F hInput
         (globalOriginalRepresentativePrefix F hInput)
         (globalOriginalExtensionDiagramPrefix F hInput) i).RelMap sym xs
-    exact (bridge.map_rel' sym (nativeMap ∘ xs)).trans
-      (nativeFO.map_rel' sym xs)
+    -- Both FO carrier types coincide, but the intermediate
+    -- decoded-graph and quotient model instances do not.
+    -- Use the embedding fields with explicit source/target
+    -- instances rather than inferred same-carrier instances.
+    have hBridge :=
+      @FirstOrder.Language.Embedding.map_rel'
+        (GlobalOriginalTraceFirstOrderLanguage F)
+        (GlobalOriginalFairNativeVertex F hInput)
+        (GlobalOriginalFairNativeVertex F hInput)
+        (firstOrderNativeGraphStructure
+          (globalOriginalActualFairNativeLimit F hInput))
+        (globalOriginalTraceFirstOrderLimitModel F hInput
+          (globalOriginalRepresentativePrefix F hInput)
+          (globalOriginalExtensionDiagramPrefix F hInput))
+        bridge n sym (nativeMap ∘ xs)
+    have hNative :=
+      @FirstOrder.Language.Embedding.map_rel'
+        (GlobalOriginalTraceFirstOrderLanguage F)
+        (GlobalOriginalTraceStageVertex F hInput
+          (globalOriginalRepresentativePrefix F hInput)
+          (globalOriginalExtensionDiagramPrefix F hInput) i)
+        (GlobalOriginalFairNativeVertex F hInput)
+        (globalOriginalTraceStageFirstOrderModel F hInput
+          (globalOriginalRepresentativePrefix F hInput)
+          (globalOriginalExtensionDiagramPrefix F hInput) i)
+        (firstOrderNativeGraphStructure
+          (globalOriginalActualFairNativeLimit F hInput))
+        nativeFO n sym xs
+    simpa only [Function.id_comp] using hBridge.trans hNative
 
 /-- The underlying vertex map is exactly the existing FULL
 native stage map; the relational decoding bridge introduces
@@ -228,8 +255,13 @@ theorem globalOriginalFairNativeStrictSequence_firstOrderLimitMap_of
         (globalOriginalExtensionDiagramPrefix F hInput) i a) =
       globalOriginalFairNativeStrictSequence_allStageMap
         F hInput initial schedule i a
-  unfold globalOriginalTraceFirstOrderLimitIncl
-  rw [FirstOrder.Language.DirectLimit.lift_of]
+  -- Compute the two underlying quotient maps directly.
+  -- The matching rule `lift_of` is fragile here because
+  -- elaboration inserts different semireducible structure
+  -- instance arguments for the same original quotient.
+  simp only [globalOriginalTraceFirstOrderLimitIncl,
+    FirstOrder.Language.DirectLimit.of_apply,
+    FirstOrder.Language.DirectLimit.lift_quotient_mk'_sigma_mk']
   exact globalOriginalFairNativeStrictSequence_firstOrderStageMap_apply
     F hInput initial schedule i a
 
