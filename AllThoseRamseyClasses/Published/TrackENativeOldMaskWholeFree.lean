@@ -192,11 +192,11 @@ private theorem originalWholeMaskOutput_factorFullSide
   funext k
   refine Fin.addCases ?_ ?_ k
   · intro i
-    change input i = e.toEmbedding.toFun (r i)
-    exact congrFun hRoot i
+    simpa only [Function.comp_apply, x, Fin.append_left, input] using
+      (congrFun hRoot i)
   · intro j
-    change output j = e.toEmbedding.toFun (out j)
-    exact houtEq j
+    simpa only [Function.comp_apply, x, Fin.append_right, output] using
+      (houtEq j)
 
 /-- The COMPLETE original multivalued output-tuple relation case of
 the actual native-to-OLD free-amalgamation theorem. The active input
