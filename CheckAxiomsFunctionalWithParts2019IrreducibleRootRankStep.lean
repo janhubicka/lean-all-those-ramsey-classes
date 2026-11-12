@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019IrreducibleRootRankStep
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_rankStep_of_irreducibleRoot
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_rankStep_of_irreducibleRoot_of_ambient
