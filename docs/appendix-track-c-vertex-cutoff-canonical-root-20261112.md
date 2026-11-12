@@ -44,3 +44,30 @@ exact-head full Lean compile, axiom and admission checks pass.
 ### Sharper root obstruction under corrected (4b)
 
 The additional declaration `genuineTagged2019_badWeak_vertexCutoff_root_closure_or_irred_failure` assumes the original H-isomorphism closure and corrected (4b), and derives from the same exact n-vertex weak-test premise that every eligible small relatively closed free cut of a noncompletable S has a Root which is **either not intrinsically U-closed or not U-irreducible**. The proof uses the verified original H↔K isomorphism transport and canonical K-coverage of embedded closed U-irreducible tests. It never upgrades hSmall to the stronger closed generator-rank hypothesis and does not construct a common boundary for U-reducible roots.
+
+
+### Exact n-vertex side-HULL budget; necessary overrun certificate
+
+The additional two declarations make the quantitative gap in the
+published n-VERTEX axiom completely explicit. Suppose a weak Whole
+has a genuine full relatively U-closed free diagram over an
+**ORDINARY IRREDUCIBLE** Root embedded in a U-closed corrected-(4b)
+candidate C. If the *ambient U-closure hulls* of the two weak side
+images each contain **at most n actual vertices**, the n-vertex
+weak-test premise H-completes those exact closed hulls. The
+already verified #1052 ambient-support gluing then completes the
+ORIGINAL weak Whole. No closed generator-rank-j premise is used.
+
+Contrapositively, if such Whole is NOT H-completable, then
+**at least one** of these two auxiliary closed side hulls has
+strictly more than n vertices. The weak sides themselves need
+not be large. The result pinpoints *one specific cost* of using
+the original vertex cutoff instead of generator rank, without
+assuming a hull isomorphic to the tested source.
+
+These lemmas still do not select any free diagram, establish
+that the actual Picture history keeps the hull sizes below n,
+or solve U-reducible root hulls. The overrun certificate is a
+necessary condition for failure, not proof that it occurs
+in the intended construction. Both lemmas have dedicated
+`#print axioms` checks and remain DRAFT until full CI.
