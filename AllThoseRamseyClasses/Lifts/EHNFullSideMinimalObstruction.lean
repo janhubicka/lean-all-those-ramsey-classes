@@ -46,6 +46,52 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
+/-- A positive target native function incidence at original source image
+inputs with NO positive source lift at ANY matching input/output
+coordinates forces EVERY matching original source input tuple to
+have an EMPTY whole function-value fibre.
+
+If a matching source input had even one old function output, the
+full function-closed hull of that DEFINED input would be irreducible.
+The original EHN test clause then reflects every target output
+at those coordinates to a positive source output, contradicting
+global nonliftability.
+
+This is stronger than saying one representative source input has
+no value, and requires no maximal lift or forbidden-family closure.
+-/
+theorem ehn_unliftableFunction_allSourcePreimageFibresEmpty
+    {V UT : Type}
+    (Source : Structure L V) (Target : Structure L UT)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (G : L.FuncSymbol)
+    (xs : Fin (L.funcArity G) → V)
+    (z : UT)
+    (hTarget : z ∈ Target.func G (f ∘ xs))
+    (hNoLift : ¬ ∃ (ys : Fin (L.funcArity G) → V) (out : V),
+      out ∈ Source.func G ys ∧
+      f ∘ ys = f ∘ xs ∧ f out = z) :
+    ∀ ys : Fin (L.funcArity G) → V,
+      f ∘ ys = f ∘ xs → Source.func G ys = ∅ := by
+  intro ys hCoords
+  ext out
+  constructor
+  · intro hPositive
+    have hCovered :
+        FunctionInputCoveredByFullIrreducibleTest Source G ys :=
+      functionInputCovered_of_positiveSourceFunctionValue
+        Source G ys ⟨out, hPositive⟩
+    have hTargetYs : z ∈ Target.func G (f ∘ ys) := by
+      rw [hCoords]
+      exact hTarget
+    obtain ⟨v, hv, hvImage⟩ :=
+      ehn_localFunctionInputCover_liftsTargetOutput
+        Source Target f hf G ys hCovered z hTargetYs
+    exact False.elim (hNoLift ⟨ys, v, hv, hCoords, hvImage⟩)
+  · intro h
+    exact False.elim h
+
 /-- An ACTUAL positive target function incidence on original SOURCE
 image coordinates with no positive original source lift at ANY
 matching input and output coordinates, supported completely in
@@ -65,6 +111,8 @@ def HasFullSideUnliftableFunctionIncident
     (¬ ∃ (ys : Fin (L.funcArity G) → V) (out : V),
       out ∈ Source.func G ys ∧
       f ∘ ys = f ∘ xs ∧ f out = z) ∧
+    (∀ ys : Fin (L.funcArity G) → V,
+      f ∘ ys = f ∘ xs → Source.func G ys = ∅) ∧
     SourceInputHasCrossingNativeHull Source xs ∧
     ((∃ (ys : Fin (L.funcArity G) → UA) (out : UA),
       out ∈ Left.func G ys ∧
@@ -259,7 +307,12 @@ theorem exists_minimalForbiddenWitness_fullyUnliftableSideIncidence_or_mixedPiec
         w.source X Left Right Target
         iLeft iRight jLeft jRight hTargetFree
         w.toTarget w.homEmbedding G xs z hTargetInput hNoLift
+    have hAllUndefined :=
+      ehn_unliftableFunction_allSourcePreimageFibresEmpty
+        w.source Target w.toTarget w.homEmbedding
+        G xs z hTargetInput hNoLift
     exact ⟨w, hMin, Or.inl
-      ⟨G, xs, z, hTargetInput, hNoLift, hCross, hSide⟩⟩
+      ⟨G, xs, z, hTargetInput, hNoLift,
+        hAllUndefined, hCross, hSide⟩⟩
 
 end AllThoseRamseyClasses.Lifts
