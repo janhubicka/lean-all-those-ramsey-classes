@@ -129,7 +129,16 @@ noncomputable def globalOriginalFairNativeStrictSequence_firstOrderStageMap
         (firstOrderNativeGraphStructure
           (globalOriginalActualFairNativeLimit F hInput))
         nativeFO n sym xs
-    simpa only [Function.id_comp] using hBridge.trans hNative
+    have hBridgeIdentity :
+        bridge.toFun ∘ (nativeMap ∘ xs) = nativeMap ∘ xs := by
+      funext a
+      exact firstOrderNativeGraphDecode_id_embedding_apply
+        (globalOriginalTraceFirstOrderLimitModel F hInput
+          (globalOriginalRepresentativePrefix F hInput)
+          (globalOriginalExtensionDiagramPrefix F hInput))
+        (nativeMap (xs a))
+    rw [hBridgeIdentity] at hBridge
+    exact hBridge.trans hNative
 
 /-- The underlying vertex map is exactly the existing FULL
 native stage map; the relational decoding bridge introduces
