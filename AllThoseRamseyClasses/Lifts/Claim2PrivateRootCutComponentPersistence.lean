@@ -124,7 +124,9 @@ theorem fullFreeAmalgam_private_component_generatedBoundary_in_right_of_rootCut
     · intro w hw
       obtain ⟨b, _hbPrivate, hbMap⟩ := hCinside hw
       refine ⟨b, ?_, hbMap⟩
-      simpa only [hbMap] using hw
+      change iR b ∈ C
+      rw [hbMap]
+      exact hw
     · rintro w ⟨b, hbC, hbMap⟩
       exact hbMap ▸ hbC
   have hCEprivate : CE ⊆ {b : F | b ∉ SR} := by
