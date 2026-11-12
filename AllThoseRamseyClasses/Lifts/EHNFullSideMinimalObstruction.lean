@@ -2,31 +2,40 @@ import AllThoseRamseyClasses.Lifts.EHNUnliftableIncidenceFreeSide
 import AllThoseRamseyClasses.Lifts.EHNExactTargetIncidenceTrichotomy
 
 /-!
-# Track D: complete actual target-side localization of the Section 3 incidence trichotomy
+# Track D: exact all-preimage nonliftability localized to genuine target sides
 
-The verified minimal forbidden EHN source obstruction theorem #1046
-produces an ACTUAL target-only native positive function incidence or
-positive old relation at original source image inputs, or else an
-injective source-support-minimal forbidden witness with a genuinely
-smallest mixed piece.
+The source-generated weak quotient is tuple-surjective, but need not
+embed fully in the native target. The verified #1046 analysis separated
+exact positive target incidence coverage from source test coverage;
+however, its published relation-defect output retained only one
+missing original source relation tuple, despite obtaining an
+all-preimage nonliftability certificate internally.
 
-In a genuine FULL target free amalgam, every positive relation or
-function-value incidence belongs to a real FULL embedded side. The
-new source-localized witnesses make that fact explicit at the SAME
-target coordinates as the original forbidden source map and retain
-the ACTUAL crossed FULL native source input-generated hull.
+This module runs the exact native range-coverage dichotomy directly.
+For a globally left-SOURCE-support-minimal forbidden EHN witness in
+the ACTUAL full native free amalgam of forbidden-free sides carrying
+the common complete ORIGINAL 2019 canonical lift, it proves that:
 
-The relation alternative retains exactly the conclusion of merged
-#1046: its displayed source input has no old relation. It does
-NOT silently strengthen this to absence of ALL OTHER possible
-source relation input tuples at the same target coordinates.
-The function alternative does have the stronger global no-lift
-property (at any source input representative), as in #1046.
+* an ACTUAL positive target function incidence has NO positive
+  source incidence lift at ANY matching input/output coordinates,
+  and is wholly supported in one genuine FULL target side; OR
+* an ACTUAL positive target old relation tuple has NO positive
+  source relation lift at ANY matching input coordinates, and is
+  wholly supported in one genuine FULL target side; OR
+* the printed tuple-surjective image-closure contract produces
+  an injective globally left-SOURCE-support-minimal forbidden
+  witness and its genuine smallest mixed geometric piece.
 
-Neither side-locality nor the source hull crossing proves that
-the common original canonical lift excludes this obstruction.
-The outer root / selected-Q geometric flips and Claim 2 remain
-independent.
+In the first two alternatives the corresponding ACTUAL source
+input-generated function-closed hull has a proper FULL native free
+decomposition, with neither proper side containing all generators.
+These source hull sides are NOT the target free-amalgam sides.
+
+This is an exhaustive source-matched proof-control reduction.
+The positive target side incidences are NOT shown to contradict
+the common canonical global lift. A crossed input-generated hull
+is NOT automatically a selected geometric forbidden subpiece.
+The original unrestricted strong AP and Claim 2 remain OPEN.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
@@ -37,11 +46,11 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- An ACTUAL positive target function incidence at original source
-image inputs that has NO positive source lift at ANY matching
-preimage tuple, together with a genuine two-sided FULL native
-crossing source hull, is supported wholly in a target side.
-The original source map may have arbitrary collisions. -/
+/-- An ACTUAL positive target function incidence on original SOURCE
+image coordinates with no positive original source lift at ANY
+matching input and output coordinates, supported completely in
+one FULL target side, with the original input-generated source
+hull crossing a genuine FULL native free decomposition. -/
 def HasFullSideUnliftableFunctionIncident
     {V UA UB UT : Type}
     (Source : Structure L V)
@@ -64,12 +73,11 @@ def HasFullSideUnliftableFunctionIncident
       out ∈ Right.func G ys ∧
       f ∘ xs = jR ∘ ys ∧ z = jR out))
 
-/-- An ACTUAL positive target OLD relation at selected original
-source image input coordinates that is absent on this SAME source
-input, together with the crossed FULL native source hull, belongs
-to an actual FULL target side. This local predicate does NOT
-claim no OTHER source tuple at the target coordinates is positive. -/
-def HasFullSideExtraRelationIncident
+/-- The corresponding relation defect has no original POSITIVE
+source lift at ANY matching source input tuple, not merely at the
+chosen representative source input. This is stronger than the
+relation branch exported in the verified #1046 result. -/
+def HasFullSideUnliftableRelationIncident
     {V UA UB UT : Type}
     (Source : Structure L V)
     (Left : Structure L UA) (Right : Structure L UB)
@@ -79,35 +87,26 @@ def HasFullSideExtraRelationIncident
     (f : V → UT) : Prop :=
   ∃ (R : L.RelSymbol) (xs : Fin (L.relArity R) → V),
     Target.rel R (f ∘ xs) ∧
-    ¬ Source.rel R xs ∧
+    (¬ ∃ ys : Fin (L.relArity R) → V,
+      Source.rel R ys ∧ f ∘ ys = f ∘ xs) ∧
     SourceInputHasCrossingNativeHull Source xs ∧
     ((∃ ys : Fin (L.relArity R) → UA,
       Left.rel R ys ∧ f ∘ xs = jL ∘ ys) ∨
      (∃ ys : Fin (L.relArity R) → UB,
       Right.rel R ys ∧ f ∘ xs = jR ∘ ys))
 
-/-- The source-matched exact 2019 obstruction trichotomy, promoted
-to the GENUINE full target sides without using ANY global
-source irreducible input cover.
+/-- The fully global-no-lift, actual target-side-localized
+incidence-or-smallest-mixed-piece trichotomy under the ORIGINAL
+printed tuple-surjective family image-closure contract.
 
-For every forbidden EHN witness in the actual full free amalgam of
-F-free structures with a common original full global canonical
-lift, choose a witness w minimizing ORIGINAL SOURCE left-exclusive
-support. Then either:
+No source irreducible-test input COVER premise is assumed. Target
+incidences are localized through the genuine FULL native free
+amalgam, and BOTH negative alternatives rule out EVERY original
+positive source lift at the exact target coordinates.
 
-1. a positive target function incidence with NO lift from ANY
-   original source matching input tuple is located entirely on
-   one FULL target side; its actual original source input hull
-   has a proper FULL crossing decomposition;
-2. a positive target old relation on original source coordinates,
-   missing on those original source coordinates, lies inside one
-   FULL target side with an actual crossing source hull; or
-3. there is an injective source-support-minimal forbidden witness
-   with an actual smallest genuine MIXED geometric piece.
-
-The first two alternatives are not contradicted by F-freeness of
-the sides alone, and the last does not complete Claim 2. -/
-theorem exists_minimalForbiddenWitness_sideLocalTargetDefect_or_mixedPiece
+The original maximal-common-lift hypotheses appear explicitly;
+they are NOT used to postulate the absence of the two defects. -/
+theorem exists_minimalForbiddenWitness_fullyUnliftableSideIncidence_or_mixedPiece
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
     (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
@@ -131,7 +130,7 @@ theorem exists_minimalForbiddenWitness_sideLocalTargetDefect_or_mixedPiece
           t.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft)) ∧
       (HasFullSideUnliftableFunctionIncident
           w.source Left Right Target jLeft jRight w.toTarget ∨
-       HasFullSideExtraRelationIncident
+       HasFullSideUnliftableRelationIncident
           w.source Left Right Target jLeft jRight w.toTarget ∨
        ∃ (v : ForbiddenEHNWitness F Target),
          Function.Injective v.toTarget ∧
@@ -148,29 +147,119 @@ theorem exists_minimalForbiddenWitness_sideLocalTargetDefect_or_mixedPiece
              (weakFreeLeftPart (sL := iLeft) (iL := jLeft) v.toTarget)
              (weakFreeRightPart
                (sL := iLeft) (iL := jLeft) (iR := jRight) v.toTarget),
-             P.nonrootCount ≤ Q.nonrootCount) := by
-  obtain ⟨w, hMin, hCases⟩ :=
-    exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
-      F hFiniteF hConnected hImage
-      Target Left Right jLeft jRight
-      X iLeft iRight hTargetFree hCommon
-      hAvoidLeft hAvoidRight hExists
-  refine ⟨w, hMin, ?_⟩
-  rcases hCases with hFunction | hRelation | hMixed
-  · obtain ⟨G, xs, z, hPositive, hNoLift, d, hCross⟩ := hFunction
-    obtain ⟨hGenerated, hSide⟩ :=
+             P.nonrootCount ≤ Q.nonrootCount := by
+  classical
+  obtain ⟨w, hMin⟩ :=
+    exists_minimalForbiddenEHNWitness_support F Target
+      (fullFreeLeftExclusiveTarget iLeft jLeft) hExists
+  by_cases hFunction :
+      SourceFunctionValueTuplesCoveredOnRange w.source Target w.toTarget
+  · by_cases hRelations :
+        SourceRelationTuplesCoveredOnRange w.source Target w.toTarget
+    · let hClosed : Target.IsClosed (Set.range w.toTarget) :=
+        sourceFunctionValueTuplesCovered_rangeClosed
+          w.source Target w.toTarget hFunction
+      have hTuple : OriginalPartialTupleSurjective
+          w.source (Target.induce (Set.range w.toTarget) hClosed)
+          (fun x => (⟨w.toTarget x, ⟨x, rfl⟩⟩ :
+            Set.range w.toTarget)) :=
+        sourceFullIncidenceReflection_inducedRangeTupleSurjective
+          w.source Target w.toTarget hFunction hRelations
+      obtain ⟨v, hInjective, hBound⟩ :=
+        forbiddenEHNWitness_injectiveReplacement_of_printedTupleRange
+          F hFiniteF hImage Target
+          (fullFreeLeftExclusiveTarget iLeft jLeft)
+          w hClosed hTuple
+      have hMinimalV : ∀ t : ForbiddenEHNWitness F Target,
+          v.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) ≤
+            t.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) := by
+        intro t
+        exact hBound.trans (hMin t)
+      have hRootInjOn : Set.InjOn v.toTarget
+          (weakFreeRootPart (sL := iLeft) (iL := jLeft) v.toTarget) := by
+        intro a _ b _ hSame
+        exact hInjective hSame
+      obtain ⟨P, hSmallest⟩ :=
+        minimalGlobalForbiddenWitness_exists_minimalMixedPiece_of_rootInjOn
+          F hFiniteF hConnected
+          Target Left Right jLeft jRight X iLeft iRight
+          hTargetFree hCommon hAvoidLeft hAvoidRight
+          v hMinimalV hRootInjOn
+      exact ⟨w, hMin, Or.inr (Or.inr
+        ⟨v, hInjective, hMinimalV, P, hSmallest⟩)⟩
+    · have hBadRelation :
+          ∃ (R : L.RelSymbol) (zs : Fin (L.relArity R) → UT),
+            (∀ i, zs i ∈ Set.range w.toTarget) ∧
+            Target.rel R zs ∧
+            ¬ ∃ ys : Fin (L.relArity R) → w.Carrier,
+              w.source.rel R ys ∧ zs = w.toTarget ∘ ys := by
+        by_contra hNo
+        apply hRelations
+        intro R zs hRange hTarget
+        by_contra hMissing
+        exact hNo ⟨R, zs, hRange, hTarget, hMissing⟩
+      obtain ⟨R, zs, hRange, hTarget, hMissing⟩ := hBadRelation
+      let xs : Fin (L.relArity R) → w.Carrier :=
+        fun i => Classical.choose (hRange i)
+      have hArgs : w.toTarget ∘ xs = zs := by
+        funext i
+        exact Classical.choose_spec (hRange i)
+      have hTargetInput : Target.rel R (w.toTarget ∘ xs) := by
+        rw [hArgs]
+        exact hTarget
+      have hNoLift :
+          ¬ ∃ ys : Fin (L.relArity R) → w.Carrier,
+            w.source.rel R ys ∧
+            w.toTarget ∘ ys = w.toTarget ∘ xs := by
+        rintro ⟨ys, hPositive, hCoords⟩
+        exact hMissing ⟨ys, hPositive,
+          hArgs.symm.trans hCoords.symm⟩
+      obtain ⟨hCross, hSide⟩ :=
+        ehn_unliftableRelation_liesInFullSide_withSourceCrossingHull
+          w.source X Left Right Target
+          iLeft iRight jLeft jRight hTargetFree
+          w.toTarget w.homEmbedding R xs hTargetInput hNoLift
+      exact ⟨w, hMin, Or.inr (Or.inl
+        ⟨R, xs, hTargetInput, hNoLift, hCross, hSide⟩)⟩
+  · have hBadFunction :
+        ∃ (G : L.FuncSymbol)
+            (zs : Fin (L.funcArity G) → UT) (z : UT),
+          (∀ i, zs i ∈ Set.range w.toTarget) ∧
+          z ∈ Target.func G zs ∧
+          ¬ ∃ (ys : Fin (L.funcArity G) → w.Carrier)
+                (out : w.Carrier),
+            out ∈ w.source.func G ys ∧
+            zs = w.toTarget ∘ ys ∧ z = w.toTarget out := by
+      by_contra hNo
+      apply hFunction
+      intro G zs z hRange hTarget
+      by_contra hMissing
+      exact hNo ⟨G, zs, z, hRange, hTarget, hMissing⟩
+    obtain ⟨G, zs, z, hRange, hTarget, hMissing⟩ := hBadFunction
+    let xs : Fin (L.funcArity G) → w.Carrier :=
+      fun i => Classical.choose (hRange i)
+    have hArgs : w.toTarget ∘ xs = zs := by
+      funext i
+      exact Classical.choose_spec (hRange i)
+    have hTargetInput : z ∈ Target.func G (w.toTarget ∘ xs) := by
+      rw [hArgs]
+      exact hTarget
+    have hNoLift :
+        ¬ ∃ (ys : Fin (L.funcArity G) → w.Carrier)
+              (out : w.Carrier),
+          out ∈ w.source.func G ys ∧
+          w.toTarget ∘ ys = w.toTarget ∘ xs ∧
+          w.toTarget out = z := by
+      rintro ⟨ys, out, hValue, hCoords, hOutput⟩
+      exact hMissing
+        ⟨ys, out, hValue, hArgs.symm.trans hCoords.symm,
+          hOutput.symm⟩
+    obtain ⟨hCross, hSide⟩ :=
       ehn_unliftableFunction_liesInFullSide_withSourceCrossingHull
         w.source X Left Right Target
         iLeft iRight jLeft jRight hTargetFree
-        w.toTarget w.homEmbedding G xs z hPositive hNoLift
-    exact Or.inl ⟨G, xs, z, hPositive, hNoLift, hGenerated, hSide⟩
-  · obtain ⟨R, xs, hPositive, hMissing, d, hCross⟩ := hRelation
-    have hGenerated : SourceInputHasCrossingNativeHull w.source xs :=
-      ⟨d, hCross⟩
-    have hSide :=
-      (hTargetFree.rel_iff R (w.toTarget ∘ xs)).mp hPositive
-    exact Or.inr (Or.inl
-      ⟨R, xs, hPositive, hMissing, hGenerated, hSide⟩)
-  · exact Or.inr (Or.inr hMixed)
+        w.toTarget w.homEmbedding G xs z hTargetInput hNoLift
+    exact ⟨w, hMin, Or.inl
+      ⟨G, xs, z, hTargetInput, hNoLift, hCross, hSide⟩⟩
 
 end AllThoseRamseyClasses.Lifts
