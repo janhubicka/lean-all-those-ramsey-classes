@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridFullRootRules
+
+#print axioms StructuralRamsey.Language.SplitMaskFullRootPattern.jointClosureRule
+#print axioms StructuralRamsey.Language.OriginalMaskHybridRootPattern.jointClosureRule
+#print axioms StructuralRamsey.Language.splitMaskJointRoot_signature_finite
