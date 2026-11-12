@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridFullSplitRootClosed
+
+#print axioms StructuralRamsey.FunctionalPartite.System.splitMaskHybridFullSplitRoot_isUClosed
+#print axioms StructuralRamsey.FunctionalPartite.System.splitMaskHybridFullSplitRoot_reduct
