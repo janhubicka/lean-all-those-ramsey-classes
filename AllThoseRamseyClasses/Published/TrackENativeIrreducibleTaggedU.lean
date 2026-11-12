@@ -82,10 +82,15 @@ theorem nativeIrreducible_canonicalSingletonTag_uIrreducible
       exact (hFact i).symm
     have hOld :
         Tag.rel (.inl (.inr (.inr pat))) t := by
-      change Function.Injective root ∧ y ∈ A.func F (root ∘ r)
-      refine ⟨hInj, ?_⟩
-      rw [hArgs]
-      exact hy
+      change Function.Injective
+          (fun i : Fin m => t (Fin.castSucc i)) ∧
+        t (Fin.last m) ∈
+          A.func F ((fun i : Fin m => t (Fin.castSucc i)) ∘ r)
+      simpa only [t, Structure.funcTuple_castSucc,
+        Structure.funcTuple_last, hArgs] using
+        (show Function.Injective root ∧
+          y ∈ A.func F (root ∘ r) from
+          ⟨hInj, by rw [hArgs]; exact hy⟩)
     have hSingleSide
         (Q : Set V)
         (hSide : ∀ k : Fin (m + 1), t k ∈ Q) :
