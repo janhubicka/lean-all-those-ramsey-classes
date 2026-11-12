@@ -90,11 +90,16 @@ theorem claim2_exists_reachable_obstruction_of_stepOrObstruction_and_zeroExit
         hBad | ⟨next, hNext⟩
       · exact hNoObstruction hBad
       · exact hNoNext ⟨next, hNext, hNoObstruction⟩
-  have hReachStep : Relation.ReflTransGen Step initial terminal := by
-    induction hReach with
+  have hLiftReach : ∀ {a b : State},
+      Relation.ReflTransGen GoodStep a b →
+        Relation.ReflTransGen Step a b := by
+    intro a b hab
+    induction hab with
     | refl => exact Relation.ReflTransGen.refl
     | @tail a b hab hbc ih =>
         exact ih.trans (Relation.ReflTransGen.single hbc.1)
+  have hReachStep : Relation.ReflTransGen Step initial terminal :=
+    hLiftReach hReach
   exact ⟨terminal, hTerminalValid, hReachStep,
     hOutside, hObstruction⟩
 
