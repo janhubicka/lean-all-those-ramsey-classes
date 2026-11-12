@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PrivateBoundaryInjectionTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_privateGeneratedBoundary_injection_transfer
