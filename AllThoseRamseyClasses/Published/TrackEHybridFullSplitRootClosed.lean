@@ -55,12 +55,12 @@ theorem System.splitMaskHybridFullSplitRoot_isUClosed
   · intro t ht
     change A.splitMaskHybrid.rel
         (hybridSplitOutputSymbol p.input) t ∧
-        ∃ e : Embedding p.root A.splitMaskHybrid,
+        ∃ e : RelStructure.Embedding p.root A.splitMaskHybrid,
           ∀ i : Fin p.input.rootSize, t i.castSucc = e i at ht
     obtain ⟨_, e, he⟩ := ht
     exact ⟨e.splitMaskHybridFullRoot, he⟩
   · intro e
-    let old : Embedding p.root A.splitMaskHybrid :=
+    let old : RelStructure.Embedding p.root A.splitMaskHybrid :=
       e.splitMaskHybridFullRootReduct
     let root : Fin p.input.rootSize → V := fun i => old i
     have hDomain :
@@ -84,7 +84,7 @@ theorem System.splitMaskHybridFullSplitRoot_isUClosed
           (.inr p) xs := by
       change A.splitMaskHybrid.rel
           (hybridSplitOutputSymbol p.input) xs ∧
-          ∃ g : Embedding p.root A.splitMaskHybrid,
+          ∃ g : RelStructure.Embedding p.root A.splitMaskHybrid,
             ∀ i : Fin p.input.rootSize, xs i.castSucc = g i
       constructor
       · change
