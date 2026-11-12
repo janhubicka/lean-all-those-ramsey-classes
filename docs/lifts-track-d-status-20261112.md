@@ -61,6 +61,13 @@ maximal lifts.
   generators similarly forces a genuine crossing root-hull decomposition.
   This does NOT identify the decomposed hull with a genuinely
   selected forbidden geometric piece.
+* **Unary input-test coverage:** merged and exact-head Lean-verified
+  [#1001](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1001)
+  proves the unary relation-input analogue and injective support-minimal
+  forbidden EHN witnesses for nullary/unary native languages, or
+  arbitrary-arity functions total on forbidden sources with unary
+  relations. This is a language-restricted positive result under
+  the printed image-closure contract, not unrestricted Section 3 AP.
 * **Exact conditional normalization-to-geometry handoff:** merged
   [#1004](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1004)
   produces a globally source-support-minimal **injective** EHN
@@ -79,12 +86,6 @@ as stated; the module or PR must be consulted before using them.
 
 As of the 12 November checkpoint:
 
-* [#1001](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1001)
-  adds the **unary relation-input** analogue and injective
-  support-minimizer corollaries for arity-at-most-one languages and
-  total-on-forbidden-source functions with unary relations.
-  It passed an earlier exact-head stacked CI but was rebased to
-  main; merge requires a fresh successful exact-head gate.
 * [#1017](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1017)
   proposes to replace the **actual separator-root collision** branch
   of the support-minimal 2019 free-amalgam dichotomy by an explicit
@@ -101,13 +102,25 @@ As of the 12 November checkpoint:
 * [#1034](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1034)
   is stacked on #1028. It proposes a three-way minimal-witness
   obstruction under only the printed family hypotheses: an actual
-  uncovered source function input with a reducible full generated
-  hull, an actual target-only positive relation at source image
-  coordinates with a reducible full generated hull, or an injective
+  uncovered source function input with a proper FULL generated-hull
+  decomposition **crossed by the input generators**, an actual
+  target-only positive relation at source image coordinates with
+  the same crossing native decomposition, or an injective
   support-minimal witness and its smallest genuine mixed piece.
   This is an exhaustive **reduction**, not exclusion of either
   crossing-input alternative. Both #1028 and #1034 are drafts
   until exact-head Lean CI and axiom/source audits pass.
+
+* [#1046](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1046)
+  gives a sharper **actual target-incidence** three-way obstruction:
+  a genuinely positive target-only function output or relation tuple
+  at original source image coordinates, each with a crossed full
+  input-generated source hull, OR an injective minimal witness and
+  smallest mixed piece. The positive branch requires exact native
+  function-fibre and old-relation incidence reflection on the
+  actual induced image rather than universal source test coverage.
+  This is a new DRAFT, not yet Lean-verified, and does not exclude
+  either target-only positive incidence using maximality.
 
 ## Critical remaining proof obligation
 
