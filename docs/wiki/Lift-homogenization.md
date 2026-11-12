@@ -55,6 +55,49 @@ images (target relation theorems retain their injectivity premise);
 unconditional global shadow avoidance and strong amalgamation
 are also open. The numbered paper remains frozen.
 
+## 12 November 2026 — original-global source witness integration
+
+The substantive Track A nested *source geometry* remains complete.
+Subsequent verified, merged API integration now packages it with an ACTUAL
+original globally indexed inner witness, without adding a false
+outer target-root injectivity premise:
+
+- [#986](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/986)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42984642500))
+  factors `geometric_actualGlobalWitness_selectedFlip` away from the
+  older outer-piece hypothesis: its genuine forbidden free-amalgam
+  replacement and EHN target map depend on the compatible INNER global
+  relation, not on the older outer target tuple.
+- [#994](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/994)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42989896422))
+  exports the same selected Q, its genuine geometric membership,
+  complete fixed-root forbidden-diagram equivalence, Q-side weak map
+  to B, and agreement on the unchanged complement.
+- [#1006](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1006)
+  ([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/42990318236))
+  composes that witness with actual nested outer geometric
+  reconstruction: a new **genuine** forbidden outer source piece
+  retains the ORIGINAL GLOBAL outer symbol and ordered target-root
+  coordinates without an extra outer-image injection hypothesis.
+
+The new [draft #1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
+is a proposed strengthening retaining the exact new geometric outer
+carrier and the existing exterior SOURCE-cardinality conservation
+for every target subset, on that same selected-Q witness. **Do not
+mark it verified before its exact-head CI and axiom audit pass.**
+
+**Mathematical boundary.** An INNER global canonical relation is an
+assumption and entails injectivity of its inner root tuple. The source
+replacement still works when the unrelated OUTER target root tuple
+collides; but at a colliding outer tuple the ORIGINAL outer global
+target relation cannot hold because the global relation definition
+requires injective tuples. Hence this is source-symbol/coordinate
+preservation, **not** a repair of Track D weak-image collisions.
+Track C still needs an eligible inner witness in every positive-rank
+state and the terminal minimizer contradiction. Full Section 3 strong
+amalgamation remains open. No numbered 2019 manuscript text is
+changed and no removed collaborator TODO is restored.
+
 ## Verified structural checkpoints
 
 | Paper step | Compiled proof endpoint / relevant files | Validation evidence |
