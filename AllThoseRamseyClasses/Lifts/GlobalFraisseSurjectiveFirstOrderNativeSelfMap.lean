@@ -87,10 +87,10 @@ theorem firstOrderNativeGraphDecode_transport_selfEmbedding_apply
       (firstOrderRelGraphLanguage L.graph) V V h h)
     (x : V) :
     firstOrderNativeGraphDecode_transport_selfEmbedding h e x = e x := by
-  simp only [firstOrderNativeGraphDecode_transport_selfEmbedding,
-    FirstOrder.Language.Embedding.comp_apply,
-    firstOrderNativeGraphDecode_id_equiv_apply,
-    firstOrderNativeGraphDecode_id_equiv_symm_apply]
+  -- The explicit embedding constructor preserves the original
+  -- vertex map by reduction, without relying on decoder
+  -- equivalence composition simplification.
+  rfl
 
 /-- Surjectivity of the original quotient first-order
 embedding transfers to its exact native graph encoding. -/
