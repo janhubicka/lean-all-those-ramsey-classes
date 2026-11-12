@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019AmbientHullRootGlue
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_over_ambient_supports
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_irreducibleRoot_hull
