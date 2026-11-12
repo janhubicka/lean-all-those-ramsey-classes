@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitStrictStageCoherence
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictStageSequence_coherent
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictStageSequence_request_persists
