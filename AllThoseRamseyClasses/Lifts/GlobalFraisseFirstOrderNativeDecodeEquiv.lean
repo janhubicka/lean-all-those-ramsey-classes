@@ -53,6 +53,12 @@ def firstOrderNativeGraphDecode_id_equiv
   · intro n f xs
     exact nomatch f.down
   · intro n s xs
+    -- There are two distinct structure instances on the same
+    -- carrier.  Fix the relation goal before using the
+    -- checked identity-vertex decoder embedding.
+    change h.RelMap s xs ↔
+      (firstOrderNativeGraphStructure
+        (firstOrderNativeGraphDecode h)).RelMap s xs
     exact (firstOrderNativeGraphDecode_id_embedding h).map_rel' s xs
 
 /-- The graph-comparison equivalence has the literal
@@ -72,6 +78,12 @@ theorem firstOrderNativeGraphDecode_id_equiv_symm_apply
     (h : (firstOrderRelGraphLanguage L.graph).Structure V)
     (x : V) :
     (firstOrderNativeGraphDecode_id_equiv h).symm x = x := by
-  rfl
+  -- The forward equivalence is identity on vertices, so its
+  -- inverse is identity as well; avoid relying on reducibility
+  -- of the first-order equivalence `symm` constructor.
+  have hright :=
+    FirstOrder.Language.Equiv.apply_symm_apply
+      (firstOrderNativeGraphDecode_id_equiv h) x
+  simpa only [firstOrderNativeGraphDecode_id_equiv_apply] using hright
 
 end AllThoseRamseyClasses.Lifts
