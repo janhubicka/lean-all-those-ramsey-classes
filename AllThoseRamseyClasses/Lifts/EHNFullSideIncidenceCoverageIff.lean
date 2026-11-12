@@ -224,4 +224,107 @@ theorem noFullSideUnliftableIncidences_iff_rangeIncidenceCoverage
     · intro hBad
       exact (hRelation.mp hBad) hRelationCovered
 
+/-- Exact original-partial FUNCTION-DOMAIN tuple coverage on
+the ACTUAL target image: whenever the target native function
+is DEFINED on a tuple of image vertices, some original source
+function input tuple at those SAME target coordinates is also
+defined (has a nonempty native source output fibre).
+
+This is weaker in appearance than demanding a positive source
+lift for every individual target function output. The two are
+equivalent under the original native EHN test clause. -/
+def SourceFunctionDomainsCoveredOnRange
+    {V W : Type} (A : Structure L V) (B : Structure L W)
+    (f : V → W) : Prop :=
+  ∀ (G : L.FuncSymbol) (zs : Fin (L.funcArity G) → W),
+    (∀ i, zs i ∈ Set.range f) →
+    (B.func G zs).Nonempty →
+    ∃ ys : Fin (L.funcArity G) → V,
+      (A.func G ys).Nonempty ∧ zs = f ∘ ys
+
+/-- For a native EHN map, the OLD ORIGINAL-PARTIAL
+function-domain component of tuple-surjectivity on the actual
+image is EQUIVALENT to exact positive-value incidence coverage
+for ALL values of ALL native functions on image arguments.
+
+The nontrivial direction uses ANY ONE original positive source
+function output to see that the entire original input-generated
+closed hull is irreducible. The native EHN map is FULL on that
+test, so every target function value at the chosen coordinates
+lifts, not just some value.
+
+No family-level image closure, root injection, maximal lift or
+bound on function arity is assumed. -/
+theorem ehn_functionDomainCover_iff_fullValueCover
+    {V W : Type} (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f) :
+    SourceFunctionDomainsCoveredOnRange A B f ↔
+      SourceFunctionValueTuplesCoveredOnRange A B f := by
+  constructor
+  · intro hDomains G zs z hRange hTarget
+    obtain ⟨ys, ⟨out, hDefined⟩, hArgs⟩ :=
+      hDomains G zs hRange ⟨z, hTarget⟩
+    have hCovered :
+        FunctionInputCoveredByFullIrreducibleTest A G ys :=
+      functionInputCovered_of_positiveSourceFunctionValue
+        A G ys ⟨out, hDefined⟩
+    have hTargetYs : z ∈ B.func G (f ∘ ys) := by
+      rw [← hArgs]
+      exact hTarget
+    obtain ⟨v, hv, hvTarget⟩ :=
+      ehn_localFunctionInputCover_liftsTargetOutput
+        A B f hf G ys hCovered z hTargetYs
+    exact ⟨ys, v, hv, hArgs, hvTarget.symm⟩
+  · intro hValues G zs hRange hDefined
+    obtain ⟨z, hz⟩ := hDefined
+    obtain ⟨ys, out, hSource, hArgs, _⟩ :=
+      hValues G zs z hRange hz
+    exact ⟨ys, ⟨out, hSource⟩, hArgs⟩
+
+/-- A precise 2019-style form of the side-local obstruction
+equivalence: there are NO globally unliftable positive native
+function or old relation incidences in either genuine target
+free-amalgam side iff the actual target range is covered by
+ORIGINAL-PARTIAL function DOMAIN tuples and positive old relation
+tuples from the original source.
+
+The domain-only function premise is sufficient because EHN
+upgrades it automatically to COMPLETE target function-fibre
+coverage. This avoids imposing a fictitiously stronger
+function-value version of the printed tuple-surjectivity axiom. -/
+theorem noFullSideUnliftableIncidences_iff_originalPartialDomainAndRelationCoverage
+    {V UX UA UB UT : Type}
+    (Source : Structure L V)
+    (Root : Structure L UX)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (Target : Structure L UT)
+    (sL : Structure.Embedding Root Left)
+    (sR : Structure.Embedding Root Right)
+    (jL : Structure.Embedding Left Target)
+    (jR : Structure.Embedding Right Target)
+    (hFree : Structure.IsFreeAmalgam sL sR jL jR)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f) :
+    (¬ HasFullSideUnliftableFunctionIncident
+        Source Left Right Target jL jR f ∧
+     ¬ HasFullSideUnliftableRelationIncident
+        Source Left Right Target jL jR f) ↔
+    (SourceFunctionDomainsCoveredOnRange Source Target f ∧
+     SourceRelationTuplesCoveredOnRange Source Target f) := by
+  have hFull :=
+    noFullSideUnliftableIncidences_iff_rangeIncidenceCoverage
+      Source Root Left Right Target sL sR jL jR hFree f hf
+  have hDomains :=
+    ehn_functionDomainCover_iff_fullValueCover
+      Source Target f hf
+  constructor
+  · intro hNoSide
+    obtain ⟨hValueCoverage, hRelationCoverage⟩ :=
+      hFull.mp hNoSide
+    exact ⟨hDomains.mpr hValueCoverage, hRelationCoverage⟩
+  · rintro ⟨hDomainCoverage, hRelationCoverage⟩
+    exact hFull.mpr
+      ⟨hDomains.mp hDomainCoverage, hRelationCoverage⟩
+
 end AllThoseRamseyClasses.Lifts
