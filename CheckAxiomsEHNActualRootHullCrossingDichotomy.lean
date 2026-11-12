@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNActualRootHullCrossingDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricCollidingRoot_exhibitsCrossingFullHull
+#print axioms AllThoseRamseyClasses.Lifts.minimalGlobalForbiddenWitness_rootCrossingHull_or_mixedPiece
