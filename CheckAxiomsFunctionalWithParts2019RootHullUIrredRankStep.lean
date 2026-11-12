@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019RootHullUIrredRankStep
+
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_relativeCompletion_glue_rootHullUIrred
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_rankStep_of_rootHullUIrred
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_badWeak_cut_rootHull_notUIrred
