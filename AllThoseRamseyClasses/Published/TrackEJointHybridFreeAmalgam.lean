@@ -53,32 +53,32 @@ private theorem fullHybridTagRoot_freeSide
     (hFree : IsFreeAmalgam sL sR iL iR)
     (R : (L.splitMaskHybrid Parts).Symbol)
     (n : ℕ)
-    (prefix :
+    (inputPos :
       Fin n → Fin ((L.splitMaskHybrid Parts).arity R))
     (Test : RelStructure (L.splitMaskHybrid Parts) (Fin n))
     (t : Fin ((L.splitMaskHybrid Parts).arity R) → C)
     (hOld : Whole.rel R t)
     (g : Embedding Test Whole)
-    (hRoot : ∀ i : Fin n, t (prefix i) = g i) :
+    (hRoot : ∀ i : Fin n, t (inputPos i) = g i) :
     (∃ (x : Fin ((L.splitMaskHybrid Parts).arity R) → E),
         Left.rel R x ∧
         (∃ e : Embedding Test Left,
-          ∀ i : Fin n, x (prefix i) = e i) ∧
+          ∀ i : Fin n, x (inputPos i) = e i) ∧
         t = iL ∘ x) ∨
     (∃ (x : Fin ((L.splitMaskHybrid Parts).arity R) → F),
         Right.rel R x ∧
         (∃ e : Embedding Test Right,
-          ∀ i : Fin n, x (prefix i) = e i) ∧
+          ∀ i : Fin n, x (inputPos i) = e i) ∧
         t = iR ∘ x) := by
   classical
   rcases (hFree.rel_iff R t).mp hOld with
       ⟨x, hx, htx⟩ | ⟨x, hx, htx⟩
   · have hRange : ∀ i : Fin n, ∃ a : E, g i = iL a := by
       intro i
-      refine ⟨x (prefix i), ?_⟩
+      refine ⟨x (inputPos i), ?_⟩
       calc
-        g i = t (prefix i) := (hRoot i).symm
-        _ = iL (x (prefix i)) := congrFun htx (prefix i)
+        g i = t (inputPos i) := (hRoot i).symm
+        _ = iL (x (inputPos i)) := congrFun htx (inputPos i)
     let e : Embedding Test Left :=
       g.factorThroughRangeHeterogeneous iL hRange
     have hFactor (i : Fin n) : g i = iL (e i) :=
@@ -87,16 +87,16 @@ private theorem fullHybridTagRoot_freeSide
     intro i
     apply iL.injective
     calc
-      iL (x (prefix i)) = t (prefix i) :=
-        (congrFun htx (prefix i)).symm
+      iL (x (inputPos i)) = t (inputPos i) :=
+        (congrFun htx (inputPos i)).symm
       _ = g i := hRoot i
       _ = iL (e i) := hFactor i
   · have hRange : ∀ i : Fin n, ∃ b : F, g i = iR b := by
       intro i
-      refine ⟨x (prefix i), ?_⟩
+      refine ⟨x (inputPos i), ?_⟩
       calc
-        g i = t (prefix i) := (hRoot i).symm
-        _ = iR (x (prefix i)) := congrFun htx (prefix i)
+        g i = t (inputPos i) := (hRoot i).symm
+        _ = iR (x (inputPos i)) := congrFun htx (inputPos i)
     let e : Embedding Test Right :=
       g.factorThroughRangeHeterogeneous iR hRange
     have hFactor (i : Fin n) : g i = iR (e i) :=
@@ -105,8 +105,8 @@ private theorem fullHybridTagRoot_freeSide
     intro i
     apply iR.injective
     calc
-      iR (x (prefix i)) = t (prefix i) :=
-        (congrFun htx (prefix i)).symm
+      iR (x (inputPos i)) = t (inputPos i) :=
+        (congrFun htx (inputPos i)).symm
       _ = g i := hRoot i
       _ = iR (e i) := hFactor i
 
