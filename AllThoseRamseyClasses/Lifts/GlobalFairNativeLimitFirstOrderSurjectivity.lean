@@ -61,6 +61,33 @@ noncomputable def globalOriginalFairNativeCanonicalFirstOrderLimitMap
     (globalOriginalFairNativeCanonicalInitialState F hInput)
     (globalOriginalFairNativeDiagonalSchedule F hInput)
 
+/-- Any strict FULL selected-stage sequence with an EXHAUSTIVE
+diagonal request schedule induces a SURJECTIVE first-order
+embedding of the actual complete function-graph limit.
+
+This statement is uniform in the initially chosen FULL
+stage map, so it applies when extending an arbitrary finite
+partial isomorphism, not just the canonical stage-zero map. -/
+theorem globalOriginalFairNativeStrictSequence_firstOrderLimitMap_surjective_of_diagonal
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hInput : GlobalOriginalFiniteFraisseInput F)
+    (initial : GlobalOriginalFairNativeStageState F hInput)
+    (schedule : ℕ → GlobalOriginalFairNativeRequests F hInput)
+    (hReq : ∀ y : GlobalOriginalFairNativeVertex F hInput,
+      ∃ n : ℕ, (y, y) ∈ schedule n) :
+    Function.Surjective
+      (globalOriginalFairNativeStrictSequence_firstOrderLimitMap
+        F hInput initial schedule) := by
+  intro y
+  obtain ⟨i, x, hix⟩ :=
+    globalOriginalFairNativeStrictSequence_allStage_targetCover
+      F hInput initial schedule hReq y
+  refine ⟨globalOriginalTraceFirstOrderLimitIncl F hInput
+    (globalOriginalRepresentativePrefix F hInput)
+    (globalOriginalExtensionDiagramPrefix F hInput) i x, ?_⟩
+  rw [globalOriginalFairNativeStrictSequence_firstOrderLimitMap_of]
+  exact hix
+
 /-- Surjectivity follows from exact all-original-stage
 target coverage together with Mathlib's checked
 direct-limit lift equation, not from an infinite map
@@ -70,22 +97,11 @@ theorem globalOriginalFairNativeCanonicalFirstOrderLimitMap_surjective
     (hInput : GlobalOriginalFiniteFraisseInput F) :
     Function.Surjective
       (globalOriginalFairNativeCanonicalFirstOrderLimitMap F hInput) := by
-  intro y
-  obtain ⟨i, x, hix⟩ :=
-    globalOriginalFairNativeCanonicalStrictSequence_allStage_targetCover
-      F hInput y
-  refine ⟨globalOriginalTraceFirstOrderLimitIncl F hInput
-    (globalOriginalRepresentativePrefix F hInput)
-    (globalOriginalExtensionDiagramPrefix F hInput) i x, ?_⟩
-  change
-    (globalOriginalFairNativeStrictSequence_firstOrderLimitMap F hInput
-      (globalOriginalFairNativeCanonicalInitialState F hInput)
-      (globalOriginalFairNativeDiagonalSchedule F hInput))
-      (globalOriginalTraceFirstOrderLimitIncl F hInput
-        (globalOriginalRepresentativePrefix F hInput)
-        (globalOriginalExtensionDiagramPrefix F hInput) i x) = y
-  rw [globalOriginalFairNativeStrictSequence_firstOrderLimitMap_of]
-  exact hix
+  exact globalOriginalFairNativeStrictSequence_firstOrderLimitMap_surjective_of_diagonal
+    F hInput
+    (globalOriginalFairNativeCanonicalInitialState F hInput)
+    (globalOriginalFairNativeDiagonalSchedule F hInput)
+    (globalOriginalFairNativeDiagonalSchedule_covers F hInput)
 
 /-- The genuinely constructed first-order limit map is a
 BIJECTION preserving and reflecting every complete
