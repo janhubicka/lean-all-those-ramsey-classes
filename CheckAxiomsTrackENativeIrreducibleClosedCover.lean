@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackENativeIrreducibleClosedCover
+
+#print axioms AllThoseRamseyClasses.Published.nativeIrreducible_closedCover
