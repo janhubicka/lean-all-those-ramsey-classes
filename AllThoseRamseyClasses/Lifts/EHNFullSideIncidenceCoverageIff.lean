@@ -431,4 +431,103 @@ theorem minimalForbiddenWitness_noSideDefects_yields_injectiveMinimalMixedPiece
       v hMinV hRootInjective
   exact ⟨v, hInjective, hMinV, P, hSmallest⟩
 
+/-- The most faithful original 2019 Section 3 image interface:
+
+For an original native EHN map into a GENUINE FULL native target
+free amalgam, the actual FULL induced target range is
+function-closed and the source→range map is
+ORIGINAL-PARTIAL tuple-surjective (both positive old relations
+and positive function DOMAINS) if and only if BOTH possible
+side-local globally unliftable native positive incidences
+are absent.
+
+The closedness and original-partial tuple-surjectivity hypotheses
+are ONE existential certificate with a proof-dependent induced
+structure, not a claim that the source-generated weak quotient
+is itself a full target substructure.
+
+This is a purely structural characterization. It does NOT
+derive the absence of side-local defects from maximal common
+canonical lifts, and it does NOT establish Claim 2 or strong AP.
+-/
+theorem actualClosedTupleSurjectiveRange_iff_noFullSideUnliftableIncidences
+    {V UX UA UB UT : Type}
+    (Source : Structure L V)
+    (Root : Structure L UX)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (Target : Structure L UT)
+    (sL : Structure.Embedding Root Left)
+    (sR : Structure.Embedding Root Right)
+    (jL : Structure.Embedding Left Target)
+    (jR : Structure.Embedding Right Target)
+    (hFree : Structure.IsFreeAmalgam sL sR jL jR)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f) :
+    (∃ hClosed : Target.IsClosed (Set.range f),
+      OriginalPartialTupleSurjective
+        Source (Target.induce (Set.range f) hClosed)
+        (fun x => (⟨f x, ⟨x, rfl⟩⟩ : Set.range f))) ↔
+    (¬ HasFullSideUnliftableFunctionIncident
+        Source Left Right Target jL jR f ∧
+     ¬ HasFullSideUnliftableRelationIncident
+        Source Left Right Target jL jR f) := by
+  classical
+  have hSide :=
+    noFullSideUnliftableIncidences_iff_originalPartialDomainAndRelationCoverage
+      Source Root Left Right Target sL sR jL jR hFree f hf
+  constructor
+  · rintro ⟨hClosed, hTuple⟩
+    have hRelation :
+        SourceRelationTuplesCoveredOnRange Source Target f := by
+      intro R zs hRange hPositive
+      let args : Fin (L.relArity R) → Set.range f :=
+        fun i => ⟨zs i, hRange i⟩
+      have hRaw : Subtype.val ∘ args = zs := by
+        funext i
+        rfl
+      have hInduced :
+          (Target.induce (Set.range f) hClosed).rel R args := by
+        change Target.rel R (Subtype.val ∘ args)
+        rw [hRaw]
+        exact hPositive
+      obtain ⟨ys, hSource, hArgs⟩ := hTuple.1 R args hInduced
+      refine ⟨ys, hSource, ?_⟩
+      funext i
+      exact congrArg Subtype.val (congrFun hArgs i)
+    have hDomains :
+        SourceFunctionDomainsCoveredOnRange Source Target f := by
+      intro G zs hRange hDefined
+      let args : Fin (L.funcArity G) → Set.range f :=
+        fun i => ⟨zs i, hRange i⟩
+      have hRaw : Subtype.val ∘ args = zs := by
+        funext i
+        rfl
+      obtain ⟨z, hz⟩ := hDefined
+      have hInduced :
+          ((Target.induce (Set.range f) hClosed).func G args).Nonempty := by
+        refine ⟨⟨z, hClosed G zs hRange hz⟩, ?_⟩
+        change z ∈ Target.func G (Subtype.val ∘ args)
+        rw [hRaw]
+        exact hz
+      obtain ⟨ys, hSource, hArgs⟩ := hTuple.2 G args hInduced
+      refine ⟨ys, hSource, ?_⟩
+      funext i
+      exact congrArg Subtype.val (congrFun hArgs i)
+    exact hSide.mpr ⟨hDomains, hRelation⟩
+  · intro hNoSide
+    obtain ⟨hDomains, hRelation⟩ := hSide.mp hNoSide
+    have hValues : SourceFunctionValueTuplesCoveredOnRange
+        Source Target f :=
+      (ehn_functionDomainCover_iff_fullValueCover
+        Source Target f hf).mp hDomains
+    let hClosed : Target.IsClosed (Set.range f) :=
+      sourceFunctionValueTuplesCovered_rangeClosed
+        Source Target f hValues
+    have hTuple : OriginalPartialTupleSurjective
+        Source (Target.induce (Set.range f) hClosed)
+        (fun x => (⟨f x, ⟨x, rfl⟩⟩ : Set.range f)) :=
+      sourceFullIncidenceReflection_inducedRangeTupleSurjective
+        Source Target f hValues hRelation
+    exact ⟨hClosed, hTuple⟩
+
 end AllThoseRamseyClasses.Lifts
