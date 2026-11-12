@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Published.TrackEActualCoveredInducedUIrreducible
 import PartiteConstruction.Functional.WholeMaskCoveredFunctionalTarget2019
 import PartiteConstruction.Functional.PartialSetFunctionsPartPredicates2019
+import PartiteConstruction.Structure.IrreducibleHomImage
 
 /-!
 # Track E: original native full irreducibles give actual tagged U-tests
@@ -100,5 +101,38 @@ theorem wholeMaskCovered_originalNativeInducedUIrreducible
         C (Base.withParts basePart) basePart
         hC (hPos.withParts) hCover
         S hPlusClosed X Y hTuple (ULift.up F) xs y hy
+
+/-- The exact range of EVERY genuinely irreducible full native E-copy
+of the final ORIGINAL decoded structure is intrinsically U-irreducible
+as an induced test of the ACTUAL noncanonical tagged final witness.
+
+Full function-closure of the range and irreducibility of the genuine
+native induced structure follow from the EXISTING full-embedding range
+and surjective-image theorems. The tested carrier is literally range(e);
+there is no image hull, canonical replacement, or alternate map. -/
+theorem wholeMaskCovered_originalNativeIrredCopy_UIrreducible
+    (C : RelStructure ((L.withParts P).wholeMaskTagLanguage P) V)
+    (Base : PartialSetStructure L W) (basePart : W → P)
+    (hC : IsUClosed ((L.withParts P).wholeMaskClosureRules P) C)
+    (hPos : L.PositiveFuncArity)
+    (hCover : ∀ {X : Type v}
+      (Test : RelStructure ((L.withParts P).wholeMaskTagLanguage P) X),
+      IsUClosed ((L.withParts P).wholeMaskClosureRules P) Test →
+      IsUIrreducible ((L.withParts P).wholeMaskClosureRules P) Test →
+      Embedding Test C →
+      Nonempty (Embedding Test
+        (wholeMaskTagExpansion
+          ((Base.withParts basePart).wholeMaskPatternGraph basePart))))
+    {T : Type v} (E : Structure L T)
+    (hE : E.Irreducible)
+    (e : Structure.Embedding E
+      ((wholeMaskOriginalDecode C).collapseDomain)) :
+    IsUIrreducible ((L.withParts P).wholeMaskClosureRules P)
+      (C.induce (Set.range e)) := by
+  exact wholeMaskCovered_originalNativeInducedUIrreducible
+    C Base basePart hC hPos hCover
+    (Set.range e) e.range_isClosed
+    (hE.range_homomorphism e.isHomomorphism)
+
 
 end AllThoseRamseyClasses.Published
