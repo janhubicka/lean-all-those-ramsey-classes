@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalWeakRankCut
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_weakSmall_complete_or_relativeFreeCut
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_badWeakSmall_has_relativeFreeCut
