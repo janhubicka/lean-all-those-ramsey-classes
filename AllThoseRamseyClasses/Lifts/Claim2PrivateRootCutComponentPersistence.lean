@@ -148,4 +148,118 @@ theorem fullFreeAmalgam_private_component_generatedBoundary_in_right_of_rootCut
   obtain ⟨b, _hb, hbMap⟩ := hw
   exact ⟨b, hbMap⟩
 
+/-- Exact source-component equality for an arbitrary deleted vertex set S
+containing the entire glued native root. No closedness of S and no
+weak target-map injectivity is required. -/
+theorem fullFreeAmalgam_private_component_eq_image_of_rootCut
+    {H E F W : Type v}
+    {Root : Structure L H}
+    {Left : Structure L E}
+    {Right : Structure L F}
+    {Whole : Structure L W}
+    {sL : Structure.Embedding Root Left}
+    {sR : Structure.Embedding Root Right}
+    {iL : Structure.Embedding Left Whole}
+    {iR : Structure.Embedding Right Whole}
+    (hFree : Structure.IsFreeAmalgam sL sR iL iR)
+    (S : Set W)
+    (hRootS : ∀ r : H, iR (sR r) ∈ S)
+    (xR : F) (hxOutS : iR xR ∉ S) :
+    componentFrom Whole.graph S ⟨iR xR, hxOutS⟩ =
+      iR '' componentFrom Right.graph (iR ⁻¹' S)
+        (⟨xR, hxOutS⟩ : {b : F // b ∉ iR ⁻¹' S}) := by
+  classical
+  let SR : Set F := iR ⁻¹' S
+  let xE : {b : F // b ∉ SR} := ⟨xR, hxOutS⟩
+  let xW : {w : W // w ∉ S} := ⟨iR xR, hxOutS⟩
+  let CE : Set F := componentFrom Right.graph SR xE
+  let C : Set W := iR '' CE
+  have hRootSR : ∀ r : H, sR r ∈ SR := hRootS
+  have hCEprivate : CE ⊆ {e : F | e ∉ SR} := by
+    intro e he
+    exact he.1
+  have hNeighborhood :
+      gaifmanNeighborhood Whole.graph C =
+      iR '' gaifmanNeighborhood Right.graph CE :=
+    fullFreeAmalgam_rightPrivate_neighborhood_eq_image
+      hFree SR CE hRootSR hCEprivate
+  have hNeighborhoodInside : gaifmanNeighborhood Whole.graph C ⊆ S := by
+    intro w hw
+    rw [hNeighborhood] at hw
+    obtain ⟨e, he, hew⟩ := hw
+    have heSR : e ∈ SR :=
+      functionalNeighborhood_component_subset_cut Right SR xE he
+    rw [← hew]
+    exact heSR
+  have hxC : iR xR ∈ C := by
+    exact ⟨xR, componentFrom_root Right.graph SR xE, rfl⟩
+  have hWholeInside :
+      componentFrom Whole.graph S xW ⊆ C := by
+    intro w hw
+    exact reachOutside_stays_in_avoid_boundary
+      Whole.graph S C xW hxC hNeighborhoodInside hw.2
+  let mapOutside : {e : F // e ∉ SR} → {w : W // w ∉ S} :=
+    fun e => ⟨iR e.1, e.2⟩
+  have hEdge : ∀ {a b : {e : F // e ∉ SR}},
+      outsideAdjacency Right.graph SR a b →
+      outsideAdjacency Whole.graph S (mapOutside a) (mapOutside b) := by
+    intro a b hab
+    have haPrivate : a.1 ∉ Set.range sR := by
+      rintro ⟨r, hr⟩
+      exact a.2 (hr ▸ hRootSR r)
+    exact (fullFreeAmalgam_rightPrivate_gaifmanAdjacent_iff
+      hFree a.1 b.1 haPrivate).mpr hab
+  have hReach : ∀ {a b : {e : F // e ∉ SR}},
+      ReachOutside Right.graph SR a b →
+      ReachOutside Whole.graph S (mapOutside a) (mapOutside b) := by
+    intro a b hab
+    induction hab with
+    | refl => exact Relation.ReflTransGen.refl
+    | tail hpath hedge ih =>
+        exact ih.tail (hEdge hedge)
+  have hImageInside :
+      C ⊆ componentFrom Whole.graph S xW := by
+    rintro w ⟨e, he, hew⟩
+    have heWhole : iR e ∈ componentFrom Whole.graph S xW := by
+      refine ⟨he.1, ?_⟩
+      exact hReach he.2
+    exact hew ▸ heWhole
+  exact Set.Subset.antisymm hWholeInside hImageInside
+
+/-- Exact transport of the ENTIRE native function-generated boundary
+for a private component after an arbitrary common-root-containing cut.
+The inserted left source cannot add any extra boundary vertices. -/
+theorem fullFreeAmalgam_private_component_generatedBoundary_eq_image_of_rootCut
+    {H E F W : Type v}
+    {Root : Structure L H}
+    {Left : Structure L E}
+    {Right : Structure L F}
+    {Whole : Structure L W}
+    {sL : Structure.Embedding Root Left}
+    {sR : Structure.Embedding Root Right}
+    {iL : Structure.Embedding Left Whole}
+    {iR : Structure.Embedding Right Whole}
+    (hFree : Structure.IsFreeAmalgam sL sR iL iR)
+    (S : Set W)
+    (hRootS : ∀ r : H, iR (sR r) ∈ S)
+    (xR : F) (hxOutS : iR xR ∉ S) :
+    Whole.functionClosure
+      (gaifmanNeighborhood Whole.graph
+        (componentFrom Whole.graph S ⟨iR xR, hxOutS⟩)) =
+      iR '' (Right.functionClosure
+        (gaifmanNeighborhood Right.graph
+          (componentFrom Right.graph (iR ⁻¹' S)
+            (⟨xR, hxOutS⟩ : {b : F // b ∉ iR ⁻¹' S})))) := by
+  let SR : Set F := iR ⁻¹' S
+  let xE : {b : F // b ∉ SR} := ⟨xR, hxOutS⟩
+  let CE : Set F := componentFrom Right.graph SR xE
+  have hRootSR : ∀ r : H, sR r ∈ SR := hRootS
+  have hCEprivate : CE ⊆ {e : F | e ∉ SR} := by
+    intro e he
+    exact he.1
+  rw [fullFreeAmalgam_private_component_eq_image_of_rootCut
+    hFree S hRootS xR hxOutS]
+  exact fullFreeAmalgam_private_generatedBoundary_eq_image
+    hFree SR CE hRootSR hCEprivate
+
 end AllThoseRamseyClasses.Lifts
