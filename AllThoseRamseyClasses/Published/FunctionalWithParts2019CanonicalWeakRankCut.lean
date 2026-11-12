@@ -81,7 +81,10 @@ theorem genuineTagged2019_weakSmall_complete_or_relativeFreeCut
       Nat.card d.Left ≤ j ∧ Nat.card d.Right ≤ j := by
   classical
   let rules := (L.withParts Parts).wholeMaskClosureRules Parts
-  let K := canonicalGenuineTagged2019Class H
+  -- Explicitly fix the universe-polymorphic carrier argument of K.
+  let K : ∀ {X : Type w},
+      RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X → Prop :=
+    canonicalGenuineTagged2019Class H
   have hClosedRankK : ∀ (T : Set V) [Fintype T],
       IsUClosed rules (C.induce T) →
       USize rules (C.induce T) ≤ j →
