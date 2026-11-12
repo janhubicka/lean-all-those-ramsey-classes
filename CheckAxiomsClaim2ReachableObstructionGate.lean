@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2ReachableObstructionGate
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_exists_reachable_obstruction_of_stepOrObstruction_and_zeroExit
