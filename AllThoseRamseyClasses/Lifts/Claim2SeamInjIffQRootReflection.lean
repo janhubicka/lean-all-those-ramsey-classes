@@ -1,7 +1,7 @@
 import AllThoseRamseyClasses.Lifts.Claim2ComplementLocalSeamInj
 
 /-!
-# Exact seam-injectivity criterion for a root-preserving Q-side weak map
+# Seam-injectivity criterion when source and target common roots are aligned
 
 Suppose a genuine native source replacement is a FULL free amalgam
 Q +_Root E. The unchanged complement E has the identical target
@@ -12,9 +12,16 @@ The replacement-side weak map gQ lands in Left, with exact root
 coordinates gQ(qRoot r) = iLeft r and the target factorization
 flip(iNewQ q) = jLeft(gQ q).
 
-Then the COMPLETE NEW seam preimage is injective under flip **iff**
-every Q-side source vertex mapped to Left's original common root
-is itself a literal Q-root vertex. This is Q root reflection.
+This theorem assumes an actual FULL common-root alignment:
+`iLeft : Root ↪ Left` uses the SAME native Root structure
+as `qRoot : Root ↪ Q`, and gQ preserves those exact coordinates.
+The general Claim 2 source separator and target overlap X need not
+be identified by a full embedding; this is an extra specialization,
+not a consequence of weak EHN maps.
+
+WITH that alignment, the COMPLETE NEW seam preimage is injective
+under flip **iff** every Q-side source vertex mapped to Left's
+common root is itself a literal Q-root vertex.
 It is a criterion, NOT a proof that canonical selected Q has it.
 
 No target image quotient, support minimizer, source finiteness,
@@ -30,15 +37,15 @@ universe u
 variable {L : Language.{u}}
 
 /-- On an actual Q +_Root E native source replacement, OLD
-complement-local seam injection and the EXACT Q root coordinates
-make root reflection of gQ equivalent to full injectivity of
+complement-local seam injection and the FULL alignment of SOURCE and TARGET common roots together with
+exact Q root coordinates make root reflection of gQ equivalent to full injectivity of
 the new weak map on the ENTIRE new common-seam preimage.
 
 The forward direction is independent of the old-source injection;
 the reverse direction uses its minimal complement-local form.
 No weak homomorphism-embedding is asserted to satisfy root reflection
 automatically. -/
-theorem fullNativeReplacement_newSeamInj_iff_QrootReflection_of_local
+theorem fullNativeReplacement_newSeamInj_iff_QrootReflection_of_local_alignedRoot
     {R E Q V W UA UT : Type}
     {Root : Structure L R}
     {Complement : Structure L E}
@@ -112,7 +119,7 @@ obtained from the iff without a second collision proof.
 
 It is a NECESSARY obstruction certificate; root-reflection
 failure is NOT proved impossible for a canonical selected Q. -/
-theorem fullNativeReplacement_collision_forces_QrootReflectionFailure_of_local
+theorem fullNativeReplacement_collision_forces_QrootReflectionFailure_of_local_alignedRoot
     {R E Q V W UA UT : Type}
     {Root : Structure L R}
     {Complement : Structure L E}
@@ -151,7 +158,7 @@ theorem fullNativeReplacement_collision_forces_QrootReflectionFailure_of_local
     by_contra hNotRoot
     exact hNoDefect ⟨q, hNotRoot, hImage⟩
   exact hNewCollision
-    ((fullNativeReplacement_newSeamInj_iff_QrootReflection_of_local
+    ((fullNativeReplacement_newSeamInj_iff_QrootReflection_of_local_alignedRoot
       iOldE iNewE iNewQ qRoot eRoot hNewFree
       iLeft jLeft f flip gQ hOldLocalInj hSameComplement
       hFlipQ hQRootCoords).mpr hReflect)
