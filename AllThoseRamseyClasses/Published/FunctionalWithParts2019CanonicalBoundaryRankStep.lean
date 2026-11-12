@@ -229,7 +229,9 @@ theorem genuineTagged2019_badWeakSmall_has_root_closure_or_irred_failure
     genuineTagged2019_badWeakSmall_has_noncanonical_root
       H C hClosed hCovered hKIrr hStrong j hRank S hCard hBad
   let rules := (L.withParts Parts).wholeMaskClosureRules Parts
-  let K := canonicalGenuineTagged2019Class H
+  let K : ∀ {X : Type w},
+      RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X → Prop :=
+    canonicalGenuineTagged2019Class H
   let inc : RelStructure.Embedding (C.induce (↑S : Set V)) C :=
     inclusion C (↑S : Set V)
   let eRoot : RelStructure.Embedding d.common C :=
