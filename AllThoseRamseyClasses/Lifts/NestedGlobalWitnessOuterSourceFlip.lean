@@ -115,6 +115,7 @@ theorem nestedGeometric_actualGlobalWitness_restores_outerSourceSymbol_withExter
     nestedGeometric_selectedFlip_preserves_outerGlobalPieceSymbol_withCarrier
       F Old hFOld inner outer hNested
       Q hSelected hDiagram New hFNew iQ iT hFree hm
+  letI : Finite W := hFiniteNew
   have hTargetCoords :
       ∀ i : Fin m, flip (newOuter.roots i) = f (outer.roots i) := by
     intro i
