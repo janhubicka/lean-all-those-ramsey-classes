@@ -80,16 +80,24 @@ theorem exists_minimalForbiddenWitness_with_crossingInput_or_mixedPiece
       ((∃ (G : L.FuncSymbol)
             (xs : Fin (L.funcArity G) → w.Carrier),
           ¬ FunctionInputCoveredByFullIrreducibleTest w.source G xs ∧
-          Nonempty (ProperFreeDecomposition
-            (w.source.induce (w.source.functionClosure (Set.range xs))
-              (w.source.functionClosure_isClosed (Set.range xs))))) ∨
+          ∃ d : ProperFreeDecomposition
+              (w.source.induce (w.source.functionClosure (Set.range xs))
+                (w.source.functionClosure_isClosed (Set.range xs))),
+            (¬ ∀ i : Fin (L.funcArity G), ∃ a : d.Left,
+              Structure.closureLift w.source xs i = d.leftIn a) ∧
+            (¬ ∀ i : Fin (L.funcArity G), ∃ c : d.Right,
+              Structure.closureLift w.source xs i = d.rightIn c)) ∨
        (∃ (R : L.RelSymbol)
             (xs : Fin (L.relArity R) → w.Carrier),
           Target.rel R (w.toTarget ∘ xs) ∧
           ¬ w.source.rel R xs ∧
-          Nonempty (ProperFreeDecomposition
-            (w.source.induce (w.source.functionClosure (Set.range xs))
-              (w.source.functionClosure_isClosed (Set.range xs))))) ∨
+          ∃ d : ProperFreeDecomposition
+              (w.source.induce (w.source.functionClosure (Set.range xs))
+                (w.source.functionClosure_isClosed (Set.range xs))),
+            (¬ ∀ i : Fin (L.relArity R), ∃ a : d.Left,
+              Structure.closureLift w.source xs i = d.leftIn a) ∧
+            (¬ ∀ i : Fin (L.relArity R), ∃ c : d.Right,
+              Structure.closureLift w.source xs i = d.rightIn c)) ∨
        (∃ (v : ForbiddenEHNWitness F Target),
           Function.Injective v.toTarget ∧
           (∀ t : ForbiddenEHNWitness F Target,
@@ -153,11 +161,11 @@ theorem exists_minimalForbiddenWitness_with_crossingInput_or_mixedPiece
             w.source Target w.toTarget w.homEmbedding
             R xs hCovered hTargetInput
         exact hNoSourceInput hSource
-      have hDecomp :=
-        uncoveredRelationInput_generatedHull_decomposes
+      obtain ⟨dec, hCross⟩ :=
+        uncoveredRelationInput_hasCrossingFreeDecomposition
           w.source R xs hUncovered
       exact ⟨w, hMin, Or.inr (Or.inl
-        ⟨R, xs, hTargetInput, hNoSourceInput, hDecomp⟩)⟩
+        ⟨R, xs, hTargetInput, hNoSourceInput, dec, hCross⟩)⟩
   · have hBadFunction :
         ∃ (G : L.FuncSymbol)
             (xs : Fin (L.funcArity G) → w.Carrier),
@@ -168,9 +176,12 @@ theorem exists_minimalForbiddenWitness_with_crossingInput_or_mixedPiece
       by_contra hMissing
       exact hNo ⟨G, xs, hMissing⟩
     obtain ⟨G, xs, hMissing⟩ := hBadFunction
-    have hDecomp :=
+    obtain ⟨dec⟩ :=
       uncoveredFunctionInput_generatedClosedHull_decomposes
         w.source G xs hMissing
-    exact ⟨w, hMin, Or.inl ⟨G, xs, hMissing, hDecomp⟩⟩
+    have hCross :=
+      generatedClosedHull_properFreeDecomposition_inputsCross
+        w.source xs dec
+    exact ⟨w, hMin, Or.inl ⟨G, xs, hMissing, dec, hCross⟩⟩
 
 end AllThoseRamseyClasses.Lifts
