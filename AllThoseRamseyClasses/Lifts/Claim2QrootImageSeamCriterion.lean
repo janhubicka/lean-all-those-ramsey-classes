@@ -94,8 +94,12 @@ theorem fullNativeReplacement_newQrootImageSeamInj_implies_QrootReflection
       flip (iNewQ (qRoot r)) ∈
         Set.range (fun r : R => flip (iNewQ (qRoot r))) :=
     ⟨r, rfl⟩
+  have hInQ :
+      flip (iNewQ q) ∈
+        Set.range (fun r : R => flip (iNewQ (qRoot r))) :=
+    ⟨r, hr⟩
   have hSourceEq : iNewQ q = iNewQ (qRoot r) :=
-    hNewInj hImage hRootIn hr.symm
+    hNewInj hInQ hRootIn hr.symm
   exact ⟨r, (iNewQ.injective hSourceEq).symm⟩
 
 /-- Exact ROOT-IMAGE seam criterion, without any full identification
