@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNMinimalObstructionThreeWay
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalForbiddenWitness_with_crossingInput_or_mixedPiece
