@@ -4,57 +4,37 @@ import AllThoseRamseyClasses.Lifts.ConnectedComponentBoundaryNonempty
 import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
 
 /-!
-# Track C: actual positive-rank successor OR smaller root using LOCAL active boundary injection
+# Track C: positive-rank actual successor OR smaller root with local injection
 
-This strengthens the merged-source geometry diagnostic by requiring
-the actual source flip, when it exists, to preserve exterior SOURCE
-counts of every target subset and a real A-exclusive SOURCE anchor
-inside the SAME new geometric outer piece. The companion matched-
-partner wrapper is the merged strongest same-selected-Q theorem. This proof still makes no original A-minimality or minimum
-mixed-piece assumption. The other two obstruction branches are unchanged.
+At an arbitrary intermediate genuine positive-width geometric piece P
+inside a finite connected forbidden native functional source, assume
+P's ordered root lies in the target common-seam preimage, there is
+a real A-exclusive source anchor inside P and a positive B-exclusive
+SOURCE count inside P.
 
-This is a **genuine full native source** trichotomy for an arbitrary
-intermediate geometric state, not just the original A-source-minimizer.
+Only the COMPLETE generated functional boundaries of B-exclusive
+S-components in P must be mapped injectively to Target. The weak map
+on the ENTIRE common-seam preimage S may be noninjective.
 
-Let P be an actual positive-width geometric outer piece of a finite
-connected forbidden source, with its complete old ordered root in
-the preimage S of the common target seam. Suppose P contains an
-A-exclusive SOURCE anchor and positive B-exclusive SOURCE rank.
+The checked no-escape source boundary alternative selects the actual
+B-only component and its complete generated boundary T, plus a
+separated A-only anchor. If the opposite generated boundary matches
+T, local injectivity on T suffices for the merged one-selected-Q
+source flip, preserving unchanged outer ordered root coordinates,
+global canonical relation symbol and all exterior SOURCE counts,
+strictly decreasing the B-only SOURCE count inside the new outer
+geometric piece, and preserving a real A-only SOURCE anchor in
+the same new piece. Otherwise the opposite boundary gives a
+genuine smaller positive native separator root inside T; its
+selected component can be MIXED and is NOT automatically flippable.
 
-Without any source-witness A-support minimality, smallest-mixed-piece
-minimality, or assumption that the weak target map is injective,
-one of the following must hold:
-
-1. An actual SAME-selected-Q full forbidden source B-to-A flip,
-   preserving the original outer ordered target-root coordinates
-   and global canonical relation symbol while strictly decreasing
-   the B-exclusive count of SOURCE VERTICES inside a genuine
-   new outer geometric piece, and exactly conserving SOURCE counts
-   OUTSIDE the whole old/new geometric pieces for ALL target sets.
-2. A genuine smaller POSITIVE-width native minimal-separator root
-   strictly inside the generated B-component boundary, still
-   lying in S and in the old geometric outer piece. Its selected
-   component can be mixed: this is NOT called a valid next step.
-3. The weak target map is noninjective on the entire original
-   common-seam preimage S. This is a genuine collision obstruction,
-   not an invented quotient or any claim about injectivity.
-
-The nonempty boundary and actual opposite vertex are DERIVED from
-source connectedness and full free-amalgam monochromaticity.
-No new global 2019 theorem, preservation of next-state eligibility,
-or final A-clearing contradiction is claimed. The alternative two
-obstructions remain explicit even with exact exterior conservation.
--/
-
-/-
-This new local alternative does NOT assume injectivity of the weak map
-over the whole current common seam. It assumes only that the genuine
-function-generated boundary of each B-exclusive source component
-inside the outer geometric piece is injectively mapped to Target.
-In the matched-boundary case that local injection makes the
-same-selected-Q B-to-A source flip admissible; otherwise a genuine
-smaller positive native source root is produced. No independent
-global weak-map collision alternative is needed.
+This is a two-branch conditional positive-rank theorem. Neither
+global S injectivity nor source-witness A-minimality nor the
+smallest-mixed-piece assumption is made. It does NOT resolve the
+smaller-root mixed branch, assert arbitrary next-step eligibility,
+prove a zero-B-rank terminal contradiction or establish general
+2019 strong amalgamation. Full source functional arities are used,
+without weak-image quotienting or image-cardinality counting.
 -/
 
 namespace AllThoseRamseyClasses.Lifts
