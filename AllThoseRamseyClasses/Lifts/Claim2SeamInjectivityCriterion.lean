@@ -57,6 +57,8 @@ theorem fullNativeReplacement_seamInjective_of_noFreshSeam
       g (iNewQ q) ∉ Seam) :
     Set.InjOn g (g ⁻¹' Seam) := by
   intro x hx y hy hxy
+  change g x ∈ Seam at hx
+  change g y ∈ Seam at hy
   by_contra hDistinct
   rcases fullNativeReplacement_newSeamCollision_hits_replacementOutsideComplement
       iOldE iNewE iNewQ qRoot eRoot hNewFree
