@@ -54,9 +54,28 @@ def firstOrderNativeGraphDecode_transport_selfEmbedding
     @FirstOrder.Language.Embedding
       (firstOrderRelGraphLanguage L.graph) V V
       (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
-      (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h)) :=
-  (((firstOrderNativeGraphDecode_id_equiv h).symm.toEmbedding).comp e).comp
-    (firstOrderNativeGraphDecode_id_equiv h).toEmbedding
+      (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h)) := by
+  let eqv := firstOrderNativeGraphDecode_id_equiv h
+  -- Even though both first-order models have carrier V,
+  -- their structure instances are propositionally, NOT
+  -- definitionally, equal. Do not use ordinary embedding
+  -- composition with a single intermediate instance.
+  refine @FirstOrder.Language.Embedding.mk
+    (firstOrderRelGraphLanguage L.graph) V V
+    (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
+    (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
+    ⟨e, e.injective⟩ ?_ ?_
+  · intro n funSym xs
+    exact nomatch funSym.down
+  · intro n rel xs
+    change
+      (firstOrderNativeGraphStructure
+        (firstOrderNativeGraphDecode h)).RelMap rel (e ∘ xs) ↔
+      (firstOrderNativeGraphStructure
+        (firstOrderNativeGraphDecode h)).RelMap rel xs
+    have hLeft := eqv.map_rel' rel (e ∘ xs)
+    have hRight := eqv.map_rel' rel xs
+    exact hLeft.symm.trans ((e.map_rel' rel xs).trans hRight)
 
 /-- The complete native-graph self-embedding has precisely
 the underlying vertex function of the original e:h↪h,
