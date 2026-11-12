@@ -118,8 +118,8 @@ theorem ehn_positiveFunction_commonRootOrExclusiveSourceInput
     (z : UT)
     (hPositive : z ∈ Target.func G (f ∘ xs)) :
     ((z ∈ Set.range (jL.comp sL) ∧
-      ∀ i : Fin (L.funcArity G),
-        f (xs i) ∈ Set.range (jL.comp sL) ∧
+      (∀ i : Fin (L.funcArity G),
+        f (xs i) ∈ Set.range (jL.comp sL)) ∧
       ∃ q : Source.functionClosure (Set.range xs) → UX,
         (Source.induce (Source.functionClosure (Set.range xs))
           (Source.functionClosure_isClosed (Set.range xs))).
