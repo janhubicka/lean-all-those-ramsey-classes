@@ -100,7 +100,9 @@ theorem fullNativeFlip_rightComponent_generatedBoundary_in_retainedComplement
     · intro w hw
       obtain ⟨e, he⟩ := hCinsideE hw
       refine ⟨e, ?_, he⟩
-      simpa only [he] using hw
+      change iNewE e ∈ C
+      rw [he]
+      exact hw
     · rintro w ⟨e, he, hEq⟩
       exact hEq ▸ he
   have hCEprivate : CE ⊆ {e : E | e ∉ Set.range eRoot} := by
