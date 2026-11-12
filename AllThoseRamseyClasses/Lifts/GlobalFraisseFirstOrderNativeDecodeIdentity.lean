@@ -52,19 +52,18 @@ def firstOrderRelGraphDecode_id_embedding
       (firstOrderRelGraphLanguage R) V V
       (firstOrderRelGraphStructure (firstOrderRelGraphDecode h))
       h := by
-  exact {
-    toFun := id
-    inj' := Function.injective_id
-    map_fun' := by
-      intro n f xs
-      exact nomatch f.down
-    map_rel' := by
-      intro n s xs
-      change h.RelMap s xs ↔
-        (firstOrderRelGraphStructure
-          (firstOrderRelGraphDecode h)).RelMap s xs
-      exact (firstOrderRelGraph_encode_decode_rel_iff h n s xs).symm
-  }
+  -- Both structure instances live on V, so supply them explicitly.
+  refine @FirstOrder.Language.Embedding.mk
+    (firstOrderRelGraphLanguage R) V V
+    (firstOrderRelGraphStructure (firstOrderRelGraphDecode h)) h
+    ⟨id, Function.injective_id⟩ ?_ ?_
+  · intro n f xs
+    exact nomatch f.down
+  · intro n s xs
+    change h.RelMap s xs ↔
+      (firstOrderRelGraphStructure
+        (firstOrderRelGraphDecode h)).RelMap s xs
+    exact (firstOrderRelGraph_encode_decode_rel_iff h n s xs).symm
 
 /-- For any native set-valued functional graph language,
 the complete first-order graph model of the genuine decoded
@@ -82,11 +81,30 @@ def firstOrderNativeGraphDecode_id_embedding
     @FirstOrder.Language.Embedding
       (firstOrderRelGraphLanguage L.graph) V V
       (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
-      h :=
-  (firstOrderRelGraphDecode_id_embedding h).comp
-    (firstOrderRelGraphEmbedding
-      (Structure.graphOfGraphClosed
-        (R := firstOrderRelGraphDecode h)).toEmbedding)
+      h := by
+  -- The native graph of the decoded model need not be
+  -- definitionally the relational decoder of h. Its relation
+  -- equivalence follows from the genuine graph-ofGraph embedding.
+  refine @FirstOrder.Language.Embedding.mk
+    (firstOrderRelGraphLanguage L.graph) V V
+    (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h)) h
+    ⟨id, Function.injective_id⟩ ?_ ?_
+  · intro n f xs
+    exact nomatch f.down
+  · intro n s xs
+    rcases s with ⟨s, rfl⟩
+    have hDecode :
+        h.RelMap ⟨s, rfl⟩ xs ↔
+          (firstOrderRelGraphDecode h).rel s xs := by
+      exact (firstOrderRelGraph_encode_decode_rel_iff
+        h _ ⟨s, rfl⟩ xs).symm
+    have hGraph :
+        (firstOrderRelGraphDecode h).rel s xs ↔
+          (firstOrderNativeGraphDecode h).graph.rel s xs := by
+      have h := (Structure.graphOfGraphClosed
+        (R := firstOrderRelGraphDecode h)).toEmbedding.map_rel_iff s xs
+      simpa only [Function.id_comp] using h
+    exact hDecode.trans hGraph
 
 /-- The decoded-model-to-original-model first-order bridge
 has exactly the SAME underlying vertex map, namely identity. -/
