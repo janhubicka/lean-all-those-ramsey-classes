@@ -43,8 +43,8 @@ relational embedding, retaining the original OLD mask predicates.
 There is no U-closedness requirement on the weak source. -/
 theorem genuineTagged2019_relativeCompletion_precomp_embedding
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
-    {A : RelStructure (taggedLanguage L Parts) X}
-    {B : RelStructure (taggedLanguage L Parts) Y}
+    {A : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) X}
+    {B : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Y}
     (e : Embedding A B)
     (hB : HasGenuinePartiteTagged2019RelativeCompletion H B) :
     HasGenuinePartiteTagged2019RelativeCompletion H A := by
@@ -66,13 +66,13 @@ possibly nonclosed weak D of at most n original vertices that FULLY
 embeds into C. The exact source D is never replaced by its hull. -/
 theorem genuineTagged2019_embeddedWeakSmall_of_vertexCutoff
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (n : ℕ)
     (hSmall : ∀ (S : Finset V), S.card ≤ n →
       HasGenuinePartiteTagged2019RelativeCompletion H
         (C.induce (↑S : Set V)))
-    (D : RelStructure (taggedLanguage L Parts) X)
+    (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) X)
     [Finite X]
     (e : Embedding D C)
     (hCard : Nat.card X ≤ n) :
@@ -111,9 +111,9 @@ theorem genuineTagged2019_weakVertexCutoff_glue_canonicalRoot
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (n : ℕ)
     (hSmall : ∀ (T : Finset V), T.card ≤ n →
@@ -158,9 +158,9 @@ theorem genuineTagged2019_badWeak_vertexCutoff_no_canonicalRootCut
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (n : ℕ)
     (hSmall : ∀ (T : Finset V), T.card ≤ n →
@@ -197,10 +197,10 @@ theorem genuineTagged2019_badWeak_vertexCutoff_root_closure_or_irred_failure
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
     (hIso : GenuinePartiteIsomorphismClosed2019 H)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCovered : CorrectedUIrreduciblesIn
       (canonicalGenuineTagged2019Class H)
@@ -232,7 +232,7 @@ theorem genuineTagged2019_badWeak_vertexCutoff_root_closure_or_irred_failure
       H hStrong hKIrr C n hSmall S hBad d
       hL hR hLeftSmall hRightSmall
   let K : ∀ {Z : Type w},
-      RelStructure (taggedLanguage L Parts) Z → Prop :=
+      RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z → Prop :=
     canonicalGenuineTagged2019Class H
   have hKIso : IsomorphismClosed2019 K :=
     canonicalGenuineTagged2019Class_isomorphismClosed H hIso
@@ -262,9 +262,9 @@ theorem genuineTagged2019_weakVertexCutoff_glue_irredRoot_of_smallHulls
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCClosed : IsUClosed
       ((L.withParts Parts).wholeMaskClosureRules Parts) C)
@@ -275,10 +275,10 @@ theorem genuineTagged2019_weakVertexCutoff_glue_irredRoot_of_smallHulls
     (hSmall : ∀ (T : Finset V), T.card ≤ n →
       HasGenuinePartiteTagged2019RelativeCompletion H
         (C.induce (↑T : Set V)))
-    {Root : RelStructure (taggedLanguage L Parts) RootV}
-    {Left : RelStructure (taggedLanguage L Parts) LeftV}
-    {Right : RelStructure (taggedLanguage L Parts) RightV}
-    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {Root : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RootV}
+    {Left : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) LeftV}
+    {Right : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RightV}
+    {Whole : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) WholeV}
     {sL : Embedding Root Left} {sR : Embedding Root Right}
     {iL : Embedding Left Whole} {iR : Embedding Right Whole}
     (hFree : IsFreeAmalgam sL sR iL iR)
@@ -336,9 +336,9 @@ theorem genuineTagged2019_badWeak_irredRoot_forces_hullCard_overrun
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCClosed : IsUClosed
       ((L.withParts Parts).wholeMaskClosureRules Parts) C)
@@ -406,9 +406,9 @@ theorem genuineTagged2019_weakVertexCutoff_glue_closed_rankOneRoot
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hIso : GenuinePartiteIsomorphismClosed2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCovered : CorrectedUIrreduciblesIn
       (canonicalGenuineTagged2019Class H)
@@ -417,10 +417,10 @@ theorem genuineTagged2019_weakVertexCutoff_glue_closed_rankOneRoot
     (hSmall : ∀ (T : Finset V), T.card ≤ n →
       HasGenuinePartiteTagged2019RelativeCompletion H
         (C.induce (↑T : Set V)))
-    {Root : RelStructure (taggedLanguage L Parts) RootV}
-    {Left : RelStructure (taggedLanguage L Parts) LeftV}
-    {Right : RelStructure (taggedLanguage L Parts) RightV}
-    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {Root : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RootV}
+    {Left : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) LeftV}
+    {Right : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RightV}
+    {Whole : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) WholeV}
     {sL : Embedding Root Left} {sR : Embedding Root Right}
     {iL : Embedding Left Whole} {iR : Embedding Right Whole}
     (hFree : IsFreeAmalgam sL sR iL iR)
@@ -468,9 +468,9 @@ theorem genuineTagged2019_badWeak_closedCut_rootRank_ge_two
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hIso : GenuinePartiteIsomorphismClosed2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCovered : CorrectedUIrreduciblesIn
       (canonicalGenuineTagged2019Class H)
@@ -528,9 +528,9 @@ theorem genuineTagged2019_weakVertexCutoff_glue_closed_UIrredRoot
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hIso : GenuinePartiteIsomorphismClosed2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCovered : CorrectedUIrreduciblesIn
       (canonicalGenuineTagged2019Class H)
@@ -539,10 +539,10 @@ theorem genuineTagged2019_weakVertexCutoff_glue_closed_UIrredRoot
     (hSmall : ∀ (T : Finset V), T.card ≤ n →
       HasGenuinePartiteTagged2019RelativeCompletion H
         (C.induce (↑T : Set V)))
-    {Root : RelStructure (taggedLanguage L Parts) RootV}
-    {Left : RelStructure (taggedLanguage L Parts) LeftV}
-    {Right : RelStructure (taggedLanguage L Parts) RightV}
-    {Whole : RelStructure (taggedLanguage L Parts) WholeV}
+    {Root : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RootV}
+    {Left : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) LeftV}
+    {Right : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) RightV}
+    {Whole : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) WholeV}
     {sL : Embedding Root Left} {sR : Embedding Root Right}
     {iL : Embedding Left Whole} {iR : Embedding Right Whole}
     (hFree : IsFreeAmalgam sL sR iL iR)
@@ -589,9 +589,9 @@ theorem genuineTagged2019_badWeak_closedCut_root_notUIrred
     (hStrong : GenuinePartiteStrongAmalgamation2019 H)
     (hIso : GenuinePartiteIsomorphismClosed2019 H)
     (hKIrr : ∀ {Z : Type w}
-      (D : RelStructure (taggedLanguage L Parts) Z),
+      (D : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) Z),
       canonicalGenuineTagged2019Class H D → D.Irreducible)
-    (C : RelStructure (taggedLanguage L Parts) V)
+    (C : RelStructure (((L.withParts Parts).wholeMaskTagLanguage Parts)) V)
     [Finite V]
     (hCovered : CorrectedUIrreduciblesIn
       (canonicalGenuineTagged2019Class H)
