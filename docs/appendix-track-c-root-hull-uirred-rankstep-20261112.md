@@ -44,8 +44,13 @@ singletons. Nevertheless, its ambient U-closure hull is the
 whole four-cycle. The only U-closed induced vertex sets of a
 directed cycle are the empty set and the entire cycle. Thus
 the hull is U-irreducible, although its original weak Root was
-ordinary reducible. This is an explanatory finite example, not
-a claimed separate Lean finite-model regression.
+ordinary reducible. If we also add one nondistinguished four-ary
+relation tuple on all four vertices, the closed hull becomes
+**ordinarily irreducible**, without introducing any relation tuple
+on the two-vertex weak Root. Thus this separation persists even
+when the potential K(H) boundary must be ordinary irreducible.
+This is an explanatory finite example, not a claimed separate
+Lean finite-model regression or a model of all class-level axioms.
 
 It explains why the new theorem is more than a restatement of
 the old irreducible-Root hypothesis: the actual obstruction is
