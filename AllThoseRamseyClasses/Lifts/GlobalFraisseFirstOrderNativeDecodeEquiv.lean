@@ -59,7 +59,18 @@ def firstOrderNativeGraphDecode_id_equiv
     change h.RelMap s xs ↔
       (firstOrderNativeGraphStructure
         (firstOrderNativeGraphDecode h)).RelMap s xs
-    exact (firstOrderNativeGraphDecode_id_embedding h).map_rel' s xs
+    -- Apply the checked bridge's *structure-valued field* with
+    -- both source and target model instances specified explicitly.
+    -- The two models share the same carrier and Lean's inferred
+    -- instance is otherwise ambiguous here.
+    have hRel :=
+      @FirstOrder.Language.Embedding.map_rel'
+        (firstOrderRelGraphLanguage L.graph) V V
+        (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
+        h
+        (firstOrderNativeGraphDecode_id_embedding h)
+        n s xs
+    simpa only [Function.id_comp] using hRel
 
 /-- The graph-comparison equivalence has the literal
 identity underlying forward map. -/
@@ -67,7 +78,7 @@ theorem firstOrderNativeGraphDecode_id_equiv_apply
     {L : Language.{u}} {V : Type v}
     (h : (firstOrderRelGraphLanguage L.graph).Structure V)
     (x : V) :
-    firstOrderNativeGraphDecode_id_equiv h x = x := by
+    (firstOrderNativeGraphDecode_id_equiv h).toEquiv x = x := by
   rfl
 
 /-- The inverse graph-comparison equivalence ALSO has
@@ -77,13 +88,12 @@ theorem firstOrderNativeGraphDecode_id_equiv_symm_apply
     {L : Language.{u}} {V : Type v}
     (h : (firstOrderRelGraphLanguage L.graph).Structure V)
     (x : V) :
-    (firstOrderNativeGraphDecode_id_equiv h).symm x = x := by
+    (firstOrderNativeGraphDecode_id_equiv h).toEquiv.symm x = x := by
   -- The forward equivalence is identity on vertices, so its
   -- inverse is identity as well; avoid relying on reducibility
   -- of the first-order equivalence `symm` constructor.
-  have hright :=
-    FirstOrder.Language.Equiv.apply_symm_apply
-      (firstOrderNativeGraphDecode_id_equiv h) x
-  simpa only [firstOrderNativeGraphDecode_id_equiv_apply] using hright
+  -- The toEquiv field of our explicit FO equivalence is
+  -- definitionally Equiv.refl, independently of either model instance.
+  rfl
 
 end AllThoseRamseyClasses.Lifts
