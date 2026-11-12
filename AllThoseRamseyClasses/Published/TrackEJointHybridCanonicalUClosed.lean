@@ -162,12 +162,12 @@ theorem System.splitMaskJointRoot_isUClosed
       have hValue :
           Function.Injective root ∧
           ∃ U : Set V,
-            (A.toStructure.toNonemptyPartial.withParts A.part).func
+            A.toStructure.toNonemptyPartial.func
               p.input.symbol (root ∘ p.input.argMap) = some U ∧
             A.part '' U = Set.range p.mask.label := by
         change Function.Injective root ∧
           ∃ U : Set V,
-            (A.toStructure.toNonemptyPartial.withParts A.part).func
+            A.toStructure.toNonemptyPartial.func
               p.input.symbol (root ∘ p.input.argMap) = some U ∧
             A.part '' U = Set.range p.mask.label at hDomain
         exact hDomain
@@ -176,11 +176,6 @@ theorem System.splitMaskJointRoot_isUClosed
           FibreTransversal A.toStructure.toNonemptyPartial A.part :=
         (nativeFunctionFibreTransversal_iff_partial
           A.toStructure A.part).mp A.funcTransversal
-      have hTransPlus :
-          FibreTransversal
-            (A.toStructure.toNonemptyPartial.withParts A.part) A.part :=
-        (A.toStructure.toNonemptyPartial.withParts_fibreTransversal_iff
-          A.part).mpr hTransNative
       have hPartWitness (j : Fin p.mask.size) :
           ∃ y : V, y ∈ U ∧ A.part y = p.mask.label j := by
         have hLabel : p.mask.label j ∈ Set.range p.mask.label :=
@@ -205,19 +200,19 @@ theorem System.splitMaskJointRoot_isUClosed
             exact ⟨y, hy, rfl⟩
           obtain ⟨j, hj⟩ := hPart
           have hEq : out j = y :=
-            hTransPlus p.input.symbol (root ∘ p.input.argMap)
+            hTransNative p.input.symbol (root ∘ p.input.argMap)
               U hFuncU (out j) (hOutMem j) y hy
               ((hOutPart j).trans hj)
           exact ⟨j, hEq⟩
       let t : Fin (p.input.rootSize + p.mask.size) → V :=
         Fin.append root out
       have hGraph :
-          ((A.toStructure.toNonemptyPartial.withParts A.part).wholeMaskPatternGraph
+          (A.toStructure.toNonemptyPartial.wholeMaskPatternGraph
             A.part).rel (.inr (.inr (p.input, p.mask))) t := by
         change Function.Injective
             (fun i : Fin p.input.rootSize =>
               t (Fin.castAdd p.mask.size i)) ∧
-          (A.toStructure.toNonemptyPartial.withParts A.part).func
+          A.toStructure.toNonemptyPartial.func
             p.input.symbol
               ((fun i : Fin p.input.rootSize =>
                 t (Fin.castAdd p.mask.size i)) ∘ p.input.argMap) =
@@ -244,7 +239,7 @@ theorem System.splitMaskJointRoot_isUClosed
       refine ⟨t, ⟨hTag, hPrefix⟩, ?_⟩
       intro ys hValid
       have hOther :
-          ((A.toStructure.toNonemptyPartial.withParts A.part).wholeMaskPatternGraph
+          (A.toStructure.toNonemptyPartial.wholeMaskPatternGraph
             A.part).rel (.inr (.inr (p.input, p.mask))) ys :=
         hValid.1.1
       have hRootSame : ∀ i : Fin p.input.rootSize,
@@ -255,8 +250,8 @@ theorem System.splitMaskJointRoot_isUClosed
           ys (Fin.castAdd p.mask.size i) = e i := hValid.2 i
           _ = t (Fin.castAdd p.mask.size i) := (hPrefix i).symm
       exact
-        (A.toStructure.toNonemptyPartial.withParts A.part).wholeMaskPatternGraph_unique_outputs
-          A.part hTransPlus p.input p.mask ys t
+        A.toStructure.toNonemptyPartial.wholeMaskPatternGraph_unique_outputs
+          A.part hTransNative p.input p.mask ys t
           hOther hGraph hRootSame
 
 end StructuralRamsey.FunctionalPartite
