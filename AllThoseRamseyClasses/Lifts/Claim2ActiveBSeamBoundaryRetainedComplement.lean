@@ -99,7 +99,7 @@ theorem fullNativeFlip_rightComponent_generatedBoundary_in_retainedComplement
     apply Set.Subset.antisymm
     · intro w hw
       obtain ⟨e, he⟩ := hCinsideE hw
-      exact ⟨e, he ▸ hw, he⟩
+      exact ⟨e, he.symm ▸ hw, he⟩
     · rintro w ⟨e, he, hEq⟩
       exact hEq ▸ he
   have hCEprivate : CE ⊆ {e : E | e ∉ Set.range eRoot} := by
@@ -193,12 +193,12 @@ theorem fullNativeFlip_rightComponent_generatedBoundary_inj_of_oldSeamInj
       Set.range (jLeft.comp iLeft) := by
     have hU := hTinsideS hu
     change flip u ∈ Set.range (jLeft.comp iLeft) at hU
-    exact heu ▸ hU
+    exact heu.symm ▸ hU
   have hSeamV : flip (iNewE ev) ∈
       Set.range (jLeft.comp iLeft) := by
     have hV := hTinsideS hv
     change flip v ∈ Set.range (jLeft.comp iLeft) at hV
-    exact hev ▸ hV
+    exact hev.symm ▸ hV
   have hEqE : eu = ev :=
     fullNativeReplacement_retainedComplement_seamInjective
       iOldE iNewE f flip (Set.range (jLeft.comp iLeft))
