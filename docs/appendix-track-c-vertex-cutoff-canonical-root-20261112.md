@@ -71,3 +71,26 @@ or solve U-reducible root hulls. The overrun certificate is a
 necessary condition for failure, not proof that it occurs
 in the intended construction. Both lemmas have dedicated
 `#print axioms` checks and remain DRAFT until full CI.
+
+### Closed free cuts: the literal vertex cutoff excludes rank-one roots
+
+Two further conditional endpoints use the verified
+`IsFreeAmalgam.root_isUClosed_of_closed_whole_and_sides`
+(local partite #578) and the verified original H-valued rank-one
+gluing theorem (ATR #1050). For a genuinely U-closed free Whole
+with U-closed sides of at most n VERTICES, the original actual
+ambient weak n-vertex test completions supply H-completions of
+the two sides. The root is U-closed automatically; if its
+USize ≤1, corrected (4b), H-isomorphism closure and H-strong
+amalgamation glue them to complete the exact Whole.
+
+Contrapositively, every eligible CLOSED proper free cut of a
+noncompletable weak Whole under these same explicit hypotheses
+has common-root USize at least 2. This is a sharper rank-two
+barrier WITHOUT assuming completability of arbitrary closed
+hulls of generator rank ≤n, and without assuming a missing
+intrinsic-to-ambient class-locality bridge.
+
+These remain PROOF CANDIDATES until full exact-head CI and
+named axiom checks pass; the two original merged input theorems
+are green.
