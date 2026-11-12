@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019BadWeakRootObstruction
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_badWeak_relativeFreeCut_root_reducible
