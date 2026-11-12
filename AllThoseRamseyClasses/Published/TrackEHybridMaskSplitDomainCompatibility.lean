@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Published.TrackEJointHybridFullRootRules
 import PartiteConstruction.Functional.NativeWholeWeakFreeAmalgam
+import PartiteConstruction.Structure.PartialSetFunctionsWholePartRepresent
 
 /-!
 # Track E2: OLD output-part masks determine split domains
@@ -100,6 +101,78 @@ theorem canonicalHybrid_maskSplitDomainCompatible
     rw [← hPartMask] at hq
     obtain ⟨y, hy, hpart⟩ := hq
     exact ⟨hRootInj, y, ⟨hy, hpart⟩⟩
+
+/-- Conversely, in a FINITE canonical native partite System every
+active singleton split (F,q)-domain comes from a genuine ORIGINAL
+nonempty multivalued fibre. Transversality and the verified complete
+output-part enumeration yield one active original OLD mask whose set
+of output parts contains q.
+
+The finite carrier assumption is used only to invoke the checked
+complete-output representation lemma, not to enlarge any tested set.
+This is SOURCE coverage, not a claim that an arbitrary hybrid target
+has an original mask for each split domain. -/
+theorem canonicalHybrid_activeSplitDomain_hasOriginalMask
+    {V : Type w} [Finite V]
+    (A : StructuralRamsey.FunctionalPartite.System L Parts V)
+    (p : Language.FunctionInputPattern L)
+    (q : Parts) (root : Fin p.rootSize → V)
+    (hSplit : A.splitMaskHybrid.rel
+      (Language.hybridSplitDomainSymbol
+        (Language.splitMaskInputAtPart p q)) root) :
+    ∃ m : Language.CompleteOutputParts Parts,
+      A.splitMaskHybrid.rel
+        (Language.hybridOriginalMaskDomainSymbol p m) root ∧
+      q ∈ Set.range m.label := by
+  classical
+  let xs : Fin (L.funcArity p.symbol) → V := root ∘ p.argMap
+  change Function.Injective root ∧
+    ((A.splitOutputParts).toStructure.func
+      (ULift.up p.symbol, q) xs).Nonempty at hSplit
+  obtain ⟨hInj, y, hySplit⟩ := hSplit
+  have hy : y ∈ A.func p.symbol xs ∧ A.part y = q := hySplit
+  have hNonempty : (A.func p.symbol xs).Nonempty := ⟨y, hy.1⟩
+  have hVal : A.toStructure.toNonemptyPartial.func p.symbol xs =
+      some (A.func p.symbol xs) := by
+    change (if (A.func p.symbol xs).Nonempty then
+      some (A.func p.symbol xs) else none) = some (A.func p.symbol xs)
+    simp only [if_pos hNonempty]
+  have hTrans :
+      StructuralRamsey.PartialSetStructure.FibreTransversal
+        A.toStructure.toNonemptyPartial A.part := by
+    intro F args U hF a ha b hb hab
+    have hNative : A.func F args = U := by
+      change (if (A.func F args).Nonempty then
+        some (A.func F args) else none) = some U at hF
+      by_cases hn : (A.func F args).Nonempty
+      · simp only [if_pos hn] at hF
+        exact Option.some.inj hF
+      · simp only [if_neg hn] at hF
+        cases hF
+    rw [← hNative] at ha hb
+    exact A.funcTransversal F args a b ha hb hab
+  obtain ⟨m, ys, hRange, hLabels⟩ :=
+    A.toStructure.toNonemptyPartial.completeOutputPartGraph_represents_value
+      A.part hTrans p.symbol xs (A.func p.symbol xs) hVal
+  have hParts : A.part '' (A.func p.symbol xs) =
+      Set.range m.label := by
+    rw [← hRange]
+    ext part
+    constructor
+    · rintro ⟨z, ⟨j, rfl⟩, rfl⟩
+      exact ⟨j, (hLabels j).symm⟩
+    · rintro ⟨j, rfl⟩
+      exact ⟨ys j, ⟨j, rfl⟩, hLabels j⟩
+  have hMask : A.splitMaskHybrid.rel
+      (Language.hybridOriginalMaskDomainSymbol p m) root := by
+    change Function.Injective root ∧
+      ∃ U : Set V,
+        A.toStructure.toNonemptyPartial.func p.symbol xs = some U ∧
+        A.part '' U = Set.range m.label
+    exact ⟨hInj, A.func p.symbol xs, hVal, hParts⟩
+  refine ⟨m, hMask, ?_⟩
+  rw [← hParts]
+  exact ⟨y, hy.1, hy.2⟩
 
 /-- The law passes to exact weak induced vertex subsets, even if
 the corresponding original output tuple leaves the weak set. -/
