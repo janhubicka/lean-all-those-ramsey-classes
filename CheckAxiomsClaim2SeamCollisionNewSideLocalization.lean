@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2SeamCollisionNewSideLocalization
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_retainedComplement_seamInjective
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_newSeamCollision_hits_replacementOutsideComplement
