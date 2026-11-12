@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitArbitraryLaterStage
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_extend_to_laterStage

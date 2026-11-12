@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitStrictFiniteListStage
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_finiteList_strictStage

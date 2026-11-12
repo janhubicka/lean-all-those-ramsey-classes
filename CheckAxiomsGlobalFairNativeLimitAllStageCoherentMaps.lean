@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitAllStageCoherentMaps
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictSequence_allStageMap
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictSequence_allStageMap_apply
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictSequence_allStageMap_comp

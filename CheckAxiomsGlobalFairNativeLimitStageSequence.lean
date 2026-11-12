@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitStageSequence
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageStep_exists
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageStep
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageSequence
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStageSequence_stepSpec

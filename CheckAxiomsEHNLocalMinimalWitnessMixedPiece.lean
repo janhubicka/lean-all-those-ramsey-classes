@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNLocalMinimalWitnessMixedPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenWitness_localRangeReflection_yields_injectiveMinimalMixedPiece

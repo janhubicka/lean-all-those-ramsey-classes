@@ -1,6 +1,6 @@
 # Track A: actual nested outer source symbol from one inner global witness
 
-**11 November 2026. Draft audit.** The original 2019 numbered manuscript is frozen;
+**11 November 2026. Verified original interface; 12 November extension proposed.** The original 2019 numbered manuscript is frozen;
 no previously removed collaborator TODO is restored.
 
 ## Conditional theorem
@@ -39,7 +39,30 @@ the **same** Q and `New`. No second replacement is chosen.
 
 ## CI acceptance
 
-Hold draft until exact-head pinned full Lean, permitted-axioms,
+Original #1006 merged after exact-head CI. Hold the 12 November strengthening
+in draft until its own exact-head pinned full Lean, permitted-axioms,
 source-contract/import, no-admissions and active-root checks succeed.
 The named axiom endpoint is
 `CheckAxiomsNestedGlobalWitnessOuterSourceFlip.lean`.
+
+## 12 November: stronger same-witness exterior invariant (new draft)
+
+The new `nestedGeometric_actualGlobalWitness_restores_outerSourceSymbol_withExterior`
+retains the **same** selected Q, literal new forbidden source, complete
+free-amalgam maps, original ordered outer roots and **exact outer carrier**
+in one certificate. It also proves, for every target subset `TargetSet`,
+the equality of cardinalities of SOURCE vertices outside the actual
+old/new outer geometric pieces mapping into `TargetSet`.
+
+This strengthens the merged #1006 source-symbol theorem without new
+hypotheses. The historical exported theorem remains a direct projection
+and preserves its exact signature. The new cardinality statement follows
+from the already verified `geometricFlip_actualOuterExterior_sourceSupport_card_eq`
+once the exact carrier and unchanged complement agreement are retained
+from the SAME replacement witness.
+
+This is not the strict internal B-rank decrease. In particular it does
+not choose an eligible positive-rank inner flip or establish printed
+Claim 2; it supplies the exterior SOURCE-count invariant *conditional*
+on the given inner global witness and actual nested source geometry.
+No outer target-root image injectivity is assumed.
