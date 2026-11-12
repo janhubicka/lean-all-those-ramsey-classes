@@ -99,7 +99,8 @@ theorem fullNativeFlip_rightComponent_generatedBoundary_in_retainedComplement
     apply Set.Subset.antisymm
     · intro w hw
       obtain ⟨e, he⟩ := hCinsideE hw
-      exact ⟨e, he.symm ▸ hw, he⟩
+      refine ⟨e, ?_, he⟩
+      simpa only [he] using hw
     · rintro w ⟨e, he, hEq⟩
       exact hEq ▸ he
   have hCEprivate : CE ⊆ {e : E | e ∉ Set.range eRoot} := by
@@ -128,10 +129,6 @@ theorem fullNativeFlip_rightComponent_generatedBoundary_in_retainedComplement
   obtain ⟨e, _he, hMap⟩ := hz
   exact ⟨e, hMap⟩
 
-/-- The active B-only component boundary remains injective when
-the old complement seam was injected and the new source keeps
-that complement pointwise in TARGET coordinates. Fresh Q-only
-seam collisions do not affect injectivity on this boundary. -/
 /-- The ONLY old injectivity needed for a future B-component
 boundary is injectivity of the weak map on seam-valued vertices of
 the RETAINED complement E; fresh Q-side seam collisions elsewhere
