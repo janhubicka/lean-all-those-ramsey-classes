@@ -40,3 +40,7 @@ existence of a canonical cut.
 Four proposed named axioms checks, one active-root marker, no
 existing proof edits and no manuscript changes. Keep draft until
 exact-head full Lean compile, axiom and admission checks pass.
+
+### Sharper root obstruction under corrected (4b)
+
+The additional declaration `genuineTagged2019_badWeak_vertexCutoff_root_closure_or_irred_failure` assumes the original H-isomorphism closure and corrected (4b), and derives from the same exact n-vertex weak-test premise that every eligible small relatively closed free cut of a noncompletable S has a Root which is **either not intrinsically U-closed or not U-irreducible**. The proof uses the verified original H↔K isomorphism transport and canonical K-coverage of embedded closed U-irreducible tests. It never upgrades hSmall to the stronger closed generator-rank hypothesis and does not construct a common boundary for U-reducible roots.
