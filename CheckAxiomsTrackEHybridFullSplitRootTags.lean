@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridFullSplitRootTags
+
+#print axioms StructuralRamsey.RelStructure.Embedding.splitMaskHybridFullRoot
+#print axioms StructuralRamsey.Language.SplitMaskFullRootPattern.closureRule
