@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackENativeFullCopyTaggedU
+
+#print axioms AllThoseRamseyClasses.Published.nativePartiteIrreducible_splitPatternTag_uIrreducible
+#print axioms AllThoseRamseyClasses.Published.fullNativeIrreducibleCopy_splitPatternTag_uIrreducible
