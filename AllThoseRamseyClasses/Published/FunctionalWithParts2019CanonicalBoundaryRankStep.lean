@@ -1,6 +1,8 @@
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalWeakRankCut
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019SmallEmbeddedCompletion
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeHGlue
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalKIso
+import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
 
 /-!
 # Track C: exact conditional rank step and the noncanonical-boundary obstruction
@@ -175,5 +177,73 @@ theorem genuineTagged2019_badWeakSmall_has_noncanonical_root
       (genuinePartite2019_relativeCompletion_glue_over_H_root
         H hStrong hKIrr d.free hRelL hRelR hK hLeft hRight)
   exact ⟨d, hRelL, hRelR, hSmallL, hSmallR, hNotK⟩
+
+/-- Under the ACTUAL original H-isomorphism closure hypothesis,
+the necessary noncanonical common-root obstruction can be
+sharpened: the root is either not U-closed or not U-irreducible.
+
+Indeed if the root were BOTH closed and U-irreducible, its full
+embedding into the original corrected-(4b)-covered C and explicit
+isomorphism invariance of canonical K(H) would put it in K(H).
+That contradicts the obstruction theorem above.
+
+This does not claim that every nonclosed root is repairable
+without changing the free diagram, nor that a closed but
+U-reducible root belongs to H. Both cases remain possible. -/
+theorem genuineTagged2019_badWeakSmall_has_root_closure_or_irred_failure
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    [Finite V]
+    (hClosed :
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hCovered :
+      CorrectedUIrreduciblesIn
+        (canonicalGenuineTagged2019Class H)
+        ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hKIrr : ∀ {X : Type w}
+      (Target : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
+      canonicalGenuineTagged2019Class H Target → Target.Irreducible)
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hIso : GenuinePartiteIsomorphismClosed2019 H)
+    (j : ℕ)
+    (hRank : ∀ (T : Set V) [Fintype T],
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce T) →
+      USize ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce T) ≤ j →
+      HasGenuinePartiteTagged2019RelativeCompletion H (C.induce T))
+    (S : Finset V) (hCard : S.card ≤ j + 1)
+    (hBad : ¬ HasGenuinePartiteTagged2019RelativeCompletion
+      H (C.induce (↑S : Set V))) :
+    ∃ d : ProperFreeDecomposition (C.induce (↑S : Set V)),
+      IsUSubstructure ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce (↑S : Set V)) (Set.range d.leftIn) ∧
+      IsUSubstructure ((L.withParts Parts).wholeMaskClosureRules Parts)
+        (C.induce (↑S : Set V)) (Set.range d.rightIn) ∧
+      Nat.card d.Left ≤ j ∧ Nat.card d.Right ≤ j ∧
+      (¬ IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) d.common ∨
+       ¬ IsUIrreducible ((L.withParts Parts).wholeMaskClosureRules Parts)
+         d.common) := by
+  classical
+  obtain ⟨d, hRelL, hRelR, hSmallL, hSmallR, hNotK⟩ :=
+    genuineTagged2019_badWeakSmall_has_noncanonical_root
+      H C hClosed hCovered hKIrr hStrong j hRank S hCard hBad
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  let K := canonicalGenuineTagged2019Class H
+  let inc : RelStructure.Embedding (C.induce (↑S : Set V)) C :=
+    inclusion C (↑S : Set V)
+  let eRoot : RelStructure.Embedding d.common C :=
+    inc.comp (d.leftIn.comp d.toLeft)
+  have hKIso : IsomorphismClosed2019 K :=
+    canonicalGenuineTagged2019Class_isomorphismClosed H hIso
+  have hAbstract : ClosedUIrreduciblesIn K rules C :=
+    correctedInducedCoverage_toAbstract_2019 hKIso hCovered
+  have hNotBoth :
+      ¬ (IsUClosed rules d.common ∧
+        IsUIrreducible rules d.common) := by
+    rintro ⟨hRootClosed, hRootIrred⟩
+    exact hNotK (hAbstract d.common hRootClosed hRootIrred eRoot)
+  exact ⟨d, hRelL, hRelR, hSmallL, hSmallR,
+    not_and_or.mp hNotBoth⟩
 
 end AllThoseRamseyClasses.Published
