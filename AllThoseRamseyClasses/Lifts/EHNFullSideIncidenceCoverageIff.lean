@@ -327,4 +327,108 @@ theorem noFullSideUnliftableIncidences_iff_originalPartialDomainAndRelationCover
     exact hFull.mpr
       ⟨hDomains.mp hDomainCoverage, hRelationCoverage⟩
 
+/-- Exact conditional Track D → Track C handoff for ONE actual
+globally left-SOURCE-support-minimal forbidden EHN witness in a
+genuine FULL native free amalgam of F-free sides with the
+common original global canonical lift.
+
+If that specific minimizer has NO globally unliftable positive
+relation or function incidence inside either FULL side (including
+the genuinely crossed source input hull certificates), then
+original-partial function-domain and positive relation coverage
+hold on its ACTUAL target image. EHN upgrades domain coverage to
+full native function-value coverage; the actual induced range
+becomes function-closed and ORIGINAL-PARTIAL tuple-surjective.
+The paper-shaped family image closure then selects an INJECTIVE
+forbidden EHN replacement with no greater ORIGINAL source support,
+hence still minimal, and the verified source geometry provides a
+genuine smallest MIXED geometric forbidden piece.
+
+This theorem does NOT derive the no-side-defect premise from
+maximal common lifts. Doing so (or bypassing the defects by a
+collision-tolerant source flip) is the remaining Track D obstacle.
+Track C's arbitrary positive-rank proper-piece descent is separate.
+-/
+theorem minimalForbiddenWitness_noSideDefects_yields_injectiveMinimalMixedPiece
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    (hImage : HasTupleSurjectiveForbiddenImageClosure F)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hTargetFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (hAvoidLeft : AvoidsGlobalFunctionalEHN F Left)
+    (hAvoidRight : AvoidsGlobalFunctionalEHN F Right)
+    (w : ForbiddenEHNWitness F Target)
+    (hMinimal : ∀ t : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) ≤
+        t.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft))
+    (hNoSide :
+      ¬ HasFullSideUnliftableFunctionIncident
+          w.source Left Right Target jLeft jRight w.toTarget ∧
+      ¬ HasFullSideUnliftableRelationIncident
+          w.source Left Right Target jLeft jRight w.toTarget) :
+    ∃ (v : ForbiddenEHNWitness F Target),
+      Function.Injective v.toTarget ∧
+      (∀ t : ForbiddenEHNWitness F Target,
+        v.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) ≤
+          t.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft)) ∧
+      ∃ P : MixedGeometricPiece v.source
+          (weakFreeRootPart (sL := iLeft) (iL := jLeft) v.toTarget)
+          (weakFreeLeftPart (sL := iLeft) (iL := jLeft) v.toTarget)
+          (weakFreeRightPart
+            (sL := iLeft) (iL := jLeft) (iR := jRight) v.toTarget),
+        ∀ Q : MixedGeometricPiece v.source
+          (weakFreeRootPart (sL := iLeft) (iL := jLeft) v.toTarget)
+          (weakFreeLeftPart (sL := iLeft) (iL := jLeft) v.toTarget)
+          (weakFreeRightPart
+            (sL := iLeft) (iL := jLeft) (iR := jRight) v.toTarget),
+          P.nonrootCount ≤ Q.nonrootCount := by
+  obtain ⟨hDomainCoverage, hRelationCoverage⟩ :=
+    (noFullSideUnliftableIncidences_iff_originalPartialDomainAndRelationCoverage
+      w.source X Left Right Target
+      iLeft iRight jLeft jRight hTargetFree
+      w.toTarget w.homEmbedding).mp hNoSide
+  have hValueCoverage : SourceFunctionValueTuplesCoveredOnRange
+      w.source Target w.toTarget :=
+    (ehn_functionDomainCover_iff_fullValueCover
+      w.source Target w.toTarget w.homEmbedding).mp hDomainCoverage
+  let hClosed : Target.IsClosed (Set.range w.toTarget) :=
+    sourceFunctionValueTuplesCovered_rangeClosed
+      w.source Target w.toTarget hValueCoverage
+  have hTuple : OriginalPartialTupleSurjective
+      w.source (Target.induce (Set.range w.toTarget) hClosed)
+      (fun x => (⟨w.toTarget x, ⟨x, rfl⟩⟩ :
+        Set.range w.toTarget)) :=
+    sourceFullIncidenceReflection_inducedRangeTupleSurjective
+      w.source Target w.toTarget hValueCoverage hRelationCoverage
+  obtain ⟨v, hInjective, hBound⟩ :=
+    forbiddenEHNWitness_injectiveReplacement_of_printedTupleRange
+      F hFiniteF hImage Target
+      (fullFreeLeftExclusiveTarget iLeft jLeft)
+      w hClosed hTuple
+  have hMinV : ∀ t : ForbiddenEHNWitness F Target,
+      v.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) ≤
+        t.sourceSupportCount (fullFreeLeftExclusiveTarget iLeft jLeft) := by
+    intro t
+    exact hBound.trans (hMinimal t)
+  have hRootInjective : Set.InjOn v.toTarget
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) v.toTarget) := by
+    intro x _ y _ hxy
+    exact hInjective hxy
+  obtain ⟨P, hSmallest⟩ :=
+    minimalGlobalForbiddenWitness_exists_minimalMixedPiece_of_rootInjOn
+      F hFiniteF hConnected
+      Target Left Right jLeft jRight X iLeft iRight
+      hTargetFree hCommon hAvoidLeft hAvoidRight
+      v hMinV hRootInjective
+  exact ⟨v, hInjective, hMinV, P, hSmallest⟩
+
 end AllThoseRamseyClasses.Lifts
