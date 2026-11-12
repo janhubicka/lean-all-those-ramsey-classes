@@ -64,7 +64,7 @@ theorem nativeIrreducible_closedCover
     injective := by
       intro x y h
       apply Subtype.ext
-      exact congrArg Subtype.val h
+      exact congrArg (fun z : S => z.1) h
     map_rel_iff := fun _ _ => Iff.rfl
     map_func := by
       intro F xs
@@ -85,7 +85,7 @@ theorem nativeIrreducible_closedCover
     injective := by
       intro x y h
       apply Subtype.ext
-      exact congrArg Subtype.val h
+      exact congrArg (fun z : T => z.1) h
     map_rel_iff := fun _ _ => Iff.rfl
     map_func := by
       intro F xs
