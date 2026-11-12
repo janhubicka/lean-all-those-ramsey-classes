@@ -73,9 +73,26 @@ def firstOrderNativeGraphDecode_transport_selfEmbedding
         (firstOrderNativeGraphDecode h)).RelMap rel (e ∘ xs) ↔
       (firstOrderNativeGraphStructure
         (firstOrderNativeGraphDecode h)).RelMap rel xs
-    have hLeft := eqv.map_rel' rel (e ∘ xs)
-    have hRight := eqv.map_rel' rel xs
-    exact hLeft.symm.trans ((e.map_rel' rel xs).trans hRight)
+    have hLeft :=
+      @FirstOrder.Language.Equiv.map_rel'
+        (firstOrderRelGraphLanguage L.graph) V V
+        (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
+        h eqv n rel (e ∘ xs)
+    have hRight :=
+      @FirstOrder.Language.Equiv.map_rel'
+        (firstOrderRelGraphLanguage L.graph) V V
+        (firstOrderNativeGraphStructure (firstOrderNativeGraphDecode h))
+        h eqv n rel xs
+    have hIdentity (ys : Fin n → V) :
+        eqv.toFun ∘ ys = ys := by
+      funext a
+      rfl
+    rw [hIdentity] at hLeft hRight
+    have hMap :=
+      @FirstOrder.Language.Embedding.map_rel'
+        (firstOrderRelGraphLanguage L.graph) V V h h
+        e n rel xs
+    exact hLeft.symm.trans (hMap.trans hRight)
 
 /-- The complete native-graph self-embedding has precisely
 the underlying vertex function of the original e:h↪h,
