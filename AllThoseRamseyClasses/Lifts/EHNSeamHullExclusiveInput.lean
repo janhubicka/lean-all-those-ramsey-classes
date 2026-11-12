@@ -62,8 +62,7 @@ theorem ehn_sourceInputHull_commonRootOrExclusiveGenerator
     (((∀ i : X, f (xs i) ∈ Set.range (jL.comp sL)) ∧
       ∃ q : Source.functionClosure (Set.range xs) → UX,
         (Source.induce (Source.functionClosure (Set.range xs))
-          (Source.functionClosure_isClosed (Set.range xs))).
-            IsEHNHomomorphismEmbedding Root q ∧
+          (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Root q ∧
         ∀ z : Source.functionClosure (Set.range xs),
           (jL.comp sL) (q z) = f z.1) ∨
      (∃ i : X,
@@ -122,8 +121,7 @@ theorem ehn_positiveFunction_commonRootOrExclusiveSourceInput
         f (xs i) ∈ Set.range (jL.comp sL)) ∧
       ∃ q : Source.functionClosure (Set.range xs) → UX,
         (Source.induce (Source.functionClosure (Set.range xs))
-          (Source.functionClosure_isClosed (Set.range xs))).
-            IsEHNHomomorphismEmbedding Root q ∧
+          (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Root q ∧
         ∀ v : Source.functionClosure (Set.range xs),
           (jL.comp sL) (q v) = f v.1) ∨
      (∃ i : Fin (L.funcArity G),
@@ -169,8 +167,7 @@ theorem ehn_unliftableRelation_commonSeamHullOrExclusiveInput
         f (xs i) ∈ Set.range (jL.comp sL)) ∧
        ∃ q : Source.functionClosure (Set.range xs) → UX,
          (Source.induce (Source.functionClosure (Set.range xs))
-           (Source.functionClosure_isClosed (Set.range xs))).
-             IsEHNHomomorphismEmbedding Root q ∧
+           (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Root q ∧
          ∀ z : Source.functionClosure (Set.range xs),
            (jL.comp sL) (q z) = f z.1) ∨
       (∃ i : Fin (L.relArity R),
@@ -216,8 +213,7 @@ theorem ehn_unliftableFunction_commonSeamHullOrExclusiveInput
         f (xs i) ∈ Set.range (jL.comp sL)) ∧
       ∃ q : Source.functionClosure (Set.range xs) → UX,
         (Source.induce (Source.functionClosure (Set.range xs))
-          (Source.functionClosure_isClosed (Set.range xs))).
-            IsEHNHomomorphismEmbedding Root q ∧
+          (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Root q ∧
         ∀ v : Source.functionClosure (Set.range xs),
           (jL.comp sL) (q v) = f v.1) ∨
      (∃ i : Fin (L.funcArity G),
