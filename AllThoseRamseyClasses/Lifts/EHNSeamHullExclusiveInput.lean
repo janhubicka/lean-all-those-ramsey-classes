@@ -34,6 +34,74 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
+/-- A positive old target relation tuple whose entire coordinate
+image belongs to a FULL embedded common root is already a positive
+OLD relation in that exact root. The source input map need not be
+injective, EHN, or even a homomorphism. This does NOT imply any
+positive added ORIGINAL canonical piece relation at collided roots. -/
+theorem fullNativeRoot_reflects_oldRelation_at_seamInputs
+    {V UX UT : Type}
+    (Root : Structure L UX) (Target : Structure L UT)
+    (j : Structure.Embedding Root Target)
+    (f : V → UT)
+    (R : L.RelSymbol)
+    (xs : Fin (L.relArity R) → V)
+    (hSeam : ∀ i, f (xs i) ∈ Set.range j)
+    (hTarget : Target.rel R (f ∘ xs)) :
+    ∃ args : Fin (L.relArity R) → UX,
+      Root.rel R args ∧ f ∘ xs = j ∘ args := by
+  classical
+  let args : Fin (L.relArity R) → UX :=
+    fun i => Classical.choose (hSeam i)
+  have hCoords : j ∘ args = f ∘ xs := by
+    funext i
+    exact Classical.choose_spec (hSeam i)
+  have hRoot : Root.rel R args := by
+    apply (j.map_rel_iff R args).mp
+    rw [hCoords]
+    exact hTarget
+  exact ⟨args, hRoot, hCoords.symm⟩
+
+/-- If the source IMAGE of every original native function input is
+in the full embedded common root, then ANY positive target output
+at those inputs also belongs to the root and is realized by one
+positive NATIVE root function incidence, including its output.
+
+The full function fibre is reflected via the original FULL
+embedding, not an assumed full weak quotient inclusion. -/
+theorem fullNativeRoot_reflects_functionValue_at_seamInputs
+    {V UX UT : Type}
+    (Root : Structure L UX) (Target : Structure L UT)
+    (j : Structure.Embedding Root Target)
+    (f : V → UT)
+    (G : L.FuncSymbol)
+    (xs : Fin (L.funcArity G) → V)
+    (z : UT)
+    (hSeam : ∀ i, f (xs i) ∈ Set.range j)
+    (hTarget : z ∈ Target.func G (f ∘ xs)) :
+    ∃ (args : Fin (L.funcArity G) → UX) (out : UX),
+      out ∈ Root.func G args ∧
+      f ∘ xs = j ∘ args ∧ z = j out := by
+  classical
+  let args : Fin (L.funcArity G) → UX :=
+    fun i => Classical.choose (hSeam i)
+  have hCoords : j ∘ args = f ∘ xs := by
+    funext i
+    exact Classical.choose_spec (hSeam i)
+  have hOutputRoot : z ∈ Set.range j :=
+    j.range_isClosed G (f ∘ xs) hSeam hTarget
+  obtain ⟨out, hOut⟩ := hOutputRoot
+  have hTargetValue : j out ∈ Target.func G (j ∘ args) := by
+    rw [hCoords, hOut]
+    exact hTarget
+  have hInImage : j out ∈ imageSet j (Root.func G args) := by
+    rw [j.map_func G args]
+    exact hTargetValue
+  obtain ⟨y, hy, hImage⟩ := hInImage
+  have hRootValue : out ∈ Root.func G args := by
+    exact (j.injective hImage) ▸ hy
+  exact ⟨args, out, hRootValue, hCoords.symm, hOut.symm⟩
+
 /-- Every original source input tuple under an EHN map into the
 actual full native free amalgam has a strict dichotomy:
 
