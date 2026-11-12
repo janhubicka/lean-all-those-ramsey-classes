@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNFullSideMinimalObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableFunction_allSourcePreimageFibresEmpty
+#print axioms AllThoseRamseyClasses.Lifts.HasFullSideUnliftableFunctionIncident
+#print axioms AllThoseRamseyClasses.Lifts.HasFullSideUnliftableRelationIncident
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalForbiddenWitness_fullyUnliftableSideIncidence_or_mixedPiece
