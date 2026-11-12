@@ -29,8 +29,9 @@ positive-B-rank state, there exists a reachable terminal with:
 
 The proof reuses #1026's genuine terminal construction, derives zero
 rank by contradiction with the explicit positive-rank successor
-assumption, and transports exterior counts inductively along its
-ACTUAL finite reachability chain.
+assumption, and uses the already verified `claim2_outsideLeftCount_eq_of_reachable`
+for exact exterior-source conservation along its ACTUAL finite
+reachability chain; no second path induction is maintained.
 
 ## Critical nonclaims
 
