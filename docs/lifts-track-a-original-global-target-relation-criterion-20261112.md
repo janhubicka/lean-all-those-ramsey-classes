@@ -16,6 +16,11 @@ implication follows from
 ORIGINAL globally indexed lift relation and the **same witness**, not a
 folded replacement relation or a different candidate source.
 
+The named collision-obstruction corollary is even more general:
+`geometricGlobalCanonicalRelation_false_of_rootCollision` does not
+require a weak EHN map at all; injective coordinates are mandatory for
+an original canonical global relation on any target tuple.
+
 This is a useful *criterion*, not a method of establishing injectivity.
 If a genuine old outer root has collisions, exact preservation of the
 source-global symbol and the target root coordinate tuple under
