@@ -1,5 +1,4 @@
 import AllThoseRamseyClasses.Lifts.Claim2SelectedSymbolDescentProfile
-import AllThoseRamseyClasses.Lifts.Claim2ZeroRankTerminalGate
 
 /-!
 # Selected-symbol Claim 2 descent with exact exterior SOURCE accounting
