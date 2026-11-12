@@ -138,7 +138,9 @@ theorem baseHybrid_freeAmalgam_of_componentFree
                 congrArg Whole.part ha.symm
               _ = q := hq
           · funext k
-            have hk : k = (0 : Fin 1) := Subsingleton.elim _ _
+            have hk : k = (0 : Fin 1) := by
+              change (k : Fin 1) = (0 : Fin 1)
+              exact Subsingleton.elim _ _
             subst k
             exact ha
         · refine Or.inr ⟨(fun _ : Fin 1 => b), ?_, ?_⟩
@@ -149,7 +151,9 @@ theorem baseHybrid_freeAmalgam_of_componentFree
                 congrArg Whole.part hb.symm
               _ = q := hq
           · funext k
-            have hk : k = (0 : Fin 1) := Subsingleton.elim _ _
+            have hk : k = (0 : Fin 1) := by
+              change (k : Fin 1) = (0 : Fin 1)
+              exact Subsingleton.elim _ _
             subst k
             exact hb
       · rintro (⟨x, hx, rfl⟩ | ⟨x, hx, rfl⟩)
