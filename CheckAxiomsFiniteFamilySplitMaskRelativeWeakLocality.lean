@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.FiniteFamilySplitMaskRelativeWeakLocality
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteNamedAmbientRelativeWeakCompletions_of_splitMask
+#print axioms AllThoseRamseyClasses.Lifts.avoidsFiniteNamedEHN_of_splitMaskRelativeWeakCompletions
