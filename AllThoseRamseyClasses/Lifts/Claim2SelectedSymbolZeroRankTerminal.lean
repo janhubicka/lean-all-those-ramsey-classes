@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.Claim2SelectedSymbolDescentProfile
+import AllThoseRamseyClasses.Lifts.Claim2TerminalLeftSupportAccounting
 
 /-!
 # Selected-symbol Claim 2 descent with exact exterior SOURCE accounting
@@ -79,16 +80,10 @@ theorem claim2_selectedSymbol_exists_zeroB_terminal_with_exterior_and_allTests
     · exact hz
     · exact False.elim
         (hNoNext (hPositiveStep terminal hValid hp))
-  have hOutsidePath :
-      ∀ {a b : State}, Relation.ReflTransGen Step a b →
-        outsideLeftCount b = outsideLeftCount a := by
-    intro a b hab
-    induction hab with
-    | refl => rfl
-    | tail hab hEdge ih =>
-      exact (hOutsideSame hEdge).trans ih
   have hOutside : outsideLeftCount terminal =
-      outsideLeftCount initial := hOutsidePath hReach
+      outsideLeftCount initial :=
+    claim2_outsideLeftCount_eq_of_reachable
+      Step outsideLeftCount hOutsideSame hReach
   exact ⟨terminal, hValid, hReach, hZero, hOutside,
     hNoNext, hWidth, hRoot, hTests⟩
 
