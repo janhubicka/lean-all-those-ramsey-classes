@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridCanonicalUClosed
+
+#print axioms StructuralRamsey.FunctionalPartite.System.splitMaskJointRoot_isUClosed
