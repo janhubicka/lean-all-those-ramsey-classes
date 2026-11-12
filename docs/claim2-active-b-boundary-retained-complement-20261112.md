@@ -57,3 +57,29 @@ localized injection property through multiple selected Q flips.
 Original numbered 2019 paper remains frozen; no removed TODO
 is reintroduced. Protect active root, inspect exact-head full
 Lean compilation, named axioms and no-admissions checks.
+
+
+## 12 November refinement: retained-complement injection is the sufficient invariant
+
+The stronger draft endpoint
+`fullNativeFlip_rightComponent_generatedBoundary_inj_of_retainedSeamInj`
+no longer assumes that the OLD weak map injects its entire old
+target-seam preimage. It needs only that distinct source vertices
+of the **retained full complement E** whose old target images lie
+in the seam have distinct images. The proof identifies every
+active NEW B-boundary vertex with an E source representative,
+uses complete old/new target-coordinate agreement on E,
+and cancels via this retained-E injectivity.
+
+The original
+`fullNativeFlip_rightComponent_generatedBoundary_inj_of_oldSeamInj`
+is now a backwards-compatible corollary: global old S injection
+restricts to E injection because the old E embedding is full
+and injective.
+
+This is a genuine weakening of the induction input and
+suggests tracking **injectivity on the B-active nested retained
+carrier**, rather than the entire seam. It still does not establish
+that the next retained carrier inherits the same property
+automatically: that requires a nested-complement persistence
+proof along the actual same-selected-Q source sequence.
