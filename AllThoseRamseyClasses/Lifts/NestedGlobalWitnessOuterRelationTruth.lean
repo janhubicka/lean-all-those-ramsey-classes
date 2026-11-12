@@ -59,12 +59,48 @@ theorem geometricGlobalCanonicalRelation_iff_of_symbol_and_coordinates
         (.inr (geometricGlobalPieceSymbol
           F New hFiniteNew hFNew newOuter hm))
         (fun i : Fin m => flip (newOuter.roots i)) := by
+  let Pold : SelectedFunctionalChart F m :=
+    geometricGlobalSelectedChart F Old hFiniteOld hFOld outer
+  let Pnew : SelectedFunctionalChart F m :=
+    geometricGlobalSelectedChart F New hFiniteNew hFNew newOuter
+  have hSymbolFixed :
+      (⟨⟨m, hm⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F m) Pold⟩ :
+          GlobalFunctionalPieceSymbol F) =
+      (⟨⟨m, hm⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F m) Pnew⟩ :
+          GlobalFunctionalPieceSymbol F) := hSymbol
+  have hClassHEq :
+      HEq (Quotient.mk (globalFunctionalPieceSetoid F m) Pold :
+          GlobalFunctionalPieceClass F m)
+        (Quotient.mk (globalFunctionalPieceSetoid F m) Pnew :
+          GlobalFunctionalPieceClass F m) :=
+    (Sigma.mk.inj_iff.mp hSymbolFixed).2
+  have hClass :
+      (Quotient.mk (globalFunctionalPieceSetoid F m) Pold :
+          GlobalFunctionalPieceClass F m) =
+        Quotient.mk (globalFunctionalPieceSetoid F m) Pnew :=
+    eq_of_heq hClassHEq
   have hTuples :
       (fun i : Fin m => flip (newOuter.roots i)) =
         (fun i : Fin m => f (outer.roots i)) := by
     funext i
     exact hCoordinates i
-  rw [hSymbol, hTuples]
+  change
+    (globalFunctionalCanonicalLift F Target).rel
+      (.inr (⟨⟨m, hm⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F m) Pold⟩ :
+          GlobalFunctionalPieceSymbol F))
+      (fun i : Fin m => f (outer.roots i)) ↔
+    (globalFunctionalCanonicalLift F Target).rel
+      (.inr (⟨⟨m, hm⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F m) Pnew⟩ :
+          GlobalFunctionalPieceSymbol F))
+      (fun i : Fin m => flip (newOuter.roots i))
+  -- Rewriting a *whole* sigma-indexed symbol changes the dependent
+  -- arity in the rewrite motive. Here only the fixed-width class varies.
+  -- In this indexed fibre the arity is definitionally `m`.
+  rw [hClass, hTuples]
 
 /-- The same actual selected-Q forbidden source replacement produced by
 the original inner global witness preserves the truth of the ORIGINAL
