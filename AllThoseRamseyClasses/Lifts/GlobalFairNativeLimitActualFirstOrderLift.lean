@@ -65,14 +65,44 @@ noncomputable def globalOriginalFairNativeStrictSequence_firstOrderStageMap
       (globalOriginalTraceFirstOrderLimitModel F hInput
         (globalOriginalRepresentativePrefix F hInput)
         (globalOriginalExtensionDiagramPrefix F hInput)) := by
-  let e := firstOrderNativeGraphEmbedding
-    (globalOriginalFairNativeStrictSequence_allStageMap
-      F hInput initial schedule i)
+  let nativeMap :=
+    globalOriginalFairNativeStrictSequence_allStageMap
+      F hInput initial schedule i
+  let nativeFO := firstOrderNativeGraphEmbedding nativeMap
   let bridge := firstOrderNativeGraphDecode_id_embedding
     (globalOriginalTraceFirstOrderLimitModel F hInput
       (globalOriginalRepresentativePrefix F hInput)
       (globalOriginalExtensionDiagramPrefix F hInput))
-  exact bridge.comp e
+  -- Do not use `bridge.comp nativeFO`: the intermediate carrier
+  -- is shared, but its two first-order structure instances are
+  -- only propositionally equivalent. Assemble the relation law
+  -- explicitly using the two separately verified embeddings.
+  refine @FirstOrder.Language.Embedding.mk
+    (GlobalOriginalTraceFirstOrderLanguage F)
+    (GlobalOriginalTraceStageVertex F hInput
+      (globalOriginalRepresentativePrefix F hInput)
+      (globalOriginalExtensionDiagramPrefix F hInput) i)
+    (GlobalOriginalFairNativeVertex F hInput)
+    (globalOriginalTraceStageFirstOrderModel F hInput
+      (globalOriginalRepresentativePrefix F hInput)
+      (globalOriginalExtensionDiagramPrefix F hInput) i)
+    (globalOriginalTraceFirstOrderLimitModel F hInput
+      (globalOriginalRepresentativePrefix F hInput)
+      (globalOriginalExtensionDiagramPrefix F hInput))
+    ⟨nativeMap, nativeMap.injective⟩ ?_ ?_
+  · intro n sym xs
+    exact nomatch sym.down
+  · intro n sym xs
+    change
+      (globalOriginalTraceFirstOrderLimitModel F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput)).RelMap
+        sym (nativeMap ∘ xs) ↔
+      (globalOriginalTraceStageFirstOrderModel F hInput
+        (globalOriginalRepresentativePrefix F hInput)
+        (globalOriginalExtensionDiagramPrefix F hInput) i).RelMap sym xs
+    exact (bridge.map_rel' sym (nativeMap ∘ xs)).trans
+      (nativeFO.map_rel' sym xs)
 
 /-- The underlying vertex map is exactly the existing FULL
 native stage map; the relational decoding bridge introduces
@@ -88,9 +118,9 @@ theorem globalOriginalFairNativeStrictSequence_firstOrderStageMap_apply
       F hInput initial schedule i a =
       globalOriginalFairNativeStrictSequence_allStageMap
         F hInput initial schedule i a := by
-  simp only [globalOriginalFairNativeStrictSequence_firstOrderStageMap,
-    FirstOrder.Language.Embedding.comp_apply,
-    firstOrderNativeGraphDecode_id_embedding_apply]
+  -- The assembled first-order embedding uses exactly the
+  -- original FULL vertex map, not a composite through an
+  -- ambiguously inferred first-order intermediate instance.
   rfl
 
 /-- The first-order stage maps are compatible with the
@@ -112,8 +142,6 @@ theorem globalOriginalFairNativeStrictSequence_firstOrderStageMap_comp
         i j hij) a) =
     (globalOriginalFairNativeStrictSequence_firstOrderStageMap
       F hInput initial schedule i) a := by
-  rw [globalOriginalFairNativeStrictSequence_firstOrderStageMap_apply,
-      globalOriginalFairNativeStrictSequence_firstOrderStageMap_apply]
   change
     (globalOriginalFairNativeStrictSequence_allStageMap
       F hInput initial schedule j)
@@ -200,6 +228,7 @@ theorem globalOriginalFairNativeStrictSequence_firstOrderLimitMap_of
         (globalOriginalExtensionDiagramPrefix F hInput) i a) =
       globalOriginalFairNativeStrictSequence_allStageMap
         F hInput initial schedule i a
+  unfold globalOriginalTraceFirstOrderLimitIncl
   rw [FirstOrder.Language.DirectLimit.lift_of]
   exact globalOriginalFairNativeStrictSequence_firstOrderStageMap_apply
     F hInput initial schedule i a
