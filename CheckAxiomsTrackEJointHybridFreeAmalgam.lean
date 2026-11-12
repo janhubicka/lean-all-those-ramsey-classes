@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridFreeAmalgam
+
+#print axioms StructuralRamsey.RelStructure.IsFreeAmalgam.splitMaskJointRoot
