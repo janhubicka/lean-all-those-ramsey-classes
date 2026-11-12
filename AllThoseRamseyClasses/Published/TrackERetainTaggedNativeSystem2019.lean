@@ -111,7 +111,12 @@ theorem genuinePartite2019_actual_standardSystem_sparse_witness_with_taggedHE
       A.toStructure.toNonemptyPartial A.part
       B.toStructure.toNonemptyPartial B.part
       C0.toStructure.toNonemptyPartial C0.part κ :=
-    (nativePartiteArrow_iff_faithfulPartial A B C0 κ).mp hInitial
+    (nativePartPreservingArrow_iff_partial
+       A.toStructure A.part
+       B.toStructure B.part
+       C0.toStructure C0.part κ).mp
+      ((nativePartPreservingArrow_iff_standardSystemArrow
+         A B C0 κ).mpr hInitial)
   obtain ⟨VQ, hVQ, C, hClosed, hCover, hControl,
       hWeak, hTr, hPartialArrow⟩ :=
     genuinePartite2019_actual_sparse_witness_with_taggedHE_control
