@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNCrossingHullFullSideFactor
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_generatedClosedHull_factors_fullSide
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableRelation_crossingHull_EHN_factorsFullSide
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableFunction_crossingHull_EHN_factorsFullSide
