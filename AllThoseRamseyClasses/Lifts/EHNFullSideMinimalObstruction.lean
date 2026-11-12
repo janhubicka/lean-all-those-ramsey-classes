@@ -195,7 +195,7 @@ theorem exists_minimalForbiddenWitness_fullyUnliftableSideIncidence_or_mixedPiec
              (weakFreeLeftPart (sL := iLeft) (iL := jLeft) v.toTarget)
              (weakFreeRightPart
                (sL := iLeft) (iL := jLeft) (iR := jRight) v.toTarget),
-             P.nonrootCount ≤ Q.nonrootCount := by
+             P.nonrootCount ≤ Q.nonrootCount) := by
   classical
   obtain ⟨w, hMin⟩ :=
     exists_minimalForbiddenEHNWitness_support F Target
