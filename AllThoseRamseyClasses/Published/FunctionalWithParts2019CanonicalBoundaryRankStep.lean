@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019CanonicalWeakRankCut
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019SmallEmbeddedCompletion
 import AllThoseRamseyClasses.Published.FunctionalWithParts2019RelativeHGlue
 
 /-!
@@ -18,10 +19,12 @@ persistent OLD domain masks and all protected closed U-tests.
 This module puts the two ingredients together. Its genuinely
 NONTRIVIAL remaining hypotheses are visible rather than smuggled in:
 
-(1) all weak sources FULLY EMBEDDED into C with at most j vertices
-    have actual H-relative completions (a strong inductive invariant);
+(1) a genuine H-relative closed U-rank-j completion invariant;
 (2) for each free decomposition produced in the hard branch, its
     common root lies in canonical K(H).
+The already verified closed-rank bridge automatically supplies
+all smaller embedded weak-side completions; no separate hSmall
+assumption is introduced.
 
 Under these assumptions the j -> j+1 weak-test step is valid.
 Conversely, if a j+1-small weak S is NONcompletable but (1)
@@ -46,9 +49,8 @@ universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
 variable {V : Type w}
 
-/-- Given rank-j closed completion control, actual H-relative
-completions for every smaller embedded weak source, and canonical
-membership of the common root in any proper weak free decomposition,
+/-- Given rank-j closed completion control and canonical membership
+of the common root in any proper weak free decomposition,
 the next weak-test cardinality layer is H-relatively completable.
 
 The root-membership assumption is an EXPLICIT additional induction
@@ -74,11 +76,6 @@ theorem genuineTagged2019_smallWeakCompletion_of_all_K_boundaries
       USize ((L.withParts Parts).wholeMaskClosureRules Parts)
         (C.induce T) ≤ j →
       HasGenuinePartiteTagged2019RelativeCompletion H (C.induce T))
-    (hSmall : ∀ {X : Type w} [Finite X]
-      (D : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
-      RelStructure.Embedding D C →
-      Nat.card X ≤ j →
-      HasGenuinePartiteTagged2019RelativeCompletion H D)
     (hRoots : ∀ (S : Finset V)
       (d : ProperFreeDecomposition (C.induce (↑S : Set V))),
       canonicalGenuineTagged2019Class H d.common)
@@ -101,16 +98,20 @@ theorem genuineTagged2019_smallWeakCompletion_of_all_K_boundaries
   let eRight : RelStructure.Embedding d.right C :=
     inc.comp d.rightIn
   have hLeft : HasGenuinePartiteTagged2019RelativeCompletion
-      H d.left := hSmall d.left eLeft hSmallL
+      H d.left :=
+    genuineTagged2019_embeddedWeakSmall_of_closedRank
+      H C hClosed j hRank d.left eLeft hSmallL
   have hRight : HasGenuinePartiteTagged2019RelativeCompletion
-      H d.right := hSmall d.right eRight hSmallR
+      H d.right :=
+    genuineTagged2019_embeddedWeakSmall_of_closedRank
+      H C hClosed j hRank d.right eRight hSmallR
   exact genuinePartite2019_relativeCompletion_glue_over_H_root
     H hStrong hKIrr d.free hRelL hRelR
     (hRoots S d) hLeft hRight
 
 /-- Necessary obstruction to the j+1 weak-test extension.
-Provided rank-j closed control and completions of ALL smaller
-embedded weak sources, a NONcompletable weak S must have a proper
+Provided rank-j closed control, which already completes ALL
+smaller embedded weak sources, a NONcompletable weak S has a proper
 relative free cut with a NON-K(H) common root.
 
 The failure of canonical membership is the only conclusion:
@@ -138,11 +139,6 @@ theorem genuineTagged2019_badWeakSmall_has_noncanonical_root
       USize ((L.withParts Parts).wholeMaskClosureRules Parts)
         (C.induce T) ≤ j →
       HasGenuinePartiteTagged2019RelativeCompletion H (C.induce T))
-    (hSmall : ∀ {X : Type w} [Finite X]
-      (D : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) X),
-      RelStructure.Embedding D C →
-      Nat.card X ≤ j →
-      HasGenuinePartiteTagged2019RelativeCompletion H D)
     (S : Finset V) (hCard : S.card ≤ j + 1)
     (hBad : ¬ HasGenuinePartiteTagged2019RelativeCompletion
       H (C.induce (↑S : Set V))) :
@@ -168,9 +164,11 @@ theorem genuineTagged2019_badWeakSmall_has_noncanonical_root
   let eRight : RelStructure.Embedding d.right C :=
     inc.comp d.rightIn
   have hLeft : HasGenuinePartiteTagged2019RelativeCompletion H d.left :=
-    hSmall d.left eLeft hSmallL
+    genuineTagged2019_embeddedWeakSmall_of_closedRank
+      H C hClosed j hRank d.left eLeft hSmallL
   have hRight : HasGenuinePartiteTagged2019RelativeCompletion H d.right :=
-    hSmall d.right eRight hSmallR
+    genuineTagged2019_embeddedWeakSmall_of_closedRank
+      H C hClosed j hRank d.right eRight hSmallR
   have hNotK : ¬ canonicalGenuineTagged2019Class H d.common := by
     intro hK
     exact hBad
