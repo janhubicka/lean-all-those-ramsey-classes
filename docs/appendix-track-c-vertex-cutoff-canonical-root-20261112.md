@@ -94,3 +94,21 @@ intrinsic-to-ambient class-locality bridge.
 These remain PROOF CANDIDATES until full exact-head CI and
 named axiom checks pass; the two original merged input theorems
 are green.
+
+### Stronger closed-root statement: U-reducible, not just rank at least two
+
+A final refinement removes the rank-one numeric assumption from
+the *positive* closed-root gluing lemma. By merged local #578,
+a U-closed free Whole of U-closed sides has an intrinsically
+U-closed common Root on the **same** carrier. If this Root
+is also U-irreducible (at ANY generating rank), corrected
+(4b) and H-isomorphism closure place it in canonical K(H).
+The original n-vertex hSmall premise completes both sides,
+and verified #938 protected-root gluing completes Whole.
+
+Consequently every eligible such closed cut of a bad
+source has **U-reducible** common Root. This is strictly
+stronger than merely proving its USize is at least two,
+and remains a conditional theorem until exact-head Lean
+CI passes. It still does not produce an eligible free
+cut or solve U-reducible root gluing.
