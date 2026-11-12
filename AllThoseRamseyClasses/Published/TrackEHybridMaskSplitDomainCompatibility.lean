@@ -265,4 +265,38 @@ theorem hybridMaskSplitDomainCompatible
       exact iR.map_rel_iff splitSymbol xs
     exact hTransport.trans (hRight p m q xs hxs)
 
+/-- If the two FULL hybrid free-amalgam sides have original-mask
+witnesses for every active split domain, the whole free amalgam has
+them too. The active split domain localizes to one side, and the
+corresponding original mask transports along that FULL side
+embedding. No compatibility assumption on a separately selected
+target map or on a closed common-root hull is needed. -/
+theorem hybridSplitDomainMaskCovered
+    {Root : RelStructure (L.splitMaskHybrid Parts) H}
+    {Left : RelStructure (L.splitMaskHybrid Parts) E}
+    {Right : RelStructure (L.splitMaskHybrid Parts) F}
+    {Whole : RelStructure (L.splitMaskHybrid Parts) C}
+    {sL : Embedding Root Left} {sR : Embedding Root Right}
+    {iL : Embedding Left Whole} {iR : Embedding Right Whole}
+    (hFree : IsFreeAmalgam sL sR iL iR)
+    (hLeft : HybridSplitDomainMaskCovered Left)
+    (hRight : HybridSplitDomainMaskCovered Right) :
+    HybridSplitDomainMaskCovered Whole := by
+  intro p q root hSplit
+  let splitSymbol : (L.splitMaskHybrid Parts).Symbol :=
+    Language.hybridSplitDomainSymbol
+      (Language.splitMaskInputAtPart p q)
+  rcases (hFree.rel_iff splitSymbol root).mp hSplit with
+    ⟨xs, hxs, hEq⟩ | ⟨xs, hxs, hEq⟩
+  · obtain ⟨m, hm, hq⟩ := hLeft p q xs hxs
+    refine ⟨m, ?_, hq⟩
+    rw [hEq]
+    exact (iL.map_rel_iff
+      (Language.hybridOriginalMaskDomainSymbol p m) xs).mpr hm
+  · obtain ⟨m, hm, hq⟩ := hRight p q xs hxs
+    refine ⟨m, ?_, hq⟩
+    rw [hEq]
+    exact (iR.map_rel_iff
+      (Language.hybridOriginalMaskDomainSymbol p m) xs).mpr hm
+
 end StructuralRamsey.RelStructure.IsFreeAmalgam
