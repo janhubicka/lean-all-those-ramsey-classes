@@ -70,8 +70,8 @@ theorem System.splitMaskHybridFullSplitRoot_isUClosed
         p.hasDomain
     have hSplitDomain :
         Function.Injective root ∧
-        (A.splitOutputParts).toStructure.func
-          p.input.symbol (root ∘ p.input.argMap) |>.Nonempty := by
+        ((A.splitOutputParts).toStructure.func
+          p.input.symbol (root ∘ p.input.argMap)).Nonempty := by
       change Function.Injective root ∧
         ((A.splitOutputParts).toStructure.func
           p.input.symbol (root ∘ p.input.argMap)).Nonempty at hDomain
