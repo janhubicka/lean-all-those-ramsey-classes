@@ -65,15 +65,16 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- In any positive B-rank, A-anchored genuine geometric state,
-there is either a real old-symbol rank-decreasing B-to-A source
-replacement, a specifically smaller positive native source root
-with exact opposite generated boundary, or a weak-map collision
-on the COMPLETE common-root preimage.
+/-- Under injectivity on all B-active generated boundaries of
+an A-anchored genuine positive-rank geometric state, there is
+either one actual old-symbol strictly B-rank-decreasing source
+replacement or a smaller positive native separator root with
+the complete opposite generated boundary.
 
-No minimum original A-source-support witness and no smallest
-mixed geometric piece are assumed. The smaller-root branch is
-not promoted to a one-sided flippable piece. -/
+Neither the full common-seam preimage nor the weak source map
+need be injected globally. No original A-support minimizer or
+smallest mixed-piece hypothesis is assumed. The smaller-root
+branch is not automatically one-sided or flippable. -/
 theorem claim2_positiveRank_actualSuccessor_or_smallerRoot_of_activeBoundaryInjective
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
