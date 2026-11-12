@@ -39,12 +39,16 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- Every ACTUAL target function value at source-image coordinates, including source inputs with different
-representatives has a positive source function output at
-those very input coordinates. This is the precise full-fibre
-reflection condition, weaker than covering source inputs
-by irreducible tests. Positive incidence preservation comes
-separately from the source's weak EHN map. -/
+/-- Every ACTUAL positive target function incidence whose INPUT
+coordinates are in the source image has a positive original
+source function incidence lifting both those coordinates and
+the target output. Source preimages may be chosen freely;
+this is a statement about ALL weak-image quotient coordinates,
+not only one particular representative source input.
+
+It is an explicit sufficient positive-incidence coverage
+condition, not an assertion derived from weak EHN or from the
+printed forbidden-image closure. -/
 def SourceFunctionValueTuplesCoveredOnRange
     {V W : Type} (A : Structure L V) (B : Structure L W)
     (f : V → W) : Prop :=
@@ -54,8 +58,8 @@ def SourceFunctionValueTuplesCoveredOnRange
       ∃ (xs : Fin (L.funcArity G) → V) (out : V),
         out ∈ A.func G xs ∧ zs = f ∘ xs ∧ z = f out
 
-/-- Complete function-fibre reflection at every source input
-forces the ACTUAL target image range to be function-closed.
+/-- Complete positive target function-incidence coverage over
+the ACTUAL source-image range makes that range function-closed.
 No source irreducible-test cover and no injectivity is used. -/
 theorem sourceFunctionValueTuplesCovered_rangeClosed
     {V W : Type} (A : Structure L V) (B : Structure L W)
@@ -67,9 +71,9 @@ theorem sourceFunctionValueTuplesCovered_rangeClosed
     hFibre G zs z hzs hz
   exact ⟨out, hValue.symm⟩
 
-/-- Reflection of all ACTUAL target function values at source
-inputs, plus positive old-relation incidence coverage ON THE
-TARGET RANGE, implies the ORIGINAL-PARTIAL tuple-surjectivity
+/-- Coverage of all ACTUAL target function values at source-IMAGE
+input coordinates, plus positive old-relation incidence coverage
+on that SAME image, implies ORIGINAL-PARTIAL tuple-surjectivity
 contract for the genuine full induced target range.
 
 This includes the entire native domain/value fibre, not merely
