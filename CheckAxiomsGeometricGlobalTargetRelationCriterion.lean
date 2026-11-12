@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.GeometricGlobalTargetRelationCriterion
+
+-- Exact iff for an original global geometric relation and collisions.
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_iff_rootInjective_of_weak
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_iff_rootInjective_of_weak
+#check AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_false_of_rootCollision
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalCanonicalRelation_false_of_rootCollision
