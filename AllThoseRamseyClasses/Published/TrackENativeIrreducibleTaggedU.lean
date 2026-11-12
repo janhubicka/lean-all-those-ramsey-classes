@@ -24,10 +24,12 @@ Proof via precise closed covers:
   U-irreducibility.
 
 No closure hull is taken, no new vertices or ordering are inserted,
-and all repeated or nullary function inputs are handled by their
-exact equality-pattern factorization. A positive-function-arity
-hypothesis is required ONLY for the native closedness dictionary.
-The final B-covered sparse witness still needs an independent
+and all permitted positive-arity function inputs (including repeated
+arguments) are handled by exact equality-pattern factorization.
+Nullary functions require a separate root reduction: the positive
+function-arity hypothesis is explicitly needed for the exact
+native U-closedness dictionary. The final B-covered sparse witness
+still needs an independent
 canonical induced-test comparison; this theorem does not assert it.
 -/
 
