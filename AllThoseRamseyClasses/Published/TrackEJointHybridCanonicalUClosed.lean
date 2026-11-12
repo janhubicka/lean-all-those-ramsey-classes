@@ -173,9 +173,18 @@ theorem System.splitMaskJointRoot_isUClosed
         exact hDomain
       obtain ⟨hInj, U, hFuncU, hMaskEq⟩ := hValue
       have hTransNative :
-          FibreTransversal A.toStructure.toNonemptyPartial A.part :=
-        (nativeFunctionFibreTransversal_iff_partial
-          A.toStructure A.part).mp A.funcTransversal
+          FibreTransversal A.toStructure.toNonemptyPartial A.part := by
+        intro F xs T hDefined y hy z hz heq
+        have hFibre : A.func F xs = T := by
+          change (if (A.func F xs).Nonempty then
+            some (A.func F xs) else none) = some T at hDefined
+          by_cases h : (A.func F xs).Nonempty
+          · simp only [if_pos h] at hDefined
+            exact Option.some.inj hDefined
+          · simp only [if_neg h] at hDefined
+            cases hDefined
+        rw [← hFibre] at hy hz
+        exact A.funcTransversal F xs y z hy hz heq
       have hPartWitness (j : Fin p.mask.size) :
           ∃ y : V, y ∈ U ∧ A.part y = p.mask.label j := by
         have hLabel : p.mask.label j ∈ Set.range p.mask.label :=
