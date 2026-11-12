@@ -49,8 +49,7 @@ theorem ehn_generatedClosedHull_factors_fullSide
     (hInputs : ∀ i, f (xs i) ∈ Set.range j) :
     ∃ q : Source.functionClosure (Set.range xs) → U,
       (Source.induce (Source.functionClosure (Set.range xs))
-        (Source.functionClosure_isClosed (Set.range xs))).
-          IsEHNHomomorphismEmbedding Side q ∧
+        (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Side q ∧
       ∀ z : Source.functionClosure (Set.range xs),
         j (q z) = f z.1 := by
   let S : Set V := Source.functionClosure (Set.range xs)
@@ -104,16 +103,14 @@ theorem ehn_unliftableRelation_crossingHull_EHN_factorsFullSide
        Left.rel R args ∧ f ∘ xs = jL ∘ args ∧
        ∃ q : Source.functionClosure (Set.range xs) → UA,
          (Source.induce (Source.functionClosure (Set.range xs))
-           (Source.functionClosure_isClosed (Set.range xs))).
-             IsEHNHomomorphismEmbedding Left q ∧
+           (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Left q ∧
          ∀ z : Source.functionClosure (Set.range xs),
            jL (q z) = f z.1) ∨
      (∃ (args : Fin (L.relArity R) → UB),
        Right.rel R args ∧ f ∘ xs = jR ∘ args ∧
        ∃ q : Source.functionClosure (Set.range xs) → UB,
          (Source.induce (Source.functionClosure (Set.range xs))
-           (Source.functionClosure_isClosed (Set.range xs))).
-             IsEHNHomomorphismEmbedding Right q ∧
+           (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Right q ∧
          ∀ z : Source.functionClosure (Set.range xs),
            jR (q z) = f z.1)) := by
   obtain ⟨hCross, hSide⟩ :=
@@ -124,14 +121,14 @@ theorem ehn_unliftableRelation_crossingHull_EHN_factorsFullSide
   rcases hSide with ⟨args, hRel, hArgs⟩ | ⟨args, hRel, hArgs⟩
   · have hInputSide : ∀ i, f (xs i) ∈ Set.range jL := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     obtain ⟨q, hq, hFactor⟩ :=
       ehn_generatedClosedHull_factors_fullSide
         Source Left Target f hf jL xs hInputSide
     exact Or.inl ⟨args, hRel, hArgs, q, hq, hFactor⟩
   · have hInputSide : ∀ i, f (xs i) ∈ Set.range jR := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     obtain ⟨q, hq, hFactor⟩ :=
       ehn_generatedClosedHull_factors_fullSide
         Source Right Target f hf jR xs hInputSide
@@ -171,8 +168,7 @@ theorem ehn_unliftableFunction_crossingHull_EHN_factorsFullSide
        z = jL out ∧
        ∃ q : Source.functionClosure (Set.range xs) → UA,
          (Source.induce (Source.functionClosure (Set.range xs))
-           (Source.functionClosure_isClosed (Set.range xs))).
-             IsEHNHomomorphismEmbedding Left q ∧
+           (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Left q ∧
          ∀ v : Source.functionClosure (Set.range xs),
            jL (q v) = f v.1) ∨
      (∃ (args : Fin (L.funcArity G) → UB) (out : UB),
@@ -180,8 +176,7 @@ theorem ehn_unliftableFunction_crossingHull_EHN_factorsFullSide
        z = jR out ∧
        ∃ q : Source.functionClosure (Set.range xs) → UB,
          (Source.induce (Source.functionClosure (Set.range xs))
-           (Source.functionClosure_isClosed (Set.range xs))).
-             IsEHNHomomorphismEmbedding Right q ∧
+           (Source.functionClosure_isClosed (Set.range xs))).IsEHNHomomorphismEmbedding Right q ∧
          ∀ v : Source.functionClosure (Set.range xs),
            jR (q v) = f v.1)) := by
   obtain ⟨hCross, hSide⟩ :=
@@ -193,14 +188,14 @@ theorem ehn_unliftableFunction_crossingHull_EHN_factorsFullSide
     ⟨args, out, hVal, hArgs, hz⟩ | ⟨args, out, hVal, hArgs, hz⟩
   · have hInputSide : ∀ i, f (xs i) ∈ Set.range jL := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     obtain ⟨q, hq, hFactor⟩ :=
       ehn_generatedClosedHull_factors_fullSide
         Source Left Target f hf jL xs hInputSide
     exact Or.inl ⟨args, out, hVal, hArgs, hz, q, hq, hFactor⟩
   · have hInputSide : ∀ i, f (xs i) ∈ Set.range jR := by
       intro i
-      exact ⟨args i, congrFun hArgs i⟩
+      exact ⟨args i, (congrFun hArgs i).symm⟩
     obtain ⟨q, hq, hFactor⟩ :=
       ehn_generatedClosedHull_factors_fullSide
         Source Right Target f hf jR xs hInputSide
