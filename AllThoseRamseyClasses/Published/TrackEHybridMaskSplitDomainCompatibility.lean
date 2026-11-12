@@ -113,3 +113,46 @@ theorem HybridMaskSplitDomainCompatible.induce
   exact h p m q (Subtype.val ∘ root) hMask
 
 end StructuralRamsey.RelStructure
+
+
+namespace StructuralRamsey.RelStructure.IsFreeAmalgam
+
+universe u v w
+variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
+variable {H E F C : Type w}
+
+/-- Exact original-mask/split-domain compatibility survives free
+amalgamation of FULL hybrid relational embeddings. Once the original
+active mask is localized on a side, the full side embedding reflects
+the corresponding singleton split-domain relation on that SAME root.
+No additional mixed-root, closedness or uniqueness hypothesis. -/
+theorem hybridMaskSplitDomainCompatible
+    {Root : RelStructure (L.splitMaskHybrid Parts) H}
+    {Left : RelStructure (L.splitMaskHybrid Parts) E}
+    {Right : RelStructure (L.splitMaskHybrid Parts) F}
+    {Whole : RelStructure (L.splitMaskHybrid Parts) C}
+    {sL : Embedding Root Left} {sR : Embedding Root Right}
+    {iL : Embedding Left Whole} {iR : Embedding Right Whole}
+    (hFree : IsFreeAmalgam sL sR iL iR)
+    (hLeft : HybridMaskSplitDomainCompatible Left)
+    (hRight : HybridMaskSplitDomainCompatible Right) :
+    HybridMaskSplitDomainCompatible Whole := by
+  intro p m q root hMask
+  let splitSymbol : (L.splitMaskHybrid Parts).Symbol :=
+    Language.hybridSplitDomainSymbol
+      (Language.splitMaskInputAtPart p q)
+  rcases (hFree.rel_iff
+      (Language.hybridOriginalMaskDomainSymbol p m) root).mp hMask with
+    ⟨xs, hxs, hEq⟩ | ⟨xs, hxs, hEq⟩
+  · have hTransport : Whole.rel splitSymbol root ↔
+        Left.rel splitSymbol xs := by
+      rw [hEq]
+      exact iL.map_rel_iff splitSymbol xs
+    exact hTransport.trans (hLeft p m q xs hxs)
+  · have hTransport : Whole.rel splitSymbol root ↔
+        Right.rel splitSymbol xs := by
+      rw [hEq]
+      exact iR.map_rel_iff splitSymbol xs
+    exact hTransport.trans (hRight p m q xs hxs)
+
+end StructuralRamsey.RelStructure.IsFreeAmalgam
