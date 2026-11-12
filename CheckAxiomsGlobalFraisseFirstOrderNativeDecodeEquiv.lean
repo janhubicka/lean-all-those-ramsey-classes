@@ -1,3 +1,0 @@
-import AllThoseRamseyClasses.Lifts.GlobalFraisseFirstOrderNativeDecodeEquiv
-
-#print axioms AllThoseRamseyClasses.Lifts.firstOrderNativeGraphDecode_id_equiv
