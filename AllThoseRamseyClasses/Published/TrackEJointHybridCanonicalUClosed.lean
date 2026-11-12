@@ -61,12 +61,12 @@ theorem System.splitMaskJointRoot_isUClosed
     · intro t ht
       change A.splitMaskHybrid.rel
           (hybridSplitOutputSymbol p.input) t ∧
-          ∃ e : Embedding p.root A.splitMaskHybrid,
+          ∃ e : RelStructure.Embedding p.root A.splitMaskHybrid,
             ∀ i : Fin p.input.rootSize, t i.castSucc = e i at ht
       obtain ⟨_, e, he⟩ := ht
       exact ⟨e.splitMaskJointRoot, he⟩
     · intro e
-      let old : Embedding p.root A.splitMaskHybrid :=
+      let old : RelStructure.Embedding p.root A.splitMaskHybrid :=
         e.splitMaskJointRootReduct
       let root : Fin p.input.rootSize → V := fun i => old i
       have hDomain :
@@ -104,7 +104,7 @@ theorem System.splitMaskJointRoot_isUClosed
             (.inr (.inl p)) t := by
         change A.splitMaskHybrid.rel
           (hybridSplitOutputSymbol p.input) t ∧
-          ∃ g : Embedding p.root A.splitMaskHybrid,
+          ∃ g : RelStructure.Embedding p.root A.splitMaskHybrid,
             ∀ i : Fin p.input.rootSize, t i.castSucc = g i
         exact ⟨hGraph, old, fun i => Structure.funcTuple_castSucc root y i⟩
       have hPrefix : ∀ i : Fin p.input.rootSize,
@@ -143,13 +143,13 @@ theorem System.splitMaskJointRoot_isUClosed
     · intro t ht
       change A.splitMaskHybrid.rel
           (hybridOriginalMaskOutputSymbol p.input p.mask) t ∧
-          ∃ e : Embedding p.root A.splitMaskHybrid,
+          ∃ e : RelStructure.Embedding p.root A.splitMaskHybrid,
             ∀ i : Fin p.input.rootSize,
               t (Fin.castAdd p.mask.size i) = e i at ht
       obtain ⟨_, e, he⟩ := ht
       exact ⟨e.splitMaskJointRoot, he⟩
     · intro e
-      let old : Embedding p.root A.splitMaskHybrid :=
+      let old : RelStructure.Embedding p.root A.splitMaskHybrid :=
         e.splitMaskJointRootReduct
       let root : Fin p.input.rootSize → V := fun i => old i
       have hDomain :
@@ -229,7 +229,7 @@ theorem System.splitMaskJointRoot_isUClosed
             (.inr (.inr p)) t := by
         change A.splitMaskHybrid.rel
           (hybridOriginalMaskOutputSymbol p.input p.mask) t ∧
-            ∃ g : Embedding p.root A.splitMaskHybrid,
+            ∃ g : RelStructure.Embedding p.root A.splitMaskHybrid,
               ∀ i : Fin p.input.rootSize,
                 t (Fin.castAdd p.mask.size i) = g i
         exact ⟨hGraph, old, fun i => Fin.append_left root out i⟩
