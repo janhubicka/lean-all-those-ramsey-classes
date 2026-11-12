@@ -491,7 +491,8 @@ theorem genuineTagged2019_badWeak_closedCut_rootRank_ge_two
     (hRightClosed : IsUClosed
       ((L.withParts Parts).wholeMaskClosureRules Parts) d.right)
     (hLeftSmall : Nat.card d.Left ≤ n)
-    (hRightSmall : Nat.card d.Right ≤ n) :
+    (hRightSmall : Nat.card d.Right ≤ n)
+    [Fintype d.Common] :
     1 < USize ((L.withParts Parts).wholeMaskClosureRules Parts)
       d.common := by
   classical
