@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedSymbolZeroRankTerminal
+
+#check AllThoseRamseyClasses.Lifts.claim2_selectedSymbol_exists_zeroB_terminal_with_exterior_and_allTests
+#print axioms AllThoseRamseyClasses.Lifts.claim2_selectedSymbol_exists_zeroB_terminal_with_exterior_and_allTests
