@@ -101,9 +101,13 @@ def firstOrderNativeGraphDecode_id_embedding
     have hGraph :
         (firstOrderRelGraphDecode h).rel s xs ↔
           (firstOrderNativeGraphDecode h).graph.rel s xs := by
-      have h := (Structure.graphOfGraphClosed
+      have hRel := (Structure.graphOfGraphClosed
         (R := firstOrderRelGraphDecode h)).toEmbedding.map_rel_iff s xs
-      simpa only [Function.id_comp] using h
+      -- The closed graph-ofGraph map has underlying identity,
+      -- but Lean must unfold that field before id_comp applies.
+      change (firstOrderRelGraphDecode h).rel s (id ∘ xs) ↔
+        (firstOrderNativeGraphDecode h).graph.rel s xs at hRel
+      simpa only [Function.id_comp] using hRel
     exact hDecode.trans hGraph
 
 /-- The decoded-model-to-original-model first-order bridge
