@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitSelectedStageEquality
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictSequence_allStageMap_selected
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeStrictSequence_allStageMap_initial
