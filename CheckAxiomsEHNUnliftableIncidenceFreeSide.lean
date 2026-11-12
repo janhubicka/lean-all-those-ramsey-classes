@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNUnliftableIncidenceFreeSide
+
+#print axioms AllThoseRamseyClasses.Lifts.SourceInputHasCrossingNativeHull
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableRelation_liesInFullSide_withSourceCrossingHull
+#print axioms AllThoseRamseyClasses.Lifts.ehn_unliftableFunction_liesInFullSide_withSourceCrossingHull
