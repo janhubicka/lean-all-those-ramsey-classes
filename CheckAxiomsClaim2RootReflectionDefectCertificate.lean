@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2RootReflectionDefectCertificate
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_seamCollision_forces_QrootReflectionDefect
