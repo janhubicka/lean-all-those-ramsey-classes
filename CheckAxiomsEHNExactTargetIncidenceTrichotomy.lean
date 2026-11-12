@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNExactTargetIncidenceTrichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.SourceFunctionFibresReflectedOnRange
+#print axioms AllThoseRamseyClasses.Lifts.sourceFunctionFibresReflected_rangeClosed
+#print axioms AllThoseRamseyClasses.Lifts.sourceFullIncidenceReflection_inducedRangeTupleSurjective
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
