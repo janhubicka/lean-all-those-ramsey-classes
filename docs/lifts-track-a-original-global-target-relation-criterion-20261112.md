@@ -1,6 +1,6 @@
 # Original-global target relation: exact root-collision criterion
 
-**12 November 2026. Draft until exact-head pinned Lean and axiom CI passes.**
+**12 November 2026. Lean-verified and merged in [PR #1036](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1036), with successful [exact-head CI run 43175166256](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43175166256).**
 
 For a real finite forbidden native functional source `A`, one actual
 geometric source piece `d` of positive width, a target B, and an actual

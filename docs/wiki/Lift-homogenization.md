@@ -104,11 +104,21 @@ outer target-root injectivity premise:
   retains the ORIGINAL GLOBAL outer symbol and ordered target-root
   coordinates without an extra outer-image injection hypothesis.
 
-The new [draft #1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
-is a proposed strengthening retaining the exact new geometric outer
-carrier and the existing exterior SOURCE-cardinality conservation
-for every target subset, on that same selected-Q witness. **Do not
-mark it verified before its exact-head CI and axiom audit pass.**
+The strengthening [#1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
+([successful exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43170069652))
+is now **verified and merged**: it retains the same selected-Q replacement,
+the exact new geometric outer carrier, and equality of exterior SOURCE
+cardinalities for every target subset. The historical source-symbol
+interface remains a direct corollary with its exact old signature.
+
+The separate verified, merged
+[#1036](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1036)
+([exact-head CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43175166256))
+gives an exact target criterion: for a genuine forbidden geometric piece
+and a fixed EHN weak map, the ORIGINAL outer global relation holds
+**iff the ordered target-root image is injective**. A collision makes
+that original relation false even for an arbitrary vertex map; source
+symbol and coordinate preservation do NOT repair the collision.
 
 **Mathematical boundary.** An INNER global canonical relation is an
 assumption and entails injectivity of its inner root tuple. The source
