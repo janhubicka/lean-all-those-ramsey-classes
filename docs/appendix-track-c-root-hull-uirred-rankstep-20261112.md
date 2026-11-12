@@ -28,3 +28,26 @@ carrier enlargement.
 New module, named axiom audit and registered active root. Keep draft
 until exact-head CI build, no-admission scan and protected-root audit
 pass, and until parents are merged.
+
+
+## Why this is a genuinely weaker boundary condition
+
+For a concrete closure-graph example, take a four-vertex directed
+cycle (0 \to 1 \to 2 \to 3 \to 0) in a language with the
+binary graph relation of a (single-valued) unary function. Let U
+require closure under that unary function and let the original
+weak Root be the induced subset \`{0,2}\`.
+
+The Root is **ordinarily reducible**: there is no graph relation
+between its two vertices, and it is the free amalgam of its two
+singletons. Nevertheless, its ambient U-closure hull is the
+whole four-cycle. The only U-closed induced vertex sets of a
+directed cycle are the empty set and the entire cycle. Thus
+the hull is U-irreducible, although its original weak Root was
+ordinary reducible. This is an explanatory finite example, not
+a claimed separate Lean finite-model regression.
+
+It explains why the new theorem is more than a restatement of
+the old irreducible-Root hypothesis: the actual obstruction is
+the inability to find **one canonical closed boundary**, not raw
+Gaifman reducibility in the original weak intersection.
