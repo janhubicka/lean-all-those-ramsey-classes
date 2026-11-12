@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2PrivateRootCutComponentPersistence
+
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_private_component_stays_right_of_rootCut
+#print axioms AllThoseRamseyClasses.Lifts.fullFreeAmalgam_private_component_generatedBoundary_in_right_of_rootCut
