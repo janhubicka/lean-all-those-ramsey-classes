@@ -92,6 +92,23 @@ As of the 12 November checkpoint:
   root-generated hull, where neither side contains all root generators.
   This is a draft until its own exact-head checks pass.
 
+* [#1028](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1028)
+  weakens #1004 to **ONE already support-minimal forbidden witness**:
+  its own full irreducible function-input test coverage and target
+  relation-tuple surjectivity on its actual range are sufficient to
+  construct an injective support-minimal replacement with a smallest
+  genuine mixed piece. The two conditions are still explicit.
+* [#1034](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1034)
+  is stacked on #1028. It proposes a three-way minimal-witness
+  obstruction under only the printed family hypotheses: an actual
+  uncovered source function input with a reducible full generated
+  hull, an actual target-only positive relation at source image
+  coordinates with a reducible full generated hull, or an injective
+  support-minimal witness and its smallest genuine mixed piece.
+  This is an exhaustive **reduction**, not exclusion of either
+  crossing-input alternative. Both #1028 and #1034 are drafts
+  until exact-head Lean CI and axiom/source audits pass.
+
 ## Critical remaining proof obligation
 
 An **unrestricted** proof of original regular-family strong AP
