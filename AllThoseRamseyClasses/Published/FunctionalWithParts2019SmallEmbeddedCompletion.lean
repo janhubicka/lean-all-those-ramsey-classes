@@ -95,8 +95,9 @@ theorem genuineTagged2019_embeddedWeakSmall_of_closedRank
           (withPartsWholeMaskOld Target targetPart))
         (f ∘ incl.toFun) :=
     IsClosedUHomomorphismEmbedding.toInducedClosed
-      ((IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hf)
-        .precomp_embedding incl)
+      (IsClosedUHomomorphismEmbedding.precomp_embedding
+        (IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hf)
+        incl)
   exact ⟨Y, hY, Target, targetPart, hTargetH, hTr, hIrred,
     f ∘ incl.toFun, hPull⟩
 
