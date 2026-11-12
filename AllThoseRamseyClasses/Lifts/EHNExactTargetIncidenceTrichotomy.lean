@@ -39,38 +39,33 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- Every ACTUAL target function value at the coordinates of a
-source input tuple has a positive source function output at
+/-- Every ACTUAL target function value at source-image coordinates, including source inputs with different
+representatives has a positive source function output at
 those very input coordinates. This is the precise full-fibre
 reflection condition, weaker than covering source inputs
 by irreducible tests. Positive incidence preservation comes
 separately from the source's weak EHN map. -/
-def SourceFunctionFibresReflectedOnRange
+def SourceFunctionValueTuplesCoveredOnRange
     {V W : Type} (A : Structure L V) (B : Structure L W)
     (f : V → W) : Prop :=
-  ∀ (G : L.FuncSymbol) (xs : Fin (L.funcArity G) → V)
-    (z : W), z ∈ B.func G (f ∘ xs) →
-      z ∈ imageSet f (A.func G xs)
+  ∀ (G : L.FuncSymbol) (zs : Fin (L.funcArity G) → W)
+    (z : W), (∀ i, zs i ∈ Set.range f) →
+      z ∈ B.func G zs →
+      ∃ (xs : Fin (L.funcArity G) → V) (out : V),
+        out ∈ A.func G xs ∧ zs = f ∘ xs ∧ z = f out
 
 /-- Complete function-fibre reflection at every source input
 forces the ACTUAL target image range to be function-closed.
 No source irreducible-test cover and no injectivity is used. -/
-theorem sourceFunctionFibresReflected_rangeClosed
+theorem sourceFunctionValueTuplesCovered_rangeClosed
     {V W : Type} (A : Structure L V) (B : Structure L W)
     (f : V → W)
-    (hFibre : SourceFunctionFibresReflectedOnRange A B f) :
+    (hFibre : SourceFunctionValueTuplesCoveredOnRange A B f) :
     B.IsClosed (Set.range f) := by
-  classical
   intro G zs hzs z hz
-  let xs : Fin (L.funcArity G) → V :=
-    fun i => Classical.choose (hzs i)
-  have hArgs : f ∘ xs = zs := by
-    funext i
-    exact Classical.choose_spec (hzs i)
-  have hzSource : z ∈ imageSet f (A.func G xs) :=
-    hFibre G xs z (by rw [hArgs]; exact hz)
-  obtain ⟨y, hy, hfz⟩ := hzSource
-  exact ⟨y, hfz⟩
+  obtain ⟨xs, out, hPositive, hCoords, hValue⟩ :=
+    hFibre G zs z hzs hz
+  exact ⟨out, hValue.symm⟩
 
 /-- Reflection of all ACTUAL target function values at source
 inputs, plus positive old-relation incidence coverage ON THE
@@ -83,12 +78,12 @@ preceding theorem rather than by a new assumption. -/
 theorem sourceFullIncidenceReflection_inducedRangeTupleSurjective
     {V W : Type} (A : Structure L V) (B : Structure L W)
     (f : V → W)
-    (hFibre : SourceFunctionFibresReflectedOnRange A B f)
+    (hFibre : SourceFunctionValueTuplesCoveredOnRange A B f)
     (hRelation : SourceRelationTuplesCoveredOnRange A B f) :
     OriginalPartialTupleSurjective
       A
       (B.induce (Set.range f)
-        (sourceFunctionFibresReflected_rangeClosed A B f hFibre))
+        (sourceFunctionValueTuplesCovered_rangeClosed A B f hFibre))
       (fun x => (⟨f x, ⟨x, rfl⟩⟩ : Set.range f)) := by
   classical
   constructor
@@ -102,18 +97,16 @@ theorem sourceFullIncidenceReflection_inducedRangeTupleSurjective
     funext i
     exact Subtype.ext (congrFun hEq i)
   · intro G zs hDomain
-    choose ys hys using (fun i : Fin (L.funcArity G) => (zs i).2)
-    have hArgs : f ∘ ys = Subtype.val ∘ zs := by
-      funext i
-      exact hys i
+    let raw : Fin (L.funcArity G) → W := Subtype.val ∘ zs
+    have hRange : ∀ i, raw i ∈ Set.range f :=
+      fun i => (zs i).2
     obtain ⟨z, hz⟩ := hDomain
-    have hzB : z.1 ∈ B.func G (f ∘ ys) := by
-      rw [hArgs]
-      exact hz
-    obtain ⟨y, hy, _⟩ := hFibre G ys z.1 hzB
+    have hzB : z.1 ∈ B.func G raw := hz
+    obtain ⟨ys, y, hy, hEq, _⟩ :=
+      hFibre G raw z.1 hRange hzB
     refine ⟨ys, ⟨y, hy⟩, ?_⟩
     funext i
-    exact Subtype.ext (hys i).symm
+    exact Subtype.ext (congrFun hEq i)
 
 /-- In the ACTUAL full native free amalgam of two
 forbidden-free sides with matching ORIGINAL global canonical
@@ -160,7 +153,11 @@ theorem exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
       ((∃ (G : L.FuncSymbol)
             (xs : Fin (L.funcArity G) → w.Carrier) (z : UT),
           z ∈ Target.func G (w.toTarget ∘ xs) ∧
-          z ∉ imageSet w.toTarget (w.source.func G xs) ∧
+          (¬ ∃ (ys : Fin (L.funcArity G) → w.Carrier)
+                (out : w.Carrier),
+            out ∈ w.source.func G ys ∧
+            w.toTarget ∘ ys = w.toTarget ∘ xs ∧
+            w.toTarget out = z) ∧
           ∃ d : ProperFreeDecomposition
               (w.source.induce (w.source.functionClosure (Set.range xs))
                 (w.source.functionClosure_isClosed (Set.range xs))),
@@ -199,12 +196,12 @@ theorem exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
   obtain ⟨w, hMin⟩ :=
     exists_minimalForbiddenEHNWitness_support F Target
       (fullFreeLeftExclusiveTarget iLeft jLeft) hExists
-  by_cases hFunction : SourceFunctionFibresReflectedOnRange
+  by_cases hFunction : SourceFunctionValueTuplesCoveredOnRange
       w.source Target w.toTarget
   · by_cases hRelations :
         SourceRelationTuplesCoveredOnRange w.source Target w.toTarget
     · let hClosed : Target.IsClosed (Set.range w.toTarget) :=
-        sourceFunctionFibresReflected_rangeClosed
+        sourceFunctionValueTuplesCovered_rangeClosed
           w.source Target w.toTarget hFunction
       have hTuple : OriginalPartialTupleSurjective
           w.source (Target.induce (Set.range w.toTarget) hClosed)
@@ -272,22 +269,48 @@ theorem exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
         ⟨R, xs, hTargetInput, hNoSourceInput, dec, hCross⟩)⟩
   · have hBadFunction :
         ∃ (G : L.FuncSymbol)
-            (xs : Fin (L.funcArity G) → w.Carrier) (z : UT),
-          z ∈ Target.func G (w.toTarget ∘ xs) ∧
-          z ∉ imageSet w.toTarget (w.source.func G xs) := by
+            (zs : Fin (L.funcArity G) → UT) (z : UT),
+          (∀ i, zs i ∈ Set.range w.toTarget) ∧
+          z ∈ Target.func G zs ∧
+          ¬ ∃ (ys : Fin (L.funcArity G) → w.Carrier)
+                (out : w.Carrier),
+            out ∈ w.source.func G ys ∧
+            zs = w.toTarget ∘ ys ∧ z = w.toTarget out := by
       by_contra hNo
       apply hFunction
-      intro G xs z hTarget
+      intro G zs z hRange hTarget
       by_contra hMissing
-      exact hNo ⟨G, xs, z, hTarget, hMissing⟩
-    obtain ⟨G, xs, z, hPos, hMissing⟩ := hBadFunction
+      exact hNo ⟨G, zs, z, hRange, hTarget, hMissing⟩
+    obtain ⟨G, zs, z, hRange, hPos, hNoLift⟩ := hBadFunction
+    let xs : Fin (L.funcArity G) → w.Carrier :=
+      fun i => Classical.choose (hRange i)
+    have hArgs : w.toTarget ∘ xs = zs := by
+      funext i
+      exact Classical.choose_spec (hRange i)
+    have hTargetInput : z ∈ Target.func G (w.toTarget ∘ xs) := by
+      rw [hArgs]
+      exact hPos
+    have hNoLiftAtXs :
+        ¬ ∃ (ys : Fin (L.funcArity G) → w.Carrier)
+              (out : w.Carrier),
+          out ∈ w.source.func G ys ∧
+          w.toTarget ∘ ys = w.toTarget ∘ xs ∧
+          w.toTarget out = z := by
+      rintro ⟨ys, out, hValue, hCoords, hOutput⟩
+      exact hNoLift
+        ⟨ys, out, hValue, hArgs.symm.trans hCoords.symm,
+          hOutput.symm⟩
+    have hNoValue :
+        z ∉ imageSet w.toTarget (w.source.func G xs) := by
+      rintro ⟨out, hValue, hOutput⟩
+      exact hNoLiftAtXs ⟨xs, out, hValue, rfl, hOutput⟩
     have hUncovered :
         ¬ FunctionInputCoveredByFullIrreducibleTest w.source G xs := by
       intro hCovered
-      exact hMissing
+      exact hNoValue
         (ehn_localFunctionInputCover_liftsTargetOutput
           w.source Target w.toTarget w.homEmbedding
-          G xs hCovered z hPos)
+          G xs hCovered z hTargetInput)
     obtain ⟨dec⟩ :=
       uncoveredFunctionInput_generatedClosedHull_decomposes
         w.source G xs hUncovered
@@ -295,6 +318,6 @@ theorem exists_minimalForbiddenWitness_targetIncidenceDefect_or_mixedPiece
       generatedClosedHull_properFreeDecomposition_inputsCross
         w.source xs dec
     exact ⟨w, hMin, Or.inl
-      ⟨G, xs, z, hPos, hMissing, dec, hCross⟩⟩
+      ⟨G, xs, z, hTargetInput, hNoLiftAtXs, dec, hCross⟩⟩
 
 end AllThoseRamseyClasses.Lifts
