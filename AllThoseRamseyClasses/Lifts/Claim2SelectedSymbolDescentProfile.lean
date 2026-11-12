@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.GlobalSelectedSymbolCrossWidthProfile
+import AllThoseRamseyClasses.Lifts.SelectedSymbolReachableProfile
 import AllThoseRamseyClasses.Lifts.Claim2IteratedContextualDescent
 
 /-!
@@ -72,10 +72,6 @@ theorem claim2_selectedSymbol_terminal_preserves_width_root_allTests
           (functionalDiagramPieceSetoid (chart initial).1.root F).r
             (chart initial).1.ext
             (hRoot.symm ▸ (hWidth.symm ▸ chart terminal).1.ext) := by
-  let symbol : State → GlobalFunctionalPieceSymbol F := fun s =>
-    ⟨⟨width s, hWidthPos s⟩,
-      Quotient.mk (globalFunctionalPieceSetoid F (width s))
-        (chart s)⟩
   have hDecrease : ∀ {s t : State}, Valid s → Step s t →
       Valid t ∧ localBCount t < localBCount s := by
     intro s t hs hst
@@ -84,25 +80,24 @@ theorem claim2_selectedSymbol_terminal_preserves_width_root_allTests
   obtain ⟨terminal, hTerminal, hReach, hNoNext⟩ :=
     claim2_exists_terminal_of_strict_localB_descent
       Valid Step localBCount hDecrease hInitial
-  have hAlong :
-      ∀ {a b : State}, Relation.ReflTransGen Step a b →
-        ∀ ha : Valid a, Valid b ∧ symbol a = symbol b := by
-    intro a b hab
-    induction hab with
-    | refl =>
-      intro ha
-      exact ⟨ha, rfl⟩
-    | tail hab hEdge ih =>
-      intro ha
-      obtain ⟨hMid, hSame⟩ := ih ha
-      obtain ⟨hEnd, _hDrop, hStepSymbol⟩ := hStep hMid hEdge
-      exact ⟨hEnd, hSame.trans hStepSymbol⟩
-  have hSameSymbol : symbol initial = symbol terminal :=
-    (hAlong hReach hInitial).2
-  obtain ⟨hWidth, hRoot, hTests⟩ :=
-    (selectedFunctionalChart_globalSymbol_eq_iff_width_root_allTests
-      F (hWidthPos initial) (hWidthPos terminal)
-      (chart initial) (chart terminal)).mp hSameSymbol
+  -- One path-transport interface handles ALL reachable selected states;
+  -- the terminal construction contributes only the decreasing B-rank.
+  have hValidSymbolStep : ∀ {s t : State},
+      Valid s → Step s t →
+      Valid t ∧
+      (⟨⟨width s, hWidthPos s⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F (width s))
+          (chart s)⟩ : GlobalFunctionalPieceSymbol F) =
+      ⟨⟨width t, hWidthPos t⟩,
+        Quotient.mk (globalFunctionalPieceSetoid F (width t))
+          (chart t)⟩ := by
+    intro s t hs hst
+    obtain ⟨ht, _hDrop, hSymbol⟩ := hStep hs hst
+    exact ⟨ht, hSymbol⟩
+  obtain ⟨_hValid, hWidth, hRoot, hTests⟩ :=
+    selectedSymbol_valid_reachable_preserves_width_root_allTests
+      F Valid Step width hWidthPos chart
+      hValidSymbolStep hInitial hReach
   exact ⟨terminal, hTerminal, hReach, hNoNext,
     hWidth, hRoot, hTests⟩
 
