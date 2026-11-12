@@ -185,6 +185,29 @@ embedding. A successful repair must build a genuine forbidden
 extension/selected source piece compatible with maximal global
 rooted profiles, or give a collision-tolerant source flip.
 
+### Two-vertex sanity check: forbidden-free crossed hulls really occur
+
+This is a **mathematical illustration, not a new Lean certificate or
+a counterexample to common-maximal-lift strong AP**. Work in the
+plain loopless graph language and forbid the triangle. Let `H`
+consist of two isolated vertices and let `S` consist of one edge
+on two vertices. The identity-on-vertices map `H → S` is a weak
+EHN homomorphism-embedding: the only nonempty irreducible full
+tests of `H` are singletons, and these embed fully into `S`.
+Both `H` and `S` are triangle-free. Nevertheless the target
+edge is a positive incidence with NO positive source edge lift;
+the two generators of `H` cross its genuine two-singleton full
+free decomposition.
+
+Thus the local configuration “unliftable target relation inside a
+forbidden-free full side + crossed, forbidden-free source-generated
+hull + an EHN factor into that side” is **consistent** with
+ordinary forbidden-freeness. To derive a contradiction in the
+ACTUAL Section 3 setting one must use the full forbidden source
+`w`, the real seam/geometry of its selected pieces and the complete
+common maximal canonical lift; these hypotheses do NOT occur in
+the two-vertex toy example.
+
 The original printed canonical added relations require injective
 root tuples; the separate folded-root construction does not
 automatically supply an ORIGINAL full common lift. Do not exchange
