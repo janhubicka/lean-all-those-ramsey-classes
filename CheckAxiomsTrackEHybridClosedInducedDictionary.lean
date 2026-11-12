@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridClosedInducedDictionary
+
+#print axioms StructuralRamsey.FunctionalPartite.System.induceClosedExact_splitMaskHybrid_eq
+#print axioms StructuralRamsey.FunctionalPartite.System.induceClosedExact_jointRoot_eq
