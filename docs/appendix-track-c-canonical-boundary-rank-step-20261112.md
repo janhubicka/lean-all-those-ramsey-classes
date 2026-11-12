@@ -49,3 +49,14 @@ The actual Picture history may need a *protected closed boundary in the projecte
 Do not identify the printed survey local-finiteness condition (all actual CLOSED substructures with <=n VERTICES have completions) with the stronger rank-n closed-test premise (all closed substructures with U-size<=n may have many more vertices). The latter was an explicit temporary induction invariant, not an implication established from the printed class hypothesis.
 
 No claim is made about nullary primitive functions beyond the theorem contracts actually used, no strict native B-tree theorem is inferred, and no full embedding of an arbitrary intrinsic nonclosed weak functional restriction is assumed. All current source and test carriers remain exact.
+
+
+## Sharper obstruction under original H-isomorphism closure (new draft lemma)
+
+The exact original functional theorem also assumes H is closed under part-preserving full functional isomorphisms. The merged canonical-image theorem transfers this to the relational class K(H). Under that assumption the noncanonical-root conclusion above refines to:
+
+> A noncompletable j+1-small weak test admits a proper relative U-closed-sided free cut whose common Root is **either not intrinsically U-closed or not U-irreducible**.
+
+Proof: embed the common Root into the original corrected-(4b)-covered candidate C by composing the root-to-side map, the side-to-weak-test map, and the exact induced weak-test inclusion. If Root were both U-closed and U-irreducible, the verified induced-versus-abstract corrected (4b) coverage equivalence, using isomorphism closure of K(H), would force Root ∈ K(H). But the conditional rank-step obstruction shows Root ∉ K(H). Thus at least one of the closedness/irreducibility properties fails.
+
+This is a necessary obstruction and not a complete dichotomy with available repairs: a nonclosed common root may require extra closure outputs; a closed but U-reducible root may require another gluing decomposition. The proof is a new axiom-registered declaration in PR #1042, **not green until CI**.
