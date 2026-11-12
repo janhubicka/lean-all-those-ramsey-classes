@@ -200,7 +200,20 @@ target-image root-collision repair: the input INNER relation already
 implies inner-root injectivity. They do not prove an eligible
 positive-rank successor for all states or terminal Claim 2 contradiction.
 
-Pending [#1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
-additionally exports exact carrier and for-all-target-subsets exterior
-SOURCE counts from the SAME witness. Keep it draft until exact-head CI.
+The same-witness exterior strengthening
+[#1013](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1013)
+is now **merged**, following exact-head
+[Lean CI 43170069652](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43170069652).
+It exports the exact outer carrier and for-all-target-subsets exterior
+SOURCE counts from the SAME genuine selected-Q source replacement.
+The original API remains a direct projection without changed hypotheses.
+
+The independently verified and merged
+[#1036](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1036)
+([Lean CI 43175166256](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43175166256))
+proves the original outer global target relation **iff** the ordered
+root image is injective, for a fixed genuine EHN weak witness. Its
+collision-impossibility corollary needs no EHN assumption. These are
+precise boundaries, not a general weak-image injectivization.
+
 The frozen numbered 2019 manuscript is untouched.

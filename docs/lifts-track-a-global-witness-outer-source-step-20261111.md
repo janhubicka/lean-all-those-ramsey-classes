@@ -1,6 +1,6 @@
 # Track A: actual nested outer source symbol from one inner global witness
 
-**11 November 2026. Verified original interface; 12 November extension proposed.** The original 2019 numbered manuscript is frozen;
+**12 November 2026. Original and strengthened interfaces both verified and merged.** The original 2019 numbered manuscript is frozen;
 no previously removed collaborator TODO is restored.
 
 ## Conditional theorem
@@ -39,13 +39,14 @@ the **same** Q and `New`. No second replacement is chosen.
 
 ## CI acceptance
 
-Original #1006 merged after exact-head CI. Hold the 12 November strengthening
-in draft until its own exact-head pinned full Lean, permitted-axioms,
-source-contract/import, no-admissions and active-root checks succeed.
+Original #1006 and the stronger #1013 are both merged. The strengthened
+interface passed the exact-head [Lean CI run 43170069652](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43170069652),
+including pinned compilation, permitted axioms, source-contract/import,
+no-admissions and active-root checks.
 The named axiom endpoint is
 `CheckAxiomsNestedGlobalWitnessOuterSourceFlip.lean`.
 
-## 12 November: stronger same-witness exterior invariant (new draft)
+## 12 November: stronger same-witness exterior invariant (verified and merged)
 
 The new `nestedGeometric_actualGlobalWitness_restores_outerSourceSymbol_withExterior`
 retains the **same** selected Q, literal new forbidden source, complete
