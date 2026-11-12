@@ -70,30 +70,11 @@ def firstOrderNativeGraphDecode_id_equiv
         h
         (firstOrderNativeGraphDecode_id_embedding h)
         n s xs
-    simpa only [Function.id_comp] using hRel
-
-/-- The graph-comparison equivalence has the literal
-identity underlying forward map. -/
-theorem firstOrderNativeGraphDecode_id_equiv_apply
-    {L : Language.{u}} {V : Type v}
-    (h : (firstOrderRelGraphLanguage L.graph).Structure V)
-    (x : V) :
-    (firstOrderNativeGraphDecode_id_equiv h).toEquiv x = x := by
-  rfl
-
-/-- The inverse graph-comparison equivalence ALSO has
-the identity underlying vertex map. This is the direction
-needed after the genuine first-order directed-limit lift. -/
-theorem firstOrderNativeGraphDecode_id_equiv_symm_apply
-    {L : Language.{u}} {V : Type v}
-    (h : (firstOrderRelGraphLanguage L.graph).Structure V)
-    (x : V) :
-    (firstOrderNativeGraphDecode_id_equiv h).toEquiv.symm x = x := by
-  -- The forward equivalence is identity on vertices, so its
-  -- inverse is identity as well; avoid relying on reducibility
-  -- of the first-order equivalence `symm` constructor.
-  -- The toEquiv field of our explicit FO equivalence is
-  -- definitionally Equiv.refl, independently of either model instance.
-  rfl
+    have hFunction :
+        (firstOrderNativeGraphDecode_id_embedding h).toFun ∘ xs = xs := by
+      funext i
+      exact firstOrderNativeGraphDecode_id_embedding_apply h (xs i)
+    rw [hFunction] at hRel
+    exact hRel
 
 end AllThoseRamseyClasses.Lifts
