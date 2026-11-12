@@ -182,4 +182,69 @@ theorem genuineTagged2019_badWeak_vertexCutoff_no_canonicalRootCut
     H hStrong hKIrr C n hSmall S d
     hL hR hLeftSmall hRightSmall hRootK)
 
+
+/-- Under actual H-isomorphism invariance and corrected (4b), an
+eligible relatively U-closed proper cut of a noncompletable exact
+weak test cannot have a common Root which is simultaneously
+intrinsically U-closed and U-irreducible.
+
+This is a vertex-cutoff strengthening of the canonical-root
+obstruction: it uses only the small induced weak n-vertex completion
+premise, NOT a generator-rank-n invariant. -/
+theorem genuineTagged2019_badWeak_vertexCutoff_root_closure_or_irred_failure
+    (H : GenuinePartite2019Class (L := L) (Parts := Parts))
+    (hStrong : GenuinePartiteStrongAmalgamation2019 H)
+    (hKIrr : ∀ {Z : Type w}
+      (D : RelStructure (taggedLanguage L Parts) Z),
+      canonicalGenuineTagged2019Class H D → D.Irreducible)
+    (hIso : GenuinePartiteIsomorphismClosed2019 H)
+    (C : RelStructure (taggedLanguage L Parts) V)
+    [Finite V]
+    (hCovered : CorrectedUIrreduciblesIn
+      (canonicalGenuineTagged2019Class H)
+      ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (n : ℕ)
+    (hSmall : ∀ (T : Finset V), T.card ≤ n →
+      HasGenuinePartiteTagged2019RelativeCompletion H
+        (C.induce (↑T : Set V)))
+    (S : Finset V)
+    (hBad : ¬ HasGenuinePartiteTagged2019RelativeCompletion
+      H (C.induce (↑S : Set V)))
+    (d : ProperFreeDecomposition (C.induce (↑S : Set V)))
+    (hL : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      (C.induce (↑S : Set V)) (Set.range d.leftIn))
+    (hR : IsUSubstructure
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      (C.induce (↑S : Set V)) (Set.range d.rightIn))
+    (hLeftSmall : Nat.card d.Left ≤ n)
+    (hRightSmall : Nat.card d.Right ≤ n) :
+    (¬ IsUClosed
+        ((L.withParts Parts).wholeMaskClosureRules Parts) d.common) ∨
+    (¬ IsUIrreducible
+        ((L.withParts Parts).wholeMaskClosureRules Parts) d.common) := by
+  classical
+  let rules := (L.withParts Parts).wholeMaskClosureRules Parts
+  have hNotK : ¬ canonicalGenuineTagged2019Class H d.common :=
+    genuineTagged2019_badWeak_vertexCutoff_no_canonicalRootCut
+      H hStrong hKIrr C n hSmall S hBad d
+      hL hR hLeftSmall hRightSmall
+  let K : ∀ {Z : Type w},
+      RelStructure (taggedLanguage L Parts) Z → Prop :=
+    canonicalGenuineTagged2019Class H
+  have hKIso : IsomorphismClosed2019 K :=
+    canonicalGenuineTagged2019Class_isomorphismClosed H hIso
+  have hAbstract : ClosedUIrreduciblesIn K rules C :=
+    correctedInducedCoverage_toAbstract_2019 hKIso hCovered
+  let inc : Embedding (C.induce (↑S : Set V)) C :=
+    inclusion C (↑S : Set V)
+  let eRoot : Embedding d.common C :=
+    inc.comp (d.leftIn.comp d.toLeft)
+  have hNotBoth :
+      ¬ (IsUClosed rules d.common ∧
+        IsUIrreducible rules d.common) := by
+    rintro ⟨hRootClosed, hRootIrred⟩
+    exact hNotK (hAbstract d.common hRootClosed hRootIrred eRoot)
+  exact not_and_or.mp hNotBoth
+
 end AllThoseRamseyClasses.Published
