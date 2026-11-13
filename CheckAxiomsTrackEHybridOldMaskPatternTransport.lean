@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridOldMaskPatternTransport
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_oldMaskPatternTransport
+#print axioms StructuralRamsey.RelStructure.HybridOldMaskPatternTransport.induce
