@@ -83,11 +83,29 @@ theorem fullNativeReplacement_retainedCut_generatedBoundary_pair
   refine ⟨T, ?_, ?_⟩
   · exact fullFreeAmalgam_private_component_generatedBoundary_eq_image_of_rootCut
       hOld SOld hOldRoot x hxOld
-  · have hNewBoundary :=
+  · -- The basepoint subtype depends on the cut. Transport the
+    -- component as a SET equality instead of rewriting through its
+    -- proof-carrying basepoint (which would make rw's motive ill typed).
+    have hComponentOfCutEq :
+        ∀ (S₁ S₂ : Set F) (hCuts : S₁ = S₂)
+          (h₁ : x ∉ S₁) (h₂ : x ∉ S₂),
+          componentFrom Right.graph S₁
+              (⟨x, h₁⟩ : {e : F // e ∉ S₁}) =
+            componentFrom Right.graph S₂
+              (⟨x, h₂⟩ : {e : F // e ∉ S₂}) := by
+      intro S₁ S₂ hCuts h₁ h₂
+      cases hCuts
+      rfl
+    have hComponentEq :
+        componentFrom Right.graph (iNewR ⁻¹' SNew)
+            (⟨x, hxNew⟩ : {e : F // e ∉ iNewR ⁻¹' SNew}) =
+          componentFrom Right.graph SR xE :=
+      hComponentOfCutEq _ _ hSNew hxNew hxOld
+    have hNewBoundary :=
       fullFreeAmalgam_private_component_generatedBoundary_eq_image_of_rootCut
         hNew SNew hNewRoot x hxNew
-    rw [hSNew] at hNewBoundary
-    simpa only [T, SR, xE] using hNewBoundary
+    rw [hComponentEq] at hNewBoundary
+    simpa only [T] using hNewBoundary
 
 /-- Source-vertex injectivity on a generated boundary of a retained
 component passes through a genuine full-native replacement whose
