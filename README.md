@@ -351,7 +351,7 @@ embedding automatically preserves complete set-valued function fibres.
 
 These modules were merged through PRs
 [#919](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/919),
-[#988](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/988)
+[#988](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/988),
 [#990](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/990) and
 [#993](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/993),
 with exact-head all-module build, permitted-axiom, source-integrity and
@@ -365,13 +365,20 @@ equality and extension theorem do *not* by themselves prove the unconditional
 published Ramsey theorem. Nor do they already establish native
 ultrahomogeneity or an automorphism back-and-forth.
 
-The current separate back-and-forth development includes
-forth/back extension ([draft #996](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/996),
-[draft #1000](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1000)),
-and the common two-sided step
-([draft #1007](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1007)).
-These **draft results are not part of the certified API** until their complete
-CI and required parent integration pass.
+The separately checked FULL forth/back extension steps
+([#996](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/996),
+[#1000](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1000))
+and common two-sided stage step
+([#1007](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1007))
+have been merged. The actual first-order direct-limit map and its
+surjectivity were also merged
+([#1061](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1061),
+[#1068](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1068)).
+These are still **conditional** on `GlobalOriginalFiniteFraisseInput F`.
+The full finite-native homogeneity endpoint remains an unmerged
+[proof draft #1076](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1076)
+with a failing Lean build. No unconditional functional Ramsey theorem
+or native ultrahomogeneity is claimed.
 
 ## Audit, reliability and historical status
 
@@ -380,15 +387,19 @@ Each repository change is built by
 
 1. builds `AllThoseRamseyClasses` **and all Lean files** under
    `AllThoseRamseyClasses/`, even if not in the umbrella import;
-2. runs the **seven grouped `CheckAxioms*.lean` certificates**, preserving
-   all 199 distinct previously audited declarations, and verifies their
+2. runs **all `CheckAxioms*.lean` certificates**, retaining a
+   minimum floor of 199 distinct historically audited declarations
+   (not a fixed total count), and verifies their
    exact output multiplicities with
    [`scripts/check_axioms.py`](scripts/check_axioms.py);
 3. verifies the reachable proof/active-application module graph;
 4. runs the entire-source import, axiom-declaration and admission audit
    `python3 scripts/audit_library.py`, preserving optional research modules;
 5. independently runs the deletion/reachability invariant
-   `scripts/cleanup_inventory.py --verify`, and rejects any admissions.
+   `scripts/cleanup_inventory.py --verify`. Admission and unauthorised
+   declaration checks use the comment-aware Lean source scanner within
+   `scripts/audit_library.py`, not a raw grep that would mistake
+   explanatory prose for executable Lean.
 
 Only Lean's standard `propext`, `Classical.choice`, and
 `Quot.sound` are permitted for green theorems. A checked theorem
@@ -397,6 +408,7 @@ result about the corrected definitions does not retroactively verify
 the literal published theorem or its original proof. For provenance:
 
 * [Additional adversarial referee pass and audit-preserving cleanup](docs/adversarial-referee-pass-20261015.md)
+* [13 November 2026 functional-lift adversarial audit and recalibrated progress](docs/adversarial-functional-lift-audit-20261113.md)
 * [Current checked endpoint and CI certificate](docs/current-main-theorem-status.md)
 * [Full English profile/sparsening proof](docs/coordinated-profile-proof-20261013.md)
 * [Revised definitions and precise theorem scope](docs/wiki/Published-statements.md)

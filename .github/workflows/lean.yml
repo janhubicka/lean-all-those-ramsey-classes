@@ -71,9 +71,8 @@ jobs:
             lake env lean "$audit" >> axioms.log 2>&1 || { tail -100 axioms.log; exit 1; }
           done
           python3 scripts/check_axioms.py axioms.log CheckAxioms*.lean
-      - name: Verify literal source is free of admissions
-        run: |
-          if grep -R -n -E '(^|[^[:alnum:]_])(sorry|admit)[[:space:]]*($|[^[:alnum:]_])' AllThoseRamseyClasses CheckAxioms.lean; then
-            echo "Lean admission found" >&2
-            exit 1
-          fi
+      # Admission and unauthorised-axiom checks already run above in
+      # scripts/audit_library.py, using executable_text from lean_source.py
+      # (comments, including words such as "admit", are not executable Lean).
+      # Keep one authoritative comment-aware source audit instead of a
+      # second raw grep check that rejects harmless prose.
