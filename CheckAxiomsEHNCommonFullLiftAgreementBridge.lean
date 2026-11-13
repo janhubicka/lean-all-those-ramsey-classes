@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNCommonFullLiftAgreementBridge
+
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalCanonicalLift_of_agreeOn
+#print axioms AllThoseRamseyClasses.Lifts.commonGlobalCanonicalLift_nonempty_iff_agreeOn
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenWitness_fullyUnliftableSideIncidence_or_mixedPiece_of_agreement
