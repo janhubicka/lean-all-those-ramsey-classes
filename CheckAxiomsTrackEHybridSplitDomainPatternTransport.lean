@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSplitDomainPatternTransport
+
+#print axioms StructuralRamsey.RelStructure.HybridOldMaskPatternTransport.maskPartSetsAgree
+#print axioms StructuralRamsey.RelStructure.HybridSplitDomainPatternTransport.ofMaskLaws
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_splitDomainPatternTransport
+#print axioms StructuralRamsey.RelStructure.HybridSplitDomainPatternTransport.induce
