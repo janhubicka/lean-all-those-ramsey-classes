@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNFirstSeamAttachmentEdge
+
+#print axioms AllThoseRamseyClasses.Lifts.weakExclusiveGaifmanPath_has_freshLeftSeamAttachmentEdge
+#print axioms AllThoseRamseyClasses.Lifts.ehn_seamInputHull_freshAttachmentEdge_of_nonseparatingPath
