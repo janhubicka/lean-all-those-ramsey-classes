@@ -506,7 +506,7 @@ theorem genuineTagged2019_badWeak_closedCut_rootRank_ge_two
   by_contra hNoRankTwo
   have hRank : USize
       ((L.withParts Parts).wholeMaskClosureRules Parts)
-      d.common ≤ 1 := Nat.le_of_not_gt hNoRankTwo
+      d.common ≤ 1 := by omega
   have hWhole : HasGenuinePartiteTagged2019RelativeCompletion
       H (C.induce (↑S : Set V)) :=
     genuineTagged2019_weakVertexCutoff_glue_closed_rankOneRoot
