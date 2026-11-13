@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNTwoExteriorComponentsSelectedPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteClosedCut_twoExteriorComponents_selectPositivePiece
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenSource_twoExteriorHullComponents_hasPositiveForbiddenPiece
