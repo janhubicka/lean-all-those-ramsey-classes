@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2OuterLocalBoundaryRestriction
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_outerBActiveBoundaryInjection_restrict_to_retainedComplement
