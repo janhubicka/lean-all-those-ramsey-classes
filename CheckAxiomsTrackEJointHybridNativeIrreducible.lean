@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridNativeIrreducible
+
+#print axioms AllThoseRamseyClasses.Published.nativeClosed_of_jointHybridUSubstructure
+#print axioms AllThoseRamseyClasses.Published.nativeIrreducible_canonicalJointHybrid_uIrreducible
