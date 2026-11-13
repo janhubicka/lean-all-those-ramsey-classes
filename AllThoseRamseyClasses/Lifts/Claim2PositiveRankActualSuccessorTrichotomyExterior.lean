@@ -1,7 +1,4 @@
-import AllThoseRamseyClasses.Lifts.Claim2NoEscapePositiveRankBoundaryAlternative
-import AllThoseRamseyClasses.Lifts.Claim2PartnerActualGeometricOuterStepExterior
-import AllThoseRamseyClasses.Lifts.ConnectedComponentBoundaryNonempty
-import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankActiveBoundaryDichotomy
 
 /-!
 # Track C: actual positive B-rank successor with ALL exterior SOURCE support invariants
@@ -143,84 +140,46 @@ theorem claim2_positiveRank_actualSuccessorWithExterior_or_smallerRoot_or_seamCo
     ¬ Set.InjOn f
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) := by
   classical
-  let K : Set V := geometricPieceVertices Source P
   let S : Set V := weakFreeRootPart (sL := iLeft) (iL := jLeft) f
   by_cases hInjS : Set.InjOn f S
-  · have hKclosed : Source.IsClosed K :=
-      functionalComponentUnion_isClosed Source
-        (Set.range P.roots) P.minimal.1 P.left
-    have hNoEscape : FunctionalContextNoEscapeOutsideSeam Source S K :=
-      geometricPiece_noEscapeOutsideContainingSeam
-        Source P S hOuterRootInSeam
-    obtain ⟨x, T, hxK, hxRight, hT, hTInside,
-        y, hYa, hAlternative⟩ :=
-      positiveLocalRightRank_noEscape_partner_or_smallerRoot
-        F hConnected Source hFinite hForbidden
-        Target f hf Left Right jLeft jRight
-        X iLeft iRight hFree
-        K hKclosed hNoEscape a haK haLeft hPositiveB
-    have hTS : T ⊆ S := fun z hz => (hTInside hz).1
-    rcases hAlternative with hPartner |
-        ⟨m, d, hm, hProper, hRootIn, hLeft, hRight, hExactRoot⟩
-    · have hxOuter : x.1 ∈ functionalComponentFrom Source
-          (Set.range P.roots) P.left := by
-        rcases hxK with hRoot | hComponent
-        · obtain ⟨i, hi⟩ := hRoot
-          have hxSeam : x.1 ∈ S := hi ▸
-            hOuterRootInSeam ⟨i, rfl⟩
-          exact False.elim (x.2 hxSeam)
-        · exact hComponent
-      have haOuter : a ∈ functionalComponentFrom Source
-          (Set.range P.roots) P.left := by
-        rcases haK with hRoot | hComponent
-        · obtain ⟨i, hi⟩ := hRoot
-          have haSeam : a ∈ S := hi ▸
-            hOuterRootInSeam ⟨i, rfl⟩
-          exact False.elim (haLeft.2 haSeam)
-        · exact hComponent
-      have haNotComponent :
-          a ∉ componentFrom Source.graph S x := by
-        intro haComponent
-        have haRight : a ∈ weakFreeRightPart
-            (sL := iLeft) (iL := jLeft) (iR := jRight) f :=
-          weakFreePartition_component_right
-            hFree f hf.1 x hxRight haComponent
-        exact (Set.disjoint_left.mp
-          (weakFreePartition_left_right_disjoint hFree f))
-            haLeft haRight
-      have hConnectedPath : ReachOutside Source.graph (∅ : Set V)
-          (⟨x.1, by simp⟩ : {v : V // v ∉ ∅})
-          (⟨a, by simp⟩ : {v : V // v ∉ ∅}) :=
-        gaifmanPath_to_emptyCutReach Source
-          ((hConnected Source hFinite hForbidden).2 x.1 a)
-      have hTnonempty : T.Nonempty := by
-        rw [hT]
-        exact functionalComponent_generatedBoundary_nonempty_of_emptyCutReach
-          Source S x a haNotComponent hConnectedPath
-      obtain ⟨y', hy'Val, hSeparated'⟩ :=
-        weakRightComponent_leftVertex_separatedByBoundary
-          hFree f hf x hxRight T hT hTS a haLeft
-      have hYeq : y' = y := Subtype.ext (hy'Val.trans hYa.symm)
-      have hSeparated : ¬ ReachOutside Source.graph T
-          (outsideCutMap hTS x) y := by
-        simpa only [hYeq] using hSeparated'
-      have hInjT : Set.InjOn f T := by
-        intro v hv w hw hvw
-        exact hInjS (hTS hv) (hTS hw) hvw
-      left
-      exact claim2_actualGeometricRightFlip_of_boundaryPartner_withExterior
-        F hFiniteF Source hFinite hForbidden
-        P hn Target f hf Left Right jLeft jRight
-        X iLeft iRight hFree hCommon
-        hOuterRootInSeam x hxRight hxOuter
-        a haLeft haOuter
-        T hT hTS hTnonempty y hSeparated hPartner hInjT
-    · right
-      left
-      exact ⟨x, T, y, m, d, hxK, hxRight, hYa, hT,
-        hm, hProper, hRootIn, hLeft, hRight, hExactRoot⟩
-  · right
-    right
-    exact hInjS
+  · have hSclosed : Source.IsClosed S :=
+      weakFreeRootPart_isClosed
+        (sL := iLeft) (iL := jLeft) f hf.1
+    -- Global seam injection implies the smaller boundary-local
+    -- hypothesis of the now-verified two-way successor theorem.
+    have hBoundaryInj :
+        ∀ (x : {v : V // v ∉
+          weakFreeRootPart (sL := iLeft) (iL := jLeft) f}),
+          x.1 ∈ geometricPieceVertices Source P →
+          x.1 ∈ weakFreeRightPart
+            (sL := iLeft) (iL := jLeft) (iR := jRight) f →
+          Set.InjOn f
+            (Source.functionClosure
+              (gaifmanNeighborhood Source.graph
+                (componentFrom Source.graph
+                  (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x))) := by
+      intro x _hxK _hxRight
+      have hTinsideS :
+          Source.functionClosure
+            (gaifmanNeighborhood Source.graph
+              (componentFrom Source.graph S x)) ⊆ S :=
+        functionalClosure_neighborhood_subset_cut Source S hSclosed x
+      intro v hv w hw hEq
+      exact hInjS (hTinsideS hv) (hTinsideS hw) hEq
+    rcases
+        (claim2_positiveRank_actualSuccessor_or_smallerRoot_of_activeBoundaryInjective
+          F hFiniteF hConnected Source hFinite hForbidden
+          P hn Target f hf Left Right jLeft jRight
+          X iLeft iRight hFree hCommon hOuterRootInSeam
+          a haK haLeft hPositiveB hBoundaryInj) with
+      ⟨m, d, hm, hProper, V', New, hNew, hFiniteNew,
+        flip, newOuter, hFlip, hCoords, hSymbol, hRank,
+        hExterior, _hAnchor⟩ | hSmaller
+    · left
+      exact ⟨m, d, hm, hProper, V', New, hNew, hFiniteNew,
+        flip, newOuter, hFlip, hCoords, hSymbol, hRank,
+        hExterior⟩
+    · exact Or.inr (Or.inl hSmaller)
+  · exact Or.inr (Or.inr hInjS)
 
 end AllThoseRamseyClasses.Lifts
