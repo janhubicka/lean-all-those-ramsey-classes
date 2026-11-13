@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEJointUClosedSplitOutputSeam
+
+#print axioms StructuralRamsey.RelStructure.HybridSplitOutputClosedAt.ofJointRootUSubstructure
+#print axioms StructuralRamsey.RelStructure.HybridVisibleWholeSplitAgreement.freeAmalgam_of_jointUSubstructure
