@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackCNativeEHNExactProtectedImage
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_EHN_irredTest_has_exact_protectedImage
