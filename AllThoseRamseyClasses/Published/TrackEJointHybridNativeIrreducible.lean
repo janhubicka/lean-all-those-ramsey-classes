@@ -60,8 +60,9 @@ operations. Every output part is forced separately by its
 full-hybrid-root split tag.
 
 The source vertex set S is not enlarged. The implication uses
-positive native function arities, but not finite carrier or
-source fibre singletonness. -/
+positive native function arities and a finite source carrier for the
+verified exact equality-pattern factorization, but it does NOT require
+the original multivalued source fibres to be singleton-valued. -/
 theorem nativeClosed_of_jointHybridUSubstructure
     (A : FunctionalPartite.System L Parts V) [Finite V]
     (hPos : L.PositiveFuncArity) (S : Set V)
