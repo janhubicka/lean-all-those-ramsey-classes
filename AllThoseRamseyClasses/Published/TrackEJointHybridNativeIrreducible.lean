@@ -63,7 +63,7 @@ The source vertex set S is not enlarged. The implication uses
 positive native function arities, but not finite carrier or
 source fibre singletonness. -/
 theorem nativeClosed_of_jointHybridUSubstructure
-    (A : FunctionalPartite.System L Parts V)
+    (A : FunctionalPartite.System L Parts V) [Finite V]
     (hPos : L.PositiveFuncArity) (S : Set V)
     (hU : IsUSubstructure
       (L.splitMaskJointClosureRules Parts)
