@@ -15,7 +15,8 @@ source flip (full original symbol, exterior SOURCE support,
 surviving A SOURCE anchor), or an actual smaller positive
 geometric separator root, or TWO DISTINCT literal SOURCE
 vertices u,v in ONE generated B-component boundary T
-with f u = f v. The whole T lies in the old seam preimage.
+with f u = f v. The whole T lies in the old seam preimage
+AND inside the original selected old outer geometric SOURCE piece P.
 
 Thus the last case is a localized source collision witness,
 not an arbitrary weak target-seam collision outside the
@@ -136,7 +137,8 @@ theorem claim2_positiveRank_actualFlip_or_smallerRoot_or_activeBoundaryCollision
         (gaifmanNeighborhood Source.graph
           (componentFrom Source.graph
             (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)) ∧
-      T ⊆ weakFreeRootPart (sL := iLeft) (iL := jLeft) f ∧
+      T ⊆ weakFreeRootPart (sL := iLeft) (iL := jLeft) f ∩
+        geometricPieceVertices Source P ∧
       ∃ u v : V, u ∈ T ∧ v ∈ T ∧ u ≠ v ∧ f u = f v) := by
   classical
   by_cases hActiveBoundaryInjective :
@@ -169,8 +171,22 @@ theorem claim2_positiveRank_actualFlip_or_smallerRoot_or_activeBoundaryCollision
     have hSClosed : Source.IsClosed S :=
       weakFreeRootPart_isClosed
         (sL := iLeft) (iL := jLeft) f hf.1
-    have hTinsideS : T ⊆ S :=
-      functionalClosure_neighborhood_subset_cut Source S hSClosed x
+    have hKClosed :
+        Source.IsClosed (geometricPieceVertices Source P) :=
+      functionalComponentUnion_isClosed Source
+        (Set.range P.roots) P.minimal.1 P.left
+    have hNoEscape :
+        FunctionalContextNoEscapeOutsideSeam Source S
+          (geometricPieceVertices Source P) :=
+      geometricPiece_noEscapeOutsideContainingSeam
+        Source P S hOuterRootInSeam
+    have hTinside : T ⊆ S ∩
+        geometricPieceVertices Source P := by
+      intro z hz
+      exact functionalNoEscape_component_generatedBoundary_inside
+        Source S (geometricPieceVertices Source P)
+        hSClosed hKClosed hNoEscape x hxP
+        (by simpa only [T] using hz)
     have hCollision :
         ∃ u v : V, u ∈ T ∧ v ∈ T ∧ u ≠ v ∧ f u = f v := by
       by_contra hNoCollision
@@ -179,6 +195,6 @@ theorem claim2_positiveRank_actualFlip_or_smallerRoot_or_activeBoundaryCollision
       by_contra hDistinct
       exact hNoCollision ⟨u, v, hu, hv, hDistinct, hEq⟩
     exact Or.inr (Or.inr
-      ⟨x, T, hxP, hxRight, rfl, hTinsideS, hCollision⟩)
+      ⟨x, T, hxP, hxRight, rfl, hTinside, hCollision⟩)
 
 end AllThoseRamseyClasses.Lifts
