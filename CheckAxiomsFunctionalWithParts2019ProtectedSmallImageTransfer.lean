@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.FunctionalWithParts2019ProtectedSmallImageTransfer
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_relativeCompletion_of_protectedSmallImage
