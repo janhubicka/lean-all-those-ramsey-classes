@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.TrackEHybridActiveDomainRootInjective
+
+#print axioms StructuralRamsey.RelStructure.ActiveRelTuplesInjective.induce
+#print axioms StructuralRamsey.RelStructure.ActiveRelTuplesInjective.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_activeDomainRootInjective
+#print axioms StructuralRamsey.RelStructure.HybridActiveDomainRootInjective.induce
+#print axioms StructuralRamsey.RelStructure.HybridActiveDomainRootInjective.freeAmalgam
