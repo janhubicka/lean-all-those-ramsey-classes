@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridOldMaskPatternFree
+
+#print axioms StructuralRamsey.RelStructure.HybridOldMaskPatternTransport.freeAmalgam
