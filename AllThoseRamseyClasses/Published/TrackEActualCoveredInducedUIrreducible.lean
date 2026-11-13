@@ -71,9 +71,9 @@ theorem wholeMaskCovered_inducedUIrreducible_of_nativeIrreducible
       IsUClosed (L.wholeMaskClosureRules P) (C.induce S) :=
     wholeMaskCovered_decodedClosed_to_inducedUClosed
       C Base part hC hPos hCover S hS
-  refine nativeIrreducible_implies_uIrreducible_of_sideTransfer
+  apply nativeIrreducible_implies_uIrreducible_of_sideTransfer
     (L.wholeMaskClosureRules P) (C.induce S) (N.induce S hNClosed)
-    hClosedTest hNativeIrred ?_ ?_
+    hClosedTest hNativeIrred
   · intro X hX
     exact wholeMaskCovered_inducedUSubstructure_to_nativeClosed
       C Base part hC hPos hCover S hS X hX
