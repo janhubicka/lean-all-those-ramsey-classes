@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerRootNoCaptureGeometricFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_smallerRoot_noOldCapture_noA_hasActualGeometricFlip
