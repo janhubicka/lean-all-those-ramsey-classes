@@ -103,11 +103,7 @@ theorem nativeClosed_of_jointHybridUSubstructure
   have hRootDomain :
       rootHybrid.rel (Language.hybridSplitDomainSymbol splitPat) id := by
     change G.rel (Language.hybridSplitDomainSymbol splitPat)
-      (root ∘ id)
-    have hEq : (root ∘ id : Fin m → V) = root := by
-      funext i
-      rfl
-    rw [hEq]
+      root
     exact hDomain
   let tag : Language.SplitMaskFullRootPattern L Parts :=
     { input := splitPat
