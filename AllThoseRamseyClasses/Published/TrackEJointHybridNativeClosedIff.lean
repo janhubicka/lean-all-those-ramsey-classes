@@ -47,7 +47,7 @@ relative JOINT full-hybrid-root U-substructure of the canonical
 partite source. Neither side changes the underlying set of vertices
 or the original (potentially multivalued) function fibres. -/
 theorem nativeClosed_iff_jointHybridUSubstructure
-    (A : FunctionalPartite.System L Parts V)
+    (A : FunctionalPartite.System L Parts V) [Finite V]
     (hPos : L.PositiveFuncArity) (S : Set V) :
     A.toStructure.IsClosed S ↔
       IsUSubstructure (L.splitMaskJointClosureRules Parts)
@@ -143,7 +143,7 @@ a U-CLOSED induced hybrid source on EXACTLY S, and conversely.
 The induced ambient hybrid retains OLD domain masks even if
 primitive weak functions would discard outputs outside S. -/
 theorem nativeClosed_iff_jointHybridInduceUClosed
-    (A : FunctionalPartite.System L Parts V)
+    (A : FunctionalPartite.System L Parts V) [Finite V]
     (hPos : L.PositiveFuncArity) (S : Set V) :
     A.toStructure.IsClosed S ↔
       IsUClosed (L.splitMaskJointClosureRules Parts)
