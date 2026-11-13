@@ -55,7 +55,8 @@ theorem nativeFunctionClosure_adjoinFresh_strict_insideClosed
     intro t ht
     rcases ht with ht | ht
     · exact hST ht
-    · simpa only [Set.mem_singleton_iff] using (ht ▸ hzT)
+    · have htz : t = z := by simpa using ht
+      simpa [htz] using hzT
   have hIncl : S ⊆ A.functionClosure (S ∪ {z}) := by
     intro v hv
     exact A.subset_functionClosure (S ∪ {z}) (Or.inl hv)
