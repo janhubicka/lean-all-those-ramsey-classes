@@ -1,0 +1,152 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankActiveBoundaryDichotomy
+
+/-!
+# The smaller-root obstruction retains an injective TARGET ordered root
+
+The verified positive-B-source-rank dichotomy of Claim 2, with only
+injectivity on B-active generated boundaries, returns an actual
+source-geometric B-to-A replacement or a different genuine positive
+closed separator root contained in the chosen B-component boundary T.
+
+Crucially, even though the complete TARGET common-seam preimage may
+be noninjective, the actual selected smaller root d has injective
+ORDERED target coordinates: d.roots is injective in the source and
+each of its vertices lies in T, where f is injective.
+
+This is a sharpening of the *obstruction certificate* only.
+It does not show the new piece is one-sided/flippable, that its global
+source symbol equals the old outer symbol, that the new arity m<n,
+or that the original Claim 2 can iterate across the smaller piece.
+The old exported theorem is left unchanged; no geometric proof is
+repeated. The numbered 2019 manuscript remains frozen.
+-/
+
+namespace AllThoseRamseyClasses.Lifts
+
+open StructuralRamsey
+open StructuralRamsey.Structure
+
+universe u
+variable {L : Language.{u}}
+
+/-- The actual smaller-root alternative of the active-boundary
+positive-B-rank dichotomy has an injective FULL target root tuple.
+No global seam preimage injectivity and no source-root arity decrease
+are required or inferred. -/
+theorem claim2_positiveRank_actualSuccessor_or_smallerRoot_withTargetRootInj_of_activeBoundaryInjective
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    {V UX UA UB UT : Type}
+    (Source : Structure L V)
+    (hFinite : Finite V) (hForbidden : F Source)
+    {n : ℕ} (P : GeometricFunctionalPieceData Source n)
+    (hn : 0 < n)
+    (Target : Structure L UT) (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (hOuterRootInSeam : Set.range P.roots ⊆
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+    (a : V)
+    (haK : a ∈ geometricPieceVertices Source P)
+    (haLeft : a ∈ weakFreeLeftPart
+      (sL := iLeft) (iL := jLeft) f)
+    (hPositiveB : 0 < Nat.card {v : V //
+      v ∈ geometricPieceVertices Source P ∧
+      f v ∈ fullFreeRightExclusiveTarget iRight jRight})
+    (hActiveBoundaryInjective :
+      ∀ (x : {v : V //
+          v ∉ weakFreeRootPart (sL := iLeft) (iL := jLeft) f}),
+        x.1 ∈ geometricPieceVertices Source P →
+        x.1 ∈ weakFreeRightPart
+          (sL := iLeft) (iL := jLeft) (iR := jRight) f →
+        Set.InjOn f
+          (Source.functionClosure
+            (gaifmanNeighborhood Source.graph
+              (componentFrom Source.graph
+                (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)))) :
+    (∃ (m : ℕ) (d : GeometricFunctionalPieceData Source m),
+      0 < m ∧
+      geometricPieceVertices Source d ⊂
+        geometricPieceVertices Source P ∧
+      ∃ (V' : Type) (New : Structure L V')
+        (hNew : F New) (hFiniteNew : Finite V')
+        (flip : V' → UT)
+        (newOuter : GeometricFunctionalPieceData New n),
+        New.IsEHNHomomorphismEmbedding Target flip ∧
+        (∀ i : Fin n, flip (newOuter.roots i) = f (P.roots i)) ∧
+        geometricGlobalPieceSymbol F Source
+            hFinite hForbidden P hn =
+          geometricGlobalPieceSymbol F New
+            hFiniteNew hNew newOuter hn ∧
+        Nat.card {w : V' //
+          w ∈ geometricPieceVertices New newOuter ∧
+          flip w ∈ fullFreeRightExclusiveTarget iRight jRight} <
+        Nat.card {v : V //
+          v ∈ geometricPieceVertices Source P ∧
+          f v ∈ fullFreeRightExclusiveTarget iRight jRight} ∧
+        (∀ TargetSet : Set UT,
+          Nat.card {w : V' //
+            w ∉ geometricPieceVertices New newOuter ∧
+            flip w ∈ TargetSet} =
+          Nat.card {v : V //
+            v ∉ geometricPieceVertices Source P ∧
+            f v ∈ TargetSet}) ∧
+        (∃ anew : V',
+          anew ∈ geometricPieceVertices New newOuter ∧
+          flip anew = f a ∧
+          flip anew ∈ fullFreeLeftExclusiveTarget iLeft jLeft)) ∨
+    (∃ (x : {v : V // v ∉
+          weakFreeRootPart (sL := iLeft) (iL := jLeft) f})
+        (T : Set V) (y : {v : V // v ∉ T})
+        (m : ℕ) (d : GeometricFunctionalPieceData Source m),
+      x.1 ∈ geometricPieceVertices Source P ∧
+      x.1 ∈ weakFreeRightPart
+        (sL := iLeft) (iL := jLeft) (iR := jRight) f ∧
+      y.1 = a ∧
+      T = Source.functionClosure
+        (gaifmanNeighborhood Source.graph
+          (componentFrom Source.graph
+            (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)) ∧
+      0 < m ∧
+      Set.range d.roots ⊂ T ∧
+      Set.range d.roots ⊆
+        weakFreeRootPart (sL := iLeft) (iL := jLeft) f ∩
+          geometricPieceVertices Source P ∧
+      d.left.1 = x.1 ∧ d.right.1 = a ∧
+      Set.range d.roots =
+        Source.functionClosure
+          (gaifmanNeighborhood Source.graph
+            (componentFrom Source.graph T y)) ∧
+      Function.Injective (fun i : Fin m => f (d.roots i))) := by
+  rcases
+      (claim2_positiveRank_actualSuccessor_or_smallerRoot_of_activeBoundaryInjective
+        F hFiniteF hConnected Source hFinite hForbidden
+        P hn Target f hf Left Right jLeft jRight
+        X iLeft iRight hFree hCommon hOuterRootInSeam
+        a haK haLeft hPositiveB hActiveBoundaryInjective) with
+    hFlip | ⟨x, T, y, m, d, hxK, hxRight, hYa, hT,
+      hm, hProper, hRootIn, hLeft, hRight, hExactRoot⟩
+  · exact Or.inl hFlip
+  · have hInjT : Set.InjOn f T := by
+      rw [hT]
+      exact hActiveBoundaryInjective x hxK hxRight
+    have hTargetRootInj :
+        Function.Injective (fun i : Fin m => f (d.roots i)) := by
+      intro i j hImages
+      apply d.roots_injective
+      exact hInjT
+        (hProper.subset ⟨i, rfl⟩)
+        (hProper.subset ⟨j, rfl⟩) hImages
+    exact Or.inr ⟨x, T, y, m, d, hxK, hxRight, hYa, hT,
+      hm, hProper, hRootIn, hLeft, hRight, hExactRoot,
+      hTargetRootInj⟩
+
+end AllThoseRamseyClasses.Lifts
