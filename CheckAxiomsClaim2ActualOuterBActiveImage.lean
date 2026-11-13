@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2ActualOuterBActiveImage
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeSelectedOuter_Bactive_carrier_eq_retained_image
