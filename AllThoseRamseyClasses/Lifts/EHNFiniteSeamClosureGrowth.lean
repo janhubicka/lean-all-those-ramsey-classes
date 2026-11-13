@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.WeakSourceFreeAmalgamPartition
 import Mathlib.Data.Set.Card
+import Mathlib.Tactic.Omega
 
 /-!
 # Track D: finite, native function-closed seam saturation step
@@ -175,5 +176,95 @@ theorem ehn_freshSeamVertex_strictClosedHullGrowth
   exact ⟨hStep.1,
     Source.functionClosure_isClosed _,
     hStep.2, hBudget.1, hBudget.2⟩
+
+/-- One native closed-root saturation move: adjoin an ACTUAL
+fresh original source vertex z ∈ Root \ S for which the selected
+step certificate P S z holds, and take the WHOLE native function
+closure of S ∪ {z}. No single-valued function assumption. -/
+def NativeClosedRootProgress
+    {V : Type} (A : Structure L V)
+    (Root : Set V)
+    (P : Set V → V → Prop)
+    (S T : Set V) : Prop :=
+  ∃ z : V,
+    z ∈ Root ∧ z ∉ S ∧ P S z ∧
+    T = A.functionClosure (S ∪ {z})
+
+/-- FINITE saturation with actual witnessed, native function-closed
+one-vertex extensions. Let Root be a genuine function-closed
+subset of a finite native functional structure and Stop any
+goal condition on its closed subsets.
+
+Assume only the constructive local PROGRESS rule: every closed
+S ⊆ Root that is not yet Stop-admissible has an ACTUAL fresh
+vertex z ∈ Root \ S with a specified certificate P S z.
+
+Then from ANY starting closed S0 ⊆ Root there is a FINITE
+sequence of full native closure extensions, witnessed by
+Relation.ReflTransGen of `NativeClosedRootProgress`, ending
+at a closed K ⊆ Root satisfying Stop K.
+
+The proof uses a STRONG induction on the ACTUAL finite remaining
+source-vertex budget Root.ncard - S.ncard. Each step strictly
+increases S.ncard and remains under Root.ncard, so the budget
+strictly decreases. No function-domain, root-profile, image
+closure or forbidden-family assumption enters this purely
+finitary combinatorial theorem. -/
+theorem finiteNativeClosedRoot_saturation
+    {V : Type} [Finite V]
+    (A : Structure L V)
+    (Root : Set V) (hRootClosed : A.IsClosed Root)
+    (Stop : Set V → Prop)
+    (P : Set V → V → Prop)
+    (hProgress :
+      ∀ S : Set V, A.IsClosed S → S ⊆ Root → ¬ Stop S →
+        ∃ z : V, z ∈ Root ∧ z ∉ S ∧ P S z)
+    (S0 : Set V)
+    (hS0Closed : A.IsClosed S0)
+    (hS0Root : S0 ⊆ Root) :
+    ∃ K : Set V,
+      Relation.ReflTransGen (NativeClosedRootProgress A Root P) S0 K ∧
+      A.IsClosed K ∧ K ⊆ Root ∧ Stop K := by
+  classical
+  let Good : ℕ → Prop := fun n =>
+    ∀ S : Set V,
+      A.IsClosed S → S ⊆ Root →
+      Root.ncard - S.ncard = n →
+      ∃ K : Set V,
+        Relation.ReflTransGen (NativeClosedRootProgress A Root P) S K ∧
+        A.IsClosed K ∧ K ⊆ Root ∧ Stop K
+  have hGood : ∀ n : ℕ, Good n := by
+    intro n
+    induction n using Nat.strong_induction_on with
+    | h n ih =>
+        intro S hSClosed hSRoot hCard
+        by_cases hStop : Stop S
+        · exact ⟨S, Relation.ReflTransGen.refl,
+            hSClosed, hSRoot, hStop⟩
+        · obtain ⟨z, hzRoot, hzFresh, hzP⟩ :=
+            hProgress S hSClosed hSRoot hStop
+          let T : Set V := A.functionClosure (S ∪ {z})
+          have hStrict : S ⊂ T :=
+            (nativeFunctionClosure_adjoinFresh_strict_insideClosed
+              A S Root hRootClosed hSRoot z hzRoot hzFresh).1
+          have hTRoot : T ⊆ Root :=
+            (nativeFunctionClosure_adjoinFresh_strict_insideClosed
+              A S Root hRootClosed hSRoot z hzRoot hzFresh).2
+          have hTClosed : A.IsClosed T :=
+            A.functionClosure_isClosed (S ∪ {z})
+          have hCardStrict : S.ncard < T.ncard :=
+            Set.ncard_lt_ncard hStrict
+          have hCardBound : T.ncard ≤ Root.ncard :=
+            Set.ncard_le_ncard hTRoot
+          have hLess : Root.ncard - T.ncard < n := by omega
+          obtain ⟨K, hReach, hKClosed, hKRoot, hKStop⟩ :=
+            ih (Root.ncard - T.ncard) hLess
+              T hTClosed hTRoot rfl
+          have hStep : NativeClosedRootProgress A Root P S T :=
+            ⟨z, hzRoot, hzFresh, hzP, rfl⟩
+          exact ⟨K, (Relation.ReflTransGen.single hStep).trans hReach,
+            hKClosed, hKRoot, hKStop⟩
+  exact hGood (Root.ncard - S0.ncard)
+    S0 hS0Closed hS0Root rfl
 
 end AllThoseRamseyClasses.Lifts
