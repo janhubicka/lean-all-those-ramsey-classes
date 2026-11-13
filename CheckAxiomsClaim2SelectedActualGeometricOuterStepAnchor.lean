@@ -1,3 +1,5 @@
 import AllThoseRamseyClasses.Lifts.Claim2SelectedActualGeometricOuterStepAnchor
 
 #print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withExteriorAndAnchor
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withExteriorAnchorAndNoNewRight
