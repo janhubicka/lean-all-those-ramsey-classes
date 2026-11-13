@@ -101,6 +101,7 @@ theorem nativeClosed_iff_jointHybridUSubstructure
               Fin.castAdd p.mask.size i := by
           apply Fin.ext
           rfl
+        change t (Fin.castAdd p.mask.size i) ∈ S
         rw [← hIndex]
         exact hRoot i
       have hValue :
