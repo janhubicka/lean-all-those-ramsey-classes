@@ -47,3 +47,18 @@ Require complete Lean library build, the existing protected theorem
 `#print axioms`, full Section 3 source-contract scan and no-admission
 audit. An independent non-appendix reference check should ensure the
 legacy theorem name and statement are byte-for-byte preserved.
+
+## Second legacy API now deduplicated
+
+The even older rank-only three-way statement
+`claim2_positiveRank_actualSuccessor_or_smallerRoot_or_seamCollision`
+is now just a projection of the above full exterior-count theorem,
+discarding the exterior-source-count equality in the successful
+selected-Q flip branch. It retains its exact original statement,
+including the original seam-collision disjunction.
+
+This removes another independent repetition of the partner-versus-
+smaller-root geometry; the stronger active-boundary theorem supplies
+the source proof once. The dependency direction is strictly
+strong-to-weak: rank-only imports exterior-count-preserving imports
+active-boundary; there is no intended import cycle.
