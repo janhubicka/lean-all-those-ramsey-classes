@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEClosedNativeCoverToUIrreducible
+
+#print axioms AllThoseRamseyClasses.Published.nativeIrreducible_implies_uIrreducible_of_sideTransfer
