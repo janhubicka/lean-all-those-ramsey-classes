@@ -104,3 +104,24 @@ principle, not an unconditional complete induction on geometric
 Claim 2 states. The smaller-root mixed-piece selection and
 zero-B-rank terminal exit remain separate. Verify the new
 third named theorem via exact-head Lean CI.
+
+
+## 13 November validation and source-specific continuation
+
+The PR's source has now been rebased onto merged #1093 on
+`main`, retaining exactly the four PR-local additions.
+The prior compiler failures concerned only the rewrite of
+equal retained cut preimages and a missing closing parenthesis.
+Both were corrected in the source before this validation
+head; full exact-head Lean CI is still a separate requirement.
+
+Draft #1113 builds on this source API to derive the universal
+no-new-B-active-Q premise from an ACTUAL right-to-left selected
+piece map into the target Left witness, using the full target
+free-amalgam overlap. Parent #1101 should be independently
+validated and merged before its stacked B-exclusive specialization.
+
+Do not infer source-specific Claim 2 or a completed
+well-founded descent merely from these one-step results.
+The initial local injection normalization and the mixed
+smaller-root branch are still unresolved.
