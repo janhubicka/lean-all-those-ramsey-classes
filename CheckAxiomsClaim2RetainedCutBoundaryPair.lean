@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2RetainedCutBoundaryPair
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_retainedCut_generatedBoundary_pair
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_activeSeamBoundary_injection_transfer
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_allActiveSeamBoundaries_injection_transfer
