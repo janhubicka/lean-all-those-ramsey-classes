@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2FullSeamSplitCriterion
+
+#check AllThoseRamseyClasses.Lifts.fullNativeReplacement_fullSeamInj_iff_QrootReflection_and_residualInj
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_fullSeamInj_iff_QrootReflection_and_residualInj
