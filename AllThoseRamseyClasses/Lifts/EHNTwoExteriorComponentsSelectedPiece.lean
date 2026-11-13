@@ -75,7 +75,7 @@ theorem finiteClosedCut_twoExteriorComponents_selectPositivePiece
   have hPath : ReachOutside Source.graph (∅ : Set V)
       (⟨d.left.1, by simp⟩ : {z : V // z ∉ (∅ : Set V)})
       (⟨d.right.1, by simp⟩ : {z : V // z ∉ (∅ : Set V)}) := by
-    simpa only [hLeft, hRight] using
+    simpa only [hLeft, hRight, outsideCutMap] using
       (gaifmanPath_to_emptyCutReach Source hConnected)
   have hRootInS : Set.range d.roots ⊆ S := by
     rw [hRoot]
