@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2PieceScopedActiveBoundaryTransfer
+
+#check AllThoseRamseyClasses.Lifts.fullNativeReplacement_pieceScoped_activeBoundaryInj_transfer
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeReplacement_pieceScoped_activeBoundaryInj_transfer
