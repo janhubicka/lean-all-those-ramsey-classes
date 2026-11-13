@@ -500,9 +500,8 @@ theorem genuineTagged2019_badWeak_closedCut_rootRank_ge_two
     Finite.of_injective d.leftIn d.leftIn.injective
   letI : Finite d.Right :=
     Finite.of_injective d.rightIn d.rightIn.injective
-  letI : Finite d.Common :=
-    Finite.of_injective d.toLeft d.toLeft.injective
-  letI : Fintype d.Common := Fintype.ofFinite d.Common
+  -- Keep the caller's Fintype d.Common: introducing a second local
+  -- instance makes the two USize expressions use different enumerations.
   by_contra hNoRankTwo
   have hRank : USize
       ((L.withParts Parts).wholeMaskClosureRules Parts)
