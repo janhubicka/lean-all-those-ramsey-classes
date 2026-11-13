@@ -4,3 +4,5 @@ import AllThoseRamseyClasses.Lifts.EHNFiniteSeamClosureGrowth
 #print axioms AllThoseRamseyClasses.Lifts.finiteNativeFunctionClosure_adjoinFresh_cardBound
 #print axioms AllThoseRamseyClasses.Lifts.ehn_inputHull_subset_commonRootPreimage
 #print axioms AllThoseRamseyClasses.Lifts.ehn_freshSeamVertex_strictClosedHullGrowth
+#print axioms AllThoseRamseyClasses.Lifts.NativeClosedRootProgress
+#print axioms AllThoseRamseyClasses.Lifts.finiteNativeClosedRoot_saturation
