@@ -88,12 +88,13 @@ theorem finiteNativeFunctionClosure_adjoinFresh_cardBound
   exact ⟨Set.ncard_lt_ncard hStrict,
     Set.ncard_le_ncard hInside⟩
 
-/-- An ACTUAL original source input image tuple is seam-contained
-under an EHN map if and only if its generated native function-closed
-hull is contained in the genuine full common-root preimage.
+/-- If an ACTUAL original source input image tuple is contained
+in the genuine full common-root seam under an EHN map, its
+entire native function-generated source hull lies inside the
+original common-root preimage.
 
-We only need the forward implication, retaining the original
-target root embeddings and allowing source map collisions. -/
+This states the forward implication only; the proof retains the
+actual full target-root embeddings and allows source map collisions. -/
 theorem ehn_inputHull_subset_commonRootPreimage
     {V UX UA UT X : Type}
     (Source : Structure L V)
