@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2GeometricBActiveCardStrict
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedComponent_disjoint_fullOldComplementRange
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedInnerFlip_Bactive_card_strict
