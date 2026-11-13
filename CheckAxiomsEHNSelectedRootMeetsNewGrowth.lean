@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNSelectedRootMeetsNewGrowth
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricMinimalClosedSeparator_rootEscapes_nonSeparatingEarlierSet
+#print axioms AllThoseRamseyClasses.Lifts.finiteSelectedGeometricPiece_rootHits_newClosedHullGrowth
