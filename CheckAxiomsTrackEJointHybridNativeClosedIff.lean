@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridNativeClosedIff
+
+#print axioms AllThoseRamseyClasses.Published.nativeClosed_iff_jointHybridUSubstructure
+#print axioms AllThoseRamseyClasses.Published.nativeClosed_iff_jointHybridInduceUClosed
