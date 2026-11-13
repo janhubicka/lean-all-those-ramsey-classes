@@ -48,6 +48,20 @@ class LeanSourceTests(unittest.TestCase):
             executable_text(header),
         )
 
+    def test_admission_words_in_comments_and_strings_are_inert(self):
+        source = (
+            "/- A proof explanation may admit that an argument is conditional. -/\\n"
+            "-- sorry is also harmless in a comment\\n"
+            'def commentText := "admit sorry axiom"\\n'
+            "theorem actualProof : True := by\\n"
+            "  trivial\\n"
+        )
+        code = executable_text(source)
+        self.assertNotIn("admit", code)
+        self.assertNotIn("sorry", code)
+        self.assertNotIn("axiom", code)
+        self.assertIn("theorem actualProof", code)
+
     def test_unrecognised_import_syntax_rejected(self):
         with self.assertRaises(ValueError):
             imports_from_code("import Valid.Module (Invalid)")
