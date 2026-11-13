@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitFullHomogeneity
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_finiteFullHomogeneous
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalActualFairNativeLimit_finiteFullHomogeneous_withInverse
