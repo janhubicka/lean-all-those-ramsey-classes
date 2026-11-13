@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEJointTagSemanticExact
+
+#print axioms StructuralRamsey.RelStructure.splitMaskJointRootExpansion_hasExactJointRootTags
+#print axioms StructuralRamsey.RelStructure.HasExactJointRootTags.induce
+#print axioms StructuralRamsey.RelStructure.IsFreeAmalgam.splitMaskJointRootReduct
+#print axioms StructuralRamsey.RelStructure.HasExactJointRootTags.freeAmalgam
