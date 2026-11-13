@@ -80,10 +80,10 @@ theorem wholeMaskCovered_originalNativeInducedUIrreducible
     wholeMaskCovered_decodedClosed_to_inducedUClosed
       C (Base.withParts basePart) basePart
       hC (hPos.withParts) hCover S hPlusClosed
-  refine nativeIrreducible_implies_uIrreducible_of_sideTransfer
+  apply nativeIrreducible_implies_uIrreducible_of_sideTransfer
     ((L.withParts P).wholeMaskClosureRules P)
     (C.induce S) (Native.induce S hS)
-    hTagClosed hNativeIrred ?_ ?_
+    hTagClosed hNativeIrred
   · intro X hX
     have hPlusX :
         (Plus.collapseDomain.induce S hPlusNativeClosed).IsClosed X :=
