@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamEscapeOrSelectedPiece
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_seamInputs_generatedClosedHull_insideRootPreimage
+#print axioms AllThoseRamseyClasses.Lifts.weakExclusiveGaifmanPath_meets_freshSharedRootVertex
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenSeamInputHull_selectedPiece_or_reachableFreshSeamVertex
