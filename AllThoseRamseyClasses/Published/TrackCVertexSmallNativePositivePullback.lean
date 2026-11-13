@@ -29,7 +29,7 @@ open StructuralRamsey.Structure
 
 universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
-variable {V X : Type w}
+variable {V X W : Type w}
 
 /-- A genuine closed n-small T in an arbitrary partial source D has
 a positive, part-preserving original-2019 H-completion on T exactly.
@@ -37,7 +37,7 @@ The test image S=q[T] is not assumed closed; its card is ≤n. -/
 theorem genuineTagged2019_smallClosedNative_positiveCompletion_of_exactWeakImage
     (H : GenuinePartite2019Class (L := L) (Parts := Parts))
     (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
-    (Base : PartialSetStructure L V) (basePart : V → Parts)
+    (Base : PartialSetStructure L W) (basePart : W → Parts)
     (hC : IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
     (hPos : L.PositiveFuncArity)
     (hCover : ∀ {Y : Type w}
