@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.TrackEHybridPositiveOutputSound
+
+#print axioms StructuralRamsey.RelStructure.TupleImpliesRoot.induce
+#print axioms StructuralRamsey.RelStructure.TupleImpliesRoot.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_positiveOutputSound
+#print axioms StructuralRamsey.RelStructure.HybridPositiveOutputSound.induce
+#print axioms StructuralRamsey.RelStructure.HybridPositiveOutputSound.freeAmalgam
