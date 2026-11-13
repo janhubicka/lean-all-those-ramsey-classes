@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankActiveBoundaryDichotomy
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRank_actualSuccessor_or_smallerRoot_of_activeBoundaryInjective
