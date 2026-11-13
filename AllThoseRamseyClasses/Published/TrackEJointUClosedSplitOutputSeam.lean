@@ -77,14 +77,16 @@ theorem HybridSplitOutputClosedAt.ofJointRootUSubstructure
   have hInj : Function.Injective root :=
     hDomainInjective p root hDomain
   let actualRoot :
-      RelStructure (L.splitMaskHybrid Parts) (Fin p.rootSize) where
+      RelStructure (L.splitMaskHybrid Parts) (Fin p.rootSize) := {
     rel R xs := Side.rel R (root ∘ xs)
-  let rootEmbedding : Embedding actualRoot Side where
+  }
+  let rootEmbedding : Embedding actualRoot Side := {
     toFun := root
     injective := hInj
     map_rel_iff := by
       intro R xs
       rfl
+  }
   have hDomainRoot :
       actualRoot.rel (hybridSplitDomainSymbol p) id := by
     change Side.rel (hybridSplitDomainSymbol p) (root ∘ id)
