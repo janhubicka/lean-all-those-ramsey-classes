@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridFullEmbeddingEquiv
+
+#print axioms AllThoseRamseyClasses.Published.nativePartiteEmbedding_of_hybrid
+#print axioms AllThoseRamseyClasses.Published.nativePartiteHybridFullEmbeddingEquiv
