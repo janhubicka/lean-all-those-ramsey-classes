@@ -104,7 +104,11 @@ theorem nativeClosed_of_jointHybridUSubstructure
       rootHybrid.rel (Language.hybridSplitDomainSymbol splitPat) id := by
     change G.rel (Language.hybridSplitDomainSymbol splitPat)
       (root ∘ id)
-    simpa only [Function.comp_id] using hDomain
+    have hEq : (root ∘ id : Fin m → V) = root := by
+      funext i
+      rfl
+    rw [hEq]
+    exact hDomain
   let tag : Language.SplitMaskFullRootPattern L Parts :=
     { input := splitPat
       positive := hmPos
