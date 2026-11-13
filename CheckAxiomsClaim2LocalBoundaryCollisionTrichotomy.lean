@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2LocalBoundaryCollisionTrichotomy
+
+#check AllThoseRamseyClasses.Lifts.claim2_positiveRank_actualFlip_or_smallerRoot_or_activeBoundaryCollision
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRank_actualFlip_or_smallerRoot_or_activeBoundaryCollision
