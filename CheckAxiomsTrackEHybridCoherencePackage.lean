@@ -1,0 +1,9 @@
+import AllThoseRamseyClasses.Published.TrackEHybridCoherencePackage
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_uniqueVertexPart
+#print axioms StructuralRamsey.RelStructure.HybridUniqueVertexPart.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_weakInputCoherent
+#print axioms StructuralRamsey.RelStructure.HybridWeakInputCoherent.induce
+#print axioms StructuralRamsey.RelStructure.HybridWeakInputCoherent.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_exactWeakCoherent
+#print axioms StructuralRamsey.RelStructure.HybridExactWeakCoherent.induce
