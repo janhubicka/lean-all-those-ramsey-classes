@@ -25,3 +25,27 @@ the full functional Ramsey theorem is now formally verified.
 One new Lean module, active root, named #print axioms.
 Keep draft until exact-head full build + axioms + no-admission
 and source integrity gates pass. Frozen survey TeX unchanged.
+
+
+## New proof endpoint: full tagged protection on each selected E-image
+
+The follow-up declaration
+\`genuineTagged2019_EHN_irredTest_protected_by_weakCompletion\`
+combines the exact-image geometry with any induced-closed
+U-protected OLD completion
+\`f:(C.induce S)→Target\` for an exact S containing q[e(E)].
+
+It constructs a full tagged embedding
+\`j:C.induce(range(g))→Target\`
+on literally q[e(E)] and proves
+\`j(g x)=f(q(e x))\` for EVERY x∈E, with the same f,
+the same q and the unchanged exact S.
+The proof uses only the abstract/induced protected-test
+equivalence and exact range inclusion. In particular
+**q is not asserted to be globally OLD protected**.
+
+This is the geometric/protection half of English T2';
+the positive original-function completion law on a
+genuinely closed small T and the final full native
+partial embedding decoder must still be assembled.
+The new endpoint has its own direct axiom check; CI pending.
