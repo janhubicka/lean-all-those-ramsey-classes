@@ -137,7 +137,7 @@ theorem weakExclusiveGaifmanPath_meets_freshSharedRootVertex
       (weakFreePartition_left_right_disjoint hFree f)) hLeftY hy)
   · exact ⟨mid.1, mid.2, hMidRoot, hMidReach⟩
 
-/-- For actual left-/right-exclusive original source vertices and
+/-- For actual left- or right-exclusive original source vertices and
 an input tuple mapping entirely into the shared full native
 root, one of two concrete outcomes occurs:
 
@@ -208,8 +208,9 @@ theorem forbiddenSeamInputHull_selectedPiece_or_reachableFreshSeamVertex
         F hConnected Source hFinite hForbidden
         xs xS yS hSeparated
     exact Or.inl ⟨n, d, hn, hRoot, hLeft, hRight, hPiece⟩
-  · have hPath : ReachOutside Source.graph S xS yS :=
-      Classical.of_not_not hSeparated
+  · have hPath : ReachOutside Source.graph S xS yS := by
+      by_contra hNoReach
+      exact hSeparated hNoReach
     obtain ⟨z, hz, hRoot, hReach⟩ :=
       weakExclusiveGaifmanPath_meets_freshSharedRootVertex
         Source Root Left Right Target sL sR jL jR hFree
