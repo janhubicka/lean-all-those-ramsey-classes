@@ -408,6 +408,7 @@ result about the corrected definitions does not retroactively verify
 the literal published theorem or its original proof. For provenance:
 
 * [Additional adversarial referee pass and audit-preserving cleanup](docs/adversarial-referee-pass-20261015.md)
+* [13 November 2026 functional-lift adversarial audit and recalibrated progress](docs/adversarial-functional-lift-audit-20261113.md)
 * [Current checked endpoint and CI certificate](docs/current-main-theorem-status.md)
 * [Full English profile/sparsening proof](docs/coordinated-profile-proof-20261013.md)
 * [Revised definitions and precise theorem scope](docs/wiki/Published-statements.md)
