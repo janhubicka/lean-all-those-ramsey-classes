@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridRamseyArrowEquiv
+
+#print axioms AllThoseRamseyClasses.Published.nativePartiteArrow_iff_canonicalSplitMaskHybridArrow
