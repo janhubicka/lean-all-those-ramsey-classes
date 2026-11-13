@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.TrackEOriginalNativeInducedUIrreducible
+import AllThoseRamseyClasses.Published.InducedClosed2019TestNormalization
 import PartiteConstruction.Functional.TrackEFinalCoveredDecodedClosedU2019
 import PartiteConstruction.Functional.WeakInvariant
 
@@ -89,5 +90,82 @@ theorem genuineTagged2019_EHN_irredTest_has_exact_protectedImage
     wholeMaskCovered_originalNativeIrredCopy_UIrreducible
       C Base basePart hC hPos hCover E hE g
   exact ⟨g, hg, hExactClosed, hExactIrred⟩
+
+
+/-- Exactly the native-irreducible protection needed for the
+English small-test pullback. The EHN map q need not be protected
+on ANY other reducible source piece.
+
+Whenever the exact weak OLD image S carries a protected completion
+f into a genuine tagged H-target, the restriction of f along
+q ∘ e of every irreducible native test E ↪ D is a FULL tagged
+embedding on its literal q[E] support.
+
+The conclusion uses the SAME g and f, the SAME weak S and exact
+native E; it does not take a generated closure hull. -/
+theorem genuineTagged2019_EHN_irredTest_protected_by_weakCompletion
+    (C : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) V)
+    (Base : PartialSetStructure L W) (basePart : W → Parts)
+    (hC : IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) C)
+    (hPos : L.PositiveFuncArity)
+    (hCover : ∀ {Y : Type v}
+      (Test : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Y),
+      IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) Test →
+      IsUIrreducible ((L.withParts Parts).wholeMaskClosureRules Parts) Test →
+      Embedding Test C →
+      Nonempty (Embedding Test
+        (wholeMaskTagExpansion
+          ((Base.withParts basePart).wholeMaskPatternGraph basePart))))
+    (D : Structure L X) (q : X → V)
+    (hq : D.IsEHNHomomorphismEmbedding
+      ((wholeMaskOriginalDecode C).collapseDomain) q)
+    (S : Set V)
+    {Y : Type v}
+    (Target : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) Y)
+    (f : S → Y)
+    (hf : IsInducedClosedUHomomorphismEmbedding
+      ((L.withParts Parts).wholeMaskClosureRules Parts)
+      (C.induce S) Target f)
+    {T : Type v} (E : Structure L T)
+    (hE : E.Irreducible) (e : Structure.Embedding E D)
+    (hImageS : ∀ x : T, q (e x) ∈ S) :
+    ∃ g : Structure.Embedding E
+        ((wholeMaskOriginalDecode C).collapseDomain),
+      (∀ x : T, g x = q (e x)) ∧
+      ∃ j : Embedding (C.induce (Set.range g)) Target,
+        ∀ x : T,
+          j ⟨g x, ⟨x, rfl⟩⟩ =
+            f ⟨q (e x), hImageS x⟩ := by
+  classical
+  obtain ⟨g, hg, hClosed, hIrred⟩ :=
+    genuineTagged2019_EHN_irredTest_has_exact_protectedImage
+      C Base basePart hC hPos hCover D q hq E hE e
+  have hImage : Set.range g ⊆ S := by
+    rintro y ⟨x, rfl⟩
+    rw [hg x]
+    exact hImageS x
+  let i : Embedding (C.induce (Set.range g)) (C.induce S) := {
+    toFun := fun z => ⟨z.1, hImage z.2⟩
+    injective := by
+      intro x y hxy
+      apply Subtype.ext
+      exact congrArg Subtype.val hxy
+    map_rel_iff := by intro R xs; rfl
+  }
+  obtain ⟨j, hj⟩ :=
+    (IsInducedClosedUHomomorphismEmbedding.toAbstract_2019 hf).on_test
+      (C.induce (Set.range g)) hClosed hIrred i
+  refine ⟨g, hg, j, ?_⟩
+  intro x
+  have hArg :
+      i ⟨g x, ⟨x, rfl⟩⟩ =
+        (⟨q (e x), hImageS x⟩ : S) := by
+    apply Subtype.ext
+    exact hg x
+  calc
+    j ⟨g x, ⟨x, rfl⟩⟩ =
+      f (i ⟨g x, ⟨x, rfl⟩⟩) := hj _
+    _ = f ⟨q (e x), hImageS x⟩ := congrArg f hArg
+
 
 end AllThoseRamseyClasses.Published
