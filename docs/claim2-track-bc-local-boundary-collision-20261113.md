@@ -33,15 +33,16 @@ It returns one of three cases:
   with its exact generated opposite boundary.
 * A LITERAL selected B-only source component x inside the old
   outer piece P and its exact generated boundary T, with
-  T⊆S, and two distinct SOURCE vertices u≠v in T such that
+  T⊆S∩P, and two distinct SOURCE vertices u≠v in T such that
   f u = f v.
 
 The proof splits on the exact active-boundary-injection
 condition. In its positive branch, the already verified
 two-way theorem returns the flip or smaller root. In its
 negative branch, the failure of `Set.InjOn f T_x` produces
-u,v on the precise boundary, and closedness of the full
-target seam preimage ensures T⊆S. No weak-image quotient,
+u,v on the precise boundary, and the checked geometric outer-piece no-escape theorem
+ensures the entire generated boundary T lies in BOTH
+S and the original selected geometric source piece P. No weak-image quotient,
 distinct target-image counts or new hypotheses are needed.
 
 ## Remaining obligations
