@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEJointHybridFullNativeCopy
+
+#print axioms AllThoseRamseyClasses.Published.fullNativeCopy_jointHybridEmbedding
+#print axioms AllThoseRamseyClasses.Published.fullNativeCopy_jointHybridEmbedding_apply
+#print axioms AllThoseRamseyClasses.Published.fullNativeIrreducibleCopy_jointHybrid_uIrreducible
