@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEHybridVisibleWholeSplitAgreement
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_visibleWholeSplitAgreement
+#print axioms StructuralRamsey.RelStructure.HybridVisibleWholeSplitAgreement.induce
