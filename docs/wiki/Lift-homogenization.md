@@ -132,6 +132,19 @@ state and the terminal minimizer contradiction. Full Section 3 strong
 amalgamation remains open. No numbered 2019 manuscript text is
 changed and no removed collaborator TODO is restored.
 
+## 12 November 2026 — printed Section 3 proof crosswalk
+
+[The source-to-Lean audit](../lifts-track-a-2019-section3-source-to-lean-audit-20261112.md)
+checks the frozen 2019 `lemma:flip`, `lem:amalgamationstr`
+and Claims 1–2 against the verified Track A source replacement,
+exact original target-root criterion (#1036), and successful
+same-witness target-relation truth transfer
+[#1055](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1055)
+([exact-head Lean CI](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43271200848)).
+It records why equality of the original outer global *source symbol*
+does not imply a TRUE outer *target* relation on colliding root tuples.
+No new unrestricted Claim 2 or strong AP conclusion is claimed.
+
 ## Verified structural checkpoints
 
 | Paper step | Compiled proof endpoint / relevant files | Validation evidence |

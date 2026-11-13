@@ -1,6 +1,6 @@
 # Track A/D — equality of original global target relation truth
 
-**12 November 2026, draft for exact-head Lean and axiom CI.**
+**12 November 2026. Verified and merged as [PR #1055](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1055) after [successful exact-head Lean CI #43271200848](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43271200848).**
 
 ## Verified premises and new composition
 
@@ -36,5 +36,9 @@ A-minimizer contradiction, arbitrary injectivization, or unrestricted
 Section 3 strong amalgamation is asserted.
 
 No numbered 2019 manuscript text or removed collaborator TODO is
-changed. Keep draft pending full pinned Lean build, named permitted
-axioms, active-root inventory, source contract and no-admissions scans.
+changed. The original dependent-symbol `rw` proof failed Lean's
+type-correct motive check; the merged proof instead rewrites the
+fixed-width quotient CLASS after extracting `Sigma.mk.inj_iff`.
+Both named axiom checks, the whole library, inventory, contract audits
+and no-admissions scan passed on the repaired PR head.
+See the [Section 3 proof crosswalk](lifts-track-a-2019-section3-source-to-lean-audit-20261112.md).

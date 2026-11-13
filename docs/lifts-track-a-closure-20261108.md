@@ -217,3 +217,24 @@ collision-impossibility corollary needs no EHN assumption. These are
 precise boundaries, not a general weak-image injectivization.
 
 The frozen numbered 2019 manuscript is untouched.
+
+## 12 November — printed proof crosswalk and last target-relation interface
+
+[PR #1055](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1055) is now merged
+after its repaired exact-head full Lean build, named permitted-axiom
+audit and admission checks
+([CI 43271200848](https://github.com/janhubicka/lean-all-those-ramsey-classes/actions/runs/43271200848)).
+The dependent-arity rewrite was repaired by extracting equality of
+the GLOBAL quotient classes at one FIXED root width rather than
+rewriting the entire Sigma-indexed relation symbol.
+
+The theorem `nestedGeometric_actualGlobalWitness_outerTargetRelation_iff_withExterior`
+keeps the SAME selected-Q forbidden source, original outer symbol,
+ordered target coordinates and all exterior SOURCE counts. The original
+target relation is equivalent on the old/new witnesses, but can be
+FALSE on both sides when outer root images collide. This is a
+source-interface convenience, not injectivization or unrestricted
+Claim 2. See the
+[printed-to-Lean Section 3 audit](lifts-track-a-2019-section3-source-to-lean-audit-20261112.md)
+for the precise outstanding C/D/F mathematical gates. The numbered
+2019 manuscript remains frozen.
