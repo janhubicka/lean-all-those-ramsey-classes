@@ -50,11 +50,11 @@ class LeanSourceTests(unittest.TestCase):
 
     def test_admission_words_in_comments_and_strings_are_inert(self):
         source = (
-            "/- A proof explanation may admit that an argument is conditional. -/\\n"
-            "-- sorry is also harmless in a comment\\n"
-            'def commentText := "admit sorry axiom"\\n'
-            "theorem actualProof : True := by\\n"
-            "  trivial\\n"
+            "/- A proof explanation may admit that an argument is conditional. -/\n"
+            "-- sorry is also harmless in a comment\n"
+            'def commentText := "admit sorry axiom"\n'
+            "theorem actualProof : True := by\n"
+            "  trivial\n"
         )
         code = executable_text(source)
         self.assertNotIn("admit", code)
