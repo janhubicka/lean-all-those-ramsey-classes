@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Published.TrackEActualOriginalNativeControlHE
+
+/-! Exact original native same-selected-map HE endpoint, kernel axioms. -/
+
+#print axioms AllThoseRamseyClasses.Published.wholeMaskCovered_originalNativeCopy_selectedHE
+#print axioms AllThoseRamseyClasses.Published.wholeMaskCovered_originalNativeHE_of_selectedTaggedControl
+#print axioms AllThoseRamseyClasses.Published.genuinePartite2019_actual_standardSystem_sparse_witness_with_nativeHE
