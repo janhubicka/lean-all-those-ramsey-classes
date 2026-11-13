@@ -1,6 +1,6 @@
 import AllThoseRamseyClasses.Lifts.WeakSourceFreeAmalgamPartition
 import Mathlib.Data.Set.Card
-import Mathlib.Tactic.Omega
+import Mathlib.Tactic
 
 /-!
 # Track D: finite, native function-closed seam saturation step
