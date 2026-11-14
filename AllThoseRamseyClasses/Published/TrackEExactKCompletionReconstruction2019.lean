@@ -44,7 +44,7 @@ externally B-protected U-closed POSTPROCESSED final tagged source. -/
 theorem profile2019_exactWeak_K_completions_of_protected_taggedHE
     {K : StructureClass.{u,v} (L := L)}
     {rules : ClosureDescription L}
-    {UB VP VQ : Type v} [Finite VP] [Finite VQ]
+    {UB VP VQ : Type v} [Finite UB] [Finite VP] [Finite VQ]
     (Base : RelStructure L UB)
     (hBase : IsUClosed rules Base)
     (hBK : K Base)
