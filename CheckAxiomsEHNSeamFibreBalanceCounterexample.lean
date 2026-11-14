@@ -2,3 +2,5 @@ import AllThoseRamseyClasses.Lifts.EHNSeamFibreBalanceCounterexample
 
 #print axioms AllThoseRamseyClasses.Lifts.seamFibre_rootVacancy_notGlobalVacancy
 #print axioms AllThoseRamseyClasses.Lifts.seamFibre_splitCanPreserveGlobalCollisionCount
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_oneVertexRecolor_preserves_awayPairs
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_oneVertexRecolor_incidentPair_iff_destinationFibre
