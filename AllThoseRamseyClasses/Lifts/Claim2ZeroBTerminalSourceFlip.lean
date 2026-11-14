@@ -92,7 +92,7 @@ theorem claim2_zeroBSourceRank_selectedComponent_noRight
         f v ∈ fullFreeRightExclusiveTarget iRight jRight} := by
     rw [Nat.card_eq_fintype_card]
     exact Fintype.card_pos_iff.mpr hNonempty
-  exact (Nat.ne_of_gt hPos) hZero
+  exact (Nat.ne_of_gt hPos) hZeroB
 
 /-- At zero local B-SOURCE rank a true native geometric piece
 with complete root in the target seam factors through the FULL
