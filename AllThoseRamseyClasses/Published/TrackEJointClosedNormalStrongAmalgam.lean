@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.TrackEJointNormalTargetClass
+import AllThoseRamseyClasses.Published.TrackEJointHybridCanonicalUClosed
 import PartiteConstruction.Ramsey.ClosureEmbeddingRange
 import PartiteConstruction.Ramsey.ClosureFreeAmalgamCompletion
 import PartiteConstruction.Ramsey.CompatibleClassCompletion
@@ -74,6 +75,19 @@ def HybridJointTargetClosed
     (C : RelStructure (L.splitMaskJointRootLanguage Parts) V) : Prop :=
   IsUClosed (L.splitMaskJointClosureRules Parts) C ∧
   HybridJointTargetNormal C
+
+/-- The canonical JOINT full-root expansion of every FINITE
+genuine native functional partite System lies in the U-CLOSED
+normal target class. This combines the actual source-closure
+proof with the independent source-normality certificates; it
+does not assert native decoding for arbitrary target Pictures. -/
+theorem canonicalHybrid_jointTargetClosed
+    {V : Type w} [Finite V]
+    (A : FunctionalPartite.System L Parts V) :
+    HybridJointTargetClosed
+      (splitMaskJointRootExpansion A.splitMaskHybrid) :=
+  ⟨A.splitMaskJointRoot_isUClosed,
+    canonicalHybrid_jointTargetNormal A⟩
 
 /-- Exact U-substructures of a CLOSED normal joint relational
 Picture are again closed and normal, on the SAME induced vertex set.
