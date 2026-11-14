@@ -74,7 +74,7 @@ construction is hereditarily ordinarily irreducible: the first
 profile expansion's Bplus is already hereditarily irreducible. -/
 theorem profileTaggedCanonical2019_base_hereditarilyIrreducible
     {rules : ClosureDescription L}
-    {UB : Type v} (Base : RelStructure L UB)
+    {UB : Type v} [Finite UB] (Base : RelStructure L UB)
     (hBase : IsUClosed rules Base) :
     HereditarilyIrreducible
       (profileRootTagExpansion2019 rules Base
