@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.GeometricIrreducibleRootImage
+import Mathlib.Tactic
 
 /-!
 # Track D: root injectivity from pairwise irreducible source-test coverage
@@ -170,5 +171,48 @@ theorem minimalGlobalWitness_pieceMeetsRight_of_rootPairwiseSourceTests
     d hn hRoots hLeft
     (geometricRootImage_injective_of_pairwiseSourceTests
       w.source d Target w.toTarget w.homEmbedding hCover)
+
+/-- UNCONDITIONAL exhaustive geometric root collision diagnosis
+for a genuine native EHN source map: the ordered roots either
+have injective target images, OR two distinct actual ordered
+root coordinates have equal images and no single FULL
+irreducible source test contains both original vertices.
+
+The second branch is a real source-side **test-coverage gap**,
+not a forbidden image replacement or an assumption that an
+arbitrary weak map is injective. The 2019 proof must handle
+exactly such gaps when source root injection is unavailable. -/
+theorem geometricRootImage_injective_or_jointIrreducibleTestGap
+    {V UT : Type}
+    (Source : Structure L V)
+    {n : ℕ} (d : GeometricFunctionalPieceData Source n)
+    (Target : Structure L UT)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f) :
+    Function.Injective (fun i : Fin n => f (d.roots i)) ∨
+    ∃ i j : Fin n,
+      i ≠ j ∧
+      f (d.roots i) = f (d.roots j) ∧
+      ¬ ∃ (X : Type) (E : Structure L X),
+        E.Irreducible ∧
+        ∃ e : Structure.Embedding E Source,
+          ∃ x y : X,
+            e x = d.roots i ∧ e y = d.roots j := by
+  classical
+  by_cases hInj : Function.Injective
+      (fun i : Fin n => f (d.roots i))
+  · exact Or.inl hInj
+  · right
+    change ¬ (∀ i j : Fin n,
+      f (d.roots i) = f (d.roots j) → i = j) at hInj
+    push_neg at hInj
+    obtain ⟨i, j, hEq, hNe⟩ := hInj
+    have hRootNe : d.roots i ≠ d.roots j := by
+      intro hRootEq
+      exact hNe (d.roots_injective hRootEq)
+    exact ⟨i, j, hNe, hEq,
+      ehn_collidingSourcePair_not_in_jointIrreducibleTest
+        Source Target f hf
+        (d.roots i) (d.roots j) hRootNe hEq⟩
 
 end AllThoseRamseyClasses.Lifts
