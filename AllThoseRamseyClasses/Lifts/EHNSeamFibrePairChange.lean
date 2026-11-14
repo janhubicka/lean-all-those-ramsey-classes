@@ -20,12 +20,12 @@ unrestricted original Claim 2 flip are NOT proved here.
 
 namespace AllThoseRamseyClasses.Lifts
 
-private def oneVertexSeamRecolor
+def originalSourceSeamOneVertexRecolor
     {V UT : Type} [DecidableEq V]
     (f : V → UT) (a : V) (t : UT) : V → UT :=
   fun x => if x = a then t else f x
 
-private def isOrderedSeamCollision
+def originalSourceSeamCollision
     {V UT : Type} (f : V → UT) (Seam : Set UT)
     (u v : V) : Prop :=
   u ≠ v ∧ f u = f v ∧ f u ∈ Seam
@@ -40,8 +40,8 @@ theorem seamFibre_oneVertex_createdCollision_iff
     (f : V → UT) (Seam : Set UT) (a : V) (t : UT)
     (hDifferent : f a ≠ t) (hTargetSeam : t ∈ Seam)
     (u v : V) :
-    (isOrderedSeamCollision (oneVertexSeamRecolor f a t) Seam u v ∧
-      ¬ isOrderedSeamCollision f Seam u v) ↔
+    (originalSourceSeamCollision (originalSourceSeamOneVertexRecolor f a t) Seam u v ∧
+      ¬ originalSourceSeamCollision f Seam u v) ↔
     (u = a ∧ v ≠ a ∧ f v = t) ∨
     (v = a ∧ u ≠ a ∧ f u = t) := by
   classical
@@ -52,39 +52,39 @@ theorem seamFibre_oneVertex_createdCollision_iff
         intro hv
         exact huv (hUa.trans hv.symm)
       have htEq : t = f v := by
-        simpa [oneVertexSeamRecolor, hUa, hvA] using hNewEq
+        simpa [originalSourceSeamOneVertexRecolor, hUa, hvA] using hNewEq
       exact Or.inl ⟨hUa, hvA, htEq.symm⟩
     · by_cases hVa : v = a
       · have hfu : f u = t := by
-          simpa [oneVertexSeamRecolor, hUa, hVa] using hNewEq
+          simpa [originalSourceSeamOneVertexRecolor, hUa, hVa] using hNewEq
         exact Or.inr ⟨hVa, hUa, hfu⟩
       · have hOldEq : f u = f v := by
-          simpa [oneVertexSeamRecolor, hUa, hVa] using hNewEq
+          simpa [originalSourceSeamOneVertexRecolor, hUa, hVa] using hNewEq
         have hOldSeam : f u ∈ Seam := by
-          simpa [oneVertexSeamRecolor, hUa] using hNewSeam
+          simpa [originalSourceSeamOneVertexRecolor, hUa] using hNewSeam
         exact False.elim (hOldNot ⟨huv, hOldEq, hOldSeam⟩)
   · rintro (⟨rfl, hvA, hfv⟩ | ⟨rfl, huA, hfu⟩)
     · have hNewEq :
-          oneVertexSeamRecolor f a t a =
-            oneVertexSeamRecolor f a t v := by
-        simp [oneVertexSeamRecolor, hvA, hfv]
+          originalSourceSeamOneVertexRecolor f a t a =
+            originalSourceSeamOneVertexRecolor f a t v := by
+        simp [originalSourceSeamOneVertexRecolor, hvA, hfv]
       have hNewSeam :
-          oneVertexSeamRecolor f a t a ∈ Seam := by
-        simpa [oneVertexSeamRecolor] using hTargetSeam
+          originalSourceSeamOneVertexRecolor f a t a ∈ Seam := by
+        simpa [originalSourceSeamOneVertexRecolor] using hTargetSeam
       have hOldNot :
-          ¬ isOrderedSeamCollision f Seam a v := by
+          ¬ originalSourceSeamCollision f Seam a v := by
         rintro ⟨_, hEq, _⟩
         exact hDifferent (hEq.trans hfv)
       exact ⟨⟨hvA.symm, hNewEq, hNewSeam⟩, hOldNot⟩
     · have hNewEq :
-          oneVertexSeamRecolor f a t u =
-            oneVertexSeamRecolor f a t a := by
-        simp [oneVertexSeamRecolor, huA, hfu]
+          originalSourceSeamOneVertexRecolor f a t u =
+            originalSourceSeamOneVertexRecolor f a t a := by
+        simp [originalSourceSeamOneVertexRecolor, huA, hfu]
       have hNewSeam :
-          oneVertexSeamRecolor f a t u ∈ Seam := by
-        simpa [oneVertexSeamRecolor, huA, hfu] using hTargetSeam
+          originalSourceSeamOneVertexRecolor f a t u ∈ Seam := by
+        simpa [originalSourceSeamOneVertexRecolor, huA, hfu] using hTargetSeam
       have hOldNot :
-          ¬ isOrderedSeamCollision f Seam u a := by
+          ¬ originalSourceSeamCollision f Seam u a := by
         rintro ⟨_, hEq, _⟩
         exact hDifferent (hEq.symm.trans hfu)
       exact ⟨⟨huA, hNewEq, hNewSeam⟩, hOldNot⟩
@@ -99,8 +99,8 @@ theorem seamFibre_oneVertex_removedCollision_iff
     (f : V → UT) (Seam : Set UT) (a : V) (t : UT)
     (hDifferent : f a ≠ t) (hSourceSeam : f a ∈ Seam)
     (u v : V) :
-    (isOrderedSeamCollision f Seam u v ∧
-      ¬ isOrderedSeamCollision (oneVertexSeamRecolor f a t) Seam u v) ↔
+    (originalSourceSeamCollision f Seam u v ∧
+      ¬ originalSourceSeamCollision (originalSourceSeamOneVertexRecolor f a t) Seam u v) ↔
     (u = a ∧ v ≠ a ∧ f v = f a) ∨
     (v = a ∧ u ≠ a ∧ f u = f a) := by
   classical
@@ -118,34 +118,34 @@ theorem seamFibre_oneVertex_removedCollision_iff
           simpa [hVa] using hOldEq
         exact Or.inr ⟨hVa, hUa, hfu⟩
       · have hNewEq :
-            oneVertexSeamRecolor f a t u =
-              oneVertexSeamRecolor f a t v := by
-          simpa [oneVertexSeamRecolor, hUa, hVa] using hOldEq
+            originalSourceSeamOneVertexRecolor f a t u =
+              originalSourceSeamOneVertexRecolor f a t v := by
+          simpa [originalSourceSeamOneVertexRecolor, hUa, hVa] using hOldEq
         have hNewSeam :
-            oneVertexSeamRecolor f a t u ∈ Seam := by
-          simpa [oneVertexSeamRecolor, hUa] using hOldSeam
+            originalSourceSeamOneVertexRecolor f a t u ∈ Seam := by
+          simpa [originalSourceSeamOneVertexRecolor, hUa] using hOldSeam
         exact False.elim (hNewNot ⟨huv, hNewEq, hNewSeam⟩)
   · rintro (⟨rfl, hvA, hfv⟩ | ⟨rfl, huA, hfu⟩)
-    · have hOld : isOrderedSeamCollision f Seam a v :=
+    · have hOld : originalSourceSeamCollision f Seam a v :=
         ⟨hvA.symm, hfv.symm, hSourceSeam⟩
       have hNewNot :
-          ¬ isOrderedSeamCollision
-            (oneVertexSeamRecolor f a t) Seam a v := by
+          ¬ originalSourceSeamCollision
+            (originalSourceSeamOneVertexRecolor f a t) Seam a v := by
         rintro ⟨_, hEq, _⟩
         have htEq : t = f v := by
-          simpa [oneVertexSeamRecolor, hvA] using hEq
+          simpa [originalSourceSeamOneVertexRecolor, hvA] using hEq
         exact hDifferent (hfv.symm.trans htEq.symm)
       exact ⟨hOld, hNewNot⟩
-    · have hOld : isOrderedSeamCollision f Seam u a := by
+    · have hOld : originalSourceSeamCollision f Seam u a := by
         refine ⟨huA, hfu, ?_⟩
         rw [hfu]
         exact hSourceSeam
       have hNewNot :
-          ¬ isOrderedSeamCollision
-            (oneVertexSeamRecolor f a t) Seam u a := by
+          ¬ originalSourceSeamCollision
+            (originalSourceSeamOneVertexRecolor f a t) Seam u a := by
         rintro ⟨_, hEq, _⟩
         have hEq' : f u = t := by
-          simpa [oneVertexSeamRecolor, huA] using hEq
+          simpa [originalSourceSeamOneVertexRecolor, huA] using hEq
         exact hDifferent (hfu.symm.trans hEq')
       exact ⟨hOld, hNewNot⟩
 
