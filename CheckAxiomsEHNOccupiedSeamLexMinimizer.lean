@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNOccupiedSeamLexMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.orderedSeamCollisionCount_eq_originalPairNatCard
+#print axioms AllThoseRamseyClasses.Lifts.finiteOneVertexOccupiedSeamRecolor_originalPairNatCardBalance
+#print axioms AllThoseRamseyClasses.Lifts.lexMinimalForbiddenWitness_no_EHN_occupiedSeamDownshift
