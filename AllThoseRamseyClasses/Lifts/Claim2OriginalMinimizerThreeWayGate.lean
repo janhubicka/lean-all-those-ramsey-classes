@@ -253,4 +253,55 @@ theorem claim2NativePreRoot_originalMinimizer_rootGap_or_boundaryGap_or_descent
     · exact Or.inr ⟨hRootInj, Or.inr hDescent⟩
   · exact Or.inl hRootGap
 
+/-- At original outer root WIDTH ONE the ordered root TARGET image
+is automatically injected, so the ROOT-collision test-gap branch of
+the general original-minimizer trichotomy is impossible.
+
+Consequently the only remaining initialization diagnostic is a
+genuine generated B-boundary SOURCE collision (with a missing FULL
+joint irreducible source test), or the already verified finite
+geometric descent to an old-root-capture/A-mixed obstruction.
+
+This makes NO assertion that either remaining branch is impossible;
+it does not assume target injection of the entire weak source map. -/
+theorem claim2NativePreRoot_widthOne_minimizer_boundaryGap_or_descent
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (s : Claim2NativePreRootState F Target Left Right
+      jLeft jRight X iLeft iRight 1)
+    (hOriginalMin :
+      ∀ v : ForbiddenEHNWitness F Target,
+        s.original.sourceSupportCount
+          (fullFreeLeftExclusiveTarget iLeft jLeft) ≤
+        v.sourceSupportCount
+          (fullFreeLeftExclusiveTarget iLeft jLeft)) :
+    ∃ (hRootInj :
+        Function.Injective
+          (fun i : Fin 1 => s.original.toTarget (s.outer.roots i))),
+      let initial := s.withRootInjection hRootInj
+      initial.hasLocalFullTestGap ∨
+        Claim2NativePreBoundaryState.reachesGeometricObstruction
+          F Target Left Right jLeft jRight X iLeft iRight
+          (by decide : 0 < 1) initial := by
+  rcases claim2NativePreRoot_originalMinimizer_rootGap_or_boundaryGap_or_descent
+      F hFiniteF hConnected Target Left Right
+      jLeft jRight X iLeft iRight hFree hCommon
+      (by decide : 0 < 1) s hOriginalMin with
+    hGap | hOther
+  · obtain ⟨i, j, hij, _hImages, _hNoJointTest⟩ := hGap
+    exact False.elim (hij (Subsingleton.elim i j))
+  · exact hOther
+
+
 end AllThoseRamseyClasses.Lifts
