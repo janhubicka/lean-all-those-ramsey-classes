@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2NeutralSelectedQFullSuccessor
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_AneutralFullSuccessor
