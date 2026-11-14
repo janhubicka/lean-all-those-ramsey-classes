@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2WeakRightExclusiveTargetIff
+
+#check AllThoseRamseyClasses.Lifts.weakFreeRightPart_iff_fullFreeRightExclusiveTarget
+#print axioms AllThoseRamseyClasses.Lifts.weakFreeRightPart_iff_fullFreeRightExclusiveTarget
