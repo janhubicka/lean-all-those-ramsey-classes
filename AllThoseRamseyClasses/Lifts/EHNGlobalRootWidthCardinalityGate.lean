@@ -154,7 +154,9 @@ theorem originalGeometric_overwideRoot_cannotWitnessCommonCanonicalRelation
     exact originalGlobalCanonical_overwideRoot_relationFalseBoth
       F iA iB
       (geometricGlobalPieceSymbol F Source hFinite hForbidden d hn)
-      (by simpa using hOver) xs
+      (by
+        change Fintype.card UX < n
+        exact hOver) xs
 
 /-- POSITIVE numerical width bound for any original canonical
 piece-class relation actually holding on the image of a finite
