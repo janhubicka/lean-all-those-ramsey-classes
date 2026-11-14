@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNLexMinimalSeamCollisionWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.ForbiddenEHNWitness.seamCollisionPairCount
+#print axioms AllThoseRamseyClasses.Lifts.exists_minimalForbiddenEHNWitness_support_then_seamCollisions
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenEHNWitness_no_weakSupport_and_strictCollisionDrop
