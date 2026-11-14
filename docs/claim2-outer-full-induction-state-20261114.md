@@ -40,3 +40,21 @@ or prove the terminal original Claim 2 A-clearing contradiction.
 No weak-image quotient or image-cardinality rank is introduced.
 The frozen 2019 numbered text is unchanged, no removed TODO restored.
 New named axiom certificate and protected active-root entry.
+
+## Adversarial refinement: do not require outer root injection for ordinary iteration
+
+The original positive-rank active-boundary dichotomy does **not** assume
+that the ordered current outer root maps injectively into Target.
+It is therefore important not to make that an unnecessary induction
+hypothesis. The module now exports TWO endpoints:
+
+1. `geometricGlobalRightFlip_actualOuterPiece_withSeamAndNoEscape`:
+   same Q, local B-boundary injection, A-anchor, B-source rank descent,
+   exterior counts, target seam containment and geometric no-escape,
+   WITHOUT any outer target-root injection premise.
+2. `geometricGlobalRightFlip_actualOuterPiece_withFullInductionInvariants`:
+   a direct corollary that additionally preserves ordered outer-root
+   target injectivity WHEN it was known in the old state.
+
+The second is optional and must not replace the first in an argument
+that starts from a general weak EHN forbidden source map.
