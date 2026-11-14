@@ -120,6 +120,7 @@ private theorem crossPattern_wholeOutputRange_subset
     (hAgree (⟨F, n, s, hs⟩ : FunctionInputPattern L)
       maskB tB k uB hB hPrefixB).mp hSplitAtK
   refine ⟨k, ?_⟩
+  symm
   calc
     tA (Fin.natAdd m j) = uB (Fin.last n) :=
       (Structure.funcTuple_last rootB out).symm
