@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedQAactiveNeutralityIff
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeRetainedComplement_Aactive_card_eq
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_nonrootAfree_preserves_totalASourceCount
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_totalASourceNeutral_iff_nonrootAfree
