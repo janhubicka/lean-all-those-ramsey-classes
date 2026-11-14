@@ -254,9 +254,11 @@ theorem claim2_positiveRank_actualStep_or_oldRootCapture_or_AMixed_of_activeBoun
             Target f hf Left Right jLeft jRight
             X iLeft iRight hFree hCommon
             hdRootInSeam hNoAInsideD hDrootInj hdLeftB hdRightA
+        have haSameA : flip anew = f a := by
+          simpa only [hRight] using haSameTarget
         exact Or.inl ⟨m, d, hm, hDproper, V', New, hNew,
           hFiniteNew, flip, newOuter, hFlip, hCoords, hSymbol,
           hRank, hExterior,
-          ⟨anew, haInOuter, haSameTarget, haNewA⟩⟩
+          ⟨anew, haInOuter, haSameA, haNewA⟩⟩
 
 end AllThoseRamseyClasses.Lifts
