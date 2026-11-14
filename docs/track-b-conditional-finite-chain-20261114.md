@@ -1,18 +1,78 @@
-# Track B: conditional finite selected-Q iteration (14 November 2026)
+# Track B: bounded descent and full-native positive-rank trichotomy
 
-New module: `AllThoseRamseyClasses/Lifts/Claim2ConditionalFiniteChain.lean`.
+**14 November 2026 · Draft PR #1158 · exact-head Lean CI pending**
 
-The module formalizes the **logical iteration kernel** independently of any geometric selected-Q construction:
+## Concrete new Lean modules
 
-- `ConditionalSelectedQChain step n s t` records **n actually supplied** steps, not arbitrary possible replacements.
-- `conditionalSelectedQChain_preserves` transfers any state invariant preserved by every individual step through an entire finite chain.
-- `conditionalSelectedQChain_length_le_rank` bounds chain length by the initial **literal SOURCE B-rank** whenever each actual step strictly decreases rank.
-- `conditionalSelectedQChain_zero_rank_only_empty` excludes positive-length descent from rank zero.
+1. `Claim2PartnerFullLocalInvariantStep.lean`: reconstruct the verified
+   genuine matched-boundary inner geometric source piece and use the SAME
+   actual selected-Q replacement to preserve the old ordered target-root
+   injectivity and local B-active target-boundary injection. The output also
+   carries the original canonical global piece symbol, exact exterior
+   SOURCE-counts for all target subsets, a surviving A-exclusive SOURCE
+   anchor, and strict local B-exclusive SOURCE-rank descent.
+2. `Claim2NativeBActiveBoundaryBridge.lean`: turn the new target-B-boundary
+   certificate into precisely the **native weak-right generated-boundary
+   hypothesis** required by the next iteration, using the already checked
+   target-free-amalgam equivalence
+   `weakFreeRightPart_iff_fullFreeRightExclusiveTarget`. No global
+   seam-injectivity assumption is introduced.
+3. `Claim2PositiveRankFullInvariantDichotomy.lean`: the no-escape positive
+   B-rank partner-versus-smaller-root theorem, with both root-target and
+   native next-state B-boundary injections preserved in the partner case.
+4. `Claim2SmallerRootFullInvariantFlip.lean`: explicitly conditional
+   no-old-root-capture, no-A-mixed smaller-root genuine selected-Q
+   successor with the same full native iterative invariants.
+5. `Claim2PositiveRankFullStateObstructions.lean`: combine the two
+   real successor cases. At positive B-SOURCE rank, return ONE actual
+   new native geometric outer source carrying the complete iterative
+   local invariants, **or** a genuine smaller-root component capturing
+   an OLD outer-root SOURCE vertex, **or** an A-mixed smaller-root
+   selected component. Both obstruction alternatives stay exposed.
 
-This is an intentionally small, honest theorem interface: apply it to one-step output of `geometricGlobalRightFlip_actualOuterPiece_withExteriorAnchorRootAndBoundaryInj` only **after** defining a genuine state type and relation whose fields include the original global symbol, exact exterior SOURCE counts, root-target injectivity, B-active boundary injection, and an A-only source anchor.
+## Quantitative abstract iteration
 
-## Not discharged
+`Claim2ConditionalFiniteChain.lean` and
+`Claim2ObstructionOrZeroDescent.lean` provide an exact finite-chain
+interface, strict bound
+`chainLength + terminalRank ≤ initialRank`, and an
+obstruction-sensitive descent theorem:
 
-The original initial minimizer is not shown to satisfy B-boundary injectivity; eligible one-sided selected-Q steps are not shown to exist for every positive rank. Smaller-root old-root capture/A-mixed alternatives are unresolved. No terminal zero-B-rank contradiction for the original Claim 2 is derived. Thus these new lemmas are **conditional iteration**, not a completed unrestricted Claim 2.
+> Given initialized and step-preserved validity, and a positive-rank
+> step-or-(old-root-capture/A-mixed) alternative at each valid state,
+> a finitely reachable valid state has either zero B-source rank or
+> one of those two explicitly witnessed obstructions.
 
-The frozen numbered 2019 manuscript and collaborator-removed TODOs are unchanged. The new module needs exact-head Lean CI and axiom/admission audits before merging.
+This **does not** assert that every positive-rank geometric state has a
+step. Earlier `Claim2IteratedContextualDescent` and
+`Claim2ReachableObstructionGate` already cover more general
+terminal/obstruction reachability; the new point here is the precise
+rank budget and the concrete same-source local invariant package.
+
+## Remaining hard obligations
+
+- Establish **initial** generated B-active boundary injectivity for the
+  original source minimizer (it does not follow from ordered outer
+  root-image injectivity alone).
+- Handle the genuine old-root capture and A-mixedness cases; the
+  trichotomy does **not** eliminate them.
+- Bundle actual heterogeneous finite forbidden source states with
+  fixed outer root width, original target root-coordinate vector,
+  global selected symbol, exterior source-profile, A anchor, and
+  root/native boundary injections. Instantiate the abstract
+  finite-chain theorem with the **actual** positive-rank relation.
+- Supply the original zero-B-rank terminal A-minimizer contradiction;
+  terminality of B-rank descent alone is not enough.
+
+## Audit and validation status
+
+All newly stated hypotheses are explicit. Source counts use
+`Nat.card` of literal source vertices; no image-count quotient,
+unproved seam injection, second arbitrary Q, new axioms, or edits to
+the frozen numbered 2019 paper. Author-removed TODOs stay removed.
+
+New named `#print axioms` / `#check` source files and active-root
+registrations were added. The new files are a **proposed Lean proof**
+until an exact-head Lake/Lean build and no-admissions, axiom and
+source-contract audits pass. In particular, do not mark Claim 2
+or general strong AP as formally proved from this PR alone.
