@@ -122,3 +122,54 @@ source geometry, not an unimplemented `Valid` or hypothetical successor:
 The terminal theorem and minimizer comparison are reused unchanged.
 All new theorems and source/axiom audit files must pass exact-head
 Lean and source-contract CI before being marked verified or merged.
+
+
+## 14 November late checkpoint: initial B-boundary injection is now a case split
+
+New modules (on the same Track B branch):
+
+- `Claim2InitialBoundaryCollisionGate.lean`: a genuine initial
+  finite forbidden source with geometric outer piece whose root lies in
+  the TARGET seam either has injection on every full generated
+  B-active SOURCE boundary **or** contains two DISTINCT SOURCE vertices
+  u,v in ONE such boundary T with the SAME target image. Both vertices
+  belong to the original outer geometric source piece and to the full
+  common-seam preimage. This uses the verified native no-escape lemma,
+  not an image quotient or an unproved global injection assumption.
+  No positive B-rank or minimality premise is needed for the split.
+
+- `Claim2InitialBoundaryMinimizerAlternative.lean`: the
+  `Claim2NativePreBoundaryState` carries the ACTUAL
+  `ForbiddenEHNWitness`, positive-width genuine geometric outer piece,
+  root-in-seam, A-only anchor and injective ORDERED outer root image,
+  **without** assuming B-boundary injection. The theorem
+  `claim2NativePreBoundary_minimizer_collision_or_reachableObstruction`
+  states that a globally A-SOURCE-support-minimal witness with these
+  initial geometric/root data either exhibits the concrete local
+  B-boundary SOURCE collision, OR its unchanged native witness can be
+  promoted to a full-invariant state and a FINITE genuine descent
+  reaches old-root capture or A-mixedness. In the latter branch the
+  initial global selected symbol, exterior SOURCE counts for EVERY
+  target subset, exact ordered root TARGET coordinates and A-anchor
+  target value are preserved, with the strict rank budget.
+
+- `Claim2NativePreBoundaryState.localCollision_has_nonrootVertex`:
+  under injected ordered outer-root TARGET coordinates, not both
+  colliding vertices can belong to the OLD separating outer-root
+  SOURCE tuple. Thus at least one literal SOURCE vertex of any
+  generated B-boundary collision is *outside that root*, while
+  remaining inside the actual old outer piece and shared seam.
+
+**Logical status:** This resolves the *initial boundary-injection
+hypothesis as a diagnostic disjunction*, NOT by proving injection.
+Initial original root-image injection and existence of the suitable
+mixed outer geometric piece are still separate assumptions.
+The exact unclosed original Claim 2 cases are now (i) initial
+B-generated-boundary target collision, (ii) finite-reachable old-root
+capture, (iii) finite-reachable A-mixed smaller component; a
+noninjective ordered initial root is an additional issue if that
+initial hypothesis is removed.
+
+All new Lean statements are DRAFT until exact-head full Lean, allowed
+axioms, active roots, source contracts and inventory CI are green.
+The frozen 2019 paper and author-deleted TODOs are untouched.
