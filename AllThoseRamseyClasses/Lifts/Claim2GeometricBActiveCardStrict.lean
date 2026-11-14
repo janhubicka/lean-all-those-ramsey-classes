@@ -88,9 +88,14 @@ theorem geometricSelectedInnerFlip_Bactive_card_strict
     Nat.card {v : V // v ∈ geometricPieceVertices Old outer ∧
       f v ∈ BActive} := by
   letI : Finite V := hFiniteOld
+  -- The complete retained E carrier is a LITERAL source subtype,
+  -- not a new unrelated finite carrier. Inject it into finite Old.
   have hFiniteE :
       Finite (geometricGlobalComplementChart Old inner).Carrier :=
-    inferInstance
+    Finite.of_injective
+      (fun e : (geometricGlobalComplementChart Old inner).Carrier =>
+        (e.1 : V))
+      (fun e₁ e₂ h => Subtype.ext h)
   have hxOuter : x ∈ geometricPieceVertices Old outer :=
     hInnerInside (Or.inr hxComponent)
   have hMissing :
