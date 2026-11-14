@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.WeakSourceFreeAmalgamPartition
+import AllThoseRamseyClasses.Lifts.EHNFullSideFactor
 import Mathlib.Data.Set.Card
 import Mathlib.Tactic
 
