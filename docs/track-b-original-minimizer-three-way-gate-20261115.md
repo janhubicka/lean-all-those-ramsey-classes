@@ -49,3 +49,30 @@ stacked PR as DRAFT until exact-head Lake/Lean, source-contract,
 no-admission, allowed-axiom, and inventory CI all pass, and its parent
 drafts are integrated. Frozen numbered 2019 manuscript and
 author-removed TODOs are unchanged.
+
+## Width-one specialization
+
+The new `claim2NativePreRoot_widthOne_minimizer_boundaryGap_or_descent`
+eliminates the root collision branch **without source test coverage**
+when the original outer separator root has width one. The reason is
+purely finite-coordinate: every map on `Fin 1` is injective. What
+remains is a concrete B-active generated-boundary missing-FULL-test
+collision, or a finite native geometric descent to old-root capture
+/ A-mixedness. This does not eliminate either remaining branch.
+
+## Proof-control qualification
+
+The heterogeneous relation
+`claim2NativeGeometricStep` records the exact native forbidden
+source, selected outer geometric piece and the conserved original
+symbol/support/root/anchor invariants. The current relation does
+**not itself store the selected Q free-amalgam diagram** at each edge.
+The positive-rank progress theorem obtains its outgoing step from a
+verified actual same-selected-Q construction, but the generic
+finite-chain data type permits any edge meeting the displayed
+contract. A future stronger chain relation should retain the
+literal selected-Q witness per edge if that stronger provenance is
+needed downstream. Do not silently equate contract-only edges with
+a stored same-Q reconstruction.
+
+The full latest-head Lean/axiom and inventory checks remain required.
