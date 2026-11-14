@@ -211,7 +211,8 @@ private theorem visibleAgreement_fromFullSide
         apply (e.map_rel_iff
           (hybridSplitOutputSymbol
             (splitMaskInputAtPart p (m.label j))) uSide).mp
-        simpa only [hu] using hPos
+        rw [hu] at hPos
+        exact hPos
       have hEq := hSideIff.mp hSidePos
       calc
         u (Fin.last p.rootSize) =
@@ -235,7 +236,8 @@ private theorem visibleAgreement_fromFullSide
           (hybridSplitOutputSymbol
             (splitMaskInputAtPart p (m.label j))) uSide).mpr
           hSidePos
-      simpa only [hu] using hWholePos
+      rw [hu]
+      exact hWholePos
   constructor
   · intro hPos
     have hPrefix : ∀ i : Fin p.rootSize,
