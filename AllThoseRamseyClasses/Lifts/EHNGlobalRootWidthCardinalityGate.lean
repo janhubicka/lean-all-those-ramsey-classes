@@ -102,7 +102,7 @@ theorem geometricForbiddenRootImage_noninjective_of_width_gt_commonRootCard
     fun i => Classical.choose (hAllRoot i)
   have hCoords : ∀ i : Fin n,
       f (d.roots i) = jRoot (xs i) :=
-    fun i => Classical.choose_spec (hAllRoot i)
+    fun i => (Classical.choose_spec (hAllRoot i)).symm
   intro hInjective
   have hXsInjective : Function.Injective xs := by
     intro a b hab
