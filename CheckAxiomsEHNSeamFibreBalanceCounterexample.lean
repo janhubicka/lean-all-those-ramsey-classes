@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamFibreBalanceCounterexample
+
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_rootVacancy_notGlobalVacancy
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_splitCanPreserveGlobalCollisionCount
