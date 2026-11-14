@@ -93,8 +93,11 @@ theorem canonicalHybrid_splitOutputPatternTransport
       y ∈ A.splitOutputParts.toStructure.func
         (ULift.up F, q) (rootB ∘ s) := by
     refine ⟨hInjB, ?_⟩
+    have hNative :
+        y ∈ A.func F (rootA ∘ r) ∧ A.part y = q := hSource.2
+    change y ∈ A.func F (rootB ∘ s) ∧ A.part y = q
     rw [← hArgs]
-    exact hSource.2
+    exact hNative
   change Function.Injective
     (fun i : Fin n =>
       (Structure.funcTuple rootB y) i.castSucc) ∧
@@ -230,8 +233,16 @@ private theorem splitOutputPattern_fromSide
         (splitMaskInputAtPart
           (⟨F, m, r, hr⟩ : FunctionInputPattern L) q))
         (Structure.funcTuple sideA out) := by
-    rw [Structure.funcTuple_eta x]
-    exact hSidePos
+    have hTuple : Structure.funcTuple sideA out = x := by
+      change Structure.funcTuple
+        (fun i : Fin m => x i.castSucc) (x (Fin.last m)) = x
+      exact Structure.funcTuple_eta x
+    exact (congrArg
+      (fun t : Fin (m + 1) → X =>
+        Side.rel (hybridSplitOutputSymbol
+          (splitMaskInputAtPart
+            (⟨F, m, r, hr⟩ : FunctionInputPattern L) q)) t)
+      hTuple).symm.mp hSidePos
   have hTargetSide :
       Side.rel (hybridSplitOutputSymbol
         (splitMaskInputAtPart
