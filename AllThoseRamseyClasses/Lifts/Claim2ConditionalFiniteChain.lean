@@ -36,10 +36,13 @@ theorem conditionalSelectedQChain_preserves
     {n : ℕ} {s t : State}
     (hChain : ConditionalSelectedQChain step n s t)
     (hGood : good s) : good t := by
+  revert hGood
   induction hChain with
   | nil s =>
+      intro hGood
       exact hGood
   | cons hStep hTail ih =>
+      intro hGood
       exact ih (hPres hStep hGood)
 
 /-- A strict descent chain of literal source ranks cannot have more
