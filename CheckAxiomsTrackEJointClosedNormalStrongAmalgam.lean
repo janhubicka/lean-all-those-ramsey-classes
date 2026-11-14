@@ -1,0 +1,12 @@
+import AllThoseRamseyClasses.Published.TrackEJointClosedNormalStrongAmalgam
+
+#print axioms StructuralRamsey.Language.PositiveFuncArity.splitPatternRootPositive
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.exists_freeAmalgam
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.exists_finite_freeAmalgam
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.induce_of_USubstructure
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.exists_finite_closedAmalgam
+
+#print axioms StructuralRamsey.RelStructure.jointClosedNormalClass_hasFiniteStrongAmalgamation
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_jointTargetClosed
