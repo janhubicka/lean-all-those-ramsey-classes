@@ -236,4 +236,56 @@ theorem claim2NativePreBoundary_minimizer_collision_or_reachableObstruction
         hObstruction, hBudget⟩
   · exact Or.inl hCollision
 
+
+/-- A genuine local B-boundary collision in the initial state cannot
+be confined to two vertices of the old ordered outer root, because
+that root's TARGET image is explicitly injected. Hence at least
+one colliding SOURCE vertex lies outside the old outer root.
+
+This does NOT say the nonroot vertex is outside the old geometric
+outer piece: by the no-escape certificate BOTH lie INSIDE that piece.
+Nor is this a repair of the weak target-map collision. -/
+theorem Claim2NativePreBoundaryState.localCollision_has_nonrootVertex
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UX UA UB UT : Type}
+    {Target : Structure L UT}
+    {Left : Structure L UA} {Right : Structure L UB}
+    {jLeft : Structure.Embedding Left Target}
+    {jRight : Structure.Embedding Right Target}
+    {X : Structure L UX}
+    {iLeft : Structure.Embedding X Left}
+    {iRight : Structure.Embedding X Right}
+    {n : ℕ}
+    (s : Claim2NativePreBoundaryState F Target Left Right
+      jLeft jRight X iLeft iRight n)
+    (hCollision : s.hasLocalCollision) :
+    ∃ (v w : s.original.Carrier),
+      v ≠ w ∧
+      s.original.toTarget v = s.original.toTarget w ∧
+      (v ∉ Set.range s.outer.roots ∨
+       w ∉ Set.range s.outer.roots) := by
+  rcases hCollision with ⟨x, T, hx, hB, hT, hTInside,
+    v, w, hv, hw, hDifferent, hSame⟩
+  refine ⟨v, w, hDifferent, hSame, ?_⟩
+  by_cases hvRoot : v ∈ Set.range s.outer.roots
+  · right
+    rintro ⟨j, hj⟩
+    obtain ⟨i, hi⟩ := hvRoot
+    have hTargetRootEq :
+        s.original.toTarget (s.outer.roots i) =
+          s.original.toTarget (s.outer.roots j) := by
+      calc
+        s.original.toTarget (s.outer.roots i) =
+            s.original.toTarget v := congrArg s.original.toTarget hi
+        _ = s.original.toTarget w := hSame
+        _ = s.original.toTarget (s.outer.roots j) :=
+          (congrArg s.original.toTarget hj).symm
+    have hij : i = j := s.outerRootTargetInj hTargetRootEq
+    apply hDifferent
+    calc
+      v = s.outer.roots i := hi.symm
+      _ = s.outer.roots j := congrArg s.outer.roots hij
+      _ = w := hj
+  · exact Or.inl hvRoot
+
 end AllThoseRamseyClasses.Lifts
