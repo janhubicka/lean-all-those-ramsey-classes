@@ -207,4 +207,73 @@ theorem oneVertexRecolor_jointTestPairSeparation_iff_notBlocked
         exact (hf x y hxy
           ⟨X, E, hIr, e, u, v, hu, hv⟩) hOldSame
 
+
+/-- A FULL native embedding of the old source into a replacement
+preserves all blocked image values for original source vertices
+when the target map agrees on that embedded old source.
+
+Every old irreducible source test E↪Old composes with the full
+embedding Old↪New to a genuine full test E↪New. Consequently,
+a blocked value cannot become unblocked merely by adding new
+vertices, relations or native function values while retaining
+the whole OLD source as a full embedded copy with its map fixed.
+
+A collision-tolerant repair must instead change the relevant
+old test/profile, change target coordinates on more vertices,
+or use a different source piece; this theorem does not construct
+any such repair. -/
+theorem fullNativeSourceEmbedding_preserves_testBlockedTargetImages
+    {V W UT : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (iOld : Structure.Embedding Old New)
+    (fOld : V → UT) (fNew : W → UT)
+    (hOldTarget : ∀ v : V, fNew (iOld v) = fOld v)
+    (a : V) :
+    nativeFullTestBlockedTargetImages Old fOld a ⊆
+      nativeFullTestBlockedTargetImages New fNew (iOld a) := by
+  rintro d ⟨b, ⟨hab, X, E, hIr, e, x, y, hx, hy⟩, hImage⟩
+  have hNotEq : iOld a ≠ iOld b := by
+    intro hEq
+    exact hab (iOld.injective hEq)
+  let eNew : Structure.Embedding E New := iOld.comp e
+  have hxNew : eNew x = iOld a := by
+    change iOld (e x) = iOld a
+    exact congrArg iOld.toFun hx
+  have hyNew : eNew y = iOld b := by
+    change iOld (e y) = iOld b
+    exact congrArg iOld.toFun hy
+  exact ⟨iOld b, ⟨hNotEq, X, E, hIr,
+      eNew, x, y, hxNew, hyNew⟩,
+    (hOldTarget b).trans hImage⟩
+
+/-- In particular, a genuinely blocked target value remains
+inadmissible under ANY full native source extension retaining
+the old map on the original source: changing only the image of
+iOld(a) to that blocked value can never give an EHN map of New.
+
+This prevents an invalid shortcut which proposes to fix an
+irreducible-test collision by freely enlarging an unchanged
+original embedded source. The conditional replacement may still
+change the native source structure itself or multiple target
+coordinates -- neither is ruled out here. -/
+theorem fullNativeSourceExtension_blockedValue_prevents_EHN_recolor
+    {V W UT : Type} [DecidableEq W]
+    (Old : Structure L V) (New : Structure L W)
+    (Target : Structure L UT)
+    (iOld : Structure.Embedding Old New)
+    (fOld : V → UT) (fNew : W → UT)
+    (hOldTarget : ∀ v : V, fNew (iOld v) = fOld v)
+    (a : V) (d : UT)
+    (hOldBlocked :
+      d ∈ nativeFullTestBlockedTargetImages Old fOld a) :
+    ¬ New.IsEHNHomomorphismEmbedding Target
+      (fun z : W => if z = iOld a then d else fNew z) := by
+  intro hNewEHN
+  have hStillBlocked :
+      d ∈ nativeFullTestBlockedTargetImages New fNew (iOld a) :=
+    fullNativeSourceEmbedding_preserves_testBlockedTargetImages
+      Old New iOld fOld fNew hOldTarget a hOldBlocked
+  exact (oneVertexRecolor_EHN_avoids_fullTestBlockedTargetImages
+    New Target fNew (iOld a) d hNewEHN) hStillBlocked
+
 end AllThoseRamseyClasses.Lifts
