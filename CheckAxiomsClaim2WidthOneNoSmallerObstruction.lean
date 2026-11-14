@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2WidthOneNoSmallerObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_widthOne_no_smallerRootObstruction
