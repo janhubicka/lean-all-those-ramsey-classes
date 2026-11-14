@@ -1,6 +1,7 @@
 import AllThoseRamseyClasses.Published.TrackEJointNormalTargetClass
 import PartiteConstruction.Ramsey.ClosureEmbeddingRange
 import PartiteConstruction.Ramsey.ClosureFreeAmalgamCompletion
+import PartiteConstruction.Ramsey.CompatibleClassCompletion
 
 /-!
 # Track E2: a concrete finite strong amalgam of closed normal joint targets
@@ -219,5 +220,33 @@ theorem HybridJointTargetClosed.exists_finite_closedAmalgam
   exact ⟨W, hFinite, Whole, iL, iR, hFree, hWhole,
     iL.range_isUSubstructure hLeft.1 hWhole.1,
     iR.range_isUSubstructure hRight.1 hWhole.1⟩
+
+/-- The class of genuine JOINT U-CLOSED targets satisfying all
+hybrid normality invariants, as a carrier-polymorphic relational
+class for the abstract 2019 strong-amalgamation API. -/
+def jointClosedNormalClass :
+    StructureClass (L := L.splitMaskJointRootLanguage Parts) :=
+  fun C => HybridJointTargetClosed C
+
+/-- The corrected 2019 `HasFiniteStrongAmalgamation` contract
+is satisfied by closed normal joint hybrid targets whenever the
+original primitive functions have positive arity. The required
+finite strong amalgam is the SAME concrete free pushout, and its
+intersection is exactly the common root, not a larger hull.
+This does NOT supply the other independent hypotheses of the
+Ramsey theorem (local completions, irreducibility, etc.). -/
+theorem jointClosedNormalClass_hasFiniteStrongAmalgamation
+    (hPos : L.PositiveFuncArity) :
+    HasFiniteStrongAmalgamation
+      (jointClosedNormalClass (L := L) (Parts := Parts)) := by
+  intro H E F _ _ _ Root Left Right hRoot hLeft hRight sL sR
+  obtain ⟨W, hFinite, Whole, iL, iR, hFree, hWhole, _, _⟩ :=
+    HybridJointTargetClosed.exists_finite_closedAmalgam
+      Root Left Right sL sR hPos hRoot hLeft hRight
+  refine ⟨W, hFinite, Whole, hWhole, iL, iR, ?_, ?_⟩
+  · intro d
+    exact (hFree.overlap (sL d) (sR d)).mpr ⟨d, rfl, rfl⟩
+  · intro a b hab
+    exact (hFree.overlap a b).mp hab
 
 end StructuralRamsey.RelStructure
