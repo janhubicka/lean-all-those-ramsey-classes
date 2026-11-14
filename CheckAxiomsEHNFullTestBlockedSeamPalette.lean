@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNFullTestBlockedSeamPalette
+
+#check AllThoseRamseyClasses.Lifts.nativeFullTestBlockedTargetImages
+#print axioms AllThoseRamseyClasses.Lifts.oneVertexRecolor_blockedTarget_has_explicitFailedFullTest
+#print axioms AllThoseRamseyClasses.Lifts.oneVertexRecolor_EHN_avoids_fullTestBlockedTargetImages
+#print axioms AllThoseRamseyClasses.Lifts.oneVertexRecolor_noNontrivialEHN_while_fullTestSeamSaturated
