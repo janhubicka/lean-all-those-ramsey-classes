@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Published.TrackEHybridDecodedOldFibreTransversal
+
+#print axioms StructuralRamsey.RelStructure.HybridUniqueVertexPart.partMap_hasLabel
+#print axioms StructuralRamsey.RelStructure.HybridUniqueVertexPart.partMap_eq_of_label
+#print axioms StructuralRamsey.RelStructure.HybridUniqueVertexPart.partMap_preserved
+#print axioms StructuralRamsey.RelStructure.HybridPositiveOutputSound.oldOutputPartsCompatible
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetNormal.oldDecoder_fibreTransversal
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.oldDecoder_fibreTransversal
