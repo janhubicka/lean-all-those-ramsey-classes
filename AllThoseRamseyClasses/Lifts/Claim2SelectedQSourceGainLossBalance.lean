@@ -208,4 +208,121 @@ theorem geometricSelectedQ_noNewB_exact_Bsource_loss
     simp
   simpa only [hPrivateZero, Nat.add_zero] using hBalance
 
+/-- A purely numerical exact descent criterion for weighted
+source support potentials. If A grows by private Q cost `aCost`
+and B decreases by exactly the old removed B count `bLost`,
+then the weighted potential `B + weight * A` strictly drops
+IF AND ONLY IF the weighted NEW A cost is smaller than the old
+B count removed.
+
+No unproved claim that this inequality holds for all selected Q. -/
+theorem nat_weightedSupport_descent_iff_privateCost_lt_removed
+    (aOld aNew bOld bNew aCost bLost weight : ℕ)
+    (hA : aNew = aOld + aCost)
+    (hB : bNew + bLost = bOld) :
+    bNew + weight * aNew < bOld + weight * aOld ↔
+      weight * aCost < bLost := by
+  have hBalance :
+      (bNew + weight * aNew) + bLost =
+        (bOld + weight * aOld) + weight * aCost := by
+    calc
+      (bNew + weight * aNew) + bLost =
+          (bNew + bLost) + weight * aNew := by ac_rfl
+      _ = bOld + weight * (aOld + aCost) := by
+        rw [hB, hA]
+      _ = bOld + (weight * aOld + weight * aCost) := by
+        rw [Nat.mul_add]
+      _ = (bOld + weight * aOld) + weight * aCost := by
+        ac_rfl
+  constructor
+  · intro hDecrease
+    have hAdd :
+        (bOld + weight * aOld) + weight * aCost <
+          (bOld + weight * aOld) + bLost := by
+      calc
+        (bOld + weight * aOld) + weight * aCost =
+            (bNew + weight * aNew) + bLost := hBalance.symm
+        _ < (bOld + weight * aOld) + bLost :=
+          Nat.add_lt_add_right hDecrease bLost
+    exact Nat.add_lt_add_iff_left.mp hAdd
+  · intro hPrivateBound
+    have hAdd :
+        (bNew + weight * aNew) + bLost <
+          (bOld + weight * aOld) + bLost := by
+      calc
+        (bNew + weight * aNew) + bLost =
+            (bOld + weight * aOld) + weight * aCost := hBalance
+        _ < (bOld + weight * aOld) + bLost :=
+          Nat.add_lt_add_left hPrivateBound _
+    exact Nat.add_lt_add_iff_right.mp hAdd
+
+/-- Concrete weighted potential criterion for the SAME genuine
+selected-Q native B-to-A source flip of an OLD A-free component.
+
+The weighted potential on actual SOURCE vertices,
+  B-source-count + weight * A-source-count,
+strictly decreases EXACTLY when the A-active private Q cost,
+multiplied by weight, is strictly smaller than the B-active
+count of the removed old selected component.
+
+This quantifies the missing numerical condition for any proposed
+amortized successor; no existence of such Q or weight is asserted. -/
+theorem geometricSelectedQ_weighted_source_descent_iff
+    {V W UT : Type}
+    (Old : Structure L V) (hFiniteOld : Finite V)
+    {m : ℕ}
+    (inner : GeometricFunctionalPieceData Old m)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (New : Structure L W) (hFiniteNew : Finite W)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hNewFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (f : V → UT) (flip : W → UT)
+    (AActive BActive : Set UT)
+    (hEAgree : ∀ e : (geometricGlobalComplementChart Old inner).Carrier,
+      flip (iE e) = f e.1)
+    (hOldInnerNoA : ∀ z : V,
+      z ∈ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left →
+      f z ∉ AActive)
+    (hNoBFromQ : ∀ q : Q.Carrier, flip (iQ q) ∉ BActive)
+    (weight : ℕ) :
+    (Nat.card {w : W // flip w ∈ BActive} +
+        weight * Nat.card {w : W // flip w ∈ AActive} <
+      Nat.card {v : V // f v ∈ BActive} +
+        weight * Nat.card {v : V // f v ∈ AActive})
+    ↔
+    (weight *
+        Nat.card {q : Q.Carrier //
+          q ∉ Set.range Q.rootEmbedding ∧
+          flip (iQ q) ∈ AActive} <
+      Nat.card {v : V //
+        v ∈ functionalComponentFrom Old
+          (Set.range inner.roots) inner.left ∧
+        f v ∈ BActive}) := by
+  have hA :=
+    geometricSelectedQ_AfreeOld_exact_Aactive_cost
+      Old inner Q New hFiniteNew iQ iE hNewFree
+      f flip AActive hOldInnerNoA hEAgree
+  have hB :=
+    geometricSelectedQ_noNewB_exact_Bsource_loss
+      Old hFiniteOld inner Q New hFiniteNew
+      iQ iE hNewFree f flip BActive hEAgree hNoBFromQ
+  exact nat_weightedSupport_descent_iff_privateCost_lt_removed
+    (Nat.card {v : V // f v ∈ AActive})
+    (Nat.card {w : W // flip w ∈ AActive})
+    (Nat.card {v : V // f v ∈ BActive})
+    (Nat.card {w : W // flip w ∈ BActive})
+    (Nat.card {q : Q.Carrier //
+      q ∉ Set.range Q.rootEmbedding ∧ flip (iQ q) ∈ AActive})
+    (Nat.card {v : V //
+      v ∈ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left ∧ f v ∈ BActive})
+    weight hA hB
+
 end AllThoseRamseyClasses.Lifts
