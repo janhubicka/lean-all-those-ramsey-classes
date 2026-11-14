@@ -276,4 +276,36 @@ theorem fullNativeSourceExtension_blockedValue_prevents_EHN_recolor
   exact (oneVertexRecolor_EHN_avoids_fullTestBlockedTargetImages
     New Target fNew (iOld a) d hNewEHN) hStillBlocked
 
+
+/-- A FULL native source extension retains pairwise source-test
+coverage on the literal embedded old set: witnesses for distinct
+old vertices are transported by composing their original FULL
+irreducible tests with the embedding Old↪New.
+
+This preserves the hypotheses of the already verified original
+geometric-root injectivity gate when a source-changing
+construction genuinely keeps an old subsource fully embedded.
+Neither weak positive maps nor an arbitrary quotient suffice. -/
+theorem fullNativeSourceEmbedding_preserves_pairwiseIrredTestCover
+    {V W : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (iOld : Structure.Embedding Old New)
+    (S : Set V)
+    (hCover : PairwiseIrreducibleSourceTestCover Old S) :
+    PairwiseIrreducibleSourceTestCover New (iOld '' S) := by
+  rintro a ⟨x, hx, rfl⟩ b ⟨y, hy, rfl⟩ hab
+  have hxy : x ≠ y := by
+    intro h
+    exact hab (congrArg iOld.toFun h)
+  obtain ⟨X, E, hIr, e, u, v, hu, hv⟩ :=
+    hCover x hx y hy hxy
+  let eNew : Structure.Embedding E New := iOld.comp e
+  have huNew : eNew u = iOld x := by
+    change iOld (e u) = iOld x
+    exact congrArg iOld.toFun hu
+  have hvNew : eNew v = iOld y := by
+    change iOld (e v) = iOld y
+    exact congrArg iOld.toFun hv
+  exact ⟨X, E, hIr, eNew, u, v, huNew, hvNew⟩
+
 end AllThoseRamseyClasses.Lifts
