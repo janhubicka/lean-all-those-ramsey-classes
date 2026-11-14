@@ -79,4 +79,15 @@ theorem seamFibre_oneVertexRecolor_incidentPair_iff_destinationFibre
       (if u = a then t else f u)) ↔ f u = t := by
   simp [hu, eq_comm]
 
+/-- Stronger FINITE regression: with three original source vertices
+mapped into a two-point common seam, EVERY possible source-wide
+recolouring (not merely a one-point move) has at least two ORDERED
+collision pairs. Thus the old map already minimizes the global
+secondary collision count over all maps to that seam, even though
+its selected two-root image is noninjective. No EHN claim. -/
+theorem seamFibre_anyFullSeamMap_hasAtLeastTwoOrderedCollisions :
+    ∀ g : Fin 3 → Fin 2,
+      2 ≤ (finiteSourceCollisionPairs g).card := by
+  decide
+
 end AllThoseRamseyClasses.Lifts
