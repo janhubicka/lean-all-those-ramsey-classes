@@ -52,3 +52,15 @@ split-root capture branch also remain open.
 No weak target-map injection, fake source embedding, target-image
 counts or unproved root width reduction. One named #print axioms,
 protected active root and explicit audit.
+
+## Re-validation on updated main, 14 November 2026
+
+The first CI for this stacked branch failed before typechecking
+the new theorem because the old base did not contain the module
+`Claim2MinimalMixedSmallerRootCapture`. That parent source
+module is now merged into main, and the PR has been retargeted
+to main, where the import is available. This commit triggers
+a new exact-head Lean project build against the real merged
+dependencies. Do not treat the earlier stale-base import error
+as a proof result; also do not merge this PR before the NEW
+exact-head all-module, axiom, integrity and inventory checks pass.
