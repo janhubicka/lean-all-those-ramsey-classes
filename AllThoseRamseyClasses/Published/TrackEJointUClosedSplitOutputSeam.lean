@@ -90,7 +90,8 @@ theorem HybridSplitOutputClosedAt.ofJointRootUSubstructure
   have hDomainRoot :
       actualRoot.rel (hybridSplitDomainSymbol p) id := by
     change Side.rel (hybridSplitDomainSymbol p) (root ∘ id)
-    simpa only [Function.comp_apply, id_eq] using hDomain
+    rw [Function.comp_id]
+    exact hDomain
   let pattern : SplitMaskFullRootPattern L Parts := {
     input := p
     positive := hPositive p
