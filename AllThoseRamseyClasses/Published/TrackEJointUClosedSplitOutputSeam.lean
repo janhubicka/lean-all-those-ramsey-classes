@@ -90,8 +90,11 @@ theorem HybridSplitOutputClosedAt.ofJointRootUSubstructure
   have hDomainRoot :
       actualRoot.rel (hybridSplitDomainSymbol p) id := by
     change Side.rel (hybridSplitDomainSymbol p) (root ∘ id)
-    rw [Function.comp_id]
-    exact hDomain
+    have hId : root ∘ id = root := by
+      funext i
+      rfl
+    exact (congrArg (fun xs : Fin p.rootSize → S =>
+      Side.rel (hybridSplitDomainSymbol p) xs) hId).symm.mp hDomain
   let pattern : SplitMaskFullRootPattern L Parts := {
     input := p
     positive := hPositive p
