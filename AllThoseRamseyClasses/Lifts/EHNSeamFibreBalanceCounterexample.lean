@@ -53,4 +53,30 @@ theorem seamFibre_splitCanPreserveGlobalCollisionCount :
     (finiteSourceCollisionPairs fibreNew).card = 2 := by
   decide
 
+/-- GENERAL native-source coordinate fact: a one-vertex change leaves
+all ordered collision pairs avoiding that original vertex untouched.
+This is the unaffected-pairs half of the fibre-count formula. -/
+theorem seamFibre_oneVertexRecolor_preserves_awayPairs
+    {V UT : Type} [DecidableEq V]
+    (f : V → UT) (Seam : Set UT)
+    (a : V) (t : UT)
+    (u v : V) (hu : u ≠ a) (hv : v ≠ a) :
+    (u ≠ v ∧
+      (if u = a then t else f u) =
+        (if v = a then t else f v) ∧
+      (if u = a then t else f u) ∈ Seam) ↔
+    (u ≠ v ∧ f u = f v ∧ f u ∈ Seam) := by
+  simp [hu, hv]
+
+/-- GENERAL native-source coordinate fact: after a one-vertex move,
+the new collisions incident with the changed vertex are exactly
+its OTHER destination-fibre vertices, with no EHN assertion. -/
+theorem seamFibre_oneVertexRecolor_incidentPair_iff_destinationFibre
+    {V UT : Type} [DecidableEq V]
+    (f : V → UT) (a : V) (t : UT)
+    (u : V) (hu : u ≠ a) :
+    ((if a = a then t else f a) =
+      (if u = a then t else f u)) ↔ f u = t := by
+  simp [hu, eq_comm]
+
 end AllThoseRamseyClasses.Lifts
