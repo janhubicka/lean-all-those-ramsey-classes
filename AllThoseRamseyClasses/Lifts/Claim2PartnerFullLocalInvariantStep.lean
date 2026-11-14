@@ -137,10 +137,10 @@ theorem claim2_actualGeometricRightFlip_of_boundaryPartner_withFullLocalInvarian
           Nat.card {v : V //
             v ∉ geometricPieceVertices Forbidden P ∧
             f v ∈ TargetSet}) ∧
-        (∃ anew : V',
+        ∃ anew : V',
           anew ∈ geometricPieceVertices New newOuter ∧
           flip anew = f a ∧
-          flip anew ∈ fullFreeLeftExclusiveTarget iLeft jLeft) ∧
+          flip anew ∈ fullFreeLeftExclusiveTarget iLeft jLeft ∧
         Function.Injective (fun i : Fin n => flip (newOuter.roots i)) ∧
         (∀ (z : V')
           (hzPart : z ∈ geometricPieceVertices New newOuter)
