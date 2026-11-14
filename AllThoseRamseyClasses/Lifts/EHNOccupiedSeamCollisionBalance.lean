@@ -96,7 +96,7 @@ All counts are ORDERED distinct-source seam-collision pairs.
 For d ≠ c, the right-hand destination fibre count is the FULL
 old d-fibre; the old c-fibre count omits exactly a itself. -/
 theorem finiteOneVertexOccupiedSeamRecolor_orderedCollisionBalance
-    {V UT : Type} [Fintype V] [DecidableEq V]
+    {V UT : Type} [Fintype V] [DecidableEq V] [DecidableEq UT]
     (f : V → UT) (Seam : Set UT)
     (a : V) (d : UT)
     (hOldSeam : f a ∈ Seam) (hDestSeam : d ∈ Seam) :
