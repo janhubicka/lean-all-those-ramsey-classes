@@ -215,4 +215,49 @@ theorem geometricRootImage_injective_or_jointIrreducibleTestGap
         Source Target f hf
         (d.roots i) (d.roots j) hRootNe hEq⟩
 
+/-- Positive source/target size constraint obtained WITHOUT
+assuming that the whole forbidden-source map is injective:
+if every pair of a genuine geometric root is covered by some
+FULL irreducible original source test, and ALL its source
+root coordinates map into the image of a FINITE full target
+root, then the source root width is bounded by that target
+root's original vertex cardinality.
+
+This strengthens the numerical observation in the overwide
+root audit specifically for native EHN maps: a source root
+too wide for the seam MUST fail pairwise irreducible-test
+coverage. No forbidden-family image-closure assumption. -/
+theorem geometricRoot_pairwiseSourceTestCover_width_le_commonRootCard
+    {V UX UT : Type} [Fintype UX]
+    (Source : Structure L V)
+    {n : ℕ} (d : GeometricFunctionalPieceData Source n)
+    (Root : Structure L UX) (Target : Structure L UT)
+    (jRoot : Structure.Embedding Root Target)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (hCover : PairwiseIrreducibleSourceTestCover
+      Source (Set.range d.roots))
+    (hAllRoot : ∀ i : Fin n,
+      f (d.roots i) ∈ Set.range jRoot) :
+    n ≤ Fintype.card UX := by
+  classical
+  let xs : Fin n → UX :=
+    fun i => Classical.choose (hAllRoot i)
+  have hCoords : ∀ i : Fin n,
+      f (d.roots i) = jRoot (xs i) :=
+    fun i => (Classical.choose_spec (hAllRoot i)).symm
+  have hRootInj : Function.Injective
+      (fun i : Fin n => f (d.roots i)) :=
+    geometricRootImage_injective_of_pairwiseSourceTests
+      Source d Target f hf hCover
+  have hXsInj : Function.Injective xs := by
+    intro i j hij
+    apply hRootInj
+    calc
+      f (d.roots i) = jRoot (xs i) := hCoords i
+      _ = jRoot (xs j) := congrArg jRoot.toFun hij
+      _ = f (d.roots j) := (hCoords j).symm
+  simpa only [Fintype.card_fin] using
+    (Fintype.card_le_of_injective xs hXsInj)
+
 end AllThoseRamseyClasses.Lifts
