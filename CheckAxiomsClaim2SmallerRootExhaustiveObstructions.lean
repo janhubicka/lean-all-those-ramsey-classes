@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerRootExhaustiveObstructions
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_smallerRoot_capture_or_mixed_or_actualGeometricFlip
