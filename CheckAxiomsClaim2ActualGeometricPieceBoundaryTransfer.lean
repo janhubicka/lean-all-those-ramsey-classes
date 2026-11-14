@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ActualGeometricPieceBoundaryTransfer
+
+#check AllThoseRamseyClasses.Lifts.geometricSelectedQ_actualOuter_preserves_BActive_boundary_inj
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_actualOuter_preserves_BActive_boundary_inj
