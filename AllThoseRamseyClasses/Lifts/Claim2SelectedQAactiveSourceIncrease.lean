@@ -177,4 +177,49 @@ theorem geometricSelectedQ_AactiveNonroot_forces_strictAIncrease
     iOldE iE f flip AActive hFiniteOld hFiniteNew
     hOldAllAInE hEAgree (iQ q) hqA hNewOutsideE
 
+/-- If an actual selected-Q replacement of an OLD A-free selected
+component does NOT increase total A-exclusive SOURCE support,
+then EVERY genuinely new nonroot Q vertex must be A-inactive.
+
+This necessary criterion makes the missing original A-support
+preservation obligation explicit. It is not a construction
+of such an A-neutral selected-Q replacement. -/
+theorem geometricSelectedQ_nonIncreasingA_forces_nonroot_Afree
+    {V W UT : Type}
+    (Old : Structure L V) (hFiniteOld : Finite V)
+    {m : ℕ}
+    (inner : GeometricFunctionalPieceData Old m)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (New : Structure L W) (hFiniteNew : Finite W)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hNewFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (f : V → UT) (flip : W → UT) (AActive : Set UT)
+    (hOldInnerNoA : ∀ z : V,
+      z ∈ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left → f z ∉ AActive)
+    (hEAgree : ∀ e : (geometricGlobalComplementChart Old inner).Carrier,
+      flip (iE e) = f e.1)
+    (hANonIncreasing :
+      Nat.card {w : W // flip w ∈ AActive} ≤
+        Nat.card {v : V // f v ∈ AActive})
+    (q : Q.Carrier)
+    (hqNonroot : q ∉ Set.range Q.rootEmbedding) :
+    flip (iQ q) ∉ AActive := by
+  intro hqA
+  have hStrict :
+      Nat.card {v : V // f v ∈ AActive} <
+        Nat.card {w : W // flip w ∈ AActive} :=
+    geometricSelectedQ_AactiveNonroot_forces_strictAIncrease
+      Old hFiniteOld inner Q New hFiniteNew
+      iQ iE hNewFree f flip AActive
+      hOldInnerNoA hEAgree q hqNonroot hqA
+  exact (Nat.not_lt_of_ge hANonIncreasing) hStrict
+
+
 end AllThoseRamseyClasses.Lifts
