@@ -262,4 +262,56 @@ theorem lexMinimalForbiddenWitness_collisionDroppingSetwiseSeamRecolor_has_local
     w.source Target w.toTarget g w.homEmbedding
     S hAway hNotEHN
 
+/-- A finite SOURCE-pair counting bridge which does NOT require
+any globally unused target vertex. If an arbitrary new map g
+creates NO NEW distinct-source seam collisions, but actually
+separates at least one original seam-collapsed source pair, its
+ordered source seam-collision count strictly decreases.
+
+This works for simultaneous recolourings of arbitrary sets.
+It is deliberately combinatorial; EHN preservation must still be
+verified independently, via the local criteria above. -/
+theorem finiteSeamCollisionPairs_strictDrop_of_noNewAndSplit
+    {V UT : Type} [Finite V]
+    (f g : V → UT) (Seam : Set UT)
+    (hNoNew : ∀ x y : V, x ≠ y →
+      g x = g y → g x ∈ Seam →
+      f x = f y ∧ f x ∈ Seam)
+    (a b : V) (hab : a ≠ b)
+    (hSame : f a = f b) (hSeam : f a ∈ Seam)
+    (hSplit : g a ≠ g b) :
+    ({p : V × V |
+      p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧
+      g p.1 ∈ Seam} : Set (V × V)).ncard <
+    ({p : V × V |
+      p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧
+      f p.1 ∈ Seam} : Set (V × V)).ncard := by
+  classical
+  let New : Set (V × V) :=
+    {p | p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧
+      g p.1 ∈ Seam}
+  let Old : Set (V × V) :=
+    {p | p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧
+      f p.1 ∈ Seam}
+  change New.ncard < Old.ncard
+  have hSub : New ⊆ Old := by
+    intro p hp
+    obtain ⟨hpNe, hpEq, hpSeam⟩ := hp
+    obtain ⟨hOldEq, hOldSeam⟩ :=
+      hNoNew p.1 p.2 hpNe hpEq hpSeam
+    exact ⟨hpNe, hOldEq, hOldSeam⟩
+  have hOldPair : (a, b) ∈ Old :=
+    ⟨hab, hSame, hSeam⟩
+  have hNotNewPair : (a, b) ∉ New := by
+    intro hp
+    exact hSplit hp.2.1
+  have hDifferent : New ≠ Old := by
+    intro hEq
+    apply hNotNewPair
+    rw [hEq]
+    exact hOldPair
+  have hStrict : New ⊂ Old :=
+    (Set.ssubset_iff_subset_ne).mpr ⟨hSub, hDifferent⟩
+  exact Set.ncard_lt_ncard hStrict
+
 end AllThoseRamseyClasses.Lifts
