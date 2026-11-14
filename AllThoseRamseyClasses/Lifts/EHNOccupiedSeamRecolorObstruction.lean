@@ -87,7 +87,7 @@ theorem oneVertexRecolor_secondSeamPair_iff_occupiedFibre
   · intro h
     exact h.2.1
   · intro h
-    exact ⟨hab.symm, h, h ▸ hd⟩
+    exact ⟨hab.symm, h, h.symm ▸ hd⟩
 
 /-- An occupied seam target point d cannot be used as the new
 image of a if another ORIGINAL source vertex b already maps to
