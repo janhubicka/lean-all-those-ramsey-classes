@@ -50,3 +50,21 @@ existence must be established separately.
 
 Three named #print axioms checks and one protected active root.
 No prior collaborator-removed TODO restored.
+
+## Transfer of original global A-minimality
+
+The additional theorem
+`geometricSelectedQ_nonrootAfree_preserves_globalAMinimum`
+packages the exact state-level consequence: given a genuine
+F-forbidden selected-Q new source/weak EHN map, if the OLD
+source map was global-minimum in A-active SOURCE cardinality
+among all F-forbidden weak EHN maps to the fixed target,
+then NEW Q nonroot A-inactivity, old component A-freeness
+and complete E-coordinate agreement give an equal A-support
+count and hence the same global A-minimality property of
+that very new forbidden witness. No independent source/map
+witness is chosen.
+
+The theorem expressly DOES NOT construct an A-neutral Q.
+That selection or an alternative induction invariant remains
+the missing substantive positive-B-rank iteration step.
