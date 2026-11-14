@@ -3,3 +3,4 @@ import AllThoseRamseyClasses.Published.TrackEJointNormalTargetClass
 #print axioms StructuralRamsey.RelStructure.canonicalHybrid_jointTargetNormal
 #print axioms StructuralRamsey.RelStructure.HybridJointTargetNormal.induce
 #print axioms StructuralRamsey.RelStructure.HybridJointTargetNormal.freeAmalgam_of_jointClosedSeams
+#print axioms StructuralRamsey.RelStructure.HybridJointTargetNormal.exists_freeAmalgam_of_jointClosedRoot
