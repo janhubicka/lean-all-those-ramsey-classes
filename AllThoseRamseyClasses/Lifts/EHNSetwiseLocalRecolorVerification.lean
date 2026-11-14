@@ -182,4 +182,84 @@ theorem ehn_map_changedOnSet_failure_has_localNativeWitness
       Source Target f g hf S hAway).2
         ⟨hLocalRelations, hLocalFunctions, hLocalTests⟩)
 
+/-- A concrete setwise collision-repair obstruction for an ACTUAL
+support-first, seam-collision-second minimal forbidden EHN witness.
+
+Suppose a candidate g changes arbitrary ORIGINAL source vertices S
+whose OLD and NEW images BOTH lie in the genuine common seam, leaves
+all source vertices outside S unchanged, and STRICTLY reduces the
+ordered seam-collision SOURCE-pair count. No assumption that its
+new target seam points are unused is required.
+
+If all three exact ORIGINAL local EHN checks succeeded, g would be
+an EHN map of the SAME original forbidden source. This contradicts
+the chosen lexicographic minimizer. Hence a real positive old
+relation, native function incidence (input OR output), or irreducible
+full source test MEETING S must block g.
+
+This gives an exact diagnostic for multi-vertex source-hull
+recolouring, but DOES NOT construct a successful repair, change the
+source, or prove unrestricted original 2019 Claim 2. -/
+theorem lexMinimalForbiddenWitness_collisionDroppingSetwiseSeamRecolor_has_localNativeFailure
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UT : Type} {Target : Structure L UT}
+    (LeftExclusive Seam : Set UT)
+    (hDisjoint : Disjoint LeftExclusive Seam)
+    (w : ForbiddenEHNWitness F Target)
+    (hPrimary : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount LeftExclusive ≤
+        v.sourceSupportCount LeftExclusive)
+    (hSecondary : ∀ v : ForbiddenEHNWitness F Target,
+      v.sourceSupportCount LeftExclusive =
+        w.sourceSupportCount LeftExclusive →
+      w.seamCollisionPairCount Seam ≤
+        v.seamCollisionPairCount Seam)
+    (S : Set w.Carrier)
+    (g : w.Carrier → UT)
+    (hAway : ∀ x : w.Carrier, x ∉ S → g x = w.toTarget x)
+    (hChangedSeam : ∀ x : w.Carrier, x ∈ S →
+      w.toTarget x ∈ Seam ∧ g x ∈ Seam)
+    (hCollisionDrop :
+      Nat.card {p : w.Carrier × w.Carrier //
+        p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧ g p.1 ∈ Seam} <
+        w.seamCollisionPairCount Seam) :
+    (∃ (R : L.RelSymbol)
+        (xs : Fin (L.relArity R) → w.Carrier),
+      w.source.rel R xs ∧
+      ¬ Target.rel R (g ∘ xs) ∧
+      ∃ i : Fin (L.relArity R), xs i ∈ S) ∨
+    (∃ (G : L.FuncSymbol)
+        (xs : Fin (L.funcArity G) → w.Carrier)
+        (out : w.Carrier),
+      out ∈ w.source.func G xs ∧
+      g out ∉ Target.func G (g ∘ xs) ∧
+      (out ∈ S ∨ ∃ i : Fin (L.funcArity G), xs i ∈ S)) ∨
+    (∃ (X : Type) (E : Structure L X),
+      E.Irreducible ∧
+      ∃ e : Structure.Embedding E w.source,
+        (∃ x : X, e x ∈ S) ∧
+        ¬ ∃ ge : Structure.Embedding E Target,
+          ∀ x : X, ge x = g (e x)) := by
+  have hStay : ∀ x : w.Carrier,
+      w.toTarget x ∈ Seam → g x ∈ Seam := by
+    intro x hx
+    by_cases hs : x ∈ S
+    · exact (hChangedSeam x hs).2
+    · simpa [hAway x hs] using hx
+  have hFixed : ∀ x : w.Carrier,
+      w.toTarget x ∉ Seam → g x = w.toTarget x := by
+    intro x hx
+    apply hAway
+    intro hs
+    exact hx (hChangedSeam x hs).1
+  have hNotEHN :
+      ¬ w.source.IsEHNHomomorphismEmbedding Target g := by
+    intro hg
+    exact lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
+      LeftExclusive Seam hDisjoint w hPrimary hSecondary
+      g hg hStay hFixed hCollisionDrop
+  exact ehn_map_changedOnSet_failure_has_localNativeWitness
+    w.source Target w.toTarget g w.homEmbedding
+    S hAway hNotEHN
+
 end AllThoseRamseyClasses.Lifts
