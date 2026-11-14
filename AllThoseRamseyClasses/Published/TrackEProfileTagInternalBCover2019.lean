@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.ProfileRootTagTransfer2019
+import AllThoseRamseyClasses.Published.GeneratedClosureProfileBoundary2019
 import PartiteConstruction.Iterated.FinalAttachment
 
 /-!
