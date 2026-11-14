@@ -80,7 +80,7 @@ private theorem finiteOrderedPairSum_splitAt
 /-- Indicators on a fixed finite set count exactly the selected
 source vertices. -/
 private theorem finiteIndicatorSum_eq_filterCard
-    {V : Type} (s : Finset V) (P : V → Prop) :
+    {V : Type} (s : Finset V) (P : V → Prop) [DecidablePred P] :
     (∑ x ∈ s, if P x then (1 : ℕ) else 0) =
       (s.filter P).card := by
   classical
