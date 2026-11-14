@@ -94,7 +94,7 @@ private theorem samePattern_wholeOutputRange_subset
       u (Fin.last p.rootSize) =
         tB (Fin.natAdd p.rootSize k) :=
     (hAgree p mB tB k u hB hPrefixB).mp hSplitB
-  exact ⟨k, hLast.symm.trans hValueB⟩
+  exact ⟨k, (hLast.symm.trans hValueB).symm⟩
 
 /-- Two visible COMPLETE original OLD output tuples on the SAME
 primitive equality-pattern input root represent EXACTLY the
