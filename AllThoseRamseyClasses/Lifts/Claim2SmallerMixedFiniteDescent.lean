@@ -38,11 +38,12 @@ theorem finiteSourceSubtype_card_lt_of_proper
   letI : Fintype V := Fintype.ofFinite V
   obtain ⟨hSubset, hNe⟩ :=
     Set.ssubset_iff_subset_ne.mp hProper
-  let e : {v : V // v ∈ S} ↪ {v : V // v ∈ T} where
-    toFun v := ⟨v.1, hSubset v.2⟩
+  let e : {v : V // v ∈ S} ↪ {v : V // v ∈ T} := {
+    toFun := fun v => ⟨v.1, hSubset v.2⟩
     inj' := by
       intro a b hab
       exact Subtype.ext (congrArg Subtype.val hab)
+  }
   have hNotSurj : ¬ Function.Surjective e := by
     intro hSurj
     have hBack : T ⊆ S := by
