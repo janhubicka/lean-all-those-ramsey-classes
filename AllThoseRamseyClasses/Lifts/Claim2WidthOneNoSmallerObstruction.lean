@@ -121,7 +121,8 @@ theorem claim2_originalAMinimal_widthOne_no_smallerRootObstruction
           (Set.range d.roots) d.left := by
     rcases hObstruction with hCapture | hMixed
     · exact hCapture
-    · exact claim2_minimalMixed_smallerMixed_capturesOldRoot
+    · obtain ⟨r, hr, _, hComponent, _⟩ :=
+        claim2_minimalMixed_smallerMixed_capturesOldRoot
         Source
         (weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
         (weakFreeLeftPart (sL := iLeft) (iL := jLeft) f)
@@ -132,6 +133,7 @@ theorem claim2_originalAMinimal_widthOne_no_smallerRootObstruction
         ⟨d.left.1,
           componentFrom_root Source.graph (Set.range d.roots) d.left,
           hDleftB⟩
+      exact ⟨r, hr, hComponent⟩
   exact claim2_originalAMinimal_widthOne_excludes_selectedCapture
     F hFiniteF Source hFinite hForbidden
     Target f hf Left Right jLeft jRight
