@@ -209,4 +209,96 @@ theorem lexMinimalForbiddenWitness_freshSeamSplit_has_localNativeFailure
     w.source Target w.toTarget w.homEmbedding
     a fresh hNoNewEHN
 
+/-- Exact LOCAL-TEST criterion for a proposed collision-repair
+map g which agrees with a previously verified EHN map f at
+EVERY original source vertex EXCEPT possibly one selected a.
+
+The global new EHN condition is EQUIVALENT to exactly three
+sets of local verification obligations:
+* positive old relations containing a,
+* positive native function incidences where a is an input
+  or output, and
+* full embeddings of irreducible original source tests
+  containing a.
+
+All positive incidences and full irreducible tests DISJOINT
+from a are automatically handled by the PREVIOUS EHN map f.
+This is an actual necessary AND sufficient local proof gate,
+not merely the negative obstruction trichotomy above. No
+assumption about a spare seam target point, finite forbidden
+families or canonical lift is needed. -/
+theorem ehn_map_changedAtOneVertex_iff_localNativeVerification
+    {V UT : Type}
+    (Source : Structure L V) (Target : Structure L UT)
+    (f g : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (a : V)
+    (hAway : ∀ x : V, x ≠ a → g x = f x) :
+    Source.IsEHNHomomorphismEmbedding Target g ↔
+      (∀ (R : L.RelSymbol) (xs : Fin (L.relArity R) → V),
+        Source.rel R xs →
+        (∃ i : Fin (L.relArity R), xs i = a) →
+          Target.rel R (g ∘ xs)) ∧
+      (∀ (G : L.FuncSymbol)
+          (xs : Fin (L.funcArity G) → V) (out : V),
+        out ∈ Source.func G xs →
+        (out = a ∨ ∃ i : Fin (L.funcArity G), xs i = a) →
+          g out ∈ Target.func G (g ∘ xs)) ∧
+      (∀ {X : Type} (E : Structure L X),
+        E.Irreducible →
+        ∀ e : Structure.Embedding E Source,
+          (∃ x : X, e x = a) →
+          ∃ ge : Structure.Embedding E Target,
+            ∀ x : X, ge x = g (e x)) := by
+  classical
+  constructor
+  · intro hg
+    refine ⟨?_, ?_, ?_⟩
+    · intro R xs hSource _hTouches
+      exact hg.1.1 R xs hSource
+    · intro G xs out hSource _hTouches
+      exact hg.1.2 G xs out hSource
+    · intro X E hIr e _hTouches
+      exact hg.2 E hIr e
+  · rintro ⟨hLocalRelations, hLocalFunctions, hLocalTests⟩
+    constructor
+    · constructor
+      · intro R xs hSource
+        by_cases hTouches : ∃ i : Fin (L.relArity R), xs i = a
+        · exact hLocalRelations R xs hSource hTouches
+        · have hCoords : g ∘ xs = f ∘ xs := by
+            funext i
+            apply hAway
+            intro heq
+            exact hTouches ⟨i, heq⟩
+          rw [hCoords]
+          exact hf.1.1 R xs hSource
+      · intro G xs out hSource
+        by_cases hTouches :
+            out = a ∨ ∃ i : Fin (L.funcArity G), xs i = a
+        · exact hLocalFunctions G xs out hSource hTouches
+        · have hOutNe : out ≠ a := by
+            intro h
+            exact hTouches (Or.inl h)
+          have hInputNe : ∀ i : Fin (L.funcArity G), xs i ≠ a := by
+            intro i h
+            exact hTouches (Or.inr ⟨i, h⟩)
+          have hCoords : g ∘ xs = f ∘ xs := by
+            funext i
+            exact hAway (xs i) (hInputNe i)
+          have hValue : g out = f out :=
+            hAway out hOutNe
+          rw [hValue, hCoords]
+          exact hf.1.2 G xs out hSource
+    · intro X E hIr e
+      by_cases hTouches : ∃ x : X, e x = a
+      · exact hLocalTests E hIr e hTouches
+      · obtain ⟨ge, hge⟩ := hf.2 E hIr e
+        refine ⟨ge, ?_⟩
+        intro x
+        have hNe : e x ≠ a := by
+          intro h
+          exact hTouches ⟨x, h⟩
+        exact (hge x).trans (hAway (e x) hNe).symm
+
 end AllThoseRamseyClasses.Lifts
