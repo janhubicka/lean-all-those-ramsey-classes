@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedQSourceGainLossBalance
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_old_support_card_retained_add_removed
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_exact_source_gain_loss_balance
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_noNewB_exact_Bsource_loss
