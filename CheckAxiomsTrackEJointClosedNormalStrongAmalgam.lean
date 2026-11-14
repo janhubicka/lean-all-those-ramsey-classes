@@ -8,3 +8,5 @@ import AllThoseRamseyClasses.Published.TrackEJointClosedNormalStrongAmalgam
 #print axioms StructuralRamsey.RelStructure.HybridJointTargetClosed.exists_finite_closedAmalgam
 
 #print axioms StructuralRamsey.RelStructure.jointClosedNormalClass_hasFiniteStrongAmalgamation
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_jointTargetClosed
