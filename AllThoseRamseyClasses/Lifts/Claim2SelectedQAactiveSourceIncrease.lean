@@ -77,7 +77,7 @@ theorem fullNativeRetainedComplement_Aactive_strictIncrease
     inj' := by
       intro v v' hvv'
       have hE : repr v = repr v' :=
-        iNewE.injective (congrArg Subtype.val hvv')
+        iNewE.injective (congrArg (fun w : {w : W // flip w ∈ AActive} => (w : W)) hvv')
       apply Subtype.ext
       calc
         v.1 = iOldE (repr v) := (hRepr v).symm
@@ -88,7 +88,8 @@ theorem fullNativeRetainedComplement_Aactive_strictIncrease
     intro hSurj
     obtain ⟨v, hv⟩ := hSurj
       (⟨newA, hNewA⟩ : {w : W // flip w ∈ AActive})
-    exact hNewOutsideE ⟨repr v, congrArg Subtype.val hv⟩
+    exact hNewOutsideE ⟨repr v,
+      congrArg (fun w : {w : W // flip w ∈ AActive} => (w : W)) hv⟩
   have hStrict :
       Fintype.card {v : V // f v ∈ AActive} <
       Fintype.card {w : W // flip w ∈ AActive} :=
@@ -101,11 +102,11 @@ vertex outside the full ordered Q root cannot lie in the image
 of the retained complementary E side. This is the ACTUAL
 full-source overlap equation, not a weak target-map inference. -/
 theorem fullNativeSelectedQ_nonroot_outside_retainedComplement
-    {W Q E : Type}
+    {W Q E R : Type}
     {New : Structure L W}
     {Replacement : Structure L Q}
     {Complement : Structure L E}
-    {Root : Structure L (Fin 0)}
+    {Root : Structure L R}
     (sQ : Structure.Embedding Root Replacement)
     (sE : Structure.Embedding Root Complement)
     (iQ : Structure.Embedding Replacement New)
@@ -117,7 +118,7 @@ theorem fullNativeSelectedQ_nonroot_outside_retainedComplement
   rintro ⟨e, he⟩
   have hOver : iQ q = iE e := he.symm
   obtain ⟨r, hrQ, _hrE⟩ := (hFree.overlap q e).mp hOver
-  exact hqNonroot ⟨sQ r, hrQ.symm⟩
+  exact hqNonroot ⟨r, hrQ.symm⟩
 
 /-- For the ACTUAL geometric selected-Q flip, if its old
 removed inner component is A-FREE and it inserts at least
