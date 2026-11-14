@@ -336,4 +336,80 @@ theorem finiteFreshSeamRecolor_strictlyReducesCollisionPairs
     (Set.ssubset_iff_subset_ne).mpr ⟨hSub, hDifferent⟩
   exact Set.ncard_lt_ncard hStrict
 
+/-- A concrete ONE-VERTEX seam-collision split violates the
+actual two-stage minimality of a forbidden EHN witness IF AND
+ONLY IF its replacement map is actually admissible EHN.
+
+Choose two distinct ORIGINAL source vertices a,b with the same
+image in the genuine seam. If a new, UNUSED target seam vertex
+fresh exists, recolour ONLY a to fresh. This leaves the
+ORIGINAL left-exclusive source support fixed, and the previous
+finite counting lemma shows that source seam collision pairs
+STRICTLY decrease.
+
+Therefore, for a lex-minimal genuine forbidden EHN witness,
+such a one-vertex recolouring CANNOT remain EHN. The difficult
+unrestricted step is the missing EHN extension/replacement
+construction, not the cardinality or minimization argument. -/
+theorem lexMinimalForbiddenWitness_no_freshSeamEHN_oneVertexSplit
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UT : Type} {Target : Structure L UT}
+    (LeftExclusive Seam : Set UT)
+    (hDisjoint : Disjoint LeftExclusive Seam)
+    (w : ForbiddenEHNWitness F Target)
+    (hPrimary : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount LeftExclusive ≤
+        v.sourceSupportCount LeftExclusive)
+    (hSecondary : ∀ v : ForbiddenEHNWitness F Target,
+      v.sourceSupportCount LeftExclusive =
+        w.sourceSupportCount LeftExclusive →
+      w.seamCollisionPairCount Seam ≤
+        v.seamCollisionPairCount Seam)
+    (a b : w.Carrier) (hab : a ≠ b)
+    (hSame : w.toTarget a = w.toTarget b)
+    (hSeam : w.toTarget a ∈ Seam)
+    (fresh : UT) (hFreshSeam : fresh ∈ Seam)
+    (hUnused : fresh ∉ Set.range w.toTarget)
+    (hNewEHN : w.source.IsEHNHomomorphismEmbedding Target
+      (fun x : w.Carrier =>
+        if x = a then fresh else w.toTarget x)) :
+    False := by
+  classical
+  letI : Finite w.Carrier := w.finiteCarrier
+  let g : w.Carrier → UT :=
+    fun x => if x = a then fresh else w.toTarget x
+  have hStay : ∀ x : w.Carrier,
+      w.toTarget x ∈ Seam → g x ∈ Seam := by
+    intro x hx
+    by_cases hxa : x = a
+    · simp [g, hxa, hFreshSeam]
+    · simpa [g, hxa] using hx
+  have hFixed : ∀ x : w.Carrier,
+      w.toTarget x ∉ Seam → g x = w.toTarget x := by
+    intro x hx
+    have hxa : x ≠ a := by
+      intro h
+      apply hx
+      simpa [h] using hSeam
+    simp [g, hxa]
+  have hNumeric :=
+    finiteFreshSeamRecolor_strictlyReducesCollisionPairs
+      w.toTarget Seam a b hab hSame hSeam
+      fresh hFreshSeam hUnused
+  have hDrop :
+      Nat.card {p : w.Carrier × w.Carrier //
+        p.1 ≠ p.2 ∧
+        g p.1 = g p.2 ∧ g p.1 ∈ Seam} <
+      w.seamCollisionPairCount Seam := by
+    change ({p : w.Carrier × w.Carrier |
+        p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧
+        g p.1 ∈ Seam} : Set (w.Carrier × w.Carrier)).ncard <
+      ({p : w.Carrier × w.Carrier |
+        p.1 ≠ p.2 ∧ w.toTarget p.1 = w.toTarget p.2 ∧
+        w.toTarget p.1 ∈ Seam} : Set (w.Carrier × w.Carrier)).ncard
+    exact hNumeric
+  exact lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
+    LeftExclusive Seam hDisjoint w hPrimary hSecondary
+    g hNewEHN hStay hFixed hDrop
+
 end AllThoseRamseyClasses.Lifts
