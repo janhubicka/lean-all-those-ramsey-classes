@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedQAactiveSourcePartition
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeSelectedQ_Aactive_support_partition
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeSelectedQ_Aactive_partition_disjoint
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_Aactive_support_disjoint_oldE_newQ
