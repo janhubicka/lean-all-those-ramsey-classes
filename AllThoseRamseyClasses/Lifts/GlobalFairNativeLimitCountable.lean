@@ -40,6 +40,11 @@ theorem globalOriginalTraceFirstOrderDirectLimit_countable
         F hInput representatives diagrams n) :=
     (globalOriginalFiniteTraceChain
       F hInput representatives diagrams n).member.1
+  change Countable (Quotient (FirstOrder.Language.DirectLimit.setoid
+    (fun n : ℕ => GlobalOriginalTraceStageVertex
+      F hInput representatives diagrams n)
+    (fun m n h => globalOriginalTraceStageFirstOrderMap
+      F hInput representatives diagrams m n h)))
   infer_instance
 
 /-- The ACTUAL native fair limit has a countable underlying
