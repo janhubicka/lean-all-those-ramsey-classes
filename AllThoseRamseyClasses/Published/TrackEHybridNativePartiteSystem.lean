@@ -210,6 +210,49 @@ theorem HybridJointNativePartiteNormal.nativeSystem_toStructure_eq
         (splitMaskJointRootReduct C)).wholeMaskPartialDecode).collapseDomain :=
   rfl
 
+/-- The native decoded System retains EXACTLY the original
+primitive RELATIONAL part of the actual hybrid Picture. No
+new relation tuple is added or removed by decoding. -/
+theorem HybridJointNativePartiteNormal.nativeSystem_rel_iff
+    {V : Type w}
+    {C : RelStructure (L.splitMaskJointRootLanguage Parts) V}
+    (h : HybridJointNativePartiteNormal C)
+    (R : L.RelSymbol)
+    (xs : Fin (L.relArity R) → V) :
+    h.toNativeSystem.rel R xs ↔
+      (splitMaskJointRootReduct C).rel
+        (.inl (.inl (.inl R))) xs :=
+  Iff.rfl
+
+/-- Every complete ORIGINAL OLD output-value witness is
+interpreted as precisely the same native set-valued function
+fibre by the decoded System. In particular the output fibre
+does not depend on its mask or equality-pattern presentation. -/
+theorem HybridJointNativePartiteNormal.nativeSystem_fibre_eq_of_wholeValue
+    {V : Type w}
+    {C : RelStructure (L.splitMaskJointRootLanguage Parts) V}
+    (h : HybridJointNativePartiteNormal C)
+    (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → V)
+    (U : Set V)
+    (hValue : HasWholeMaskValue
+      (splitMaskHybridOriginalOldReduct
+        (splitMaskJointRootReduct C)) F xs U) :
+    h.toNativeSystem.func F xs = U := by
+  have hSome :
+      ((splitMaskHybridOriginalOldReduct
+        (splitMaskJointRootReduct C)).wholeMaskPartialDecode).func
+          F xs = some U :=
+    (h.strict.normal.coherent.oldDecoder_func_some_iff
+      h.strict.normal.positive
+      h.strict.normal.injectiveDomains
+      h.strict.normal.originalMasks h.splitOutput
+      F xs U).mpr hValue
+  change (((splitMaskHybridOriginalOldReduct
+      (splitMaskJointRootReduct C)).wholeMaskPartialDecode).func
+      F xs).getD ∅ = U
+  simp [hSome]
+
 /-- The reconstructed part map is literally the UNIQUE unary
 part predicate on the same original vertex set. -/
 theorem HybridJointNativePartiteNormal.nativeSystem_part_eq
