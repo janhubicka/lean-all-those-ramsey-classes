@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamFibreExactCount
+
+#print axioms AllThoseRamseyClasses.Lifts.originalSourceSeam_createdPairs_eq_incident
+#print axioms AllThoseRamseyClasses.Lifts.originalSourceSeam_removedPairs_eq_incident
+#print axioms AllThoseRamseyClasses.Lifts.originalSourceSeam_oneVertexRecolor_countBalance
+#print axioms AllThoseRamseyClasses.Lifts.originalSourceSeam_oneVertexRecolor_strictDrop_iff
