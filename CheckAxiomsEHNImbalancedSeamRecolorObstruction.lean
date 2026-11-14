@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNImbalancedSeamRecolorObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.lexMinimalForbiddenWitness_imbalancedSeamRecolor_notEHN
