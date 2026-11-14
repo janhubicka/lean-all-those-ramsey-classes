@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedQAactiveSourceCost
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeSelectedQ_Aactive_support_card_add
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_Aactive_support_card_add_retained
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_old_Afree_retained_Acard
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_AfreeOld_exact_Aactive_cost
