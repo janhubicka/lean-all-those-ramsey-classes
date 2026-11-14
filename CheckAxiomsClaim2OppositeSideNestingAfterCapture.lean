@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2OppositeSideNestingAfterCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_oppositeProper_of_allOldRootsCaptured
+#print axioms AllThoseRamseyClasses.Lifts.geometricPiece_widthOne_capture_oppositeProper
