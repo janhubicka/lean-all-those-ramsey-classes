@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridMixedRootSplitClosedAgreement
+
+#print axioms StructuralRamsey.RelStructure.HybridVisibleWholeSplitAgreement.freeAmalgam_of_splitClosedRoot
