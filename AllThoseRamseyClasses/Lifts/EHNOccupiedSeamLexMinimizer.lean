@@ -95,6 +95,36 @@ theorem finiteOneVertexOccupiedSeamRecolor_originalPairNatCardBalance
     f Seam a d hOldSeam hDestSeam
   simpa only [orderedSeamCollisionCount_eq_originalPairNatCard] using h
 
+/-- EXACT if-and-only-if criterion, in the ORIGINAL subtype
+Nat.card source-pair measure, for a one-vertex recolouring between
+two actual target seam points to STRICTLY decrease ordered
+source-collision pairs.
+
+The destination may already be occupied; only the number of
+OTHER source preimages matters. No EHN condition is needed here,
+and a strict decrease is impossible when the two other-source
+fibre loads are equal. -/
+theorem finiteOneVertexOccupiedSeamRecolor_strictDrop_iff_lighterFibre
+    {V UT : Type} [Fintype V] [DecidableEq V] [DecidableEq UT]
+    (f : V → UT) (Seam : Set UT)
+    (a : V) (d : UT)
+    (hOldSeam : f a ∈ Seam) (hDestSeam : d ∈ Seam) :
+    let g : V → UT := fun z => if z = a then d else f z
+    Nat.card {p : V × V //
+      p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧ g p.1 ∈ Seam} <
+    Nat.card {p : V × V //
+      p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧ f p.1 ∈ Seam} ↔
+      ((Finset.univ.erase a).filter
+        (fun x : V => f x = d)).card <
+      ((Finset.univ.erase a).filter
+        (fun x : V => f x = f a)).card := by
+  classical
+  have hBalance :=
+    finiteOneVertexOccupiedSeamRecolor_originalPairNatCardBalance
+      f Seam a d hOldSeam hDestSeam
+  dsimp only at hBalance ⊢
+  omega
+
 /-- A support-first, collision-second minimal ACTUAL forbidden EHN
 witness cannot be recoloured at one source vertex to an occupied
 common-seam target point with a strictly smaller number of OTHER
