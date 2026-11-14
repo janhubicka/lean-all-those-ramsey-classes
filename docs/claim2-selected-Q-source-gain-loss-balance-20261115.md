@@ -50,3 +50,24 @@ potential and is not a proof of unrestricted Claim 2.
 
 Three named #print axioms and protected active-root entry.
 No collaborator-removed TODOs reinstated.
+
+## Exact weighted-potential descent criterion
+
+The module also now proves a purely numerical lemma and its genuine
+selected-Q source specialization: for any weight k >= 0, when the
+old removed selected component is A-free and Q contributes no new
+B-active vertices,
+
+  (B_new + k*A_new < B_old + k*A_old)
+    IFF (k*A_private_Q < B_removed_old_component).
+
+This is a *necessary and sufficient* source-cardinality inequality
+for that weighted potential, on one selected Q, not a statement
+that some k or every canonical Q makes it hold. The exact
+arithmetic uses the proven A-cost and B-loss identities;
+no unsupported weak target-map injection or quotient counting.
+
+In particular, even k=1 requires the number of NEW A-active
+private Q source vertices to be strictly smaller than the
+OLD B-active source vertices deleted. Without a bound of this
+kind an amortized source-weighted descent cannot be claimed.
