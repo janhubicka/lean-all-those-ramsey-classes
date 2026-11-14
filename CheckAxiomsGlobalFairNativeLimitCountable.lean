@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.GlobalFairNativeLimitCountable
+
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalTraceFirstOrderDirectLimit_countable
+#print axioms AllThoseRamseyClasses.Lifts.globalOriginalFairNativeVertex_countable
