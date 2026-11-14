@@ -94,8 +94,7 @@ theorem geometricGlobalRightFlip_actualOuterPiece_withSeamAndNoEscape
               (componentFrom Old.graph
                 (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)))) 
     (hOuterRootInSeam : Set.range outer.roots ⊆
-      weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
-:
+      weakFreeRootPart (sL := iLeft) (iL := jLeft) f) :
     ∃ (V' : Type) (New : Structure L V') (hNew : F New)
       (hFiniteNew : Finite V') (flip : V' → UT)
       (newOuter : GeometricFunctionalPieceData New n),
