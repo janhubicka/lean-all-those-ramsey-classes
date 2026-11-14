@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSamePatternWholeFibre
+
+#print axioms StructuralRamsey.RelStructure.HybridExactWeakCoherent.samePattern_wholeOutputFibre_eq
