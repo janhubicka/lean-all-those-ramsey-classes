@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerMixedFiniteDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteSourceSubtype_card_lt_of_proper
+#print axioms AllThoseRamseyClasses.Lifts.claim2_smallerRoot_noCapture_finiteProperDescent
