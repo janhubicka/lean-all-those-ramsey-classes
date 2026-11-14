@@ -106,8 +106,7 @@ theorem HybridJointNoEmptyNormal.oldDecoder_nativeRoundtrip_of_unique
           (splitMaskJointRootReduct C)) F xs T →
       U = T) :
     (((splitMaskHybridOriginalOldReduct
-      (splitMaskJointRootReduct C)).wholeMaskPartialDecode).collapseDomain)
-        .toNonemptyPartial =
+      (splitMaskJointRootReduct C)).wholeMaskPartialDecode).collapseDomain).toNonemptyPartial =
     (splitMaskHybridOriginalOldReduct
       (splitMaskJointRootReduct C)).wholeMaskPartialDecode := by
   exact
