@@ -37,3 +37,26 @@ two d-components. Those need independent treatment.
 
 No quotient of weak target images, no root-width comparison, no
 original manuscript changes or reinstated collaborator TODO.
+
+## Stronger true geometric piece, not just a nested source set
+
+The verified source minimal closed separator is symmetric:
+`minimalClosedSeparator_swap`. Define
+`geometricOppositeMinimalSeparatorPiece Source d` by retaining
+the complete ordered d.roots and interchanging d.left and d.right.
+This is an ACTUAL `GeometricFunctionalPieceData Source m`, with
+all original minimality, closure and root-injectivity data; no
+formal-weak target map upgrade.
+
+The direct vertex-carrier identity shows this swapped piece is
+literally `d.root ∪ component(d.right)`. The new theorem
+`geometricOppositePiece_proper_of_allOldRootsCaptured` proves it
+properly nests in P whenever all old P-root vertices are captured
+by d.left. Its width-one corollary requires only capture of the
+SINGLE old root.
+
+This is a legitimate smaller native piece for further selected
+piece geometry. Additional properties for a canonical flip, such
+as target-side purity of its selected d.right component, selection
+of a matching global canonical symbol and the desired strict
+A-support rank contradiction, are NOT asserted.
