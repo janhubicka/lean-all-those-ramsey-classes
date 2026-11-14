@@ -31,9 +31,6 @@ open StructuralRamsey.Structure
 universe u
 variable {L : Language.{u}}
 
-/-- A selected valid inner flip yields one new forbidden source that
-carries BOTH local boundary/anchor data and the full ordered-root
-seam/no-escape/target-injection invariants on the same outer piece. -/
 /-- The general positive-rank state successor preserves the A-anchor,
 local full B-boundary injection, entire outer target seam root and
 functional no-escape on the SAME new native source, without any
