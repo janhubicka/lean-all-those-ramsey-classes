@@ -185,4 +185,100 @@ theorem geometricPiece_widthOne_capture_oppositeProper
     Source P d hDrootInsideP hDleftOld hDrightOld
     hAllOldRootCaptured
 
+/-- The opposite component of a genuinely minimal closed separator
+is itself a GENUINE geometric minimal-closed-separator piece with
+the SAME complete ordered native source root. This is only a
+source piece swap, not the left/right target free-amalgam swap. -/
+def geometricOppositeMinimalSeparatorPiece
+    {V : Type} (Source : Structure L V)
+    {m : ℕ} (d : GeometricFunctionalPieceData Source m) :
+    GeometricFunctionalPieceData Source m where
+  roots := d.roots
+  roots_injective := d.roots_injective
+  left := d.right
+  right := d.left
+  minimal :=
+    minimalClosedSeparator_swap Source
+      (Set.range d.roots) d.left d.right d.minimal
+
+/-- The original ordered root together with the actual opposite
+selected nonroot component is exactly the full vertex carrier
+of the genuinely swapped geometric separator piece. -/
+theorem geometricOppositeMinimalSeparatorPiece_vertices
+    {V : Type} (Source : Structure L V)
+    {m : ℕ} (d : GeometricFunctionalPieceData Source m) :
+    geometricPieceVertices Source
+      (geometricOppositeMinimalSeparatorPiece Source d) =
+    Set.range d.roots ∪
+      functionalComponentFrom Source
+        (Set.range d.roots) d.right := by
+  rfl
+
+/-- If all old P roots were captured by d's original selected
+component, the genuinely OPPOSITE geometric minimal separator
+piece is a strict source subpiece of P. This restores a legitimate
+native piece, rather than merely a closed set of source vertices. -/
+theorem geometricOppositePiece_proper_of_allOldRootsCaptured
+    {V : Type}
+    (Source : Structure L V)
+    {n m : ℕ}
+    (P : GeometricFunctionalPieceData Source n)
+    (d : GeometricFunctionalPieceData Source m)
+    (hDrootInsideP :
+      Set.range d.roots ⊆ geometricPieceVertices Source P)
+    (hDleftOld :
+      d.left.1 ∈ functionalComponentFrom Source
+        (Set.range P.roots) P.left)
+    (hDrightOld :
+      d.right.1 ∈ functionalComponentFrom Source
+        (Set.range P.roots) P.left)
+    (hAllOldRootsCapturedLeft :
+      Set.range P.roots ⊆
+        functionalComponentFrom Source
+          (Set.range d.roots) d.left) :
+    geometricPieceVertices Source
+      (geometricOppositeMinimalSeparatorPiece Source d) ⊂
+      geometricPieceVertices Source P := by
+  change
+    (Set.range d.roots ∪
+      functionalComponentFrom Source
+        (Set.range d.roots) d.right) ⊂
+      geometricPieceVertices Source P
+  exact (geometricPiece_oppositeProper_of_allOldRootsCaptured
+    Source P d hDrootInsideP hDleftOld hDrightOld
+    hAllOldRootsCapturedLeft).2
+
+/-- In old root width ONE, any capture of the only old P root
+by d's original selected B component gives a GENUINE properly
+nested opposite minimal closed separator piece, with d.right
+as its selected source component. -/
+theorem geometricOppositePiece_widthOne_capture_proper
+    {V : Type}
+    (Source : Structure L V)
+    {m : ℕ}
+    (P : GeometricFunctionalPieceData Source 1)
+    (d : GeometricFunctionalPieceData Source m)
+    (hDrootInsideP :
+      Set.range d.roots ⊆ geometricPieceVertices Source P)
+    (hDleftOld :
+      d.left.1 ∈ functionalComponentFrom Source
+        (Set.range P.roots) P.left)
+    (hDrightOld :
+      d.right.1 ∈ functionalComponentFrom Source
+        (Set.range P.roots) P.left)
+    (hCapture : ∃ r : V, r ∈ Set.range P.roots ∧
+      r ∈ functionalComponentFrom Source
+        (Set.range d.roots) d.left) :
+    geometricPieceVertices Source
+      (geometricOppositeMinimalSeparatorPiece Source d) ⊂
+      geometricPieceVertices Source P := by
+  change
+    (Set.range d.roots ∪
+      functionalComponentFrom Source
+        (Set.range d.roots) d.right) ⊂
+      geometricPieceVertices Source P
+  exact (geometricPiece_widthOne_capture_oppositeProper
+    Source P d hDrootInsideP hDleftOld hDrightOld
+    hCapture).2
+
 end AllThoseRamseyClasses.Lifts
