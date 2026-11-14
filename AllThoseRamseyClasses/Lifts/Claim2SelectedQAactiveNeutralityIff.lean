@@ -207,4 +207,72 @@ theorem geometricSelectedQ_totalASourceNeutral_iff_nonrootAfree
       Old inner Q New iQ iE hNewFree
       f flip AActive hOldInnerNoA hEAgree hNoQNonrootA
 
+/-- Conditional preservation of the ORIGINAL global A-source
+support minimum by one genuine native selected-Q flip.
+
+If the removed old selected component is A-free and the
+inserted Q-nonroot source vertices are ALSO A-free, the
+exact source-cardinality equality above proves that the
+new forbidden weak target-map witness has the SAME global
+A-support minimality property as the old witness.
+
+This is a logical transfer interface. It does NOT assert that
+such an A-neutral canonical replacement Q can be selected
+at every positive B-source rank. -/
+theorem geometricSelectedQ_nonrootAfree_preserves_globalAMinimum
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {V W UT : Type}
+    (Old : Structure L V)
+    {m : ℕ}
+    (inner : GeometricFunctionalPieceData Old m)
+    (Q : FunctionalRootExtension
+      (geometricGlobalFunctionalChart Old inner).root)
+    (New : Structure L W)
+    (hNew : F New)
+    (iQ : Structure.Embedding Q.str New)
+    (iE : Structure.Embedding
+      (geometricGlobalComplementChart Old inner).str New)
+    (hNewFree : Structure.IsFreeAmalgam
+      Q.rootEmbedding
+      (geometricGlobalComplementChart Old inner).rootEmbedding
+      iQ iE)
+    (Target : Structure L UT)
+    (f : V → UT) (flip : W → UT) (AActive : Set UT)
+    (hFlip : New.IsEHNHomomorphismEmbedding Target flip)
+    (hOldInnerNoA : ∀ z : V,
+      z ∈ functionalComponentFrom Old
+        (Set.range inner.roots) inner.left → f z ∉ AActive)
+    (hEAgree : ∀ e : (geometricGlobalComplementChart Old inner).Carrier,
+      flip (iE e) = f e.1)
+    (hQNonrootNoA : ∀ q : Q.Carrier,
+      q ∉ Set.range Q.rootEmbedding →
+        flip (iQ q) ∉ AActive)
+    (hOldAMinimum : ∀ {Z : Type}
+      (Candidate : Structure L Z) (hCandidate : F Candidate)
+      (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {v : V // f v ∈ AActive} ≤
+        Nat.card {z : Z // g z ∈ AActive}) :
+    F New ∧
+    New.IsEHNHomomorphismEmbedding Target flip ∧
+    (∀ {Z : Type}
+      (Candidate : Structure L Z) (hCandidate : F Candidate)
+      (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {w : W // flip w ∈ AActive} ≤
+        Nat.card {z : Z // g z ∈ AActive}) := by
+  have hEqual :
+      Nat.card {v : V // f v ∈ AActive} =
+        Nat.card {w : W // flip w ∈ AActive} :=
+    geometricSelectedQ_nonrootAfree_preserves_totalASourceCount
+      Old inner Q New iQ iE hNewFree
+      f flip AActive hOldInnerNoA hEAgree hQNonrootNoA
+  refine ⟨hNew, hFlip, ?_⟩
+  intro Z Candidate hCandidate g hg
+  calc
+    Nat.card {w : W // flip w ∈ AActive} =
+      Nat.card {v : V // f v ∈ AActive} := hEqual.symm
+    _ ≤ Nat.card {z : Z // g z ∈ AActive} :=
+      hOldAMinimum Candidate hCandidate g hg
+
 end AllThoseRamseyClasses.Lifts
