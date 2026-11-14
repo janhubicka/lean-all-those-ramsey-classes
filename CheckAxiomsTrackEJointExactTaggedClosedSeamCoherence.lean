@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEJointExactTaggedClosedSeamCoherence
+
+#print axioms StructuralRamsey.RelStructure.HybridSplitOutputClosedAt.ofExactJointTaggedUSubstructure
+#print axioms StructuralRamsey.RelStructure.HybridVisibleWholeSplitAgreement.jointTaggedFreeAmalgam_of_closedSeams
