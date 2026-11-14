@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNSetwiseLocalRecolorVerification
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_map_changedOnSet_iff_localNativeVerification
+#print axioms AllThoseRamseyClasses.Lifts.ehn_map_changedOnSet_failure_has_localNativeWitness
