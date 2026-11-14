@@ -144,4 +144,108 @@ theorem minimalForbiddenEHNWitness_no_weakSupport_and_strictCollisionDrop
   exact (Nat.not_lt_of_ge
     (hSecondary v hEqualSupport)) hCollisionDrop
 
+/-- Changing only ORIGINAL source vertices which already map
+into the genuine target seam, and keeping their new target values
+inside that same seam, preserves membership of EVERY original
+source vertex in a disjoint target LeftExclusive set.
+
+This is the exact native set-level reason that seam-only
+collision repairs can preserve the printed primary SOURCE
+support count. No EHN assumption is needed for the set equality. -/
+theorem seamOnlyRecoloring_preserves_originalSourceSupport
+    {V UT : Type} [Finite V]
+    (f g : V → UT)
+    (LeftExclusive Seam : Set UT)
+    (hDisjoint : Disjoint LeftExclusive Seam)
+    (hSeamStay : ∀ x : V, f x ∈ Seam → g x ∈ Seam)
+    (hOutsideFixed : ∀ x : V, f x ∉ Seam → g x = f x) :
+    Nat.card {x : V // f x ∈ LeftExclusive} =
+      Nat.card {x : V // g x ∈ LeftExclusive} := by
+  have hPred :
+      (fun x : V => f x ∈ LeftExclusive) =
+        (fun x : V => g x ∈ LeftExclusive) := by
+    funext x
+    apply propext
+    by_cases hInSeam : f x ∈ Seam
+    · have hGSeam : g x ∈ Seam := hSeamStay x hInSeam
+      constructor
+      · intro hLeft
+        exact False.elim
+          ((Set.disjoint_left.mp hDisjoint) hLeft hInSeam)
+      · intro hLeft
+        exact False.elim
+          ((Set.disjoint_left.mp hDisjoint) hLeft hGSeam)
+    · rw [hOutsideFixed x hInSeam]
+  rw [hPred]
+
+/-- A secondary collision-minimal actual forbidden witness admits
+NO alternate EHN map of the SAME original forbidden native source
+which only recolours original seam vertices WITHIN the same seam,
+keeps every original nonseam vertex coordinate unchanged, and
+reduces the number of distinct original source pairs collapsed
+inside the seam.
+
+Such a change preserves PRIMARY SOURCE left-exclusive support
+automatically by the preceding verified set equality, hence it
+contradicts the lexicographic minimizer. This local criterion
+makes an admissible seam-only "collision splitting" map a precise
+future proof obligation rather than assuming one exists.
+
+No new source quotient, rooted piece flip, or target old-relation
+reflection follows from this negative minimality criterion. -/
+theorem lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UT : Type} {Target : Structure L UT}
+    (LeftExclusive Seam : Set UT)
+    (hDisjoint : Disjoint LeftExclusive Seam)
+    (w : ForbiddenEHNWitness F Target)
+    (hPrimary : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount LeftExclusive ≤
+        v.sourceSupportCount LeftExclusive)
+    (hSecondary : ∀ v : ForbiddenEHNWitness F Target,
+      v.sourceSupportCount LeftExclusive =
+        w.sourceSupportCount LeftExclusive →
+      w.seamCollisionPairCount Seam ≤
+        v.seamCollisionPairCount Seam)
+    (g : w.Carrier → UT)
+    (hg : w.source.IsEHNHomomorphismEmbedding Target g)
+    (hSeamStay : ∀ x : w.Carrier,
+      w.toTarget x ∈ Seam → g x ∈ Seam)
+    (hOutsideFixed : ∀ x : w.Carrier,
+      w.toTarget x ∉ Seam → g x = w.toTarget x)
+    (hCollisionDrop :
+      Nat.card {p : w.Carrier × w.Carrier //
+        p.1 ≠ p.2 ∧
+        g p.1 = g p.2 ∧
+        g p.1 ∈ Seam} <
+      w.seamCollisionPairCount Seam) :
+    False := by
+  classical
+  letI : Finite w.Carrier := w.finiteCarrier
+  let v : ForbiddenEHNWitness F Target := {
+    Carrier := w.Carrier
+    finiteCarrier := w.finiteCarrier
+    source := w.source
+    forbidden := w.forbidden
+    toTarget := g
+    homEmbedding := hg
+  }
+  have hNoSupportIncrease :
+      v.sourceSupportCount LeftExclusive ≤
+        w.sourceSupportCount LeftExclusive := by
+    have hCount :=
+      seamOnlyRecoloring_preserves_originalSourceSupport
+        w.toTarget g LeftExclusive Seam
+        hDisjoint hSeamStay hOutsideFixed
+    change Nat.card {x : w.Carrier // g x ∈ LeftExclusive} ≤
+      Nat.card {x : w.Carrier //
+        w.toTarget x ∈ LeftExclusive}
+    exact le_of_eq hCount.symm
+  have hDrop :
+      v.seamCollisionPairCount Seam <
+        w.seamCollisionPairCount Seam := hCollisionDrop
+  exact minimalForbiddenEHNWitness_no_weakSupport_and_strictCollisionDrop
+    LeftExclusive Seam w hPrimary hSecondary
+    v hNoSupportIncrease hDrop
+
 end AllThoseRamseyClasses.Lifts
