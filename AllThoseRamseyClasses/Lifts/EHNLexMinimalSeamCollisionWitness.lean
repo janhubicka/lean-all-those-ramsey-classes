@@ -248,4 +248,92 @@ theorem lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
     LeftExclusive Seam w hPrimary hSecondary
     v hNoSupportIncrease hDrop
 
+/-- Recolour ONE of two distinct ORIGINAL source vertices
+which collide in the genuine target seam to an UNUSED seam
+vertex, without changing the remaining source map coordinates.
+
+The new map g introduces NO new collapsed SOURCE vertex pairs
+because the new target value is outside range(f), while the old
+pair (a,b) ceases to collide. Its finite number of ORIGINAL
+ordered seam-collision source pairs therefore STRICTLY drops.
+
+This is a concrete combinatorial improvement, not a claim that
+the recoloured map preserves EHN irreducible-test fullness. -/
+theorem finiteFreshSeamRecolor_strictlyReducesCollisionPairs
+    {V UT : Type} [Finite V]
+    (f : V → UT) (Seam : Set UT)
+    (a b : V) (hab : a ≠ b)
+    (hSame : f a = f b)
+    (hSeam : f a ∈ Seam)
+    (fresh : UT)
+    (_hFreshSeam : fresh ∈ Seam)
+    (hUnused : fresh ∉ Set.range f) :
+    let g : V → UT := fun x => if x = a then fresh else f x
+    ({p : V × V |
+        p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧
+        g p.1 ∈ Seam} : Set (V × V)).ncard <
+    ({p : V × V |
+        p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧
+        f p.1 ∈ Seam} : Set (V × V)).ncard := by
+  classical
+  let g : V → UT := fun x => if x = a then fresh else f x
+  change ({p : V × V |
+      p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧
+      g p.1 ∈ Seam} : Set (V × V)).ncard <
+    ({p : V × V |
+      p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧
+      f p.1 ∈ Seam} : Set (V × V)).ncard
+  let New : Set (V × V) :=
+    {p | p.1 ≠ p.2 ∧ g p.1 = g p.2 ∧ g p.1 ∈ Seam}
+  let Old : Set (V × V) :=
+    {p | p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧ f p.1 ∈ Seam}
+  have hSub : New ⊆ Old := by
+    intro p hp
+    change p.1 ≠ p.2 ∧
+      g p.1 = g p.2 ∧ g p.1 ∈ Seam at hp
+    obtain ⟨hDistinct, hEqual, hInSeam⟩ := hp
+    have hp1Ne : p.1 ≠ a := by
+      intro hp1Eq
+      have hp2Ne : p.2 ≠ a := by
+        intro hp2Eq
+        exact hDistinct (hp1Eq.trans hp2Eq.symm)
+      have hg1 : g p.1 = fresh := by simp [g, hp1Eq]
+      have hg2 : g p.2 = f p.2 := by simp [g, hp2Ne]
+      have hFreshEq : fresh = f p.2 :=
+        hg1.symm.trans (hEqual.trans hg2)
+      exact hUnused ⟨p.2, hFreshEq.symm⟩
+    have hp2Ne : p.2 ≠ a := by
+      intro hp2Eq
+      have hg1 : g p.1 = f p.1 := by simp [g, hp1Ne]
+      have hg2 : g p.2 = fresh := by simp [g, hp2Eq]
+      have hFreshEq : fresh = f p.1 :=
+        hg2.symm.trans (hEqual.symm.trans hg1)
+      exact hUnused ⟨p.1, hFreshEq.symm⟩
+    have hg1 : g p.1 = f p.1 := by simp [g, hp1Ne]
+    have hg2 : g p.2 = f p.2 := by simp [g, hp2Ne]
+    have hOldEqual : f p.1 = f p.2 :=
+      hg1.symm.trans (hEqual.trans hg2)
+    have hOldSeam : f p.1 ∈ Seam := by
+      rw [← hg1]
+      exact hInSeam
+    exact ⟨hDistinct, hOldEqual, hOldSeam⟩
+  have hOldPair : (a, b) ∈ Old :=
+    ⟨hab, hSame, hSeam⟩
+  have hNotNewPair : (a, b) ∉ New := by
+    intro hp
+    change a ≠ b ∧ g a = g b ∧ g a ∈ Seam at hp
+    have hgA : g a = fresh := by simp [g]
+    have hgB : g b = f b := by simp [g, hab.symm]
+    have hFreshEq : fresh = f b :=
+      hgA.symm.trans (hp.2.1.trans hgB)
+    exact hUnused ⟨b, hFreshEq.symm⟩
+  have hDifferent : New ≠ Old := by
+    intro hEq
+    apply hNotNewPair
+    rw [hEq]
+    exact hOldPair
+  have hStrict : New ⊂ Old :=
+    (Set.ssubset_iff_subset_ne).mpr ⟨hSub, hDifferent⟩
+  exact Set.ncard_lt_ncard hStrict
+
 end AllThoseRamseyClasses.Lifts
