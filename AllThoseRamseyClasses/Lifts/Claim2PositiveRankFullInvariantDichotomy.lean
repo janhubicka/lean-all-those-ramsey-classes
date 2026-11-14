@@ -116,7 +116,7 @@ theorem claim2_positiveRank_fullInvariantActualSuccessor_or_smallerRoot
                   (componentFrom New.graph
                     (flip ⁻¹' Set.range (jLeft.comp iLeft))
                     (⟨z, hzOutside⟩ :
-                      {w : V' // w ∉ flip ⁻¹' Set.range (jLeft.comp iLeft)})))))) ∨
+                      {w : V' // w ∉ flip ⁻¹' Set.range (jLeft.comp iLeft)}))))))) ∨
     (∃ (x : {v : V // v ∉
           weakFreeRootPart (sL := iLeft) (iL := jLeft) f})
         (T : Set V) (y : {v : V // v ∉ T})
