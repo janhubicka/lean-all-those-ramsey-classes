@@ -76,3 +76,49 @@ registrations were added. The new files are a **proposed Lean proof**
 until an exact-head Lake/Lean build and no-admissions, axiom and
 source-contract audits pass. In particular, do not mark Claim 2
 or general strong AP as formally proved from this PR alone.
+
+
+## 14 November follow-up: ACTUAL heterogeneous source-state instantiation
+
+The earlier abstract step/rank model is now instantiated with the native
+source geometry, not an unimplemented `Valid` or hypothetical successor:
+
+- `Claim2HeterogeneousNativeState.lean` records a heterogeneous finite
+  forbidden source `Carrier : Type`, actual geometric minimal-separator
+  outer piece, original EHN map, A-exclusive source anchor, root-in-seam,
+  injective ordered target-root and full native B-active generated-boundary
+  injection. It constructs a real strict native state step from the verified
+  positive-rank trichotomy, or returns a literal old-root-capture /
+  A-mixed smaller-root witness.
+- `Claim2HeterogeneousNativeDescent.lean` proves the **concrete** finite
+  step chain reaches rank zero or either obstruction, with
+  `steps + terminal rank ≤ initial rank`. The original *entire* global
+  selected symbol, ordered target-root coordinates, exterior SOURCE
+  multiplicities for every target subset, and A-anchor target value
+  are transported from the initial state through the chain.
+- `Claim2OriginalMinimizerObstructionReduction.lean` constructs the
+  original `ForbiddenEHNWitness` from the initial geometric state
+  and applies the **existing verified**
+  `claim2_originalMinimizer_contradicted_by_zeroTerminalBSupport`
+  at a terminal zero-rank state. Consequently, for an initial
+  **globally A-source-support-minimal** witness that already carries
+  the two explicit injection properties, finite actual descent must
+  reach **old-root capture OR A-mixedness**. This closes the zero-rank
+  branch without an unproved terminal-exit hypothesis.
+
+### Remaining genuine Claim 2 obligations
+
+1. The original chosen globally left-minimal forbidden EHN witness
+   must be equipped with an initial geometric piece whose ordered
+   root-target map and **all B-active generated boundaries** are
+   injective. That is not a general property of weak maps.
+2. Show that the old-root-capture and A-mixed smaller-root outcomes
+   are impossible (or devise valid additional geometric moves
+   decreasing a well-founded lexicographic measure while preserving
+   all native state invariants).
+3. Only after (1) and (2) could the full original Claim 2 and
+   unrestricted strong amalgamation follow from this pathway.
+
+The terminal theorem and minimizer comparison are reused unchanged.
+All new theorems and source/axiom audit files must pass exact-head
+Lean and source-contract CI before being marked verified or merged.
