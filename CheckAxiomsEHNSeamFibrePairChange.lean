@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamFibrePairChange
+
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_oneVertex_createdCollision_iff
+#print axioms AllThoseRamseyClasses.Lifts.seamFibre_oneVertex_removedCollision_iff
