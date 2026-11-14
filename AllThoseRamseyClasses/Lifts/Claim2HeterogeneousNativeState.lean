@@ -72,7 +72,7 @@ structure Claim2NativeGeometricState
               (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x)))
 
 /-- A genuine *source*-rank, not cardinality of target-map images. -/
-def claim2NativeBSourceRank
+noncomputable def claim2NativeBSourceRank
     {F : ∀ {W : Type}, Structure L W → Prop}
     {UX UA UB UT : Type}
     {Target : Structure L UT}
