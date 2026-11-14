@@ -2,6 +2,7 @@ import AllThoseRamseyClasses.Published.TrackEJointExactTaggedClosedSeamCoherence
 import AllThoseRamseyClasses.Published.TrackEHybridCoherencePackage
 import AllThoseRamseyClasses.Published.TrackEHybridOldMaskPatternFree
 import AllThoseRamseyClasses.Published.TrackEHybridActiveDomainRootInjective
+import PartiteConstruction.Iterated.FreeAmalgam
 
 /-!
 # Track E2: one finite-weak-safe normal joint-hybrid target class
@@ -147,5 +148,50 @@ theorem HybridJointTargetNormal.freeAmalgam_of_jointClosedSeams
       hLeft.originalMasks hRight.originalMasks
   · exact HybridActiveDomainRootInjective.freeAmalgam hBaseFree
       hLeft.injectiveDomains hRight.injectiveDomains
+
+/-- Construct a NORMAL full relational amalgam over an ACTUAL
+joint-U-closed seam by using the standard verified concrete
+relational free-attachment object, with no extra vertices beyond
+the ordinary relational pushout.
+
+This is existence for the specified `U`-closed-root embeddings,
+NOT unrestricted strong AP on arbitrary weak/partite embeddings:
+the common-root images must already be relatively U-closed in
+both input structures, and closure of the canonical side maps
+in the new whole is not asserted by this theorem. -/
+theorem HybridJointTargetNormal.exists_freeAmalgam_of_jointClosedRoot
+    {H E F : Type w}
+    (Root : RelStructure (L.splitMaskJointRootLanguage Parts) H)
+    (Left : RelStructure (L.splitMaskJointRootLanguage Parts) E)
+    (Right : RelStructure (L.splitMaskJointRootLanguage Parts) F)
+    (sL : Embedding Root Left) (sR : Embedding Root Right)
+    (hPositive :
+      ∀ p : FunctionInputPattern (L.outputPartIndexed Parts),
+        0 < p.rootSize)
+    (hRoot : HybridJointTargetNormal Root)
+    (hLeft : HybridJointTargetNormal Left)
+    (hRight : HybridJointTargetNormal Right)
+    (hClosedLeft : IsUSubstructure
+      (L.splitMaskJointClosureRules Parts)
+      Left (Set.range sL))
+    (hClosedRight : IsUSubstructure
+      (L.splitMaskJointClosureRules Parts)
+      Right (Set.range sR)) :
+    ∃ (W : Type w)
+      (Whole : RelStructure (L.splitMaskJointRootLanguage Parts) W)
+      (iL : Embedding Left Whole) (iR : Embedding Right Whole),
+      IsFreeAmalgam sL sR iL iR ∧ HybridJointTargetNormal Whole := by
+  let W := FreeAmalgam.Vertex Root Left Right sL sR
+  let Whole : RelStructure (L.splitMaskJointRootLanguage Parts) W :=
+    FreeAmalgam.amalgam Root Left Right sL sR
+  let iL : Embedding Left Whole :=
+    FreeAmalgam.leftEmbedding Root Left Right sL sR
+  let iR : Embedding Right Whole :=
+    FreeAmalgam.rightEmbedding Root Left Right sL sR
+  have hFree : IsFreeAmalgam sL sR iL iR :=
+    FreeAmalgam.isFreeAmalgam Root Left Right sL sR
+  exact ⟨W, Whole, iL, iR, hFree,
+    HybridJointTargetNormal.freeAmalgam_of_jointClosedSeams
+      hFree hPositive hRoot hLeft hRight hClosedLeft hClosedRight⟩
 
 end StructuralRamsey.RelStructure
