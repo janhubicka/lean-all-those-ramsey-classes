@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackCVertexSmallNativePositivePullback
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_smallClosedNative_positiveCompletion_of_exactWeakImage
