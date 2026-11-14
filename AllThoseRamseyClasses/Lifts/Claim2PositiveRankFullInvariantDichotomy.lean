@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.Claim2NoEscapePositiveRankBoundaryAlternative
 import AllThoseRamseyClasses.Lifts.Claim2PartnerFullLocalInvariantStep
+import AllThoseRamseyClasses.Lifts.Claim2NativeBActiveBoundaryBridge
 import AllThoseRamseyClasses.Lifts.ConnectedComponentBoundaryNonempty
 import AllThoseRamseyClasses.Lifts.WeakRightBoundarySeparation
 
@@ -106,17 +107,16 @@ theorem claim2_positiveRank_fullInvariantActualSuccessor_or_smallerRoot
           flip anew = f a ∧
           flip anew ∈ fullFreeLeftExclusiveTarget iLeft jLeft ∧
           Function.Injective (fun i : Fin n => flip (newOuter.roots i)) ∧
-          (∀ (z : V')
-            (hzPart : z ∈ geometricPieceVertices New newOuter)
-            (hzB : flip z ∈ fullFreeRightExclusiveTarget iRight jRight)
-            (hzOutside : flip z ∉ Set.range (jLeft.comp iLeft)),
+          (∀ (z : {w : V' //
+              w ∉ weakFreeRootPart (sL := iLeft) (iL := jLeft) flip}),
+            z.1 ∈ geometricPieceVertices New newOuter →
+            z.1 ∈ weakFreeRightPart
+              (sL := iLeft) (iL := jLeft) (iR := jRight) flip →
             Set.InjOn flip
               (New.functionClosure
                 (gaifmanNeighborhood New.graph
                   (componentFrom New.graph
-                    (flip ⁻¹' Set.range (jLeft.comp iLeft))
-                    (⟨z, hzOutside⟩ :
-                      {w : V' // w ∉ flip ⁻¹' Set.range (jLeft.comp iLeft)}))))))) ∨
+                    (weakFreeRootPart (sL := iLeft) (iL := jLeft) flip) z)))))) ∨
     (∃ (x : {v : V // v ∉
           weakFreeRootPart (sL := iLeft) (iL := jLeft) f})
         (T : Set V) (y : {v : V // v ∉ T})
@@ -216,10 +216,24 @@ theorem claim2_positiveRank_fullInvariantActualSuccessor_or_smallerRoot
         a haLeft haOuter
         T hT hTS hTnonempty y hSeparated hPartner hInjT
         hOuterRootTargetInj hActiveBoundaryInjective
+    have hNextNativeBoundaryInj :
+        ∀ (z : {w : V' //
+            w ∉ weakFreeRootPart (sL := iLeft) (iL := jLeft) flip}),
+          z.1 ∈ geometricPieceVertices New newOuter →
+          z.1 ∈ weakFreeRightPart
+            (sL := iLeft) (iL := jLeft) (iR := jRight) flip →
+          Set.InjOn flip
+            (New.functionClosure
+              (gaifmanNeighborhood New.graph
+                (componentFrom New.graph
+                  (weakFreeRootPart (sL := iLeft) (iL := jLeft) flip) z))) :=
+      claim2_fullRightActiveBoundary_to_weakRightActiveBoundary
+        New newOuter Target flip X Left Right jLeft jRight
+        iLeft iRight hFree hNewBoundaryInj
     exact Or.inl ⟨m, d, hm, hProper, V', New, hNew,
       hFiniteNew, flip, newOuter, hFlip,
       hTargetCoords, hSymbol, hRank, hExterior,
-      anew, haNewOuter, haSame, haNewA, hRootInj, hNewBoundaryInj⟩
+      anew, haNewOuter, haSame, haNewA, hRootInj, hNextNativeBoundaryInj⟩
   · right
     exact ⟨x, T, y, m, d, hxK, hxRight, hYa, hT,
       hm, hProper, hRootIn, hLeft, hRight, hExactRoot⟩
