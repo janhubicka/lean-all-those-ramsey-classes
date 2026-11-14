@@ -42,7 +42,9 @@ theorem finiteSourceSubtype_card_lt_of_proper
     toFun := fun v => ⟨v.1, hSubset v.2⟩
     inj' := by
       intro a b hab
-      exact Subtype.ext (congrArg Subtype.val hab)
+      have hab' : (a : V) = (b : V) :=
+        congrArg (fun z : {v : V // v ∈ T} => (z : V)) hab
+      exact Subtype.ext hab'
   }
   have hNotSurj : ¬ Function.Surjective e := by
     intro hSurj
