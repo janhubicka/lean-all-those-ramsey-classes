@@ -287,6 +287,33 @@ root tuples; the separate folded-root construction does not
 automatically supply an ORIGINAL full common lift. Do not exchange
 those two lift predicates in an unrestricted theorem.
 
+### Concrete finite graph sanity check: a selected root can lose the defect
+
+Consider the ordinary undirected path with vertices in order
+`x -- u -- a -- v -- y`, with no function symbols. The genuine
+closed set `H = {u,v}` separates `x` from `y`, but is NOT a
+minimal separator: both singleton cuts `{u}` and `{v}` already
+separate them. Every inclusion-minimal separator contained in H
+is one of those singletons and therefore loses at least one of
+the two source coordinates `u,v`.
+
+Now add the target-only old edge `u--v` to a second graph on the
+same five vertices. The identity source-to-target map remains a
+graph homomorphism-embedding in the EHN sense: every induced
+irreducible test of the original path has at most two vertices and
+the additional edge joins two NONADJACENT source vertices, so it
+does not interfere with the source's full singleton/edge tests.
+Nevertheless the positive target edge `(u,v)` has no positive
+source lift. Selecting a minimal separator inside `H` cannot
+retain BOTH coordinates of that missing relation.
+
+This is an **elementary local geometry illustration**, not a
+family-level counterexample to the printed image-closure or
+global maximal-lift theorem. It proves why a final selected
+separator need not preserve the original extra positive
+incidence even when the defect's whole input hull itself
+separates the chosen exterior vertices.
+
 **Audit focus after finite saturation:** Neither an original
 source hull that is properly free-decomposable nor the terminal
 closed separating hull is itself a flippable forbidden piece.
