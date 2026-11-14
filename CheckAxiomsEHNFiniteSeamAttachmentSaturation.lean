@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNFiniteSeamAttachmentSaturation
+
+#print axioms AllThoseRamseyClasses.Lifts.NativeLeftSeamAttachmentProgress
+#print axioms AllThoseRamseyClasses.Lifts.finiteForbiddenEHNWitness_seamAttachmentSaturation_selectsPiece
