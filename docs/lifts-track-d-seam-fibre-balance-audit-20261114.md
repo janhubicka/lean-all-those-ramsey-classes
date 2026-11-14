@@ -28,7 +28,7 @@ Take \(V=\{0,1,2\}\), \(X=T=\{0,1\}\), and \(f=(0,0,1)\). The selected distinct 
 C_X(f)=2=C_X(g),\qquad k_0=2,\quad k_1=1.
 \]
 
-Thus no strict secondary descent follows from root injectivity and root-level target vacancy. EHNSeamFibreBalanceCounterexample.lean is a small *decidable Lean regression* certifying these **bare coordinate/cardinality facts**, not a new EHN or forbidden-family example. The conclusion is independent of canonical-lift compatibility.
+Thus no strict secondary descent follows from root injectivity and root-level target vacancy. **In fact the three-to-two example is globally collision-minimal among EVERY map from the three original vertices to the two-point seam, even allowing simultaneous recolouring of all vertices:** by the pigeonhole principle some two vertices collide and contribute at least two ordered pairs. The new Lean theorem seamFibre_anyFullSeamMap_hasAtLeastTwoOrderedCollisions checks this exact universal finite lower bound. The balanced old fibre sizes (2,1) attain that lower bound. EHNSeamFibreBalanceCounterexample.lean is a small *decidable Lean regression* certifying these **bare coordinate/cardinality facts**, not a new EHN or forbidden-family example. The conclusion is independent of canonical-lift compatibility.
 
 ## Adversarial proof-control gates
 
