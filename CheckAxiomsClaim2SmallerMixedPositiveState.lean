@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerMixedPositiveState
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_smallerRoot_noCapture_mixed_has_smallerPositiveState
