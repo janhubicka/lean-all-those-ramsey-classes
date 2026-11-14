@@ -32,6 +32,19 @@ noncomputable def originalSourceSeamCollisionPairs
   exact Finset.univ.filter
     (fun p => originalSourceSeamCollision f Seam p.1 p.2)
 
+/-- Bridge the finite Finset count to the EXACT Nat.card subtype
+used by the previously merged original forbidden EHN witness API.
+No quotient or source-image identification is involved. -/
+theorem originalSourceSeamCollisionPairs_card_eq_nat_card
+    {V UT : Type} [Fintype V]
+    (f : V → UT) (Seam : Set UT) :
+    (originalSourceSeamCollisionPairs f Seam).card =
+      Nat.card {p : V × V //
+        p.1 ≠ p.2 ∧ f p.1 = f p.2 ∧ f p.1 ∈ Seam} := by
+  classical
+  rw [Nat.card_eq_fintype_card, Fintype.card_subtype]
+  rfl
+
 /-- OTHER original source vertices in the f-fibre of t.
 Excludes a even when t=f(a); no target-root or image quotient. -/
 noncomputable def originalSourceFibreExcept
