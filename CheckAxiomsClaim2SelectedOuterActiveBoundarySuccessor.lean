@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedOuterActiveBoundarySuccessor
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withActiveBoundaryInj
