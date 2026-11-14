@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2CapturedOldRootSeamIncursion
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_capturedOldRoot_forces_rootLoss
+#print axioms AllThoseRamseyClasses.Lifts.claim2_capturedOldRoot_has_seamIncursionPath
+#print axioms AllThoseRamseyClasses.Lifts.claim2_noCapture_of_selectedComponent_avoids_seam
