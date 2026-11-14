@@ -57,3 +57,12 @@ valid conditional terminal theorem from a complete 2019 proof.
 
 No original numbered paper edit and no reinstated removed TODOs.
 Three named #print axioms and one active source root.
+
+**Necessary neutrality condition:** The module also proves
+`geometricSelectedQ_nonIncreasingA_forces_nonroot_Afree`:
+if total A-source support does not increase under the genuine
+selected-Q replacement of an old A-free component, EVERY
+Q-nonroot source vertex must map outside A-exclusive target.
+This is a necessary condition, not an existence theorem for
+a replacement satisfying it; failure of that existence is the
+precise remaining A-minimality iteration obstacle.
