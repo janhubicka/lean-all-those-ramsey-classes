@@ -1,4 +1,4 @@
-# Track D — verified reductions and remaining Section 3 root-collision gate (12 November 2026)
+# Track D — verified reductions and remaining Section 3 root-collision gate (14 November 2026)
 
 This is the CURRENT checkpoint; the older
 [`lifts-track-d-root-collision-20261101.md`](lifts-track-d-root-collision-20261101.md)
@@ -133,27 +133,101 @@ defined-but-empty domain-token convention would need a separate
 representation. The source-generated weak quotient is not silently
 identified with the true full induced target image.
 
-## Current proof development — pending exact-head CI
+## Further kernel-verified native source geometry and compatibility on main
+
+The following PRs have been **merged** after successful exact-head
+full Lean compilation, named theorem-axiom/source/admissions checks
+and import/inventory audits. They are conditional proof-control tools,
+not a proof of unrestricted original Section 3 strong amalgamation.
 
 * [#1084](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1084):
-  draft source-hull EHN factorization. If all source input
-  generators map into one FULL target side, their ENTIRE native
-  function-closed generated source hull does, and the induced
-  hull factors EHN into that side with original coordinates.
-  When that side is `Forb_EHN(F)`, its preimage hull is itself
-  `Forb_EHN(F)`, even if reducible and properly free-decomposable.
+  the ENTIRE native function-closed original input-generated source
+  hull EHN-factors into a full ambient side when all generators do.
+  If the side is EHN-forbidden-free, so is the hull; consequently a
+  genuinely finite forbidden source has an actual vertex OUTSIDE
+  that hull.
 * [#1088](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1088):
-  stacked draft separation of an incidence into **common-seam-only
-  source input hull** versus **actual left/right-exclusive original
-  source input generator**. In the former case the entire hull EHN
-  factors into the FULL common root. For a positive native function
-  incidence, all-root inputs force its target output into that root
-  because the common root is function-closed. The latter case has a
-  genuine exclusive source input potentially useful as a flip anchor.
+  every unliftable positive target relation/function incidence has
+  either an original source-generated EHN hull in the COMPLETE
+  common seam, or an ACTUAL original exclusive-side input vertex.
+  All-seam function inputs force the target output into the seam,
+  and genuine OLD native root relations/functions are reflected
+  there, not artificially promoted to added piece predicates.
+* [#1097](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1097):
+  a source-support-minimal obstruction has a proper crossed
+  original source input hull, an actual outside source vertex,
+  and a Gaifman boundary-edge certificate in the connected
+  forbidden source, or an injective minimal witness and smallest
+  genuine mixed piece. The boundary edge is NOT a minimal cut.
+* [#1111](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1111):
+  when a function-closed native input hull ACTUALLY separates two
+  exterior source vertices, finite minimal-closed-separator
+  selection yields a genuine positive-width forbidden geometric
+  piece with its complete ordered source root INSIDE that hull.
+  Such separation is an explicit premise of this theorem.
+* [#1116](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1116):
+  any source input hull entirely mapped to the common seam
+  either separates selected opposite-exclusive source vertices,
+  giving the above genuine piece, or admits a Gaifman path
+  avoiding the hull to an ACTUAL fresh source seam vertex.
+* [#1121](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1121):
+  `Nonempty (CommonGlobalCanonicalLift F X A B iA iB)`
+  is EQUIVALENT to `GlobalCanonicalLiftsAgreeOn F iA iB`
+  for the same FULL native old common root. This removes
+  an API compatibility mismatch, but neither hypothesis is
+  the separate maximal-along-root property
+  `GlobalCanonicalMaximalAlong`.
+* [#1126](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1126):
+  the source path in the fresh-seam case has an actual
+  **left-exclusive-to-seam Gaifman ATTACHMENT EDGE**; the
+  seam endpoint lies outside the current closed input hull.
+* [#1145](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1145):
+  if the previously nonseparating source hull is enlarged to a
+  closed separating set, every selected genuine minimal-cut
+  root must contain at least one ORIGINAL source vertex in the
+  newly added region. This does NOT force the initially defective
+  source input tuple into the selected minimal root.
 
-These are drafts and are not counted as kernel-certified until
-their exact-head build, named permissible axioms, source-integrity
-and no-admissions checks complete and they are merged.
+The earlier, already verified
+`globalConnectedForbiddenWitness_hasPositivePiece` ALSO selects
+a genuine positive-width forbidden geometric piece directly
+from any finite connected cross-side forbidden EHN witness.
+Therefore merely re-selecting such a piece by finite saturation
+is NOT itself a solution to the image-reflection or root-collision
+problem.
+
+## Active drafts requiring independent exact-head CI
+
+* [#1125](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1125):
+  generic finite witnessed saturation of a native function-closed
+  seam hull, with strict source-vertex cardinality growth and a
+  decreasing finite root budget. A detailed, honest English
+  proof and separate mathematical assumptions live in
+  `docs/lifts-track-d-finite-seam-saturation-20261113.md`
+  in that draft branch. The former Mathlib import issue and the
+  absent EHN API import were repaired; new exact-head CI still
+  determines whether it can be merged.
+* [#1137](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1137):
+  STACKED construction of a finite source Gaifman attachment-edge
+  saturation chain ending at a closed separator and genuine
+  forbidden piece. It provides an OPTIONAL edge/closure trace:
+  the direct piece existence is already proved on main.
+  IMPORTANT: its final selected minimal root R is only shown to
+  satisfy `R ⊆ H_final`; the original defective input hull
+  need NOT be a subset of R, so the missing positive target
+  incidence may be LOST by minimal-cut selection.
+* [#1149](https://github.com/janhubicka/lean-all-those-ramsey-classes/pull/1149):
+  explicit original canonical-root COLLISION firewall: every
+  original added piece-class relation is false on noninjective
+  ordered root tuples; the shared canonical-profile equivalence
+  is therefore automatically false-iff-false at the collided
+  coordinates. This is exactly why the published flip cannot
+  be inferred from common canonical profile agreement there.
+  As a draft, it is not yet kernel-certified.
+
+Do not count any new draft as verified or merge it until full
+current-head build, permitted axiom, source contract, active-root
+inventory and admissions checks pass.
 
 ## Adversarial strategy for the remaining maximal-lift step
 
@@ -212,6 +286,16 @@ The original printed canonical added relations require injective
 root tuples; the separate folded-root construction does not
 automatically supply an ORIGINAL full common lift. Do not exchange
 those two lift predicates in an unrestricted theorem.
+
+**Audit focus after finite saturation:** Neither an original
+source hull that is properly free-decomposable nor the terminal
+closed separating hull is itself a flippable forbidden piece.
+A selected *minimal* closed separator can OMIT the original
+unliftable incidence's input coordinates, despite containing
+at least one recently added source root vertex. Explicitly
+track any required source input/output or old-relation incidence
+through later selected-piece operations before invoking the
+canonical piece-class predicate.
 
 ## Critical remaining proof obligation
 
