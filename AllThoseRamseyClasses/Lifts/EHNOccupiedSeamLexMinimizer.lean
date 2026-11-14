@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.EHNOccupiedSeamCollisionBalance
+import AllThoseRamseyClasses.Lifts.EHNLocalSeamRecolorFailure
 import Mathlib.Data.Fintype.Card
 import Mathlib.Tactic
 
@@ -166,5 +167,78 @@ theorem lexMinimalForbiddenWitness_no_EHN_occupiedSeamDownshift
   exact lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
     LeftExclusive Seam hDisjoint
     w hPrimary hSecondary g hNewEHN hStay hFixed hDrop
+
+/-- ACTUAL positive local failure certificate for a numerically
+favourable occupied seam target recolouring at a genuine
+support-first/collision-second minimal forbidden EHN witness.
+
+We do NOT require d to be globally unused. If the finite SOURCE
+d-fibre (apart from a) is smaller than the old c-fibre (apart from a),
+the exact ordered source-pair cardinal identity makes every
+EHN-preserving same-source recolouring impossible. The verified
+one-vertex original-language locality theorem then produces a
+GENUINE positive old-relation failure touching a, or an entire
+set-valued native-function incidence failure touching a as an
+input OR output, or a failed FULL irreducible source test touching a.
+
+This is a new occupied-fibre source obstruction diagnostic, not
+a construction of an EHN flip or the unrestricted Claim 2. -/
+theorem lexMinimalForbiddenWitness_occupiedSeamDownshift_has_localNativeFailure
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UT : Type} {Target : Structure L UT}
+    (LeftExclusive Seam : Set UT)
+    (hDisjoint : Disjoint LeftExclusive Seam)
+    (w : ForbiddenEHNWitness F Target)
+    (hPrimary : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount LeftExclusive ≤
+        v.sourceSupportCount LeftExclusive)
+    (hSecondary : ∀ v : ForbiddenEHNWitness F Target,
+      v.sourceSupportCount LeftExclusive =
+        w.sourceSupportCount LeftExclusive →
+      w.seamCollisionPairCount Seam ≤
+        v.seamCollisionPairCount Seam)
+    [Fintype w.Carrier] [DecidableEq w.Carrier] [DecidableEq UT]
+    (a : w.Carrier) (d : UT)
+    (hOldSeam : w.toTarget a ∈ Seam)
+    (hDestSeam : d ∈ Seam)
+    (hLighter :
+      ((Finset.univ.erase a).filter
+        (fun x : w.Carrier => w.toTarget x = d)).card <
+      ((Finset.univ.erase a).filter
+        (fun x : w.Carrier => w.toTarget x = w.toTarget a)).card) :
+    (∃ (R : L.RelSymbol)
+        (xs : Fin (L.relArity R) → w.Carrier),
+      w.source.rel R xs ∧
+      ¬ Target.rel R
+        ((fun x : w.Carrier => if x = a then d
+          else w.toTarget x) ∘ xs) ∧
+      ∃ i : Fin (L.relArity R), xs i = a) ∨
+    (∃ (G : L.FuncSymbol)
+        (xs : Fin (L.funcArity G) → w.Carrier)
+        (out : w.Carrier),
+      out ∈ w.source.func G xs ∧
+      (fun x : w.Carrier => if x = a then d
+        else w.toTarget x) out ∉
+        Target.func G
+          ((fun x : w.Carrier => if x = a then d
+            else w.toTarget x) ∘ xs) ∧
+      (out = a ∨ ∃ i : Fin (L.funcArity G), xs i = a)) ∨
+    (∃ (X : Type) (E : Structure L X),
+      E.Irreducible ∧
+      ∃ e : Structure.Embedding E w.source,
+        (∃ x : X, e x = a) ∧
+        ¬ ∃ ge : Structure.Embedding E Target,
+          ∀ x : X, ge x =
+            (fun z : w.Carrier => if z = a then d
+              else w.toTarget z) (e x)) := by
+  have hNotEHN :
+      ¬ w.source.IsEHNHomomorphismEmbedding Target
+        (fun x : w.Carrier => if x = a then d else w.toTarget x) := by
+    intro hg
+    exact lexMinimalForbiddenWitness_no_EHN_occupiedSeamDownshift
+      LeftExclusive Seam hDisjoint w hPrimary hSecondary
+      a d hOldSeam hDestSeam hLighter hg
+  exact ehn_oneVertexRecolor_failure_has_localNativeWitness
+    w.source Target w.toTarget w.homEmbedding a d hNotEHN
 
 end AllThoseRamseyClasses.Lifts
