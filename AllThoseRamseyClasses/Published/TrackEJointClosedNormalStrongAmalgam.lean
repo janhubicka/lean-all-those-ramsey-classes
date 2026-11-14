@@ -74,6 +74,19 @@ def HybridJointTargetClosed
   IsUClosed (L.splitMaskJointClosureRules Parts) C ∧
   HybridJointTargetNormal C
 
+/-- Exact U-substructures of a CLOSED normal joint relational
+Picture are again closed and normal, on the SAME induced vertex set.
+Arbitrary weak subsets still retain normality but need not be
+U-closed: relative closure is the essential hypothesis here. -/
+theorem HybridJointTargetClosed.induce_of_USubstructure
+    {V : Type w}
+    {C : RelStructure (L.splitMaskJointRootLanguage Parts) V}
+    (h : HybridJointTargetClosed C)
+    (S : Set V)
+    (hS : IsUSubstructure (L.splitMaskJointClosureRules Parts) C S) :
+    HybridJointTargetClosed (C.induce S) :=
+  ⟨h.1.induce_of_USubstructure S hS, h.2.induce S⟩
+
 /-- Full free amalgamation preserves both genuine joint U-closedness
 and the EXACT hybrid target-normality conditions when all three
 inputs are U-closed and normal. The relative U-closed seam
@@ -175,5 +188,36 @@ theorem HybridJointTargetClosed.exists_finite_freeAmalgam
   exact ⟨W, hFinite, Whole, iL, iR, hFree,
     HybridJointTargetClosed.freeAmalgam
       hFree hPos hRoot hLeft hRight⟩
+
+/-- The finite free-amalgam witness can be certified with
+both canonical side embeddings relatively joint-U-closed in
+the U-CLOSED target. Thus the actual diagram belongs to the
+category of closed normal joint targets and closed full
+embeddings on BOTH legs, not merely on the input root. -/
+theorem HybridJointTargetClosed.exists_finite_closedAmalgam
+    {H E F : Type w} [Finite E] [Finite F]
+    (Root : RelStructure (L.splitMaskJointRootLanguage Parts) H)
+    (Left : RelStructure (L.splitMaskJointRootLanguage Parts) E)
+    (Right : RelStructure (L.splitMaskJointRootLanguage Parts) F)
+    (sL : Embedding Root Left) (sR : Embedding Root Right)
+    (hPos : L.PositiveFuncArity)
+    (hRoot : HybridJointTargetClosed Root)
+    (hLeft : HybridJointTargetClosed Left)
+    (hRight : HybridJointTargetClosed Right) :
+    ∃ (W : Type w), Finite W ∧
+      ∃ (Whole : RelStructure (L.splitMaskJointRootLanguage Parts) W)
+        (iL : Embedding Left Whole) (iR : Embedding Right Whole),
+        IsFreeAmalgam sL sR iL iR ∧
+        HybridJointTargetClosed Whole ∧
+        IsUSubstructure (L.splitMaskJointClosureRules Parts)
+          Whole (Set.range iL) ∧
+        IsUSubstructure (L.splitMaskJointClosureRules Parts)
+          Whole (Set.range iR) := by
+  obtain ⟨W, hFinite, Whole, iL, iR, hFree, hWhole⟩ :=
+    HybridJointTargetClosed.exists_finite_freeAmalgam
+      Root Left Right sL sR hPos hRoot hLeft hRight
+  exact ⟨W, hFinite, Whole, iL, iR, hFree, hWhole,
+    iL.range_isUSubstructure hLeft.1 hWhole.1,
+    iR.range_isUSubstructure hRight.1 hWhole.1⟩
 
 end StructuralRamsey.RelStructure
