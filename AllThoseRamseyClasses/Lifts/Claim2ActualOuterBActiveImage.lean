@@ -50,7 +50,10 @@ theorem fullNativeSelectedOuter_Bactive_carrier_eq_retained_image
       fullNativeSelectedOuter_Bactive_unique_retained_source
         iOldE iNewE iNewQ OldPart NewPart f flip BActive
         hCarrier hNoBFromQ hEAgree w hw.1 hw.2
-    exact ⟨e, ⟨he.2.1, he.2.2⟩, he.1⟩
+    have hOldB : f (iOldE e) ∈ BActive := by
+      rw [he.2.2]
+      exact hw.2
+    exact ⟨e, ⟨he.2.1, hOldB⟩, he.1⟩
   · rintro ⟨e, he, rfl⟩
     exact fullNativeSelectedOuter_retained_Bactive_survives
       iOldE iNewE iNewQ OldPart NewPart f flip BActive
