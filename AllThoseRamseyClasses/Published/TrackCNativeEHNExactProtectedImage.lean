@@ -149,7 +149,7 @@ theorem genuineTagged2019_EHN_irredTest_protected_by_weakCompletion
     injective := by
       intro x y hxy
       apply Subtype.ext
-      exact congrArg Subtype.val hxy
+      exact congrArg (fun z : S => z.1) hxy
     map_rel_iff := by intro R xs; rfl
   }
   obtain ⟨j, hj⟩ :=
