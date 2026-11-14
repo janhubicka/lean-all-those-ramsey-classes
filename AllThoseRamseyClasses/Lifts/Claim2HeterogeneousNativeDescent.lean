@@ -117,16 +117,25 @@ theorem claim2NativeChain_preserves_originalProfile
   have hBase : claim2NativeOuterProfile F Target Left Right
       jLeft jRight X iLeft iRight hn initial initial :=
     ⟨(fun _ => rfl), rfl, (fun _ => rfl), rfl⟩
+  have hPreserves :
+      ∀ ⦃s t : Claim2NativeGeometricState F Target Left Right
+          jLeft jRight X iLeft iRight n⦄,
+        claim2NativeGeometricStep F Target Left Right
+          jLeft jRight X iLeft iRight hn s t →
+        claim2NativeOuterProfile F Target Left Right
+          jLeft jRight X iLeft iRight hn initial s →
+        claim2NativeOuterProfile F Target Left Right
+          jLeft jRight X iLeft iRight hn initial t := by
+    intro s t hStep hProfile
+    exact claim2NativeStep_preserves_originalProfile F Target
+      Left Right jLeft jRight X iLeft iRight hn
+      initial s t hStep hProfile
   exact conditionalSelectedQChain_preserves
     (step := claim2NativeGeometricStep F Target Left Right
       jLeft jRight X iLeft iRight hn)
     (good := claim2NativeOuterProfile F Target Left Right
       jLeft jRight X iLeft iRight hn initial)
-    (fun _s _t hStep hProfile =>
-      claim2NativeStep_preserves_originalProfile F Target
-        Left Right jLeft jRight X iLeft iRight hn
-        initial _s _t hStep hProfile)
-    hChain hBase
+    hPreserves hChain hBase
 
 /-- Genuine finite geometric-source descent, including the full
 original profile at its endpoint. Unconditionally *relative to an
