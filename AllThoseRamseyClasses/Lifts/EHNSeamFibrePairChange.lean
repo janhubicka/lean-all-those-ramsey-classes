@@ -149,4 +149,49 @@ theorem seamFibre_oneVertex_removedCollision_iff
         exact hDifferent (hfu.symm.trans hEq')
       exact ⟨hOld, hNewNot⟩
 
+/-- The ordered incident pairs determined by a set of OTHER
+original source vertices: both orientations of every pair (a,u).
+The explicit exclusion a ∉ S makes the two images disjoint. -/
+def originalSourceOrderedIncidentPairs
+    {V : Type} [DecidableEq V] (a : V) (S : Finset V) :
+    Finset (V × V) :=
+  (S.image (fun u => (a, u))) ∪
+    (S.image (fun u => (u, a)))
+
+/-- The exact factor 2 for ordered incident original-source pairs.
+This will supply the cardinal step in the full finite seam-fibre
+balance formula, without treating unordered pairs as ordered. -/
+theorem originalSourceOrderedIncidentPairs_card
+    {V : Type} [DecidableEq V]
+    (a : V) (S : Finset V) (ha : a ∉ S) :
+    (originalSourceOrderedIncidentPairs a S).card = 2 * S.card := by
+  classical
+  have hDisjoint :
+      Disjoint (S.image (fun u => (a, u)))
+        (S.image (fun u => (u, a))) := by
+    apply Finset.disjoint_left.mpr
+    intro p hpLeft hpRight
+    obtain ⟨u, hu, hpu⟩ := Finset.mem_image.mp hpLeft
+    obtain ⟨v, _hv, hpv⟩ := Finset.mem_image.mp hpRight
+    have hpEq : (a, u) = (v, a) := hpu.trans hpv.symm
+    have hua : u = a := congrArg Prod.snd hpEq
+    exact ha (hua ▸ hu)
+  have hLeftInjective : Function.Injective
+      (fun u : V => (a, u)) := by
+    intro u v huv
+    exact congrArg Prod.snd huv
+  have hRightInjective : Function.Injective
+      (fun u : V => (u, a)) := by
+    intro u v huv
+    exact congrArg Prod.fst huv
+  calc
+    (originalSourceOrderedIncidentPairs a S).card =
+        (S.image (fun u => (a, u))).card +
+          (S.image (fun u => (u, a))).card :=
+      Finset.card_union_of_disjoint hDisjoint
+    _ = S.card + S.card := by
+      rw [Finset.card_image_of_injective S hLeftInjective,
+        Finset.card_image_of_injective S hRightInjective]
+    _ = 2 * S.card := by omega
+
 end AllThoseRamseyClasses.Lifts
