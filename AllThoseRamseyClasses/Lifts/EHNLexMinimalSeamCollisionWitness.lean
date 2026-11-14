@@ -260,7 +260,7 @@ ordered seam-collision source pairs therefore STRICTLY drops.
 This is a concrete combinatorial improvement, not a claim that
 the recoloured map preserves EHN irreducible-test fullness. -/
 theorem finiteFreshSeamRecolor_strictlyReducesCollisionPairs
-    {V UT : Type} [Finite V]
+    {V UT : Type} [Finite V] [DecidableEq V]
     (f : V → UT) (Seam : Set UT)
     (a b : V) (hab : a ≠ b)
     (hSame : f a = f b)
@@ -365,6 +365,7 @@ theorem lexMinimalForbiddenWitness_no_freshSeamEHN_oneVertexSplit
         w.sourceSupportCount LeftExclusive →
       w.seamCollisionPairCount Seam ≤
         v.seamCollisionPairCount Seam)
+    [DecidableEq w.Carrier]
     (a b : w.Carrier) (hab : a ≠ b)
     (hSame : w.toTarget a = w.toTarget b)
     (hSeam : w.toTarget a ∈ Seam)
