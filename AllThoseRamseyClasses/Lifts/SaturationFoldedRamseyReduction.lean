@@ -70,6 +70,56 @@ def BoundedSaturationFoldedSparseControls
         (FiniteNamedTraceShadow
           (boundedSaturationNamedFamily L F N) C) N
 
+/-- Adversarial gate for the sparse-control contract.
+
+An ambient ordered Ramsey arrow A→(B)^A together with exact local
+weak completions on the control C forces B's NATIVE shadow itself
+to be forbidden-free. This is because the Ramsey arrow supplies
+a genuine full embedding of B into C (take any constant colouring),
+while local completions force the old shadow of C to avoid F.
+
+Consequently a sparse-control condition quantified over ARBITRARY
+forbidden B would be inconsistent for nonempty forbidden families.
+The corrected condition above requires an actual admissible
+maximal-trace right pattern. -/
+theorem forbiddenFree_right_of_ambientRelativeCompleteArrow
+    (L : Language)
+    (Family : FiniteNamedFunctionalSources L)
+    {VA VB VC : Type}
+    [LinearOrder VA] [LinearOrder VB] [LinearOrder VC]
+    [Finite VC]
+    (A : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VA)
+    (B : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VB)
+    (C : Structure
+      (functionalLiftLanguageBig L Family.ComponentTag
+        (fun tag => tag.width Family)) VC)
+    (κ : Type v) [Nonempty κ]
+    (hArrow : Structure.Arrow
+      A.withLinearOrder B.withLinearOrder C.withLinearOrder κ)
+    (N : ℕ)
+    (hBound : ∀ i : Family.Index,
+      Nat.card (Family.Carrier i) ≤ N)
+    (hLocal : FiniteNamedAmbientRelativeWeakCompletions
+      Family (FiniteNamedTraceShadow Family C) N) :
+    AvoidsFiniteNamedEHN Family (FiniteNamedTraceShadow Family B) := by
+  classical
+  have hAvoidC : AvoidsFiniteNamedEHN Family
+      (FiniteNamedTraceShadow Family C) :=
+    avoidsFiniteNamedEHN_of_ambientRelativeWeakCompletions
+      Family (FiniteNamedTraceShadow Family C) N hBound hLocal
+  obtain ⟨bC, _hMono⟩ :=
+    hArrow (fun _ => Classical.choice (inferInstance : Nonempty κ))
+  let eShadow : Structure.Embedding
+      (FiniteNamedTraceShadow Family B)
+      (FiniteNamedTraceShadow Family C) :=
+    functionalShadowBigEmbedding L Family.ComponentTag
+      (fun tag => tag.width Family) bC.linearOrderReduct
+  exact avoidsFiniteNamedEHN_of_embedding Family eShadow hAvoidC
+
 /-- The full bounded saturated folded age is ORDERED RAMSEY under
 the one explicit ambient relative sparse-control construction.
 Its target is a REAL finite age member, with a chosen external
