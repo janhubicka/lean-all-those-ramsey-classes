@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "exhaustive bounded finite tests, not Lean certification",
+  "counts": {
+    "models": 101,
+    "maps": 151029,
+    "ehn_maps": 5815,
+    "range_factorizations": 5815,
+    "full_range_inclusions": 5815,
+    "support_inequalities": 44797,
+    "composition_checks": 1453,
+    "surjective_composition_checks": 273,
+    "forbidden_right_exclusions": 30,
+    "loop_caveat_checks": 2,
+    "positive_two_colour_controls": 8
+  },
+  "script_sha256": "0835ceda11c4306ba9b23b88a4520d867ab818d5ba057965335fe5315c5827ea"
+}

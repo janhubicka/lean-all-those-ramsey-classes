@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.SaturationFoldedRamseyContractAudit
+
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturationFolded_sparseControls_iff_orderedRamsey
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturationFolded_oneColourControl
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturationFolded_sparseControls_of_emptyFamily
