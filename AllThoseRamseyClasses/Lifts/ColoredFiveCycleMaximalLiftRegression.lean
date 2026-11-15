@@ -67,7 +67,7 @@ def rightIn : Fin 2 → Fin 4 := ![0, 3]
 /-- Pair incidence in the complete relational Gaifman graph. -/
 def adjacent {n : ℕ} (A : Table n) (x y : Fin n) : Bool :=
   A.red x y || A.red y x || A.blue x y || A.blue y x ||
-    Finset.univ.any (fun z =>
+    (Finset.univ : Finset (Fin n)).toList.any (fun z =>
       A.ternary x y z || A.ternary x z y || A.ternary y x z ||
       A.ternary y z x || A.ternary z x y || A.ternary z y x)
 
@@ -164,10 +164,10 @@ instance (q : Fin 5 → Fin 5) : Decidable (canonicalPartition q) := by
 
 /-- Exact source-generated relational image. Unused labels are isolated. -/
 def quotient (q : Fin 5 → Fin 5) : Table 5 where
-  red := fun x y => (Finset.univ.product Finset.univ).any
+  red := fun x y => ((Finset.univ : Finset (Fin 5)).product Finset.univ).toList.any
     (fun p : Fin 5 × Fin 5 =>
       decide (q p.1 = x ∧ q p.2 = y) && cycle.red p.1 p.2)
-  blue := fun x y => (Finset.univ.product Finset.univ).any
+  blue := fun x y => ((Finset.univ : Finset (Fin 5)).product Finset.univ).toList.any
     (fun p : Fin 5 × Fin 5 =>
       decide (q p.1 = x ∧ q p.2 = y) && cycle.blue p.1 p.2)
   ternary := fun _ _ _ => false
