@@ -194,4 +194,65 @@ theorem boundedSaturationFoldedAge_strongAmalgamation
   exact finiteNamedMaximalTraceAge_strongAmalgamation
     (boundedSaturationNamedFamily L F N) X Y Z hY hZ fY fZ
 
+/-- Precompactness of the alternative saturated folded age on
+each fixed old native structure: its complete added-relation fibre
+is FINITE, including arbitrary native partial functions. -/
+theorem boundedSaturationFoldedAge_fibre_finite
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    {W : Type} [Finite W] (A : Structure L W) :
+    Finite (FiniteNamedMaximalTraceFibre
+      (boundedSaturationNamedFamily L F N) A) :=
+  finiteNamedMaximalTraceFibre_finite
+    (boundedSaturationNamedFamily L F N) A
+
+/-- The precompact expansion fibre is NONEMPTY exactly over the
+ORIGINAL forbidden-free native structures, provided all original
+finite forbidden witnesses obey the uniform vertex bound N. -/
+theorem boundedSaturationFoldedAge_fibre_nonempty_iff_original
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    (hBound : ∀ {V : Type} (A : Structure L V),
+      F A → Nat.card V ≤ N)
+    {W : Type} [Finite W] (A : Structure L W) :
+    Nonempty (FiniteNamedMaximalTraceFibre
+      (boundedSaturationNamedFamily L F N) A) ↔
+        AvoidsGlobalFunctionalEHN F A := by
+  exact (finiteNamedMaximalTraceFibre_nonempty_iff_avoids
+    (boundedSaturationNamedFamily L F N) A).trans
+    (avoidsBoundedSaturationNamed_iff_original L F N hBound A)
+
+/-- Actual JEP of the alternative saturated finite-family folded
+age when the original finite forbidden sources are connected and
+nonempty and the native language has POSITIVE arities. Nullary
+native compatibility is NOT silently assumed. -/
+theorem boundedSaturationFoldedAge_jointEmbedding_positiveArity
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    (hArity : NativeLanguagePositiveArity L)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    {VY VZ : Type}
+    (Y : Structure (boundedSaturationFoldedLanguage L F N) VY)
+    (Z : Structure (boundedSaturationFoldedLanguage L F N) VZ)
+    (hY : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Y)
+    (hZ : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Z) :
+    ∃ (VT : Type)
+      (T : Structure (boundedSaturationFoldedLanguage L F N) VT),
+      IsFiniteNamedMaximalTrace
+        (boundedSaturationNamedFamily L F N) T ∧
+        ∃ (jY : Structure.Embedding Y T)
+          (jZ : Structure.Embedding Z T), True := by
+  exact finiteNamedMaximalTraceAge_JEP_connected_positiveArity
+    (boundedSaturationNamedFamily L F N)
+    hArity (boundedSaturationNamed_connectedNonempty L F N hConnected)
+    Y Z hY hZ
+
 end AllThoseRamseyClasses.Lifts
