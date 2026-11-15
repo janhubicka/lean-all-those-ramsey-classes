@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2NoTwoSidedRootCaptureAllWidths
+
+#print axioms AllThoseRamseyClasses.Lifts.geometric_oldRoot_reachable_from_oldOpposite_after_innerCut
+#print axioms AllThoseRamseyClasses.Lifts.geometric_no_twoSidedOldRootCapture_of_newRoot_inside_oldPiece
