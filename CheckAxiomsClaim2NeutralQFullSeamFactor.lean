@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2NeutralQFullSeamFactor
+
+#print axioms AllThoseRamseyClasses.Lifts.weakFree_noExclusive_isSharedRoot
+#print axioms AllThoseRamseyClasses.Lifts.fullNativePiece_weakEHN_factors_intoFullCommonRoot
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeRootedPiece_Aneutral_noB_factors_intoFullCommonRoot
