@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2InjectiveMixedAllWidthsFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_injective_mixed_allWidths_hasActualFlip
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_injective_nonemptyMixed_allWidths_hasActualFlip
