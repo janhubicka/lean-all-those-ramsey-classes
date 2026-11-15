@@ -146,4 +146,52 @@ theorem boundedSaturationNamed_connectedNonempty
     ((boundedSaturationNamedFamily L F N).finiteCarrier i)
     i.2.2
 
+/-- The alternative all-closed-component folded signature for a
+finite named list of all bounded saturated native structures.
+This is a DIFFERENT language from the original 2019 global
+minimal-separator canonical lift. -/
+abbrev boundedSaturationFoldedLanguage
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol] :=
+  functionalLiftLanguageBig L
+    (boundedSaturationNamedFamily L F N).ComponentTag
+    (fun tag => tag.width (boundedSaturationNamedFamily L F N))
+
+/-- Real STRONG amalgamation for the hereditary maximal-trace age
+of the alternative finite-NAMED saturated folded expansion.
+
+This is a genuine specialization of the separately verified
+finite-named strong-AP theorem. The previous exact-reduct theorem
+identifies this age's old-language shadow with Forb_EHN(F) provided
+the original finite forbidden sources have the uniform bound N.
+It is NOT the printed 2019 minimal-root lift theorem. -/
+theorem boundedSaturationFoldedAge_strongAmalgamation
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    {VX VY VZ : Type}
+    (X : Structure (boundedSaturationFoldedLanguage L F N) VX)
+    (Y : Structure (boundedSaturationFoldedLanguage L F N) VY)
+    (Z : Structure (boundedSaturationFoldedLanguage L F N) VZ)
+    (hY : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Y)
+    (hZ : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Z)
+    (fY : Structure.Embedding X Y)
+    (fZ : Structure.Embedding X Z) :
+    ∃ (VT : Type)
+      (T : Structure (boundedSaturationFoldedLanguage L F N) VT),
+      IsFiniteNamedMaximalTrace
+        (boundedSaturationNamedFamily L F N) T ∧
+        ∃ (jY : Structure.Embedding Y T)
+          (jZ : Structure.Embedding Z T),
+          ∀ y : VY, ∀ z : VZ,
+            jY y = jZ z ↔
+              ∃ x : VX, y = fY x ∧ z = fZ x := by
+  exact finiteNamedMaximalTraceAge_strongAmalgamation
+    (boundedSaturationNamedFamily L F N) X Y Z hY hZ fY fZ
+
 end AllThoseRamseyClasses.Lifts
