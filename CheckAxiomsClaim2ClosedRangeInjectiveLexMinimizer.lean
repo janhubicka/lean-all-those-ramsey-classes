@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ClosedRangeInjectiveLexMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_injectiveReplacement_allSupport_of_closedRange
+#print axioms AllThoseRamseyClasses.Lifts.exists_injective_global_lex_minimum_forbiddenEHN_of_closedRange
