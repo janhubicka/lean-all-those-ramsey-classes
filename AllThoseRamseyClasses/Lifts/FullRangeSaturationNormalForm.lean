@@ -77,7 +77,9 @@ theorem avoidsOriginalEHN_iff_noFullSaturatedSubstructure
   constructor
   · intro hAvoid hFull
     rcases hFull with ⟨V, Source, hSat, ⟨e⟩⟩
-    have hSatAvoid := (avoids_fullRangeEHNSaturation_iff F Target).2 hAvoid
+    have hSatAvoid :
+        AvoidsGlobalFunctionalEHN (FullRangeEHNSaturation F) Target :=
+      (avoids_fullRangeEHNSaturation_iff F Target).2 hAvoid
     exact hSatAvoid Source (finite_of_fullRangeEHNSaturation F Source hSat)
       hSat e e.isEHNHomomorphismEmbedding
   · intro hNoFull V Source hFinite hF f hf
