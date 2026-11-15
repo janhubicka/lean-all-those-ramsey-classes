@@ -68,15 +68,45 @@ For i<k choose the test Q_k: it is compatible with P_k, not with P_i. Hence P_i 
 
 There are infinitely many such P_i. Consequently GlobalFunctionalPieceClass G 1 is infinite, violating GlobalFunctionalPieceRegular G at width 1.
 
-## Important hypothesis distinction: printed tuple-image closure
+## Stronger version satisfying the printed image-closure hypothesis
 
-**This original F is NOT claimed to satisfy the extra image-closure hypothesis of the printed 2019 theorem.** In fact, the basic fibre-collapse map F_i -> H_i is already tuple-surjective in the relational sense: every edge of H_i occurs as an image of an F_i edge. Yet H_i has no full embedded copy of a source F_k. Any connected F_k has both red and blue edges and vertex-connectivity k>=3; an induced copy inside the one-cut wedge H_i would have to cross x and hence have a cut vertex, while a copy confined entirely to one of the sides would lack one of the colours. Thus this F fails the printed closure condition.
+The original TWO-BINARY version above is a counterexample to unconditional preservation of regularity but is NOT printed-image-closed: the collapse F_i -> H_i is tuple-surjective EHN, yet H_i has no full embedded F_k (the wedge cut would contradict its vertex connectivity).
 
-Therefore the example refutes the *unqualified* implication
+A simple enhancement gives a counterexample **even with printed image closure**. Extend the language by ONE unary relation M. Mark precisely the fibre above x in every F_i. Add one more forbidden structure F_bullet, consisting of a SINGLE marked vertex (M true), with no red or blue loops. Let
 
-    regular(F) -> regular(Sat_EHN(F)),
+    F^M = { F_bullet } union { F_i^M : i>=3 }.
 
-including under connectedness and a finite binary relational language. It does NOT settle the stronger implication with the additional premise that F is already closed under the *printed tuple-surjective image condition*. That sharpened question remains separate. The independently verified concrete maximal-lift obstruction in parent PR #1228 concerns the printed image-closure condition and should not be conflated with this regularity counterexample.
+Every member is finite, connected and loopless. The unary mark changes no Gaifman edges, so the old connectivity lower bound i for F_i^M still holds, and F_bullet has no proper separating pieces. Thus F^M is regular at each positive width by the same finite-index argument.
+
+### Exact printed tuple-surjective closure
+
+Let f:A->B be ANY genuine EHN map from A in F^M; tuple-surjectivity is not needed. Every A has a marked vertex v whose FULL induced singleton is F_bullet. A singleton is an irreducible full source substructure. Therefore f restricted to {v} is a FULL embedding, preserving M and reflecting both false coloured loops. Hence B contains an induced FULL copy of F_bullet, which is itself in F^M.
+
+Thus F^M satisfies the exact printed condition: every tuple-surjective EHN image of an original forbidden member contains a full forbidden substructure. In fact the conclusion holds for any EHN target map.
+
+### The full-range saturation still has the threshold
+
+Let H_i^M and H_(i,j)^M mark ONLY their common root x. The fibre-collapse map F_i^M -> H_i^M is still vertex-surjective EHN: irreducible source cliques cannot use two vertices from one independent fibre, and the unary mark is exactly the pullback of the target mark.
+
+For j<=i, the blue folding walk C_(2i+1) -> C_(2j+1) can be chosen so that it reaches the marked vertex x ONLY at its start and end. Explicitly, number the target cycle vertices v_0=x,v_1,...,v_(2j). Starting from v_0, step to v_1, make (i-j) immediate two-step backtracks v_1 -> v_2 -> v_1, then traverse v_1 -> v_2 -> ... -> v_(2j) -> v_0. This is a closed surjective walk of length
+
+    1 + 2(i-j) + 2j = 2i+1,
+
+with no internal occurrence of v_0. Consequently the rooted map H_i^M -> H_(i,j)^M preserves and REFLECTS unary M on all irreducible singleton tests, as well as all complete two-colour clique tests. Composing with the blow-up collapse gives vertex-surjective EHN F_i^M -> H_(i,j)^M.
+
+Conversely, if F_k^M -> H_(i,j)^M is EHN, the source full red clique K_k forces k<=i and the source blue odd cycle C_(2k+1) forces j<=k exactly as in the binary proof. F_bullet cannot surject to H_(i,j)^M because the latter has i+2j>1 vertices. Therefore
+
+    H_(i,j)^M in Sat_EHN(F^M) iff j<=i.
+
+Each H_i^M is saturated and has the same one-root minimal cut, now with M true on that root. The red K_i rooted pieces P_i^M and blue C_(2j+1) rooted tests Q_j^M have *identical full marked singleton roots*. Their genuine global incompatibility profiles again obey the strict threshold j<=i, producing infinitely many width-one quotient classes.
+
+**Conclusion:** F^M is REGULAR, CONNECTED and PRINTED TUPLE-SURJECTIVE IMAGE-CLOSED, over a finite relational language with two binary colours and one unary mark; nonetheless Sat_EHN(F^M) is NOT REGULAR.
+
+### Non-irredundancy caveat
+
+This enhanced family is intentionally **redundant**: F_bullet fully embeds into every F_i^M. Thus its forbidden-free shadow class is simply the class containing NO M-marked vertex. Neither the printed definition of a regular forbidden family nor the printed image-closure hypothesis requires F to be an antichain of minimal obstructions; this is a valid counterexample to regularity preservation under those literal premises.
+
+It does NOT refute the printed main theorem for this trivial shadow, and it does NOT settle what happens for **irredundant** regular image-closed families. Any stronger preservation statement would need an explicit irredundancy/minimality (or other suitable) hypothesis, which should not be silently inserted into the original theorem.
 
 ## Reproducibility, formalization and scope
 
