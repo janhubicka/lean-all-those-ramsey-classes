@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullRangeSaturationConnected
+
+#print axioms AllThoseRamseyClasses.Lifts.gaifmanConnected_of_surjectiveEHN
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_connectedNonempty
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_nativeFiniteJEP_connected_positiveArity
