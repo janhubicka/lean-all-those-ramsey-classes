@@ -129,7 +129,7 @@ theorem geometricSelectedQ_globalAMinimum_iff_nonrootAfree
       · intro h
         exact (hAllQNonrootAfree q h.1) h.2
       · intro h
-        exact False.elim (Set.not_mem_empty q h)
+        simp at h
     have hPrivateZero :
         Nat.card {q : Q.Carrier //
           q ∉ Set.range Q.rootEmbedding ∧
