@@ -104,7 +104,7 @@ Each H_i^M is saturated and has the same one-root minimal cut, now with M true o
 
 ### Non-irredundancy caveat
 
-This enhanced family is intentionally **redundant**: F_bullet fully embeds into every F_i^M. Thus its forbidden-free shadow class is simply the class containing NO M-marked vertex. Neither the printed definition of a regular forbidden family nor the printed image-closure hypothesis requires F to be an antichain of minimal obstructions; this is a valid counterexample to regularity preservation under those literal premises.
+This enhanced family is intentionally **redundant**: F_bullet fully embeds into every F_i^M. Thus its forbidden-free shadow class is precisely `Forb_EHN({F_bullet})`: a structure contains **no marked vertex whose induced singleton has both red and blue loops absent**. If ambient structures are assumed loopless, this simplifies to no M-marked vertex; however, in the unrestricted relational signature **marked vertices with a red or blue loop may be allowed** and must not be silently excluded. Neither the printed definition of a regular forbidden family nor the printed image-closure hypothesis requires F to be an antichain of minimal obstructions; this is a valid counterexample to regularity preservation under those literal premises.
 
 It does NOT refute the printed main theorem for this trivial shadow, and it does NOT settle what happens for **irredundant** regular image-closed families. Any stronger preservation statement would need an explicit irredundancy/minimality (or other suitable) hypothesis, which should not be silently inserted into the original theorem.
 
