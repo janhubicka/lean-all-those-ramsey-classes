@@ -63,8 +63,8 @@ theorem seamFibre_oneVertex_createdCollision_iff
         have hOldSeam : f u ∈ Seam := by
           simpa [originalSourceSeamOneVertexRecolor, hUa] using hNewSeam
         exact False.elim (hOldNot ⟨huv, hOldEq, hOldSeam⟩)
-  · rintro (⟨rfl, hvA, hfv⟩ | ⟨rfl, huA, hfu⟩)
-    · have hNewEq :
+  · rintro (⟨hUa, hvA, hfv⟩ | ⟨hVa, huA, hfu⟩)
+    · subst u have hNewEq :
           originalSourceSeamOneVertexRecolor f a t a =
             originalSourceSeamOneVertexRecolor f a t v := by
         simp [originalSourceSeamOneVertexRecolor, hvA, hfv]
@@ -76,7 +76,8 @@ theorem seamFibre_oneVertex_createdCollision_iff
         rintro ⟨_, hEq, _⟩
         exact hDifferent (hEq.trans hfv)
       exact ⟨⟨hvA.symm, hNewEq, hNewSeam⟩, hOldNot⟩
-    · have hNewEq :
+    · subst v
+      have hNewEq :
           originalSourceSeamOneVertexRecolor f a t u =
             originalSourceSeamOneVertexRecolor f a t a := by
         simp [originalSourceSeamOneVertexRecolor, huA, hfu]
@@ -125,8 +126,8 @@ theorem seamFibre_oneVertex_removedCollision_iff
             originalSourceSeamOneVertexRecolor f a t u ∈ Seam := by
           simpa [originalSourceSeamOneVertexRecolor, hUa] using hOldSeam
         exact False.elim (hNewNot ⟨huv, hNewEq, hNewSeam⟩)
-  · rintro (⟨rfl, hvA, hfv⟩ | ⟨rfl, huA, hfu⟩)
-    · have hOld : originalSourceSeamCollision f Seam a v :=
+  · rintro (⟨hUa, hvA, hfv⟩ | ⟨hVa, huA, hfu⟩)
+    · subst u have hOld : originalSourceSeamCollision f Seam a v :=
         ⟨hvA.symm, hfv.symm, hSourceSeam⟩
       have hNewNot :
           ¬ originalSourceSeamCollision
@@ -136,7 +137,8 @@ theorem seamFibre_oneVertex_removedCollision_iff
           simpa [originalSourceSeamOneVertexRecolor, hvA] using hEq
         exact hDifferent (hfv.symm.trans htEq.symm)
       exact ⟨hOld, hNewNot⟩
-    · have hOld : originalSourceSeamCollision f Seam u a := by
+    · subst v
+      have hOld : originalSourceSeamCollision f Seam u a := by
         refine ⟨huA, hfu, ?_⟩
         rw [hfu]
         exact hSourceSeam
