@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackECoordinated2019InternalBCover
+
+#print axioms AllThoseRamseyClasses.Published.coordinated2019_profile_sparse_witness_with_INTERNAL_B_coverage
