@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2SplitOldRootIndices
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_twoSidedOldRootCapture_distinctIndices
+#print axioms AllThoseRamseyClasses.Lifts.claim2_widthOne_no_twoSidedOldRootCapture

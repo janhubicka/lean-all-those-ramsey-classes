@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNLocalSeamRecolorFailure
+
+#print axioms AllThoseRamseyClasses.Lifts.ehn_oneVertexRecolor_failure_has_localNativeWitness
+#print axioms AllThoseRamseyClasses.Lifts.lexMinimalForbiddenWitness_freshSeamSplit_has_localNativeFailure
+#print axioms AllThoseRamseyClasses.Lifts.ehn_map_changedAtOneVertex_iff_localNativeVerification

@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SmallerMixedNestedBoundary
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_smallerRoot_noCapture_proper_and_localBoundaryInj

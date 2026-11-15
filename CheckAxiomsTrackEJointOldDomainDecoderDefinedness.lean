@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackEJointOldDomainDecoderDefinedness
+
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.oldDomain_iff_hasWholeValue
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.oldDecoder_none_iff_noDomain

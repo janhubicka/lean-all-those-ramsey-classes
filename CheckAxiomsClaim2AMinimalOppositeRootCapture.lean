@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2AMinimalOppositeRootCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_globalAMinimal_forces_oldRootInOppositeComponent
+#print axioms AllThoseRamseyClasses.Lifts.claim2_singleOldRoot_cannot_be_captured_on_both_sides
