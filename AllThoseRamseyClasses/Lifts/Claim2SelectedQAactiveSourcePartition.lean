@@ -56,6 +56,7 @@ theorem fullNativeSelectedQ_Aactive_support_partition
   ext w
   constructor
   · intro hw
+    change flip w ∈ Active at hw
     rcases hFree.covers w with ⟨q, hqw⟩ | ⟨e, hew⟩
     · by_cases hRoot : q ∈ Set.range sQ
       · obtain ⟨r, hr⟩ := hRoot
@@ -65,13 +66,19 @@ theorem fullNativeSelectedQ_Aactive_support_partition
         have hEw : iE (sE r) = w := by
           calc
             iE (sE r) = iQ (sQ r) := hOverlap.symm
-            _ = iQ q := congrArg iQ hr
-            _ = w := hqw
-        exact Or.inl ⟨sE r, (by simpa only [hEw] using hw), hEw⟩
+            _ = iQ q := congrArg iQ hr.symm
+            _ = w := hqw.symm
+        have hEActive : flip (iE (sE r)) ∈ Active := by
+          rw [hEw]
+          exact hw
+        exact Or.inl ⟨sE r, hEActive, hEw⟩
       · have hQA : flip (iQ q) ∈ Active := by
-          simpa only [hqw] using hw
-        exact Or.inr ⟨q, ⟨hRoot, hQA⟩, hqw⟩
-    · exact Or.inl ⟨e, (by simpa only [hew] using hw), hew⟩
+          simpa only [← hqw] using hw
+        exact Or.inr ⟨q, ⟨hRoot, hQA⟩, hqw.symm⟩
+    · have heA : flip (iE e) ∈ Active := by
+        rw [← hew]
+        exact hw
+      exact Or.inl ⟨e, heA, hew.symm⟩
   · intro hw
     rcases hw with ⟨e, heA, rfl⟩ | ⟨q, hqA, rfl⟩
     · exact heA
@@ -147,7 +154,8 @@ theorem geometricSelectedQ_Aactive_support_disjoint_oldE_newQ
       {e : (geometricGlobalComplementChart Old inner).Carrier |
         f e.1 ∈ Active} := by
     ext e
-    exact (by rw [hEAgree e])
+    change (flip (iE e) ∈ Active) ↔ (f e.1 ∈ Active)
+    rw [hEAgree e]
   have hPartition :=
     fullNativeSelectedQ_Aactive_support_partition
       Q.rootEmbedding
