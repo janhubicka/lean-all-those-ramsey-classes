@@ -190,18 +190,23 @@ theorem oneVertexRecolor_jointTestPairSeparation_iff_notBlocked
     intro x y hxy hTest hSame
     rcases hTest with ⟨X, E, hIr, e, u, v, hu, hv⟩
     by_cases hxa : x = a
-    · subst x
-      have hya : y ≠ a := hxy.symm
+    · have hya : y ≠ a := by
+        intro hya
+        exact hxy (hxa.trans hya.symm)
       have hd : d = f y := by
-        simpa [hya] using hSame
+        simpa [hxa, hya] using hSame
+      have hay : a ≠ y := by
+        intro hay
+        exact hxy (hxa.trans hay)
       apply hNotBlocked
-      exact ⟨y, ⟨hxy, X, E, hIr, e, u, v, hu, hv⟩, hd.symm⟩
+      exact ⟨y, ⟨hay, X, E, hIr, e, u, v, hu.trans hxa, hv⟩,
+        hd.symm⟩
     · by_cases hya : y = a
-      · subst y
-        have hd : f x = d := by
-          simpa [hxa] using hSame
+      · have hd : f x = d := by
+          simpa [hxa, hya] using hSame
         apply hNotBlocked
-        exact ⟨x, ⟨hxy.symm, X, E, hIr, e, v, u, hv, hu⟩, hd⟩
+        exact ⟨x, ⟨hxa.symm, X, E, hIr, e, v, u,
+          hv.trans hya, hu⟩, hd⟩
       · have hOldSame : f x = f y := by
           simpa [hxa, hya] using hSame
         exact (hf x y hxy
