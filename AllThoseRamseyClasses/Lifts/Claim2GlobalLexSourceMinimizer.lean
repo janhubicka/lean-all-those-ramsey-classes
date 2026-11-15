@@ -184,4 +184,55 @@ theorem globalLexMin_avoids_A_nonincrease_and_B_strictDecrease
   exact (Nat.not_lt_of_ge
     (hBMinAtA New hNew flip hFlip hAEqual)) hBStrict
 
+/-- At a GLOBALLY (A,B)-lex-minimal ORIGINAL forbidden weak-map
+source, any NEW forbidden weak-map source with STRICTLY
+DECREASED total B-exclusive SOURCE support necessarily has
+STRICTLY INCREASED total A-exclusive SOURCE support.
+
+This is the quantitative converse of the immediate lex-min
+contradiction interface above: a B-decreasing source flip
+cannot be A-neutral at an already lexicographically minimum
+witness, unless the stated premises are contradictory.
+
+This is NOT a claim that the canonical Q construction forces
+an A-cost or that a B-decreasing source replacement can always
+be made at an arbitrary original state. -/
+theorem globalLexMin_strictB_forces_strictAIncrease
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {V W UT : Type}
+    (Target : Structure L UT)
+    (Old : Structure L V)
+    (f : V → UT)
+    (New : Structure L W) (hNew : F New)
+    (flip : W → UT)
+    (hFlip : New.IsEHNHomomorphismEmbedding Target flip)
+    (AActive BActive : Set UT)
+    (hGlobalAMin : ∀ {Z : Type} (Candidate : Structure L Z)
+      (hCandidate : F Candidate) (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {v : V // f v ∈ AActive} ≤
+        Nat.card {z : Z // g z ∈ AActive})
+    (hBMinAtA : ∀ {Z : Type} (Candidate : Structure L Z)
+      (hCandidate : F Candidate) (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {z : Z // g z ∈ AActive} =
+        Nat.card {v : V // f v ∈ AActive} →
+      Nat.card {v : V // f v ∈ BActive} ≤
+        Nat.card {z : Z // g z ∈ BActive})
+    (hBStrict :
+      Nat.card {w : W // flip w ∈ BActive} <
+        Nat.card {v : V // f v ∈ BActive}) :
+    Nat.card {v : V // f v ∈ AActive} <
+      Nat.card {w : W // flip w ∈ AActive} := by
+  have hOldALeNewA :=
+    hGlobalAMin New hNew flip hFlip
+  by_contra hNotStrict
+  have hNewALeOldA :
+      Nat.card {w : W // flip w ∈ AActive} ≤
+        Nat.card {v : V // f v ∈ AActive} :=
+    Nat.le_of_not_gt hNotStrict
+  exact globalLexMin_avoids_A_nonincrease_and_B_strictDecrease
+    F Target Old f New hNew flip hFlip AActive BActive
+    hGlobalAMin hBMinAtA hNewALeOldA hBStrict
+
 end AllThoseRamseyClasses.Lifts
