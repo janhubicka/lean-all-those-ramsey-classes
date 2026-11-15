@@ -8,11 +8,15 @@ whole original native global-canonical-lift counterexample has already
 been bridged into Lean. The accompanying audit gives that argument.
 
 The finite EHN test checks positive preservation and full embeddings
-on EVERY irreducible induced source subset (complete Gaifman graph).
+on EVERY irreducible INDUCED source subset. Gaifman adjacency for a
+source test is computed using tuples entirely contained in that test;
+ambient tuples with outside coordinates do not count. A separate
+six-vertex regression protects this distinction for ternary relations.
+
 The language has two binary relations and one ternary relation.
 All three forbidden sources have empty ternary relation.
-
-No `native_decide`, added axiom, or admission is used. Exact-head Lean
+Enumerations use List.finRange, not the choice-based Finset.toList.
+No native_decide, added axiom, or admission is used. Exact-head Lean
 CI is required before even these finite certificates are called checked.
 -/
 
@@ -64,15 +68,24 @@ def fold : Fin 5 → Fin 4 := ![0, 1, 2, 0, 3]
 def leftIn : Fin 3 → Fin 4 := ![0, 1, 2]
 def rightIn : Fin 2 → Fin 4 := ![0, 3]
 
-/-- Pair incidence in the complete relational Gaifman graph. -/
+/-- Pair incidence in the structure INDUCED on S. Every coordinate
+of a witnessing ternary tuple must belong to S. Explicit finite
+lists keep the Boolean computation independent of classical choice. -/
+def adjacentWithin {n : ℕ} (A : Table n) (S : Finset (Fin n))
+    (x y : Fin n) : Bool :=
+  decide (x ∈ S ∧ y ∈ S) &&
+    (A.red x y || A.red y x || A.blue x y || A.blue y x ||
+      (List.finRange n).any (fun z => decide (z ∈ S) &&
+        (A.ternary x y z || A.ternary x z y || A.ternary y x z ||
+          A.ternary y z x || A.ternary z x y || A.ternary z y x)))
+
+/-- Ambient Gaifman incidence, used for paths after deleting vertices.
+This is deliberately different from induced-test irreducibility. -/
 def adjacent {n : ℕ} (A : Table n) (x y : Fin n) : Bool :=
-  A.red x y || A.red y x || A.blue x y || A.blue y x ||
-    (Finset.univ : Finset (Fin n)).toList.any (fun z =>
-      A.ternary x y z || A.ternary x z y || A.ternary y x z ||
-      A.ternary y z x || A.ternary z x y || A.ternary z y x)
+  adjacentWithin A Finset.univ x y
 
 def clique {n : ℕ} (A : Table n) (S : Finset (Fin n)) : Prop :=
-  ∀ x ∈ S, ∀ y ∈ S, x ≠ y → adjacent A x y = true
+  ∀ x ∈ S, ∀ y ∈ S, x ≠ y → adjacentWithin A S x y = true
 
 instance {n : ℕ} (A : Table n) (S : Finset (Fin n)) :
     Decidable (clique A S) := by
@@ -162,14 +175,15 @@ instance (q : Fin 5 → Fin 5) : Decidable (canonicalPartition q) := by
   unfold canonicalPartition
   infer_instance
 
-/-- Exact source-generated relational image. Unused labels are isolated. -/
+/-- Exact source-generated relational image. Unused labels are isolated.
+Nested finite-range lists replace noncomputable finite-set enumeration. -/
 def quotient (q : Fin 5 → Fin 5) : Table 5 where
-  red := fun x y => ((Finset.univ : Finset (Fin 5)).product Finset.univ).toList.any
-    (fun p : Fin 5 × Fin 5 =>
-      decide (q p.1 = x ∧ q p.2 = y) && cycle.red p.1 p.2)
-  blue := fun x y => ((Finset.univ : Finset (Fin 5)).product Finset.univ).toList.any
-    (fun p : Fin 5 × Fin 5 =>
-      decide (q p.1 = x ∧ q p.2 = y) && cycle.blue p.1 p.2)
+  red := fun x y => (List.finRange 5).any (fun a =>
+    (List.finRange 5).any (fun b =>
+      decide (q a = x ∧ q b = y) && cycle.red a b))
+  blue := fun x y => (List.finRange 5).any (fun a =>
+    (List.finRange 5).any (fun b =>
+      decide (q a = x ∧ q b = y) && cycle.blue a b))
   ternary := fun _ _ _ => false
 
 /-- Fullness on source edges is a necessary EHN condition. For this
@@ -194,6 +208,37 @@ theorem all_canonical_images_contain_forbidden_table :
         fullOn redTriangle (quotient q) e Finset.univ) ∨
       (∃ e : Fin 3 → Fin 5,
         fullOn mixedTriangle (quotient q) e Finset.univ) := by
+  decide +kernel
+
+/-- Three ternary tuples whose external witnesses make {0,1,2}
+a clique in the AMBIENT Gaifman graph, but not in the induced structure. -/
+def externalTernarySource : Table 6 where
+  red := fun _ _ => false
+  blue := fun _ _ => false
+  ternary := fun x y z => decide
+    ((x = 0 ∧ y = 1 ∧ z = 3) ∨
+      (x = 1 ∧ y = 2 ∧ z = 4) ∨
+      (x = 0 ∧ y = 2 ∧ z = 5))
+
+def externalTernaryTarget : Table 6 where
+  red := fun _ _ => false
+  blue := fun _ _ => false
+  ternary := fun x y z => externalTernarySource.ternary x y z ||
+    decide (x = 0 ∧ y = 1 ∧ z = 2)
+
+/-- Regression for INDUCED irreducibility rather than ambient adjacency. -/
+theorem ambient_clique_need_not_be_induced_irreducible :
+    (∀ x ∈ ({0, 1, 2} : Finset (Fin 6)),
+      ∀ y ∈ ({0, 1, 2} : Finset (Fin 6)), x ≠ y →
+        adjacent externalTernarySource x y = true) ∧
+      ¬ clique externalTernarySource ({0, 1, 2} : Finset (Fin 6)) := by
+  decide +kernel
+
+/-- The extra target tuple is not inside ANY true irreducible source
+test. The old ambient-clique implementation incorrectly rejected this
+identity EHN map. The revised induced-test predicate accepts it. -/
+theorem adding_unprotected_ternary_tuple_preserves_EHN :
+    finiteEHN externalTernarySource externalTernaryTarget id := by
   decide +kernel
 
 end AllThoseRamseyClasses.Lifts.ColoredFiveCycleMaximalLiftRegression
