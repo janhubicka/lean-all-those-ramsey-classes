@@ -168,4 +168,52 @@ theorem fullNativeRootedPiece_Aneutral_noB_factors_intoFullCommonRoot
     iLeft iRight jLeft jRight hFree iQ flip hFlip
     hNotLeft hNotRight
 
+/-- Under the actual full target free amalgam and no-new-B
+condition, **private A-neutrality is equivalent to existence of
+an exact EHN factorization of the ENTIRE selected rooted Q into
+the FULL common root X, with the original target map unchanged**.
+
+The reverse implication needs only exact target coordinate
+agreement, not injectivity of the weak map and not any
+forbidden-family closure. This is a structural IFF for the
+selected-Q neutrality hypothesis of original Claim 2. -/
+theorem fullNativeRootedPiece_Aneutral_iff_exactEHNFullRootFactor
+    {Q W UX UA UB UT : Type}
+    (Piece : Structure L Q) (New : Structure L W)
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (iQ : Structure.Embedding Piece New)
+    (flip : W → UT)
+    (hFlip : New.IsEHNHomomorphismEmbedding Target flip)
+    {m : ℕ} (roots : Fin m → Q)
+    (hRootSeam : ∀ i : Fin m,
+      flip (iQ (roots i)) ∈ Set.range (jLeft.comp iLeft))
+    (hNoBFromQ : ∀ q : Q,
+      flip (iQ q) ∉ fullFreeRightExclusiveTarget iRight jRight) :
+    (∀ q : Q, q ∉ Set.range roots →
+      flip (iQ q) ∉ fullFreeLeftExclusiveTarget iLeft jLeft) ↔
+    (∃ p : Q → UX,
+      Piece.IsEHNHomomorphismEmbedding X p ∧
+      ∀ q : Q, (jLeft.comp iLeft) (p q) = flip (iQ q)) := by
+  constructor
+  · intro hNeutral
+    exact fullNativeRootedPiece_Aneutral_noB_factors_intoFullCommonRoot
+      Piece New Target Left Right X
+      iLeft iRight jLeft jRight hFree iQ flip hFlip
+      roots hRootSeam hNeutral hNoBFromQ
+  · rintro ⟨p, _hQEHN, hSame⟩ q _hNonroot hA
+    have hWeakLeft :
+        iQ q ∈ weakFreeLeftPart
+          (sL := iLeft) (iL := jLeft) flip :=
+      (weakFreeLeftPart_iff_targetExclusive
+        iLeft jLeft flip (iQ q)).mpr hA
+    apply hWeakLeft.2
+    exact ⟨p q, hSame q⟩
+
 end AllThoseRamseyClasses.Lifts
