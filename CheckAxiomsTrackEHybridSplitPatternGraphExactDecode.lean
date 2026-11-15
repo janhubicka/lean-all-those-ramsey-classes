@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSplitPatternGraphExactDecode
+
+#print axioms StructuralRamsey.RelStructure.HybridJointNativePartiteClosed.splitPatternGraphReduct_eq_native
