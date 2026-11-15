@@ -144,7 +144,7 @@ theorem forbiddenEHNWitness_strictSourceReplacement_of_printedTupleClosure
       (Fintype.card_le_of_injective embedSupport hEmbedSupportInj)
   have hStrict :
       v.sourceSupportCount AOnly < w.sourceSupportCount AOnly :=
-    hCopyLe.trans_lt hNewStrict
+    lt_of_le_of_lt hCopyLe hNewStrict
   exact ⟨v, hStrict⟩
 
 end AllThoseRamseyClasses.Lifts
