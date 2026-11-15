@@ -3,6 +3,7 @@ import AllThoseRamseyClasses.Lifts.FullRangeSaturationFiniteCover
 import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceStrongAmalgamation
 import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceExactReduct
 import AllThoseRamseyClasses.Lifts.FiniteFamilyConnectedJEP
+import AllThoseRamseyClasses.Lifts.FiniteFamilyOrderedStrongAmalgamation
 
 /-!
 # Realize a bounded saturated family as finite named forbidden sources
@@ -254,5 +255,72 @@ theorem boundedSaturationFoldedAge_jointEmbedding_positiveArity
     (boundedSaturationNamedFamily L F N)
     hArity (boundedSaturationNamed_connectedNonempty L F N hConnected)
     Y Z hY hZ
+
+/-- Ordered genuine strong amalgamation for the ALTERNATIVE
+finite-named saturated folded age. Existing full expanded finite
+strong amalgamation is followed by the already proved order
+extension on the SAME target vertices, preserving exact overlaps.
+This is NOT the original 2019 minimal-separator lift. -/
+theorem boundedSaturationFoldedAge_orderedStrongAmalgamation
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    {VX VY VZ : Type}
+    [LinearOrder VX] [LinearOrder VY] [LinearOrder VZ]
+    (X : Structure (boundedSaturationFoldedLanguage L F N) VX)
+    (Y : Structure (boundedSaturationFoldedLanguage L F N) VY)
+    (Z : Structure (boundedSaturationFoldedLanguage L F N) VZ)
+    (hY : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Y)
+    (hZ : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Z)
+    (fY : Structure.Embedding X.withLinearOrder Y.withLinearOrder)
+    (fZ : Structure.Embedding X.withLinearOrder Z.withLinearOrder) :
+    ∃ (VT : Type) (_ : Finite VT) (o : LinearOrder VT)
+      (T : Structure (boundedSaturationFoldedLanguage L F N) VT),
+      IsFiniteNamedMaximalTrace
+        (boundedSaturationNamedFamily L F N) T ∧
+        ∃ (jY : Structure.Embedding Y.withLinearOrder
+            (@Structure.withLinearOrder _ VT T o.toLT))
+          (jZ : Structure.Embedding Z.withLinearOrder
+            (@Structure.withLinearOrder _ VT T o.toLT)),
+          ∀ y : VY, ∀ z : VZ,
+            jY y = jZ z ↔
+              ∃ x : VX, y = fY x ∧ z = fZ x := by
+  exact finiteNamedMaximalTraceAge_orderedStrongAmalgamation
+    (boundedSaturationNamedFamily L F N)
+    X Y Z hY hZ fY fZ
+
+/-- Joint embedding under the actual compatible FULL empty-root
+condition, without assuming all native arities positive. This
+handles nullary languages when the required compatibility is given,
+rather than incorrectly declaring all nullary shadows compatible. -/
+theorem boundedSaturationFoldedAge_jointEmbedding_of_emptyRoots
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    (hEmpty : GlobalNativeCommonEmptyRoots
+      (fun {V : Type} (A : Structure L V) =>
+        AvoidsFiniteNamedEHN (boundedSaturationNamedFamily L F N) A))
+    {VY VZ : Type}
+    (Y : Structure (boundedSaturationFoldedLanguage L F N) VY)
+    (Z : Structure (boundedSaturationFoldedLanguage L F N) VZ)
+    (hY : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Y)
+    (hZ : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Z) :
+    ∃ (VT : Type)
+      (T : Structure (boundedSaturationFoldedLanguage L F N) VT),
+      IsFiniteNamedMaximalTrace
+        (boundedSaturationNamedFamily L F N) T ∧
+        ∃ (jY : Structure.Embedding Y T)
+          (jZ : Structure.Embedding Z T), True := by
+  exact finiteNamedMaximalTraceAge_JEP_connected_of_emptyRoots
+    (boundedSaturationNamedFamily L F N)
+    (boundedSaturationNamed_connectedNonempty L F N hConnected)
+    hEmpty Y Z hY hZ
 
 end AllThoseRamseyClasses.Lifts
