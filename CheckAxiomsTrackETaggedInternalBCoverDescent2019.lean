@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackETaggedInternalBCoverDescent2019
+
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_internalOriginalBCover_of_tagged
