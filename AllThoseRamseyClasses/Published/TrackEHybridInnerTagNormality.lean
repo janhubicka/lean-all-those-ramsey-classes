@@ -137,7 +137,7 @@ theorem HybridInnerTagsNormal.of_embedding
     (hT : HybridInnerTagsNormal T) (e : Embedding E T) :
     HybridInnerTagsNormal E :=
   ⟨WholeMaskTagNormal.of_embedding
-      e.hybridOldTaggedReduct hT.1,
+      hT.1 e.hybridOldTaggedReduct,
    PatternTagNormal.of_embedding
       e.hybridSplitTaggedReduct hT.2⟩
 
@@ -254,10 +254,11 @@ theorem HybridInnerTagsNormal.freeAmalgam
         sL.hybridOldTaggedReduct.wholeMaskTagReduct
         sR.hybridOldTaggedReduct.wholeMaskTagReduct
         iL.hybridOldTaggedReduct.wholeMaskTagReduct
-        iR.hybridOldTaggedReduct.wholeMaskTagReduct where
-      covers := hFree.covers
-      overlap := hFree.overlap
-      rel_iff R xs := hFree.rel_iff (.inl (.inl R)) xs
+        iR.hybridOldTaggedReduct.wholeMaskTagReduct := by
+      refine { covers := hFree.covers, overlap := hFree.overlap,
+        rel_iff := ?_ }
+      intro R xs
+      exact hFree.rel_iff (.inl (.inl R)) xs
     have hCanonFree := hOldBase.wholeMaskTagExpansion
     have hL :
         hybridOldTaggedReduct Left =
@@ -300,10 +301,11 @@ theorem HybridInnerTagsNormal.freeAmalgam
         sL.hybridSplitTaggedReduct.patternTagReduct
         sR.hybridSplitTaggedReduct.patternTagReduct
         iL.hybridSplitTaggedReduct.patternTagReduct
-        iR.hybridSplitTaggedReduct.patternTagReduct where
-      covers := hFree.covers
-      overlap := hFree.overlap
-      rel_iff R xs := hFree.rel_iff (.inr (.inl (.inl R))) xs
+        iR.hybridSplitTaggedReduct.patternTagReduct := by
+      refine { covers := hFree.covers, overlap := hFree.overlap,
+        rel_iff := ?_ }
+      intro R xs
+      exact hFree.rel_iff (.inr (.inl (.inl R))) xs
     have hCanonFree := hSplitBase.patternTagExpansion
     have hL :
         hybridSplitTaggedReduct Left =
