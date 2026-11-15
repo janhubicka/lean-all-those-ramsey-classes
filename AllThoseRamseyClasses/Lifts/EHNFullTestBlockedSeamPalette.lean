@@ -475,4 +475,46 @@ theorem finiteEHN_recolor_to_target_changeSupport_ge_fullTestConflicts
     (ehn_recolor_to_target_must_change_all_fullTestConflictingPartners
       Source Target f g hg a d hNewA)
 
+
+/-- Strict finite lower bound, counting the deliberately moved
+source vertex a ITSELF. If the desired target d differs from
+the old f(a), then a changes and cannot belong to its own
+distinct-vertex conflict set. Every other full-test conflict
+partner also must change for g to remain EHN.
+
+Thus an EHN-preserving simultaneous seam move must change
+STRICTLY MORE original source vertices than the number of old
+d-fibre full-test conflicting partners. This is a clean,
+finite original-source support necessity; it does not produce
+a candidate admissible EHN recolouring. -/
+theorem finiteEHN_recolor_changedSupport_strict_gt_fullTestConflicts
+    {V UT : Type} [Finite V]
+    (Source : Structure L V) (Target : Structure L UT)
+    (f g : V → UT)
+    (hg : Source.IsEHNHomomorphismEmbedding Target g)
+    (a : V) (d : UT) (hNewA : g a = d)
+    (hDistinct : d ≠ f a) :
+    (nativeFullTestConflictingSourcePartners Source f a d).ncard <
+      ({b : V | g b ≠ f b} : Set V).ncard := by
+  have hSubset :
+      nativeFullTestConflictingSourcePartners Source f a d ⊆
+        ({b : V | g b ≠ f b} : Set V) :=
+    ehn_recolor_to_target_must_change_all_fullTestConflictingPartners
+      Source Target f g hg a d hNewA
+  have hChanged : a ∈ ({b : V | g b ≠ f b} : Set V) := by
+    change g a ≠ f a
+    intro hOld
+    exact hDistinct (hNewA.symm.trans hOld)
+  have hNotConflict :
+      a ∉ nativeFullTestConflictingSourcePartners Source f a d := by
+    intro ha
+    exact ha.1 rfl
+  have hSetsDifferent :
+      nativeFullTestConflictingSourcePartners Source f a d ≠
+        ({b : V | g b ≠ f b} : Set V) := by
+    intro hEq
+    exact hNotConflict (by rw [hEq]; exact hChanged)
+  exact Set.ncard_lt_ncard
+    ((Set.ssubset_iff_subset_ne).mpr ⟨hSubset, hSetsDifferent⟩)
+
 end AllThoseRamseyClasses.Lifts
