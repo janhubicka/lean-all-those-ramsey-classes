@@ -93,7 +93,14 @@ private theorem reflect_originalPartLabel
       (fun _ : Fin 1 => x) := by
   apply (e.map_rel_iff (.inr (.inr q))
     (fun _ : Fin 1 => x)).mp
-  simpa only [Function.comp_apply] using h
+  have hTuple :
+      (e.toFun ∘ (fun _ : Fin 1 => x)) =
+        (fun _ : Fin 1 => e x) := by
+    funext i
+    rfl
+  exact (congrArg
+    (fun t : Fin 1 → Y => Whole.rel (.inr (.inr q)) t)
+    hTuple).symm.mp h
 
 /-- An entire primitive ORIGINAL relational tuple that comes
 from one FULL side retains the relation/part collision law
