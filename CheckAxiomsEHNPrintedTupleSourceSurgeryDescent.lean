@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedTupleSourceSurgeryDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_strictSourceReplacement_of_printedTupleClosure
