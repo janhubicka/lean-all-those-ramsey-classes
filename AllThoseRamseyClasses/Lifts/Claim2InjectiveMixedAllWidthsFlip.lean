@@ -301,6 +301,6 @@ theorem claim2_lexSupport_impossible_of_minimal_and_A_nonGrowth
       aExterior bExterior aOld aNew bOld bNew
       hANonGrowth hBDecrease with hStrictA | ⟨hEqA, hStrictB⟩
   · exact (Nat.not_lt_of_ge hGlobalAMinimal) hStrictA
-  · exact (Nat.not_lt_of_ge (hGlobalBTieMinimal hEqA)) hStrictB
+  · exact (Nat.not_lt_of_ge (hGlobalBTieMinimal hEqA.symm)) hStrictB
 
 end AllThoseRamseyClasses.Lifts
