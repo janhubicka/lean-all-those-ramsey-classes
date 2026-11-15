@@ -392,4 +392,87 @@ theorem oneVertexRecolor_unblocked_failure_has_localNativeOrInjectiveTestWitness
       ⟨X, E, hIr, e, x, y, rfl, rfl⟩
     exact (hSeparate (e x) (e y) hSourceNe hJoint) hEq
 
+
+/-- The actual ORIGINAL source vertices conflicting with a proposed
+new target image d for source vertex a. These are distinct
+original source vertices b already mapped to d by the old map
+which share some genuine FULL native irreducible source test
+with a. Not every b in the old d-fibre need be a conflict;
+only genuine full-test neighbours are counted. -/
+def nativeFullTestConflictingSourcePartners
+    {V UT : Type} (Source : Structure L V)
+    (f : V → UT) (a : V) (d : UT) : Set V :=
+  {b : V | a ≠ b ∧ f b = d ∧
+    ∃ (X : Type) (E : Structure L X),
+      E.Irreducible ∧
+      ∃ e : Structure.Embedding E Source,
+        ∃ x y : X, e x = a ∧ e y = b}
+
+/-- A destination is blocked exactly when it has at least one
+actual original source conflict partner. This version retains
+the full original source preimage rather than just its target
+image; useful for tracking how many source vertices a repair
+must change. -/
+theorem nativeFullTestBlockedTargetImages_iff_exists_conflictingPartner
+    {V UT : Type} (Source : Structure L V)
+    (f : V → UT) (a : V) (d : UT) :
+    d ∈ nativeFullTestBlockedTargetImages Source f a ↔
+      (nativeFullTestConflictingSourcePartners Source f a d).Nonempty := by
+  constructor
+  · rintro ⟨b, ⟨hab, hTest⟩, hFb⟩
+    exact ⟨b, hab, hFb, hTest⟩
+  · rintro ⟨b, hab, hFb, hTest⟩
+    exact ⟨b, ⟨hab, hTest⟩, hFb⟩
+
+/-- Any genuinely EHN-preserving replacement map on the SAME
+original source that sends a to d must recolour EVERY other
+original source vertex b already at d whose pair (a,b)
+lies in a common FULL irreducible embedded source test.
+
+Unlike the one-vertex blocked-image obstruction, the new map
+is allowed to change arbitrarily many other original source
+vertex images. The theorem gives an actual necessary hitting-set
+constraint on those changes: the entire source-test-conflict
+fibre must lie in the changed-coordinate support {b | g b ≠ f b}.
+
+No assumption that the old map f is EHN, or that the entire old
+d-fibre is mutually irreducible, is required. -/
+theorem ehn_recolor_to_target_must_change_all_fullTestConflictingPartners
+    {V UT : Type}
+    (Source : Structure L V) (Target : Structure L UT)
+    (f g : V → UT)
+    (hg : Source.IsEHNHomomorphismEmbedding Target g)
+    (a : V) (d : UT) (hNewA : g a = d) :
+    nativeFullTestConflictingSourcePartners Source f a d ⊆
+      {b : V | g b ≠ f b} := by
+  intro b hb
+  obtain ⟨hab, hFb, hTest⟩ := hb
+  intro hFix
+  have hSame : g a = g b := by
+    calc
+      g a = d := hNewA
+      _ = f b := hFb.symm
+      _ = g b := hFix.symm
+  exact (ehn_collidingSourcePair_not_in_jointIrreducibleTest
+    Source Target g hg a b hab hSame) hTest
+
+/-- Finite quantitative lower bound on how many ORIGINAL source
+coordinates a proposed EHN map must modify when moving a to
+an occupied target image d: at least the number of distinct
+original source vertices in its FULL-test conflicting fibre.
+
+This is an honest SOURCE-size lower bound, not a replacement
+claim and not a global bound on all EHN maps. -/
+theorem finiteEHN_recolor_to_target_changeSupport_ge_fullTestConflicts
+    {V UT : Type} [Finite V]
+    (Source : Structure L V) (Target : Structure L UT)
+    (f g : V → UT)
+    (hg : Source.IsEHNHomomorphismEmbedding Target g)
+    (a : V) (d : UT) (hNewA : g a = d) :
+    (nativeFullTestConflictingSourcePartners Source f a d).ncard ≤
+      ({b : V | g b ≠ f b} : Set V).ncard := by
+  exact Set.ncard_le_ncard
+    (ehn_recolor_to_target_must_change_all_fullTestConflictingPartners
+      Source Target f g hg a d hNewA)
+
 end AllThoseRamseyClasses.Lifts
