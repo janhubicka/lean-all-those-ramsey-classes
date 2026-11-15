@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2GlobalLexSourceMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_global_minimum_weakForbiddenSource_support
+#print axioms AllThoseRamseyClasses.Lifts.exists_global_lex_minimum_weakForbiddenSource_support
