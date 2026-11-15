@@ -51,9 +51,10 @@ positive B-only SOURCE rank has a GENUINE eligible one-sided
 inner separator. The refined smaller-root obstruction would
 contradict the checked Track C all-width extremal theorem.
 
-The old outer component equality is explicit: the state s is
-built from the SAME selected mixed piece P, not merely another
-geometric piece in its source. -/
+The old outer ROOT SET, SELECTED COMPONENT and PIECE VERTEX
+SET equalities are explicit. The dependent root widths of s.outer
+and P.data need not be definitionally identical; all-width
+extremality only needs these actual geometric set coincidences. -/
 theorem claim2Native_originalExtremal_positiveRank_hasEligibleInner
     (F : ∀ {W : Type}, Structure L W → Prop)
     (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
@@ -76,7 +77,16 @@ theorem claim2Native_originalExtremal_positiveRank_hasEligibleInner
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeRightPart (sL := iLeft) (iL := jLeft)
         (iR := jRight) s.f))
-    (hOuterEq : s.outer = P.data)
+    (hRootSetEq :
+      Set.range s.outer.roots = Set.range P.data.roots)
+    (hComponentEq :
+      functionalComponentFrom s.source
+        (Set.range s.outer.roots) s.outer.left =
+      functionalComponentFrom s.source
+        (Set.range P.data.roots) P.data.left)
+    (hPieceVertexEq :
+      geometricPieceVertices s.source s.outer =
+        geometricPieceVertices s.source P.data)
     (hSmallestMixed : ∀ Q : MixedGeometricPiece s.source
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
@@ -104,15 +114,15 @@ theorem claim2Native_originalExtremal_positiveRank_hasEligibleInner
     have hDrootInP :
         Set.range d.roots ⊆
           geometricPieceVertices s.source P.data := by
-      simpa only [hOuterEq] using hDrootInOuter
+      simpa only [hPieceVertexEq] using hDrootInOuter
     have hdLeftInP :
         d.left.1 ∈ functionalComponentFrom s.source
           (Set.range P.data.roots) P.data.left := by
-      simpa only [hOuterEq] using hdLeftInOuter
+      simpa only [hComponentEq] using hdLeftInOuter
     have hdRightInP :
         d.right.1 ∈ functionalComponentFrom s.source
           (Set.range P.data.roots) P.data.left := by
-      simpa only [hOuterEq] using hdRightInOuter
+      simpa only [hComponentEq] using hdRightInOuter
     have hBadP :
         (∃ r : s.Carrier, r ∈ Set.range P.data.roots ∧
           r ∈ functionalComponentFrom s.source
@@ -123,7 +133,7 @@ theorem claim2Native_originalExtremal_positiveRank_hasEligibleInner
           z ∈ weakFreeLeftPart
             (sL := iLeft) (iL := jLeft) s.f) := by
       rcases hObstruction with hCapture | hMixed
-      · exact Or.inl (by simpa only [hOuterEq] using hCapture)
+      · exact Or.inl (by simpa only [hRootSetEq] using hCapture)
       · exact Or.inr hMixed
     exact False.elim
       (claim2_originalAMinimal_allWidths_no_smallerRootObstruction
@@ -164,7 +174,16 @@ theorem claim2Native_originalExtremal_positiveRank_hasAFreeSelectedQStep
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeRightPart (sL := iLeft) (iL := jLeft)
         (iR := jRight) s.f))
-    (hOuterEq : s.outer = P.data)
+    (hRootSetEq :
+      Set.range s.outer.roots = Set.range P.data.roots)
+    (hComponentEq :
+      functionalComponentFrom s.source
+        (Set.range s.outer.roots) s.outer.left =
+      functionalComponentFrom s.source
+        (Set.range P.data.roots) P.data.left)
+    (hPieceVertexEq :
+      geometricPieceVertices s.source s.outer =
+        geometricPieceVertices s.source P.data)
     (hSmallestMixed : ∀ Q : MixedGeometricPiece s.source
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
@@ -190,7 +209,7 @@ theorem claim2Native_originalExtremal_positiveRank_hasAFreeSelectedQStep
     claim2Native_originalExtremal_positiveRank_hasEligibleInner
       F hFiniteF hConnected Target Left Right jLeft jRight
       X iLeft iRight hFree hCommon hn s
-      P hOuterEq hSmallestMixed hPositive hGlobalAMin
+      P hRootSetEq hComponentEq hPieceVertexEq hSmallestMixed hPositive hGlobalAMin
   exact claim2Native_eligibleInner_hasAFreeSelectedQStep
     F hFiniteF Target Left Right jLeft jRight
     X iLeft iRight hFree hCommon hn hm
@@ -233,7 +252,16 @@ theorem claim2Native_originalLexExtremal_positiveRank_selectedQ_paysPrivateA
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeRightPart (sL := iLeft) (iL := jLeft)
         (iR := jRight) s.f))
-    (hOuterEq : s.outer = P.data)
+    (hRootSetEq :
+      Set.range s.outer.roots = Set.range P.data.roots)
+    (hComponentEq :
+      functionalComponentFrom s.source
+        (Set.range s.outer.roots) s.outer.left =
+      functionalComponentFrom s.source
+        (Set.range P.data.roots) P.data.left)
+    (hPieceVertexEq :
+      geometricPieceVertices s.source s.outer =
+        geometricPieceVertices s.source P.data)
     (hSmallestMixed : ∀ Q : MixedGeometricPiece s.source
       (weakFreeRootPart (sL := iLeft) (iL := jLeft) s.f)
       (weakFreeLeftPart (sL := iLeft) (iL := jLeft) s.f)
@@ -276,7 +304,7 @@ theorem claim2Native_originalLexExtremal_positiveRank_selectedQ_paysPrivateA
     claim2Native_originalExtremal_positiveRank_hasAFreeSelectedQStep
       F hFiniteF hConnected Target Left Right jLeft jRight
       X iLeft iRight hFree hCommon hn s
-      P hOuterEq hSmallestMixed hPositive hGlobalAMin
+      P hRootSetEq hComponentEq hPieceVertexEq hSmallestMixed hPositive hGlobalAMin
   obtain ⟨m, inner, Q, iQ, hPrivatePositive⟩ :=
     claim2NativeOriginalLexMin_AFreeSelectedQStep_positivePrivateACost
       F Target Left Right jLeft jRight X iLeft iRight
