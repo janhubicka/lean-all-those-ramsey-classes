@@ -29,9 +29,6 @@ jobs:
         run: |
           set -euo pipefail
           df -h .
-          # Neither Android, .NET nor CodeQL are needed for Lean/Mathlib.
-          # The full Lake cache plus the Lean toolchain can otherwise
-          # exhaust the standard hosted runner before Lean is installed.
           sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/hostedtoolcache/CodeQL /usr/local/share/powershell
           df -h .
       - name: Cache Lean toolchain
@@ -58,7 +55,32 @@ jobs:
         run: |
           set -euo pipefail
           mapfile -t modules < <(find AllThoseRamseyClasses -name '*.lean' -type f | sort | sed -e 's#/#.#g' -e 's#\.lean$##')
-          lake build AllThoseRamseyClasses "${modules[@]}"
+          status=0
+          lake build AllThoseRamseyClasses "${modules[@]}" > build.log 2>&1 || status=$?
+          python3 - <<'PY'
+          from pathlib import Path
+          lines = Path('build.log').read_text(errors='replace').splitlines()
+          keep = set(range(max(0, len(lines) - 25), len(lines)))
+          for i, line in enumerate(lines):
+              if 'error:' in line or 'error[' in line or 'unsolved goals' in line:
+                  keep.update(range(max(0, i - 1), min(len(lines), i + 35)))
+          print(f'Full build output: {len(lines)} lines; preserved in build.log artifact.')
+          previous = -2
+          for i in sorted(keep):
+              if i != previous + 1:
+                  print('...')
+              print(lines[i])
+              previous = i
+          PY
+          exit "$status"
+      - name: Preserve full compiler output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-log-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build.log
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Audit import graph and source integrity
         run: python3 scripts/audit_library.py
       - name: Audit conditional Section 3 theorem contracts
@@ -71,8 +93,4 @@ jobs:
             lake env lean "$audit" >> axioms.log 2>&1 || { tail -100 axioms.log; exit 1; }
           done
           python3 scripts/check_axioms.py axioms.log CheckAxioms*.lean
-      # Admission and unauthorised-axiom checks already run above in
-      # scripts/audit_library.py, using executable_text from lean_source.py
-      # (comments, including words such as "admit", are not executable Lean).
-      # Keep one authoritative comment-aware source audit instead of a
-      # second raw grep check that rejects harmless prose.
+      # The authoritative comment-aware admission/axiom scan is in audit_library.py.
