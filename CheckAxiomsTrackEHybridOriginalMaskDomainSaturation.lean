@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEHybridOriginalMaskDomainSaturation
+
+#print axioms StructuralRamsey.RelStructure.HybridOriginalMaskDomainSaturated.domain_iff_of_sameParts
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_originalMaskDomainSaturated
+#print axioms StructuralRamsey.RelStructure.HybridOriginalMaskDomainSaturated.induce
+#print axioms StructuralRamsey.RelStructure.HybridOriginalMaskDomainSaturated.freeAmalgam
