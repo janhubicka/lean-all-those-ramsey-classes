@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SaturationFiniteNamedTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsBoundedSaturationNamed_iff
+#print axioms AllThoseRamseyClasses.Lifts.avoidsBoundedSaturationNamed_iff_original
