@@ -89,6 +89,69 @@ theorem transportsOriginalFullIrreducibleTests_comp
     _ = k (h (e x)) := congrArg k (hMid x)
     _ = (k ∘ h) (e x) := rfl
 
+/-- Exact native EHN decomposition for an arbitrary
+Old→New source map: weak positive preservation of ALL original
+relations and set-valued function incidences, plus transport
+of EVERY embedded FULL irreducible source test.
+
+This is a definitional reorganization of the genuine native
+EHN condition, not a new automatic source-lift premise.
+It allows source-surgery arguments to audit the weak and full
+test pieces separately instead of assuming a weak quotient
+is an EHN map. -/
+theorem nativeEHN_iff_weak_and_transportsFullIrreducibleTests
+    {V W : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (h : V → W) :
+    Old.IsEHNHomomorphismEmbedding New h ↔
+      Old.IsWeakHomomorphism New h ∧
+      TransportsOriginalFullIrreducibleTests Old New h := by
+  constructor
+  · intro hEHN
+    refine ⟨hEHN.1, ?_⟩
+    intro X E hIr e
+    exact hEHN.2 E hIr e
+  · rintro ⟨hWeak, hTransport⟩
+    refine ⟨hWeak, ?_⟩
+    intro X E hIr e
+    exact hTransport E hIr e
+
+/-- POSITIVE actual EHN-pullback composition through a source
+replacement, without demanding a full embedding Old↪New.
+
+If h:Old→New preserves every OLD positive original relation
+and every original set-valued function incidence, and h
+transports each FULL old irreducible source test to a FULL
+embedded test of New, then ANY genuine EHN map g:New→Target
+composes to a genuine EHN map Old→Target.
+
+The proof keeps the ACTUAL old source and every full-test
+embedding; no quotient, native fibre truncation or unsupported
+old-family image closure is used. This supplies a source-map
+composition API to a future Claim 2 source-changing construction.
+-/
+theorem nativeEHN_comp_of_weak_and_fullTestTransport
+    {V W UT : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (Target : Structure L UT)
+    (h : V → W)
+    (hWeak : Old.IsWeakHomomorphism New h)
+    (hTransport : TransportsOriginalFullIrreducibleTests Old New h)
+    (g : W → UT)
+    (hg : New.IsEHNHomomorphismEmbedding Target g) :
+    Old.IsEHNHomomorphismEmbedding Target (g ∘ h) := by
+  constructor
+  · exact hg.1.comp hWeak
+  · intro X E hIr e
+    obtain ⟨eNew, hNew⟩ := hTransport E hIr e
+    obtain ⟨ge, hge⟩ := hg.2 E hIr eNew
+    refine ⟨ge, ?_⟩
+    intro x
+    calc
+      ge x = g (eNew x) := hge x
+      _ = g (h (e x)) := congrArg g (hNew x)
+      _ = (g ∘ h) (e x) := rfl
+
 /-- Genuine transport of an old full irreducible source test
 forces the proposed Old→New coordinate map to separate its
 distinct original vertices. This does NOT establish global
