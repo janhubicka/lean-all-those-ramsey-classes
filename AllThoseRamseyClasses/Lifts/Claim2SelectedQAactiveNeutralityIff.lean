@@ -153,7 +153,7 @@ theorem geometricSelectedQ_nonrootAfree_preserves_totalASourceCount
         calc
           iE ((geometricGlobalComplementChart Old inner).rootEmbedding r)
               = iQ (Q.rootEmbedding r) := hOverlap.symm
-          _ = iQ q := congrArg iQ hr.symm
+          _ = iQ q := congrArg iQ hr
           _ = w := hqw.symm
       · have hqA : flip (iQ q) ∈ AActive := by
           simpa only [hqw] using hwA
