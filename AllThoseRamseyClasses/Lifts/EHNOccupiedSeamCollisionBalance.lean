@@ -154,7 +154,7 @@ theorem finiteOneVertexOccupiedSeamRecolor_orderedCollisionBalance
     by_cases hEq : f x = d
     · simp [q, orderedSeamCollisionIndicator, g, hxa.symm, hEq, hDestSeam]
     · have hNe : d ≠ f x := Ne.symm hEq
-      simp [q, orderedSeamCollisionIndicator, g, hxa.symm, hEq, hNe]
+      simp [q, orderedSeamCollisionIndicator, g, hxa, hxa.symm, hEq, hNe, hDestSeam]
 
   have hOldRowSum :
       (∑ x ∈ s, q f x a) = M := by
