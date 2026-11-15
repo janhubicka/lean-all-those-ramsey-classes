@@ -153,8 +153,8 @@ theorem HybridJointNoEmptyNormal.splitOutput_mem_oldDecodedNative
       p.symbol xs U).mpr hHas
   have hMember : u (Fin.last p.rootSize) ∈ U :=
     ⟨j, hOutput.symm⟩
-  change ((Old.wholeMaskPartialDecode).func p.symbol xs).getD ∅
-      |>.IsMember (u (Fin.last p.rootSize))
+  change u (Fin.last p.rootSize) ∈
+      ((Old.wholeMaskPartialDecode).func p.symbol xs).getD ∅
   simpa only [hSome, Option.getD_some] using hMember
 
 end StructuralRamsey.RelStructure
