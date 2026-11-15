@@ -36,6 +36,9 @@ universe u v w
 variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
 variable {V X W Y : Type w}
 
+-- Exact Finset images are classically decidable; this is not a theorem hypothesis.
+private noncomputable instance (Z : Type w) : DecidableEq Z := Classical.decEq Z
+
 /-- Restrict q to its EXACT image on T. No injectivity or
 function-closedness of the image is required. -/
 def exactFinsetImageMap (q : X → V) (T : Finset X) :
