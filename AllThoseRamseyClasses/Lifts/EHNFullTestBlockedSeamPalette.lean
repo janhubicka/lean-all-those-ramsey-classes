@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Lifts.EHNPairwiseSourceTestRootInjectivity
+import AllThoseRamseyClasses.Lifts.EHNLocalSeamRecolorFailure
 
 /-!
 # Track D: genuine full-native irreducible-test restrictions on one-vertex seam moves
@@ -312,5 +313,83 @@ theorem fullNativeSourceEmbedding_preserves_pairwiseIrredTestCover
     change iOld (e v) = iOld y
     exact congrArg iOld.toFun hv
   exact ⟨X, E, hIr, eNew, u, v, huNew, hvNew⟩
+
+/-- Refined TRUE original-language one-vertex EHN failure trichotomy
+for a proposed recolouring to a destination NOT blocked by any
+joint irreducible source-test pair.
+
+If an old EHN map f is recoloured at a to d outside the exact
+test-blocked palette, its changed map g separates all original
+pairs occurring together in any irreducible FULL source test.
+If g nevertheless fails EHN, then either:
+* an original positive relation containing a fails;
+* an original positive native set-valued function incidence
+  involving a as input or output fails; or
+* a genuine original FULL irreducible source test containing a
+  has NO full target embedding with the prescribed g-images,
+  EVEN THOUGH the map g composed with that source-test
+  embedding is injective on ALL its source vertices.
+
+The third branch captures a genuine *full-structure reflection*
+failure rather than another source-pair collision. This is
+strictly sharper than the general merged EHN failure trichotomy,
+but does not assert the irreducible-test obstruction disappears
+under maximal canonical profile agreement. -/
+theorem oneVertexRecolor_unblocked_failure_has_localNativeOrInjectiveTestWitness
+    {V UT : Type} [DecidableEq V]
+    (Source : Structure L V) (Target : Structure L UT)
+    (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (a : V) (d : UT)
+    (hNotBlocked : d ∉ nativeFullTestBlockedTargetImages Source f a)
+    (hNotEHN : ¬ Source.IsEHNHomomorphismEmbedding Target
+      (fun z : V => if z = a then d else f z)) :
+    (∃ (R : L.RelSymbol) (xs : Fin (L.relArity R) → V),
+      Source.rel R xs ∧
+      ¬ Target.rel R
+        ((fun z : V => if z = a then d else f z) ∘ xs) ∧
+      ∃ i : Fin (L.relArity R), xs i = a) ∨
+    (∃ (G : L.FuncSymbol)
+        (xs : Fin (L.funcArity G) → V) (out : V),
+      out ∈ Source.func G xs ∧
+      (fun z : V => if z = a then d else f z) out ∉
+        Target.func G
+          ((fun z : V => if z = a then d else f z) ∘ xs) ∧
+      (out = a ∨ ∃ i : Fin (L.funcArity G), xs i = a)) ∨
+    (∃ (X : Type) (E : Structure L X),
+      E.Irreducible ∧
+      ∃ e : Structure.Embedding E Source,
+        (∃ x : X, e x = a) ∧
+        (¬ ∃ ge : Structure.Embedding E Target,
+          ∀ x : X, ge x =
+            (fun z : V => if z = a then d else f z) (e x)) ∧
+        Function.Injective
+          ((fun z : V => if z = a then d else f z) ∘ e)) := by
+  have hSeparate :
+      SeparatesJointIrreducibleSourceTestPairs Source
+        (fun z : V => if z = a then d else f z) :=
+    (oneVertexRecolor_jointTestPairSeparation_iff_notBlocked
+      Source f
+      (ehn_separates_jointIrreducibleSourceTestPairs
+        Source Target f hf) a d).2 hNotBlocked
+  rcases ehn_oneVertexRecolor_failure_has_localNativeWitness
+    Source Target f hf a d hNotEHN with hRel | hFunc | hTest
+  · exact Or.inl hRel
+  · exact Or.inr (Or.inl hFunc)
+  · rcases hTest with ⟨X, E, hIr, e, hTouches, hMissing⟩
+    right
+    right
+    refine ⟨X, E, hIr, e, hTouches, hMissing, ?_⟩
+    intro x y hEq
+    by_contra hDistinct
+    have hSourceNe : e x ≠ e y := by
+      intro hSourceEq
+      exact hDistinct (e.injective hSourceEq)
+    have hJoint : ∃ (Y : Type) (T : Structure L Y),
+        T.Irreducible ∧
+        ∃ inc : Structure.Embedding T Source,
+          ∃ u v : Y, inc u = e x ∧ inc v = e y :=
+      ⟨X, E, hIr, e, x, y, rfl, rfl⟩
+    exact (hSeparate (e x) (e y) hSourceNe hJoint) hEq
 
 end AllThoseRamseyClasses.Lifts
