@@ -261,4 +261,46 @@ theorem claim2_originalAMinimal_injective_nonemptyMixed_allWidths_hasActualFlip
     P hMin hInjective hAMinimal
 
 
+
+/-!
+## Global lexicographic accounting gate
+
+The actual all-width successor above lowers B support INSIDE the selected
+outer piece and preserves every exterior source count.  That does NOT by
+itself improve the global lexicographic pair: a flip may create additional
+A-exclusive source support inside the replaced piece.  The next two
+elementary lemmas isolate exactly the additional non-growth hypothesis
+required for a legitimate contradiction.  They are deliberately
+conditional, and do not assert that the geometric flip supplies it.
+-/
+
+/-- The numerical accounting step from local A non-growth and strict
+local B decrease to a strict global lexicographic improvement, when
+both exterior support counts are conserved. -/
+theorem claim2_lexSupport_improves_of_A_nonGrowth_B_strict
+    (aExterior bExterior aOld aNew bOld bNew : ℕ)
+    (hANonGrowth : aNew ≤ aOld)
+    (hBDecrease : bNew < bOld) :
+    aExterior + aNew < aExterior + aOld ∨
+      (aExterior + aNew = aExterior + aOld ∧
+       bExterior + bNew < bExterior + bOld) := by
+  omega
+
+/-- Thus a lexicographically minimal original witness forbids an
+A-non-growing flip with strict B decrease.  The all-width geometric
+successor proves the latter, but NOT the former. -/
+theorem claim2_lexSupport_impossible_of_minimal_and_A_nonGrowth
+    (aExterior bExterior aOld aNew bOld bNew : ℕ)
+    (hGlobalAMinimal : aExterior + aOld ≤ aExterior + aNew)
+    (hGlobalBTieMinimal :
+      aExterior + aOld = aExterior + aNew →
+      bExterior + bOld ≤ bExterior + bNew)
+    (hANonGrowth : aNew ≤ aOld)
+    (hBDecrease : bNew < bOld) : False := by
+  rcases claim2_lexSupport_improves_of_A_nonGrowth_B_strict
+      aExterior bExterior aOld aNew bOld bNew
+      hANonGrowth hBDecrease with hStrictA | ⟨hEqA, hStrictB⟩
+  · exact (Nat.not_lt_of_ge hGlobalAMinimal) hStrictA
+  · exact (Nat.not_lt_of_ge (hGlobalBTieMinimal hEqA)) hStrictB
+
 end AllThoseRamseyClasses.Lifts
