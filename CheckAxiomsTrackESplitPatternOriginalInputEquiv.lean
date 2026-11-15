@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackESplitPatternOriginalInputEquiv
+
+#print axioms StructuralRamsey.Language.splitMaskInputAtPart_original_eq
+#print axioms StructuralRamsey.Language.splitMaskOriginalInput_atPart_eq
+#print axioms StructuralRamsey.Language.splitMaskOriginalInput_argMap_eq
