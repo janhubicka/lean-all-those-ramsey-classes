@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.BoundedForbiddenRootWidth
+
+#print axioms AllThoseRamseyClasses.Lifts.selectedFunctionalChart_width_le_sourceBound
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceSymbol_arity_le_sourceBound
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceClass_isEmpty_above_sourceBound
+#print axioms AllThoseRamseyClasses.Lifts.globalFunctionalPieceClass_finite_above_sourceBound
