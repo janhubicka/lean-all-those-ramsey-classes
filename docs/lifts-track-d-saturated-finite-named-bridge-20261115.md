@@ -4,7 +4,7 @@
 
 For a small native language `L : Language` with finitely many old relation and function symbols, and a finite original-source vertex bound N, the type `BoundedSaturatedFinRepresentatives F N` is finite. Construct `boundedSaturationNamedFamily L F N` by treating EACH member (a complete source structure on `Fin n`, with its positive and negative native relations and complete function fibres) as one named forbidden source.
 
-The new theorem `avoidsBoundedSaturationNamed_iff_original`, subject to exact-head Lean CI, identifies the resulting native finite-named forbidden-free class **exactly** with `AvoidsGlobalFunctionalEHN F`, the unchanged original shadow class.
+The theorem `avoidsBoundedSaturationNamed_iff_original`, subject to exact-head Lean CI, identifies the resulting native finite-named forbidden-free class **exactly** with `AvoidsGlobalFunctionalEHN F`, the unchanged original shadow class.
 
 ### Why this is not the old flawed quotient
 
@@ -17,3 +17,11 @@ The independent module `FiniteFamilyMaximalTraceStrongAmalgamation.lean` ALREADY
 The alternative folded language is NOT the original 2019 global minimal-separator canonical G-lift. In particular this bridge does not establish GlobalFunctionalPieceRegular G, the unrestricted printed Claim 2, or full Ramsey for the alternative lift. Also, JEP and any full reduct-surjectivity step must be checked in their existing finite-family APIs, not assumed from strong AP alone. The connectedness lemmas in this stacked PR allow JEP in positive-arity languages under source connectedness.
 
 **Verification:** Newly written native Lean declarations and named axiom/active-root checks remain CI-pending. The numbered manuscript is frozen and collaborators' removed TODOs stay removed. The parent #1228 and stacked #1247 need independent full green exact-head CI before merging.
+
+## Direct native integration of the old-language reduct
+
+`boundedSaturationNamed_maximalTrace_exact_reduct` now specializes the previously established `finiteNamedMaximalTraceAge_exact_reduct` to the bounded saturated family. For EVERY finite old structure A, it asserts the exact equivalence: A avoids the ORIGINAL forbidden family iff it is the old-language shadow of a genuine member of the hereditary finite-named folded maximal-trace age. Together with the existing finite-named finite-fibre and strong-AP theorems, this is a direct alternative finite-family structural expansion, not just a naming-level reduction.
+
+`boundedSaturationNamed_connectedNonempty` transfers original forbidden connectedness to ALL named saturated representatives. Under the existing positive-arity assumption, the finite-named JEP theorem consequently applies to these representatives. This supplies the JEP hypothesis independently of strong AP, without suppressing nullary compatibility issues.
+
+Both new declarations are **CI pending**, with explicit named axiom checks. They do NOT prove the original global minimal-separator G-lift strong AP, do NOT finish Ramsey, and require the original uniform source-size and finite-signature hypotheses for this named-family packaging.
