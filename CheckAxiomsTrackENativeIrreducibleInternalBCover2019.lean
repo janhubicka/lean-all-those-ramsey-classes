@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackENativeIrreducibleInternalBCover2019
+
+#print axioms AllThoseRamseyClasses.Published.wholeMaskCovered_nativeIrredCopy_internalB
