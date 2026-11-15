@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Published.TrackEHybridOldDecoderUnique
 import AllThoseRamseyClasses.Published.TrackEJointNormalTargetClass
+import AllThoseRamseyClasses.Published.TrackEHybridNoDefinedEmptyMask
 import PartiteConstruction.Functional.WholeMaskDecodedOutputParts2019
 
 /-!
@@ -89,7 +90,14 @@ theorem HybridUniqueVertexPart.partMap_preserved
         (fun _ : Fin 1 => e x) := by
     have hx := (e.map_rel_iff (.inr (.inr (hE.partMap x)))
       (fun _ : Fin 1 => x)).mpr (hE.partMap_hasLabel x)
-    simpa only [Function.comp_apply] using hx
+    have hTuple :
+        (e.toFun ∘ (fun _ : Fin 1 => x)) =
+          (fun _ : Fin 1 => e x) := by
+      funext i
+      rfl
+    exact (congrArg
+      (fun t : Fin 1 → W => T.rel (.inr (.inr (hE.partMap x))) t)
+      hTuple).mp hx
   exact hT.partMap_eq_of_label (e x) (hE.partMap x) hIn
 
 /-- Positive whole-mask output soundness combined with unary
