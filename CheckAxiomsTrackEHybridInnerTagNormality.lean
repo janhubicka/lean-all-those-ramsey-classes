@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEHybridInnerTagNormality
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_innerTagsNormal
+#print axioms StructuralRamsey.RelStructure.HybridInnerTagsNormal.of_embedding
+#print axioms StructuralRamsey.RelStructure.HybridInnerTagsNormal.induce
