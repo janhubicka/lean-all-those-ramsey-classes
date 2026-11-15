@@ -66,7 +66,7 @@ theorem fullNativeSelectedQ_Aactive_support_partition
         have hEw : iE (sE r) = w := by
           calc
             iE (sE r) = iQ (sQ r) := hOverlap.symm
-            _ = iQ q := congrArg iQ hr.symm
+            _ = iQ q := congrArg iQ hr
             _ = w := hqw.symm
         have hEActive : flip (iE (sE r)) ∈ Active := by
           rw [hEw]
