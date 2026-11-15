@@ -1,6 +1,8 @@
 import AllThoseRamseyClasses.Lifts.FullRangeSaturationConnected
 import AllThoseRamseyClasses.Lifts.FullRangeSaturationFiniteCover
 import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceStrongAmalgamation
+import AllThoseRamseyClasses.Lifts.FiniteFamilyMaximalTraceExactReduct
+import AllThoseRamseyClasses.Lifts.FiniteFamilyConnectedJEP
 
 /-!
 # Realize a bounded saturated family as finite named forbidden sources
@@ -95,5 +97,53 @@ theorem avoidsBoundedSaturationNamed_iff_original
       AvoidsGlobalFunctionalEHN F Target := by
   exact (avoidsBoundedSaturationNamed_iff L F N hBound Target).trans
     (avoids_fullRangeEHNSaturation_iff F Target)
+
+/-- The original forbidden-free class is the EXACT old-language
+reduct of the actual hereditary finite-named folded maximal-trace age.
+This connects the saturation finite representative cover with the
+already verified nonempty finite-fibre expansion theorem, rather than
+merely asserting equality of two avoidance predicates. -/
+theorem boundedSaturationNamed_maximalTrace_exact_reduct
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    (hBound : ∀ {V : Type} (A : Structure L V),
+      F A → Nat.card V ≤ N)
+    {W : Type} [Finite W] (A : Structure L W) :
+    (∃ (Y : Structure
+        (functionalLiftLanguageBig L
+          (boundedSaturationNamedFamily L F N).ComponentTag
+          (fun tag => tag.width (boundedSaturationNamedFamily L F N))) W),
+      FiniteNamedTraceShadow
+        (boundedSaturationNamedFamily L F N) Y = A ∧
+      IsFiniteNamedMaximalTrace
+        (boundedSaturationNamedFamily L F N) Y) ↔
+      AvoidsGlobalFunctionalEHN F A := by
+  exact (finiteNamedMaximalTraceAge_exact_reduct
+    (boundedSaturationNamedFamily L F N) A).trans
+    (avoidsBoundedSaturationNamed_iff_original L F N hBound A)
+
+/-- Every finite named saturated representative is nonempty and
+connected whenever the original finite forbidden sources are.
+The full-range image factorization and positive native Gaifman
+incidences prove this, independently of bounded-source regularity. -/
+theorem boundedSaturationNamed_connectedNonempty
+    (L : Language)
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (N : ℕ)
+    [Finite L.RelSymbol] [Finite L.FuncSymbol]
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F) :
+    FiniteNamedSourcesConnectedNonempty
+      (boundedSaturationNamedFamily L F N) := by
+  intro i
+  have hSatConnected :
+      GlobalForbiddenSourcesConnectedNonempty
+        (FullRangeEHNSaturation F) :=
+    fullRangeEHNSaturation_connectedNonempty F hConnected
+  exact hSatConnected
+    ((boundedSaturationNamedFamily L F N).source i)
+    ((boundedSaturationNamedFamily L F N).finiteCarrier i)
+    i.2.2
 
 end AllThoseRamseyClasses.Lifts
