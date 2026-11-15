@@ -77,6 +77,7 @@ theorem exists_saturatedRelational_directFullSupportMinimizer
   have hQ : FullRangeEHNSaturation F Q :=
     fullRangeEHNSaturation_surjectiveImageClosed
       F w.source Q q w.forbidden hq hSurj
+  letI : Finite S := finite_of_fullRangeEHNSaturation F Q hQ
   let e : Structure.Embedding Q Target :=
     Target.inclusion S hSclosed
   let v : ForbiddenEHNWitness
