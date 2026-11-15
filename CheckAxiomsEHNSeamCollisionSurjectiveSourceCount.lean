@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNSeamCollisionSurjectiveSourceCount
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteSurjectiveSourceContraction_strictSeamCollisionDrop
+#print axioms AllThoseRamseyClasses.Lifts.finiteSourceInjection_seamCollisionPairs_le
