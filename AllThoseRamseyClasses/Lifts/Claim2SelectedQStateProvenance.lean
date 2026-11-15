@@ -177,6 +177,20 @@ theorem claim2Native_eligibleInner_hasSelectedQProvenanceStep
       anew ∈ weakFreeLeftPart (sL := iLeft) (iL := jLeft) flip :=
     (weakFreeLeftPart_iff_targetExclusive
       iLeft jLeft flip anew).mpr haNewA
+  have hNewNativeBoundaryInj :
+      ∀ (y : {w : V' //
+          w ∉ weakFreeRootPart (sL := iLeft) (iL := jLeft) flip}),
+        y.1 ∈ geometricPieceVertices New newOuter →
+        y.1 ∈ weakFreeRightPart
+          (sL := iLeft) (iL := jLeft) (iR := jRight) flip →
+        Set.InjOn flip
+          (New.functionClosure
+            (gaifmanNeighborhood New.graph
+              (componentFrom New.graph
+                (weakFreeRootPart (sL := iLeft) (iL := jLeft) flip) y))) :=
+    claim2_fullRightActiveBoundary_to_weakRightActiveBoundary
+      New newOuter Target flip X Left Right jLeft jRight
+      iLeft iRight hFree hNewBoundaryInj
   let t : Claim2NativeGeometricState F Target Left Right
       jLeft jRight X iLeft iRight n :=
     { Carrier := V'
@@ -191,7 +205,7 @@ theorem claim2Native_eligibleInner_hasSelectedQProvenanceStep
       anchorInOuter := haOuter
       anchorLeft := hNewAnchorLeft
       outerRootTargetInj := hNewRootInj
-      activeBoundaryInj := hNewBoundaryInj }
+      activeBoundaryInj := hNewNativeBoundaryInj }
   refine ⟨t, ?_⟩
   have hStateStep :
       claim2NativeGeometricStep F Target Left Right
