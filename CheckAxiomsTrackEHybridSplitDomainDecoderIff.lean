@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSplitDomainDecoderIff
+
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.splitDomain_iff_oldDecodedPart
