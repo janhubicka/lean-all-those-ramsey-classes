@@ -41,7 +41,7 @@ private noncomputable instance (Z : Type w) : DecidableEq Z := Classical.decEq Z
 
 /-- Restrict q to its EXACT image on T. No injectivity or
 function-closedness of the image is required. -/
-def exactFinsetImageMap (q : X → V) (T : Finset X) :
+noncomputable def exactFinsetImageMap (q : X → V) (T : Finset X) :
     (↑T : Set X) → (↑(T.image q) : Set V) :=
   fun x => ⟨q x.1, Finset.mem_image.mpr
     ⟨x.1, x.2, rfl⟩⟩
