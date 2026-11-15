@@ -171,6 +171,53 @@ theorem unblockingOriginalTarget_forces_failure_of_fullTestTransport
     (testTransport_preserves_fullTestBlockedTargetImages
       Old New h hTransport fOld fNew hTarget a hOldBlocked)
 
+/-- ACTUAL source-test witness which must fail to survive
+a collision-unblocking source surgery.
+
+Suppose a target value d is blocked by the ORIGINAL source
+pair a,b inside a genuine FULL irreducible source test E,
+and d ceases to be blocked in the replacement New even though
+old target coordinates are retained along h. Then one can
+select the SAME old offending a,b and full E↪Old together
+with a proof that NO full embedding E↪New has the specified
+h-coordinate images. This is stronger than merely negating
+global test transport: it produces the specific test that
+any successful source surgery must destroy or modify.
+
+There is no existence claim for such an unblocking surgery;
+the obstruction is conditional on a genuine new source and
+unblocked target. -/
+theorem unblockingOriginalTarget_has_specific_untransportable_fullTest
+    {V W UT : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (h : V → W)
+    (fOld : V → UT) (fNew : W → UT)
+    (hTarget : ∀ v : V, fNew (h v) = fOld v)
+    (a : V) (d : UT)
+    (hOldBlocked : d ∈ nativeFullTestBlockedTargetImages Old fOld a)
+    (hNewUnblocked : d ∉ nativeFullTestBlockedTargetImages New fNew (h a)) :
+    ∃ b : V, a ≠ b ∧ fOld b = d ∧
+      ∃ (X : Type) (E : Structure L X),
+        E.Irreducible ∧
+        ∃ (e : Structure.Embedding E Old) (x y : X),
+          e x = a ∧ e y = b ∧
+          ¬ ∃ eNew : Structure.Embedding E New,
+            ∀ z : X, eNew z = h (e z) := by
+  obtain ⟨b, ⟨hab, X, E, hIr, e, x, y, hx, hy⟩, hfb⟩ :=
+    hOldBlocked
+  refine ⟨b, hab, hfb, X, E, hIr, e, x, y, hx, hy, ?_⟩
+  rintro ⟨eNew, heNew⟩
+  have hxNew : eNew x = h a := (heNew x).trans (congrArg h hx)
+  have hyNew : eNew y = h b := (heNew y).trans (congrArg h hy)
+  have hNotEq : h a ≠ h b := by
+    intro hSame
+    have hxy : x = y :=
+      eNew.injective (hxNew.trans (hSame.trans hyNew.symm))
+    exact hab (hx.symm.trans ((congrArg e.toFun hxy).trans hy))
+  exact hNewUnblocked
+    ⟨h b, ⟨hNotEq, X, E, hIr, eNew,
+      x, y, hxNew, hyNew⟩, (hTarget b).trans hfb⟩
+
 /-- Even for a replacement source whose full old structure is
 NOT retained, transporting all original irreducible tests
 prevents one-vertex recolouring of h(a) to an originally
