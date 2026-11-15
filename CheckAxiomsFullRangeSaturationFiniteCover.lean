@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.FullRangeSaturationFiniteCover
+
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturatedFinRepresentatives_finite
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_bounded_fullIsoCover
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_finite_fullIsoCover
