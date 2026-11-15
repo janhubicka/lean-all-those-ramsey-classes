@@ -42,3 +42,21 @@ is precisely characterized in draft #1196/#1206/#1207/#1208.
 No target-image quotient, unproved tuple-surjective weak
 source-image reduction, or reintroduced collaborator TODOs.
 Two named #print axioms and protected active source root.
+
+## Immediate contradiction for an eligible A-neutral B-successor
+
+The same module now adds
+`globalLexMin_avoids_A_nonincrease_and_B_strictDecrease`.
+An arbitrary new forbidden weak-map witness with total A-exclusive
+SOURCE support no larger than that of the global (A,B) lex-minimum
+must in fact have EQUAL A-source support (by global A minimality).
+If its GLOBAL B-exclusive SOURCE support is strictly smaller,
+that contradicts the B tie-breaker among A-minimal witnesses.
+
+This is the exact contradiction interface that would combine
+#1221 (true global B-source strict decrease on ONE selected Q)
+with a proven A-neutrality selection condition (draft #1196/#1207).
+It avoids a spurious long B-iteration or assuming the new witness
+retains original A-global minimality without proof.
+The remaining existence of an eligible A-neutral canonical Q
+is not discharged here.
