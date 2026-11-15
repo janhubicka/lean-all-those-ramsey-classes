@@ -206,7 +206,7 @@ theorem oneVertexRecolor_jointTestPairSeparation_iff_notBlocked
       · have hd : f x = d := by
           simpa [hxa, hya] using hSame
         apply hNotBlocked
-        exact ⟨x, ⟨hxa.symm, X, E, hIr, e, v, u,
+        exact ⟨x, ⟨(by intro h; exact hxa h.symm), X, E, hIr, e, v, u,
           hv.trans hya, hu⟩, hd⟩
       · have hOldSame : f x = f y := by
           simpa [hxa, hya] using hSame
