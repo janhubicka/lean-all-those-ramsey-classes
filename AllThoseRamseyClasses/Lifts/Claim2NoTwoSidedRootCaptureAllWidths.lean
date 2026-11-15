@@ -185,16 +185,13 @@ theorem geometric_no_twoSidedOldRootCapture_of_newRoot_inside_oldPiece
     hReachOldRoot s hsOld hsRight.1
   have hBetween :
       ReachOutside Source.graph (Set.range d.roots)
-        d.left d.right := by
-    calc
-      d.left = d.left := rfl
-      _ = d.right := by
-        exact hrLeft.2.trans
-          ((reachOutside_symm Source.graph (Set.range d.roots)
-              hrFromOldOpposite).trans
-            (hsFromOldOpposite.trans
-              (reachOutside_symm Source.graph (Set.range d.roots)
-                hsRight.2)))
+        d.left d.right :=
+    hrLeft.2.trans
+      ((reachOutside_symm Source.graph (Set.range d.roots)
+          hrFromOldOpposite).trans
+        (hsFromOldOpposite.trans
+          (reachOutside_symm Source.graph (Set.range d.roots)
+            hsRight.2)))
   exact d.minimal.2.1 hBetween
 
 end AllThoseRamseyClasses.Lifts
