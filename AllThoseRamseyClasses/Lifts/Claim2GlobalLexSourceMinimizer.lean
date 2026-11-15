@@ -136,4 +136,52 @@ theorem exists_global_lex_minimum_weakForbiddenSource_support
       (show Nat.card {z : Z // k z ∈ BActive} ∈ bCosts from
         ⟨Z, Candidate, hCandidate, k, hk, hAEqual.trans hA, rfl⟩)
 
+/-- A lexicographically minimum ORIGINAL forbidden weak-map source
+witness cannot admit a new F-forbidden weak-map source with
+NONINCREASING global A-exclusive SOURCE cardinality AND
+STRICTLY DECREASING global B-exclusive SOURCE cardinality.
+
+The global A-minimality inequality first forces equality of
+the A counts; the B tie-breaker then forbids the strict B drop.
+
+This is the exact FINITE-SOURCE contradiction interface for
+combining an A-neutral selected-Q successor with the
+global B-source descent in the original 2019 Claim 2 proof.
+It does NOT assert that such a new witness exists. -/
+theorem globalLexMin_avoids_A_nonincrease_and_B_strictDecrease
+    (F : ∀ {Z : Type}, Structure L Z → Prop)
+    {V W UT : Type}
+    (Target : Structure L UT)
+    (Old : Structure L V)
+    (f : V → UT)
+    (New : Structure L W) (hNew : F New)
+    (flip : W → UT)
+    (hFlip : New.IsEHNHomomorphismEmbedding Target flip)
+    (AActive BActive : Set UT)
+    (hGlobalAMin : ∀ {Z : Type} (Candidate : Structure L Z)
+      (hCandidate : F Candidate) (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {v : V // f v ∈ AActive} ≤
+        Nat.card {z : Z // g z ∈ AActive})
+    (hBMinAtA : ∀ {Z : Type} (Candidate : Structure L Z)
+      (hCandidate : F Candidate) (g : Z → UT),
+      Candidate.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {z : Z // g z ∈ AActive} =
+        Nat.card {v : V // f v ∈ AActive} →
+      Nat.card {v : V // f v ∈ BActive} ≤
+        Nat.card {z : Z // g z ∈ BActive})
+    (hANonIncreasing :
+      Nat.card {w : W // flip w ∈ AActive} ≤
+        Nat.card {v : V // f v ∈ AActive})
+    (hBStrict :
+      Nat.card {w : W // flip w ∈ BActive} <
+        Nat.card {v : V // f v ∈ BActive}) : False := by
+  have hAEqual :
+      Nat.card {w : W // flip w ∈ AActive} =
+        Nat.card {v : V // f v ∈ AActive} :=
+    Nat.le_antisymm hANonIncreasing
+      (hGlobalAMin New hNew flip hFlip)
+  exact (Nat.not_lt_of_ge
+    (hBMinAtA New hNew flip hFlip hAEqual)) hBStrict
+
 end AllThoseRamseyClasses.Lifts
