@@ -63,3 +63,36 @@ the repaired original theorem statement.
 
 Two named #print axioms, protected source root; no
 collaborator-removed TODO reinstated.
+
+## 15 November follow-up: adversarial lexicographic accounting
+
+Four additive source lemmas now give exact natural-number accounting for
+an all-target exterior-conserving replacement. In particular,
+`claim2_lexMinimal_strict_A_growth_of_local_B_decrease` proves:
+
+* If the OLD original witness is globally lexicographically minimal
+  in (A-exclusive SOURCE count, B-exclusive SOURCE count),
+* the NEW forbidden source still maps EHN into the SAME target,
+* exterior A/B source counts are equal, and
+* interior B-exclusive SOURCE count drops strictly,
+
+then the NEW interior A-exclusive SOURCE count MUST GROW STRICTLY.
+The companion theorem gives at least one new A-exclusive source vertex
+numerically. The elementary opposite conditional contradiction for
+non-growing A support is also registered.
+
+This is an OBSTRUCTION, not a closure of Claim 2. The standard
+B-to-A flip cannot be iterated within the global A-minimal class just
+from exterior conservation and strict B rank descent: if it were
+A-neutral, lexicographic minimality would immediately contradict the
+reported strict B decrease. One needs either an independently
+A-preserving *different* surgery (which would itself immediately
+contradict the minimum), or a genuinely different globally
+well-founded potential tracking the accumulated A cost. Avoid
+claiming the original A-minimum is carried through a B-flip.
+
+All four lemma names are now included in the explicit axiom-check file.
+The previous exact-head build job for commit b0a3a1b7 completed
+successfully; at the observation point the inventory job was still
+queued. The newly pushed source and axiom-check commits require their
+own exact-head CI before integration.
