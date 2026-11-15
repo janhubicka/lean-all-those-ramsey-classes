@@ -1,4 +1,4 @@
-import AllThoseRamseyClasses.Lifts.Claim2HeterogeneousNativeState
+import AllThoseRamseyClasses.Lifts.Claim2HeterogeneousNativeDescent
 import AllThoseRamseyClasses.Lifts.Claim2SameWitnessGeometricStateStep
 
 /-!
@@ -217,5 +217,99 @@ theorem claim2Native_eligibleInner_hasSelectedQProvenanceStep
   exact ⟨hStateStep, m, inner, hm, hInnerInside,
     Q, hSelected, iQ, iE, hNewFree,
     hQNoB, hEAgree, hCarrier⟩
+
+/-- An arbitrary FINITE chain retaining the literal selected-Q
+native Q+E diagram at EVERY step projects to the already verified
+invariant-only geometric source transition chain. No step is
+manufactured and no unrecorded source replacement is inserted. -/
+theorem claim2NativeSelectedQChain_to_contractChain
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    {n : ℕ} (hn : 0 < n)
+    {k : ℕ}
+    {s t : Claim2NativeGeometricState F Target Left Right
+      jLeft jRight X iLeft iRight n}
+    (hChain : ConditionalSelectedQChain
+      (claim2NativeSelectedQProvenanceStep F Target Left Right
+        jLeft jRight X iLeft iRight hn) k s t) :
+    ConditionalSelectedQChain
+      (claim2NativeGeometricStep F Target Left Right
+        jLeft jRight X iLeft iRight hn) k s t := by
+  induction hChain with
+  | nil s =>
+      exact ConditionalSelectedQChain.nil s
+  | cons hStep hTail ih =>
+      exact ConditionalSelectedQChain.cons hStep.1 ih
+
+/-- Finite chains of LITERAL selected Q+E full native replacements
+preserve the actual original selected global piece symbol, ordered
+TARGET root coordinates, full exterior SOURCE counts and A-anchor
+target coordinate, because each concrete selected-Q edge satisfies
+the ordinary state contract. -/
+theorem claim2NativeSelectedQChain_preservesOriginalProfile
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    {n : ℕ} (hn : 0 < n)
+    (initial terminal : Claim2NativeGeometricState F Target Left Right
+      jLeft jRight X iLeft iRight n)
+    {k : ℕ}
+    (hChain : ConditionalSelectedQChain
+      (claim2NativeSelectedQProvenanceStep F Target Left Right
+        jLeft jRight X iLeft iRight hn) k initial terminal) :
+    claim2NativeOuterProfile F Target Left Right
+      jLeft jRight X iLeft iRight hn initial terminal := by
+  exact claim2NativeChain_preserves_originalProfile
+    F Target Left Right jLeft jRight X iLeft iRight
+    hn initial terminal
+    (claim2NativeSelectedQChain_to_contractChain
+      F Target Left Right jLeft jRight X iLeft iRight hn
+      hChain)
+
+/-- Exact quantitative SOURCE-rank budget for chains storing the
+actual selected forbidden Q and old complement diagram at every
+edge, not merely a profile equivalence class or target-image count. -/
+theorem claim2NativeSelectedQChain_rankBudget
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    {UX UA UB UT : Type}
+    (Target : Structure L UT)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    {n : ℕ} (hn : 0 < n)
+    {k : ℕ}
+    {s t : Claim2NativeGeometricState F Target Left Right
+      jLeft jRight X iLeft iRight n}
+    (hChain : ConditionalSelectedQChain
+      (claim2NativeSelectedQProvenanceStep F Target Left Right
+        jLeft jRight X iLeft iRight hn) k s t) :
+    k + claim2NativeBSourceRank t ≤ claim2NativeBSourceRank s := by
+  have hDecrease :
+      ∀ ⦃a b : Claim2NativeGeometricState F Target Left Right
+          jLeft jRight X iLeft iRight n⦄,
+        claim2NativeSelectedQProvenanceStep F Target Left Right
+          jLeft jRight X iLeft iRight hn a b →
+        claim2NativeBSourceRank b < claim2NativeBSourceRank a := by
+    intro a b hStep
+    exact hStep.1.2.2.1
+  exact conditionalSelectedQChain_rank_budget
+    claim2NativeBSourceRank hDecrease hChain
+
 
 end AllThoseRamseyClasses.Lifts
