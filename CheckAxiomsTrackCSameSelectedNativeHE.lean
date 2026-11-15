@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Published.TrackCSameSelectedNativeHE
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_selectedWeakCompletion_fullOnNativeIrred
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_selectedWeakCompletion_nativeHEOnClosedT
