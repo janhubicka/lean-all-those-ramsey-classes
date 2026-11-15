@@ -57,6 +57,7 @@ theorem fullNativeRetainedComplement_Aactive_card_eq
     ext v
     constructor
     · intro hv
+      change f v ∈ AActive at hv
       obtain ⟨e, he⟩ := hOldAllAInE v hv
       refine ⟨e, ?_, he⟩
       change f (iOldE e) ∈ AActive
@@ -67,6 +68,7 @@ theorem fullNativeRetainedComplement_Aactive_card_eq
     ext w
     constructor
     · intro hw
+      change flip w ∈ AActive at hw
       obtain ⟨e, he⟩ := hNewAllAInE w hw
       refine ⟨e, ?_, he⟩
       change f (iOldE e) ∈ AActive
@@ -151,12 +153,12 @@ theorem geometricSelectedQ_nonrootAfree_preserves_totalASourceCount
         calc
           iE ((geometricGlobalComplementChart Old inner).rootEmbedding r)
               = iQ (Q.rootEmbedding r) := hOverlap.symm
-          _ = iQ q := congrArg iQ hr
-          _ = w := hqw
+          _ = iQ q := congrArg iQ hr.symm
+          _ = w := hqw.symm
       · have hqA : flip (iQ q) ∈ AActive := by
           simpa only [hqw] using hwA
         exact False.elim ((hQNonrootNoA q hqRoot) hqA)
-    · exact ⟨e, hew⟩
+    · exact ⟨e, hew.symm⟩
   exact fullNativeRetainedComplement_Aactive_card_eq
     iOldE iE f flip AActive
     hOldAllAInE hNewAllAInE hEAgree
