@@ -147,4 +147,52 @@ theorem forbiddenEHNWitness_strictSourceReplacement_of_printedTupleClosure
     lt_of_le_of_lt hCopyLe hNewStrict
   exact ⟨v, hStrict⟩
 
+/-- Genuine ORIGINAL primary support-minimizer obstruction to a
+tuple-surjective native source contraction which identifies two
+distinct original left-support vertices.
+
+This is the exact Section 3 minimality contradiction whenever
+a proposed source-changing repair meets the explicit contracts:
+h is surjective, weak on every old native relation/function,
+transports all original FULL irreducible tests, is ORIGINAL
+tuple-surjective, and a genuine new EHN map g factors the
+old target map through h. The PRINTED family closure suffices
+to construct the strictly smaller forbidden witness.
+
+This theorem does NOT construct h/g, assert that canonical
+maximal-lift profile agreement implies tuple-surjectivity,
+or remove the remaining unrestricted Claim 1/2 gap. -/
+theorem minimalForbiddenEHNWitness_no_collapsingTupleSurjFullTestSourceRepair
+    (F : ∀ {X : Type}, Structure L X → Prop)
+    (hFiniteF : ∀ {X : Type} (Src : Structure L X),
+      F Src → Finite X)
+    (hImage : HasTupleSurjectiveForbiddenImageClosure F)
+    {UT : Type} (Target : Structure L UT)
+    (AOnly : Set UT)
+    (w : ForbiddenEHNWitness F Target)
+    (hPrimary : ∀ v : ForbiddenEHNWitness F Target,
+      w.sourceSupportCount AOnly ≤ v.sourceSupportCount AOnly)
+    {W : Type} (New : Structure L W)
+    (h : w.Carrier → W)
+    (hSurj : Function.Surjective h)
+    (hWeak : w.source.IsWeakHomomorphism New h)
+    (hTransport :
+      TransportsOriginalFullIrreducibleTests w.source New h)
+    (hTuple : OriginalPartialTupleSurjective w.source New h)
+    (g : W → UT)
+    (hg : New.IsEHNHomomorphismEmbedding Target g)
+    (hFactor : ∀ z : w.Carrier, g (h z) = w.toTarget z)
+    (x y : w.Carrier) (hxy : x ≠ y)
+    (hxLeft : w.toTarget x ∈ AOnly)
+    (hyLeft : w.toTarget y ∈ AOnly)
+    (hCollapse : h x = h y) :
+    False := by
+  obtain ⟨v, hStrict⟩ :=
+    forbiddenEHNWitness_strictSourceReplacement_of_printedTupleClosure
+      F hFiniteF hImage Target AOnly w
+      New h hSurj hWeak hTransport hTuple g hg hFactor
+      x y hxy hxLeft hyLeft hCollapse
+  exact (minimalForbiddenEHNWitness_no_strict_drop
+    AOnly w hPrimary v) hStrict
+
 end AllThoseRamseyClasses.Lifts
