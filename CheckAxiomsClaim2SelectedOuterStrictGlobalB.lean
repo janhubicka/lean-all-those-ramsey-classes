@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedOuterStrictGlobalB
+
+#print axioms AllThoseRamseyClasses.Lifts.finiteSource_active_card_eq_inside_add_outside
+#print axioms AllThoseRamseyClasses.Lifts.finiteSource_strict_global_active_of_inside_and_exterior
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withSeamNoEscape_andStrictGlobalB
