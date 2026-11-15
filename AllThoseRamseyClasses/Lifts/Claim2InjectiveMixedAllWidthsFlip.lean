@@ -167,4 +167,98 @@ theorem claim2_originalAMinimal_injective_mixed_allWidths_hasActualFlip
     Left Right jLeft jRight X iLeft iRight hFree hCommon
     P hMinimal a (Or.inr haComp) haA hPositiveB hLocalB hAMinimal
 
+/-- A nonempty collection of actual mixed minimal-separator
+SOURCE pieces in an INJECTIVE globally A-minimal forbidden
+weak-map witness suffices: the verified finite-source
+smallest-nonroot-piece selection chooses P, and the previous
+theorem constructs the real B-decreasing same-symbol successor.
+
+No independent choice of source/weak map is made; the only
+choice is the smallest mixed source piece INSIDE that same
+original source. -/
+theorem claim2_originalAMinimal_injective_nonemptyMixed_allWidths_hasActualFlip
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (hFiniteF : ∀ {W : Type} (A : Structure L W), F A → Finite W)
+    (hConnected : GlobalForbiddenSourcesConnectedNonempty F)
+    {V UX UA UB UT : Type}
+    (Source : Structure L V)
+    (hFinite : Finite V) (hForbidden : F Source)
+    (Target : Structure L UT) (f : V → UT)
+    (hf : Source.IsEHNHomomorphismEmbedding Target f)
+    (Left : Structure L UA) (Right : Structure L UB)
+    (jLeft : Structure.Embedding Left Target)
+    (jRight : Structure.Embedding Right Target)
+    (X : Structure L UX)
+    (iLeft : Structure.Embedding X Left)
+    (iRight : Structure.Embedding X Right)
+    (hFree : Structure.IsFreeAmalgam iLeft iRight jLeft jRight)
+    (hCommon : CommonGlobalCanonicalLift F X Left Right iLeft iRight)
+    (hExists : Nonempty (MixedGeometricPiece Source
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeLeftPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeRightPart (sL := iLeft) (iL := jLeft)
+        (iR := jRight) f)))
+    (hInjective : Function.Injective f)
+    (hAMinimal : ∀ {W : Type}
+      (New : Structure L W) (hNew : F New)
+      (g : W → UT),
+      New.IsEHNHomomorphismEmbedding Target g →
+      Nat.card {v : V //
+        f v ∈ fullFreeLeftExclusiveTarget iLeft jLeft} ≤
+      Nat.card {w : W //
+        g w ∈ fullFreeLeftExclusiveTarget iLeft jLeft}) :
+    ∃ P : MixedGeometricPiece Source
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeLeftPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeRightPart (sL := iLeft) (iL := jLeft)
+        (iR := jRight) f),
+      ∃ a : V,
+      ∃ (m : ℕ) (d : GeometricFunctionalPieceData Source m),
+      0 < m ∧
+      geometricPieceVertices Source d ⊂
+        geometricPieceVertices Source P.data ∧
+      ∃ (V' : Type) (New : Structure L V')
+        (hNew : F New) (hFiniteNew : Finite V')
+        (flip : V' → UT)
+        (newOuter : GeometricFunctionalPieceData New P.width),
+        New.IsEHNHomomorphismEmbedding Target flip ∧
+        (∀ i : Fin P.width,
+          flip (newOuter.roots i) = f (P.data.roots i)) ∧
+        geometricGlobalPieceSymbol F Source
+          hFinite hForbidden P.data P.positive =
+          geometricGlobalPieceSymbol F New
+            hFiniteNew hNew newOuter P.positive ∧
+        Nat.card {w : V' //
+          w ∈ geometricPieceVertices New newOuter ∧
+          flip w ∈ fullFreeRightExclusiveTarget iRight jRight} <
+        Nat.card {v : V //
+          v ∈ geometricPieceVertices Source P.data ∧
+          f v ∈ fullFreeRightExclusiveTarget iRight jRight} ∧
+        (∀ TargetSet : Set UT,
+          Nat.card {w : V' //
+            w ∉ geometricPieceVertices New newOuter ∧
+            flip w ∈ TargetSet} =
+          Nat.card {v : V //
+            v ∉ geometricPieceVertices Source P.data ∧
+            f v ∈ TargetSet}) ∧
+        (∃ anew : V',
+          anew ∈ geometricPieceVertices New newOuter ∧
+          flip anew = f a ∧
+          flip anew ∈ fullFreeLeftExclusiveTarget iLeft jLeft) := by
+  classical
+  letI : Finite V := hFinite
+  obtain ⟨P, hMin⟩ :=
+    exists_minimalMixedGeometricPiece Source
+      (weakFreeRootPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeLeftPart (sL := iLeft) (iL := jLeft) f)
+      (weakFreeRightPart (sL := iLeft) (iL := jLeft)
+        (iR := jRight) f) hExists
+  refine ⟨P, ?_⟩
+  exact claim2_originalAMinimal_injective_mixed_allWidths_hasActualFlip
+    F hFiniteF hConnected Source hFinite hForbidden
+    Target f hf Left Right jLeft jRight
+    X iLeft iRight hFree hCommon
+    P hMin hInjective hAMinimal
+
+
 end AllThoseRamseyClasses.Lifts
