@@ -68,6 +68,16 @@ For i<k choose the test Q_k: it is compatible with P_k, not with P_i. Hence P_i 
 
 There are infinitely many such P_i. Consequently GlobalFunctionalPieceClass G 1 is infinite, violating GlobalFunctionalPieceRegular G at width 1.
 
+## Important hypothesis distinction: printed tuple-image closure
+
+**This original F is NOT claimed to satisfy the extra image-closure hypothesis of the printed 2019 theorem.** In fact, the basic fibre-collapse map F_i -> H_i is already tuple-surjective in the relational sense: every edge of H_i occurs as an image of an F_i edge. Yet H_i has no full embedded copy of a source F_k. Any connected F_k has both red and blue edges and vertex-connectivity k>=3; an induced copy inside the one-cut wedge H_i would have to cross x and hence have a cut vertex, while a copy confined entirely to one of the sides would lack one of the colours. Thus this F fails the printed closure condition.
+
+Therefore the example refutes the *unqualified* implication
+
+    regular(F) -> regular(Sat_EHN(F)),
+
+including under connectedness and a finite binary relational language. It does NOT settle the stronger implication with the additional premise that F is already closed under the *printed tuple-surjective image condition*. That sharpened question remains separate. The independently verified concrete maximal-lift obstruction in parent PR #1228 concerns the printed image-closure condition and should not be conflated with this regularity counterexample.
+
 ## Reproducibility, formalization and scope
 
 The accompanying Python3 standard-library regression exhausts all removals of fewer than i vertices in the examples i=3 and i=4 (379 and 18,473 deletion sets), checks rooted closed blue walks and full-on-each-clique EHN of the displayed base homomorphisms for 3<=i,j<=6, and prints the expected lower-triangular threshold matrix. This finite regression is NOT the proof of the infinite theorem.
