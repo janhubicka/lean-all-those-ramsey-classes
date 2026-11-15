@@ -196,7 +196,7 @@ theorem geometricSelectedQ_noNewB_exact_Bsource_loss
     · intro hq
       exact (hNoBFromQ q) hq.2
     · intro hq
-      exact False.elim (Set.not_mem_empty q hq)
+      simp at hq
   have hPrivateZero :
       Nat.card {q : Q.Carrier //
         q ∉ Set.range Q.rootEmbedding ∧
