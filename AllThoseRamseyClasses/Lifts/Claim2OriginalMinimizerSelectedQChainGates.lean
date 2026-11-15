@@ -264,4 +264,48 @@ theorem claim2NativePreRoot_widthOne_minimizer_boundaryGap_or_literalQChain
     exact False.elim (hij (Subsingleton.elim i j))
   · exact hOther
 
+/-- Adversarial source-geometric audit: every selected-Q eligible
+inner piece in the positive-rank theorem is in fact STRICTLY
+smaller than the original geometric outer piece. Although the
+basic provenance interface only needs carrier inclusion, equality
+of carriers is impossible: the original A-exclusive SOURCE anchor
+is in the outer piece, but cannot be in the A-free selected inner
+component or in the inner root mapped into the TARGET seam.
+
+This supplies a genuine proper native geometric subpiece without
+strengthening the assumptions of the selected-Q replacement. -/
+theorem claim2NativeEligibleInner_hasProperNestedPiece
+    {F : ∀ {W : Type}, Structure L W → Prop}
+    {UX UA UB UT : Type}
+    {Target : Structure L UT}
+    {Left : Structure L UA} {Right : Structure L UB}
+    {jLeft : Structure.Embedding Left Target}
+    {jRight : Structure.Embedding Right Target}
+    {X : Structure L UX}
+    {iLeft : Structure.Embedding X Left}
+    {iRight : Structure.Embedding X Right}
+    {n : ℕ}
+    (s : Claim2NativeGeometricState F Target Left Right
+      jLeft jRight X iLeft iRight n)
+    (hEligible : claim2NativeEligibleInner s) :
+    ∃ (m : ℕ) (d : GeometricFunctionalPieceData s.source m),
+      0 < m ∧
+      geometricPieceVertices s.source d ⊂
+        geometricPieceVertices s.source s.outer := by
+  obtain ⟨m, d, hm, hSubset, _hNoCapture, hRootsInSeam,
+    hNoA, _hRootInj, _x, _hxComp, _hxB⟩ := hEligible
+  have hAnchorNotInner :
+      s.anchor ∉ geometricPieceVertices s.source d := by
+    intro hPart
+    rcases hPart with hRoot | hComp
+    · exact s.anchorLeft.2 (hRootsInSeam hRoot)
+    · exact (hNoA s.anchor hComp) s.anchorLeft
+  have hProper :
+      geometricPieceVertices s.source d ⊂
+        geometricPieceVertices s.source s.outer := by
+    refine Set.ssubset_iff_subset_ne.mpr ⟨hSubset, ?_⟩
+    intro hEqual
+    exact hAnchorNotInner (hEqual.symm ▸ s.anchorInOuter)
+  exact ⟨m, d, hm, hProper⟩
+
 end AllThoseRamseyClasses.Lifts
