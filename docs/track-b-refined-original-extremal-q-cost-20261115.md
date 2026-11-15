@@ -36,7 +36,9 @@ all-width extremal source theorem.
 
 If an ORIGINAL finite forbidden weak EHN SOURCE/map is
 globally A-exclusive SOURCE-support minimal and its actual
-outer source-geometric piece is globally MINIMAL in
+outer source-geometric piece corresponds, by EXACT ROOT-SET,
+SELECTED COMPONENT-SET and PIECE VERTEX-SET equalities, to a
+mixed source-geometric piece globally MINIMAL in
 NONROOT SOURCE cardinality among mixed pieces in that
 SAME source/map, then a positive B-exclusive SOURCE rank
 CANNOT take the refined smaller-root obstruction branch.
@@ -71,3 +73,17 @@ edits to frozen collaborator text. New proof roots and
 named #print axioms are registered. Hold DRAFT until
 exact-head full Lake/Lean, source-integrity/axiom/
 inventory CI and all stacked parents are green.
+
+## Dependent-width correction
+
+The native heterogeneous state has an indexed outer piece of width
+`n`, whereas `MixedGeometricPiece.data` has its own width
+`P.width`. The two indexed Lean records cannot be equated without
+a separate transport of the width equality. The extremal wrapper
+therefore requires **exact equality of the selected source root
+SETS, selected functional component SETS, and entire geometric
+piece vertex SETS**. These are precisely the source-geometric
+hypotheses needed by the all-width extremal lemma, and are
+well-typed even if the two positive root widths are expressed
+differently. This keeps the full source geometry honest without
+assuming a silent width cast or an identical data term.
