@@ -1,3 +1,5 @@
 import AllThoseRamseyClasses.Lifts.SaturationFoldedRamseyReduction
 
 #print axioms AllThoseRamseyClasses.Lifts.boundedSaturationFolded_orderedRamsey_of_sparseControls
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenFree_right_of_ambientRelativeCompleteArrow
