@@ -47,3 +47,27 @@ preserve ORIGINAL global A-minimality under arbitrary B-to-A
 flips, explaining why a weighted or non-minimal induction
 could be needed. This is an AUDIT of the proposed induction,
 not an unrestricted 2019 Claim 2 proof.
+
+## Exact equivalence (fourth formal endpoint)
+
+The additional theorem
+`fullNativeRootedPiece_Aneutral_iff_exactEHNFullRootFactor`
+proves an **if and only if** for the ACTUAL selected rooted piece,
+under the verified original no-new-B and root-in-full-seam premises:
+
+- Every genuine PRIVATE Q nonroot SOURCE vertex avoids the
+  A-exclusive target region; equivalently,
+- There is a real EHN homomorphism-embedding of the ENTIRE native
+  Q source structure into the FULL common X, with the originally
+  prescribed target value of EVERY Q vertex recovered by
+  composing with the full embedding X → Target.
+
+The implication from the exact factor to A-neutrality uses the
+exact SOURCE common-seam/exclusive disjointness and does not
+upgrade the original weak map to a full embedding. This makes the
+original global A-minimality preservation condition from draft
+#1207 a concrete same-Q structural factorization requirement.
+
+A proof that selected canonical forbidden pieces can always be
+represented inside X is **not** supplied; in a given class the
+structural factorization might be obstructed. No Claim 2 closure.
