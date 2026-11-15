@@ -255,8 +255,7 @@ theorem HybridInnerTagsNormal.freeAmalgam
         sR.hybridOldTaggedReduct.wholeMaskTagReduct
         iL.hybridOldTaggedReduct.wholeMaskTagReduct
         iR.hybridOldTaggedReduct.wholeMaskTagReduct := by
-      refine { covers := hFree.covers, overlap := hFree.overlap,
-        rel_iff := ?_ }
+      refine ⟨hFree.covers, hFree.overlap, ?_⟩
       intro R xs
       exact hFree.rel_iff (.inl (.inl R)) xs
     have hCanonFree := hOldBase.wholeMaskTagExpansion
@@ -302,8 +301,7 @@ theorem HybridInnerTagsNormal.freeAmalgam
         sR.hybridSplitTaggedReduct.patternTagReduct
         iL.hybridSplitTaggedReduct.patternTagReduct
         iR.hybridSplitTaggedReduct.patternTagReduct := by
-      refine { covers := hFree.covers, overlap := hFree.overlap,
-        rel_iff := ?_ }
+      refine ⟨hFree.covers, hFree.overlap, ?_⟩
       intro R xs
       exact hFree.rel_iff (.inr (.inl (.inl R))) xs
     have hCanonFree := hSplitBase.patternTagExpansion
