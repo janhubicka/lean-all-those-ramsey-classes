@@ -83,7 +83,7 @@ theorem HybridJointNoEmptyNormal.oldDecodedNative_mem_to_splitOutput
   | none =>
       have hEmpty : y ∈ (∅ : Set V) := by
         simpa only [hDecoded, Option.getD_none] using hyDecoded
-      exact (Set.not_mem_empty y hEmpty).elim
+      simp at hEmpty
   | some U =>
       have hyU : y ∈ U := by
         simpa only [hDecoded, Option.getD_some] using hyDecoded
@@ -142,7 +142,8 @@ theorem HybridJointNoEmptyNormal.oldDecodedNative_mem_to_splitOutput
           Base.rel
             (hybridSplitOutputSymbol
               (splitMaskInputAtPart pat q)) uA := by
-        simpa only [hJq] using hSplitAJ
+        cases hJq
+        exact hSplitAJ
       have hSamePrimitive :
           rootA ∘ r = root ∘ p.argMap := by
         funext i
