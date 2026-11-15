@@ -133,8 +133,10 @@ theorem claim2Native_positiveRank_eligibleInner_or_capture_or_mixed
       (Set.range P.roots) P.left := by
     rcases s.anchorInOuter with hRoot | hComponent
     · obtain ⟨i, hi⟩ := hRoot
-      have haSeam : a ∈ S :=
-        hi ▸ s.outerRootInSeam ⟨i, rfl⟩
+      have haSeam : a ∈ S := by
+        have hRootSeam : P.roots i ∈ S :=
+          s.outerRootInSeam ⟨i, rfl⟩
+        simpa only [hi] using hRootSeam
       exact False.elim (s.anchorLeft.2 haSeam)
     · exact hComponent
   have hInjT : Set.InjOn f T := by
