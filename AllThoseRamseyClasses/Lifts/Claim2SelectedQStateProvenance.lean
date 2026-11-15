@@ -1,5 +1,6 @@
 import AllThoseRamseyClasses.Lifts.Claim2HeterogeneousNativeDescent
 import AllThoseRamseyClasses.Lifts.Claim2SameWitnessGeometricStateStep
+import AllThoseRamseyClasses.Lifts.Claim2NativeBActiveBoundaryBridge
 
 /-!
 # Track B: retain a literal selected-Q native diagram in an actual state step
