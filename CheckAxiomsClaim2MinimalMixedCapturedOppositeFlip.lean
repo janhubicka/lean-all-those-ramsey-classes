@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2MinimalMixedCapturedOppositeFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_minimalMixed_allOldRootsCaptured_oppositeBFree
+#print axioms AllThoseRamseyClasses.Lifts.claim2_minimalMixed_allCaptured_opposite_actualLeftSupportFlip

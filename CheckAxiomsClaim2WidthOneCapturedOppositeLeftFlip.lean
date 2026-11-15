@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2WidthOneCapturedOppositeLeftFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_widthOne_capture_oppositePure_has_actualLeftSupportFlip

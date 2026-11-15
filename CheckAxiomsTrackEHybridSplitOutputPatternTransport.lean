@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEHybridSplitOutputPatternTransport
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_splitOutputPatternTransport
+#print axioms StructuralRamsey.RelStructure.HybridSplitOutputPatternTransport.induce
+#print axioms StructuralRamsey.RelStructure.HybridSplitOutputPatternTransport.freeAmalgam

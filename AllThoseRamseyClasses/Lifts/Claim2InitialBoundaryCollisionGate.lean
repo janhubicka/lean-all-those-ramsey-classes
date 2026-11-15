@@ -121,7 +121,6 @@ theorem claim2_initial_activeBoundaryInj_or_localSourceCollision
       intro v hv w hw hEq
       by_contra hDistinct
       exact hNoCollision ⟨v, w, hv, hw, hDistinct, hEq⟩
-    exact Or.inr
-      ⟨x, T, hxP, hxRight, rfl, hTInside, hCollision⟩
+    exact ⟨x, T, hxP, hxRight, rfl, hTInside, hCollision⟩
 
 end AllThoseRamseyClasses.Lifts

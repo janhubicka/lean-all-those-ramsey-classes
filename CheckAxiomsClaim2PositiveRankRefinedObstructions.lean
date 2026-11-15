@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2PositiveRankRefinedObstructions
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_positiveRank_actualFlip_or_capturedRoot_or_mixedComponent

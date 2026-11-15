@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedOuterFullState
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withSeamAndNoEscape
+#print axioms AllThoseRamseyClasses.Lifts.geometricGlobalRightFlip_actualOuterPiece_withFullInductionInvariants
