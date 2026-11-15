@@ -81,7 +81,8 @@ theorem claim2_originalAMinimal_injective_mixed_allWidths_hasActualFlip
         f v ∈ fullFreeLeftExclusiveTarget iLeft jLeft} ≤
       Nat.card {w : W //
         g w ∈ fullFreeLeftExclusiveTarget iLeft jLeft}) :
-    ∃ (m : ℕ) (d : GeometricFunctionalPieceData Source m),
+    ∃ a : V,
+      ∃ (m : ℕ) (d : GeometricFunctionalPieceData Source m),
       0 < m ∧
       geometricPieceVertices Source d ⊂
         geometricPieceVertices Source P.data ∧
@@ -159,6 +160,7 @@ theorem claim2_originalAMinimal_injective_mixed_allWidths_hasActualFlip
               (weakFreeRootPart (sL := iLeft) (iL := jLeft) f) x))) := by
     intro _x _hxOuter _hxRight y _hy z _hz hyz
     exact hInjective hyz
+  refine ⟨a, ?_⟩
   exact claim2_originalAMinimal_allWidths_positiveB_hasActualFlip
     F hFiniteF hConnected
     Source hFinite hForbidden Target f hf
