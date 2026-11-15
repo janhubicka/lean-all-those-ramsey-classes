@@ -25,3 +25,17 @@ The alternative folded language is NOT the original 2019 global minimal-separato
 `boundedSaturationNamed_connectedNonempty` transfers original forbidden connectedness to ALL named saturated representatives. Under the existing positive-arity assumption, the finite-named JEP theorem consequently applies to these representatives. This supplies the JEP hypothesis independently of strong AP, without suppressing nullary compatibility issues.
 
 Both new declarations are **CI pending**, with explicit named axiom checks. They do NOT prove the original global minimal-separator G-lift strong AP, do NOT finish Ramsey, and require the original uniform source-size and finite-signature hypotheses for this named-family packaging.
+
+## Direct structural theorem package (pending Lean CI)
+
+The module now exposes the complete bounded-case specializations of the existing, separately proved finite-named theorems:
+
+* `boundedSaturationNamed_maximalTrace_exact_reduct`: a finite native A has a genuine hereditary folded maximal-trace expansion iff A avoids the original F, assuming original size bound N
+* `boundedSaturationFoldedAge_fibre_finite`: every fixed finite old native structure has a finite type of expanded age members, retaining complete old partial/set-function fibres
+* `boundedSaturationFoldedAge_fibre_nonempty_iff_original`: that finite fibre is nonempty iff the old structure avoids F
+* `boundedSaturationFoldedAge_strongAmalgamation`: any two expanded age members over a full common expanded root have a genuine strong amalgam in the same age
+* `boundedSaturationFoldedAge_jointEmbedding_positiveArity`: if the original forbidden sources are finite, nonempty, connected and the native language has positive arities, the same expanded age has full JEP
+
+The theorem statements and proofs are an **implementation candidate**, not a confirmed kernel theorem until the exact-head CI run passes. These clauses complete the structural age/precompactness/strong-AP/JEP package for the **bounded finite-signature alternative folded lift**, not the original global minimal-separator quotient lift. The Ramsey theorem, existence/identification of the Fraïssé limit, and infinite regular-family generalization are not inferred here.
+
+If nullary old relation/function symbols are permitted, JEP still requires explicit compatibility of full empty roots. No false unconditional nullary-JEP claim was added.
