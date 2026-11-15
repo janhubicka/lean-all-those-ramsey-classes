@@ -190,7 +190,7 @@ noncomputable def HybridJointNativePartiteNormal.toNativeSystem
     | none =>
         have hyEmpty : y ∈ (∅ : Set V) := by
           simpa only [hP, Option.getD_none] using hyP
-        exact (Set.not_mem_empty y hyEmpty).elim
+        simp at hyEmpty
     | some U =>
         have hyU : y ∈ U := by
           simpa only [hP, Option.getD_some] using hyP
