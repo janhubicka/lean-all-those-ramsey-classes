@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2AllWidthsPositiveRankFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_allWidths_no_smallerRootObstruction
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_allWidths_positiveB_hasActualFlip
