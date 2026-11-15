@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.FullRangeSaturationDirectMinimizer
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_saturatedRelational_directFullSupportMinimizer
