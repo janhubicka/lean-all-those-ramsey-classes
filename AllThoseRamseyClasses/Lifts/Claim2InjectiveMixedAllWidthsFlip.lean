@@ -303,4 +303,42 @@ theorem claim2_lexSupport_impossible_of_minimal_and_A_nonGrowth
   · exact (Nat.not_lt_of_ge hGlobalAMinimal) hStrictA
   · exact (Nat.not_lt_of_ge (hGlobalBTieMinimal hEqA.symm)) hStrictB
 
+
+/-- The converse accounting obstruction: for a GLOBAL lexicographic
+minimum with exactly conserved exterior counts, ANY strictly
+B-decreasing local replacement must have STRICTLY MORE local
+A-exclusive SOURCE support.  In particular, the candidate
+B-to-A flip cannot be iterated while retaining the same A-minimum,
+unless a different surgery changes the accounting. -/
+theorem claim2_lexMinimal_strict_A_growth_of_local_B_decrease
+    (aExterior bExterior aOld aNew bOld bNew : ℕ)
+    (hGlobalAMinimal : aExterior + aOld ≤ aExterior + aNew)
+    (hGlobalBTieMinimal :
+      aExterior + aOld = aExterior + aNew →
+      bExterior + bOld ≤ bExterior + bNew)
+    (hBDecrease : bNew < bOld) :
+    aOld < aNew := by
+  by_contra hNotGrowth
+  have hANonGrowth : aNew ≤ aOld := Nat.le_of_not_gt hNotGrowth
+  exact claim2_lexSupport_impossible_of_minimal_and_A_nonGrowth
+    aExterior bExterior aOld aNew bOld bNew
+    hGlobalAMinimal hGlobalBTieMinimal hANonGrowth hBDecrease
+
+/-- The exact numerical support cost of a B-decreasing flip is
+at least one new A-exclusive SOURCE vertex when the starting
+witness minimizes the global lexicographic pair. -/
+theorem claim2_lexMinimal_A_cost_at_least_one
+    (aExterior bExterior aOld aNew bOld bNew : ℕ)
+    (hGlobalAMinimal : aExterior + aOld ≤ aExterior + aNew)
+    (hGlobalBTieMinimal :
+      aExterior + aOld = aExterior + aNew →
+      bExterior + bOld ≤ bExterior + bNew)
+    (hBDecrease : bNew < bOld) :
+    aOld + 1 ≤ aNew := by
+  exact Nat.succ_le_iff.mpr
+    (claim2_lexMinimal_strict_A_growth_of_local_B_decrease
+      aExterior bExterior aOld aNew bOld bNew
+      hGlobalAMinimal hGlobalBTieMinimal hBDecrease)
+
+
 end AllThoseRamseyClasses.Lifts
