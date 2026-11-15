@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedQGlobalAMinimalIff
+
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_globalAMinimum_iff_nonrootAfree
