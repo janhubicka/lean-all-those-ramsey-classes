@@ -87,3 +87,38 @@ hypotheses needed by the all-width extremal lemma, and are
 well-typed even if the two positive root widths are expressed
 differently. This keeps the full source geometry honest without
 assuming a silent width cast or an identical data term.
+
+
+## Constructing the SAME original extremal native state (no external equality certificates)
+
+New `Claim2OriginalMixedPieceInitialQStep.lean` constructs
+`claim2NativeGeometricState_ofMixedOriginalPiece` directly
+from ONE true `ForbiddenEHNWitness F Target` and ONE actual
+positive-width `MixedGeometricPiece` of THAT very original
+source/map. It uses the source witness's native carrier,
+forbidden structure, finite certificate and EHN weak map
+**unchanged**; the A-only anchor is the actual `P.left_mixed`
+SOURCE witness. The original ordered target root and local
+B-active generated-boundary injections remain explicit.
+
+The theorem
+`claim2_originalAMinimal_smallestMixedPiece_hasActualAFreeQStep`
+derives POSITIVE local B-exclusive SOURCE cardinality directly
+from the `P.right_mixed` SOURCE witness, using the proved
+equivalence of weak B-only membership with full right-exclusive
+target pullback. It converts the ORIGINAL global A-minimum
+comparison on actual `ForbiddenEHNWitness` records into the
+exact source-cardinality premise of the all-width extremal
+theorem. The root set, selected component and full piece
+vertex-set equalities are then **definitionally reflexive**
+because the constructed state uses `outer := P.data`.
+Thus the result yields the SAME actual A-free selected-Q full
+native replacement without separately assuming the geometric
+set equalities in the user-facing initial theorem.
+
+The new theorem still requires the two honest INITIAL source
+injection hypotheses for the selected root and every generated
+B-active boundary; these cannot be obtained from arbitrary
+weak EHN maps. Nor does it assert such a mixed piece always
+exists, or that the NEW source remains globally A-minimal.
+Its exact-head Lean/axiom/contract/inventory checks are pending.
