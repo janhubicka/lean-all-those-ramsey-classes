@@ -1,3 +1,4 @@
 import AllThoseRamseyClasses.Lifts.EHNPrintedTupleSourceSurgeryDescent
 
 #print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_strictSourceReplacement_of_printedTupleClosure
+#print axioms AllThoseRamseyClasses.Lifts.minimalForbiddenEHNWitness_no_collapsingTupleSurjFullTestSourceRepair
