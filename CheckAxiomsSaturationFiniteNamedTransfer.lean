@@ -2,3 +2,5 @@ import AllThoseRamseyClasses.Lifts.SaturationFiniteNamedTransfer
 
 #print axioms AllThoseRamseyClasses.Lifts.avoidsBoundedSaturationNamed_iff
 #print axioms AllThoseRamseyClasses.Lifts.avoidsBoundedSaturationNamed_iff_original
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturationNamed_maximalTrace_exact_reduct
+#print axioms AllThoseRamseyClasses.Lifts.boundedSaturationNamed_connectedNonempty
