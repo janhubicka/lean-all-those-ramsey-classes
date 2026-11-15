@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Published.TrackEHybridNoDefinedEmptyMask
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_noDefinedEmptyOriginalMask
+#print axioms StructuralRamsey.RelStructure.HybridNoDefinedEmptyOriginalMask.induce
+#print axioms StructuralRamsey.RelStructure.HybridNoDefinedEmptyOriginalMask.freeAmalgam
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_jointNoEmptyNormal
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.induce
+#print axioms StructuralRamsey.RelStructure.HybridJointNoEmptyNormal.freeAmalgam_of_jointClosedSeams

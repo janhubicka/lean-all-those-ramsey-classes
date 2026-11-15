@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.Claim2WidthOneOriginalMinimizerNoCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_geometricRoot_unique_of_widthOne
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_uniqueOldRoot_excludes_selectedCapture
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_widthOne_excludes_selectedCapture

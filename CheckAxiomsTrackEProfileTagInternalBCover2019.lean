@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEProfileTagInternalBCover2019
+
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_irreducible_induced_to_old
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_hereditarilyIrreducible
+#print axioms AllThoseRamseyClasses.Published.profileTaggedCanonical2019_base_hereditarilyIrreducible
+#print axioms AllThoseRamseyClasses.Published.profileRootTag2019_internalBCover_of_old

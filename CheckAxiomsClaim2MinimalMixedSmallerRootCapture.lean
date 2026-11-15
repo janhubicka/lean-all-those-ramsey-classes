@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2MinimalMixedSmallerRootCapture
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_minimalMixed_smallerMixed_capturesOldRoot
+#print axioms AllThoseRamseyClasses.Lifts.claim2_minimalMixed_no_noncapturing_smallerMixed

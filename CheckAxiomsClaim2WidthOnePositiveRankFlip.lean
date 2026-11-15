@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2WidthOnePositiveRankFlip
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_originalAMinimal_widthOne_positiveB_hasActualFlip
