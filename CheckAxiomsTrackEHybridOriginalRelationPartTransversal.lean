@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Published.TrackEHybridOriginalRelationPartTransversal
+
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_originalRelationPartTransversal
+#print axioms StructuralRamsey.RelStructure.HybridOriginalRelationPartTransversal.induce
+#print axioms StructuralRamsey.RelStructure.HybridOriginalRelationPartTransversal.freeAmalgam
