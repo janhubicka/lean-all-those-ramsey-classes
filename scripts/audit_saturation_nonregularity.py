@@ -95,6 +95,48 @@ def check_base_ehn(k, j, walk):
                 assert has(sb,a,b) == has(tb,f(a),f(b))
 
 
+
+def marked_blue_walk(k, j):
+    """Surjective rooted odd walk avoiding marked 0 except at endpoints.
+
+    This is essential for the strengthened PRINTED-image-closed
+    counterexample: every source nonroot has M=False, and every
+    target nonroot has M=False, so an EHN map must reflect unary M.
+    """
+    n = 2*j + 1
+    length = 2*k + 1
+    states = {(0, 1): (0,)}
+    for t in range(length):
+        nxt = {}
+        for (x, mask), path in states.items():
+            for y in ((x-1) % n, (x+1) % n):
+                if y == 0 and t < length-1:
+                    continue
+                nxt.setdefault((y, mask | (1 << y)), path + (y,))
+        states = nxt
+    return states.get((0, (1 << n)-1))
+
+
+def check_marked_variant():
+    """Test the stronger unary-marked image-closed variant through 6.
+
+    Full EHN tests for the RED clique and BLUE edge tests are inherited
+    from check_base_ehn; unary singleton reflection additionally
+    requires the blue walk never hit the unique marked root internally.
+    Blow-up fibre collapse preserves unary marks exactly.
+    """
+    for k in range(3, 7):
+        for j in range(3, 7):
+            path = marked_blue_walk(k, j)
+            assert (path is not None) == (j <= k), (k, j, path)
+            if path is not None:
+                assert path[0] == 0 and path[-1] == 0
+                assert all(v != 0 for v in path[1:-1]), (k, j, path)
+                check_base_ehn(k, j, path)
+    print("PASS: unary-marked-root image-closed variant and full EHN clique tests")
+
+
+
 if __name__ == "__main__":
     for i in (3, 4):
         print("blowup i", i, "vertices", 3*i*i,
@@ -109,3 +151,4 @@ if __name__ == "__main__":
     for i in range(3,7):
         print("threshold i", i, [j <= i for j in range(3,7)])
     print("PASS: finite checks; infinite proof is in the mathematical note")
+    check_marked_variant()
