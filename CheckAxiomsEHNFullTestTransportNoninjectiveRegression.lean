@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNFullTestTransportNoninjectiveRegression
+
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5_noninjective_fullIrreducibleTestTransport
+#print axioms AllThoseRamseyClasses.Lifts.EHNRelationalTupleGap.cycle5_fullTestTransport_without_fullOldEmbedding
