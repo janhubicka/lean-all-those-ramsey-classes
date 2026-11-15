@@ -208,7 +208,7 @@ theorem HybridJointNoEmptyNormal.oldNativeFibre_empty_iff_noDomain
       hNorm.oldDecoder_noDefinedEmpty_of_split hSplit F xs U hSome
     have hUEmpty : U = (∅ : Set V) := hFibre.symm.trans hEmpty
     rw [hUEmpty] at hy
-    exact Set.not_mem_empty y hy
+    simpa using hy
   · intro hNoDomain
     have hNone :
         ((splitMaskHybridOriginalOldReduct
