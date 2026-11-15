@@ -70,7 +70,7 @@ theorem HybridPositiveOutputSound.wholeOutput_partSet_eq
   ext q
   constructor
   · rintro ⟨y, ⟨j, rfl⟩, hy⟩
-    exact ⟨j, (hLabels j).trans hy⟩
+    exact ⟨j, (hLabels j).symm.trans hy⟩
   · rintro ⟨j, hj⟩
     exact ⟨t (Fin.natAdd p.rootSize j), ⟨j, rfl⟩,
       (hLabels j).trans hj⟩
