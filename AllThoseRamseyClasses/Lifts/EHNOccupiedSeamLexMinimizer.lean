@@ -178,9 +178,9 @@ theorem lexMinimalForbiddenWitness_no_EHN_occupiedSeamDownshift
       apply hx
       simpa [h] using hOldSeam
     simp [g, hxa]
-  have hBalance :=
-    finiteOneVertexOccupiedSeamRecolor_originalPairNatCardBalance
-      w.toTarget Seam a d hOldSeam hDestSeam
+  have hStrict :=
+    (finiteOneVertexOccupiedSeamRecolor_strictDrop_iff_lighterFibre
+      w.toTarget Seam a d hOldSeam hDestSeam).2 hLighter
   have hDrop :
       Nat.card {p : w.Carrier × w.Carrier //
         p.1 ≠ p.2 ∧
@@ -192,8 +192,7 @@ theorem lexMinimalForbiddenWitness_no_EHN_occupiedSeamDownshift
         p.1 ≠ p.2 ∧
         w.toTarget p.1 = w.toTarget p.2 ∧
         w.toTarget p.1 ∈ Seam}
-    dsimp only at hBalance
-    omega
+    exact hStrict
   exact lexMinimalForbiddenWitness_no_seamOnlyCollisionReducingEHNRecoloring
     LeftExclusive Seam hDisjoint
     w hPrimary hSecondary g hNewEHN hStay hFixed hDrop
