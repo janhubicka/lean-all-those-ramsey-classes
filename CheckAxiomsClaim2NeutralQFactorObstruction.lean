@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2NeutralQFactorObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.fullNativeRootedPiece_noEHNinX_forces_privateA
+#print axioms AllThoseRamseyClasses.Lifts.geometricSelectedQ_noEHNintoX_strict_AactiveSourceGrowth

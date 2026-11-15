@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.SaturatedRelationalClaim1
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_saturatedRelational_fullMinimizer_with_claim1

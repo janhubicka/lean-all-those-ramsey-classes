@@ -1,0 +1,7 @@
+import AllThoseRamseyClasses.Lifts.FullRangeSaturationNormalForm
+
+#print axioms AllThoseRamseyClasses.Lifts.originalForbiddenEHN_fullClosedImage_isSaturated
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_idempotent
+#print axioms AllThoseRamseyClasses.Lifts.fullRangeEHNSaturation_le_of_surjectiveImageClosed
+#print axioms AllThoseRamseyClasses.Lifts.avoidsOriginalEHN_iff_noFullSaturatedSubstructure
+#print axioms AllThoseRamseyClasses.Lifts.exists_saturatedRelational_fullEmbeddingMinimizer

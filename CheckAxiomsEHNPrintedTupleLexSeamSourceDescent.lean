@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedTupleLexSeamSourceDescent
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_lexDescent_of_printedTupleSourceContraction
+#print axioms AllThoseRamseyClasses.Lifts.lexMinimalForbiddenEHNWitness_no_mergedSeamSourceQuotient

@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackEGenuinePartialArrowInternalBCover2019
+
+#print axioms AllThoseRamseyClasses.Published.genuineWithParts2019_final_functional_arrow_with_internalB

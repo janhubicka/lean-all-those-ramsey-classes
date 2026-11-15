@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedImageClosureOfCommonCore
+
+#print axioms AllThoseRamseyClasses.Lifts.hasTupleSurjectiveForbiddenImageClosure_of_commonFullCore

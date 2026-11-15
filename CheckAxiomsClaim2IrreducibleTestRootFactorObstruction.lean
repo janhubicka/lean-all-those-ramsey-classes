@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2IrreducibleTestRootFactorObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.weakEHN_irreducibleFullTest_card_le_target
+#print axioms AllThoseRamseyClasses.Lifts.weakEHN_no_map_into_smaller_commonRoot_of_fullTest

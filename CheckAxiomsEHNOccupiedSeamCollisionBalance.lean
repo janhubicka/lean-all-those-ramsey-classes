@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.EHNOccupiedSeamCollisionBalance
+
+#print axioms AllThoseRamseyClasses.Lifts.orderedSeamCollisionIndicator
+#print axioms AllThoseRamseyClasses.Lifts.orderedSeamCollisionCount
+#print axioms AllThoseRamseyClasses.Lifts.finiteOneVertexOccupiedSeamRecolor_orderedCollisionBalance

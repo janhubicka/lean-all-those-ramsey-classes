@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Published.TrackCSelectedWeakPositiveOnClosed
+
+#print axioms AllThoseRamseyClasses.Published.genuineTagged2019_selectedWeakCompletion_positiveOnClosedT
