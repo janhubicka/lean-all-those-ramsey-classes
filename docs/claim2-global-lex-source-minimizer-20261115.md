@@ -60,3 +60,23 @@ It avoids a spurious long B-iteration or assuming the new witness
 retains original A-global minimality without proof.
 The remaining existence of an eligible A-neutral canonical Q
 is not discharged here.
+
+## Converse: every strict B-decreasing replacement must pay positive A-cost
+
+A further corollary
+`globalLexMin_strictB_forces_strictAIncrease` states that at a
+GLOBALLY lexicographically (A,B)-minimum finite original
+forbidden weak-map witness, ANY other F-forbidden weak-map
+witness with strictly smaller TOTAL B-exclusive SOURCE
+support must have strictly LARGER total A-exclusive SOURCE
+support. Otherwise its A-count would be no larger than the
+global A-minimum, hence equal; the B tie-breaker would be
+contradicted.
+
+This is an adversarial warning for Track C: when a genuine
+selected-Q B-to-A replacement at the already lex-minimal
+witness has a strict GLOBAL B-source drop (the conditional
+actual successor of draft #1221), it cannot also be A-neutral
+unless the full hypotheses already yield a contradiction.
+The canonical selection theorem must supply that contradiction;
+A-neutrality is NOT a consequence of pure rank bookkeeping.
