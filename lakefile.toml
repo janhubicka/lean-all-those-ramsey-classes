@@ -5,7 +5,7 @@ defaultTargets = ["AllThoseRamseyClasses"]
 [[require]]
 name = "partite-construction"
 git = "https://github.com/janhubicka/partite-construction.git"
-rev = "83e8dc804970f6f49872b901aaae1cd4b9a570ad"
+rev = "e69bf742b961825e3ee22eaf30629a3aec29d8ba"
 
 [[lean_lib]]
 name = "AllThoseRamseyClasses"
