@@ -50,6 +50,45 @@ def TransportsOriginalFullIrreducibleTests
       ∃ eNew : Structure.Embedding E New,
         ∀ x : X, eNew x = h (e x)
 
+/-- Every genuine full native source embedding transports all
+original full irreducible tests. This embeds the previously
+validated full-extension firewall into the more general
+test-transport interface, without identifying weak images
+with full substructures. -/
+theorem transportsOriginalFullIrreducibleTests_of_fullEmbedding
+    {V W : Type}
+    (Old : Structure L V) (New : Structure L W)
+    (i : Structure.Embedding Old New) :
+    TransportsOriginalFullIrreducibleTests Old New i := by
+  intro X E _hIr e
+  exact ⟨i.comp e, fun _ => rfl⟩
+
+/-- Genuine transport of full irreducible source tests is
+COMPOSITIONAL across successive SOURCE-CHANGING repairs,
+even when neither whole source maps fully embeds globally.
+
+Thus a finite sequence of test-preserving source replacements
+cannot lose an old irreducible-test collision obstruction
+unless some step fails the test-transport contract or
+changes the original target coordinates. -/
+theorem transportsOriginalFullIrreducibleTests_comp
+    {V W Z : Type}
+    (Old : Structure L V) (Middle : Structure L W)
+    (New : Structure L Z)
+    (h : V → W) (k : W → Z)
+    (hTransport : TransportsOriginalFullIrreducibleTests Old Middle h)
+    (kTransport : TransportsOriginalFullIrreducibleTests Middle New k) :
+    TransportsOriginalFullIrreducibleTests Old New (k ∘ h) := by
+  intro X E hIr e
+  obtain ⟨eMid, hMid⟩ := hTransport E hIr e
+  obtain ⟨eNew, hNew⟩ := kTransport E hIr eMid
+  refine ⟨eNew, ?_⟩
+  intro x
+  calc
+    eNew x = k (eMid x) := hNew x
+    _ = k (h (e x)) := congrArg k (hMid x)
+    _ = (k ∘ h) (e x) := rfl
+
 /-- Genuine transport of an old full irreducible source test
 forces the proposed Old→New coordinate map to separate its
 distinct original vertices. This does NOT establish global
