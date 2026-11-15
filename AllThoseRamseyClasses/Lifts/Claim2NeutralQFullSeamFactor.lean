@@ -139,6 +139,7 @@ theorem fullNativeRootedPiece_Aneutral_noB_factors_intoFullCommonRoot
     by_cases hRoot : q ∈ Set.range roots
     · obtain ⟨r, hr⟩ := hRoot
       apply hLeft.2
+      change flip (iQ q) ∈ Set.range (jLeft.comp iLeft)
       simpa only [hr] using hRootSeam r
     · apply hNoAPrivate q hRoot
       exact (weakFreeLeftPart_iff_targetExclusive
