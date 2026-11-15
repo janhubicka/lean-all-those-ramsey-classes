@@ -38,6 +38,13 @@ in the full folded LANGUAGE and need not initially be in the age.
 It must satisfy the *exact ambient-relative* weak test completion
 condition at the uniform forbidden-source size cutoff N.
 
+CRITICAL: Bbar MUST already belong to the hereditary maximal-trace
+age. If we quantified over arbitrary forbidden Bbar, the premise
+would be inconsistent: an Arrow to Bbar supplies a full copy in C,
+whereas local completion forces C's shadow to avoid all forbidden
+sources. The requirement is exactly for the admissible marked bar
+produced by the existing finite-family maximal-witness theorem.
+
 This predicate does not postulate a maximal-trace Ramsey target.
 It postulates an ambient control plus the local E2 invariant;
 constructing such controls is the unsolved Ramsey step. -/
@@ -51,6 +58,8 @@ def BoundedSaturationFoldedSparseControls
     [Finite VA] [Finite VB]
     (A : Structure (boundedSaturationFoldedLanguage L F N) VA)
     (Bbar : Structure (boundedSaturationFoldedLanguage L F N) VB)
+    (hBbar : IsFiniteNamedMaximalTrace
+      (boundedSaturationNamedFamily L F N) Bbar)
     (κ : Type v) [Fintype κ] [Nonempty κ],
     ∃ (VC : Type) (_ : Finite VC) (o : LinearOrder VC)
       (C : Structure (boundedSaturationFoldedLanguage L F N) VC),
@@ -93,13 +102,13 @@ theorem boundedSaturationFolded_orderedRamsey_of_sparseControls
   classical
   let Family := boundedSaturationNamedFamily L F N
   obtain ⟨VW, hFinW, W, Bbar, oW,
-      _hAvoid, _hBar, hShadow, iW, hMax, hProfile,
+      _hAvoid, hBar, hShadow, iW, hMax, hProfile,
       mark, hMark⟩ :=
     finiteNamedTrace_exists_orderedBarWithProfile Family B hB
   letI : Finite VW := hFinW
   letI : LinearOrder VW := oW
   obtain ⟨VC, hFinC, oC, C, hArrow, hLocal⟩ :=
-    hSparseControl A Bbar κ
+    hSparseControl A Bbar hBar κ
   letI : Finite VC := hFinC
   letI : LinearOrder VC := oC
   let wBar : Structure.Embedding W
