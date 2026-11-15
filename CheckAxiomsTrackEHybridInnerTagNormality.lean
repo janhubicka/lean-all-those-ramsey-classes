@@ -3,3 +3,6 @@ import AllThoseRamseyClasses.Published.TrackEHybridInnerTagNormality
 #print axioms StructuralRamsey.RelStructure.canonicalHybrid_innerTagsNormal
 #print axioms StructuralRamsey.RelStructure.HybridInnerTagsNormal.of_embedding
 #print axioms StructuralRamsey.RelStructure.HybridInnerTagsNormal.induce
+#print axioms StructuralRamsey.RelStructure.IsFreeAmalgam.hybridOldTaggedReduct
+#print axioms StructuralRamsey.RelStructure.IsFreeAmalgam.hybridSplitTaggedReduct
+#print axioms StructuralRamsey.RelStructure.HybridInnerTagsNormal.freeAmalgam
