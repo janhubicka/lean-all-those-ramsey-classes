@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedClosedLexMixedInitialization
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_selectedClosedLex_injectiveMin_with_minimalMixedPiece

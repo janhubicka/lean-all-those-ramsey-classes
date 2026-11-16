@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2LexInputCoveredClosedRange
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_globalLex_forbiddenEHN_closedRange_of_lexInputCover
+#print axioms AllThoseRamseyClasses.Lifts.exists_lexInputCovered_actualFlip_strictGlobalBAtradeoff
