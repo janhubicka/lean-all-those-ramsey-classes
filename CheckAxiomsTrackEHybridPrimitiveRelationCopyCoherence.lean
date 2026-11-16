@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Published.TrackEHybridPrimitiveRelationCopyCoherence
+
+#print axioms StructuralRamsey.RelStructure.HybridPrimitiveRelationCopiesAgree.rel_iff
+#print axioms StructuralRamsey.RelStructure.canonicalHybrid_primitiveRelationCopiesAgree
+#print axioms StructuralRamsey.RelStructure.HybridPrimitiveRelationCopiesAgree.induce
+#print axioms StructuralRamsey.RelStructure.HybridPrimitiveRelationCopiesAgree.freeAmalgam
