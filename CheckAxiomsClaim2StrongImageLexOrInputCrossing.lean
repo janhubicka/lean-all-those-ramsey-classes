@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2StrongImageLexOrInputCrossing
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_strongImage_globalLex_actualBAflip_or_functionCrossing
