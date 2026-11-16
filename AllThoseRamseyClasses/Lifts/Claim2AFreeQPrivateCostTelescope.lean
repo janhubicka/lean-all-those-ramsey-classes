@@ -32,7 +32,7 @@ namespace AllThoseRamseyClasses.Lifts
 open StructuralRamsey
 open StructuralRamsey.Structure
 
-universe u
+universe u v
 variable {L : Language.{u}}
 
 /-- SAME actual A-free native Q+E replacement as the previous step
@@ -193,7 +193,24 @@ theorem claim2NativeAFreeQStepWithPrivateCost_exactTotalA
 the exact Q-private A-source costs added in order. Unlike merely
 listing costs, its proof term keeps the actual chosen Q of EACH
 step and full original source embedding data. -/
-inductive Claim2NativeAFreeQCostedChain
+/-- A generic finite costed chain. The state type and step relation
+are parameters; only length, endpoints, and accumulated cost
+are indices. This avoids placing dependent native EHN parameters
+inside the inductive constructors' uniform recursive parameters. -/
+inductive NativeSelectedQCostChain {State : Type v}
+    (step : State → State → ℕ → Prop) :
+    ℕ → State → State → ℕ → Prop where
+  | nil (s : State) : NativeSelectedQCostChain step 0 s s 0
+  | cons {k : ℕ} {s t w : State} {cost tailCost : ℕ}
+      (hStep : step s t cost)
+      (hTail : NativeSelectedQCostChain step k t w tailCost) :
+      NativeSelectedQCostChain step (k + 1) s w (cost + tailCost)
+
+/-- A native same-selected-Q source chain instantiated from the
+generic costed chain. Each edge still stores its OWN literal Q+E
+native source replacement and exact private A-exclusive SOURCE
+vertex count. -/
+abbrev Claim2NativeAFreeQCostedChain
     (F : ∀ {W : Type}, Structure L W → Prop)
     {UX UA UB UT : Type}
     (Target : Structure L UT)
@@ -203,29 +220,14 @@ inductive Claim2NativeAFreeQCostedChain
     (X : Structure L UX)
     (iLeft : Structure.Embedding X Left)
     (iRight : Structure.Embedding X Right)
-    {n : ℕ} (hn : 0 < n) :
-    ℕ →
-    Claim2NativeGeometricState F Target Left Right
-      jLeft jRight X iLeft iRight n →
-    Claim2NativeGeometricState F Target Left Right
-      jLeft jRight X iLeft iRight n →
-    ℕ → Prop where
-  | nil (s : Claim2NativeGeometricState F Target Left Right
-      jLeft jRight X iLeft iRight n) :
-      Claim2NativeAFreeQCostedChain F Target Left Right
-        jLeft jRight X iLeft iRight hn 0 s s 0
-  | cons {k : ℕ}
-      {s t u : Claim2NativeGeometricState F Target Left Right
-        jLeft jRight X iLeft iRight n}
-      {cost tailCost : ℕ}
-      (hStep : claim2NativeAFreeQStepWithPrivateCost
-        F Target Left Right jLeft jRight X iLeft iRight
-        hn s t cost)
-      (hTail : Claim2NativeAFreeQCostedChain F Target Left Right
-        jLeft jRight X iLeft iRight hn k t u tailCost) :
-      Claim2NativeAFreeQCostedChain F Target Left Right
-        jLeft jRight X iLeft iRight hn
-        (k + 1) s u (cost + tailCost)
+    {n : ℕ} (hn : 0 < n)
+    (k : ℕ)
+    (s t : Claim2NativeGeometricState F Target Left Right
+      jLeft jRight X iLeft iRight n)
+    (cost : ℕ) : Prop :=
+  NativeSelectedQCostChain
+    (claim2NativeAFreeQStepWithPrivateCost F Target Left Right
+      jLeft jRight X iLeft iRight hn) k s t cost
 
 /-- Project the detailed private-Q costed chain back to the
 usual A-free native Q+E full source-step chain, without any
@@ -283,7 +285,7 @@ theorem claim2NativeAFreeQChain_existsCosted
         jLeft jRight X iLeft iRight hn k s t cost := by
   induction hChain with
   | nil s =>
-      exact ⟨0, Claim2NativeAFreeQCostedChain.nil s⟩
+      exact ⟨0, NativeSelectedQCostChain.nil s⟩
   | cons hStep hTail ih =>
       obtain ⟨cost, hCostStep⟩ :=
         claim2NativeAFreeQStep_existsPrivateCost
@@ -291,7 +293,7 @@ theorem claim2NativeAFreeQChain_existsCosted
           hn _ _ hStep
       obtain ⟨tailCost, hCostTail⟩ := ih
       exact ⟨cost + tailCost,
-        Claim2NativeAFreeQCostedChain.cons hCostStep hCostTail⟩
+        NativeSelectedQCostChain.cons hCostStep hCostTail⟩
 
 /-- Exact SOURCE-cardinality telescoping over the actual chosen
 selected Q in EVERY edge:
