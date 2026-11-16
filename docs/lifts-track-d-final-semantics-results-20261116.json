@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "finite independent semantic checks; not kernel certification",
+  "protected_amalgams": {
+    "generic_source_subsets": 270336,
+    "actual_source_tests": 101,
+    "generated_EHN_maps": 2,
+    "decorated_EHN_maps": 2,
+    "single_cross_tuple_mutations": 3548,
+    "maximal_cross_extensions": 2,
+    "extensions_with_an_extra_vertex": 2,
+    "generated_triangles": 18,
+    "singleton_cut_checks": 31
+  },
+  "binary_with_two_relations_and_nullary": {
+    "sources": 2064,
+    "kernels": 4112,
+    "EHN_target_extensions": 4000,
+    "EHN_generated_inclusions": 4000,
+    "nonfull_inclusions": 1920,
+    "nullary_reflections": 4000
+  },
+  "sharp_ternary_boundary": {
+    "source_EHN_into_both": true,
+    "generated_inclusion_EHN": false,
+    "new_tuple": [0, 1, 2],
+    "source_map": [0, 1, 2, 0, 1]
+  },
+  "script_sha256": "72c1e317953345255a2def7694fe281a1b3629716a49649d14368abfd5ec70d3"
+}
