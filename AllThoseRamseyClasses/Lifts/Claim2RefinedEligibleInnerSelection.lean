@@ -132,7 +132,8 @@ theorem claim2Native_positiveRank_eligibleInner_or_refinedSmallerRoot
       have haSeam : a ∈ S := by
         have hRootSeam : P.roots i ∈ S :=
           s.outerRootInSeam ⟨i, rfl⟩
-        simpa only [hi] using hRootSeam
+        change s.anchor ∈ S
+        exact hi ▸ hRootSeam
       exact False.elim (s.anchorLeft.2 haSeam)
     · exact hComponent
   have hInjT : Set.InjOn f T := by
