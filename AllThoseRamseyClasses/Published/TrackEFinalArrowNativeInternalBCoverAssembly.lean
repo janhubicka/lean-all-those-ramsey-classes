@@ -5,7 +5,7 @@ import AllThoseRamseyClasses.Published.TrackENativeIrreducibleInternalBCover2019
 /-!
 # Track E: assemble native internal B-coverage on the SAME actual final witness
 
-This is a candidate integration proof. The tagged internal-copy certificate
+This is a CONDITIONAL integration proof: it assumes an explicit equality of the\ntwo tagged encodings, which has NOT been established. This does not close the\nunconditional 2019 theorem. The tagged internal-copy certificate
 and the true partial-function Ramsey arrow come from the same selected C.
 The native copy extension is obtained without changing C or its vertices.
 Do not mark validated until full exact-head Lean and axiom checks pass.
@@ -24,7 +24,7 @@ variable {L : Language.{u}} {Parts : Type v} [Fintype Parts]
 /-- Actual coordinated fully-partial Ramsey target retaining INTERNAL
 canonical tagged B-extensions, same selected HE and every literal
 small-weak K-completion on one same final C. -/
-theorem genuineWithParts2019_final_arrow_and_native_internalB
+theorem genuineWithParts2019_final_arrow_and_native_internalB_of_tagEq
     {X Y Z : Type w}
     [Finite X] [Finite Y] [Finite Z]
     (A : PartialSetStructure L X) (partA : X → Parts)
@@ -33,6 +33,11 @@ theorem genuineWithParts2019_final_arrow_and_native_internalB
     (hTransA : FibreTransversal A partA)
     (hTransB : FibreTransversal B partB)
     (hPos : L.PositiveFuncArity)
+    /-- Explicit encoding identity; presently an UNDISCHARGED semantic
+        bridge, not a theorem of the current construction. -/
+    (hTagEq : B.withPartsWholeMaskTag partB =
+      wholeMaskTagExpansion
+        ((B.withParts partB).wholeMaskPatternGraph partB))
     {K : StructureClass (L := (L.withParts Parts).wholeMaskTagLanguage Parts)}
     (hBK : K (genuineWithPartsTagged2019 B partB))
     (hClosed : ∀ {T : Type w}
@@ -85,7 +90,7 @@ theorem genuineWithParts2019_final_arrow_and_native_internalB
   rcases hRest with ⟨hProjection, hInternal, hWeak, hTrans, hArrow⟩
   have hBK' : K (wholeMaskTagExpansion
       ((B.withParts partB).wholeMaskPatternGraph partB)) := by
-    simpa only [genuineWithPartsTagged2019] using hBK
+    simpa only [genuineWithPartsTagged2019, hTagEq] using hBK
   have hCover' : ∀ {T : Type w}
       (Test : RelStructure ((L.withParts Parts).wholeMaskTagLanguage Parts) T),
       IsUClosed ((L.withParts Parts).wholeMaskClosureRules Parts) Test →
@@ -94,11 +99,11 @@ theorem genuineWithParts2019_final_arrow_and_native_internalB
       Nonempty (Embedding Test
         (wholeMaskTagExpansion
           ((B.withParts partB).wholeMaskPatternGraph partB))) := by
-    simpa only [genuineWithPartsTagged2019] using hCover
+    simpa only [genuineWithPartsTagged2019, hTagEq] using hCover
   have hInternal' : IrreduciblesExtendTo
       (wholeMaskTagExpansion
         ((B.withParts partB).wholeMaskPatternGraph partB)) C := by
-    simpa only [genuineWithPartsTagged2019] using hInternal
+    simpa only [genuineWithPartsTagged2019, hTagEq] using hInternal
   have hNative :
       ∀ {T : Type w} (E : Structure L T),
         E.Irreducible →
