@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.TrackDProtectedHalvesObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.noAllowedRootedAmalgam_of_protectedForbiddenHalves
+#print axioms AllThoseRamseyClasses.Lifts.injectiveRootProfiles_of_pairwiseNonamalgamable
+#print axioms AllThoseRamseyClasses.Lifts.twoPow_le_card_rootProfiles_of_nonamalgamable
