@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2ClosedRangeLexMixedInitialization
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_closedRange_injectiveLex_minimalMixedPiece
+#print axioms AllThoseRamseyClasses.Lifts.exists_closedRange_lexMinimum_actualFlip_strictGlobalBAtradeoff
