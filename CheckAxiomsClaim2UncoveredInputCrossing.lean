@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.Claim2UncoveredInputCrossing
+
+#print axioms AllThoseRamseyClasses.Lifts.uncoveredFunctionInput_generatedHull_notIrreducible
+#print axioms AllThoseRamseyClasses.Lifts.uncoveredFunctionInput_hasCrossingFreeDecomposition
+#print axioms AllThoseRamseyClasses.Lifts.missingFunctionInputCover_hasCrossingHull
+#print axioms AllThoseRamseyClasses.Lifts.ehn_missingRangeRelationCover_hasCrossingHull
