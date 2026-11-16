@@ -58,3 +58,23 @@ hypothesis is introduced silently.
 The selected lex minimum's range-closedness is still EXPLICIT;
 the printed tuple-surjective image closure does not imply it.
 A separate named standard-axiom check and active root are registered.
+
+## Input-test route for the CHOSEN lex minimum
+
+`Claim2LexInputCoveredClosedRange.lean` uses the checked
+`ehn_range_isClosed_of_irreducibleInputCover` on the original chosen
+lex-minimal native forbidden witness. It assumes ONLY that genuine
+lex-minimal forbidden witnesses have source-native full irreducible
+tests covering their primitive function INPUT tuples; other
+nonminimal weak maps need no coverage. Existence of a lex minimum
+was already verified on main.
+
+The resulting explicit closed-range lex minimum feeds the selected
+closed-range actual-flip theorem, producing a REAL forbidden native
+B-down/A-up replacement from an arbitrary initial forbidden map.
+This replaces a hard-to-check abstract closed-range premise by a
+concrete source-test cover condition, but DOES NOT establish that
+condition from the original 2019 printed family assumptions.
+No tautological "every weak image is closed" assumption is hidden.
+
+Proof root and two named standard-axiom checks added. CI pending.
