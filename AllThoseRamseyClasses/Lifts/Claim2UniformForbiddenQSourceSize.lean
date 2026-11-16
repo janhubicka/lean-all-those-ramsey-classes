@@ -90,4 +90,44 @@ theorem selectedForbiddenQ_finite_card_le_uniformBound
     (FunctionalRootExtension.toEnumeratedRootedPattern Root
       (Equiv.refl (Fin m)) Q) hSelected
 
+
+/-- The number of private Q-nonroot SOURCE vertices whose image
+lies in ANY target Active region is bounded by the same uniform
+forbidden SOURCE-size bound. The function f is arbitrary:
+in particular no weak EHN-map injectivity, or any quotient of
+target images, is needed for this native SOURCE counting bound. -/
+theorem selectedForbiddenQ_privateSourceCard_le_uniformBound
+    (F : ∀ {W : Type}, Structure L W → Prop)
+    (bound : ℕ)
+    (hUniform : ∀ {W : Type} (A : Structure L W),
+      F A → Nat.card W ≤ bound)
+    {m : ℕ}
+    (Root : Structure L (Fin m))
+    (Q : FunctionalRootExtension Root)
+    (hSelected :
+      (FunctionalRootExtension.toEnumeratedRootedPattern Root
+        (Equiv.refl (Fin m)) Q) ∈
+        forbiddenGeometricFunctionalPieces F m)
+    {UT : Type} (f : Q.Carrier → UT)
+    (Active : Set UT) :
+    Nat.card {q : Q.Carrier //
+      q ∉ Set.range Q.rootEmbedding ∧ f q ∈ Active} ≤ bound := by
+  classical
+  obtain ⟨hFiniteQ, hCardQ⟩ :=
+    selectedForbiddenQ_finite_card_le_uniformBound
+      F bound hUniform Root Q hSelected
+  letI : Finite Q.Carrier := hFiniteQ
+  letI : Fintype Q.Carrier := Fintype.ofFinite Q.Carrier
+  let Private := {q : Q.Carrier //
+    q ∉ Set.range Q.rootEmbedding ∧ f q ∈ Active}
+  letI : Fintype Private := Fintype.ofFinite Private
+  have hInj : Function.Injective (fun q : Private => (q : Q.Carrier)) := by
+    intro a b hab
+    exact Subtype.ext hab
+  have hPrivateLe : Nat.card Private ≤ Nat.card Q.Carrier := by
+    simpa only [Nat.card_eq_fintype_card] using
+      (Fintype.card_le_of_injective
+        (fun q : Private => (q : Q.Carrier)) hInj)
+  exact hPrivateLe.trans hCardQ
+
 end AllThoseRamseyClasses.Lifts
