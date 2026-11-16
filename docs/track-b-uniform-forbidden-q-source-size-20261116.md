@@ -34,3 +34,17 @@ Claim 2 / strong amalgamation.
 Named kernel #print axioms and protected active root. Exact-head
 complete Lean build, axiom/no-admission, import/source-contract
 and inventory checks required before merging.
+
+## Private-Q active source-cost corollary
+
+The new theorem `selectedForbiddenQ_privateSourceCard_le_uniformBound`
+gives the bound not just on the complete Q source carrier but on
+its actual private nonroot SOURCE vertices mapped into ANY chosen
+active target region: `Nat.card privateQActive ≤ N`. It uses the
+literal subtype inclusion into Q and the already identified FULL
+root-preserving source isomorphism, not any target-image count.
+Thus for A-exclusive active region a uniform F-source size bound N
+implies the private selected-Q A-cost is strictly less than `N+1`.
+This is the concrete cost hypothesis of the conditional
+`A_total + (N+1) B_total` potential of Track B #1262;
+connecting the interfaces is separate and #1262 is still a draft.
