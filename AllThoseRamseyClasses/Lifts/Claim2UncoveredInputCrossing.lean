@@ -202,4 +202,75 @@ theorem ehn_missingRangeRelationCover_hasCrossingHull
       A R xs hUncovered
   exact ⟨R, xs, hTarget, hNoRel, d, hCross⟩
 
+
+/-- An ACTUAL proper full free decomposition of a native
+function-input-generated closed source hull whose generators
+are not all contained in either side. -/
+def HasNativeFunctionInputCrossingHull
+    {V : Type} (A : Structure L V) : Prop :=
+  ∃ (F : L.FuncSymbol)
+    (xs : Fin (L.funcArity F) → V),
+    ∃ d : ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range xs))
+        (A.functionClosure_isClosed (Set.range xs))),
+      (¬ ∀ i : Fin (L.funcArity F), ∃ a : d.Left,
+        Structure.closureLift A xs i = d.leftIn a) ∧
+      (¬ ∀ i : Fin (L.funcArity F), ∃ b : d.Right,
+        Structure.closureLift A xs i = d.rightIn b)
+
+/-- A positive target relation tuple at an actual image input,
+with the corresponding native source tuple negative and
+crossing both sides of a proper FULL free decomposition of
+its generated function-closed source hull. -/
+def HasNativeRelationImageCrossingHull
+    {V W : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W) : Prop :=
+  ∃ (R : L.RelSymbol)
+    (xs : Fin (L.relArity R) → V),
+    B.rel R (f ∘ xs) ∧
+    ¬ A.rel R xs ∧
+    ∃ d : ProperFreeDecomposition
+      (A.induce (A.functionClosure (Set.range xs))
+        (A.functionClosure_isClosed (Set.range xs))),
+      (¬ ∀ i : Fin (L.relArity R), ∃ a : d.Left,
+        Structure.closureLift A xs i = d.leftIn a) ∧
+      (¬ ∀ i : Fin (L.relArity R), ∃ b : d.Right,
+        Structure.closureLift A xs i = d.rightIn b)
+
+/-- Exhaustive ACTUAL native-source trichotomy for EVERY original
+weak EHN map, including maps with collisions:
+
+1. both source-local certificates needed for the printed
+   tuple-surjective original range are available; OR
+2. an uncovered native function input crosses a proper FULL
+   free decomposition of its function-closed generated hull; OR
+3. an uncovered positive OLD target relation at image
+   coordinates has a negative native source input and crosses
+   a proper FULL free decomposition of its generated hull.
+
+The alternatives may overlap (not asserted disjoint).
+No forbidden-family image-closure, regularity, connectedness,
+or canonical-lift assumption is needed for this decomposition;
+none is claimed to rule out either crossing alternative. -/
+theorem ehn_nativeInputCoverage_or_functionCrossing_or_relationCrossing
+    {V W : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f) :
+    (FunctionInputTuplesCoveredByIrreducibleTests A ∧
+      SourceRelationTuplesCoveredOnRange A B f) ∨
+    HasNativeFunctionInputCrossingHull A ∨
+    HasNativeRelationImageCrossingHull A B f := by
+  classical
+  by_cases hFunction : FunctionInputTuplesCoveredByIrreducibleTests A
+  · by_cases hRelations : SourceRelationTuplesCoveredOnRange A B f
+    · exact Or.inl ⟨hFunction, hRelations⟩
+    · exact Or.inr (Or.inr
+        (ehn_missingRangeRelationCover_hasCrossingHull
+          A B f hf hRelations))
+  · exact Or.inr (Or.inl
+      (missingFunctionInputCover_hasCrossingHull A hFunction))
+
+
 end AllThoseRamseyClasses.Lifts
