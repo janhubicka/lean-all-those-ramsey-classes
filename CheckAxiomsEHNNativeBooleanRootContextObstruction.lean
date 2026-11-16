@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.EHNNativeBooleanRootContextObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeAllowedFullAmalgam_symm
+#print axioms AllThoseRamseyClasses.Lifts.nativeBooleanContexts_pairwisePermanentlyIncompatible
+#print axioms AllThoseRamseyClasses.Lifts.nativeBooleanContexts_rootPalette_lowerBound
+#print axioms AllThoseRamseyClasses.Lifts.nativeBooleanContexts_rootPalette_ge_two_pow

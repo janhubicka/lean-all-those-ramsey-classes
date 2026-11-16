@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.EHNProtectedSourceFreeAmalgamGluing
+
+#print axioms AllThoseRamseyClasses.Lifts.nativeSourceFreeAmalgam_glue_EHN_sideMaps
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenNativeSource_freeDiagram_halfMaps_permanentlyIncompatible
