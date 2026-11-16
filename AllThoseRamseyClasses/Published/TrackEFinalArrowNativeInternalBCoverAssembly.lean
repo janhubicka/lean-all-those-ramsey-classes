@@ -1,4 +1,5 @@
 import AllThoseRamseyClasses.Published.TrackEGenuineWithParts2019InternalBCover
+import AllThoseRamseyClasses.Published.TrackEGenuinePartialArrowInternalBCover2019
 import AllThoseRamseyClasses.Published.TrackENativeIrreducibleInternalBCover2019
 
 /-!
