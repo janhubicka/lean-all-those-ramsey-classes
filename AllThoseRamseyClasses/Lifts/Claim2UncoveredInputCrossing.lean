@@ -273,4 +273,47 @@ theorem ehn_nativeInputCoverage_or_functionCrossing_or_relationCrossing
       (missingFunctionInputCover_hasCrossingHull A hFunction))
 
 
+
+/-- A source-geometric no-crossing hypothesis suffices for all full
+irreducible native function-input tests. This is a ONE-WAY implication:
+a covered source may still have some independently crossing hull. -/
+theorem fullFunctionInputCover_of_noNativeCrossing
+    {V : Type} (A : Structure L V)
+    (hNoCross : ¬ HasNativeFunctionInputCrossingHull A) :
+    FunctionInputTuplesCoveredByIrreducibleTests A := by
+  classical
+  by_contra hMissing
+  exact hNoCross (missingFunctionInputCover_hasCrossingHull A hMissing)
+
+/-- For a genuine weak EHN map, absence of the ACTUAL relation-image
+crossing certificate suffices to reflect all positive target relation
+tuples lying in the original image range. No extra target surjectivity
+is introduced. -/
+theorem rangeRelationCover_of_noNativeImageCrossing
+    {V W : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (hNoCross : ¬ HasNativeRelationImageCrossingHull A B f) :
+    SourceRelationTuplesCoveredOnRange A B f := by
+  classical
+  by_contra hMissing
+  exact hNoCross
+    (ehn_missingRangeRelationCover_hasCrossingHull A B f hf hMissing)
+
+/-- The two genuinely native geometric exclusion conditions jointly
+supply precisely the input and relation certificates for printed
+tuple-surjective induced-range reflection. -/
+theorem nativeNoCrossing_yields_bothSourceRangeCovers
+    {V W : Type}
+    (A : Structure L V) (B : Structure L W)
+    (f : V → W)
+    (hf : A.IsEHNHomomorphismEmbedding B f)
+    (hNoFunc : ¬ HasNativeFunctionInputCrossingHull A)
+    (hNoRel : ¬ HasNativeRelationImageCrossingHull A B f) :
+    FunctionInputTuplesCoveredByIrreducibleTests A ∧
+      SourceRelationTuplesCoveredOnRange A B f := by
+  exact ⟨fullFunctionInputCover_of_noNativeCrossing A hNoFunc,
+    rangeRelationCover_of_noNativeImageCrossing A B f hf hNoRel⟩
+
 end AllThoseRamseyClasses.Lifts
