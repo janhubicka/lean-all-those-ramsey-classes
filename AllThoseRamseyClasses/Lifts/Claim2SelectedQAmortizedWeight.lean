@@ -86,16 +86,22 @@ theorem claim2NativeAFreeQCostedStep_strictWeightedPotential
     claim2NativeAFreeQStepWithPrivateCost_exactTotalA
       F Target Left Right jLeft jRight X iLeft iRight
       hn s t privateACost hStep
+  have hAFree : claim2NativeAFreeSelectedQStep F Target Left Right
+      jLeft jRight X iLeft iRight hn s t :=
+    claim2NativeAFreeQStepWithPrivateCost.toAFreeStep
+      F Target Left Right jLeft jRight X iLeft iRight
+      hn s t privateACost hStep
+  have hSelected : claim2NativeSelectedQProvenanceStep F Target
+      Left Right jLeft jRight X iLeft iRight hn s t :=
+    claim2NativeAFreeSelectedQStep.toSelectedQProvenance
+      F Target Left Right jLeft jRight X iLeft iRight
+      hn s t hAFree
   have hBStrict :
       claim2NativeTotalBSourceCount t <
         claim2NativeTotalBSourceCount s :=
     claim2NativeSelectedQStep_strictGlobalBSourceCount
-      F Target Left Right jLeft jRight X iLeft iRight hn s t
-      ((claim2NativeAFreeQStepWithPrivateCost.toAFreeStep
-          F Target Left Right jLeft jRight X iLeft iRight
-          hn s t privateACost hStep).toSelectedQProvenance
-        F Target Left Right jLeft jRight X iLeft iRight
-        hn s t)
+      F Target Left Right jLeft jRight X iLeft iRight
+      hn s t hSelected
   have hBSucc : claim2NativeTotalBSourceCount t + 1 ≤
       claim2NativeTotalBSourceCount s := Nat.succ_le_of_lt hBStrict
   have hMul :
