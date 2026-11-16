@@ -57,3 +57,30 @@ the geometric contradiction: it isolates exactly which
 crossed input-generated source hull must be analyzed by the
 future true Claim 2 boundary/proper-subpiece argument. Five
 named axiom checks now cover all proof endpoints.
+
+## Corrected-image global lex-minimum dichotomy (further endpoint)
+
+`Claim2StrongImageLexOrInputCrossing.lean` combines merged #1259
+with the native function crossing certificate.
+
+Under the stronger, EXPLICIT actual vertex-surjective EHN-image
+closure, F-connectedness, F-free sides and genuine common maximal
+canonical lift, begin with any nonempty forbidden weak EHN map.
+Select an original GLOBAL (A-exclusive SOURCE,B-exclusive SOURCE)
+lex minimum. Without assuming its function input-test cover:
+
+* either its native function inputs are protected, in which case
+  source-range closedness is *proved* and the validated same-target
+  actual B-down/A-up forbidden-source flip follows; or
+* an actual uncovered primitive function input of THAT SAME
+  original lex-minimal forbidden witness has a crossed proper
+  native free decomposition of its full function-closed hull.
+
+This does NOT assert printed image closure suffices for the
+positive branch; that requires the separate tuple-surjective
+source/target relation control of PR #1268. It does NOT
+claim the crossing alternative is impossible or that the
+new source inherits original A-minimality.
+
+One additional named axiom check and protected Lean root
+are registered. Hold DRAFT until exact-head CI passes.
