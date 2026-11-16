@@ -37,3 +37,23 @@ smaller positive-width separator must occur.
 Four named standard-axiom checks and an active proof root
 are registered. DRAFT until full exact-head Lean / integrity /
 no-admission / proof-root inventory all pass.
+
+## Exhaustive case split (added)
+
+`ehn_nativeInputCoverage_or_functionCrossing_or_relationCrossing`
+is now an actual native EHN trichotomy for EVERY source map,
+with no assumptions about the forbidden family:
+
+1. both function input-test coverage and positive target relation
+   tuple preimage coverage hold and may feed the selected
+   printed-tuple lex initialization;
+2. an actual function-input-generated closed hull crosses a
+   proper full free source decomposition; or
+3. a relation input with target positive/source negative relation
+   crosses such a native full free source decomposition.
+
+These cases need not be disjoint. The trichotomy is not itself
+the geometric contradiction: it isolates exactly which
+crossed input-generated source hull must be analyzed by the
+future true Claim 2 boundary/proper-subpiece argument. Five
+named axiom checks now cover all proof endpoints.
