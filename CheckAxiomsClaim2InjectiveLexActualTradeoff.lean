@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2InjectiveLexActualTradeoff
+
+#print axioms AllThoseRamseyClasses.Lifts.claim2_injectiveLexMinimum_smallestMixed_hasStrictBAflip
