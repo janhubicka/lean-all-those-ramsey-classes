@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.EHNPrintedTupleAllSupportReplacement
+
+#print axioms AllThoseRamseyClasses.Lifts.forbiddenEHNWitness_injectiveReplacement_allSupport_of_printedTupleRange
