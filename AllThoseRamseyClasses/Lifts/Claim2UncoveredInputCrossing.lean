@@ -163,9 +163,22 @@ theorem ehn_missingRangeRelationCover_hasCrossingHull
         (¬ ∀ i : Fin (L.relArity R), ∃ b : d.Right,
           Structure.closureLift A xs i = d.rightIn b) := by
   classical
-  unfold SourceRelationTuplesCoveredOnRange at hMissing
-  push_neg at hMissing
-  obtain ⟨R, zs, hRange, hPositive, hNoSource⟩ := hMissing
+  have hGap :
+      ∃ (R : L.RelSymbol)
+        (zs : Fin (L.relArity R) → W),
+        (∀ i, zs i ∈ Set.range f) ∧
+        B.rel R zs ∧
+        (∀ ys : Fin (L.relArity R) → V,
+          ¬ (A.rel R ys ∧ zs = f ∘ ys)) := by
+    by_contra hNoGap
+    apply hMissing
+    intro R zs hRange hPositive
+    by_contra hNoRel
+    apply hNoGap
+    refine ⟨R, zs, hRange, hPositive, ?_⟩
+    intro ys hWitness
+    exact hNoRel ⟨ys, hWitness⟩
+  obtain ⟨R, zs, hRange, hPositive, hNoSource⟩ := hGap
   let xs : Fin (L.relArity R) → V :=
     fun i => Classical.choose (hRange i)
   have hCoords : zs = f ∘ xs := by
