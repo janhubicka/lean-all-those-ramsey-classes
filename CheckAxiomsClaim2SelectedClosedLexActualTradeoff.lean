@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.Claim2SelectedClosedLexActualTradeoff
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_selectedClosedLex_actualFlip_strictGlobalBAtradeoff
