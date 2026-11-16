@@ -43,3 +43,18 @@ Critical scope and still-open gates:
   must pass before merge. Keep DRAFT until verified.
 
 Frozen numbered manuscript untouched. No collaborator-removed TODO restored.
+
+## Additional selected-witness refinement (same PR)
+
+`Claim2SelectedClosedLexMixedInitialization.lean` proves a strictly
+weaker range-closedness interface. It is sufficient that **ONE chosen**
+globally lex-minimal original finite F-forbidden EHN source-to-target map
+has a function-closed range, rather than ALL forbidden source maps to
+the fixed target. A full native range injectivization preserves the
+lex pair, and the mixed geometric separator theorem is then applied
+to this SAME injective replacement. No global image-range closure
+hypothesis is introduced silently.
+
+The selected lex minimum's range-closedness is still EXPLICIT;
+the printed tuple-surjective image closure does not imply it.
+A separate named standard-axiom check and active root are registered.
