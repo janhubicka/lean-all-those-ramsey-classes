@@ -70,6 +70,9 @@ theorem avoidsGlobalFunctionalEHN_of_freeFold
   have hf : Whole.IsEHNHomomorphismEmbedding Target f :=
     compatibleFunctionalFold_isEHNHomomorphismEmbedding
       hfree pA pB hcompat hpA hpB
-  exact avoidsGlobalFunctionalEHN_of_ehn F f hf hTarget
+  intro U Source hFin hForb g hg
+  have hComp : Source.IsEHNHomomorphismEmbedding Target (f ∘ g) :=
+    hf.comp hg
+  exact (hTarget Source hFin hForb (f ∘ g)) hComp
 
 end AllThoseRamseyClasses.Lifts
