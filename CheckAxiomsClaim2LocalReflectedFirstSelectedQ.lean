@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2LocalReflectedFirstSelectedQ
+
+#check AllThoseRamseyClasses.Lifts.claim2_localSourceReflection_globalAMinimal_hasActualFirstSelectedQ
+#print axioms AllThoseRamseyClasses.Lifts.claim2_localSourceReflection_globalAMinimal_hasActualFirstSelectedQ
