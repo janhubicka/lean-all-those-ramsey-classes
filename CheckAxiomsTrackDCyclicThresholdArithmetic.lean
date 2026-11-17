@@ -1,0 +1,11 @@
+import AllThoseRamseyClasses.Lifts.TrackDCyclicThresholdArithmetic
+
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_symmetric
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_irreflexive
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_triangle_free
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_zero_neighbour_iff
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_root_independent
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_private_iff
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_short_nonedge_three_path
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_long_nonedge_three_path
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdEdge_private_chain_arcs
