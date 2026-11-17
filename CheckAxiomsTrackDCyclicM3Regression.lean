@@ -1,0 +1,8 @@
+import AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression
+
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.source_triangle_free
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.D_arcs_are_E_edges
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.source_singleton_tables_reflect
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.source_E_edge_tables_reflect
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.source_E_D_positive_preserved
+#print axioms AllThoseRamseyClasses.Lifts.TrackDCyclicM3Regression.target_triangles_T_decorated
