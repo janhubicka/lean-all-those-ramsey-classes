@@ -119,4 +119,85 @@ theorem cyclicThresholdEdge_private_chain_arcs
   unfold cyclicThresholdEdge
   omega
 
+
+/-- EVERY distinct nonadjacent ordered pair x<y among the
+3m-1 cyclic representatives has a three-edge path. We avoid
+any appeal to modular translation or a graph automorphism:
+there are three short-distance cases, depending on whether
+x+m and x+2m wrap past the end of the representative interval,
+and one long-distance case.
+
+If y<x+m, explicit paths are
+ (i)  x, x+m, x+2m, y                when x+2m < N,
+ (ii) x, x+m, x-m+1, y              when x+m<N≤x+2m,
+ (iii)x, x-2m+1, x-m+1, y           when N≤x+m.
+If x+m≤y (and E(x,y) is false), then x+2m≤y and the path is
+       x, x+2m-1, x+m-1, y.
+All intermediate positions remain in [0,N-1], N=3m-1. -/
+theorem cyclicThresholdEdge_ordered_nonedge_three_path
+    (m x y : ℕ)
+    (hm : 3 ≤ m)
+    (hxy : x < y)
+    (hy : y < 3 * m - 1)
+    (hNonedge : ¬ cyclicThresholdEdge m x y) :
+    ∃ p q : ℕ,
+      p < 3 * m - 1 ∧ q < 3 * m - 1 ∧
+      cyclicThresholdEdge m x p ∧
+      cyclicThresholdEdge m p q ∧
+      cyclicThresholdEdge m q y := by
+  by_cases hShort : y < x + m
+  · by_cases hWithinTwo : x + 2 * m < 3 * m - 1
+    · refine ⟨x + m, x + 2 * m, ?_, ?_, ?_, ?_, ?_⟩
+      all_goals unfold cyclicThresholdEdge <;> omega
+    · by_cases hWithinOne : x + m < 3 * m - 1
+      · refine ⟨x + m, x - m + 1, ?_, ?_, ?_, ?_, ?_⟩
+        all_goals unfold cyclicThresholdEdge <;> omega
+      · refine ⟨x - 2 * m + 1, x - m + 1, ?_, ?_, ?_, ?_, ?_⟩
+        all_goals unfold cyclicThresholdEdge <;> omega
+  · have hLong : x + 2 * m ≤ y := by
+      unfold cyclicThresholdEdge at hNonedge
+      omega
+    refine ⟨x + 2 * m - 1, x + m - 1, ?_, ?_, ?_, ?_, ?_⟩
+    all_goals unfold cyclicThresholdEdge <;> omega
+
+/-- The full all-m cyclic nonedge-to-three-edge-path property,
+now for arbitrary distinct FINITE source vertices in either
+order. The reverse-order case just reverses the witness path
+using the proved edge symmetry.
+
+Together with triangle-freeness and the merged generic
+collision-to-triangle lemma this settles the all-m graph-geometric
+part of printed tuple-image closure, but NOT the extra original
+unary/D/T-fullness and complete native family closure statement. -/
+theorem cyclicThresholdEdge_any_nonedge_three_path
+    (m : ℕ) (hm : 3 ≤ m)
+    (x y : Fin (3 * m - 1))
+    (hNe : x ≠ y)
+    (hNonedge : ¬ cyclicThresholdEdge m x.val y.val) :
+    ∃ p q : Fin (3 * m - 1),
+      cyclicThresholdEdge m x.val p.val ∧
+      cyclicThresholdEdge m p.val q.val ∧
+      cyclicThresholdEdge m q.val y.val := by
+  have hNeVal : x.val ≠ y.val := by
+    intro h
+    exact hNe (Fin.ext h)
+  by_cases hxy : x.val < y.val
+  · obtain ⟨p, q, hp, hq, hxp, hpq, hqy⟩ :=
+      cyclicThresholdEdge_ordered_nonedge_three_path
+        m x.val y.val hm hxy y.isLt hNonedge
+    exact ⟨⟨p, hp⟩, ⟨q, hq⟩, hxp, hpq, hqy⟩
+  · have hyx : y.val < x.val := by omega
+    have hNonedgeReverse :
+        ¬ cyclicThresholdEdge m y.val x.val := by
+      intro h
+      exact hNonedge
+        ((cyclicThresholdEdge_symmetric m y.val x.val).mp h)
+    obtain ⟨p, q, hp, hq, hyp, hpq, hqx⟩ :=
+      cyclicThresholdEdge_ordered_nonedge_three_path
+        m y.val x.val hm hyx x.isLt hNonedgeReverse
+    refine ⟨⟨q, hq⟩, ⟨p, hp⟩, ?_, ?_, ?_⟩
+    · exact (cyclicThresholdEdge_symmetric m q x.val).mp hqx
+    · exact (cyclicThresholdEdge_symmetric m p q).mp hpq
+    · exact (cyclicThresholdEdge_symmetric m y.val p).mp hyp
+
 end AllThoseRamseyClasses.Lifts
