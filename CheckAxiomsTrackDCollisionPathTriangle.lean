@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.TrackDCollisionPathTriangle
+
+#print axioms AllThoseRamseyClasses.Lifts.collapsedThreeEdgePath_targetTriangle
+#print axioms AllThoseRamseyClasses.Lifts.noninjectiveWithThreePath_targetTriangle
+#print axioms AllThoseRamseyClasses.Lifts.targetRelationEmpty_of_tupleSurjectiveSourceEmpty
