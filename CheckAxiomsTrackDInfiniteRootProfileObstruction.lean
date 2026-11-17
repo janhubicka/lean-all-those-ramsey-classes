@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.TrackDInfiniteRootProfileObstruction
+
+#print axioms AllThoseRamseyClasses.Lifts.nat_lt_two_pow_self
+#print axioms AllThoseRamseyClasses.Lifts.impossibleFiniteRootProfiles_of_unboundedNonamalgamableContexts
