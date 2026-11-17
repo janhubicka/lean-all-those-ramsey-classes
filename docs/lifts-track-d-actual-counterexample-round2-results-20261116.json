@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-16",
+  "scope": "English proofs first, adversarial audit, independent finite checks; no Lean certification",
+  "binary_generated_image": {
+    "status": "PASS",
+    "source_models": 4165,
+    "canonical_kernels": 20613,
+    "compatible_ehn_target_tables": 22701,
+    "generated_factors_ehn": 22701,
+    "generated_inclusions_ehn": 22701,
+    "globally_full_inclusions": 4653,
+    "proper_nonfull_ehn_inclusions": 18048,
+    "noninjective_source_maps": 632,
+    "irreducible_image_tests": 120473,
+    "support_inequalities": 1416753,
+    "script_sha256": "1ee6ffa9a7b31da87635ac350526e1c30a1d8f1a5b48b924b8ade4c7f3d109eb"
+  },
+  "independent_boolean_contexts_and_protected_support": {
+    "status": "PASS",
+    "parameters": [3,4,5,6,7,8],
+    "full_source_tests": 717,
+    "protected_image_tuples": 2666,
+    "cross_tuples_outside_source_tests": 53960,
+    "generated_image_triangle_failures": 166,
+    "boolean_contexts": 30,
+    "side_path_checks": 196,
+    "allowed_context_triangles": 738,
+    "pairwise_boolean_obstructions": 155,
+    "script_sha256": "5cf78524839a4652332d43fec97ed65e09f16aa37f42e2af55d188ae7a880b7d"
+  },
+  "previous_checker_rerun": {
+    "status": "PASS",
+    "structural_kernels": 40685,
+    "structural_ehn_quotients": 420,
+    "structural_noninjective_forbidden_triangle_quotients": 418,
+    "ordered_kernels": 1520,
+    "ordered_ehn_quotients": 155,
+    "ordered_noninjective_ordered_triangle_quotients": 153,
+    "script_sha256": "dcb0a265d8bc4c2025acf870fbbb41ad89f8a7eda8736c961c0141ab1b26a055"
+  },
+  "mathematical_boundaries": [
+    "Actual counterexample is an English result supported by finite checks, not a Lean-certified construction",
+    "Binary result proves injective EHN witness normalization, not the complete binary lift theorem",
+    "Vertex-surjective full-image closure at arbitrary relational arity is strictly stronger than the printed assumption",
+    "No automatic closed-image or support-bound theorem for native functions is asserted",
+    "Frozen numbered manuscript and Lean source remain unchanged"
+  ]
+}
