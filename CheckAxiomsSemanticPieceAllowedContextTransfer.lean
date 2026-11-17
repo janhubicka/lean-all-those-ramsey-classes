@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.SemanticPieceAllowedContextTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.notAvoidsGlobalFunctionalEHN_of_embedding
+#print axioms AllThoseRamseyClasses.Lifts.semanticPiece_allowedContext_iff_implies_allContexts
