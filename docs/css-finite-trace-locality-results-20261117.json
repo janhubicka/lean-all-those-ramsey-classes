@@ -1,0 +1,32 @@
+{
+  "scope": "English theorem has separate proof; these are bounded computational regressions only.",
+  "intrinsic_multi_witness_decomposition": {
+    "source_relation_tables": 1043,
+    "compatible_based_region_assignments": 46064,
+    "transferred_components": 49398,
+    "irreducible_test_containment_checks": 450705
+  },
+  "coloured_ternary_diagnostic_and_amalgams": {
+    "patterns": 19,
+    "enumerated_old_models": 2083,
+    "allowed_models": 1986,
+    "singleton_profiles": 7,
+    "same_profile_amalgams": 84,
+    "positive_side_trace_instances_checked": 7506,
+    "noninjective_pattern_maps_in_checked_amalgams": 345,
+    "distinct_root_regression": "PASS"
+  },
+  "local_to_global_witness_covers": {
+    "covers": 86,
+    "subsets_per_cover": 14,
+    "base_vertices": 4,
+    "forbidden_size": 3,
+    "total_glued_vertices": 2102,
+    "max_glued_vertices": 46,
+    "maximal_profile_covers": 41,
+    "local_to_global_trace_and_avoidance": "PASS"
+  },
+  "script_sha256": "250c911184bf1f817ad8567c51ffd8ee2da4fff2be895a3c00bb55f2a1092017",
+  "repository_script_blob_sha": "db5927beba8cd891a40d146f7c125a762297e5e2",
+  "status": "PASS"
+}
