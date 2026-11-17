@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-16",
+  "scope": "English proofs and adversarial audit first; independent finite sanity checks afterwards; no new Lean certification",
+  "live_folded_profiles": {
+    "status": "PASS",
+    "indices": [3,4,5,6],
+    "threshold_matrix": [[true,false,false,false],[true,true,false,false],[true,true,true,false],[true,true,true,true]],
+    "source_examples": 4,
+    "minimal_cut_restorations": 36,
+    "threshold_cells": 16,
+    "positive_closed_walk_maps": 10,
+    "full_irreducible_tests": 6848,
+    "triangle_extension_maps": 16,
+    "distinct_live_profile_pairs": 6,
+    "small_deletion_sets": 18852,
+    "script_sha256": "ad681d752d6b12a68da332a9e0ee575009304b89a2162b9afdc65b707942510e"
+  },
+  "native_component_transfer": {
+    "status": "PASS",
+    "signature": "one loopless symmetric binary relation and one partial unary function",
+    "sources": 533,
+    "targets": 80,
+    "maps_tested": 1523184,
+    "ehn_maps": 4996,
+    "closed_root_tests": 4996,
+    "source_component_decompositions": 8076,
+    "irreducible_no_crossing_checks": 34440,
+    "right_component_candidates": 6328,
+    "valid_right_transfers": 4124,
+    "strict_support_checks": 4124,
+    "simultaneous_transfers": 3704,
+    "nonclique_irreducible_source_tests": 144,
+    "script_sha256": "fa1964c7c109aea9db9b219f818eff0e51fff96e8aa390a60594acc8671507d8"
+  },
+  "not_established": [
+    "finite cofinal coherent maximal-profile codes from original regularity",
+    "the full original precompact lift theorem",
+    "unconditional Ramsey sparse-control construction",
+    "Lean certification of new English claims"
+  ]
+}
