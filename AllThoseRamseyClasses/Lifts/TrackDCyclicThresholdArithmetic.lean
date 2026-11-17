@@ -148,17 +148,17 @@ theorem cyclicThresholdEdge_ordered_nonedge_three_path
   by_cases hShort : y < x + m
   · by_cases hWithinTwo : x + 2 * m < 3 * m - 1
     · refine ⟨x + m, x + 2 * m, ?_, ?_, ?_, ?_, ?_⟩
-      all_goals simp only [cyclicThresholdEdge] <;> omega
+      all_goals (try simp only [cyclicThresholdEdge]) <;> omega
     · by_cases hWithinOne : x + m < 3 * m - 1
       · refine ⟨x + m, x + 1 - m, ?_, ?_, ?_, ?_, ?_⟩
-        all_goals simp only [cyclicThresholdEdge] <;> omega
+        all_goals (try simp only [cyclicThresholdEdge]) <;> omega
       · refine ⟨x + 1 - 2 * m, x + 1 - m, ?_, ?_, ?_, ?_, ?_⟩
-        all_goals simp only [cyclicThresholdEdge] <;> omega
+        all_goals (try simp only [cyclicThresholdEdge]) <;> omega
   · have hLong : x + 2 * m ≤ y := by
       unfold cyclicThresholdEdge at hNonedge
       omega
     refine ⟨x + 2 * m - 1, x + m - 1, ?_, ?_, ?_, ?_, ?_⟩
-    all_goals simp only [cyclicThresholdEdge] <;> omega
+    all_goals (try simp only [cyclicThresholdEdge]) <;> omega
 
 /-- The full all-m cyclic nonedge-to-three-edge-path property,
 now for arbitrary distinct FINITE source vertices in either
