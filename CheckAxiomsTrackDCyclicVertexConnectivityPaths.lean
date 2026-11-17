@@ -1,0 +1,6 @@
+import AllThoseRamseyClasses.Lifts.TrackDCyclicVertexConnectivityPaths
+
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdShortPath_i_lt_d
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdShortPath_d_le_i
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdShortPaths_pairwise_interior_disjoint
+#print axioms AllThoseRamseyClasses.Lifts.cyclicThresholdShortPaths_avoid_endpoints
