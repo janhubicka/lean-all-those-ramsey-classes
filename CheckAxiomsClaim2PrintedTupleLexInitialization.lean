@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2PrintedTupleLexInitialization
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_selectedPrintedTupleLex_injective_minimalMixed
+#print axioms AllThoseRamseyClasses.Lifts.exists_selectedPrintedTupleLex_actualFlip_strictBA

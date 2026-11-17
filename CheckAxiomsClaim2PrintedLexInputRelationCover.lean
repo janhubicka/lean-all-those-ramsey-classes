@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.Claim2PrintedLexInputRelationCover
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_printedSelectedLexInputRelation_actualFlip_strictBA
+#print axioms AllThoseRamseyClasses.Lifts.exists_printedLexInputRelation_covers_actualFlip_strictBA
