@@ -28,18 +28,18 @@ variable [Fintype I] [DecidableEq I]
 forbidden continuation tests, every witness has an extension whose
 test set is stable under all subsequent extensions. -/
 theorem exists_stable_finite_continuation_profile
-    (extends : W → W → Prop)
+    (extendsRel : W → W → Prop)
     (profile : W → Finset I)
-    (hrefl : ∀ w : W, extends w w)
-    (htrans : ∀ a b c : W, extends a b → extends b c → extends a c)
-    (hmono : ∀ a b : W, extends a b → profile a ⊆ profile b)
+    (hrefl : ∀ w : W, extendsRel w w)
+    (htrans : ∀ a b c : W, extendsRel a b → extendsRel b c → extendsRel a c)
+    (hmono : ∀ a b : W, extendsRel a b → profile a ⊆ profile b)
     (a : W) :
-    ∃ b : W, extends a b ∧
-      ∀ c : W, extends b c → profile c = profile b := by
+    ∃ b : W, extendsRel a b ∧
+      ∀ c : W, extendsRel b c → profile c = profile b := by
   classical
   let feasible : Finset (Finset I) :=
     Finset.univ.filter (fun q : Finset I =>
-      ∃ b : W, extends a b ∧ profile b = q)
+      ∃ b : W, extendsRel a b ∧ profile b = q)
   let sizes : Finset ℕ := feasible.image Finset.card
   have hfeasible : profile a ∈ feasible := by
     simp only [feasible, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -50,13 +50,13 @@ theorem exists_stable_finite_continuation_profile
   let m : ℕ := sizes.max' hsizes
   have hm : m ∈ sizes := Finset.max'_mem sizes hsizes
   obtain ⟨q, hq, hqcard⟩ := Finset.mem_image.mp hm
-  have hqexist : ∃ b : W, extends a b ∧ profile b = q := by
+  have hqexist : ∃ b : W, extendsRel a b ∧ profile b = q := by
     have ht := (Finset.mem_filter.mp hq).2
     exact ht
   obtain ⟨b, hab, hbq⟩ := hqexist
   refine ⟨b, hab, ?_⟩
   intro c hbc
-  have hac : extends a c := htrans a b c hab hbc
+  have hac : extendsRel a c := htrans a b c hab hbc
   have hcfeasible : profile c ∈ feasible := by
     simp only [feasible, Finset.mem_filter, Finset.mem_univ, true_and]
     exact ⟨c, hac, rfl⟩
