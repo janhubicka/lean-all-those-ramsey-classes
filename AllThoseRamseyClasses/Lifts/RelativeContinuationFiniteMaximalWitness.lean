@@ -74,4 +74,57 @@ theorem exists_stable_finite_continuation_profile
     exact hbound
   exact (Finset.eq_of_subset_of_card_le hsubset hcard).symm
 
+
+/-- Genuine finite-index version: the type `P` represents finitely
+many possible continuation ROWS, whereas `C` is the (possibly
+infinite) universe of all rooted continuation tests. Under extension,
+a row can only gain tests. An extension exists whose row becomes
+unchanged under every further extension, even though the test
+universe itself need not be finite.
+
+The proof applies finite-subset saturation to the DOWNSETS of
+rows inside the finite type `P`. Equality of downsets and row
+monotonicity imply equality of the full, potentially infinite rows.
+-/
+theorem exists_stable_finite_index_continuation_row
+    {P : Type v} {C : Type u} [Fintype P]
+    (extendsRel : W → W → Prop)
+    (rowType : W → P)
+    (holds : P → C → Prop)
+    (hrefl : ∀ w : W, extendsRel w w)
+    (htrans : ∀ a b c : W,
+      extendsRel a b → extendsRel b c → extendsRel a c)
+    (hmono : ∀ a b : W, extendsRel a b →
+      ∀ t : C, holds (rowType a) t → holds (rowType b) t)
+    (a : W) :
+    ∃ b : W, extendsRel a b ∧
+      ∀ c : W, extendsRel b c →
+        ∀ t : C, holds (rowType c) t ↔ holds (rowType b) t := by
+  classical
+  let down : W → Finset P := fun w =>
+    Finset.univ.filter (fun q => ∀ t : C,
+      holds q t → holds (rowType w) t)
+  have hdown : ∀ x y : W, extendsRel x y → down x ⊆ down y := by
+    intro x y hxy p hp
+    simp only [down, Finset.mem_filter, Finset.mem_univ, true_and]
+      at hp ⊢
+    intro t ht
+    exact hmono x y hxy t (hp t ht)
+  obtain ⟨b, hab, hstable⟩ :=
+    exists_stable_finite_continuation_profile
+      extendsRel down hrefl htrans hdown a
+  refine ⟨b, hab, ?_⟩
+  intro c hbc t
+  have hself : rowType c ∈ down c := by
+    simp only [down, Finset.mem_filter, Finset.mem_univ, true_and]
+    intro s hs
+    exact hs
+  have hmem : rowType c ∈ down b := by
+    rw [← hstable c hbc]
+    exact hself
+  have hcb : ∀ s : C, holds (rowType c) s → holds (rowType b) s := by
+    simpa only [down, Finset.mem_filter, Finset.mem_univ, true_and]
+      using hmem
+  exact ⟨fun ht => hcb t ht, fun ht => hmono b c hbc t ht⟩
+
 end AllThoseRamseyClasses.Lifts
