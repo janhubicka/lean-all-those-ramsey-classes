@@ -74,9 +74,18 @@ theorem rawClosedComponentAgreement_freeAmalgam_avoids
     (hAgrees : AllForbiddenClosedComponentTracesAgree F X A B sA sB)
     (hB : AvoidsGlobalFunctionalEHN F B) :
     AvoidsGlobalFunctionalEHN F Whole := by
-  apply avoidsGlobalFunctionalEHN_of_allClosedComponentTransfer
-    F X A B Whole sA sB iA iB hFree ?_ hB
-  intro V _ Source hF tag xs hA
-  exact (hAgrees Source hF tag xs).mp hA
+  intro V Source hFin hF f hf
+  letI : Finite V := hFin
+  have hTransfer : AllClosedComponentRootedTransfer Source X A B sA sB := by
+    intro tag xs hA
+    exact (hAgrees Source hF tag xs).mp hA
+  have hNo : ∀ g : V → VB,
+      ¬ Source.IsEHNHomomorphismEmbedding B g :=
+    hB Source hFin hF
+  have hAvoid : ∀ g : V → VW,
+      ¬ Source.IsEHNHomomorphismEmbedding Whole g :=
+    wholeComponentRootedTransfer_freeAmalgam_avoids_source
+      Source Whole A B iA iB X sA sB hFree hTransfer hNo
+  exact hAvoid f hf
 
 end AllThoseRamseyClasses.Lifts
