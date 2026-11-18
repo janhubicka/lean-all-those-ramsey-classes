@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.RawClosedComponentAgreement
+
+#print axioms AllThoseRamseyClasses.Lifts.allForbiddenClosedComponentTracesAgree_symm
+#print axioms AllThoseRamseyClasses.Lifts.rawClosedComponentAgreement_freeAmalgam_avoids
