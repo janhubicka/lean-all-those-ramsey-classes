@@ -1,5 +1,6 @@
 import Mathlib.Data.Finset.Card
-import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Finset.Max
+import Mathlib.Data.Fintype.Powerset
 
 /-!
 # Finite continuation profiles admit finite maximal witnesses
