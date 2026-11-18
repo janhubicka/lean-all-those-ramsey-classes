@@ -1,0 +1,3 @@
+import AllThoseRamseyClasses.Lifts.RelativeContinuationGlobalTransfer
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_of_allClosedComponentTransfer

@@ -1,0 +1,4 @@
+import AllThoseRamseyClasses.Lifts.RelativeContinuationFreeFoldAvoidance
+
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_of_ehn
+#print axioms AllThoseRamseyClasses.Lifts.avoidsGlobalFunctionalEHN_of_freeFold

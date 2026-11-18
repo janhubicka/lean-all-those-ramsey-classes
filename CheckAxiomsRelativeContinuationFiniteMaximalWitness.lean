@@ -1,0 +1,5 @@
+import AllThoseRamseyClasses.Lifts.RelativeContinuationFiniteMaximalWitness
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_stable_finite_continuation_profile
+
+#print axioms AllThoseRamseyClasses.Lifts.exists_stable_finite_index_continuation_row
